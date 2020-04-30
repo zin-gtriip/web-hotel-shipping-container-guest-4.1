@@ -8,13 +8,13 @@ from guest_app                  import gateways, utilities, samples
 
 CACHE = caches['default']
 
-class CheckinLoginForm(forms.Form):
+class CheckInLoginForm(forms.Form):
     reservation_no  = forms.CharField(label=_('Reservation Number'))
     arrival_date    = forms.DateField(label=_('Arrival Date'))
     last_name       = forms.CharField(label=_('Last Name'))
 
     def __init__(self, request, *args, **kwargs):
-        super(CheckinLoginForm, self).__init__(*args, **kwargs)
+        super(CheckInLoginForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
 
@@ -44,12 +44,12 @@ class CheckinLoginForm(forms.Form):
         CACHE.clear() # research if this is proper way
 
 
-class CheckinPassportForm(forms.Form):
+class CheckInPassportForm(forms.Form):
     passport_file = forms.CharField(widget=forms.HiddenInput(), required=False)
     skip_passport = forms.BooleanField(widget=forms.HiddenInput(), required=False)
     
     def __init__(self, request, *args, **kwargs):
-        super(CheckinPassportForm, self).__init__(*args, **kwargs)
+        super(CheckInPassportForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
 
