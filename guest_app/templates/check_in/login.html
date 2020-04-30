@@ -1,0 +1,52 @@
+{% extends 'check_in/base_checkin.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block lib_css %}
+<link rel="stylesheet" href="{% static 'vendor/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
+{% endblock lib_css %}
+
+{% block content %}
+{{ block.super }}
+<div class="row">
+    <div class="col-12 col-sm-8 col-md-7 col-lg-5 mx-auto">
+        <div class="card">
+            <div class="text-center py-4">
+                <h4 class="font-weight-bold">{% trans 'Check-in Registration' %}</h5>
+                <div class="font-weight-lighter">{% trans 'Enter reservation details to start' %}</div>
+            </div>
+            <div class="card-body px-4 px-lg-5 pt-0">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="md-form">
+                        {{ form.reservation_no.label_tag }}
+                        {% render_field form.reservation_no class="form-control" %}
+                    </div>
+                    <div class="md-form input-with-post-icon">
+                        {{ form.arrival_date.label_tag }}
+                        {% render_field form.arrival_date class="form-control datepicker" %}
+                        <i class="far fa-calendar input-prefix"></i>
+                    </div>
+                    <div class="md-form">
+                        {{ form.last_name.label_tag }}
+                        {% render_field form.last_name class="form-control" %}
+                        <div class="invalid-feedback">
+                            Please choose a username.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block my-5 waves-effect">{% trans 'Next' %}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block lib_js %}
+<script type="text/javascript" src="{% static 'vendor/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
+{% endblock lib_js %}
+
+{% block static_js %}
+<script type="text/javascript" src="{% static 'js/check_in/login.js' %}"></script>
+{% endblock static_js %}

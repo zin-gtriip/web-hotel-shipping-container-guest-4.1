@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_name %} - {% trans 'Check In' %}{% endblock page_name %}
+
+{% block content %} <!-- wizard step --> {% endblock content %}
+
+{% block hotel_logo %}
+<a href="{% url 'guest_app:checkin-login' %}" alt>
+    <img id="hotel-logo" src="{% static 'img/logo.png' %}"/>
+</a>
+{% endblock hotel_logo %}
