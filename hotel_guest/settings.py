@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'v@1-6b@&&nvfe@4%(378cs)5^q=)(7lkt1^!ogs=bhz_6$-i#p'
+SECRET_KEY = 'v-g1k*x-9fnj&w)x&(-oawy5lg698)+%og#33smma)^fr87u18'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,11 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'compressor',
+    'widget_tweaks',
+    'django_cron',
+    'guest_app',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -103,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
@@ -114,7 +119,85 @@ USE_L10N = True
 USE_TZ = True
 
 
+# Available languages for translation
+# https://samulinatri.com/blog/django-translation/
+
+LANGUAGES = [
+    ('en', 'English'),
+    ('ja', 'Japanese'),
+    ('zh-hans', 'Chinese Simplified'),
+    ('zh-hant', 'Chinese Traditional'),
+]
+
+
+# Prioritize locale path to override default translation
+# https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-LOCALE_PATHS
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'guest_app', 'locale'),
+]
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 STATIC_URL = '/static/'
+
+
+# django-compressor setting for compressing file
+# this setting will be changed to True by default, if running in PROD mode and COMPRESS_ENABLED is not defined
+
+# COMPRESS_ENABLED = True
+
+
+# Static files finders for django-compressor
+# https://django-compressor.readthedocs.io/en/stable/quickstart/#installation
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
+
+
+# Compressor settings for css file. JS file is compressed by default
+# https://django-compressor.readthedocs.io/en/stable/settings/#django.conf.settings.COMPRESS_CSS_FILTERS
+
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSCompressorFilter',
+]
+
+
+# SASS complier for django_libsass
+# https://github.com/torchbox/django-libsass
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
+
+
+# Gateway API configuration
+
+GATEWAY_API_HOST    = 'https://staystg.marinabaysands.com/mbs-gtriip'
+GATEWAY_API_HASH    = '6C209DED142B90DA15A65F129CFCB281108A9D4373E04C19C03719C3E5F1DB0EB538C'
+GATEWAY_API_KEY     = '89CD209C34B98061F0BE9317DF3206FDE6B8A8897AC7D51624CAB7B212F95515B305DD0A1AD500927C2DB7651DF6B395F614D7DC95038D5CC2325C47697671E5 '
+GATEWAY_HOTEL_ID    = '13B76FAC767FAD58C03891014D8C2DF7B044D84DFDC870F76E80D577271E381D1FF5AD189FA3E37AD886BE2FD11027A8F263AFEFA999B97535CA4CC6615C5D6B'
+GATEWAY_LANGUAGE_ID = '4'
+
+
+# Cron job configuration
+# Also need to setup scheduled cron on server, ex crontab on Unix
+# https://django-cron.readthedocs.io/en/latest/
+
+CLEAR_SESSION_CRON_JOB_RUN_TIME = '00:00'
+CRON_CLASSES = [
+    "guest_app.crons.ClearSessionCronJob",
+]
+
+
+# Other configuration
+
+PASSPORT_AGE_LIMIT              = 18
+# SESSION_COOKIE_AGE              = 60 * 15 # seconds
