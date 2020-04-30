@@ -20,20 +20,30 @@ class CheckInLoginForm(forms.Form):
 
     def clean(self):
         super().clean()
+        reservation_no = self.cleaned_data.get('reservation_no')
+        arrival_date = self.cleaned_data.get('arrival_date')
+        last_name = self.cleaned_data.get('last_name')
+
         # validate required field
-        # enter the required information
+        if not reservation_no:
+            self._errors['reservation_no'] = self.error_class([_('Enter the required information')])
+        if not arrival_date:
+            self._errors['arrival_date'] = self.error_class([_('Enter the required information')])
+        if not last_name:
+            self._errors['last_name'] = self.error_class([_('Enter the required information')])
+        # validate from backend
+        if reservation_no and arrival_date and last_name:
+            data = {
+                'confirmation_number': reservation_no,
+                'arrival_date': arrival_date,
+                'last_name': last_name,
+            }
+            response = samples.get_data(data) #gateways.post('/booking/get_booking', data)
+            # save to cache to be used after form is valid
+            CACHE.set('checkin_login_response', response)
 
-        data = {
-            'confirmation_number': self.cleaned_data.get('reservation_no'),
-            'arrival_date': self.cleaned_data.get('arrival_date'),
-            'last_name': self.cleaned_data.get('last_name')
-        }
-        response = samples.get_data(data) #gateways.post('/booking/get_booking', data)
-        # save to cache to be used after form is valid
-        CACHE.set('checkin_login_response', response)
-
-        if response.get('status', '') != 'success':
-            raise forms.ValidationError(response.get('message', _('Unknown error')))
+            if response.get('status', '') != 'success':
+                raise forms.ValidationError(response.get('message', _('Unknown error')))
         return self.cleaned_data
 
     def set_session(self):
