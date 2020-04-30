@@ -1,0 +1,22 @@
+# compile python file and pycache
+__pycache__
+*.pyc
+
+# db file
+*.sqlite3
+
+# storage, temp folder
+/storage
+
+# ignore npm files
+/static/vendor/node_modules
+/static/vendor/package-lock.json
+
+# ignore cache js and css files
+/static/CACHE
+
+# migration
+/*/migrations
+
+# logs
+logs
