@@ -8,15 +8,18 @@ __pycache__
 # storage, temp folder
 /storage
 
-# ignore npm files
+# npm files
 /static/vendor/node_modules
 /static/vendor/package-lock.json
 
-# ignore cache js and css files
+# cache js and css files
 /static/CACHE
 
 # migration
 /*/migrations
+
+# uploaded image file for ocr
+/upload
 
 # logs
 logs
