@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 19:12+0700\n"
-"PO-Revision-Date: 2020-04-30 19:10+0700\n"
+"POT-Creation-Date: 2020-04-30 21:20+0700\n"
+"PO-Revision-Date: 2020-04-30 21:20+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -18,32 +18,37 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 2.3\n"
 
-#: forms/check_in.py:12
+#: forms/check_in.py:13
 msgid "Reservation Number"
 msgstr "预订号"
 
-#: forms/check_in.py:13
+#: forms/check_in.py:14
 msgid "Arrival Date"
 msgstr "入住日期"
 
-#: forms/check_in.py:14
+#: forms/check_in.py:15
 msgid "Last Name"
 msgstr "姓"
 
-#: forms/check_in.py:35
+#: forms/check_in.py:30 forms/check_in.py:32 forms/check_in.py:34
+msgid "Enter the required information"
+msgstr "输入所需信息"
+
+#: forms/check_in.py:47
 msgid "Unknown error"
 msgstr "未知误差"
 
-#: forms/check_in.py:64
+#: forms/check_in.py:76
 msgid "No image file selected."
 msgstr "未选择图像文件。"
 
-#: forms/check_in.py:87
+#: forms/check_in.py:99
 #, python-format
-msgid "You must be at least %s years of age to proceed with your registration."
-msgstr "您必须年满%s年数才能继续注册。"
+msgid ""
+"You must be at least %(age)s years of age to proceed with your registration."
+msgstr "您必须年满%(age)s年数才能继续注册。"
 
-#: forms/check_in.py:89
+#: forms/check_in.py:101
 msgid ""
 "Your passport has expired, please capture / upload a valid passport photo to "
 "proceed"
@@ -65,7 +70,7 @@ msgstr "签入登记"
 msgid "Enter reservation details to start"
 msgstr "输入预订详细信息以开始"
 
-#: templates/check_in/login.html:38 templates/check_in/passport.html:49
+#: templates/check_in/login.html:45 templates/check_in/passport.html:49
 msgid "Next"
 msgstr "下一个"
 
