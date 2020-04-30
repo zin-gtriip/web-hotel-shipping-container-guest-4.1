@@ -1,0 +1,181 @@
+/*!
+ * GTRIIP Hotel Guest App Theme v1.0.0
+ * Customize style based on hotel theme
+*/
+$theme-colors: (
+    primary: #4285f4,
+    secondary: #6c757d,
+    success: #28a745,
+    info: #17a2b8,
+    warning: #ffc107,
+    danger: #b00020,
+    light: #f8f9fa,
+    dark: #343a40
+);
+$text-colors: (
+    primary: #fff
+    // primary: #151515
+);
+
+
+
+$font-size: .875rem;
+
+/*!
+ * End of customize theme
+ * Please do not edit code below
+*/
+
+// modify mdb
+.md-form .input-prefix {
+    top: 58%;
+}
+
+
+body {
+    font-size: $font-size;
+    color: #3c4858;
+}
+
+/* HEADER */
+.header {
+    padding: .9375rem 0;
+    text-align: center;
+    display: flex;
+    width: 100%;
+    // border-bottom: 2px solid #E5E5E5;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 4px 6px -1px;
+    // position: sticky;
+    // top: 0;
+    // background-color: #fff;
+    // z-index: 2;
+
+    .header-logo {
+        float: left;
+
+        #hotel-logo {
+            width: 38px;
+        }
+    }
+
+    .header-language {
+        float: right;
+
+        select {
+            &:hover, &:focus {
+                color: #007bff;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.content {
+    padding: 70px 15px;
+    // z-index: 1;
+}
+
+
+// need to move to be single module
+/* variable / color */
+.bg-primary {
+    background-color: #{map-get($theme-colors, primary)} !important;
+}
+
+.bg-danger {
+    background-color: #{map-get($theme-colors, danger)} !important;
+}
+
+.text-primary {
+    color: #{map-get($theme-colors, primary)} !important;
+}
+
+/* button */
+.btn {
+    &.btn-primary {
+        background-color: #{map-get($theme-colors, primary)} !important;
+        color: #{map-get($text-colors, primary)};
+    }
+    &.btn-floating {
+        position: relative;
+        z-index: 1;
+        display: inline-block;
+        padding: 0;
+        overflow: hidden;
+        vertical-align: middle;
+        border-radius: 50%;
+        width: 47px;
+        height: 47px;
+
+        i {
+            display: inline-block;
+            width: inherit;
+            color: #fff;
+            text-align: center;
+            line-height: 47px;
+        }
+    }
+}
+
+/* select */
+select.md-select {
+    display: inline-block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem 1.75rem .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #3c4858;
+    vertical-align: middle;
+    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px;
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid #ced4da;
+    border-left: none;
+    border-radius: 0;
+    transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &:focus {
+        border-bottom: 1px solid #4285f4;
+        -webkit-box-shadow: 0 1px 0 0 #4285f4;
+        box-shadow: 0 1px 0 0 #4285f4;
+    }
+
+    // &.icon-select {
+    //     margin-left: 2.5rem !important;
+    //     width: 90%;
+    // }
+    
+    &.borderless-select {
+        border-bottom: none;
+        background: transparent;
+
+        &:focus {
+            border-bottom: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+    }
+}
+
+// toast
+.toast-wrapper {
+	position: relative;
+    min-height: 200px;
+    
+    .toast-top-left {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 350px;
+    }
+}
+
+// form
+.md-form .form-control.is-invalid {
+    border-color: #f44336 !important;
+}

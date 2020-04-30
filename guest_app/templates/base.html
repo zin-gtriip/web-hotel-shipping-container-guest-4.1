@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load i18n %}
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_available_languages as LANGUAGES %}
+    {% get_language_info_list for LANGUAGES as languages %}
+    {% load static %}
+    {% load compress %}
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block hotel_name %}Hotel Name{% endblock hotel_name %}{% block page_name %}{% endblock page_name %}</title>
+
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="{% static 'vendor/node_modules/@fortawesome/fontawesome-free/css/all.min.css' %}">
+    <!-- material icons -->
+    <link rel="stylesheet" href="{% static 'vendor/node_modules/material-design-icons/iconfont/material-icons.css' %}">
+    <!-- material design bootstrap -->
+    <!-- google font for  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="{% static 'vendor/node_modules/mdbootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/node_modules/mdbootstrap/css/mdb.min.css' %}">
+    <!-- other css library per page -->
+    {% block lib_css %}{% endblock lib_css %}
+    {% compress css %}
+    <!-- global scss, importing custom ... -->
+    <link rel="stylesheet" href="{% static 'scss/base.scss' %}" type="text/x-scss" media="screen">
+    <!-- scss per page -->
+    {% block static_css %}{% endblock static_css %}
+    {% endcompress %}
+</head>
+
+<body>
+    <!-- loader -->
+    <div></div>
+
+    <div class="wrapper">
+        {% block wrapper %}
+        <div class="header">
+            <div class="container">
+                {% block header %}
+                <div class="header-logo">
+                    {% block hotel_logo %}
+                    <a href="/" alt>
+                        <img id="hotel-logo" src="{% static 'img/logo.png' %}"/>
+                    </a>
+                    {% endblock hotel_logo %}
+                </div>
+                <div class="header-language">
+                    <form id="frm-set-language" action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}">
+                        <select id="language" name="language" class="md-select borderless-select">
+                            <option value="" disabled selected>Language</option>
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"
+                                {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                                    {{ language.name_local }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
+                {% endblock header %}
+            </div>
+        </div>
+        <div class="content container">
+            {% block content %}{% endblock content %}
+        </div>
+
+		<!-- Toast - Bootstrap Notification -->
+		<div class="toast-wrapper" aria-live="polite" aria-atomic="true">
+			<div class="toast-top-left">
+                {% block toast_notification %}
+                    {% if form.non_field_errors %}
+                        {% for error in form.non_field_errors %}
+                        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
+                            <div class="toast-body bg-danger">
+                                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <span class="toast-message text-white">{{ error }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endblock toast_notification %}
+			</div>
+		</div>
+		<!-- end of Toast -->
+        {% endblock wrapper %}
+    </div>
+
+    <!-- django js translation -->
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    {% compress js file %}
+        <!-- material design bootstrap -->
+        <script type="text/javascript" src="{% static 'vendor/node_modules/mdbootstrap/js/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'vendor/node_modules/mdbootstrap/js/popper.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'vendor/node_modules/mdbootstrap/js/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'vendor/node_modules/mdbootstrap/js/mdb.min.js' %}"></script>
+        <!-- other js library per page -->
+        {% block lib_js %}{% endblock lib_js %}
+        <!-- global js -->
+        <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+        <!-- js per page -->
+        {% block static_js %}{% endblock static_js %}
+    {% endcompress %}
+    <!-- CSRF Token -->
+    {% csrf_token %}
+    <script type="text/javascript">var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();</script>
+</body>
+</html>
