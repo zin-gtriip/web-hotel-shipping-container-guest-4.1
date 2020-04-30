@@ -1,0 +1,94 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-30 19:12+0700\n"
+"PO-Revision-Date: 2020-04-30 19:10+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.3\n"
+
+#: forms/check_in.py:12
+msgid "Reservation Number"
+msgstr "预订号"
+
+#: forms/check_in.py:13
+msgid "Arrival Date"
+msgstr "入住日期"
+
+#: forms/check_in.py:14
+msgid "Last Name"
+msgstr "姓"
+
+#: forms/check_in.py:35
+msgid "Unknown error"
+msgstr "未知误差"
+
+#: forms/check_in.py:64
+msgid "No image file selected."
+msgstr "未选择图像文件。"
+
+#: forms/check_in.py:87
+#, python-format
+msgid "You must be at least %s years of age to proceed with your registration."
+msgstr "您必须年满%s年数才能继续注册。"
+
+#: forms/check_in.py:89
+msgid ""
+"Your passport has expired, please capture / upload a valid passport photo to "
+"proceed"
+msgstr "您的护照已过期，请获取或上传有效护照照片继续"
+
+#: gateways.py:34 gateways.py:52 samples.py:24
+msgid "Error connecting to server"
+msgstr "连接服务器误差"
+
+#: templates/check_in/base_checkin.html:5
+msgid "Check In"
+msgstr "入住"
+
+#: templates/check_in/login.html:16
+msgid "Check-in Registration"
+msgstr "签入登记"
+
+#: templates/check_in/login.html:17
+msgid "Enter reservation details to start"
+msgstr "输入预订详细信息以开始"
+
+#: templates/check_in/login.html:38 templates/check_in/passport.html:49
+msgid "Next"
+msgstr "下一个"
+
+#: templates/check_in/passport.html:23
+msgid "Submit Passport Document"
+msgstr "提交护照文件"
+
+#: templates/check_in/passport.html:24
+msgid "Take picture or upload image"
+msgstr "拍照或上传图片"
+
+#: templates/check_in/passport.html:41 templates/check_in/passport.html:45
+msgid "Capture"
+msgstr "捉取"
+
+#: templates/check_in/passport.html:57
+msgid "Upload"
+msgstr "上传"
+
+#: templates/check_in/passport.html:61
+msgid "Retake"
+msgstr "重拍"
+
+#: templates/check_in/passport.html:68
+msgid "Skip to Guest Details"
+msgstr "跳至客人详细信息"

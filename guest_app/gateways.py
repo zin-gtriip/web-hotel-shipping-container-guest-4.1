@@ -2,8 +2,9 @@ import datetime
 import requests
 import json
 import hashlib
-from json           import JSONDecodeError
-from django.conf    import settings
+from json                       import JSONDecodeError
+from django.conf                import settings
+from django.utils.translation   import gettext, gettext_lazy as _
 
 # backend gateway
 def post(url, post_data):
@@ -30,7 +31,7 @@ def post(url, post_data):
         except JSONDecodeError:
             json_response = {'status': 'error', 'message': response.content.decode('utf-8')}
     except requests.exceptions.RequestException as request_error:
-        json_response = {'status': 'error', 'message': 'Error connecting to server'}
+        json_response = {'status': 'error', 'message': _('Error connecting to server')}
     return json_response
 
 # ocr scanning
@@ -48,5 +49,5 @@ def ocr(image_file, scan_type):
         except JSONDecodeError:
             json_response = {'status': 'error', 'message': response.content.decode('utf-8')}
     except requests.exceptions.RequestException as request_error:
-        json_response = {'status': 'error', 'message': 'Error connecting to server'}
+        json_response = {'status': 'error', 'message': _('Error connecting to server')}
     return json_response

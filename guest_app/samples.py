@@ -1,3 +1,5 @@
+from django.utils.translation   import gettext, gettext_lazy as _
+
 checkin_data = [
     {
         'confirmation_number': '1234',
@@ -19,5 +21,5 @@ def get_data(post_data):
     if sample_data:
         sample_data['status'] = 'success'
     else:
-        sample_data = {'status': 'error', 'message': 'Error connecting to server'}
+        sample_data = {'status': 'error', 'message': _('Error connecting to server')}
     return sample_data
