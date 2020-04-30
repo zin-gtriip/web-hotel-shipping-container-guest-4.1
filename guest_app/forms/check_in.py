@@ -91,9 +91,9 @@ class CheckInPassportForm(forms.Form):
         return self.cleaned_data
 
 
-class CheckinDetailForm(forms.Form):
+class CheckInDetailForm(forms.Form):
 
     def __init__(self, request, *args, **kwargs):
-        super(CheckinDetailForm, self).__init__(*args, **kwargs)
+        super(CheckInDetailForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
