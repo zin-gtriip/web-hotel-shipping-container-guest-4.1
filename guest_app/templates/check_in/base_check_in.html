@@ -14,7 +14,7 @@
 {% endblock timer %}
 
 {% block hotel_logo %}
-<a href="{% url 'guest_app:checkin-login' %}" alt>
+<a href="{% url 'guest_app:check-in-login' %}" alt>
     <img id="hotel-logo" src="{% static 'img/logo.png' %}"/>
 </a>
 {% endblock hotel_logo %}
@@ -25,6 +25,6 @@
 
 {% block static_js %}
     {% if '/login' not in request.path %}
-        <script type="text/javascript" src="{% static 'js/check_in/base_checkin.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/check_in/base_check_in.js' %}"></script>
     {% endif %}
 {% endblock static_js %}

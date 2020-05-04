@@ -4,7 +4,7 @@ from .views         import *
 app_name = 'guest_app'
 urlpatterns = [
     path('', CheckInLoginView.as_view(), name='index'),
-    path('checkin/login/', CheckInLoginView.as_view(), name='checkin-login'),
-    path('checkin/passport/', CheckInPassportView.as_view(), name='checkin-passport'),
-    path('checkin/detail/', CheckInDetailView.as_view(), name='checkin-detail'),
+    path('check_in/login/', CheckInLoginView.as_view(), name='check-in-login'),
+    path('check_in/passport/', CheckInPassportView.as_view(), name='check-in-passport'),
+    path('check_in/detail/', CheckInDetailView.as_view(), name='check-in-detail'),
 ]

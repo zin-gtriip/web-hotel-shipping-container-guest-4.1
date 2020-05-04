@@ -203,4 +203,4 @@ CRON_CLASSES = [
 
 HOTEL_NAME              = 'GTRIIP'
 PASSPORT_AGE_LIMIT      = 18
-CHECKIN_SESSION_AGE     = 60 * 15 # seconds
+CHECK_IN_SESSION_AGE    = 60 * 15 # seconds

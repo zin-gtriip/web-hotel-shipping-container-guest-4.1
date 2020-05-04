@@ -39,17 +39,17 @@ class CheckInLoginForm(forms.Form):
                 'last_name': last_name,
             }
             response = samples.get_data(data) #gateways.post('/booking/get_booking', data)
-            CACHE.set('checkin_login_response', response) # save to cache to be used after form is valid
-
-            if response.get('status', '') != 'success':
+            if response.get('status', '') == 'success':
+                CACHE.set('check_in_login', response) # save to cache to be used after form is valid
+            else:
                 raise forms.ValidationError(response.get('message', _('Unknown error')))
         return self.cleaned_data
 
     def set_session(self):
         self.request.session.flush()
         self.request.session.create() # for creating `session_key`
-        self.request.session.set_expiry(settings.CHECKIN_SESSION_AGE)
-        self.request.session['checkin_data'] = CACHE.get('checkin_login_response', {})
+        self.request.session.set_expiry(settings.CHECK_IN_SESSION_AGE)
+        self.request.session['check_in_data'] = CACHE.get('check_in_login', {})
         CACHE.clear()
 
 

@@ -16,20 +16,20 @@ class RequestInitializedMixin(object):
 
 class SessionDataRequiredMixin(object):
     """
-    Generic form view mixin verifies that the user has `checkin_data`
-    in `request.session`.
+    Generic form view mixin verifies that the user has `check_in_data`
+    and `check_out_data` in `request.session`.
     This mixin works similar like `LoginRequiredMixin` and must be put
     on every check-in page except login
     """
-    checkin_login_url   = 'guest_app:checkin-login'
-    checkout_login_url  = 'guest_app:checkout-login'
+    check_in_login_url   = 'guest_app:check-in-login'
+    check_out_login_url  = 'guest_app:check-out-login'
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.session_key:
-            if ('/checkin' in request.path and 'checkin_data' in request.session) or ('/checkout' in request.path and 'checkout_data' in request.session):
+            if ('/check_in' in request.path and 'check_in_data' in request.session) or ('/check_out' in request.path and 'check_out_data' in request.session):
                 return super(SessionDataRequiredMixin, self).dispatch(request, *args, **kwargs)
-        if '/checkin' in request.path:
-            return redirect(self.checkin_login_url)
-        else:
-            return redirect(self.checkout_login_url)
+        if '/check_in' in request.path:
+            return redirect(self.check_in_login_url)
+        elif '/check_out' in request.path:
+            return redirect(self.check_out_login_url)
         return redirect('guest_app:index')
