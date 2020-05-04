@@ -25,11 +25,11 @@ class SessionDataRequiredMixin(object):
     checkout_login_url  = 'guest_app:checkout-login'
 
     def dispatch(self, request, *args, **kwargs):
-        if request.session._get_session_key() and ('/checkin' in request.path or '/checkout' in request.path):
+        if request.session._get_session_key():
             if ('/checkin' in request.path and 'checkin_data' in request.session) or ('/checkout' in request.path and 'checkout_data' in request.session):
                 return super(SessionDataRequiredMixin, self).dispatch(request, *args, **kwargs)
-            if '/checkin' in request.path:
-                return redirect(checkin_login_url)
-            else:
-                return redirect(checkout_login_url)
+        if '/checkin' in request.path:
+            return redirect(self.checkin_login_url)
+        else:
+            return redirect(self.checkout_login_url)
         return redirect('guest_app:index')
