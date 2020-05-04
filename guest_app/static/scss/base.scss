@@ -40,7 +40,6 @@ body {
 /* HEADER */
 .header {
     padding: .9375rem 0;
-    text-align: center;
     display: flex;
     width: 100%;
     // border-bottom: 2px solid #E5E5E5;
@@ -70,6 +69,22 @@ body {
     }
 }
 
+
+/* TIMER */
+.timer {
+    padding: .9375rem 0;
+    display: flex;
+    width: 100%;
+
+    .timer-text {
+        float: right;
+        position: relative;
+        right: 48px;
+    }
+}
+    
+
+/* CONTENT */
 .content {
     padding: 70px 15px;
     // z-index: 1;

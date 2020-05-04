@@ -4,6 +4,7 @@
 {% load widget_tweaks %}
 
 {% block lib_css %}
+{{ block.super }}
 <link rel="stylesheet" href="{% static 'vendor/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
 {% endblock lib_css %}
 
@@ -77,9 +78,11 @@
 {% endblock content %}
 
 {% block lib_js %}
+{{ block.super }}
 <script type="text/javascript" src="{% static 'vendor/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
 {% endblock lib_js %}
 
 {% block static_js %}
+{{ block.super }}
 <script type="text/javascript" src="{% static 'js/check_in/login.js' %}"></script>
 {% endblock static_js %}

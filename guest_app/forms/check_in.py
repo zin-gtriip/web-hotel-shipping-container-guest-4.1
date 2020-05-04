@@ -39,8 +39,7 @@ class CheckInLoginForm(forms.Form):
                 'last_name': last_name,
             }
             response = samples.get_data(data) #gateways.post('/booking/get_booking', data)
-            # save to cache to be used after form is valid
-            CACHE.set('checkin_login_response', response)
+            CACHE.set('checkin_login_response', response) # save to cache to be used after form is valid
 
             if response.get('status', '') != 'success':
                 raise forms.ValidationError(response.get('message', _('Unknown error')))
@@ -48,11 +47,10 @@ class CheckInLoginForm(forms.Form):
 
     def set_session(self):
         self.request.session.flush()
+        self.request.session.create() # for creating `session_key`
+        self.request.session.set_expiry(settings.CHECKIN_SESSION_AGE)
         self.request.session['checkin_data'] = CACHE.get('checkin_login_response', {})
-        self.request.session.create()
-        # # run on cron job, also delete passport image
-        # self.request.session.clear_expired()
-        CACHE.clear() # research if this is proper way
+        CACHE.clear()
 
 
 class CheckInPassportForm(forms.Form):

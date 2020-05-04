@@ -4,6 +4,7 @@
 {% load widget_tweaks %}
 
 {% block lib_css %}
+{{ block.super }}
 <link rel="stylesheet" href="{% static 'vendor/node_modules/croppie/croppie.css' %}">
 <style>
     .croppie-container .cr-slider-wrap {
@@ -75,10 +76,12 @@
 {% endblock content %}
 
 {% block lib_js %}
+{{ block.super }}
 <script type="text/javascript" src="{% static 'vendor/node_modules/compressorjs/dist/compressor.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'vendor/node_modules/croppie/croppie.min.js' %}"></script>
 {% endblock lib_js %}
 
 {% block static_js %}
+{{ block.super }}
 <script type="text/javascript" src="{% static 'js/check_in/passport.js' %}"></script>
 {% endblock static_js %}

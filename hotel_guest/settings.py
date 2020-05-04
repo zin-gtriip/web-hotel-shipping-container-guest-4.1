@@ -68,6 +68,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'guest_app.context_processors.hotel_conf',
+                'guest_app.context_processors.session',
             ],
         },
     },
@@ -202,4 +203,4 @@ CRON_CLASSES = [
 
 HOTEL_NAME              = 'GTRIIP'
 PASSPORT_AGE_LIMIT      = 18
-# SESSION_COOKIE_AGE      = 60 * 15 # seconds
+CHECKIN_SESSION_AGE     = 60 * 15 # seconds

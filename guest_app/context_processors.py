@@ -11,3 +11,12 @@ from django.conf import settings
 
 def hotel_conf(request):
     return {'HOTEL_NAME': settings.HOTEL_NAME}
+
+def session(request):
+    from django.contrib.sessions.models import Session
+
+    expire_date = ''
+    if request.session.session_key:
+        session = Session.objects.get(session_key=request.session.session_key)
+        expire_date = session.expire_date
+    return {'SESSION_EXPIRY_DATE': expire_date}
