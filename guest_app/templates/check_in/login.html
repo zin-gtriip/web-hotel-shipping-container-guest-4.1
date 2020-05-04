@@ -8,6 +8,11 @@
 <link rel="stylesheet" href="{% static 'vendor/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
 {% endblock lib_css %}
 
+{% block static_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'scss/check_in/login.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
 {% block content %}
 {{ block.super }}
 <div class="row">

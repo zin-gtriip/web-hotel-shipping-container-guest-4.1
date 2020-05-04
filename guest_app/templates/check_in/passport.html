@@ -6,15 +6,12 @@
 {% block lib_css %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'vendor/node_modules/croppie/croppie.css' %}">
-<style>
-    .croppie-container .cr-slider-wrap {
-        width: 100%;
-        margin-bottom: 0;
-        display: flex;
-        justify-content: space-around;
-    }
-</style>
 {% endblock lib_css %}
+
+{% block static_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'scss/check_in/passport.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
 
 {% block content %}
 {{ block.super }}
