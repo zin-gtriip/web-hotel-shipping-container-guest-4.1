@@ -3,12 +3,12 @@ from django.utils.translation   import gettext, gettext_lazy as _
 check_in_data = [
     {
         'confirmation_number': '1234',
-        'arrival_date': '2020-04-01',
+        'arrival_date': '2020-05-01',
         'last_name': 'TEST',
     },
     {
         'confirmation_number': '12345',
-        'arrival_date': '2020-04-01',
+        'arrival_date': '2020-05-01',
         'last_name': 'TEST',
     }
 ]
