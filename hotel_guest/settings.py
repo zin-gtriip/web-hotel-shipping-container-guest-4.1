@@ -194,7 +194,7 @@ GATEWAY_LANGUAGE_ID = '4'
 
 CLEAR_SESSION_CRON_JOB_RUN_TIME = '00:00'
 CRON_CLASSES = [
-    "guest_app.crons.ClearSessionCronJob",
+    "guest_app.cron_jobs.ClearSessionCronJob",
 ]
 
 
