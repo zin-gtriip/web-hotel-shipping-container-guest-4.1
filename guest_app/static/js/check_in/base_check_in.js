@@ -18,5 +18,11 @@ $(document).ready(function() {
         seconds = (seconds.toString().length == 1) ? '0' + seconds : seconds;
         // Output the result in an element
         $('#timer-tick').text(minutes + ":" + seconds);
+        // If the count down is over
+        if (distance <= 0) {
+            alert('Your session is expired');
+            clearInterval(interval);
+            window.location.href = '/check_in/login'; // go to login page
+        }
     }, 1000);
 });
