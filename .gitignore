@@ -15,9 +15,6 @@ __pycache__
 # cache js and css files
 /static/CACHE
 
-# migration
-/*/migrations
-
 # uploaded image file for ocr
 /upload
 
