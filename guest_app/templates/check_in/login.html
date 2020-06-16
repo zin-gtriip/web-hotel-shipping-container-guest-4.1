@@ -25,55 +25,58 @@
             <div class="card-body px-4 px-lg-5 pt-0">
                 <form method="post">
                     {% csrf_token %}
-                    {% for field in form.visible_fields %}
-                        {% if field.name == 'arrival_date' %}
-                        <!-- custom field -->
-                            <div class="md-form input-with-post-icon">
-                                <!-- label tag -->
-                                {{ field.label_tag }}
-                                {% if form.is_bound and field.errors %}
-                                    <!-- bound and has error -->
-                                    {% render_field field class="form-control datepicker is-invalid" %}
-                                    <!-- error feedback -->
-                                    {% for error in field.errors %}
-                                        <div class="invalid-feedback">
-                                            {{ error }}
-                                        </div>
-                                    {% endfor %}
-                                {% else %}
-                                    <!-- not bound or no error -->
-                                    {% render_field field class="form-control datepicker" %}
-                                    <i class="far fa-calendar input-prefix"></i>
-                                    {% if field.help_text %}
-                                        <small class="form-text text-muted">{{ field.help_text }}</small>
-                                    {% endif %}
-                                {% endif %}
-                            </div>
+                    <div class="md-form">
+                        {{ form.reservation_no.label_tag }}
+                        {% if form.is_bound and form.reservation_no.errors %}
+                            <!-- bound and has error -->
+                            {% render_field form.reservation_no class="form-control is-invalid" %}
+                            <!-- error feedback -->
+                            {% for error in form.reservation_no.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
                         {% else %}
-                        <!-- generic fields -->
-                            <div class="md-form">
-                                <!-- label tag -->
-                                {{ field.label_tag }}
-                                {% if form.is_bound and field.errors %}
-                                    <!-- bound and has error -->
-                                    {% render_field field class="form-control is-invalid" %}
-                                    <!-- error feedback -->
-                                    {% for error in field.errors %}
-                                        <div class="invalid-feedback">
-                                            {{ error }}
-                                        </div>
-                                    {% endfor %}
-                                {% else %}
-                                    <!-- not bound or no error -->
-                                    {% render_field field class="form-control" %}
-                                    <!-- help text -->
-                                    {% if field.help_text %}
-                                        <small class="form-text text-muted">{{ field.help_text }}</small>
-                                    {% endif %}
-                                {% endif %}
-                            </div>
+                            <!-- not bound or no error -->
+                            {% render_field form.reservation_no class="form-control" %}
+                            {% if form.reservation_no.help_text %}
+                                <small class="form-text text-muted">{{ form.reservation_no.help_text }}</small>
+                            {% endif %}
                         {% endif %}
-                    {% endfor %}
+                    </div>
+                    <div class="md-form input-with-post-icon">
+                        {{ form.arrival_date.label_tag }}
+                        {% if form.is_bound and form.arrival_date.errors %}
+                            <!-- bound and has error -->
+                            {% render_field form.arrival_date class="form-control datepicker is-invalid" data-date-format="yyyy-mm-dd" %}
+                            <!-- error feedback -->
+                            {% for error in form.arrival_date.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        {% else %}
+                            <!-- not bound or no error -->
+                            {% render_field form.arrival_date class="form-control datepicker" data-date-format="yyyy-mm-dd" %}
+                            <i class="far fa-calendar input-prefix"></i>
+                            {% if form.arrival_date.help_text %}
+                                <small class="form-text text-muted">{{ form.arrival_date.help_text }}</small>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                    <div class="md-form">
+                        {{ form.last_name.label_tag }}
+                        {% if form.is_bound and form.last_name.errors %}
+                            <!-- bound and has error -->
+                            {% render_field form.last_name class="form-control is-invalid" %}
+                            <!-- error feedback -->
+                            {% for error in form.last_name.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        {% else %}
+                            <!-- not bound or no error -->
+                            {% render_field form.last_name class="form-control" %}
+                            {% if form.last_name.help_text %}
+                                <small class="form-text text-muted">{{ form.last_name.help_text }}</small>
+                            {% endif %}
+                        {% endif %}
+                    </div>
                     <button type="submit" class="btn btn-primary btn-block my-5 waves-effect">{% trans 'Next' %}</button>
                 </form>
             </div>
