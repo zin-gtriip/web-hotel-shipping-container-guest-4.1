@@ -208,3 +208,5 @@ HOTEL_NAME              = 'GTRIIP'
 CHECK_IN_SESSION_AGE    = 60 * 15
 # age limit of ocr validation
 PASSPORT_AGE_LIMIT      = 18
+# default django variable for date format
+DATE_INPUT_FORMATS      = ['%Y-%m-%d']
