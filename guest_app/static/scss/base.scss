@@ -94,22 +94,22 @@ body {
 // need to move to be single module
 /* variable / color */
 .bg-primary {
-    background-color: #{map-get($theme-colors, primary)} !important;
+    background-color: map-get($theme-colors, success) !important;
 }
 
 .bg-danger {
-    background-color: #{map-get($theme-colors, danger)} !important;
+    background-color: map-get($theme-colors, danger) !important;
 }
 
 .text-primary {
-    color: #{map-get($theme-colors, primary)} !important;
+    color: map-get($theme-colors, primary) !important;
 }
 
 /* button */
 .btn {
     &.btn-primary {
-        background-color: #{map-get($theme-colors, primary)} !important;
-        color: #{map-get($text-colors, primary)};
+        background-color: map-get($theme-colors, primary) !important;
+        color: map-get($text-colors, primary);
     }
     &.btn-floating {
         position: relative;
@@ -143,7 +143,9 @@ select.md-select {
     line-height: 1.5;
     color: #3c4858;
     vertical-align: middle;
-    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px;
+    background: transparent
+        url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e")
+        no-repeat right 6px center/8px 10px;
     border-top: none;
     border-right: none;
     border-bottom: 1px solid #ced4da;
@@ -195,5 +197,5 @@ select.md-select {
     border-color: #f44336 !important;
 }
 .md-form.input-with-post-icon .input-prefix {
-    right: 2px;
+    right: 3px;
 }
