@@ -38,3 +38,21 @@ class CheckInDetailView(RequestInitializedMixin, SessionDataRequiredMixin, FormV
     template_name   = 'check_in/detail.html'
     form_class      = CheckInDetailForm
     # success_url     = '/check_in/detail'
+
+    def get_context_data(self, **kwargs):
+        # we need to overwrite get_context_data
+        # to make sure that our formset is rendered
+        data = super().get_context_data(**kwargs)
+        if self.request.POST:
+            data["extra"] = CheckInDetailExtraFormSet(self.request.POST)
+        else:
+            data["extra"] = CheckInDetailExtraFormSet()
+        return data
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        extra = self.get_context_data().get('extra')
+        if form.is_valid() and extra.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)

@@ -3,6 +3,7 @@ import base64
 from django                     import forms
 from django.utils.translation   import gettext, gettext_lazy as _
 from django.conf                import settings
+from django_countries.fields    import Country, CountryField
 from guest_app                  import gateways, utilities, samples
 
 class CheckInLoginForm(forms.Form):
@@ -106,8 +107,88 @@ class CheckInPassportForm(forms.Form):
 
 
 class CheckInDetailForm(forms.Form):
+    first_name = forms.CharField(label=_('First Name'))
+    last_name = forms.CharField(label=_('Last Name'))
+    nationality = CountryField(blank_label='[Select Country]').formfield(label=_('Nationality'))
+    passport_no = forms.CharField(label=_('Passport Number'))
+    birth_date = forms.DateField(label=_('Date of Birth'))
+    email = forms.EmailField(label=_('Email'))
+    arrival_time = forms.ChoiceField(label=_('Time of Arrival'), choices=[])
+    comments = forms.CharField(label=_('Comments'), required=False)
+    is_subscribe = forms.BooleanField(label=_('I would like to receive exclusive offers, and news via email.'), required=False)
 
     def __init__(self, request, *args, **kwargs):
         super(CheckInDetailForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
+        self.fields['arrival_time'].choices = utilities.generate_time_arrival()
+        self.fields['nationality'].initial = 'SG'
+        if 'check_in_data' in self.request.session and 'passport_ocr' in self.request.session['check_in_data']:
+            self.fields['first_name'].initial = self.request.session['check_in_data']['passport_ocr'].get('first_name', '')
+            self.fields['last_name'].initial = self.request.session['check_in_data']['passport_ocr'].get('last_name', '')
+            self.fields['nationality'].initial = Country(self.request.session['check_in_data']['passport_ocr'].get('nationality', '')).code
+            self.fields['passport_no'].initial = self.request.session['check_in_data']['passport_ocr'].get('number', '')
+            self.fields['birth_date'].initial = self.request.session['check_in_data']['passport_ocr'].get('date_of_birth', '')
+    
+    def clean(self):
+        super().clean()
+        first_name = self.cleaned_data.get('first_name')
+        last_name = self.cleaned_data.get('last_name')
+        nationality = self.cleaned_data.get('nationality')
+        passport_no = self.cleaned_data.get('passport_no')
+        birth_date = self.cleaned_data.get('birth_date')
+        email = self.cleaned_data.get('email')
+        arrival_time = self.cleaned_data.get('arrival_time')
+
+        # validate required field
+        if not first_name:
+            self._errors['first_name'] = self.error_class([_('Enter the required information')])
+        if not last_name:
+            self._errors['last_name'] = self.error_class([_('Enter the required information')])
+        if not nationality:
+            self._errors['nationality'] = self.error_class([_('Enter the required information')])
+        if not passport_no:
+            self._errors['passport_no'] = self.error_class([_('Enter the required information')])
+        if not birth_date:
+            self._errors['birth_date'] = self.error_class([_('Enter the required information')])
+        if not email:
+            self._errors['email'] = self.error_class([_('Enter the required information')])
+        if not arrival_time:
+            self._errors['arrival_time'] = self.error_class([_('Enter the required information')])
+        return self.cleaned_data
+
+
+class CheckInDetailExtraForm(forms.Form):
+    is_valid = forms.BooleanField(widget=forms.HiddenInput())
+    first_name = forms.CharField(label=_('First Name'))
+    last_name = forms.CharField(label=_('Last Name'))
+    nationality = CountryField(blank_label='[Select Country]').formfield(label=_('Nationality'))
+    passport_no = forms.CharField(label=_('Passport Number'))
+    birth_date = forms.DateField(label=_('Date of Birth'))
+
+    def clean(self):
+        super().clean()
+        is_valid = self.cleaned_data.get('is_valid')
+        first_name = self.cleaned_data.get('first_name')
+        last_name = self.cleaned_data.get('last_name')
+        nationality = self.cleaned_data.get('nationality')
+        passport_no = self.cleaned_data.get('passport_no')
+        birth_date = self.cleaned_data.get('birth_date')
+
+        if is_valid and not first_name:
+            self._errors['first_name'] = self.error_class([_('Enter the required information')])
+        if is_valid and not last_name:
+            self._errors['last_name'] = self.error_class([_('Enter the required information')])
+        if is_valid and not nationality:
+            self._errors['nationality'] = self.error_class([_('Enter the required information')])
+        if is_valid and not passport_no:
+            self._errors['passport_no'] = self.error_class([_('Enter the required information')])
+        if is_valid and not birth_date:
+            self._errors['birth_date'] = self.error_class([_('Enter the required information')])
+        return self.cleaned_data
+
+    def __init__(self, *args, **kwargs):
+        super(CheckInDetailExtraForm, self).__init__(*args, **kwargs)
+        self.label_suffix = ''
+    
+CheckInDetailExtraFormSet = forms.formset_factory(CheckInDetailExtraForm, extra=1)
