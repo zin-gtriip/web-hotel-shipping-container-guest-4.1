@@ -203,10 +203,12 @@ CRON_CLASSES = [
 # Other configuration
 
 # page title on every page
-HOTEL_NAME              = 'GTRIIP'
+HOTEL_NAME                  = 'GTRIIP'
 # expiration time for the check in (in seconds)
-CHECK_IN_SESSION_AGE    = 60 * 15
+CHECK_IN_SESSION_AGE        = 60 * 15
 # age limit of ocr validation
-PASSPORT_AGE_LIMIT      = 18
+PASSPORT_AGE_LIMIT          = 18
 # default django variable for date format
-DATE_INPUT_FORMATS      = ['%Y-%m-%d']
+DATE_INPUT_FORMATS          = ['%Y-%m-%d']
+# timedelta for deleting expired session and ocr image (in days)
+EXPIRED_SESSION_TIMEDELTA   = 30
