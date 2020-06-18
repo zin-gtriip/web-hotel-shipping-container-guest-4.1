@@ -1,6 +1,7 @@
 from django.shortcuts           import render, redirect
 from django.views.generic.base  import RedirectView
 from django.views.generic.edit  import FormView
+from django.utils               import translation
 from .forms.check_in            import *
 from .mixins                    import *
 
@@ -8,10 +9,44 @@ class IndexView(RedirectView):
     pattern_name = 'guest_app:check-in-login'
 
 
+class CheckInDataView(RequestInitializedMixin, RedirectView):
+    pattern_name = 'guest_app:check-in-login'
+
+    def get_redirect_url(self, *args, **kwargs):
+        self.request.session['check_in_data'] = {}
+        if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
+        if 'app' in self.request.GET: self.request.session['check_in_data']['mobile'] = self.request.GET.get('app', False)
+        if 'auto_login' in self.request.GET: self.request.session['check_in_data']['auto_login'] = self.request.GET.get('auto_login', False)
+        if 'skip_ocr' in self.request.GET: self.request.session['check_in_data']['skip_ocr'] = self.request.GET.get('skip_ocr', False)
+        if 'reservation_no' in self.request.GET: self.request.session['check_in_data']['reservation_no'] = self.request.GET.get('reservation_no', False)
+        if 'arrival_date' in self.request.GET: self.request.session['check_in_data']['arrival_date'] = self.request.GET.get('arrival_date', False)
+        if 'last_name' in self.request.GET: self.request.session['check_in_data']['last_name'] = self.request.GET.get('last_name', False)
+        if 'first_name' in self.request.GET: self.request.session['check_in_data']['first_name'] = self.request.GET.get('first_name', False)
+        if 'nationality' in self.request.GET: self.request.session['check_in_data']['nationality'] = self.request.GET.get('nationality', False)
+        if 'passport_no' in self.request.GET: self.request.session['check_in_data']['passport_no'] = self.request.GET.get('passport_no', False)
+        if 'birth_date' in self.request.GET: self.request.session['check_in_data']['birth_date'] = self.request.GET.get('birth_date', False)
+        return super().get_redirect_url(*args, **kwargs)
+
+
 class CheckInLoginView(RequestInitializedMixin, FormView):
     template_name   = 'check_in/login.html'
     form_class      = CheckInLoginForm
     success_url     = '/check_in/passport'
+
+    def dispatch(self, request, *args, **kwargs):
+        if 'check_in_data' in request.session and request.session['check_in_data'].get('auto_login', False):
+            data = {
+                'reservation_no': request.session['check_in_data'].get('reservation_no', ''),
+                'arrival_date': request.session['check_in_data'].get('arrival_date', ''),
+                'last_name': request.session['check_in_data'].get('last_name', ''),
+            }
+            form = self.get_form_class()
+            form = form(request, data)
+            if form.is_valid():
+                return self.form_valid(form)
+            else:
+                return self.form_invalid(form)
+        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         data = form.gateway_post()
@@ -25,6 +60,19 @@ class CheckInPassportView(RequestInitializedMixin, SessionDataRequiredMixin, For
     template_name   = 'check_in/passport.html'
     form_class      = CheckInPassportForm
     success_url     = '/check_in/detail'
+
+    def dispatch(self, request, *args, **kwargs):
+        if 'check_in_data' in request.session and request.session['check_in_data'].get('skip_ocr', False):
+            data = {
+                'skip_passport': True
+            }
+            form = self.get_form_class()
+            form = form(request, data)
+            if form.is_valid():
+                return self.form_valid(form)
+            else:
+                return self.form_invalid(form)
+        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         data = form.gateway_ocr()
@@ -40,8 +88,7 @@ class CheckInDetailView(RequestInitializedMixin, SessionDataRequiredMixin, FormV
     # success_url     = '/check_in/detail'
 
     def get_context_data(self, **kwargs):
-        # we need to overwrite get_context_data
-        # to make sure that our formset is rendered
+        # overwrite get_context_data to make sure that formset is rendered
         data = super().get_context_data(**kwargs)
         if self.request.POST:
             data["extra"] = CheckInDetailExtraFormSet(self.request.POST)
