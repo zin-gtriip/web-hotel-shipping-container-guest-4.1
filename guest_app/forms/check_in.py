@@ -15,6 +15,10 @@ class CheckInLoginForm(forms.Form):
         super(CheckInLoginForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
+        if 'check_in_data' in self.request.session:
+            self.fields['reservation_no'].initial = self.request.session['check_in_data'].get('reservation_no')
+            self.fields['arrival_date'].initial = self.request.session['check_in_data'].get('arrival_date')
+            self.fields['last_name'].initial = self.request.session['check_in_data'].get('last_name')
 
     def clean(self):
         super().clean()
@@ -43,10 +47,10 @@ class CheckInLoginForm(forms.Form):
         return response
     
     def set_session(self, data):
-        self.request.session.flush()
-        self.request.session.create() # for creating `session_key`
+        self.request.session['check_in_details'] = {'booking_details': data}
         self.request.session.set_expiry(settings.CHECK_IN_SESSION_AGE)
-        self.request.session['check_in_data'] = {'booking_details': data}
+        if 'check_in_data' in self.request.session and 'auto_login' in self.request.session['check_in_data']:
+            self.request.session['check_in_data']['auto_login'] = False # set auto login to False
 
 
 class CheckInPassportForm(forms.Form):
@@ -102,7 +106,7 @@ class CheckInPassportForm(forms.Form):
 
     def set_session(self, data):
         if data is not None:
-            self.request.session['check_in_data'].update({'passport_ocr': data})
+            self.request.session['check_in_details'].update({'passport_ocr': data})
             self.request.session.save()
 
 
@@ -123,12 +127,18 @@ class CheckInDetailForm(forms.Form):
         self.label_suffix = ''
         self.fields['arrival_time'].choices = utilities.generate_time_arrival()
         self.fields['nationality'].initial = 'SG'
-        if 'check_in_data' in self.request.session and 'passport_ocr' in self.request.session['check_in_data']:
-            self.fields['first_name'].initial = self.request.session['check_in_data']['passport_ocr'].get('first_name', '')
-            self.fields['last_name'].initial = self.request.session['check_in_data']['passport_ocr'].get('last_name', '')
-            self.fields['nationality'].initial = Country(self.request.session['check_in_data']['passport_ocr'].get('nationality', '')).code
-            self.fields['passport_no'].initial = self.request.session['check_in_data']['passport_ocr'].get('number', '')
-            self.fields['birth_date'].initial = self.request.session['check_in_data']['passport_ocr'].get('date_of_birth', '')
+        if 'check_in_data' in self.request.session:
+            self.fields['first_name'].initial = self.request.session['check_in_data'].get('first_name', '')
+            self.fields['last_name'].initial = self.request.session['check_in_data'].get('last_name', '')
+            self.fields['nationality'].initial = self.request.session['check_in_data'].get('nationality', '')
+            self.fields['passport_no'].initial = self.request.session['check_in_data'].get('passport_no', '')
+            self.fields['birth_date'].initial = self.request.session['check_in_data'].get('birth_date', '')
+        if 'check_in_details' in self.request.session and 'passport_ocr' in self.request.session['check_in_details']:
+            self.fields['first_name'].initial = self.request.session['check_in_details']['passport_ocr'].get('first_name', '')
+            self.fields['last_name'].initial = self.request.session['check_in_details']['passport_ocr'].get('last_name', '')
+            self.fields['nationality'].initial = Country(self.request.session['check_in_details']['passport_ocr'].get('nationality', '')).code
+            self.fields['passport_no'].initial = self.request.session['check_in_details']['passport_ocr'].get('number', '')
+            self.fields['birth_date'].initial = self.request.session['check_in_details']['passport_ocr'].get('date_of_birth', '')
     
     def clean(self):
         super().clean()
