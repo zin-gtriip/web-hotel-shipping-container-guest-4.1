@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_cron',
     'django_countries',
+    'django_user_agents',
     'guest_app',
 ]
 
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
 ]
 
 ROOT_URLCONF = 'hotel_guest.urls'
