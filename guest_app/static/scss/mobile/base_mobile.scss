@@ -1,0 +1,24 @@
+/* TIMER */
+.timer {
+    padding: 11px 0;
+    display: flex;
+    width: 100%;
+
+    .container {
+        min-height: 19px;
+        text-align: center;
+    }
+
+    .timer-text {
+        float: right;
+        position: relative;
+        right: 48px;
+    }
+}
+    
+
+/* CONTENT */
+// .content {
+    // padding: 30px 15px;
+    // z-index: 1;
+// }

@@ -1,0 +1,66 @@
+{% extends 'mobile/check_in/base_check_in.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block lib_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'vendor/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
+{% endblock lib_css %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'scss/mobile/check_in/login.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block content %}
+    {{ block.super }}
+    <div class="row">
+        <div class="col-12 col-sm-8 col-md-7 col-lg-5 mx-auto text-center">
+            <form method="post" id="frm-mobile">
+                {% csrf_token %}
+                <div class="login-title">
+                    {% trans 'Welcome to' %}
+                    <br>
+                    {% trans 'Hotel' %} {{ HOTEL_NAME }}
+                </div>
+                <div class="login-description text-secondary">
+                    To begin the online check-in process,
+                    <br>
+                    please enter your reservation number.
+                </div>
+                <div class="login-input">
+                    <div class="input-step active" id="step-reservation-no">
+                        <div class="md-form input-center input-boxed">
+                            {% render_field form.reservation_no class="form-control" placeholder="e.g. 12345678" %}
+                        </div>
+                    </div>
+                    <div class="input-step" id="step-last-name">
+                        <div class="md-form input-center input-boxed">
+                            {% render_field form.last_name class="form-control" placeholder="Last Name" %}
+                        </div>
+                    </div>
+                    <div class="input-step" id="step-arrival-date">
+                        <div class="md-form input-boxed input-with-post-icon">
+                            {% render_field form.arrival_date class="form-control datepicker" data-date-format="yyyy-mm-dd" %}
+                            <i class="far fa-calendar input-prefix text-primary"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="login-button">
+                    <button type="button" class="btn btn-primary btn-round m-0" id="btn-step-next" disabled>{% trans 'Next' %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block lib_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'vendor/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
+{% endblock lib_js %}
+
+{% block static_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'js/mobile/check_in/login.js' %}"></script>
+{% endblock static_js %}

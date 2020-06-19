@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'scss/mobile/base_mobile.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block body %}
+    {{ block.super }}
+    <div class="wrapper">
+        {% block wrapper %}
+        {% if not request.session.check_in_data.app %}
+        <div class="header">
+            <div class="container">
+                {% block header %}
+                <div class="header-logo">
+                    {% block hotel_logo %}
+                    <a href="/" alt>
+                        <img id="hotel-logo" src="{% static 'img/logo.png' %}"/>
+                    </a>
+                    {% endblock hotel_logo %}
+                </div>
+                <div class="header-language">
+                    <form id="frm-set-language" action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}">
+                        <select id="language" name="language" class="md-select borderless-select">
+                            <option value="" disabled selected>Language</option>
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"
+                                {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                                    {{ language.name_local }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
+                {% endblock header %}
+            </div>
+        </div>
+        {% endif %}
+        <div class="timer">
+            <div class="container">
+                {% block timer %}{% endblock timer %}
+            </div>
+        </div>
+        <div class="content container">
+            {% block content %}{% endblock content %}
+        </div>
+
+		<!-- Toast - Bootstrap Notification -->
+		<div class="toast-wrapper" aria-live="polite" aria-atomic="true">
+			<div class="toast-top-left">
+                {% block toast_notification %}
+                    {% if form.non_field_errors %}
+                        {% for error in form.non_field_errors %}
+                        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
+                            <div class="toast-body bg-danger">
+                                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <span class="toast-message text-white">{{ error }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endblock toast_notification %}
+			</div>
+		</div>
+		<!-- end of Toast -->
+        {% endblock wrapper %}
+    </div>
+{% endblock body %}
+
+{% block static_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'js/mobile/base_mobile.js' %}"></script>
+{% endblock static_js %}

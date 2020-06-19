@@ -3,38 +3,35 @@
  * Customize style based on hotel theme
 */
 $theme-colors: (
-    primary: #4285f4,
-    secondary: #6c757d,
-    success: #28a745,
-    info: #17a2b8,
-    warning: #ffc107,
-    danger: #b00020,
-    light: #f8f9fa,
-    dark: #343a40
-);
+    primary: #ff9e1b,
+    danger: #ff3f20,
+    dark: #000,
+    secondary: #aaaaaa,
+    light: #f0f0f0,
+    info: #5a76ff,
+    success: #10ff00,
+);  
 $text-colors: (
-    primary: #fff
-    // primary: #151515
+    primary: #fff,
+    danger: #fff,
+    dark: #fff,
+    secondary: #fff,
+    light: #3c4858,
+    info: #fff,
+    success: #fff,
 );
-
-
 
 $font-size: .875rem;
+$font-color: #000;
 
 /*!
  * End of customize theme
  * Please do not edit code below
 */
 
-// modify mdb
-.md-form .input-prefix {
-    top: 58%;
-}
-
-
 body {
     font-size: $font-size;
-    color: #3c4858;
+    color: $font-color;
 }
 
 /* HEADER */
@@ -72,9 +69,14 @@ body {
 
 /* TIMER */
 .timer {
-    padding: .9375rem 0;
+    padding: 11px 0;
     display: flex;
     width: 100%;
+
+    .container {
+        min-height: 19px;
+        text-align: center;
+    }
 
     .timer-text {
         float: right;
@@ -85,18 +87,17 @@ body {
     
 
 /* CONTENT */
-.content {
-    padding: 30px 15px;
+// .content {
+    // padding: 30px 15px;
     // z-index: 1;
-}
+// }
 
 
 // need to move to be single module
 /* variable / color */
 .bg-primary {
-    background-color: map-get($theme-colors, success) !important;
+    background-color: map-get($theme-colors, primary) !important;
 }
-
 .bg-danger {
     background-color: map-get($theme-colors, danger) !important;
 }
@@ -104,13 +105,23 @@ body {
 .text-primary {
     color: map-get($theme-colors, primary) !important;
 }
+.text-secondary {
+    color: map-get($theme-colors, secondary) !important;
+}
 
 /* button */
 .btn {
     &.btn-primary {
         background-color: map-get($theme-colors, primary) !important;
         color: map-get($text-colors, primary);
+
+        &:disabled {
+            background-color: map-get($theme-colors, secondary) !important;
+            opacity: 1;
+        }
     }
+
+
     &.btn-floating {
         position: relative;
         z-index: 1;
@@ -255,8 +266,45 @@ select.md-select {
 
 // form
 .md-form .form-control.is-invalid {
-    border-color: #f44336 !important;
+    border-color: map-get($theme-colors, danger) !important;
 }
+
 .md-form.input-with-post-icon .input-prefix {
     right: 3px;
+    top: 58%;
+}
+
+.md-form.input-center .form-control {
+    text-align: center;
+}
+
+.md-form.input-boxed {
+    .form-control {
+        padding: .375rem .75rem;
+        border: 1px solid #848484 !important;
+        border-radius: .25rem !important;
+
+        &:focus {
+            -webkit-box-shadow: 0 0 0 0.2rem rgba(map-get($theme-colors, primary),.25) !important;
+            box-shadow: 0 0 0 0.2rem rgba(map-get($theme-colors, primary),.25) !important;
+        }
+    }
+
+    &.input-with-post-icon .input-prefix {
+        right: 16px;
+        top: 50%;
+    }
+}
+
+.md-form .form-control {
+    &::placeholder {
+        color: rgba(112, 112, 112, 0.5);
+        opacity: 1; /* Firefox */
+    }
+    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: rgba(112, 112, 112, 0.5);
+    }
+    &::-ms-input-placeholder { /* Microsoft Edge */
+        color: rgba(112, 112, 112, 0.5);
+    }
 }

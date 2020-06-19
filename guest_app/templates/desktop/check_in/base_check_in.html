@@ -1,0 +1,36 @@
+{% extends 'desktop/base_desktop.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_name %}{{ HOTEL_NAME }} - {% trans 'Check In' %}{% endblock page_name %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'scss/desktop/check_in/base_check_in.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block timer %}
+    {% if '/login' not in request.path %}
+        <div class="timer-text">
+            <i class="far fa-clock"></i>
+            <span id="timer-tick"></span>
+        </div>
+    {% endif %}
+{% endblock timer %}
+
+{% block hotel_logo %}
+    <a href="{% url 'guest_app:check-in-login' %}" alt>
+        <img id="hotel-logo" src="{% static 'img/logo.png' %}"/>
+    </a>
+{% endblock hotel_logo %}
+
+{% block data_js %}
+{{ SESSION_EXPIRY_DATE|json_script:'session-expiry-date' }}
+{% endblock data_js %}
+
+{% block static_js %}
+    {{ block.super }}
+    {% if '/login' not in request.path %}
+        <script type="text/javascript" src="{% static 'js/desktop/check_in/base_check_in.js' %}"></script>
+    {% endif %}
+{% endblock static_js %}

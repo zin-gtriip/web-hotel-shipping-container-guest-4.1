@@ -15,7 +15,7 @@ class CheckInDataView(RequestInitializedMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         self.request.session['check_in_data'] = {}
         if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
-        if 'app' in self.request.GET: self.request.session['check_in_data']['mobile'] = self.request.GET.get('app', False)
+        if 'app' in self.request.GET: self.request.session['check_in_data']['app'] = self.request.GET.get('app', False)
         if 'auto_login' in self.request.GET: self.request.session['check_in_data']['auto_login'] = self.request.GET.get('auto_login', False)
         if 'skip_ocr' in self.request.GET: self.request.session['check_in_data']['skip_ocr'] = self.request.GET.get('skip_ocr', False)
         if 'reservation_no' in self.request.GET: self.request.session['check_in_data']['reservation_no'] = self.request.GET.get('reservation_no', False)
@@ -28,10 +28,11 @@ class CheckInDataView(RequestInitializedMixin, RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
-class CheckInLoginView(RequestInitializedMixin, FormView):
-    template_name   = 'check_in/login.html'
-    form_class      = CheckInLoginForm
-    success_url     = '/check_in/passport'
+class CheckInLoginView(RequestInitializedMixin, MobileTemplateMixin, FormView):
+    template_name           = 'desktop/check_in/login.html'
+    form_class              = CheckInLoginForm
+    success_url             = '/check_in/passport'
+    mobile_template_name    = 'mobile/check_in/login.html'
 
     def dispatch(self, request, *args, **kwargs):
         if 'check_in_data' in request.session and request.session['check_in_data'].get('auto_login', False):
@@ -56,10 +57,11 @@ class CheckInLoginView(RequestInitializedMixin, FormView):
         return super().form_valid(form)
 
 
-class CheckInPassportView(RequestInitializedMixin, SessionDataRequiredMixin, FormView):
-    template_name   = 'check_in/passport.html'
-    form_class      = CheckInPassportForm
-    success_url     = '/check_in/detail'
+class CheckInPassportView(RequestInitializedMixin, SessionDataRequiredMixin, MobileTemplateMixin, FormView):
+    template_name           = 'desktop/check_in/passport.html'
+    form_class              = CheckInPassportForm
+    success_url             = '/check_in/detail'
+    mobile_template_name    = None
 
     def dispatch(self, request, *args, **kwargs):
         if 'check_in_data' in request.session and request.session['check_in_data'].get('skip_ocr', False):
@@ -82,10 +84,11 @@ class CheckInPassportView(RequestInitializedMixin, SessionDataRequiredMixin, For
         return super().form_valid(form)
 
 
-class CheckInDetailView(RequestInitializedMixin, SessionDataRequiredMixin, FormView):
-    template_name   = 'check_in/detail.html'
-    form_class      = CheckInDetailForm
-    # success_url     = '/check_in/detail'
+class CheckInDetailView(RequestInitializedMixin, SessionDataRequiredMixin, MobileTemplateMixin, FormView):
+    template_name           = 'desktop/check_in/detail.html'
+    form_class              = CheckInDetailForm
+    # success_url             = '/check_in/detail'
+    mobile_template_name    = None
 
     def get_context_data(self, **kwargs):
         # overwrite get_context_data to make sure that formset is rendered

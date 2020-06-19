@@ -1,0 +1,36 @@
+.login-title {
+    font-size: 24px;
+    margin-bottom: 26px;
+}
+
+.login-description {
+    margin-bottom: 41px;
+}
+
+.login-input {
+    margin-bottom: 46px;
+    display: flex;
+
+    .input-step {
+        margin: 0 auto;
+
+        &:not(.active) {
+            display: none;
+        }
+    }
+
+    .md-form {
+        margin: 0;
+
+        input {
+            font-size: 18px;
+            width: 263px;
+            height: 58px;
+            margin: 0;
+        }
+
+        &.input-with-post-icon .input-prefix {
+            font-size: 22px;
+        }
+    }
+}

@@ -13,7 +13,7 @@
     <meta http-equiv="Expires" content="0">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{ HOTEL_NAME }}{% block page_name %}{% endblock page_name %}</title>
+    <title>{% block page_name %}{% endblock page_name %}</title>
 
     <!-- font awesome icons -->
     <link rel="stylesheet" href="{% static 'vendor/node_modules/@fortawesome/fontawesome-free/css/all.min.css' %}">
@@ -27,7 +27,7 @@
     <!-- other css library based on page -->
     {% block lib_css %}{% endblock lib_css %}
     {% compress css %}
-    <!-- global scss, importing custom ... -->
+    <!-- global scss -->
     <link rel="stylesheet" href="{% static 'scss/base.scss' %}" type="text/x-scss" media="screen">
     <!-- scss based on page -->
     {% block static_css %}{% endblock static_css %}
@@ -35,71 +35,7 @@
 </head>
 
 <body>
-    <!-- loader -->
-    <div></div>
-
-    <div class="wrapper">
-        {% block wrapper %}
-        <div class="header">
-            <div class="container">
-                {% block header %}
-                <div class="header-logo">
-                    {% block hotel_logo %}
-                    <a href="/" alt>
-                        <img id="hotel-logo" src="{% static 'img/logo.png' %}"/>
-                    </a>
-                    {% endblock hotel_logo %}
-                </div>
-                <div class="header-language">
-                    <form id="frm-set-language" action="{% url 'set_language' %}" method="post">
-                        {% csrf_token %}
-                        <input name="next" type="hidden" value="{{ redirect_to }}">
-                        <select id="language" name="language" class="md-select borderless-select">
-                            <option value="" disabled selected>Language</option>
-                            {% for language in languages %}
-                                <option value="{{ language.code }}"
-                                {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
-                                    {{ language.name_local }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </form>
-                </div>
-                {% endblock header %}
-            </div>
-        </div>
-        <div class="timer">
-            <div class="container">
-                {% block timer %}{% endblock timer %}
-            </div>
-        </div>
-        <div class="content container">
-            {% block content %}{% endblock content %}
-        </div>
-
-		<!-- Toast - Bootstrap Notification -->
-		<div class="toast-wrapper" aria-live="polite" aria-atomic="true">
-			<div class="toast-top-left">
-                {% block toast_notification %}
-                    {% if form.non_field_errors %}
-                        {% for error in form.non_field_errors %}
-                        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
-                            <div class="toast-body bg-danger">
-                                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <span class="toast-message text-white">{{ error }}</span>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    {% endif %}
-                {% endblock toast_notification %}
-			</div>
-		</div>
-		<!-- end of Toast -->
-        {% endblock wrapper %}
-    </div>
-
+    {% block body %}{% endblock body %}
     <!-- django js translation -->
     <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
     <!-- data js -->
