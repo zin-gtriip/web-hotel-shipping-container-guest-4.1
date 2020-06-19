@@ -16,8 +16,9 @@ class RequestInitializedMixin(object):
 
 class SessionDataRequiredMixin(object):
     """
-    Generic form view mixin verifies that the user has `check_in_details`
+    Generic form view mixin that verifies the user has `check_in_details`
     and `check_out_details` in `request.session`.
+
     This mixin works similar like `LoginRequiredMixin` and must be put
     on every check-in page except login
     """
@@ -33,3 +34,19 @@ class SessionDataRequiredMixin(object):
         elif '/check_out' in request.path:
             return redirect(self.check_out_login_url)
         return redirect('guest_app:index')
+
+
+class MobileTemplateMixin(object):
+    """
+    Generic form view mixin that replace `template_name` with mobile template.
+
+    This mixin uses `django_user_agents` plugin to indicate if `user_agent` is
+    mobile. And will check view is accessed from app through `check_in_data`
+    session. If one of them is fulfilled `mobile_template_name` will be used
+    if it is provided.
+    """
+    def get_template_names(self):
+        if ('check_in_data' in self.request.session and self.request.session['check_in_data'].get('app', False)) or not self.request.user_agent.is_pc:
+            if self.mobile_template_name:
+                return [self.mobile_template_name]
+        return super().get_template_names()
