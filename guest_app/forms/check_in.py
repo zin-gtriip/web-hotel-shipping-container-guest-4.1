@@ -130,13 +130,13 @@ class CheckInDetailForm(forms.Form):
         if 'check_in_data' in self.request.session:
             self.fields['first_name'].initial = self.request.session['check_in_data'].get('first_name', '')
             self.fields['last_name'].initial = self.request.session['check_in_data'].get('last_name', '')
-            self.fields['nationality'].initial = self.request.session['check_in_data'].get('nationality', '')
+            self.fields['nationality'].initial = self.request.session['check_in_data'].get('nationality', 'SG')
             self.fields['passport_no'].initial = self.request.session['check_in_data'].get('passport_no', '')
             self.fields['birth_date'].initial = self.request.session['check_in_data'].get('birth_date', '')
         if 'check_in_details' in self.request.session and 'passport_ocr' in self.request.session['check_in_details']:
             self.fields['first_name'].initial = self.request.session['check_in_details']['passport_ocr'].get('first_name', '')
             self.fields['last_name'].initial = self.request.session['check_in_details']['passport_ocr'].get('last_name', '')
-            self.fields['nationality'].initial = Country(self.request.session['check_in_details']['passport_ocr'].get('nationality', '')).code
+            self.fields['nationality'].initial = Country(self.request.session['check_in_details']['passport_ocr'].get('nationality', 'SGP')).code
             self.fields['passport_no'].initial = self.request.session['check_in_details']['passport_ocr'].get('number', '')
             self.fields['birth_date'].initial = self.request.session['check_in_details']['passport_ocr'].get('date_of_birth', '')
     
