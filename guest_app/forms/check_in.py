@@ -77,7 +77,7 @@ class CheckInPassportForm(forms.Form):
 
         # save passport file using `session_key` as file name
         file_name = self.request.session.session_key +'.png'
-        folder_name = os.path.join(settings.BASE_DIR, 'upload')
+        folder_name = os.path.join(settings.BASE_DIR, 'media', 'ocr')
         if not os.path.exists(folder_name):
             os.mkdir(folder_name)
         saved_file = os.path.join(folder_name, file_name)

@@ -23,7 +23,7 @@ class ClearSessionCronJob(CronJobBase):
         expired_sessions = Session.objects.filter(expire_date__lt=timezone.now() - datetime.timedelta(days=settings.EXPIRED_SESSION_TIMEDELTA))
         for session in expired_sessions:
             file_name = session.session_key +'.png'
-            folder_name = os.path.join(settings.BASE_DIR, 'upload')
+            folder_name = os.path.join(settings.BASE_DIR, 'media', 'ocr')
             if os.path.exists(folder_name):
                 saved_file = os.path.join(folder_name, file_name)
                 if os.path.exists(saved_file):
