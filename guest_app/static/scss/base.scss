@@ -6,19 +6,19 @@ $theme-colors: (
     primary: #ff9e1b,
     danger: #ff3f20,
     dark: #000,
-    secondary: #aaaaaa,
-    light: #f0f0f0,
-    info: #5a76ff,
     success: #10ff00,
+    info: #5a76ff,
+    light: #f0f0f0,
+    secondary: #aaaaaa,
 );  
 $text-colors: (
     primary: #fff,
     danger: #fff,
     dark: #fff,
-    secondary: #fff,
-    light: #3c4858,
-    info: #fff,
     success: #fff,
+    info: #fff,
+    light: #3c4858,
+    secondary: #f0f0f0,
 );
 
 $font-size: .875rem;
@@ -84,13 +84,6 @@ body {
         right: 48px;
     }
 }
-    
-
-/* CONTENT */
-// .content {
-    // padding: 30px 15px;
-    // z-index: 1;
-// }
 
 
 // need to move to be single module
