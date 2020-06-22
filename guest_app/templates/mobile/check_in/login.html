@@ -16,7 +16,7 @@
 {% block content %}
     {{ block.super }}
     <div class="row">
-        <div class="col-12 col-sm-8 col-md-7 col-lg-5 mx-auto text-center">
+        <div class="col-12 col-sm-8 col-md-7 col-lg-5 text-center">
             <form method="post" id="frm-mobile">
                 {% csrf_token %}
                 <div class="login-title">
@@ -25,9 +25,7 @@
                     {% trans 'Hotel' %} {{ HOTEL_NAME }}
                 </div>
                 <div class="login-description text-secondary">
-                    To begin the online check-in process,
-                    <br>
-                    please enter your reservation number.
+                    {% trans 'To begin the online check-in process, please enter your reservation number.' %}
                 </div>
                 <div class="login-input">
                     <div class="input-step active" id="step-reservation-no">
