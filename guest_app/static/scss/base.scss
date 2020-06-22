@@ -24,6 +24,9 @@ $text-colors: (
 $font-size: .875rem;
 $font-color: #000;
 
+$all-round-btn: true;
+$all-btn-radius: 25px;
+
 /*!
  * End of customize theme
  * Please do not edit code below
@@ -106,30 +109,15 @@ body {
 .btn {
     font-size: 18px;
 
-    &:disabled {
-        background-color: map-get($theme-colors, secondary) !important;
-        color: map-get($text-colors, secondary) !important;
-        opacity: 1;
+    @if $all-round-btn {
+        border-radius: $all-btn-radius;
     }
 
-    &.btn-floating {
-        position: relative;
-        z-index: 1;
-        display: inline-block;
-        padding: 0;
-        overflow: hidden;
-        vertical-align: middle;
-        border-radius: 50%;
-        width: 47px;
-        height: 47px;
-
-        i {
-            display: inline-block;
-            width: inherit;
-            color: #fff;
-            text-align: center;
-            line-height: 47px;
-        }
+    &:not(.btn-link):disabled {
+        color: map-get($text-colors, secondary) !important;
+        background-color: map-get($theme-colors, secondary) !important;
+        border-color: map-get($theme-colors, secondary) !important;
+        opacity: 1;
     }
 }
 
@@ -139,6 +127,26 @@ body {
 
     &:not([disabled]):not(.disabled):active, .btn-primary:not([disabled]):not(.disabled).active {
         background-color: map-get($theme-colors, primary) !important;
+    }
+}
+
+.btn-floating {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    padding: 0;
+    overflow: hidden;
+    vertical-align: middle;
+    border-radius: 50%;
+    width: 47px;
+    height: 47px;
+
+    i {
+        display: inline-block;
+        width: inherit;
+        color: #fff;
+        text-align: center;
+        line-height: 47px;
     }
 }
 
