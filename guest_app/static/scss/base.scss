@@ -104,16 +104,13 @@ body {
 
 /* button */
 .btn {
-    &.btn-primary {
-        background-color: map-get($theme-colors, primary) !important;
-        color: map-get($text-colors, primary);
+    font-size: 18px;
 
-        &:disabled {
-            background-color: map-get($theme-colors, secondary) !important;
-            opacity: 1;
-        }
+    &:disabled {
+        background-color: map-get($theme-colors, secondary) !important;
+        color: map-get($text-colors, secondary) !important;
+        opacity: 1;
     }
-
 
     &.btn-floating {
         position: relative;
@@ -133,6 +130,15 @@ body {
             text-align: center;
             line-height: 47px;
         }
+    }
+}
+
+.btn-primary {
+    background-color: map-get($theme-colors, primary) !important;
+    color: map-get($text-colors, primary);
+
+    &:not([disabled]):not(.disabled):active, .btn-primary:not([disabled]):not(.disabled).active {
+        background-color: map-get($theme-colors, primary) !important;
     }
 }
 
