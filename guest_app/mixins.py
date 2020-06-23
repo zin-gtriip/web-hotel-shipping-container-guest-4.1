@@ -45,6 +45,8 @@ class MobileTemplateMixin(object):
     session. If one of them is fulfilled `mobile_template_name` will be used
     if it is provided.
     """
+    mobile_template_name = None
+
     def get_template_names(self):
         if ('check_in_data' in self.request.session and self.request.session['check_in_data'].get('app', False)) or not self.request.user_agent.is_pc:
             if self.mobile_template_name:
