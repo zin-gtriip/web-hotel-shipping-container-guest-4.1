@@ -224,6 +224,35 @@ select.md-select {
                 display: block;
             }
         }
+
+        // radio
+        &[type=radio] ~ .check-mark {
+            border-radius: 50%;
+
+            &:after {
+                top: 8px;
+                left: 8px;
+                width: 9px;
+                height: 9px;
+                border-radius: 50%;
+                background: white;
+            }
+        }
+
+        // checkbox
+        &[type=checkbox] ~ .check-mark {
+            &:after {
+                left: 9px;
+                top: 5px;
+                width: 8px;
+                height: 13px;
+                border: solid white;
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+        }
     }
 
     .check-mark {
@@ -239,15 +268,6 @@ select.md-select {
             content: "";
             position: absolute;
             display: none;
-            left: 9px;
-            top: 5px;
-            width: 8px;
-            height: 13px;
-            border: solid white;
-            border-width: 0 3px 3px 0;
-            -webkit-transform: rotate(45deg);
-            -ms-transform: rotate(45deg);
-            transform: rotate(45deg);
         }
     }
 }
