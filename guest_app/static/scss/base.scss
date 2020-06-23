@@ -70,25 +70,6 @@ body {
 }
 
 
-/* TIMER */
-.timer {
-    padding: 11px 0;
-    display: flex;
-    width: 100%;
-
-    .container {
-        min-height: 19px;
-        text-align: center;
-    }
-
-    .timer-text {
-        float: right;
-        position: relative;
-        right: 48px;
-    }
-}
-
-
 // need to move to be single module
 /* variable / color */
 .bg-primary {
