@@ -13,10 +13,12 @@ __pycache__
 /static/vendor/package-lock.json
 
 # cache js and css files
-/static/CACHE
+/static/CACHE/*
+!/static/CACHE/.keep
 
 # uploaded file
 /media/*
+!/media/.keep
 
 # logs
 logs
