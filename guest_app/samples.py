@@ -5,6 +5,20 @@ check_in_data = [
         'confirmation_number': '1234',
         'arrival_date': '2020-06-01',
         'last_name': 'TEST',
+        'reservations': [
+            {
+                'identifier': '1',
+                'room_type': 'Deluxe Room',
+                'check_in_date': 'Thu, 12/06/20',
+                'check_out_date': 'Mon, 18/06/20',
+            },
+            {
+                'identifier': '2',
+                'room_type': 'Premier Room',
+                'check_in_date': 'Thu, 12/06/20',
+                'check_out_date': 'Mon, 18/06/20',
+            }
+        ]
     },
     {
         'confirmation_number': '12345',

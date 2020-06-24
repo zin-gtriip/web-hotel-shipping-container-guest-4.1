@@ -53,6 +53,29 @@ class CheckInLoginForm(forms.Form):
             self.request.session['check_in_data']['auto_login'] = False # set auto login to False
 
 
+class CheckInReservationForm(forms.Form):
+    reservation = forms.ChoiceField(widget=forms.RadioSelect())
+
+    def __init__(self, request, *args, **kwargs):
+        super(CheckInReservationForm, self).__init__(*args, **kwargs)
+        self.request = request
+        self.label_suffix = ''
+        self.fields['reservation'].choices = [(reservation.get('identifier', ''), reservation.get('room_type', '')) for reservation in self.request.session['check_in_details']['booking_details'].get('reservations', [])]
+
+    def clean(self):
+        super().clean()
+        reservation = self.cleaned_data.get('reservation')
+
+        if not reservation:
+            raise forms.ValidationError(_('No reservation selected.'))
+        return self.cleaned_data
+
+    def set_session(self):
+        reservation = self.cleaned_data.get('reservation')
+        self.request.session['check_in_details'].update({'form': {'reservation': reservation}})
+        self.request.session.save()
+
+
 class CheckInPassportForm(forms.Form):
     passport_file = forms.CharField(widget=forms.HiddenInput(), required=False)
     skip_passport = forms.BooleanField(widget=forms.HiddenInput(), required=False)

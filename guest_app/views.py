@@ -31,7 +31,7 @@ class CheckInDataView(RequestInitializedMixin, RedirectView):
 class CheckInLoginView(RequestInitializedMixin, MobileTemplateMixin, FormView):
     template_name           = 'desktop/check_in/login.html'
     form_class              = CheckInLoginForm
-    success_url             = '/check_in/passport'
+    success_url             = '/check_in/reservation'
     mobile_template_name    = 'mobile/check_in/login.html'
 
     def dispatch(self, request, *args, **kwargs):
@@ -57,11 +57,26 @@ class CheckInLoginView(RequestInitializedMixin, MobileTemplateMixin, FormView):
         return super().form_valid(form)
 
 
+class CheckInReservationView(RequestInitializedMixin, SessionDataRequiredMixin, MobileTemplateMixin, FormView):
+    template_name           = 'desktop/check_in/reservation.html'
+    form_class              = CheckInReservationForm
+    success_url             = '/check_in/passport'
+    mobile_template_name    = 'mobile/check_in/reservation.html'
+
+    def form_valid(self, form):
+        form.set_session()
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({'reservations': self.request.session['check_in_details']['booking_details'].get('reservations', [])})
+        return context
+
+
 class CheckInPassportView(RequestInitializedMixin, SessionDataRequiredMixin, MobileTemplateMixin, FormView):
     template_name           = 'desktop/check_in/passport.html'
     form_class              = CheckInPassportForm
     success_url             = '/check_in/detail'
-    mobile_template_name    = None
 
     def dispatch(self, request, *args, **kwargs):
         if 'check_in_data' in request.session and request.session['check_in_data'].get('skip_ocr', False):
@@ -88,7 +103,6 @@ class CheckInDetailView(RequestInitializedMixin, SessionDataRequiredMixin, Mobil
     template_name           = 'desktop/check_in/detail.html'
     form_class              = CheckInDetailForm
     # success_url             = '/check_in/detail'
-    mobile_template_name    = None
 
     def get_context_data(self, **kwargs):
         # overwrite get_context_data to make sure that formset is rendered
