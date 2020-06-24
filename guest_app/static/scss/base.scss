@@ -78,7 +78,15 @@ body {
 .bg-danger {
     background-color: map-get($theme-colors, danger) !important;
 }
+.bg-dark {
+    background-color: map-get($theme-colors, dark) !important;
+}
 
+@for $i from 1 through 36 {
+    .text-#{$i} {
+        font-size: #{$i}px !important;
+    }
+}
 .text-primary {
     color: map-get($theme-colors, primary) !important;
 }
