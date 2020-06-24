@@ -1,15 +1,8 @@
-.login-title {
-    font-size: 24px;
-    margin-bottom: 26px;
-}
-
-.login-description {
-    margin: 0 auto 41px auto;
+.page-subheading {
     width: 230px;
 }
 
-.login-input {
-    margin-bottom: 46px;
+.page-input {
     display: flex;
 
     .input-step {
@@ -36,7 +29,7 @@
     }
 }
 
-.login-button {
+.page-button {
     button {
         width: 178px;
         height: 56px;

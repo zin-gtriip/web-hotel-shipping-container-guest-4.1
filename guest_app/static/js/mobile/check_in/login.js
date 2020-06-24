@@ -29,7 +29,7 @@ $('#btn-step-next').click(function() {
 
 	// submit if no more nextStep
 	if ($nextStep.length == 0) {
-		$('#frm-mobile').submit();
+		$('#form-mobile-login').submit();
 	}
 
 	$nextStep.show().addClass('active');

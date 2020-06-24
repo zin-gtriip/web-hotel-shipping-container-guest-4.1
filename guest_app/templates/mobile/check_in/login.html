@@ -16,18 +16,18 @@
 {% block content %}
     {{ block.super }}
     <div class="row">
-        <div class="col-12 col-sm-8 col-md-7 col-lg-5 text-center">
-            <form method="post" id="frm-mobile">
+        <div class="col-12 px-0 text-center">
+            <form method="post" id="form-mobile-login">
                 {% csrf_token %}
-                <div class="login-title">
+                <div class="page-heading">
                     {% trans 'Welcome to' %}
                     <br>
                     {% trans 'Hotel' %} {{ HOTEL_NAME }}
                 </div>
-                <div class="login-description text-secondary">
+                <div class="page-subheading text-secondary">
                     {% trans 'To begin the online check-in process, please enter your reservation number.' %}
                 </div>
-                <div class="login-input">
+                <div class="page-input">
                     <div class="input-step active" id="step-reservation-no">
                         <div class="md-form input-center input-boxed">
                             {% render_field form.reservation_no class="form-control" placeholder="e.g. 12345678" %}
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="login-button">
+                <div class="page-button">
                     <button type="button" class="btn btn-primary btn-round m-0" id="btn-step-next" disabled>{% trans 'Next' %}</button>
                 </div>
             </form>
