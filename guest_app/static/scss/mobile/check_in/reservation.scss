@@ -3,9 +3,12 @@ $reservation-radius: 10px;
 .page-heading {
     width: 190px;
 }
-
 .page-subheading {
     width: 209px;
+}
+.page-input {
+    height: 377px;
+    overflow-y: auto;
 }
 
 // reservation thumbnail
