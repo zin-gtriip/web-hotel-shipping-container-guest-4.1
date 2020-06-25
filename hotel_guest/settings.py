@@ -131,7 +131,6 @@ LANGUAGES = [
     ('en', 'English'),
     ('ja', 'Japanese'),
     ('zh-hans', 'Chinese Simplified'),
-    ('zh-hant', 'Chinese Traditional'),
 ]
 
 
