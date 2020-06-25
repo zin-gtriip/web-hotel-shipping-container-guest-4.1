@@ -9,7 +9,7 @@
   "author": "GTRIIP",
   "license": "ISC",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@fortawesome/fontawesome-free": "^5.13.1",
     "bootstrap-datepicker": "^1.9.0",
     "compressorjs": "^1.0.6",
     "croppie": "^2.6.4",
