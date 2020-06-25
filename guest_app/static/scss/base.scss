@@ -69,6 +69,30 @@ body {
     }
 }
 
+/* CONTENT */
+.content {
+
+    .page-heading {
+        font-size: 24px;
+        margin-bottom: 27px;
+        line-height: 29px;
+    }
+
+    .page-subheading {
+        margin: 0 auto 45px auto;
+        line-height: 17px;
+    }
+
+    .page-input {
+        margin-bottom: 46px;
+    }
+
+    .page-button {
+        margin-bottom: 45px;
+    }
+}
+
+
 // toast
 .toast-wrapper {
 	position: relative;
