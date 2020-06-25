@@ -1,0 +1,110 @@
+$reservation-radius: 10px;
+
+.page-heading {
+    width: 190px;
+}
+.page-subheading {
+    width: 209px;
+}
+.page-input {
+    height: 377px;
+    overflow-y: auto;
+}
+
+// reservation thumbnail
+.container-reservation {
+    margin: 0 auto 18px auto;
+    width: 340px;
+    height: 230px;
+    position: relative; 
+
+    &.active {
+        .overlay-reservation {
+            display: none;
+        }
+
+        .icon-checkbox-reservation {
+            display: block;
+        }
+    }
+
+    .overlay-reservation {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(#000, .4);
+        position: absolute;
+        border-radius: $reservation-radius;
+    }
+
+    .label-reservation {
+        background-size: 343px;
+        width: 340px; 
+        height: 172px;
+        margin-bottom: 0;
+        border-top-right-radius: $reservation-radius;
+        border-top-left-radius: $reservation-radius;
+
+        input {
+            display: none;
+        }
+    }
+
+    .reservation-details {
+        display: flex;
+        justify-content: space-between;
+
+        & > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .room-type {
+            width: 111px;
+            height: 34px;
+            background-color: rgba(#000, .6);
+            border-top-left-radius: $reservation-radius;
+            border-bottom-right-radius: $reservation-radius;
+        }
+
+        .reservation-checkbox {
+            margin: 13px;
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    .icon-checkbox-reservation {
+        display: none;
+        position: relative;
+        width: 40px;
+        height: 40px;
+        background-color: #000;
+        border-radius: 50%;
+        
+        &:after {
+            content: "";
+            position: absolute;
+            left: 14px;
+            top: 4px;
+            width: 13px;
+            height: 26px;
+            border: solid white;
+            border-width: 0 4px 4px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    }
+
+    .reservation-date {
+        width: 340px;
+        margin: 0 auto;
+        padding: 11px 20px;
+        display: flex;
+        justify-content: space-between;
+        border-bottom-right-radius: $reservation-radius;
+        border-bottom-left-radius: $reservation-radius;
+    }
+}
