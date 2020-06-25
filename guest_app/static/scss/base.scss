@@ -1,5 +1,5 @@
 /*!
- * GTRIIP Hotel Guest App Theme v1.0.0
+ * GTRIIP Hotel Guest App Theme
  * Customize style based on hotel theme
 */
 $theme-colors: (
@@ -69,6 +69,19 @@ body {
     }
 }
 
+// toast
+.toast-wrapper {
+	position: relative;
+    // min-height: 200px;
+    
+    .toast-top-left {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 350px;
+    }
+}
+
 
 // need to move to be single module
 /* variable / color */
@@ -81,6 +94,18 @@ body {
 .bg-dark {
     background-color: map-get($theme-colors, dark) !important;
 }
+.bg-success {
+    background-color: map-get($theme-colors, success) !important;
+}
+.bg-info {
+    background-color: map-get($theme-colors, info) !important;
+}
+.bg-light {
+    background-color: map-get($theme-colors, light) !important;
+}
+.bg-secondary {
+    background-color: map-get($theme-colors, secondary) !important;
+}
 
 @for $i from 1 through 36 {
     .text-#{$i} {
@@ -89,6 +114,21 @@ body {
 }
 .text-primary {
     color: map-get($theme-colors, primary) !important;
+}
+.text-danger {
+    color: map-get($theme-colors, danger) !important;
+}
+.text-dark {
+    color: map-get($theme-colors, dark) !important;
+}
+.text-success {
+    color: map-get($theme-colors, success) !important;
+}
+.text-info {
+    color: map-get($theme-colors, info) !important;
+}
+.text-light {
+    color: map-get($theme-colors, light) !important;
 }
 .text-secondary {
     color: map-get($theme-colors, secondary) !important;
@@ -116,6 +156,54 @@ body {
 
     &:not([disabled]):not(.disabled):active, .btn-primary:not([disabled]):not(.disabled).active {
         background-color: map-get($theme-colors, primary) !important;
+    }
+}
+.btn-danger {
+    background-color: map-get($theme-colors, danger) !important;
+    color: map-get($text-colors, danger);
+
+    &:not([disabled]):not(.disabled):active, .btn-danger:not([disabled]):not(.disabled).active {
+        background-color: map-get($theme-colors, danger) !important;
+    }
+}
+.btn-dark {
+    background-color: map-get($theme-colors, dark) !important;
+    color: map-get($text-colors, dark);
+
+    &:not([disabled]):not(.disabled):active, .btn-dark:not([disabled]):not(.disabled).active {
+        background-color: map-get($theme-colors, dark) !important;
+    }
+}
+.btn-success {
+    background-color: map-get($theme-colors, success) !important;
+    color: map-get($text-colors, success);
+
+    &:not([disabled]):not(.disabled):active, .btn-success:not([disabled]):not(.disabled).active {
+        background-color: map-get($theme-colors, success) !important;
+    }
+}
+.btn-info {
+    background-color: map-get($theme-colors, info) !important;
+    color: map-get($text-colors, info);
+
+    &:not([disabled]):not(.disabled):active, .btn-info:not([disabled]):not(.disabled).active {
+        background-color: map-get($theme-colors, info) !important;
+    }
+}
+.btn-light {
+    background-color: map-get($theme-colors, light) !important;
+    color: map-get($text-colors, light);
+
+    &:not([disabled]):not(.disabled):active, .btn-light:not([disabled]):not(.disabled).active {
+        background-color: map-get($theme-colors, light) !important;
+    }
+}
+.btn-secondary {
+    background-color: map-get($theme-colors, secondary) !important;
+    color: map-get($text-colors, secondary);
+
+    &:not([disabled]):not(.disabled):active, .btn-secondary:not([disabled]):not(.disabled).active {
+        background-color: map-get($theme-colors, secondary) !important;
     }
 }
 
@@ -183,19 +271,6 @@ select.md-select {
             -webkit-box-shadow: none;
             box-shadow: none;
         }
-    }
-}
-
-// toast
-.toast-wrapper {
-	position: relative;
-    // min-height: 200px;
-    
-    .toast-top-left {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        width: 350px;
     }
 }
 
