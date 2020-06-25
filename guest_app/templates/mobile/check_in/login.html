@@ -20,9 +20,7 @@
             <form method="post" id="form-mobile-login">
                 {% csrf_token %}
                 <div class="page-heading">
-                    {% trans 'Welcome to' %}
-                    <br>
-                    {% trans 'Hotel' %} {{ HOTEL_NAME }}
+                    {% blocktrans %}Welcome to<br>Hotel {{ HOTEL_NAME }}{% endblocktrans %}
                 </div>
                 <div class="page-subheading text-secondary">
                     {% trans 'To begin the online check-in process, please enter your reservation number.' %}
