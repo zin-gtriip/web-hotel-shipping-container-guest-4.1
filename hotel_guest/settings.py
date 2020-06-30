@@ -128,9 +128,9 @@ USE_TZ = True
 # https://samulinatri.com/blog/django-translation/
 
 LANGUAGES = [
-    ('en', 'English'),
-    ('ja', 'Japanese'),
-    ('zh-hans', 'Chinese Simplified'),
+    ('en', 'EN'),
+    ('ja', 'JA'),
+    ('zh-hans', 'ZH'),
 ]
 
 
