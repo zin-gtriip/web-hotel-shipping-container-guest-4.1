@@ -36,7 +36,48 @@
 </head>
 
 <body>
-    {% block body %}{% endblock body %}
+    {% block body %}
+        <div class="wrapper">
+            {% block wrapper %}
+                <!-- Header -->
+                <div class="header">
+                    <div class="nav">
+                        <div class="container">
+                            {% block nav %}{% endblock nav %}
+                        </div>
+                    </div>
+                    <!-- Timer -->
+                    <div class="timer">
+                        <div class="container">
+                            {% block timer %}{% endblock timer %}
+                        </div>
+                    </div>
+                    <div class="language">
+                        <div class="container">
+                            {% if not request.session.check_in_data.app %}
+                                <form id="form-set-language" action="{% url 'set_language' %}" method="post">
+                                    {% csrf_token %}
+                                    <input name="next" type="hidden" value="{{ redirect_to }}">
+                                    <select id="language" name="language" class="md-select borderless-select">
+                                        {% for language in AVAILABLE_LANGUAGES %}
+                                            <option value="{{ language.0 }}"
+                                            {% if language.0 == LANGUAGE_CODE %}selected{% endif %}>
+                                                {{ language.1 }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <!-- Content -->
+                <div class="content container">
+                    {% block content %}{% endblock content %}
+                </div>
+            {% endblock wrapper %}
+        </div>
+    {% endblock body %}
     <!-- django js translation -->
     <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
     <!-- data js -->

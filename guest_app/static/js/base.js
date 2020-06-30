@@ -1,6 +1,6 @@
 // submit language form 
-$('#frm-set-language select#language').change(function() {
-    $('#frm-set-language').submit();
+$('#form-set-language select#language').change(function() {
+    $('#form-set-language').submit();
 });
 
 
