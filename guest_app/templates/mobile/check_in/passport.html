@@ -20,65 +20,69 @@
 
 {% block content %}
     {{ block.super }}
-    <div class="row">
-        <div class="col-12 px-0 text-center">
-            <form method="post" id="form-passport">
-                {% csrf_token %}
-                <div class="page-heading mx-auto">
-                    {% trans 'Prepare your Passport for photo verification' %}
-                </div>
-                <div class="page-subheading text-secondary">
-                    {% trans 'We need a photograph of your passport, or alternatively you may upload the image file.' %}
-                </div>
-                <div class="page-input">
-                    {% render_field form.passport_file %}
-                    {% render_field form.skip_passport %}
-                    <div class="default-container">
-                        <img src="{% static 'img/mobile-passport.png' %}" width="298px">
-                    </div>
-                    <div class="preview-container" style="display: none;">
-                        <img id="img-preview">
-                    </div>
-                </div>
-                <div class="page-button">
-                    <div class="row mx-0 default-container">
-                        <div class="col-12">
-                            <label class="btn btn-primary btn-round text-capitalize mb-3">
-                                {% trans 'Take Photo' %}
-                                <input type="file" id="file-capture" accept="image/*" capture="camera" hidden>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row mx-0 default-container">
-                        <div class="col-12">
-                            <label class="btn btn-outline-primary btn-round text-capitalize mb-3">
-                                {% trans 'Upload Photo' %}
-                                <input type="file" id="file-upload" accept="image/*" hidden>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row mx-0 preview-container" style="display: none;">
-                        <div class="col-12">
-                            <button type="button" class="btn btn-primary mb-3" id="btn-next">{% trans 'Next' %}</button>
-                        </div>
-                    </div>
-                    <div class="row mx-0 preview-container" style="display: none;">
-                        <div class="col-12">
-                            <label class="btn btn-outline-primary btn-round text-capitalize mb-3">
-                                {% trans 'Retake' %}
-                                <input type="file" id="file-capture" accept="image/*" capture="camera" hidden>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row mx-0">
-                        <div class="col-12">
-                            <button type="button" class="btn btn-link text-primary text-capitalize" id="btn-skip">{% trans "I'll do it manually" %}</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
+    <form method="post" id="form-passport">
+        {% csrf_token %}
+        <div class="row page-heading">
+            <div class="col-12 px-0">
+                {% trans 'Prepare your Passport for photo verification' %}
+            </div>
         </div>
-    </div>
+        <div class="row page-subheading">
+            <div class="col-12 px-0 text-secondary">
+                {% trans 'We need a photograph of your passport, or alternatively you may upload the image file.' %}
+            </div>
+        </div>
+        <div class="row page-input">
+            <div class="col-12 d-flex justify-content-center">
+                {% render_field form.passport_file %}
+                {% render_field form.skip_passport %}
+                <div class="default-container">
+                    <img src="{% static 'img/mobile-passport.png' %}" width="298px">
+                </div>
+                <div class="preview-container" style="display: none;">
+                    <img id="img-preview">
+                </div>
+            </div>
+        </div>
+        <div class="row page-button">
+            <div class="col-12">
+                <div class="row default-container">
+                    <div class="col-12 d-flex justify-content-center">
+                        <label class="btn btn-primary btn-round text-capitalize mb-3">
+                            {% trans 'Take Photo' %}
+                            <input type="file" id="file-capture" accept="image/*" capture="camera" hidden>
+                        </label>
+                    </div>
+                </div>
+                <div class="row default-container">
+                    <div class="col-12 d-flex justify-content-center">
+                        <label class="btn btn-outline-primary btn-round text-capitalize mb-3">
+                            {% trans 'Upload Photo' %}
+                            <input type="file" id="file-upload" accept="image/*" hidden>
+                        </label>
+                    </div>
+                </div>
+                <div class="row preview-container" style="display: none;">
+                    <div class="col-12 d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary mb-3" id="btn-next">{% trans 'Next' %}</button>
+                    </div>
+                </div>
+                <div class="row preview-container" style="display: none;">
+                    <div class="col-12 d-flex justify-content-center">
+                        <label class="btn btn-outline-primary btn-round text-capitalize mb-3">
+                            {% trans 'Retake' %}
+                            <input type="file" id="file-capture" accept="image/*" capture="camera" hidden>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        <button type="button" class="btn btn-link text-primary text-capitalize" id="btn-skip">{% trans "I'll do it manually" %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 {% endblock content %}
 
 {% block wrapper %}
