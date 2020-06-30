@@ -4,6 +4,12 @@ $('#form-set-language select#language').change(function() {
 });
 
 
+// header nav back button
+$('.header .nav #btn-back').click(function () {
+	window.history.back();
+});
+
+
 // alert using modal
 $('.modal').each(function() {
 	if (!$('body').hasClass('modal-open')) {
