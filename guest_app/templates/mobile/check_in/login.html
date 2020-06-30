@@ -15,40 +15,44 @@
 
 {% block content %}
     {{ block.super }}
-    <div class="row">
-        <div class="col-12 px-0 text-center">
-            <form method="post" id="form-mobile-login">
-                {% csrf_token %}
-                <div class="page-heading">
-                    {% blocktrans %}Welcome to<br>Hotel {{ HOTEL_NAME }}{% endblocktrans %}
-                </div>
-                <div class="page-subheading text-secondary">
-                    {% trans 'To begin the online check-in process, please enter your reservation number.' %}
-                </div>
-                <div class="page-input">
-                    <div class="input-step active" id="step-reservation-no">
-                        <div class="md-form input-center input-boxed">
-                            {% render_field form.reservation_no class="form-control" placeholder="e.g. 12345678" %}
-                        </div>
-                    </div>
-                    <div class="input-step" id="step-last-name">
-                        <div class="md-form input-center input-boxed">
-                            {% render_field form.last_name class="form-control" placeholder="Last Name" %}
-                        </div>
-                    </div>
-                    <div class="input-step" id="step-arrival-date">
-                        <div class="md-form input-boxed input-with-post-icon">
-                            {% render_field form.arrival_date class="form-control datepicker" data-date-format="yyyy-mm-dd" %}
-                            <i class="far fa-calendar input-prefix text-primary"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="page-button">
-                    <button type="button" class="btn btn-primary btn-round m-0" id="btn-step-next" disabled>{% trans 'Next' %}</button>
-                </div>
-            </form>
+    <form method="post" id="form-mobile-login">
+        {% csrf_token %}
+        <div class="row page-heading">
+            <div class="col-12 text-center">
+                {% blocktrans %}Welcome to<br>Hotel {{ HOTEL_NAME }}{% endblocktrans %}
+            </div>
         </div>
-    </div>
+        <div class="row page-subheading">
+            <div class="col-12 px-0 text-center text-secondary">
+                {% trans 'To begin the online check-in process, please enter your reservation number.' %}
+            </div>
+        </div>
+        <div class="row page-input">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="input-step active" id="step-reservation-no">
+                    <div class="md-form input-center input-boxed my-0">
+                        {% render_field form.reservation_no class="form-control" placeholder="e.g. 12345678" %}
+                    </div>
+                </div>
+                <div class="input-step" id="step-last-name">
+                    <div class="md-form input-center input-boxed my-0">
+                        {% render_field form.last_name class="form-control" placeholder="Last Name" %}
+                    </div>
+                </div>
+                <div class="input-step" id="step-arrival-date">
+                    <div class="md-form input-boxed input-with-post-icon my-0">
+                        {% render_field form.arrival_date class="form-control datepicker" data-date-format="yyyy-mm-dd" %}
+                        <i class="far fa-calendar input-prefix text-primary"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row page-button">
+            <div class="col-12 d-flex justify-content-center">
+                <button type="button" class="btn btn-primary btn-round m-0" id="btn-step-next" disabled>{% trans 'Next' %}</button>
+            </div>
+        </div>
+    </form>
 {% endblock content %}
 
 {% block wrapper %}

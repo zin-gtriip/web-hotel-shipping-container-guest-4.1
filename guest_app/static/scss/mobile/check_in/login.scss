@@ -4,19 +4,13 @@
     }
     
     .page-input {
-        display: flex;
-    
         .input-step {
-            margin: 0 auto;
-    
             &:not(.active) {
                 display: none;
             }
         }
     
         .md-form {
-            margin: 0;
-    
             input {
                 font-size: 18px;
                 width: 263px;
