@@ -16,7 +16,7 @@ var interval = setInterval(function() {
     minutes = (minutes.toString().length == 1) ? '0' + minutes : minutes;
     seconds = (seconds.toString().length == 1) ? '0' + seconds : seconds;
     // Output the result in an element
-    $('#timer-tick').text(minutes + ":" + seconds);
+    $('.timer-tick').text(minutes + ":" + seconds);
     // If the count down is over
     if (distance <= 0) {
         alert('Your session is expired');
