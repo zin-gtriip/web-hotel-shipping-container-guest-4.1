@@ -1,34 +1,38 @@
 $reservation-radius: 10px;
 
-.page-heading {
-    width: 190px;
-}
-.page-subheading {
-    width: 209px;
-}
-.page-input {
-    height: 377px;
-    overflow-y: auto;
+.content {
+    .page-heading {
+        width: 190px;
+    }
+
+    .page-subheading {
+        width: 209px;
+    }
+    
+    .page-input {
+        height: 377px;
+        overflow-y: auto;
+    }
 }
 
 // reservation thumbnail
-.container-reservation {
+.reservation-container {
     margin: 0 auto 18px auto;
     width: 340px;
     height: 230px;
     position: relative; 
 
     &.active {
-        .overlay-reservation {
+        .reservation-overlay {
             display: none;
         }
 
-        .icon-checkbox-reservation {
+        .reservation-checkbox-icon {
             display: block;
         }
     }
 
-    .overlay-reservation {
+    .reservation-overlay {
         display: block;
         width: 100%;
         height: 100%;
@@ -44,10 +48,6 @@ $reservation-radius: 10px;
         margin-bottom: 0;
         border-top-right-radius: $reservation-radius;
         border-top-left-radius: $reservation-radius;
-
-        input {
-            display: none;
-        }
     }
 
     .reservation-details {
@@ -75,7 +75,7 @@ $reservation-radius: 10px;
         }
     }
 
-    .icon-checkbox-reservation {
+    .reservation-checkbox-icon {
         display: none;
         position: relative;
         width: 40px;

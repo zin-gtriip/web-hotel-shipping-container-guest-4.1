@@ -1,7 +1,7 @@
-$('.container-reservation').click(function() {
+$('.reservation-container').click(function() {
     $(this).addClass('active')
         .find('input').prop('checked', true).change();
-    $('.container-reservation:not(#'+ $(this).attr('id') +')').removeClass('active');
+    $('.reservation-container:not(#'+ $(this).attr('id') +')').removeClass('active');
 });
 
 
