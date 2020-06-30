@@ -110,10 +110,10 @@ class CheckInPassportForm(forms.Form):
 
         # send to ocr scanning
         scan_type = 'passport'
-        response = samples.ocr_data # gateways.ocr(saved_file, 'passport')
-        if 'status' in response or 'message' in response:
-            scan_type = 'nric'
-            response = gateways.ocr(saved_file, 'nric')
+        response = gateways.ocr(saved_file, 'passport')
+        # if 'status' in response or 'message' in response:
+        #     scan_type = 'nric'
+        #     response = gateways.ocr(saved_file, 'nric')
 
         # validation based on `scan_type` (`passport` / `nric`)
         if 'status' not in response and 'message' not in response:
