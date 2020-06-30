@@ -15,8 +15,9 @@
     }
 
     .page-button {
-        button, label {
+        .btn {
             width: 230px;
+            margin: 0;
         }
     }
 }
