@@ -1,8 +1,114 @@
+.content {
+    .page-heading {
+        width: 234px;
+    }
+
+    .page-subheading {
+        width: 263px;
+        margin-bottom: 19px;
+    }
+
+    .page-button {
+        button, label {
+            width: 230px;
+        }
+
+        // .preview-container {
+        //     button, label {
+        //         width: 150px;
+        //     }
+        // }
+    }
+}
+
 .croppie-container {
-    .cr-slider-wrap {
-        width: 100%;
-        margin-bottom: 0;
-        display: flex;
-        justify-content: space-around;
+    .cr-boundary {
+        background-color: rgba(#000, .6);
+
+        .timer-tick {
+            position: absolute;
+            width: 34px;
+            top: 10px;
+            left: 171px;
+            z-index: 2;
+        }
+        
+        #text-preview {
+            position: absolute;
+            width: 274px;
+            top: 52px;
+            left: 51px;
+            z-index: 2;
+        }
+
+        #btn-rotate {
+            background-color: #787370;
+            color: #fff;
+            position: absolute;
+            bottom: 28px;
+            left: 160px;
+            z-index: 2;
+        }
+    }
+
+    .cr-viewport {
+        border: none;
+
+        .guide-top-right-1 {
+            border: 1.5px solid #fff;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 88%;
+        }
+        .guide-top-right-2 {
+            border: 1.5px solid #fff;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 85%;
+        }
+        .guide-bottom-right-1 {
+            border: 1.5px solid #fff;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 88%;
+        }
+        .guide-bottom-right-2 {
+            border: 1.5px solid #fff;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            top: 85%;
+        }
+        .guide-top-left-1 {
+            border: 1.5px solid #fff;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 88%;
+        }
+        .guide-top-left-2 {
+            border: 1.5px solid #fff;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 85%;
+        }
+        .guide-bottom-left-1 {
+            border: 1.5px solid #fff;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 88%;
+        }
+        .guide-bottom-left-2 {
+            border: 1.5px solid #fff;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            top: 85%;
+        }
     }
 }

@@ -77,6 +77,7 @@ class CheckInPassportView(RequestInitializedMixin, SessionDataRequiredMixin, Mob
     template_name           = 'desktop/check_in/passport.html'
     form_class              = CheckInPassportForm
     success_url             = '/check_in/detail'
+    mobile_template_name    = 'mobile/check_in/passport.html'
 
     def dispatch(self, request, *args, **kwargs):
         if 'check_in_data' in request.session and request.session['check_in_data'].get('skip_ocr', False):
