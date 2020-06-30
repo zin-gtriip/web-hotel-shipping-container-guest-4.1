@@ -4,6 +4,40 @@ $('#form-set-language select#language').change(function() {
 });
 
 
+// alert using modal
+$('.modal').each(function() {
+	if (!$('body').hasClass('modal-open')) {
+		$(this).modal('show').addClass('shown');
+	}
+	// trigger next modal
+	$(this).on('hidden.bs.modal', function(e) {
+		$('.modal:not(.shown)').first().modal('show').addClass('shown');
+	});
+});
+
+
+// initiate and show alert modal
+function modalAlert(title='Error', body='Error', btnDismissText='Close') {
+	var modal =
+		'<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">' +
+            '<div class="modal-dialog modal-dialog-centered modal-sm">'+
+                '<div class="modal-content">'+
+                    '<div class="modal-header bg-primary text-white">'+
+                        '<h4 class="modal-title mx-auto" id="modal-label-{{ forloop.counter0 }}">'+ title +'</h4>'+
+                    '</div>'+
+                    '<div class="modal-body">'+ body +'</div>'+
+                    '<div class="modal-footer">'+
+                        '<button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">'+ btnDismissText +'</button>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+		'</div>';
+
+	$('.wrapper').append(modal);
+	$('.modal').modal('show');
+}
+
+
 // notification using bootstrap toast
 $('.toast').toast('show');
 

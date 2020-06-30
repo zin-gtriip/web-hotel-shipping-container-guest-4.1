@@ -55,11 +55,11 @@
     {{ block.super }}
     <!-- Error Modal -->
     {% for error in form.non_field_errors %}
-        <div class="modal error-modal fade" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="error-modal-label-{{ forloop.counter0 }}" aria-hidden="true">
+        <div class="modal fade" id="form-error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-sm">
                 <div class="modal-content">
                     <div class="modal-header bg-primary text-white">
-                        <h4 class="modal-title mx-auto" id="error-modal-label-{{ forloop.counter0 }}">{% trans 'Invalid Input' %}</h4>
+                        <h4 class="modal-title mx-auto">{% trans 'Invalid Input' %}</h4>
                     </div>
                     <div class="modal-body">
                         {{ error }}

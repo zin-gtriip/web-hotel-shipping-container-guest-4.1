@@ -43,14 +43,3 @@ $('#btn-step-next').click(function() {
 		, duration: 1000
 	}).removeClass('active');
 });
-
-
-$('.modal.error-modal').each(function() {
-	if (!$('body').hasClass('modal-open')) {
-		$(this).modal('show').addClass('shown');
-	}
-	// trigger next modal
-	$(this).on('hidden.bs.modal', function(e) {
-		$('.modal.error-modal:not(.shown)').first().modal('show').addClass('shown');
-	});
-});
