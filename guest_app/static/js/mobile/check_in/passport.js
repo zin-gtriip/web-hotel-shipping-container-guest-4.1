@@ -87,7 +87,7 @@ $('#btn-skip').click(function() {
 // initiate croppie and additional elements
 function initCroppieComponents() {
     var $timer = $('.timer-tick').clone().addClass('text-white')
-        , $previewText = $('<div></div>').addClass('text-white').attr('id', 'text-preview').text(gettext('Drag, rotate, or pinch the image to make sure that all information is within the box.'))
+        , $previewText = $('<div></div>').addClass('text-white text-center').attr('id', 'text-preview').text(gettext('Drag, rotate, or pinch the image to make sure that all information is within the box.'))
         , $iconRotate = $('<i></i>').addClass('fas fa-undo-alt').attr('aria-hidden', true)
         , $btnRotate = $('<button></button>').attr('type', 'button').addClass('btn btn-floating').attr('id', 'btn-rotate').data('degree', 90).html($iconRotate).click(function () {
             $('#img-preview').croppie('rotate', $(this).data('degree'));
