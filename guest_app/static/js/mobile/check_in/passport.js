@@ -23,8 +23,8 @@ Compressor.setDefaults({
 //     showZoomer: true,
 //     enableOrientation: true,
 // };
-var scale = 1.33 // get from `640 / 480` desktop video size
-    , boundaryWidth = $('#form-passport').width()
+var scale = 1.33
+    , boundaryWidth = screen.width
     , boundaryHeight = Math.floor(boundaryWidth / scale)
     , viewportWidth = boundaryHeight
     , viewportHeight = Math.floor(viewportWidth / scale);
