@@ -10,100 +10,100 @@ Compressor.setDefaults({
     maxWidth: maxCanvasWidth,
     maxHeight: maxCanvasHeight,
 });
-// form variable to be used in all code below
-var $frmPassport = $('#frm-passport');
 // croppie options, for scaling and rotating captured and uploaded image
-// for desktop
+// var croppieOpts = {
+//     viewport: { width: 320, height: 240 },
+//     boundary: { width: 427, height: 320 },
+//     showZoomer: true,
+//     enableOrientation: true,
+// };
 var croppieOpts = {
-    viewport: { width: 320, height: 240 },
-    boundary: { width: 427, height: 320 },
+    viewport: { width: 340, height: 240 },
+    boundary: { width: 375, height: 494 },
     showZoomer: true,
     enableOrientation: true,
 };
-// for mobile
-if (isMobile()) {
-    // calculate from `frm-passport` width
-    var scale = 1.33 // get from `640 / 480` desktop video size
-        , boundaryWidth = $frmPassport.width()
-        , boundaryHeight = Math.floor(boundaryWidth / scale)
-        , viewportWidth = boundaryHeight
-        , viewportHeight = Math.floor(boundaryHeight / scale);
-
-    var croppieOpts = {
-        viewport: { width: viewportWidth, height: viewportHeight },
-        boundary: { width: boundaryWidth, height: boundaryHeight },
-        showZoomer: true,
-        enableOrientation: true,
-    };
-}
 
 
-// document ready
-$(document).ready(function () {
-    if (isMobile()) {
-        // mobile browser
-        $('#vid-show, #btn-capture').attr('hidden', true);
-        $('#btn-mobile-capture').attr('hidden', false);
-    } else {
-        // desktop browser
-        // validate if any camera is available
-        navigator.mediaDevices.getUserMedia({ video : true })
-        .then(gotMedia)
+// btn-upload click
+$('.file-upload').change(function() {
+    var file = event.target.files[0];
+
+    if (file === undefined) modalAlert(gettext('Invalid Image'), gettext('No image file selected'));
+    if (!validateFileType($(this).val())) modalAlert(gettext('Invalid Image'), gettext('Please upload valid identification in JPEG/PNG format'));
+    new Compressor(file, {
+        success: function(result) {
+            blobToDataURL(result, function(dataURL) {
+                $('#img-preview').attr('src', dataURL);
+                initCroppieComponents();
+                initBorderGuide();
+            });
+        },
+        error: function(err) {
+            console.error('Compressor() error:'+ err.message);
+            modalAlert(gettext('Error'), gettext('Error capturing image'));
+        },
+    });
+});
+
+
+$('#btn-webcam').click(function() {
+    navigator.mediaDevices.getUserMedia({ video : true })
+        .then(function (stream) {
+            var video = document.getElementById('vid-webcam')
+                , $img = $('#img-preview')
+                , $capture = $('#btn-capture');
+
+            $('.default-container, #btn-skip').hide();
+            $('.webcam-container').show();
+            video.srcObject = stream;
+            video.play();
+
+            $capture.click(function() {
+                var draw = document.createElement('canvas')
+                    , context2D = draw.getContext('2d');
+                draw.width = video.videoWidth;
+                draw.height = video.videoHeight;
+                context2D.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+                new Compressor(dataURLtoBlob(draw.toDataURL('image/jpeg')), {
+                    success: function(result) {
+                        blobToDataURL(result, function(dataURL) {
+                            $img.attr('src', dataURL);
+                            initCroppieComponents();
+                            initBorderGuide();
+                        });
+                    },
+                    error: function(err) {
+                        console.error('Compressor() error:'+ err.message);
+                        modalAlert(gettext('Error'), gettext('Error capturing image'));
+                    },
+                });
+            });
+        })
         .catch(function(error) {
             console.error('getUserMedia() error:', error);
-            toastNotify(gettext('No camera media is detected'));
+            modalAlert(gettext('Error'), gettext('No camera media is detected'));
         });
-    }
-});
-
-
-// btn-rotate click
-$('.btn-rotate').click(function() {
-    $('#vid-img').croppie('rotate', $(this).data('degree'));
-});
-
-
-// btn-retake click
-$('#btn-retake').click(function() {
-    webCamera('on');
 });
 
 
 // btn-next click
 $('#btn-next').click(function() {
-    var $img = $('#vid-img')
+    var $img = $('#img-preview')
         , $passportFile = $('#id_passport_file');
+
+    // disable all button
+    $('.btn').attr('disabled', true).addClass('disabled');
 
     $img.croppie('result', {
         'type': 'blob',
         'format': 'jpeg',
+        'quality': 1,
     }).then(function(blob) {
         blobToDataURL(blob, function(dataURL) {
-            // remove `data:image/png;base64,` on dataURL
-            $passportFile.val(dataURL.substring(23));
-            $frmPassport.submit();
+            $passportFile.val(dataURL.substring(23)); // remove `data:image/png;base64,` on dataURL
+            $('#form-passport').submit();
         });
-    });
-});
-
-
-// btn-upload click
-$('#file-upload, #file-mobile-capture').change(function(e) {
-    var file = e.target.files[0]
-        , $img = $('#vid-img');
-    if (file === undefined) toastNotify(gettext('No image file selected'));
-    if (!validateFileType($(this).val())) toastNotify(gettext('Please upload valid identification in JPEG/PNG format'));
-    new Compressor(file, {
-        success: function(result) {
-            blobToDataURL(result, function(dataURL) {
-                $img.attr('src', dataURL);
-                webCamera('captured');
-            });
-        },
-        error: function(err) {
-            console.error('Compressor() error:'+ err.message);
-            toastNotify(gettext('Error capturing image'));
-        },
     });
 });
 
@@ -111,37 +111,16 @@ $('#file-upload, #file-mobile-capture').change(function(e) {
 // btn-skip click
 $('#btn-skip').click(function() {
     $('#id_skip_passport').val(true);
-    $frmPassport.submit();
+    $('#form-passport').submit();
 });
 
 
-// initiate camera, after validation
-function gotMedia(stream) {
-    var video = document.getElementById('vid-show')
-        , $img = $('#vid-img')
-        , $capture = $('#btn-capture');
-    video.srcObject = stream;
-    video.play();
-
-    $capture.click(function() {
-        var draw = document.createElement('canvas')
-            , context2D = draw.getContext('2d');
-        draw.width = video.videoWidth;
-        draw.height = video.videoHeight;
-        context2D.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-        new Compressor(dataURLtoBlob(draw.toDataURL('image/jpeg')), {
-            success: function(result) {
-                blobToDataURL(result, function(dataURL) {
-                    $img.attr('src', dataURL);
-                    webCamera('captured');
-                });
-            },
-            error: function(err) {
-                console.error('Compressor() error:'+ err.message);
-                toastNotify(gettext('Error capturing image'));
-            },
-        });
-    });
+// validate file type
+function validateFileType(fileName) {
+    var splited = fileName.split('.')
+        , fileType = (splited[splited.length - 1]).toLowerCase();
+    if ((!fileName) || (splited.length <= 1) || (acceptedFileType.indexOf(fileType) < 0)) return false;
+    return true;
 }
 
 
@@ -164,72 +143,45 @@ function dataURLtoBlob(dataURL) {
 }
 
 
-// switch video
-function webCamera(state) {
-    var video = document.getElementById('vid-show');
-
-    if (state == 'on') {
-        $('#vid-img').croppie('destroy');
-        $('#btn-upload').attr('hidden', false);
-        $('#vid-img, #btn-next, #btn-retake').attr('hidden', true);
-        if (isMobile()) {
-            $('#btn-mobile-capture').attr('hidden', false).click();
-        } else {
-            video.play();
-            $(video).attr('hidden', false);
-            $('#btn-capture').attr('hidden', false);
-        }
-    } else if (state == 'captured') {
-        if (isMobile()) {
-            $('#btn-mobile-capture').attr('hidden', true);
-        } else {
-            video.pause();
-            $(video).attr('hidden', true);
-            $('#btn-capture').attr('hidden', true);
-        }
-        $('#vid-img').attr('hidden', false).croppie(croppieOpts);
-        $('#btn-upload').attr('hidden', true);
-        $('#btn-next, #btn-retake').attr('hidden', false);
-        // add rotate buttons
-        $('.cr-slider-wrap').prepend(
-            '<button type="button" class="btn btn-link waves-effect text-primary px-3 btn-rotate" data-degree="90">'+
-                '<i class="fas fa-undo-alt" aria-hidden="true"></i>'+
-            '</button>'
-        ).append(
-            '<button type="button" class="btn btn-link waves-effect text-primary px-3 btn-rotate" data-degree="-90">'+
-                '<i class="fas fa-redo-alt" aria-hidden="true"></i>'+
-            '</button>'
-        );
-        // add click event to rotate buttons
-        $('.btn-rotate').click(function () {
-            $('#vid-img').croppie('rotate', $(this).data('degree'));
+// initiate croppie and additional elements
+function initCroppieComponents() {
+    var $previewText = $('<div></div>').addClass('text-white text-center').attr('id', 'text-preview').text(gettext('Please adjust the image to make sure that all information is within the box.'))
+        , $zoomWrap
+        , $zoomWord = $('<span></span>').addClass('text-white').text('Zoom')
+        , $iconRotate = $('<i></i>').addClass('fas fa-undo-alt').attr('aria-hidden', true)
+        , $btnRotate = $('<button></button>').attr('type', 'button').addClass('btn btn-floating').attr('id', 'btn-rotate').data('degree', 90).html($iconRotate).click(function () {
+            $('#img-preview').croppie('rotate', $(this).data('degree'));
         });
-    }
+
+    $('.page-heading, .page-subheading, .default-container, .webcam-container').hide();
+    $('.cr-slider-wrap').appendTo('.croppie-container'); // move back to prevent error on `croppie('destroy')`
+    $('#img-preview').croppie('destroy').croppie(croppieOpts);
+    $('.preview-container, #btn-skip').show();
+    $zoomWrap = $('.cr-slider-wrap');
+    $zoomWord.prependTo($zoomWrap);
+    $('.cr-boundary').append($previewText, $zoomWrap, $btnRotate);
 }
 
 
-// validate file type
-function validateFileType(fileName) {
-    var splited = fileName.split('.')
-        , fileType = (splited[splited.length - 1]).toLowerCase();
-    if ((!fileName) || (splited.length <= 1) || (acceptedFileType.indexOf(fileType) < 0)) return false;
-    return true;
-}
+// initiate border guide on croppie view port
+function initBorderGuide() {
+    var guideTopRight1 = $('<div></div>').addClass('guide-top-right-1')
+        , guideTopRight2 = $('<div></div>').addClass('guide-top-right-2')
+        , guideBottomRight1 = $('<div></div>').addClass('guide-bottom-right-1')
+        , guideBottomRight2 = $('<div></div>').addClass('guide-bottom-right-2')
+        , guideTopLeft1 = $('<div></div>').addClass('guide-top-left-1')
+        , guideTopLeft2 = $('<div></div>').addClass('guide-top-left-2')
+        , guideBottomLeft1 = $('<div></div>').addClass('guide-bottom-left-1')
+        , guideBottomLeft2 = $('<div></div>').addClass('guide-bottom-left-2')
 
-
-// validate if it is mobile
-function isMobile() {
-    var toMatch = [
-        /Android/i,
-        /webOS/i,
-        /iPhone/i,
-        /iPad/i,
-        /iPod/i,
-        /BlackBerry/i,
-        /Windows Phone/i
-    ];
-
-    return toMatch.some((toMatchItem) => {
-        return navigator.userAgent.match(toMatchItem);
-    });
+    $('.cr-boundary .cr-viewport').append(
+        guideTopRight1,
+        guideTopRight2,
+        guideBottomRight1,
+        guideBottomRight2,
+        guideTopLeft1,
+        guideTopLeft2,
+        guideBottomLeft1,
+        guideBottomLeft2
+    );
 }
