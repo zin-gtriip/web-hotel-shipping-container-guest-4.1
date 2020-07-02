@@ -51,6 +51,9 @@ $('.file-capture, .file-upload').change(function() {
 $('#btn-next').click(function() {
     var $img = $('#img-preview')
         , $passportFile = $('#id_passport_file');
+        
+    // disable all button
+    $('.btn').attr('disabled', true).addClass('disabled');
 
     $img.croppie('result', {
         'type': 'blob',
