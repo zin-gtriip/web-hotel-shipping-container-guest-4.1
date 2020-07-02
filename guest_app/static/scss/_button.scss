@@ -8,13 +8,6 @@
     @if $all-round-btn {
         border-radius: $all-btn-radius;
     }
-
-    &:not(.btn-link):disabled {
-        color: map-get($text-colors, secondary) !important;
-        background-color: map-get($theme-colors, secondary) !important;
-        border-color: map-get($theme-colors, secondary) !important;
-        opacity: 1;
-    }
 }
 
 .btn-floating {
@@ -37,6 +30,10 @@
     }
 }
 
+.btn-link {
+    
+}
+
 @each $color, $value in $theme-colors {
     .btn-#{$color} {
         background-color: $value !important;
@@ -49,6 +46,13 @@
         &:not([disabled]):not(.disabled):hover,
         &:not([disabled]):not(.disabled).hover {
             background-color: $value !important;
+        }
+
+        &:disabled, &.disabled {
+            color: map-get($text-colors, secondary) !important;
+            background-color: map-get($theme-colors, secondary) !important;
+            border-color: map-get($theme-colors, secondary) !important;
+            opacity: 1;
         }
     }
 
@@ -65,6 +69,11 @@
         &:not([disabled]):not(.disabled).hover {
             color: $value !important;
             border: 2px solid $value !important;
+        }
+
+        &:disabled, &.disabled {
+            color: map-get($theme-colors, secondary) !important;
+            border: 2px solid map-get($theme-colors, secondary) !important;
         }
     }
 }
