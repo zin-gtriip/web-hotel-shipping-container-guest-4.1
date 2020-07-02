@@ -56,7 +56,7 @@ $('#btn-next').click(function() {
 
 
 // // btn-upload click
-$('#file-capture, #file-upload').change(function() {
+$('.file-capture, .file-upload').change(function() {
     var file = event.target.files[0];
 
     if (file === undefined) modalAlert(gettext('Invalid Image'), gettext('No image file selected'));
@@ -86,7 +86,7 @@ $('#btn-skip').click(function() {
 
 // initiate croppie and additional elements
 function initCroppieComponents() {
-    var $timer = $('.timer-tick').clone().addClass('text-white')
+    var $timer = $('.timer-text').clone().removeClass('text-secondary').addClass('text-white')
         , $previewText = $('<div></div>').addClass('text-white text-center').attr('id', 'text-preview').text(gettext('Drag, rotate, or pinch the image to make sure that all information is within the box.'))
         , $iconRotate = $('<i></i>').addClass('fas fa-undo-alt').attr('aria-hidden', true)
         , $btnRotate = $('<button></button>').attr('type', 'button').addClass('btn btn-floating').attr('id', 'btn-rotate').data('degree', 90).html($iconRotate).click(function () {
@@ -94,9 +94,9 @@ function initCroppieComponents() {
         });
 
     $('.header, .page-heading, .page-subheading, .default-container').hide();
-    $('#img-preview').croppie('destroy').croppie(croppieOpts)
+    $('#img-preview').croppie('destroy').croppie(croppieOpts);
     $('.preview-container').show();
-    $('.cr-boundary').append($timer, $previewText, $btnRotate)
+    $('.cr-boundary').append($timer, $previewText, $btnRotate);
 }
 
 
