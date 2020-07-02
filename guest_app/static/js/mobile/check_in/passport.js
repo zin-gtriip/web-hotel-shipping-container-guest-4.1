@@ -25,26 +25,7 @@ var croppieOpts = {
 };
 
 
-// btn-next click
-$('#btn-next').click(function() {
-    var $img = $('#img-preview')
-        , $passportFile = $('#id_passport_file');
-
-    $img.croppie('result', {
-        'type': 'blob',
-        'format': 'jpeg',
-        'quality': 1,
-    }).then(function(blob) {
-        blobToDataURL(blob, function(dataURL) {
-            // remove `data:image/png;base64,` on dataURL
-            $passportFile.val(dataURL.substring(23));
-            $('#form-passport').submit();
-        });
-    });
-});
-
-
-// // btn-upload click
+// btn-upload click
 $('.file-capture, .file-upload').change(function() {
     var file = event.target.files[0];
 
@@ -60,8 +41,26 @@ $('.file-capture, .file-upload').change(function() {
         },
         error: function(err) {
             console.error('Compressor() error:'+ err.message);
-            toastNotify(gettext('Error'), gettext('Error capturing image'));
+            modalAlert(gettext('Error'), gettext('Error capturing image'));
         },
+    });
+});
+
+
+// btn-next click
+$('#btn-next').click(function() {
+    var $img = $('#img-preview')
+        , $passportFile = $('#id_passport_file');
+
+    $img.croppie('result', {
+        'type': 'blob',
+        'format': 'jpeg',
+        'quality': 1,
+    }).then(function(blob) {
+        blobToDataURL(blob, function(dataURL) {
+            $passportFile.val(dataURL.substring(23)); // remove `data:image/png;base64,` on dataURL
+            $('#form-passport').submit();
+        });
     });
 });
 
@@ -71,6 +70,34 @@ $('#btn-skip').click(function() {
     $('#id_skip_passport').val(true);
     $('#form-passport').submit();
 });
+
+
+// validate file type
+function validateFileType(fileName) {
+    var splited = fileName.split('.')
+        , fileType = (splited[splited.length - 1]).toLowerCase();
+    if ((!fileName) || (splited.length <= 1) || (acceptedFileType.indexOf(fileType) < 0)) return false;
+    return true;
+}
+
+
+// blob to dataURL
+function blobToDataURL(blob, callback) {
+    var reader = new FileReader();
+    reader.onload = function(e) { callback(e.target.result); }
+    reader.readAsDataURL(blob);
+}
+
+
+// dataURL to blob
+function dataURLtoBlob(dataURL) {
+    var arr = dataURL.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    while(n--){
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], {type:mime});
+}
 
 
 // initiate croppie and additional elements
@@ -110,31 +137,4 @@ function initBorderGuide() {
         guideBottomLeft1,
         guideBottomLeft2
     );
-}
-
-// blob to dataURL
-function blobToDataURL(blob, callback) {
-    var reader = new FileReader();
-    reader.onload = function(e) { callback(e.target.result); }
-    reader.readAsDataURL(blob);
-}
-
-
-// dataURL to blob
-function dataURLtoBlob(dataURL) {
-    var arr = dataURL.split(','), mime = arr[0].match(/:(.*?);/)[1],
-        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-    while(n--){
-        u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new Blob([u8arr], {type:mime});
-}
-
-
-// validate file type
-function validateFileType(fileName) {
-    var splited = fileName.split('.')
-        , fileType = (splited[splited.length - 1]).toLowerCase();
-    if ((!fileName) || (splited.length <= 1) || (acceptedFileType.indexOf(fileType) < 0)) return false;
-    return true;
 }
