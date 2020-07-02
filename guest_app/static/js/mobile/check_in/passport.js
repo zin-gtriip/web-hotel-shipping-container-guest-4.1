@@ -17,21 +17,9 @@ Compressor.setDefaults({
 //     , boundaryHeight = Math.floor(boundaryWidth / scale)
 //     , viewportWidth = boundaryHeight
 //     , viewportHeight = Math.floor(viewportWidth / scale);
-// var croppieOpts = {
-//     viewport: { width: viewportWidth, height: viewportHeight },
-//     boundary: { width: boundaryWidth, height: boundaryHeight },
-//     showZoomer: true,
-//     enableOrientation: true,
-// };
-var scale = 1.33
-    , boundaryWidth = screen.width
-    , boundaryHeight = Math.floor(boundaryWidth / scale)
-    , viewportWidth = boundaryHeight
-    , viewportHeight = Math.floor(viewportWidth / scale);
-
 var croppieOpts = {
-    viewport: { width: viewportWidth + 20, height: viewportHeight },
-    boundary: { width: boundaryWidth, height: 525 },
+    viewport: { width: 340, height: 240 },
+    boundary: { width: screen.width, height: 525 },
     showZoomer: false,
     enableOrientation: true,
 };
