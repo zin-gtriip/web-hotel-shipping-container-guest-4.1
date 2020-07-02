@@ -45,6 +45,7 @@ $('#btn-next').click(function() {
     $img.croppie('result', {
         'type': 'blob',
         'format': 'jpeg',
+        'quality': 1,
     }).then(function(blob) {
         blobToDataURL(blob, function(dataURL) {
             // remove `data:image/png;base64,` on dataURL
