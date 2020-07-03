@@ -57,11 +57,10 @@ class CheckInLoginView(RequestInitializedMixin, MobileTemplateMixin, FormView):
         return super().form_valid(form)
 
 
-class CheckInReservationView(RequestInitializedMixin, SessionDataRequiredMixin, MobileTemplateMixin, FormView):
+class CheckInReservationView(RequestInitializedMixin, SessionDataRequiredMixin, FormView):
     template_name           = 'desktop/check_in/reservation.html'
     form_class              = CheckInReservationForm
     success_url             = '/check_in/passport'
-    mobile_template_name    = 'mobile/check_in/reservation.html'
 
     def form_valid(self, form):
         form.set_session()
