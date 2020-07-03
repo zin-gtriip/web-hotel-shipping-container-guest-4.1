@@ -101,7 +101,7 @@ $('#btn-next').click(function() {
         'quality': 1,
     }).then(function(blob) {
         blobToDataURL(blob, function(dataURL) {
-            $passportFile.val(dataURL.substring(23)); // remove `data:image/png;base64,` on dataURL
+            $passportFile.val(dataURL.substring(23)); // remove `data:image/jpeg;base64,` on dataURL
             $('#form-passport').submit();
         });
     });
