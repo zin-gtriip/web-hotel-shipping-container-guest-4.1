@@ -58,6 +58,11 @@
     </form>
 {% endblock content %}
 
+{% block data_js %}
+    {{ block.super }}
+    {{ request.session.check_in_details.form.reservation|json_script:'reservation' }}
+{% endblock data_js %}
+
 {% block static_js %}
     {{ block.super }}
     <script type="text/javascript" src="{% static 'js/mobile/check_in/reservation.js' %}"></script>
