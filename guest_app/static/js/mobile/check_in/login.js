@@ -1,8 +1,8 @@
 $('.datepicker').datepicker();
-$('#id_arrival_date').datepicker('update', new Date());
+$('#id_arrival_date:not(.is_bound)').datepicker('update', new Date());
 
 
-$('input:visible').change(function() {
+$('#id_reservation_no, #id_last_name, #id_arrival_date').keyup(function() {
 	var $this = $(this);
 	if ($this.val() != '') {
 		$('#btn-step-next').attr('disabled', false);
@@ -10,22 +10,24 @@ $('input:visible').change(function() {
 		$('#btn-step-next').attr('disabled', true);
 	}
 });
-$('input').change();
+$('#id_reservation_no, #id_last_name').keyup();
+
+
+$('#id_arrival_date').datepicker().on('changeDate', function() {
+	var $this = $(this);
+	if ($this.val() != '') {
+		$('#btn-step-next').attr('disabled', false);
+	} else {
+		$('#btn-step-next').attr('disabled', true);
+	}
+});
 
 
 $('#btn-step-next').click(function() {
 	var $currentStep = $('.input-step.active')
 		, $nextStep = $currentStep.next('.input-step');
-
-	$nextStep.find('input').change(function () {
-		var $this = $(this);
-		if ($this.val() != '') {
-			$('#btn-step-next').attr('disabled', false);
-		} else {
-			$('#btn-step-next').attr('disabled', true);
-		}
-	});
-	$('input').change();
+		
+	$nextStep.find('input').keyup();
 
 	// submit if no more nextStep
 	if ($nextStep.length == 0) {

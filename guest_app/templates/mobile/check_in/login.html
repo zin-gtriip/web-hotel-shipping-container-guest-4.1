@@ -41,7 +41,11 @@
                 </div>
                 <div class="input-step" id="step-arrival-date">
                     <div class="md-form input-boxed input-with-post-icon my-0">
-                        {% render_field form.arrival_date class="form-control datepicker" data-date-format="yyyy-mm-dd" %}
+                        {% if form.is_bound %}
+                            {% render_field form.arrival_date class="form-control datepicker is_bound" data-date-format="yyyy-mm-dd" %}
+                        {% else %}
+                            {% render_field form.arrival_date class="form-control datepicker" data-date-format="yyyy-mm-dd" %}
+                        {% endif %}
                         <i class="far fa-calendar input-prefix text-primary"></i>
                     </div>
                 </div>
