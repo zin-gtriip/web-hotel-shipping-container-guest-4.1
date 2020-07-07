@@ -136,32 +136,35 @@ class CheckInPassportForm(forms.Form):
 class CheckInDetailForm(forms.Form):
     first_name = forms.CharField(label=_('First Name'))
     last_name = forms.CharField(label=_('Last Name'))
-    nationality = CountryField(blank_label='[Select Country]').formfield(label=_('Nationality'))
     passport_no = forms.CharField(label=_('Passport Number'))
+    nationality = CountryField(blank_label=_('[Select Country]')).formfield(label=_('Nationality'))
     birth_date = forms.DateField(label=_('Date of Birth'))
-    email = forms.EmailField(label=_('Email'))
-    arrival_time = forms.ChoiceField(label=_('Time of Arrival'), choices=[])
-    comments = forms.CharField(label=_('Comments'), required=False)
-    is_subscribe = forms.BooleanField(label=_('I would like to receive exclusive offers, and news via email.'), required=False)
 
     def __init__(self, request, *args, **kwargs):
         super(CheckInDetailForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
-        self.fields['arrival_time'].choices = utilities.generate_time_arrival()
-        self.fields['nationality'].initial = 'SG'
+
+        first_name = self.request.session['check_in_details']['booking_details'].get('first_name', '')
+        last_name = self.request.session['check_in_details']['booking_details'].get('last_name', '')
+        passport_no = self.request.session['check_in_details']['booking_details'].get('passport_no', '')
+        nationality = self.request.session['check_in_details']['booking_details'].get('nationality', 'SG')
+        birth_date = self.request.session['check_in_details']['booking_details'].get('birth_date', '')
         if 'check_in_data' in self.request.session:
-            self.fields['first_name'].initial = self.request.session['check_in_data'].get('first_name', '')
-            self.fields['last_name'].initial = self.request.session['check_in_data'].get('last_name', '')
-            self.fields['nationality'].initial = self.request.session['check_in_data'].get('nationality', 'SG')
-            self.fields['passport_no'].initial = self.request.session['check_in_data'].get('passport_no', '')
-            self.fields['birth_date'].initial = self.request.session['check_in_data'].get('birth_date', '')
+            first_name = self.request.session['check_in_data'].get('first_name', first_name)
+            passport_no = self.request.session['check_in_data'].get('passport_no', passport_no)
+            nationality = self.request.session['check_in_data'].get('nationality', nationality)
+            birth_date = self.request.session['check_in_data'].get('birth_date', birth_date)
         if 'check_in_details' in self.request.session and 'passport_ocr' in self.request.session['check_in_details']:
-            self.fields['first_name'].initial = self.request.session['check_in_details']['passport_ocr'].get('first_name', '')
-            self.fields['last_name'].initial = self.request.session['check_in_details']['passport_ocr'].get('last_name', '')
-            self.fields['nationality'].initial = Country(self.request.session['check_in_details']['passport_ocr'].get('nationality', 'SGP')).code
-            self.fields['passport_no'].initial = self.request.session['check_in_details']['passport_ocr'].get('number', '')
-            self.fields['birth_date'].initial = self.request.session['check_in_details']['passport_ocr'].get('date_of_birth', '')
+            first_name = self.request.session['check_in_details']['passport_ocr'].get('names', first_name)
+            passport_no = self.request.session['check_in_details']['passport_ocr'].get('number', passport_no)
+            nationality = Country(self.request.session['check_in_details']['passport_ocr'].get('nationality', '')).code or nationality
+            birth_date = utilities.format_ocr_date(self.request.session['check_in_details']['passport_ocr'].get('date_of_birth', '')) or birth_date
+        self.fields['first_name'].initial = first_name
+        self.fields['last_name'].initial = last_name
+        self.fields['passport_no'].initial = passport_no
+        self.fields['nationality'].initial = nationality
+        self.fields['birth_date'].initial = birth_date
     
     def clean(self):
         super().clean()
@@ -170,8 +173,6 @@ class CheckInDetailForm(forms.Form):
         nationality = self.cleaned_data.get('nationality')
         passport_no = self.cleaned_data.get('passport_no')
         birth_date = self.cleaned_data.get('birth_date')
-        email = self.cleaned_data.get('email')
-        arrival_time = self.cleaned_data.get('arrival_time')
 
         # validate required field
         if not first_name:
@@ -184,10 +185,9 @@ class CheckInDetailForm(forms.Form):
             self._errors['passport_no'] = self.error_class([_('Enter the required information')])
         if not birth_date:
             self._errors['birth_date'] = self.error_class([_('Enter the required information')])
-        if not email:
-            self._errors['email'] = self.error_class([_('Enter the required information')])
-        if not arrival_time:
-            self._errors['arrival_time'] = self.error_class([_('Enter the required information')])
+        else:
+            if utilities.calculate_age(birth_date) <= settings.PASSPORT_AGE_LIMIT:
+                self._errors['birth_date'] = self.error_class([_('You must be at least %(age)s years of age to proceed with your registration.') % {'age': settings.PASSPORT_AGE_LIMIT}])
         return self.cleaned_data
 
 
