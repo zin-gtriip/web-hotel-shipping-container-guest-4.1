@@ -1,14 +1,18 @@
 import datetime as dt
 from datetime import datetime
 
-def calculate_age(birthdate):
+def calculate_age(date):
     """
     Calculate age based on passed date and date now
+    Passed date format needs to be `yyyy-mm-dd`
     """
-    if not birthdate: return 0
-    born = datetime.strptime(birthdate, '%d/%m/%Y')
+    if not date: return 0
+    try:
+        date = datetime.strptime(date, '%Y-%m-%d')
+    except:
+        return 0
     today = datetime.today()
-    return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+    return today.year - date.year - ((today.month, today.day) < (date.month, date.day))
 
 
 def generate_time_arrival():
@@ -22,3 +26,10 @@ def generate_time_arrival():
         result.append((datetime.strftime(loop, '%H:%M'), datetime.strftime(loop, '%H:%M')))
         loop += dt.timedelta(minutes=30)
     return result
+
+def format_ocr_date(date):
+    """
+    Format date from OCR response `dd-mm-yyyy` to `yyyy-mm-dd`
+    """
+    if not date: return
+    return datetime.strptime(date, '%d/%m/%Y').strftime('%Y-%m-%d')

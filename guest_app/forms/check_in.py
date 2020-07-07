@@ -119,7 +119,7 @@ class CheckInPassportForm(forms.Form):
         if 'status' not in response and 'message' not in response:
             if scan_type == 'passport':
                 if response.get('expired', '') == 'false':
-                    if utilities.calculate_age(response.get('date_of_birth', '')) <= settings.PASSPORT_AGE_LIMIT:
+                    if utilities.calculate_age(utilities.format_ocr_date(response.get('date_of_birth', ''))) <= settings.PASSPORT_AGE_LIMIT:
                         self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You must be at least %(age)s years of age to proceed with your registration.') % {'age': settings.PASSPORT_AGE_LIMIT}])
                 else:
                     self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Your passport has expired, please capture / upload a valid passport photo to proceed')])
