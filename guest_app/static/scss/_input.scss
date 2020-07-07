@@ -1,11 +1,9 @@
 /* select */
 select.md-select {
-    display: inline-block;
+    display: block;
     width: 100%;
     height: calc(1.5em + .75rem + 2px);
     padding: .375rem 1.75rem .375rem .75rem;
-    font-size: .875rem;
-    font-weight: 400;
     line-height: 1.5;
     color: #3c4858;
     vertical-align: middle;
