@@ -1,4 +1,3 @@
-// form
 .md-form .form-control.is-invalid {
     border-color: map-get($theme-colors, danger) !important;
 }
@@ -41,4 +40,14 @@
     &::-ms-input-placeholder { /* Microsoft Edge */
         color: rgba(#707A7A, 0.5);
     }
+}
+
+.md-form .form-control:disabled, .md-form .form-control[readonly] {
+    border: none !important;
+    color: map-get($theme-colors, secondary);
+}
+
+.form-control {
+    font-size: 1.125rem;
+    line-height: 22px;
 }
