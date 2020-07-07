@@ -10,16 +10,20 @@ $('#btn-add-extra').click(function() {
         , $newExtra = $extraTemplate.clone().removeAttr('hidden')
         , index = getFormsetIndex()
         , $newIsValid = $newExtra.find('#is-valid-template')
+        , $newGuestIndex = $newExtra.find('.guest-index span')
         , $newFirstName = $newExtra.find('#first-name-template')
         , $newLastName = $newExtra.find('#last-name-template')
         , $newNationality = $newExtra.find('#nationality-template')
         , $newPassportNo = $newExtra.find('#passport-no-template')
         , $newBirthDate = $newExtra.find('#birth-date-template')
-        , $newBtnRemove = $newExtra.find('.btn-remove-extra');
+        , $newBtnRemove = $newExtra.find('.btn-remove-extra')
+        , $mainGuest = $('#main-guest');
 
     $newExtra.attr('id', 'extra-formset-'+ index).addClass('extra-formset');
     // is valid
     $newIsValid.attr('id', 'id_form-'+ index +'-is_valid').attr('name', 'form-'+ index +'-is_valid').val(true);
+    // guest index
+    $newGuestIndex.text($newGuestIndex.text() + (index + 2));
     // first name
     $newFirstName.siblings('label').attr('for', 'id_form-'+ index +'-first_name');
     $newFirstName.attr('id', 'id_form-'+ index +'-first_name').attr('name', 'form-'+ index +'-first_name');
@@ -41,7 +45,20 @@ $('#btn-add-extra').click(function() {
         removeExtra($(this));
     });
 
-    $newExtra.insertBefore($(this).closest('.row')); // insert before `.row` of `Add Guest` button 
+    // styling
+    if (index % 2 == 0) {
+        $newExtra.addClass('bg-transparent-primary-1');
+    }
+    if (index == 0) {
+        $mainGuest.removeClass('mx-auto').addClass('ml-auto');
+    } else {
+        $mainGuest.removeClass('ml-auto');
+    }
+    $('.guests > div:not(#main-guest, #extra-formset-template)').removeClass('mr-auto');
+
+    $mainGuest.find('.guest-index span').text('Main Guest'); // add main guest title
+
+    $newExtra.appendTo($('.guests'));
     recalculateTotalExtra(); // `TOTAL_FORMS` needs to be updated
 });
 
