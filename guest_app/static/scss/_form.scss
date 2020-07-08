@@ -1,35 +1,52 @@
-.md-form .form-control.is-invalid {
-    border-color: map-get($theme-colors, danger) !important;
-}
-
-.md-form.input-with-post-icon .input-prefix {
-    right: 3px;
-    top: 58%;
-}
-
-.md-form.input-center .form-control {
-    text-align: center;
-}
-
-.md-form.input-boxed {
-    .form-control {
-        padding: .375rem .75rem;
-        border: 1px solid #848484 !important;
-        border-radius: .25rem !important;
-
-        &:focus {
-            -webkit-box-shadow: 0 0 0 0.2rem rgba(map-get($theme-colors, primary),.25) !important;
-            box-shadow: 0 0 0 0.2rem rgba(map-get($theme-colors, primary),.25) !important;
-        }
+.md-form {
+    &.input-with-post-icon .input-prefix {
+        right: 3px;
+        top: 58%;
     }
 
-    &.input-with-post-icon .input-prefix {
-        right: 16px;
-        top: 50%;
+    &.input-center .form-control {
+        text-align: center;
+    }
+
+    &.input-boxed {
+        .form-control {
+            padding: .375rem .75rem;
+            border: 1px solid #848484 !important;
+            border-radius: .25rem !important;
+
+            &:focus:not([readonly]) {
+                border: 1px solid map-get($theme-colors, info) !important;
+                -webkit-box-shadow: none !important;
+                box-shadow: none !important;
+            }
+        }
+
+        &.input-with-post-icon .input-prefix {
+            right: 16px;
+            top: 50%;
+        }
     }
 }
 
 .md-form .form-control {
+    font-size: 1.125rem;
+    line-height: 22px;
+
+    &:disabled, &[readonly] {
+        border: none !important;
+        color: map-get($theme-colors, secondary);
+    }
+
+    &:focus:not([readonly]) {
+        border-bottom: 1px solid map-get($theme-colors, info) !important;
+        -webkit-box-shadow: 0 1px 0 0 map-get($theme-colors, info) !important;
+        box-shadow: 0 1px 0 0 map-get($theme-colors, info) !important;
+    }
+
+    &.is-invalid {
+        border-color: map-get($theme-colors, danger) !important;
+    }
+
     &::placeholder {
         color: rgba(#707A7A, 0.5);
         opacity: 1; /* Firefox */
@@ -40,14 +57,4 @@
     &::-ms-input-placeholder { /* Microsoft Edge */
         color: rgba(#707A7A, 0.5);
     }
-}
-
-.md-form .form-control:disabled, .md-form .form-control[readonly] {
-    border: none !important;
-    color: map-get($theme-colors, secondary);
-}
-
-.form-control {
-    font-size: 1.125rem;
-    line-height: 22px;
 }
