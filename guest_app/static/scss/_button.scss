@@ -30,10 +30,6 @@
     }
 }
 
-.btn-link {
-    
-}
-
 @each $color, $value in $theme-colors {
     .btn-#{$color} {
         background-color: $value !important;
@@ -46,6 +42,8 @@
         &:not([disabled]):not(.disabled):hover,
         &:not([disabled]):not(.disabled).hover {
             background-color: $value !important;
+            -webkit-box-shadow: none;
+            box-shadow: none;
         }
 
         &:disabled, &.disabled {
@@ -69,6 +67,8 @@
         &:not([disabled]):not(.disabled).hover {
             color: $value !important;
             border: 2px solid $value !important;
+            -webkit-box-shadow: none;
+            box-shadow: none;
         }
 
         &:disabled, &.disabled {
