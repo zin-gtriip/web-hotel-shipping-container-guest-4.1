@@ -40,7 +40,11 @@
         &:not([disabled]):not(.disabled):focus,
         &:not([disabled]):not(.disabled).focus,
         &:not([disabled]):not(.disabled):hover,
-        &:not([disabled]):not(.disabled).hover {
+        &:not([disabled]):not(.disabled).hover,
+        &:not([disabled]):not(.disabled):active:focus,
+        &:not([disabled]):not(.disabled).active:focus,
+        &:not([disabled]):not(.disabled):active.focus,
+        &:not([disabled]):not(.disabled).active.focus {
             background-color: $value !important;
             -webkit-box-shadow: none;
             box-shadow: none;
@@ -64,7 +68,11 @@
         &:not([disabled]):not(.disabled):focus,
         &:not([disabled]):not(.disabled).focus,
         &:not([disabled]):not(.disabled):hover,
-        &:not([disabled]):not(.disabled).hover {
+        &:not([disabled]):not(.disabled).hover,
+        &:not([disabled]):not(.disabled):active:focus,
+        &:not([disabled]):not(.disabled).active:focus,
+        &:not([disabled]):not(.disabled):active.focus,
+        &:not([disabled]):not(.disabled).active.focus {
             color: $value !important;
             border: 2px solid $value !important;
             -webkit-box-shadow: none;
