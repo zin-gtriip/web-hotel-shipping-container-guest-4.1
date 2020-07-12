@@ -5,6 +5,8 @@ check_in_data = [
         'confirmation_number': '1234',
         'arrival_date': '2020-06-01',
         'last_name': 'TEST',
+        'adult_number': '2',
+        'child_number': '1',
         'reservations': [
             {
                 'identifier': '1',
