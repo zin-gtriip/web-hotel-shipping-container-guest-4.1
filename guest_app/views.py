@@ -102,14 +102,21 @@ class CheckInDetailView(RequestInitializedMixin, SessionDataRequiredMixin, Mobil
     template_name           = 'desktop/check_in/detail.html'
     form_class              = CheckInDetailForm
     # success_url             = '/check_in/detail'
+    mobile_template_name    = 'mobile/check_in/detail.html'
 
     def get_context_data(self, **kwargs):
-        # overwrite get_context_data to make sure that formset is rendered
         data = super().get_context_data(**kwargs)
+        # translation for bootstrap datepicker
+        data['bootstrap_datepicker_language'] = translation.get_language()
+        if data['bootstrap_datepicker_language'] == 'zh-hans':
+            data['bootstrap_datepicker_language'] = 'zh-CN'
+        # max extra form
+        data['max_extra_form'] = int(self.request.session['check_in_details']['booking_details'].get('adult_number', 0)) + int(self.request.session['check_in_details']['booking_details'].get('child_number', 0)) - 1
+        # render extra form formset
         if self.request.POST:
-            data["extra"] = CheckInDetailExtraFormSet(self.request.POST)
+            data['extra'] = CheckInDetailExtraFormSet(self.request, self.request.POST)
         else:
-            data["extra"] = CheckInDetailExtraFormSet()
+            data['extra'] = CheckInDetailExtraFormSet(self.request)
         return data
 
     def post(self, request, *args, **kwargs):

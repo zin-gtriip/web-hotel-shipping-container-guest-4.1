@@ -1,4 +1,7 @@
 $('.datepicker').datepicker();
+$('.rolldate').each(function() {
+    initRolldate($(this));
+});
 validateMaxExtra();
 
 
@@ -16,6 +19,7 @@ $('#btn-add-extra').click(function() {
         , $newNationality = $newExtra.find('#nationality-template')
         , $newPassportNo = $newExtra.find('#passport-no-template')
         , $newBirthDate = $newExtra.find('#birth-date-template')
+        , $newDatepickerBirthDate = $newExtra.find('#datepicker-birth-date-template')
         , $newBtnRemove = $newExtra.find('.btn-remove-extra')
 
     $newExtra.attr('id', 'extra-formset-'+ index).addClass('extra-formset');
@@ -32,15 +36,17 @@ $('#btn-add-extra').click(function() {
     // passport no
     $newPassportNo.siblings('label').attr('for', 'id_form-'+ index +'-passport_no');
     $newPassportNo.attr('id', 'id_form-'+ index +'-passport_no').attr('name', 'form-'+ index +'-passport_no').attr('required', true);
-    // birth date
-    $newBirthDate.siblings('label').attr('for', 'id_form-'+ index +'-birth_date');
-    $newBirthDate.attr('id', 'id_form-'+ index +'-birth_date').attr('name', 'form-'+ index +'-birth_date').datepicker();
+    // birth date, datepicker birth date (will be used on rolldate)
+    $newBirthDate.siblings('label').attr('for', 'datepicker-'+ index +'-birth_date');
+    $newBirthDate.attr('id', 'id_form-'+ index +'-birth_date').attr('name', 'form-'+ index +'-birth_date').addClass('rolldate');
+    $newDatepickerBirthDate.attr('id', 'datepicker-'+ index +'-birth_date').attr('required', true).addClass('datepicker').datepicker();
     // remove button
     $newBtnRemove.click(function() {
         removeExtra($(this));
     });
 
     $newExtra.appendTo($('.guests'));
+    initRolldate($newBirthDate); // need to show before initiate Rolldate
     restyleExtra();
     rearrangeExtraIndex();
     recalculateTotalExtra(); // `TOTAL_FORMS` needs to be updated
@@ -94,9 +100,38 @@ function removeExtra($btn) {
 }
 
 
+function initRolldate($rolldate) {
+    var rollDate
+        , $datepicker = $rolldate.parents('.md-form').find('.datepicker');
+
+    $rolldate.removeAttr('required');
+    rollDate = new Rolldate({
+        el: '#'+ $rolldate.attr('id'),
+        format: 'YYYY-MM-DD',
+        beginYear: 1900,
+        endYear: new Date().getFullYear(),
+        value: $rolldate.val(),
+        lang: {
+            title: gettext('Select Date'),
+            cancel: gettext('Cancel'),
+            confirm: gettext('Confirm'),
+            year: '', month: '', day: '', hour: '', min: '', sec: ''},
+        confirm: function(date) {
+            $datepicker.datepicker('update', new Date(date));
+        },
+    });
+    $datepicker.datepicker('update', new Date($rolldate.val()));
+    $datepicker.click(function() {
+        rollDate.show();
+    });
+    $datepicker.focus(function() {
+        rollDate.show();
+    });
+}
+
+
 function restyleExtra() {
-    var $extraFormset = $('.extra-formset')
-        , $mainGuest = $('#main-guest');
+    var $extraFormset = $('.extra-formset');
 
     $extraFormset.each(function(index) {
         $(this).removeClass('bg-transparent-primary-1');
@@ -104,15 +139,6 @@ function restyleExtra() {
             $(this).addClass('bg-transparent-primary-1');
         }
     });
-
-    if ($extraFormset.length <= 0) {
-        $mainGuest.removeClass('ml-auto').addClass('mx-auto');
-    } else if ($extraFormset.length == 1) {
-        $mainGuest.removeClass('mx-auto').addClass('ml-auto');
-    } else {
-        $mainGuest.removeClass('ml-auto, mx-auto');
-    }
-    $('.guests > div:not(#main-guest, #extra-formset-template, :last-child)').removeClass('mr-auto');
 }
 
 

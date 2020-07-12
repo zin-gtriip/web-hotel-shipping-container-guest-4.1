@@ -187,41 +187,56 @@ class CheckInDetailForm(forms.Form):
             self._errors['birth_date'] = self.error_class([_('Enter the required information')])
         else:
             if utilities.calculate_age(birth_date) <= settings.PASSPORT_AGE_LIMIT:
-                self._errors['birth_date'] = self.error_class([_('You must be at least %(age)s years of age to proceed with your registration.') % {'age': settings.PASSPORT_AGE_LIMIT}])
+                self._errors['birth_date'] = self.error_class([_('Main guest has to be %(age)s and above.') % {'age': settings.PASSPORT_AGE_LIMIT}])
         return self.cleaned_data
 
 
 class CheckInDetailExtraForm(forms.Form):
-    is_valid = forms.BooleanField(widget=forms.HiddenInput())
     first_name = forms.CharField(label=_('First Name'))
     last_name = forms.CharField(label=_('Last Name'))
     nationality = CountryField(blank_label='[Select Country]').formfield(label=_('Nationality'))
     passport_no = forms.CharField(label=_('Passport Number'))
     birth_date = forms.DateField(label=_('Date of Birth'))
 
+    def __init__(self, *args, **kwargs):
+        super(CheckInDetailExtraForm, self).__init__(*args, **kwargs)
+        self.request = request
+        self.label_suffix = ''
+
     def clean(self):
         super().clean()
-        is_valid = self.cleaned_data.get('is_valid')
         first_name = self.cleaned_data.get('first_name')
         last_name = self.cleaned_data.get('last_name')
         nationality = self.cleaned_data.get('nationality')
         passport_no = self.cleaned_data.get('passport_no')
         birth_date = self.cleaned_data.get('birth_date')
 
-        if is_valid and not first_name:
+        if not first_name:
             self._errors['first_name'] = self.error_class([_('Enter the required information')])
-        if is_valid and not last_name:
+        if not last_name:
             self._errors['last_name'] = self.error_class([_('Enter the required information')])
-        if is_valid and not nationality:
+        if not nationality:
             self._errors['nationality'] = self.error_class([_('Enter the required information')])
-        if is_valid and not passport_no:
+        if not passport_no:
             self._errors['passport_no'] = self.error_class([_('Enter the required information')])
-        if is_valid and not birth_date:
+        if not birth_date:
             self._errors['birth_date'] = self.error_class([_('Enter the required information')])
         return self.cleaned_data
 
-    def __init__(self, *args, **kwargs):
-        super(CheckInDetailExtraForm, self).__init__(*args, **kwargs)
-        self.label_suffix = ''
+class CheckInDetailExtraBaseFormSet(forms.BaseFormSet):
     
-CheckInDetailExtraFormSet = forms.formset_factory(CheckInDetailExtraForm, extra=1)
+    def __init__(self, request, *args, **kwargs):
+        super(CheckInDetailExtraBaseFormSet, self).__init__(*args, **kwargs)
+        self.request = request
+        self.label_suffix = ''
+
+    def clean(self):
+        super().clean()
+        adult, max_adult = 1, int(self.request.session['check_in_details']['booking_details'].get('adult_number', 0))
+        for form in self.forms:
+            if utilities.calculate_age(form.cleaned_data.get('birth_date')) > settings.DETAIL_FORM_AGE_LIMIT:
+                adult += 1
+        if adult > max_adult:
+            self._non_form_errors = self.error_class([_('You have exceeded the number of adults.')])
+    
+CheckInDetailExtraFormSet = forms.formset_factory(CheckInDetailExtraForm, formset=CheckInDetailExtraBaseFormSet, extra=1)
