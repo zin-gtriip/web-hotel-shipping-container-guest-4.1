@@ -198,7 +198,7 @@ class CheckInDetailExtraForm(forms.Form):
     passport_no = forms.CharField(label=_('Passport Number'))
     birth_date = forms.DateField(label=_('Date of Birth'))
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, request, *args, **kwargs):
         super(CheckInDetailExtraForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
@@ -229,6 +229,11 @@ class CheckInDetailExtraBaseFormSet(forms.BaseFormSet):
         super(CheckInDetailExtraBaseFormSet, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
+
+    def get_form_kwargs(self, index):
+        kwargs = super().get_form_kwargs(index)
+        kwargs['request']= self.request
+        return kwargs
 
     def clean(self):
         super().clean()
