@@ -6,13 +6,17 @@ def calculate_age(date):
     Calculate age based on passed date and date now
     Passed date format needs to be `yyyy-mm-dd`
     """
-    if not date: return 0
-    try:
-        date = datetime.strptime(date, '%Y-%m-%d')
-    except:
-        return 0
+    if not date or not isinstance(date, dt.date): return 0
     today = datetime.today()
     return today.year - date.year - ((today.month, today.day) < (date.month, date.day))
+
+
+def parse_ocr_date(date):
+    """
+    Parse date from OCR response `dd-mm-yyyy` to date object
+    """
+    if not date: return
+    return datetime.strptime(date, '%d/%m/%Y')
 
 
 def generate_time_arrival():
@@ -26,10 +30,3 @@ def generate_time_arrival():
         result.append((datetime.strftime(loop, '%H:%M'), datetime.strftime(loop, '%H:%M')))
         loop += dt.timedelta(minutes=30)
     return result
-
-def format_ocr_date(date):
-    """
-    Format date from OCR response `dd-mm-yyyy` to `yyyy-mm-dd`
-    """
-    if not date: return
-    return datetime.strptime(date, '%d/%m/%Y').strftime('%Y-%m-%d')

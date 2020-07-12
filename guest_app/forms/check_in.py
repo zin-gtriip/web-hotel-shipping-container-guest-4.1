@@ -119,7 +119,7 @@ class CheckInPassportForm(forms.Form):
         if 'status' not in response and 'message' not in response:
             if scan_type == 'passport':
                 if response.get('expired', '') == 'false':
-                    if utilities.calculate_age(utilities.format_ocr_date(response.get('date_of_birth', ''))) <= settings.PASSPORT_AGE_LIMIT:
+                    if utilities.calculate_age(utilities.parse_ocr_date(response.get('date_of_birth', ''))) <= settings.PASSPORT_AGE_LIMIT:
                         self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You must be at least %(age)s years of age to proceed with your registration.') % {'age': settings.PASSPORT_AGE_LIMIT}])
                 else:
                     self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Your passport has expired, please capture / upload a valid passport photo to proceed')])
@@ -159,7 +159,7 @@ class CheckInDetailForm(forms.Form):
             first_name = self.request.session['check_in_details']['passport_ocr'].get('names', first_name)
             passport_no = self.request.session['check_in_details']['passport_ocr'].get('number', passport_no)
             nationality = Country(self.request.session['check_in_details']['passport_ocr'].get('nationality', '')).code or nationality
-            birth_date = utilities.format_ocr_date(self.request.session['check_in_details']['passport_ocr'].get('date_of_birth', '')) or birth_date
+            birth_date = utilities.parse_ocr_date(self.request.session['check_in_details']['passport_ocr'].get('date_of_birth', '')) or birth_date
         self.fields['first_name'].initial = first_name
         self.fields['last_name'].initial = last_name
         self.fields['passport_no'].initial = passport_no
