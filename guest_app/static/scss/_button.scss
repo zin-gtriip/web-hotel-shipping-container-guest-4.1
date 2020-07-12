@@ -5,6 +5,12 @@
     -webkit-box-shadow: none;
     box-shadow: none;
 
+    &.disabled:hover, &.disabled:focus, &.disabled:active, 
+    &:disabled:hover, &:disabled:focus, &:disabled:active {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
     @if $all-round-btn {
         border-radius: $all-btn-radius;
     }
