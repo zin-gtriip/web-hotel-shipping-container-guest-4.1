@@ -70,7 +70,7 @@
                         <h4 class="modal-title mx-auto">{% trans 'Invalid Input' %}</h4>
                     </div>
                     <div class="modal-body">
-                        {{ error }}
+                        {{ error|linebreaks }}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'Fix' %}</button>
