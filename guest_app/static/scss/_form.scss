@@ -32,7 +32,7 @@
     font-size: 1.125rem;
     line-height: 22px;
 
-    &:disabled, &[readonly] {
+    &:disabled, &.disabled {
         border: none !important;
         color: map-get($theme-colors, secondary);
     }
