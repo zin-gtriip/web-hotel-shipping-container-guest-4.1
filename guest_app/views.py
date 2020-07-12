@@ -1,6 +1,5 @@
 from django.shortcuts           import render, redirect
-from django.views.generic.base  import RedirectView
-from django.views.generic.edit  import FormView
+from django.views.generic       import RedirectView, FormView
 from django.utils               import translation
 from .forms.check_in            import *
 from .mixins                    import *
@@ -14,7 +13,7 @@ class CheckInDataView(RequestInitializedMixin, RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         self.request.session['check_in_data'] = {}
-        if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
+        if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en-gb')
         if 'app' in self.request.GET: self.request.session['check_in_data']['app'] = self.request.GET.get('app', False)
         if 'auto_login' in self.request.GET: self.request.session['check_in_data']['auto_login'] = self.request.GET.get('auto_login', False)
         if 'skip_ocr' in self.request.GET: self.request.session['check_in_data']['skip_ocr'] = self.request.GET.get('skip_ocr', False)
