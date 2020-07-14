@@ -49,10 +49,7 @@ class CheckInLoginView(RequestInitializedMixin, MobileTemplateMixin, FormView):
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        data = form.gateway_post()
-        if form.errors:
-            return self.form_invalid(form)
-        form.set_session(data)
+        form.save_data()
         return super().form_valid(form)
 
 
@@ -61,14 +58,14 @@ class CheckInReservationView(RequestInitializedMixin, SessionDataRequiredMixin, 
     form_class              = CheckInReservationForm
     success_url             = '/check_in/passport'
 
-    def form_valid(self, form):
-        form.set_session()
-        return super().form_valid(form)
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({'reservations': self.request.session['check_in_details']['booking_details'].get('reservations', [])})
         return context
+
+    def form_valid(self, form):
+        form.save_data()
+        return super().form_valid(form)
 
 
 class CheckInPassportView(RequestInitializedMixin, SessionDataRequiredMixin, MobileTemplateMixin, FormView):
@@ -91,10 +88,7 @@ class CheckInPassportView(RequestInitializedMixin, SessionDataRequiredMixin, Mob
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        data = form.gateway_ocr()
-        if form.errors:
-            return self.form_invalid(form)
-        form.set_session(data)
+        form.save_data()
         return super().form_valid(form)
 
 
@@ -123,6 +117,10 @@ class CheckInDetailView(RequestInitializedMixin, SessionDataRequiredMixin, Mobil
         form = self.get_form()
         extra = self.get_context_data().get('extra')
         if form.is_valid() and extra.is_valid():
-            return self.form_valid(form)
+            return self.form_valid(form, extra)
         else:
             return self.form_invalid(form)
+
+    def form_valid(self, form, extra):
+        form.save_data(extra)
+        return super().form_valid(form)
