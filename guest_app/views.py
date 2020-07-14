@@ -91,10 +91,10 @@ class CheckInPassportView(RequestInitializedMixin, SessionDataRequiredMixin, Mob
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        data = form.gateway_ocr()
+        form.gateway_ocr()
         if form.errors:
             return self.form_invalid(form)
-        form.set_session(data)
+        form.set_session()
         return super().form_valid(form)
 
 

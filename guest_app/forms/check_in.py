@@ -125,12 +125,15 @@ class CheckInPassportForm(forms.Form):
                     self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Your passport has expired, please capture / upload a valid passport photo to proceed')])
         else:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response['message'] or _('Unknown error')])
-        return response
 
-    def set_session(self, data):
-        if data is not None:
-            self.request.session['check_in_details'].update({'passport_ocr': data})
-            self.request.session.save()
+    def set_session(self):
+        if self.cleaned_data.get('skip_passport'):
+            return
+        file_name = self.request.session.session_key +'.png'
+        folder_name = os.path.join(settings.BASE_DIR, 'media', 'ocr')
+        saved_file = os.path.join(folder_name, file_name)
+        self.request.session['check_in_details']['form'].update({'passport_ocr': saved_file})
+        self.request.session.save()
 
 
 class CheckInDetailForm(forms.Form):
