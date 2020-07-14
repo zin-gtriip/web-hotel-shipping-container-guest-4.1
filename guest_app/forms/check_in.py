@@ -33,6 +33,12 @@ class CheckInLoginForm(forms.Form):
             self._errors['arrival_date'] = self.error_class([_('Enter the required information')])
         if not last_name:
             self._errors['last_name'] = self.error_class([_('Enter the required information')])
+
+        # validate to backend
+        response = self.gateway_post()
+        if response.get('status', '') != 'success':
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response['message'] or _('Unknown error')])
+
         return self.cleaned_data
 
     def gateway_post(self):
@@ -41,12 +47,10 @@ class CheckInLoginForm(forms.Form):
             'arrival_date': self.cleaned_data.get('arrival_date'),
             'last_name': self.cleaned_data.get('last_name'),
         }
-        response = samples.get_data(data) #gateways.post('/booking/get_booking', data)
-        if response.get('status', '') != 'success':
-            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response['message'] or _('Unknown error')])
-        return response
+        return samples.get_data(data) #gateways.post('/booking/get_booking', data)
     
-    def save_data(self, data):
+    def save_data(self):
+        data = self.gateway_post()
         self.request.session['check_in_details'] = {'booking_details': data}
         self.request.session.set_expiry(settings.CHECK_IN_SESSION_AGE)
         if 'check_in_data' in self.request.session and 'auto_login' in self.request.session['check_in_data']:
@@ -92,12 +96,24 @@ class CheckInPassportForm(forms.Form):
 
         if not skip_passport and not passport_file:
             raise forms.ValidationError(_('No image file selected.'))
+
+        # validate based on `scan_type` (`passport` / `nric`)
+        if not skip_passport:
+            saved_file = self.save_file()
+            response = self.gateway_ocr(saved_file)
+            if 'status' not in response and 'message' not in response:
+                if response.get('scan_type', 'passport') == 'passport':
+                    if response.get('expired', '') == 'false':
+                        if utilities.calculate_age(utilities.parse_ocr_date(response.get('date_of_birth', ''))) <= settings.PASSPORT_AGE_LIMIT:
+                            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You must be at least %(age)s years of age to proceed with your registration.') % {'age': settings.PASSPORT_AGE_LIMIT}])
+                    else:
+                        self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Your passport has expired, please capture / upload a valid passport photo to proceed')])
+            else:
+                self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response['message'] or _('Unknown error')])
+
         return self.cleaned_data
 
-    def gateway_ocr(self):
-        if self.cleaned_data.get('skip_passport'):
-            return
-
+    def save_file(self):
         # save passport file using `session_key` as file name
         file_name = self.request.session.session_key +'.png'
         folder_name = os.path.join(settings.BASE_DIR, 'media', 'ocr')
@@ -107,33 +123,27 @@ class CheckInPassportForm(forms.Form):
         file_data = base64.b64decode(self.cleaned_data.get('passport_file'))
         with open(saved_file, 'wb') as f:
             f.write(file_data)
+        return saved_file
 
-        # send to ocr scanning
+    def gateway_ocr(self, saved_file):
         scan_type = 'passport'
         response = gateways.ocr(saved_file, 'passport')
         # if 'status' in response or 'message' in response:
         #     scan_type = 'nric'
         #     response = gateways.ocr(saved_file, 'nric')
-
-        # validation based on `scan_type` (`passport` / `nric`)
-        if 'status' not in response and 'message' not in response:
-            if scan_type == 'passport':
-                if response.get('expired', '') == 'false':
-                    if utilities.calculate_age(utilities.parse_ocr_date(response.get('date_of_birth', ''))) <= settings.PASSPORT_AGE_LIMIT:
-                        self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You must be at least %(age)s years of age to proceed with your registration.') % {'age': settings.PASSPORT_AGE_LIMIT}])
-                else:
-                    self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Your passport has expired, please capture / upload a valid passport photo to proceed')])
-        else:
-            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response['message'] or _('Unknown error')])
+        response.update({'scan_type': scan_type})
+        return response
 
     def save_data(self):
         if self.cleaned_data.get('skip_passport'):
-            return
-        file_name = self.request.session.session_key +'.png'
-        folder_name = os.path.join(settings.BASE_DIR, 'media', 'ocr')
-        saved_file = os.path.join(folder_name, file_name)
-        self.request.session['check_in_details']['form'].update({'passport_ocr': saved_file})
-        self.request.session.save()
+            self.request.session['check_in_details']['form'].update({'passport_image': ''})
+        else:
+            file_name = self.request.session.session_key +'.png'
+            folder_name = os.path.join(settings.BASE_DIR, 'media', 'ocr')
+            saved_file = os.path.join(folder_name, file_name)
+            self.request.session['check_in_details']['form'].update({'passport_image': saved_file})
+            self.request.session['check_in_details'].update({'ocr_details': self.gateway_ocr(saved_file)})
+            self.request.session.save()
 
 
 class CheckInDetailForm(forms.Form):
@@ -158,11 +168,11 @@ class CheckInDetailForm(forms.Form):
             passport_no = self.request.session['check_in_data'].get('passport_no', passport_no)
             nationality = self.request.session['check_in_data'].get('nationality', nationality)
             birth_date = self.request.session['check_in_data'].get('birth_date', birth_date)
-        if 'check_in_details' in self.request.session and 'passport_ocr' in self.request.session['check_in_details']:
-            first_name = self.request.session['check_in_details']['passport_ocr'].get('names', first_name)
-            passport_no = self.request.session['check_in_details']['passport_ocr'].get('number', passport_no)
-            nationality = Country(self.request.session['check_in_details']['passport_ocr'].get('nationality', '')).code or nationality
-            birth_date = utilities.parse_ocr_date(self.request.session['check_in_details']['passport_ocr'].get('date_of_birth', '')) or birth_date
+        if 'check_in_details' in self.request.session and 'ocr_details' in self.request.session['check_in_details']:
+            first_name = self.request.session['check_in_details']['ocr_details'].get('names', first_name)
+            passport_no = self.request.session['check_in_details']['ocr_details'].get('number', passport_no)
+            nationality = Country(self.request.session['check_in_details']['ocr_details'].get('nationality', '')).code or nationality
+            birth_date = utilities.parse_ocr_date(self.request.session['check_in_details']['ocr_details'].get('date_of_birth', '')) or birth_date
         self.fields['first_name'].initial = first_name
         self.fields['last_name'].initial = last_name
         self.fields['passport_no'].initial = passport_no
