@@ -190,6 +190,33 @@ class CheckInDetailForm(forms.Form):
                 self._errors['birth_date'] = self.error_class([_('Main guest has to be %(age)s and above.') % {'age': settings.PASSPORT_AGE_LIMIT}])
         return self.cleaned_data
 
+    def set_session(self, extra):
+        first_name = self.cleaned_data.get('first_name')
+        last_name = self.cleaned_data.get('last_name')
+        nationality = self.cleaned_data.get('nationality')
+        passport_no = self.cleaned_data.get('passport_no')
+        birth_date = self.cleaned_data.get('birth_date').strftime('%Y-%m-%d')
+        additional_guests = []
+
+        for form in extra.forms:
+            additional_guests.append({
+                'first_name': form.cleaned_data.get('first_name'),
+                'last_name': form.cleaned_data.get('last_name'),
+                'nationality': form.cleaned_data.get('nationality'),
+                'passport_no': form.cleaned_data.get('passport_no'),
+                'birth_date': form.cleaned_data.get('birth_date').strftime('%Y-%m-%d'),
+            })
+
+        self.request.session['check_in_details']['form'].update({
+            'first_name': first_name,
+            'last_name': last_name,
+            'nationality': nationality,
+            'passport_no': passport_no,
+            'birth_date': birth_date,
+            'additional_guests': additional_guests,
+        })
+        self.request.session.save()
+
 
 class CheckInDetailExtraForm(forms.Form):
     first_name = forms.CharField(label=_('First Name'))

@@ -123,6 +123,10 @@ class CheckInDetailView(RequestInitializedMixin, SessionDataRequiredMixin, Mobil
         form = self.get_form()
         extra = self.get_context_data().get('extra')
         if form.is_valid() and extra.is_valid():
-            return self.form_valid(form)
+            return self.form_valid(form, extra)
         else:
             return self.form_invalid(form)
+
+    def form_valid(self, form, extra):
+        form.set_session(extra)
+        return super().form_valid(form)
