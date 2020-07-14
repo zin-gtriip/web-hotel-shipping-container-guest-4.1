@@ -52,7 +52,7 @@ class CheckInLoginView(RequestInitializedMixin, MobileTemplateMixin, FormView):
         data = form.gateway_post()
         if form.errors:
             return self.form_invalid(form)
-        form.set_session(data)
+        form.save_data(data)
         return super().form_valid(form)
 
 
@@ -62,7 +62,7 @@ class CheckInReservationView(RequestInitializedMixin, SessionDataRequiredMixin, 
     success_url             = '/check_in/passport'
 
     def form_valid(self, form):
-        form.set_session()
+        form.save_data()
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -94,7 +94,7 @@ class CheckInPassportView(RequestInitializedMixin, SessionDataRequiredMixin, Mob
         form.gateway_ocr()
         if form.errors:
             return self.form_invalid(form)
-        form.set_session()
+        form.save_data()
         return super().form_valid(form)
 
 
@@ -128,5 +128,5 @@ class CheckInDetailView(RequestInitializedMixin, SessionDataRequiredMixin, Mobil
             return self.form_invalid(form)
 
     def form_valid(self, form, extra):
-        form.set_session(extra)
+        form.save_data(extra)
         return super().form_valid(form)

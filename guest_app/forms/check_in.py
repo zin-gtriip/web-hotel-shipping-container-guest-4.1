@@ -46,7 +46,7 @@ class CheckInLoginForm(forms.Form):
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response['message'] or _('Unknown error')])
         return response
     
-    def set_session(self, data):
+    def save_data(self, data):
         self.request.session['check_in_details'] = {'booking_details': data}
         self.request.session.set_expiry(settings.CHECK_IN_SESSION_AGE)
         if 'check_in_data' in self.request.session and 'auto_login' in self.request.session['check_in_data']:
@@ -70,7 +70,7 @@ class CheckInReservationForm(forms.Form):
             raise forms.ValidationError(_('No reservation selected.'))
         return self.cleaned_data
 
-    def set_session(self):
+    def save_data(self):
         reservation = self.cleaned_data.get('reservation')
         self.request.session['check_in_details'].update({'form': {'reservation': reservation}})
         self.request.session.save()
@@ -126,7 +126,7 @@ class CheckInPassportForm(forms.Form):
         else:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response['message'] or _('Unknown error')])
 
-    def set_session(self):
+    def save_data(self):
         if self.cleaned_data.get('skip_passport'):
             return
         file_name = self.request.session.session_key +'.png'
@@ -193,7 +193,7 @@ class CheckInDetailForm(forms.Form):
                 self._errors['birth_date'] = self.error_class([_('Main guest has to be %(age)s and above.') % {'age': settings.PASSPORT_AGE_LIMIT}])
         return self.cleaned_data
 
-    def set_session(self, extra):
+    def save_data(self, extra):
         first_name = self.cleaned_data.get('first_name')
         last_name = self.cleaned_data.get('last_name')
         nationality = self.cleaned_data.get('nationality')
