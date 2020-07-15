@@ -328,5 +328,7 @@ class CheckInOtherInfoForm(forms.Form):
     def gateway_post(self):
         data = self.request.session['check_in_details']['form']
         response = samples.send_data(data) #gateways.post('/booking/submit_details', data)
-        if response.get('status', '') != 'success':
+        if response.get('status', '') == 'success':
+            self.request.session.set_expiry(settings.SESSION_COOKIE_AGE) # reset session expiry time
+        else:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
