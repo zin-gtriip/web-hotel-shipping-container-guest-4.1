@@ -153,7 +153,7 @@ function initCroppieComponents() {
             $('#img-preview').croppie('rotate', $(this).data('degree'));
         });
 
-    $('.page-heading, .page-subheading, .default-container, .webcam-container').hide();
+    $('.page-header, .page-subheader, .default-container, .webcam-container').hide();
     $('.cr-slider-wrap').appendTo('.croppie-container'); // move back to prevent error on `croppie('destroy')`
     $('#img-preview').croppie('destroy').croppie(croppieOpts);
     $('.preview-container, #btn-skip').show();

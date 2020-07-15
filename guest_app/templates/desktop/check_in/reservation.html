@@ -18,17 +18,17 @@
     {{ block.super }}
     <form method="post">
         {% csrf_token %}
-        <div class="row page-heading">
+        <div class="row page-header">
             <div class="col-12 px-0 text-center">
                 {% trans 'Please select your room to Check-In' %}
             </div>
         </div>
-        <div class="row page-subheading">
+        <div class="row page-subheader">
             <div class="col-12 px-0 text-center text-secondary">
                 {% trans "We've found the following room(s) under your reservation." %}
             </div>
         </div>
-        <div class="row page-input">
+        <div class="row page-content">
             <div class="col-12 px-0">
                 {% for reservation in reservations %}
                     <div class="reservation-container" id="reservation-container-{{ forloop.counter0 }}">
@@ -56,7 +56,7 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="row page-button">
+        <div class="row page-footer">
             <div class="col-12 d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary btn-round m-0" id="btn-step-next" disabled>{% trans 'Next' %}</button>
             </div>

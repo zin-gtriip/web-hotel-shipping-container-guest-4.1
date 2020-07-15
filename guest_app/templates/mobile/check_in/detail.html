@@ -25,17 +25,17 @@
     {% get_countries as countries %}
     <form method="post">
         {% csrf_token %}
-        <div class="row page-heading">
+        <div class="row page-header">
             <div class="col-12 px-0 text-center">
                 {% trans 'Enter Guest Details' %}
             </div>
         </div>
-        <div class="row page-subheading">
+        <div class="row page-subheader">
             <div class="col-12 px-0 text-center text-secondary">
                 {% trans "Please enter the personal particulars and check-in information below." %}
             </div>
         </div>
-        <div class="row page-input">
+        <div class="row page-content">
             <div class="col-12">
                 <div class="row guests">
                     <div class="col-12 px-5" id="main-guest">
@@ -324,7 +324,7 @@
                 </div>
             </div>
         </div>
-        <div class="row page-button">
+        <div class="row page-footer">
             <div class="col-12">
                 <div class="row">
                     <div class="col-12 mb-3 d-flex justify-content-center">

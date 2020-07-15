@@ -18,17 +18,17 @@
     {{ block.super }}
     <form method="post">
         {% csrf_token %}
-        <div class="row page-heading">
+        <div class="row page-header">
             <div class="col-lg-12 px-0 text-center">
                 {% trans 'Additional Information' %}
             </div>
         </div>
-        <div class="row page-subheading">
+        <div class="row page-subheader">
             <div class="col-lg-12 px-0 text-center text-secondary">
                 {% trans "Please let us know if you have check-in preferences, and we will do our best to accommodate them." %}
             </div>
         </div>
-        <div class="row page-input">
+        <div class="row page-content">
             <div class="col-lg-4 mx-auto">
                 <div class="row">
                     <div class="col-lg-12">
@@ -116,7 +116,7 @@
                 </div>
             </div>
         </div>
-        <div class="row page-button">
+        <div class="row page-footer">
             <div class="col-12 d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary btn-round m-0" id="btn-step-next">{% trans 'Next' %}</button>
             </div>

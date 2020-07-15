@@ -17,17 +17,17 @@
     {{ block.super }}
     <form method="post" id="form-mobile-login">
         {% csrf_token %}
-        <div class="row page-heading">
+        <div class="row page-header">
             <div class="col-12 text-center">
                 {% blocktrans %}Welcome to<br>Hotel {{ HOTEL_NAME }}{% endblocktrans %}
             </div>
         </div>
-        <div class="row page-subheading">
+        <div class="row page-subheader">
             <div class="col-12 px-0 text-center text-secondary">
                 {% trans 'To begin the online check-in process, please enter your reservation number.' %}
             </div>
         </div>
-        <div class="row page-input">
+        <div class="row page-content">
             <div class="col-12 d-flex justify-content-center">
                 <div class="input-step active" id="step-reservation-no">
                     <div class="md-form input-center input-boxed my-0">
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <div class="row page-button">
+        <div class="row page-footer">
             <div class="col-12 d-flex justify-content-center">
                 <button type="button" class="btn btn-primary btn-round m-0" id="btn-step-next" disabled>{% trans 'Next' %}</button>
             </div>

@@ -12,11 +12,11 @@
 }
 
 .content {
-    .page-heading {
+    .page-header {
         width: 174px;
     }
 
-    .page-input {
+    .page-content {
         margin-bottom: 70px;
 
         .default-container img {
@@ -24,7 +24,7 @@
         }
     }
 
-    .page-button {
+    .page-footer {
         .btn:not(#btn-skip) {
             width: 158px;
             padding: 17px;

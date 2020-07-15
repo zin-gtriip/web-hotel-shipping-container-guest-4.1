@@ -28,17 +28,17 @@
     {{ block.super }}
     <form method="post" id="form-passport">
         {% csrf_token %}
-        <div class="row page-heading">
+        <div class="row page-header">
             <div class="col-12 px-0 text-center">
                 {% trans 'Prepare your Passport for photo verification' %}
             </div>
         </div>
-        <div class="row page-subheading">
+        <div class="row page-subheader">
             <div class="col-12 px-0 text-center text-secondary">
                 {% trans 'We need a photograph of your passport, or alternatively you may upload the image file.' %}
             </div>
         </div>
-        <div class="row page-input">
+        <div class="row page-content">
             <div class="col-12 px-0 d-flex justify-content-center">
                 {% render_field form.passport_file %}
                 {% render_field form.skip_passport %}
@@ -50,7 +50,7 @@
                 </div>
             </div>
         </div>
-        <div class="row page-button">
+        <div class="row page-footer">
             <div class="col-12">
                 <div class="row default-container">
                     <div class="col-12 mb-3 d-flex justify-content-center">

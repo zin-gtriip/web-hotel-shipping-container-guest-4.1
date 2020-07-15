@@ -112,7 +112,7 @@ function initCroppieComponents() {
             $('#img-preview').croppie('rotate', $(this).data('degree'));
         });
 
-    $('.header, .page-heading, .page-subheading, .default-container').hide();
+    $('.header, .page-header, .page-subheader, .default-container').hide();
     $('#img-preview').croppie('destroy').croppie(croppieOpts);
     $('.preview-container').show();
     $('.cr-boundary').append($timer, $previewText, $btnRotate);

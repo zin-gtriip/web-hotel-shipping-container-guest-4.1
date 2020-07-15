@@ -1,9 +1,9 @@
 .content {
-    .page-subheading {
+    .page-subheader {
         width: 230px;
     }
     
-    .page-input {
+    .page-content {
         .input-step {
             &:not(.active) {
                 display: none;
@@ -24,7 +24,7 @@
         }
     }
     
-    .page-button {
+    .page-footer {
         button {
             width: 178px;
             height: 56px;
