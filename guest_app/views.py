@@ -1,5 +1,5 @@
 from django.shortcuts           import render, redirect
-from django.views.generic       import RedirectView, FormView
+from django.views.generic       import *
 from django.utils               import translation
 from .forms.check_in            import *
 from .mixins                    import *
@@ -129,7 +129,7 @@ class CheckInDetailView(RequestInitializedMixin, SessionDataRequiredMixin, Mobil
 class CheckInOtherInfoView(RequestInitializedMixin, SessionDataRequiredMixin, FormView):
     template_name           = 'desktop/check_in/other_info.html'
     form_class              = CheckInOtherInfoForm
-    success_url             = ''
+    success_url             = '/check_in/complete'
     
     def form_valid(self, form):
         form.save_data()
@@ -137,3 +137,14 @@ class CheckInOtherInfoView(RequestInitializedMixin, SessionDataRequiredMixin, Fo
         if form.errors:
             return self.form_invalid(form)
         return super().form_valid(form)
+
+
+class CheckInCompleteView(RequestInitializedMixin, SessionDataRequiredMixin, TemplateView):
+    template_name           = 'desktop/check_in/complete.html'
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        reservations = self.request.session['check_in_details']['booking_details'].get('reservations', [])
+        reservation_id = self.request.session['check_in_details']['form'].get('reservation', None)
+        data['reservation'] = next(reservation for reservation in reservations if reservation.get('identifier', '') == reservation_id)
+        return data

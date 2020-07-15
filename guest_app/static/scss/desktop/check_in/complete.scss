@@ -1,0 +1,32 @@
+.content {
+    .page-heading {
+        margin-bottom: 45px;
+    }
+    
+    .page-input {
+        margin-bottom: 0;
+    }
+
+    .page-footer {
+
+        #alternative-1 {
+            width: 230px;
+        }
+
+        #alternative-separator {
+            margin: 15px 0;
+
+            & > div {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .separator-line {
+                border-top: 1px dashed;
+                width: 45%;
+                position: relative;
+                top: 50%;
+            }
+        }
+    }
+}

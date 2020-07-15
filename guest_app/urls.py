@@ -10,4 +10,5 @@ urlpatterns = [
     path('check_in/passport/', CheckInPassportView.as_view(), name='check-in-passport'),
     path('check_in/detail/', CheckInDetailView.as_view(), name='check-in-detail'),
     path('check_in/other_info', CheckInOtherInfoView.as_view(), name='check-in-other-info'),
+    path('check_in/complete', CheckInCompleteView.as_view(), name='check-in-complete'),
 ]
