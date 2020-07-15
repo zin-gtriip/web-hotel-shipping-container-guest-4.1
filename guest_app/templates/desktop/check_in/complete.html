@@ -28,10 +28,14 @@
                 </label>
                 <div class="reservation-date bg-dark text-white">
                     <div class="text-left">
-                        <div class="text-10">{% trans 'Check-in Date' %}</div>
-                        <div class="text-primary">{{ reservation.check_in_date }}</div>
+                        <div class="text-10">{% trans 'Reservation No' %}</div>
+                        <div class="text-primary">{{ request.session.check_in_details.booking_details.confirmation_number }}</div>
+                        <div class="text-10">{% trans 'Last Name' %}</div>
+                        <div class="text-primary">{{ request.session.check_in_details.booking_details.last_name }}</div>
                     </div>
                     <div class="text-right">
+                        <div class="text-10">{% trans 'Check-in Date' %}</div>
+                        <div class="text-primary">{{ reservation.check_in_date }}</div>
                         <div class="text-10">{% trans 'Check-out Date' %}</div>
                         <div class="text-primary">{{ reservation.check_out_date }}</div>
                     </div>
@@ -41,42 +45,50 @@
     </div>
     <div class="row page-footer">
         <div class="col-12 col-lg-4 mx-auto">
-            <div class="row mx-auto" id="alternative-1">
-                <div class="col-lg-12 text-secondary text-center">
-                    {% trans 'Please proceed to the front desk to collect your room key' %}
-                </div>
-            </div>
-            <div class="row" id="alternative-separator">
-                <div class="col-lg-12 text-secondary text-center">
-                    <div class="separator-line"></div>
-                    <div id="separator-label">{% trans 'or' %}</div>
-                    <div class="separator-line"></div>
-                </div>
-            </div>
-            <div class="row" id="alternative-2">
-                <div class="col-lg-12">
-                    <div class="row">
-                        <div class="col-5 col-lg-5 text-secondary text-center">
-                            <img src="{% static '/img/logo.png' %}" width="90">
-                        </div>
-                        <div class="col-7 col-lg-7 d-flex align-items-center">
-                            {% trans 'Check-In via our mobile app and head straight to your room using the digital key.' %}
-                        </div>
-                    </div>
-                    <div class="row my-4">
-                        <div class="col-6 col-lg-6 d-flex justify-content-center">
-                            <a href="javascript:void(0)">
-                                <img src="{% static '/img/app-store.png' %}" width="140">
-                            </a>
-                        </div>
-                        <div class="col-6 col-lg-6 d-flex justify-content-center">
-                            <a href="javascript:void(0)">
-                                <img src="{% static '/img/google-play.png' %}" width="140">
-                            </a>
-                        </div>
+            { if not request.session.check_in_data.app %}
+                <div class="row mx-auto" id="alternative-1">
+                    <div class="col-lg-12 text-secondary text-center">
+                        {% trans 'Please proceed to the front desk to collect your room key' %}
                     </div>
                 </div>
-            </div>
+                <div class="row" id="alternative-separator">
+                    <div class="col-lg-12 text-secondary text-center">
+                        <div class="separator-line"></div>
+                        <div id="separator-label">{% trans 'or' %}</div>
+                        <div class="separator-line"></div>
+                    </div>
+                </div>
+                <div class="row" id="alternative-2">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-5 col-lg-5 text-secondary text-center">
+                                <img src="{% static '/img/logo.png' %}" width="90">
+                            </div>
+                            <div class="col-7 col-lg-7 d-flex align-items-center">
+                                {% trans 'Check-In via our mobile app and head straight to your room using the digital key.' %}
+                            </div>
+                        </div>
+                        <div class="row my-4">
+                            <div class="col-6 col-lg-6 d-flex justify-content-center">
+                                <a href="javascript:void(0)">
+                                    <img src="{% static '/img/app-store.png' %}" width="140">
+                                </a>
+                            </div>
+                            <div class="col-6 col-lg-6 d-flex justify-content-center">
+                                <a href="javascript:void(0)">
+                                    <img src="{% static '/img/google-play.png' %}" width="140">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            { else %}
+                <div class="row mt-5">
+                    <div class="col-lg-12 d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary" id="btn-ok">{% trans 'Ok' %}</button>
+                    </div>
+                </div>
+            { endif %}
         </div>
     </div>
 {% endblock content %}
