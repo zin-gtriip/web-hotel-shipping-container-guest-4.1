@@ -9,21 +9,11 @@
     <link rel="stylesheet" href="{% static 'scss/mobile/check_in/base_check_in.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
-{% block timer %}
-    {% if '/login' not in request.path %}
-        <div class="timer-text text-secondary">
-            <span class="timer-tick"></span>
-        </div>
-    {% endif %}
-{% endblock timer %}
-
 {% block data_js %}
 {{ SESSION_EXPIRY_DATE|json_script:'session-expiry-date' }}
 {% endblock data_js %}
 
 {% block static_js %}
     {{ block.super }}
-    {% if '/login' not in request.path %}
-        <script type="text/javascript" src="{% static 'js/mobile/check_in/base_check_in.js' %}"></script>
-    {% endif %}
+    <script type="text/javascript" src="{% static 'js/mobile/check_in/base_check_in.js' %}"></script>
 {% endblock static_js %}

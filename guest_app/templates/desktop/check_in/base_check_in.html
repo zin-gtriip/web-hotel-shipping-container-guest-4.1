@@ -9,14 +9,6 @@
     <link rel="stylesheet" href="{% static 'scss/desktop/check_in/base_check_in.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
-{% block timer %}
-    {% if '/login' not in request.path %}
-        <div class="timer-text text-secondary">
-            <span class="timer-tick"></span>
-        </div>
-    {% endif %}
-{% endblock timer %}
-
 {% block hotel_logo %}
     <a href="{% url 'guest_app:check-in-login' %}" alt>
         <img id="hotel-logo" src="{% static 'img/logo.png' %}"/>
@@ -29,7 +21,5 @@
 
 {% block static_js %}
     {{ block.super }}
-    {% if '/login' not in request.path %}
-        <script type="text/javascript" src="{% static 'js/desktop/check_in/base_check_in.js' %}"></script>
-    {% endif %}
+    <script type="text/javascript" src="{% static 'js/desktop/check_in/base_check_in.js' %}"></script>
 {% endblock static_js %}

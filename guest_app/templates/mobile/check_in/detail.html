@@ -14,6 +14,12 @@
     <link rel="stylesheet" href="{% static 'scss/mobile/check_in/detail.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
+{% block timer %}
+    <div class="timer-text text-secondary">
+        <span class="timer-tick"></span>
+    </div>
+{% endblock timer %}
+
 {% block content %}
     {{ block.super }}
     {% get_countries as countries %}

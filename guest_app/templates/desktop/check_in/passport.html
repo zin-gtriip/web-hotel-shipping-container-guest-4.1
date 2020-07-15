@@ -18,6 +18,12 @@
     <button type="button" class="btn btn-link" id="btn-back" data-target="{% url 'guest_app:check-in-reservation' %}"><i class="fas fa-arrow-left"></i></button>
 {% endblock nav %}
 
+{% block timer %}
+    <div class="timer-text text-secondary">
+        <span class="timer-tick"></span>
+    </div>
+{% endblock timer %}
+
 {% block content %}
     {{ block.super }}
     <form method="post" id="form-passport">
