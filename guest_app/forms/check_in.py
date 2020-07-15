@@ -298,6 +298,7 @@ class CheckInOtherInfoForm(forms.Form):
         self.request = request
         self.label_suffix = ''
         self.fields['arrival_time'].choices = utilities.generate_time_arrival()
+        self.fields['email'].initial = self.request.session['check_in_details']['booking_details'].get('email', '')
 
     def clean(self):
         super().clean()
