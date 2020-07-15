@@ -5,8 +5,13 @@ check_in_get_data = [
         'confirmation_number': '1234',
         'arrival_date': '2020-06-01',
         'last_name': 'TEST',
+        'first_name': 'TEST',
+        'passport_no': '12345',
+        'nationality': 'SG',
+        'birth_date': '1995-07-15',
         'adult_number': '2',
         'child_number': '1',
+        'email': 'test@test.com',
         'reservations': [
             {
                 'identifier': '1',
@@ -44,12 +49,6 @@ def get_data(post_data):
 check_in_post_data = {
     'status': 'success',
     'reservations': [
-        {
-            'identifier': '1',
-            'room_type': 'Deluxe Room',
-            'check_in_date': 'Thu, 12/06/20',
-            'check_out_date': 'Mon, 18/06/20',
-        },
         {
             'identifier': '2',
             'room_type': 'Premier Room',
