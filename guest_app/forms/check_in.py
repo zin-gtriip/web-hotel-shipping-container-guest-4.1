@@ -43,7 +43,7 @@ class CheckInLoginForm(forms.Form):
 
     def gateway_post(self):
         data = {
-            'confirmation_number': self.cleaned_data.get('reservation_no'),
+            'reservation_no': self.cleaned_data.get('reservation_no'),
             'arrival_date': self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d'),
             'last_name': self.cleaned_data.get('last_name'),
         }

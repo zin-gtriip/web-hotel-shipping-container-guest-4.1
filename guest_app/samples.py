@@ -2,7 +2,7 @@ from django.utils.translation   import gettext, gettext_lazy as _
 
 check_in_get_data = [
     {
-        'confirmation_number': '1234',
+        'reservation_no': '1234',
         'arrival_date': '2020-06-01',
         'last_name': 'TEST',
         'first_name': 'TEST',
@@ -28,7 +28,7 @@ check_in_get_data = [
         ],
     },
     {
-        'confirmation_number': '12345',
+        'reservation_no': '12345',
         'arrival_date': '2020-06-01',
         'last_name': 'TEST',
     }
@@ -36,7 +36,7 @@ check_in_get_data = [
 
 def get_data(post_data):
     sample_data = next((data for data in check_in_get_data \
-        if data['confirmation_number'] == post_data['confirmation_number'] and \
+        if data['reservation_no'] == post_data['reservation_no'] and \
         data['arrival_date'] == str(post_data['arrival_date']) and \
         data['last_name'] == str(post_data['last_name'])), {})
     if sample_data:
