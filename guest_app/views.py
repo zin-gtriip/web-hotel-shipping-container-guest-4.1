@@ -95,7 +95,7 @@ class CheckInPassportView(RequestInitializedMixin, SessionDataRequiredMixin, Mob
 class CheckInDetailView(RequestInitializedMixin, SessionDataRequiredMixin, MobileTemplateMixin, FormView):
     template_name           = 'desktop/check_in/detail.html'
     form_class              = CheckInDetailForm
-    # success_url             = '/check_in/detail'
+    success_url             = '/check_in/other_info'
     mobile_template_name    = 'mobile/check_in/detail.html'
 
     def get_context_data(self, **kwargs):
@@ -123,4 +123,17 @@ class CheckInDetailView(RequestInitializedMixin, SessionDataRequiredMixin, Mobil
 
     def form_valid(self, form, extra):
         form.save_data(extra)
+        return super().form_valid(form)
+
+
+class CheckInOtherInfoView(RequestInitializedMixin, SessionDataRequiredMixin, FormView):
+    template_name           = 'desktop/check_in/other_info.html'
+    form_class              = CheckInOtherInfoForm
+    success_url             = ''
+    
+    def form_valid(self, form):
+        form.save_data()
+        form.gateway_post()
+        if form.errors:
+            return self.form_invalid(form)
         return super().form_valid(form)

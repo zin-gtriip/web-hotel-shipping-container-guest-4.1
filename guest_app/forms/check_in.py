@@ -285,3 +285,48 @@ class CheckInDetailExtraBaseFormSet(forms.BaseFormSet):
             self._non_form_errors = self.error_class([_('You have exceeded the number of adults.')])
     
 CheckInDetailExtraFormSet = forms.formset_factory(CheckInDetailExtraForm, formset=CheckInDetailExtraBaseFormSet, extra=1)
+
+
+class CheckInOtherInfoForm(forms.Form):
+    arrival_time = forms.ChoiceField(label=_('Time of Arrival'))
+    special_requests = forms.CharField(label=_('Special Requests'), required=False)
+    email = forms.EmailField(label=_('Email'))
+    is_subscribe = forms.BooleanField(label=_('Is Subscribe'), required=False)
+
+    def __init__(self, request, *args, **kwargs):
+        super(CheckInOtherInfoForm, self).__init__(*args, **kwargs)
+        self.request = request
+        self.label_suffix = ''
+        self.fields['arrival_time'].choices = utilities.generate_time_arrival()
+
+    def clean(self):
+        super().clean()
+        arrival_time = self.cleaned_data.get('arrival_time')
+        email = self.cleaned_data.get('email')
+
+        if not arrival_time:
+            self._errors['arrival_time'] = self.error_class([_('Enter the required information')])
+        if not email:
+            self._errors['email'] = self.error_class([_('Enter the required information')])
+
+        return self.cleaned_data
+
+    def save_data(self):
+        arrival_time = self.cleaned_data.get('arrival_time')
+        special_requests = self.cleaned_data.get('special_requests')
+        email = self.cleaned_data.get('email')
+        is_subscribe = self.cleaned_data.get('is_subscribe')
+
+        self.request.session['check_in_details']['form'].update({
+            'arrival_time': arrival_time,
+            'special_requests': special_requests,
+            'email': email,
+            'is_subscribe': is_subscribe,
+        })
+        self.request.session.save()
+
+    def gateway_post(self):
+        data = self.request.session['check_in_details']['form']
+        response = samples.send_data(data) #gateways.post('/booking/submit_details', data)
+        if response.get('status', '') != 'success':
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
