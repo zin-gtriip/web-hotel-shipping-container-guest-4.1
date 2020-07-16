@@ -4,93 +4,99 @@
 {% load widget_tweaks %}
 
 {% block lib_css %}
-{{ block.super }}
+    {{ block.super }}
     <link rel="stylesheet" href="{% static 'vendor/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
 {% endblock lib_css %}
 
 {% block static_css %}
-{{ block.super }}
+    {{ block.super }}
     <link rel="stylesheet" href="{% static 'scss/desktop/check_in/login.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
 {% block content %}
-{{ block.super }}
-    <div class="row">
-        <div class="col-12 col-sm-8 col-md-7 col-lg-5 mx-auto">
-            <div class="card">
-                <div class="text-center py-4">
-                    <h4 class="font-weight-bold">{% trans 'Check-in Registration' %}</h5>
-                    <div class="font-weight-lighter">{% trans 'Enter reservation details to start' %}</div>
+    {{ block.super }}
+    <form method="post" id="form-mobile-login">
+        {% csrf_token %}
+        <div class="row page-header">
+            <div class="col-lg-12 text-center">
+                {% blocktrans %}Welcome to<br>Hotel {{ HOTEL_NAME }}{% endblocktrans %}
+            </div>
+        </div>
+        <div class="row page-subheader">
+            <div class="col-lg-12 px-0 text-center text-secondary">
+                {% trans 'To begin the online check-in process, please enter your reservation number, last name, and arrival date below.' %}
+            </div>
+        </div>
+        <div class="row page-content">
+            <div class="col-lg-12">
+                <div class="row mb-4">
+                    <div class="col-lg-3 mx-auto">
+                        <div class="md-form input-center input-boxed my-0">
+                            {% render_field form.reservation_no class="form-control" placeholder="Reservation Number" %}
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body px-4 px-lg-5 pt-0">
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="md-form">
-                            {{ form.reservation_no.label_tag }}
-                            {% if form.is_bound and form.reservation_no.errors %}
-                                <!-- bound and has error -->
-                                {% render_field form.reservation_no class="form-control is-invalid" %}
-                                <!-- error feedback -->
-                                {% for error in form.reservation_no.errors %}
-                                    <div class="invalid-feedback">{{ error }}</div>
-                                {% endfor %}
-                            {% else %}
-                                <!-- not bound or no error -->
-                                {% render_field form.reservation_no class="form-control" %}
-                                {% if form.reservation_no.help_text %}
-                                    <small class="form-text text-muted">{{ form.reservation_no.help_text }}</small>
-                                {% endif %}
-                            {% endif %}
+                <div class="row my-4">
+                    <div class="col-lg-3 mx-auto">
+                        <div class="md-form input-center input-boxed my-0">
+                            {% render_field form.last_name class="form-control" placeholder="Last Name" %}
                         </div>
-                        <div class="md-form">
-                            {{ form.last_name.label_tag }}
-                            {% if form.is_bound and form.last_name.errors %}
-                                <!-- bound and has error -->
-                                {% render_field form.last_name class="form-control is-invalid" %}
-                                <!-- error feedback -->
-                                {% for error in form.last_name.errors %}
-                                    <div class="invalid-feedback">{{ error }}</div>
-                                {% endfor %}
+                    </div>
+                </div>
+                <div class="row my-4">
+                    <div class="col-lg-3 mx-auto">
+                        <div class="md-form input-center input-boxed input-with-post-icon my-0">
+                            {% if form.is_bound %}
+                                {% render_field form.arrival_date class="form-control datepicker is_bound" data-date-format="yyyy-mm-dd" %}
                             {% else %}
-                                <!-- not bound or no error -->
-                                {% render_field form.last_name class="form-control" %}
-                                {% if form.last_name.help_text %}
-                                    <small class="form-text text-muted">{{ form.last_name.help_text }}</small>
-                                {% endif %}
-                            {% endif %}
-                        </div>
-                        <div class="md-form input-with-post-icon">
-                            {{ form.arrival_date.label_tag }}
-                            {% if form.is_bound and form.arrival_date.errors %}
-                                <!-- bound and has error -->
-                                {% render_field form.arrival_date class="form-control datepicker is-invalid" data-date-format="yyyy-mm-dd" %}
-                                <!-- error feedback -->
-                                {% for error in form.arrival_date.errors %}
-                                    <div class="invalid-feedback">{{ error }}</div>
-                                {% endfor %}
-                            {% else %}
-                                <!-- not bound or no error -->
                                 {% render_field form.arrival_date class="form-control datepicker" data-date-format="yyyy-mm-dd" %}
-                                <i class="far fa-calendar input-prefix"></i>
-                                {% if form.arrival_date.help_text %}
-                                    <small class="form-text text-muted">{{ form.arrival_date.help_text }}</small>
-                                {% endif %}
                             {% endif %}
+                            <i class="far fa-calendar input-prefix text-primary text-22"></i>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block my-5">{% trans 'Next' %}</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="row page-footer">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-2 mx-auto">
+                        <button type="submit" class="btn btn-primary btn-block btn-round m-0" id="btn-step-next" disabled>{% trans 'Next' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 {% endblock content %}
 
+{% block wrapper %}
+    {{ block.super }}
+    <!-- Error Modal -->
+    {% for error in form.non_field_errors %}
+        <div class="modal fade" id="form-error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h4 class="modal-title mx-auto">{% trans 'Invalid Input' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ error|linebreaks }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'Fix' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock wrapper %}
+
 {% block lib_js %}
-{{ block.super }}
+    {{ block.super }}
     <script type="text/javascript" src="{% static 'vendor/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
 {% endblock lib_js %}
 
 {% block static_js %}
-{{ block.super }}
+    {{ block.super }}
     <script type="text/javascript" src="{% static 'js/desktop/check_in/login.js' %}"></script>
 {% endblock static_js %}
