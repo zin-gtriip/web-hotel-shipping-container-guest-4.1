@@ -37,7 +37,7 @@ class CheckInLoginForm(forms.Form):
         # validate to backend
         response = self.gateway_post()
         if response.get('overall_status', '') != 500:
-            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response['message'] or _('Unknown error')])
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
 
         return self.cleaned_data
 
