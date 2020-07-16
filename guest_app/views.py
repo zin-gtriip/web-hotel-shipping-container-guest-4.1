@@ -105,7 +105,7 @@ class CheckInDetailView(RequestInitializedMixin, SessionDataRequiredMixin, Mobil
         if data['bootstrap_datepicker_language'] == 'zh-hans':
             data['bootstrap_datepicker_language'] = 'zh-CN'
         # max extra form
-        data['max_extra_form'] = int(self.request.session['check_in_details']['booking_details'].get('adult_number', 0)) + int(self.request.session['check_in_details']['booking_details'].get('child_number', 0)) - 1
+        data['max_extra_form'] = int(self.request.session['check_in_details']['booking_details'].get('adult_number', 1)) + int(self.request.session['check_in_details']['booking_details'].get('child_number', 0)) - 1
         # render extra form formset
         if self.request.POST:
             data['extra'] = CheckInDetailExtraFormSet(self.request, self.request.POST)

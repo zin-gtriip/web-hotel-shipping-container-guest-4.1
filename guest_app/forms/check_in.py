@@ -277,7 +277,7 @@ class CheckInDetailExtraBaseFormSet(forms.BaseFormSet):
 
     def clean(self):
         super().clean()
-        adult, max_adult = 1, int(self.request.session['check_in_details']['booking_details'].get('adult_number', 0))
+        adult, max_adult = 1, int(self.request.session['check_in_details']['booking_details'].get('adult_number', 1))
         for form in self.forms:
             if utilities.calculate_age(form.cleaned_data.get('birth_date')) > settings.DETAIL_FORM_AGE_LIMIT:
                 adult += 1
