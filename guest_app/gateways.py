@@ -8,21 +8,23 @@ from django.utils.translation   import gettext, gettext_lazy as _
 
 # backend gateway
 def post(url, post_data):
-    timestamp = datetime.datetime.now().timestamp() * 1e3
-    post_data = {
-        **post_data,
-        'api_key': settings.GATEWAY_API_KEY,
-        'time_stamp': str(int(timestamp)),
-        'hotel_id': settings.GATEWAY_HOTEL_ID,
-        'language_id': GATEWAY_LANGUAGE_ID
-    }
-    check_sum = settings.GATEWAY_API_HASH + "_" + json.dumps(post_data) + "_" + str(int(timestamp))
-    json_data = {
-        'data': json.dumps(post_data),
-        'check_sum': hashlib.md5(s.encode('utf-8')).hexdigest()
-    }
+    # timestamp = datetime.datetime.now().timestamp() * 1e3
+    # post_data = {
+    #     **post_data,
+    #     'api_key': settings.GATEWAY_API_KEY,
+    #     'time_stamp': str(int(timestamp)),
+    #     'hotel_id': settings.GATEWAY_HOTEL_ID,
+    #     'language_id': GATEWAY_LANGUAGE_ID
+    # }
+    # check_sum = settings.GATEWAY_API_HASH + "_" + json.dumps(post_data) + "_" + str(int(timestamp))
+    # json_data = {
+    #     'data': json.dumps(post_data),
+    #     'check_sum': hashlib.md5(s.encode('utf-8')).hexdigest()
+    # }
+    json_data = post_data
+    headers = {'X-API-KEY': settings.GATEWAY_API_KEY}
     try:
-        response = requests.post(settings.GATEWAY_API_HOST + url, timeout=360, json=json_data, verify=False)
+        response = requests.post(settings.GATEWAY_API_HOST + url, timeout=360, json=post_data, headers=headers, verify=False)
         response.raise_for_status()
         json_response = json.loads(response.content.decode('utf-8'))
     except requests.exceptions.HTTPError as http_error:

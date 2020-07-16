@@ -36,7 +36,7 @@ class CheckInLoginForm(forms.Form):
 
         # validate to backend
         response = self.gateway_post()
-        if response.get('status', '') != 'success':
+        if response.get('overall_status', '') != 500:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response['message'] or _('Unknown error')])
 
         return self.cleaned_data
@@ -47,7 +47,7 @@ class CheckInLoginForm(forms.Form):
             'arrival_date': self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d'),
             'last_name': self.cleaned_data.get('last_name'),
         }
-        return samples.get_data(data) #gateways.post('/booking/get_booking', data)
+        return gateways.post('/testSample/checkBookingsPreArrival', data)
     
     def save_data(self):
         data = self.gateway_post()
