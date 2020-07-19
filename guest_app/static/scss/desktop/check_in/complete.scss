@@ -23,9 +23,32 @@
 
             .separator-line {
                 border-top: 1px dashed;
-                width: 45%;
+                width: 40%;
                 position: relative;
-                top: 50%;
+                top: 10px;
+            }
+        }
+
+        #alternative-2 {
+            #instruction {
+                width: 190px;
+                margin: 0 25px;
+                display: flex;
+                align-items: center;
+            }
+
+            #hotel-logo {
+                width: 90px;
+            }
+
+            #app-store img {
+                width: 145px;
+                margin-right: 27px;
+            }
+            
+            #google-play img {
+                width: 145px;
+                margin-left: 27px;
             }
         }
 
