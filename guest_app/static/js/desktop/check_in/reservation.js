@@ -9,7 +9,7 @@ $('.reservation-container').click(function() {
 
 
 // enable next button when one of reservation is selected
-$('input[name=reservation]').change(function() {
+$('input[name=reservation_no]').change(function() {
     $('#btn-step-next').attr('disabled', false);
 });
 
@@ -18,5 +18,5 @@ $('input[name=reservation]').change(function() {
 if (reservation == '') {
     $('.reservation-container:first').click();
 } else {
-    $('input[name=reservation][value='+ reservation +']').parents('.reservation-container').click();
+    $('input[name=reservation_no][value='+ reservation +']').parents('.reservation-container').click();
 }

@@ -1,8 +1,11 @@
+from django                     import forms
 from django.shortcuts           import render, redirect
 from django.views.generic       import *
 from django.utils               import translation
+from django.utils.translation   import gettext, gettext_lazy as _
 from .forms.check_in            import *
 from .mixins                    import *
+from .utilities                 import *
 
 class IndexView(RedirectView):
     pattern_name = 'guest_app:check-in-login'
@@ -60,7 +63,11 @@ class CheckInReservationView(RequestInitializedMixin, SessionDataRequiredMixin, 
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update({'reservations': self.request.session['check_in_details']['booking_details'].get('reservations', [])})
+        context['reservations'] = []
+        for reservation in self.request.session['check_in_details'].get('booking_details', []):
+            reservation['formattedArrivalDate'] = format_display_date(reservation.get('arrivalDate', ''))
+            reservation['formattedDepartureDate'] = format_display_date(reservation.get('departureDate', ''))
+            context['reservations'].append(reservation)
         return context
 
     def form_valid(self, form):
@@ -99,19 +106,21 @@ class CheckInDetailView(RequestInitializedMixin, SessionDataRequiredMixin, Mobil
     mobile_template_name    = 'mobile/check_in/detail.html'
 
     def get_context_data(self, **kwargs):
-        data = super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         # translation for bootstrap datepicker
-        data['bootstrap_datepicker_language'] = translation.get_language()
-        if data['bootstrap_datepicker_language'] == 'zh-hans':
-            data['bootstrap_datepicker_language'] = 'zh-CN'
+        context['bootstrap_datepicker_language'] = translation.get_language()
+        if context['bootstrap_datepicker_language'] == 'zh-hans':
+            context['bootstrap_datepicker_language'] = 'zh-CN'
         # max extra form
-        data['max_extra_form'] = int(self.request.session['check_in_details']['booking_details'].get('adult_number', 1)) + int(self.request.session['check_in_details']['booking_details'].get('child_number', 0)) - 1
+        context['max_extra_form'] = int(self.request.session['check_in_details']['form'].get('adults', 1)) + int(self.request.session['check_in_details']['form'].get('children', 0)) - 1
         # render extra form formset
+        additional_guests = [guest for guest in self.request.session['check_in_details']['form'].get('guestsList', []) if guest.get('isMainGuest', 0) == 0]
+        CheckInDetailExtraFormSet = forms.formset_factory(CheckInDetailExtraForm, formset=CheckInDetailExtraBaseFormSet, extra=len(additional_guests)) # extra based on `additional_guests` length
         if self.request.POST:
-            data['extra'] = CheckInDetailExtraFormSet(self.request, self.request.POST)
+            context['extra'] = CheckInDetailExtraFormSet(self.request, self.request.POST)
         else:
-            data['extra'] = CheckInDetailExtraFormSet(self.request)
-        return data
+            context['extra'] = CheckInDetailExtraFormSet(self.request)
+        return context
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
@@ -143,8 +152,10 @@ class CheckInCompleteView(RequestInitializedMixin, SessionDataRequiredMixin, Tem
     template_name           = 'desktop/check_in/complete.html'
 
     def get_context_data(self, **kwargs):
-        data = super().get_context_data(**kwargs)
-        reservations = self.request.session['check_in_details']['booking_details'].get('reservations', [])
-        reservation_id = self.request.session['check_in_details']['form'].get('reservation', None)
-        data['reservation'] = next(reservation for reservation in reservations if reservation.get('identifier', '') == reservation_id)
-        return data
+        context = super().get_context_data(**kwargs)
+        reservation = self.request.session['check_in_details']['form']
+        reservation['formattedArrivalDate'] = format_display_date(reservation.get('arrivalDate', ''))
+        reservation['formattedDepartureDate'] = format_display_date(reservation.get('departureDate', ''))
+        reservation['mainGuestLastName'] = next(guest.get('lastName', '') for guest in reservation.get('guestsList', []) if guest.get('isMainGuest', 0) == 1)
+        context['reservation'] = reservation
+        return context

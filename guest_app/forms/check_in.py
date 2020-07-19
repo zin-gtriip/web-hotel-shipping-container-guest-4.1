@@ -11,6 +11,17 @@ class CheckInLoginForm(forms.Form):
     arrival_date    = forms.DateField(label=_('Arrival Date'))
     last_name       = forms.CharField(label=_('Last Name'))
 
+    SUCCESS_CODE    = 500
+    ERROR_MESSAGES  = {
+        100: _('No matching PMS reservation with given Reservation Number.'),
+        101: _('No matching PMS reservation with given Arrival Date.'),
+        102: _('No main guest found for this reservation.'),
+        103: _('No matching PMS reservation with given Last Name.'),
+        200: _('No matching reservation status record.'),
+        300: _('No matching pre-arrival time frame record.'),
+        400: _('Pre-arrival performed.'),
+    }
+
     def __init__(self, request, *args, **kwargs):
         super(CheckInLoginForm, self).__init__(*args, **kwargs)
         self.request = request
@@ -36,8 +47,8 @@ class CheckInLoginForm(forms.Form):
 
         # validate to backend
         response = self.gateway_post()
-        if response.get('overall_status', '') != 500:
-            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
+        if response.get('overall_status', '') != self.SUCCESS_CODE:
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([self.ERROR_MESSAGES.get(response.get('overall_status', 0), _('Unknown error'))])
 
         return self.cleaned_data
 
@@ -47,36 +58,37 @@ class CheckInLoginForm(forms.Form):
             'arrival_date': self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d'),
             'last_name': self.cleaned_data.get('last_name'),
         }
-        return gateways.post('/testSample/checkBookingsPreArrival', data)
+        return samples.get_data(data) #gateways.post('/testSample/checkBookingsPreArrival', data)
     
     def save_data(self):
         data = self.gateway_post()
-        self.request.session['check_in_details'] = {'booking_details': data}
+        self.request.session['check_in_details'] = {'booking_details': data.get('data', [])}
         self.request.session.set_expiry(settings.CHECK_IN_SESSION_AGE)
         if 'check_in_data' in self.request.session and 'auto_login' in self.request.session['check_in_data']:
             self.request.session['check_in_data']['auto_login'] = False # set auto login to False
 
 
 class CheckInReservationForm(forms.Form):
-    reservation = forms.ChoiceField(widget=forms.RadioSelect())
+    reservation_no = forms.ChoiceField(widget=forms.RadioSelect())
 
     def __init__(self, request, *args, **kwargs):
         super(CheckInReservationForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
-        self.fields['reservation'].choices = [(reservation.get('identifier', ''), reservation.get('room_type', '')) for reservation in self.request.session['check_in_details']['booking_details'].get('reservations', [])]
+        self.fields['reservation_no'].choices = [(reservation.get('reservationNo', ''), reservation.get('reservationNo', '')) for reservation in self.request.session['check_in_details'].get('booking_details', [])]
 
     def clean(self):
         super().clean()
-        reservation = self.cleaned_data.get('reservation')
+        reservation_no = self.cleaned_data.get('reservation_no')
 
-        if not reservation:
-            raise forms.ValidationError(_('No reservation selected.'))
+        if not reservation_no:
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('No reservation selected.')])
         return self.cleaned_data
 
     def save_data(self):
-        reservation = self.cleaned_data.get('reservation')
-        self.request.session['check_in_details'].update({'form': {'reservation': reservation}})
+        reservation_no = self.cleaned_data.get('reservation_no')
+        reservation = next(reservation for reservation in self.request.session['check_in_details'].get('booking_details', []) if reservation.get('reservationNo', '') == reservation_no)
+        self.request.session['check_in_details'].update({'form': reservation})
         self.request.session.save()
 
 
@@ -147,32 +159,36 @@ class CheckInPassportForm(forms.Form):
 
 
 class CheckInDetailForm(forms.Form):
-    first_name = forms.CharField(label=_('First Name'))
-    last_name = forms.CharField(label=_('Last Name'))
+    guest_id    = forms.CharField(widget=forms.HiddenInput())
+    first_name  = forms.CharField(label=_('First Name'))
+    last_name   = forms.CharField(label=_('Last Name'))
     passport_no = forms.CharField(label=_('Passport Number'))
     nationality = CountryField(blank_label=_('[Select Country]')).formfield(label=_('Nationality'))
-    birth_date = forms.DateField(label=_('Date of Birth'))
+    birth_date  = forms.DateField(label=_('Date of Birth'))
 
     def __init__(self, request, *args, **kwargs):
         super(CheckInDetailForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
 
-        first_name = self.request.session['check_in_details']['booking_details'].get('first_name', '')
-        last_name = self.request.session['check_in_details']['booking_details'].get('last_name', '')
-        passport_no = self.request.session['check_in_details']['booking_details'].get('passport_no', '')
-        nationality = self.request.session['check_in_details']['booking_details'].get('nationality', 'SG')
-        birth_date = self.request.session['check_in_details']['booking_details'].get('birth_date', '')
+        main_guest = next((guest for guest in self.request.session['check_in_details']['form'].get('guestsList', []) if guest.get('isMainGuest', 0) == 1), {})
+        guest_id = main_guest.get('guestID', 0)
+        first_name = main_guest.get('firstName', '')
+        last_name = main_guest.get('lastName', '')
+        passport_no = main_guest.get('passportNo', '')
+        nationality = main_guest.get('nationality', 'SG')
+        birth_date = main_guest.get('dob', '')
         if 'check_in_data' in self.request.session:
             first_name = self.request.session['check_in_data'].get('first_name', first_name)
             passport_no = self.request.session['check_in_data'].get('passport_no', passport_no)
             nationality = self.request.session['check_in_data'].get('nationality', nationality)
             birth_date = self.request.session['check_in_data'].get('birth_date', birth_date)
-        if 'check_in_details' in self.request.session and 'ocr_details' in self.request.session['check_in_details']:
+        if 'ocr_details' in self.request.session['check_in_details']:
             first_name = self.request.session['check_in_details']['ocr_details'].get('names', first_name)
             passport_no = self.request.session['check_in_details']['ocr_details'].get('number', passport_no)
             nationality = Country(self.request.session['check_in_details']['ocr_details'].get('nationality', '')).code or nationality
             birth_date = utilities.parse_ocr_date(self.request.session['check_in_details']['ocr_details'].get('date_of_birth', '')) or birth_date
+        self.fields['guest_id'].initial = guest_id
         self.fields['first_name'].initial = first_name
         self.fields['last_name'].initial = last_name
         self.fields['passport_no'].initial = passport_no
@@ -186,7 +202,7 @@ class CheckInDetailForm(forms.Form):
         nationality = self.cleaned_data.get('nationality')
         passport_no = self.cleaned_data.get('passport_no')
         birth_date = self.cleaned_data.get('birth_date')
-
+        
         # validate required field
         if not first_name:
             self._errors['first_name'] = self.error_class([_('Enter the required information')])
@@ -204,34 +220,35 @@ class CheckInDetailForm(forms.Form):
         return self.cleaned_data
 
     def save_data(self, extra):
-        first_name = self.cleaned_data.get('first_name')
-        last_name = self.cleaned_data.get('last_name')
-        nationality = self.cleaned_data.get('nationality')
-        passport_no = self.cleaned_data.get('passport_no')
-        birth_date = self.cleaned_data.get('birth_date').strftime('%Y-%m-%d')
-        additional_guests = []
-
+        guests = [{
+            'guestID': self.cleaned_data.get('guest_id'),
+            'firstName': self.cleaned_data.get('first_name'),
+            'lastName': self.cleaned_data.get('last_name'),
+            'nationality': self.cleaned_data.get('nationality'),
+            'passportNo': self.cleaned_data.get('passport_no'),
+            'dob': self.cleaned_data.get('birth_date').strftime('%Y-%m-%d'),
+        }]
         for form in extra.forms:
-            additional_guests.append({
-                'first_name': form.cleaned_data.get('first_name'),
-                'last_name': form.cleaned_data.get('last_name'),
+            guests.append({
+                'guestID': form.cleaned_data.get('guest_id'),
+                'firstName': form.cleaned_data.get('first_name'),
+                'lastName': form.cleaned_data.get('last_name'),
                 'nationality': form.cleaned_data.get('nationality'),
-                'passport_no': form.cleaned_data.get('passport_no'),
-                'birth_date': form.cleaned_data.get('birth_date').strftime('%Y-%m-%d'),
+                'passportNo': form.cleaned_data.get('passport_no'),
+                'dob': form.cleaned_data.get('birth_date').strftime('%Y-%m-%d'),
             })
 
-        self.request.session['check_in_details']['form'].update({
-            'first_name': first_name,
-            'last_name': last_name,
-            'nationality': nationality,
-            'passport_no': passport_no,
-            'birth_date': birth_date,
-            'additional_guests': additional_guests,
-        })
+        for guest in guests:
+            booking_details_guest = next((guest_temp for guest_temp in self.request.session['check_in_details']['form'].get('guestsList', []) if guest_temp.get('guestID', '') == guest.get('guestID', '')), {})
+            if booking_details_guest:
+                booking_details_guest.update(guest)
+            else:
+                self.request.session['check_in_details']['form']['guestsList'].append(guest)
         self.request.session.save()
 
 
 class CheckInDetailExtraForm(forms.Form):
+    guest_id = forms.CharField(widget=forms.HiddenInput())
     first_name = forms.CharField(label=_('First Name'))
     last_name = forms.CharField(label=_('Last Name'))
     nationality = CountryField(blank_label='[Select Country]').formfield(label=_('Nationality'))
@@ -269,36 +286,46 @@ class CheckInDetailExtraBaseFormSet(forms.BaseFormSet):
         super(CheckInDetailExtraBaseFormSet, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
+        additional_guests = [guest for guest in self.request.session['check_in_details']['form'].get('guestsList', []) if guest.get('isMainGuest', 0) == 0]
+        for form, guest in zip(self.forms, additional_guests): # forms length based on `extra` declared on `forms.formset_factory()` in `views.py`
+            form.initial = {
+                'guest_id': guest.get('guestID', ''),
+                'first_name': guest.get('firstName', ''),
+                'last_name': guest.get('lastName', ''),
+                'nationality': guest.get('nationality', ''),
+                'passport_no': guest.get('passportNo', ''),
+                'birth_date': guest.get('dob', ''),
+            }
 
     def get_form_kwargs(self, index):
         kwargs = super().get_form_kwargs(index)
-        kwargs['request']= self.request
+        kwargs['request'] = self.request
         return kwargs
 
     def clean(self):
         super().clean()
-        adult, max_adult = 1, int(self.request.session['check_in_details']['booking_details'].get('adult_number', 1))
+        adult, max_adult = 1, int(self.request.session['check_in_details']['form'].get('adults', 1))
         for form in self.forms:
             if utilities.calculate_age(form.cleaned_data.get('birth_date')) > settings.DETAIL_FORM_AGE_LIMIT:
                 adult += 1
         if adult > max_adult:
             self._non_form_errors = self.error_class([_('You have exceeded the number of adults.')])
     
-CheckInDetailExtraFormSet = forms.formset_factory(CheckInDetailExtraForm, formset=CheckInDetailExtraBaseFormSet, extra=1)
-
 
 class CheckInOtherInfoForm(forms.Form):
-    arrival_time = forms.ChoiceField(label=_('Time of Arrival'))
-    special_requests = forms.CharField(label=_('Special Requests'), required=False)
-    email = forms.EmailField(label=_('Email'))
-    is_subscribe = forms.BooleanField(label=_('Is Subscribe'), required=False)
+    arrival_time        = forms.ChoiceField(label=_('Time of Arrival'))
+    special_requests    = forms.CharField(label=_('Special Requests'), required=False)
+    email               = forms.EmailField(label=_('Email'))
+    is_subscribe        = forms.BooleanField(label=_('Is Subscribe'), required=False)
 
     def __init__(self, request, *args, **kwargs):
         super(CheckInOtherInfoForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
-        self.fields['arrival_time'].choices = utilities.generate_time_arrival()
-        self.fields['email'].initial = self.request.session['check_in_details']['booking_details'].get('email', '')
+        self.fields['arrival_time'].choices = utilities.generate_arrival_time()
+        self.fields['arrival_time'].initial = utilities.parse_arrival_time(self.request.session['check_in_details']['form'].get('eta', ''))
+        main_guest = next((guest for guest in self.request.session['check_in_details']['form'].get('guestsList', []) if guest.get('isMainGuest', 0) == 1), {})
+        self.fields['email'].initial = main_guest.get('email', '')
 
     def clean(self):
         super().clean()
@@ -318,11 +345,14 @@ class CheckInOtherInfoForm(forms.Form):
         email = self.cleaned_data.get('email')
         is_subscribe = self.cleaned_data.get('is_subscribe')
 
-        self.request.session['check_in_details']['form'].update({
-            'arrival_time': arrival_time,
-            'special_requests': special_requests,
+        main_guest = next((guest for guest in self.request.session['check_in_details']['form'].get('guestsList', []) if guest.get('isMainGuest', 0) == 1), {})
+        main_guest.update({
             'email': email,
-            'is_subscribe': is_subscribe,
+        })
+        self.request.session['check_in_details']['form'].update({
+            'eta': arrival_time + ':00',
+            'specialRequests': special_requests,
+            'isSubscribe': is_subscribe,
         })
         self.request.session.save()
 
@@ -330,7 +360,7 @@ class CheckInOtherInfoForm(forms.Form):
         data = self.request.session['check_in_details']['form']
         response = samples.send_data(data) #gateways.post('/booking/submit_details', data)
         if response.get('status', '') == 'success':
-            self.request.session['check_in_details'].update({'reservation_details': response.get('reservations', [])})
+            self.request.session['check_in_details'].update({'booking_details': response.get('data', [])})
             self.request.session.save()
             self.request.session.set_expiry(settings.SESSION_COOKIE_AGE) # reset session expiry time
         else:
