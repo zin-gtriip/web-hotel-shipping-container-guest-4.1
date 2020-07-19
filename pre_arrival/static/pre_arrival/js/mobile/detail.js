@@ -2,6 +2,8 @@ $('.datepicker').datepicker();
 $('.rolldate').each(function() {
     initRolldate($(this));
 });
+restyleExtra();
+rearrangeExtraIndex();
 validateMaxExtra();
 
 
@@ -12,8 +14,9 @@ $(document).ready(function() {
 
 $('#btn-add-extra').click(function() {
     var $extraTemplate = $('#extra-formset-template')
-        , $newExtra = $extraTemplate.clone().removeAttr('hidden')
+        , $newExtra = $extraTemplate.clone().removeAttr('hidden').addClass('extra-formset')
         , index = getFormsetIndex()
+        , $newGuestId = $newExtra.find('#guest-id-template')
         , $newFirstName = $newExtra.find('#first-name-template')
         , $newLastName = $newExtra.find('#last-name-template')
         , $newNationality = $newExtra.find('#nationality-template')
@@ -22,7 +25,8 @@ $('#btn-add-extra').click(function() {
         , $newDatepickerBirthDate = $newExtra.find('#datepicker-birth-date-template')
         , $newBtnRemove = $newExtra.find('.btn-remove-extra')
 
-    $newExtra.attr('id', 'extra-formset-'+ index).addClass('extra-formset');
+    // guest id
+    $newGuestId.attr('id', 'id_form-'+ index +'-guest_id').attr('name', 'form-'+ index +'-guest_id');
     // first name
     $newFirstName.siblings('label').attr('for', 'id_form-'+ index +'-first_name');
     $newFirstName.attr('id', 'id_form-'+ index +'-first_name').attr('name', 'form-'+ index +'-first_name').attr('required', true);
