@@ -19,7 +19,9 @@ from django.views.i18n import JavaScriptCatalog
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('guest_app.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
+    
+    path('', include('pre_arrival.urls')),
+    path('', include('guest_base.urls')),
 ]

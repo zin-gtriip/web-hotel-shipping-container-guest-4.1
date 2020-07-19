@@ -1,0 +1,202 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-25 14:08+0700\n"
+"PO-Revision-Date: 2020-07-01 11:51+0800\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.3.1\n"
+
+#: forms/check_in.py:10
+msgid "Reservation Number"
+msgstr "予約番号"
+
+#: forms/check_in.py:11
+msgid "Arrival Date"
+msgstr "到着日"
+
+#: forms/check_in.py:12 forms/check_in.py:138 forms/check_in.py:197
+#: templates/desktop/check_in/detail.html:209
+msgid "Last Name"
+msgstr "姓"
+
+#: forms/check_in.py:31 forms/check_in.py:33 forms/check_in.py:35
+#: forms/check_in.py:178 forms/check_in.py:180 forms/check_in.py:182
+#: forms/check_in.py:184 forms/check_in.py:186 forms/check_in.py:188
+#: forms/check_in.py:190 forms/check_in.py:212 forms/check_in.py:214
+#: forms/check_in.py:216 forms/check_in.py:218 forms/check_in.py:220
+msgid "Enter the required information"
+msgstr "必要な情報を入力してください"
+
+#: forms/check_in.py:46 forms/check_in.py:127
+msgid "Unknown error"
+msgstr "不明なエラー"
+
+#: forms/check_in.py:70
+msgid "No reservation selected."
+msgstr "予約が選択されていません。"
+
+#: forms/check_in.py:94
+msgid "No image file selected."
+msgstr "画像ファイルが選択されていません。"
+
+#: forms/check_in.py:123
+#, python-format
+msgid ""
+"You must be at least %(age)s years of age to proceed with your registration."
+msgstr "登録を続行するには、%(age)s歳以上である必要があります。"
+
+#: forms/check_in.py:125
+msgid ""
+"Your passport has expired, please capture / upload a valid passport photo to "
+"proceed"
+msgstr ""
+"パスポートの有効期限が切れています。続行するには、有効なパスポート写真をキャ"
+"プチャ/アップロードしてください。"
+
+#: forms/check_in.py:137 forms/check_in.py:196
+#: templates/desktop/check_in/detail.html:203
+msgid "First Name"
+msgstr "名"
+
+#: forms/check_in.py:139 forms/check_in.py:198
+#: templates/desktop/check_in/detail.html:72
+#: templates/desktop/check_in/detail.html:217
+#: templates/desktop/check_in/detail.html:288
+msgid "Nationality"
+msgstr "国籍"
+
+#: forms/check_in.py:140 forms/check_in.py:199
+#: templates/desktop/check_in/detail.html:228
+msgid "Passport Number"
+msgstr "パスポート番号"
+
+#: forms/check_in.py:141 forms/check_in.py:200
+#: templates/desktop/check_in/detail.html:236
+msgid "Date of Birth"
+msgstr "生年月日"
+
+#: forms/check_in.py:142
+msgid "Email"
+msgstr "Eメール"
+
+#: forms/check_in.py:143 templates/desktop/check_in/detail.html:153
+msgid "Time of Arrival"
+msgstr "到着時刻"
+
+#: forms/check_in.py:144
+msgid "Comments"
+msgstr "コメント"
+
+#: forms/check_in.py:145
+msgid "I would like to receive exclusive offers, and news via email."
+msgstr "限定オファーやニュースをメールで受け取りたい。"
+
+#: gateways.py:34 gateways.py:52 samples.py:47
+msgid "Error connecting to server"
+msgstr "サーバーへの接続エラー"
+
+#: templates/desktop/check_in/base_check_in.html:5
+#: templates/mobile/check_in/base_check_in.html:5
+msgid "Check In"
+msgstr "チェックイン"
+
+#: templates/desktop/check_in/detail.html:24
+msgid "Enter Guest Details"
+msgstr "ゲストの詳細を入力"
+
+#: templates/desktop/check_in/detail.html:354
+msgid "Add Guest"
+msgstr "ゲストを追加"
+
+#: templates/desktop/check_in/detail.html:370
+#: templates/desktop/check_in/login.html:80
+#: templates/desktop/check_in/passport.html:47
+#: templates/desktop/check_in/reservation.html:50
+#: templates/mobile/check_in/login.html:47
+#: templates/mobile/check_in/reservation.html:50
+msgid "Next"
+msgstr "次"
+
+#: templates/desktop/check_in/login.html:22
+msgid "Check-in Registration"
+msgstr "チェックイン登録"
+
+#: templates/desktop/check_in/login.html:23
+msgid "Enter reservation details to start"
+msgstr "予約の詳細を入力して開始"
+
+#: templates/desktop/check_in/passport.html:21
+msgid "Submit Passport Document"
+msgstr "パスポート書類を提出する"
+
+#: templates/desktop/check_in/passport.html:22
+msgid "Take picture or upload image"
+msgstr "写真を撮るか、画像をアップロードします"
+
+#: templates/desktop/check_in/passport.html:39
+#: templates/desktop/check_in/passport.html:43
+msgid "Capture"
+msgstr "キャプチャー"
+
+#: templates/desktop/check_in/passport.html:55
+msgid "Upload"
+msgstr "アップロードする"
+
+#: templates/desktop/check_in/passport.html:59
+msgid "Retake"
+msgstr "再受験"
+
+#: templates/desktop/check_in/passport.html:66
+msgid "Skip to Guest Details"
+msgstr "ゲストの詳細にスキップ"
+
+#: templates/desktop/check_in/reservation.html:18
+#: templates/mobile/check_in/reservation.html:18
+msgid "Please select your room to Check-In"
+msgstr "チェックインする部屋を選択してください"
+
+#: templates/desktop/check_in/reservation.html:21
+#: templates/mobile/check_in/reservation.html:21
+msgid "We've found the following room(s) under your reservation."
+msgstr "予約の下に次の部屋が見つかりました。"
+
+#: templates/desktop/check_in/reservation.html:38
+#: templates/mobile/check_in/reservation.html:38
+msgid "Check-in Date"
+msgstr "チェックイン日"
+
+#: templates/desktop/check_in/reservation.html:42
+#: templates/mobile/check_in/reservation.html:42
+msgid "Check-out Date"
+msgstr "チェックアウト日"
+
+#: templates/mobile/check_in/login.html:23
+#, python-format
+msgid "Welcome to<br>Hotel %(HOTEL_NAME)s"
+msgstr "<br>Hotel %(HOTEL_NAME)sへようこそ"
+
+#: templates/mobile/check_in/login.html:26
+msgid ""
+"To begin the online check-in process, please enter your reservation number."
+msgstr ""
+"オンラインチェックインプロセスを開始するには、予約番号を入力してください。"
+
+#: templates/mobile/check_in/login.html:62
+msgid "Invalid Input"
+msgstr "無効入力"
+
+#: templates/mobile/check_in/login.html:68
+msgid "Fix"
+msgstr "修正"

@@ -1,0 +1,11 @@
+@each $color, $value in $theme-colors {
+    .bg-#{$color} {
+        background-color: $value !important;
+    }
+
+    @for $i from 1 through 9 {
+        .bg-transparent-#{$color}-#{$i} {
+            background-color: rgba($value, ($i/10)) !important;
+        }
+    }
+}

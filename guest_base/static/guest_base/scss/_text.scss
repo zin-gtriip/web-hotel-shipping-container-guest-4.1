@@ -1,0 +1,11 @@
+@for $i from 1 through 36 {
+    .text-#{$i} {
+        font-size: #{$i}px !important;
+    }
+}
+
+@each $color, $value in $theme-colors {
+    .text-#{$color} {
+        color: $value !important;
+    }
+}
