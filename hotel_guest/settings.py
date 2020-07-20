@@ -115,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -209,7 +209,7 @@ CRON_CLASSES = [
 # page title on every page
 HOTEL_NAME                  = 'GTRIIP'
 # expiration time for the check in (in seconds)
-PRE_ARRIVAL_SESSION_AGE     = 60 * 15
+PRE_ARRIVAL_AGE             = 60 * 15
 # age limit of ocr validation
 PASSPORT_AGE_LIMIT          = 18
 # age limit of detail form that should count as adult or child
