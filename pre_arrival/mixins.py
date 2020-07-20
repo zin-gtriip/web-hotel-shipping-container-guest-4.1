@@ -16,11 +16,11 @@ class RequestInitializedMixin(object):
 
 class SessionDataRequiredMixin(object):
     """
-    Generic form view mixin that verifies the user has `pre_arrival`
-    and `bookings` in `request.session`.
+    Generic form view mixin that verifies the user has `pre_arrival` and 
+    `bookings` in `request.session`.
 
-    This mixin works similar like `LoginRequiredMixin` and must be put
-    on every check-in page except login
+    This mixin works similar like `LoginRequiredMixin` and must be put on 
+    every check-in page except login
     """
     def dispatch(self, request, *args, **kwargs):
         if request.session.session_key and '/check_in' in request.path and request.session.get('pre_arrival', {}).get('bookings', {}):
