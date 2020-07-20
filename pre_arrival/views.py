@@ -16,18 +16,18 @@ class CheckInDataView(RequestInitializedMixin, RedirectView):
     pattern_name = 'pre_arrival:check-in-login'
 
     def get_redirect_url(self, *args, **kwargs):
-        self.request.session['check_in_data'] = {}
+        self.request.session['pre_arrival_preload'] = {}
         if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en-gb')
-        if 'app' in self.request.GET: self.request.session['check_in_data']['app'] = self.request.GET.get('app', False)
-        if 'auto_login' in self.request.GET: self.request.session['check_in_data']['auto_login'] = self.request.GET.get('auto_login', False)
-        if 'skip_ocr' in self.request.GET: self.request.session['check_in_data']['skip_ocr'] = self.request.GET.get('skip_ocr', False)
-        if 'reservation_no' in self.request.GET: self.request.session['check_in_data']['reservation_no'] = self.request.GET.get('reservation_no', False)
-        if 'arrival_date' in self.request.GET: self.request.session['check_in_data']['arrival_date'] = self.request.GET.get('arrival_date', False)
-        if 'last_name' in self.request.GET: self.request.session['check_in_data']['last_name'] = self.request.GET.get('last_name', False)
-        if 'first_name' in self.request.GET: self.request.session['check_in_data']['first_name'] = self.request.GET.get('first_name', False)
-        if 'nationality' in self.request.GET: self.request.session['check_in_data']['nationality'] = self.request.GET.get('nationality', False)
-        if 'passport_no' in self.request.GET: self.request.session['check_in_data']['passport_no'] = self.request.GET.get('passport_no', False)
-        if 'birth_date' in self.request.GET: self.request.session['check_in_data']['birth_date'] = self.request.GET.get('birth_date', False)
+        if 'app' in self.request.GET: self.request.session['pre_arrival_preload']['app'] = self.request.GET.get('app', False)
+        if 'auto_login' in self.request.GET: self.request.session['pre_arrival_preload']['auto_login'] = self.request.GET.get('auto_login', False)
+        if 'skip_ocr' in self.request.GET: self.request.session['pre_arrival_preload']['skip_ocr'] = self.request.GET.get('skip_ocr', False)
+        if 'reservation_no' in self.request.GET: self.request.session['pre_arrival_preload']['reservation_no'] = self.request.GET.get('reservation_no', False)
+        if 'arrival_date' in self.request.GET: self.request.session['pre_arrival_preload']['arrival_date'] = self.request.GET.get('arrival_date', False)
+        if 'last_name' in self.request.GET: self.request.session['pre_arrival_preload']['last_name'] = self.request.GET.get('last_name', False)
+        if 'first_name' in self.request.GET: self.request.session['pre_arrival_preload']['first_name'] = self.request.GET.get('first_name', False)
+        if 'nationality' in self.request.GET: self.request.session['pre_arrival_preload']['nationality'] = self.request.GET.get('nationality', False)
+        if 'passport_no' in self.request.GET: self.request.session['pre_arrival_preload']['passport_no'] = self.request.GET.get('passport_no', False)
+        if 'birth_date' in self.request.GET: self.request.session['pre_arrival_preload']['birth_date'] = self.request.GET.get('birth_date', False)
         return super().get_redirect_url(*args, **kwargs)
 
 
@@ -38,11 +38,11 @@ class CheckInLoginView(RequestInitializedMixin, MobileTemplateMixin, FormView):
     mobile_template_name    = 'pre_arrival/mobile/login.html'
 
     def dispatch(self, request, *args, **kwargs):
-        if 'check_in_data' in request.session and request.session['check_in_data'].get('auto_login', False):
+        if 'pre_arrival_preload' in request.session and request.session['pre_arrival_preload'].get('auto_login', False):
             data = {
-                'reservation_no': request.session['check_in_data'].get('reservation_no', ''),
-                'arrival_date': request.session['check_in_data'].get('arrival_date', ''),
-                'last_name': request.session['check_in_data'].get('last_name', ''),
+                'reservation_no': request.session['pre_arrival_preload'].get('reservation_no', ''),
+                'arrival_date': request.session['pre_arrival_preload'].get('arrival_date', ''),
+                'last_name': request.session['pre_arrival_preload'].get('last_name', ''),
             }
             form = self.get_form_class()
             form = form(request, data)
@@ -83,7 +83,7 @@ class CheckInPassportView(RequestInitializedMixin, SessionDataRequiredMixin, Mob
     mobile_template_name    = 'pre_arrival/mobile/passport.html'
 
     def dispatch(self, request, *args, **kwargs):
-        if 'check_in_data' in request.session and request.session['check_in_data'].get('skip_ocr', False):
+        if 'pre_arrival_preload' in request.session and request.session['pre_arrival_preload'].get('skip_ocr', False):
             data = {
                 'skip_passport': True
             }

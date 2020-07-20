@@ -26,10 +26,10 @@ class CheckInLoginForm(forms.Form):
         super(CheckInLoginForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
-        if 'check_in_data' in self.request.session:
-            self.fields['reservation_no'].initial = self.request.session['check_in_data'].get('reservation_no')
-            self.fields['arrival_date'].initial = self.request.session['check_in_data'].get('arrival_date')
-            self.fields['last_name'].initial = self.request.session['check_in_data'].get('last_name')
+        if 'pre_arrival_preload' in self.request.session:
+            self.fields['reservation_no'].initial = self.request.session['pre_arrival_preload'].get('reservation_no')
+            self.fields['arrival_date'].initial = self.request.session['pre_arrival_preload'].get('arrival_date')
+            self.fields['last_name'].initial = self.request.session['pre_arrival_preload'].get('last_name')
 
     def clean(self):
         super().clean()
@@ -64,8 +64,8 @@ class CheckInLoginForm(forms.Form):
         data = self.gateway_post()
         self.request.session['check_in_details'] = {'booking_details': data.get('data', [])}
         self.request.session.set_expiry(settings.CHECK_IN_SESSION_AGE)
-        if 'check_in_data' in self.request.session and 'auto_login' in self.request.session['check_in_data']:
-            self.request.session['check_in_data']['auto_login'] = False # set auto login to False
+        if 'pre_arrival_preload' in self.request.session and 'auto_login' in self.request.session['pre_arrival_preload']:
+            self.request.session['pre_arrival_preload']['auto_login'] = False # set auto login to False
 
 
 class CheckInReservationForm(forms.Form):
@@ -178,11 +178,11 @@ class CheckInDetailForm(forms.Form):
         passport_no = main_guest.get('passportNo', '')
         nationality = main_guest.get('nationality', 'SG')
         birth_date = main_guest.get('dob', '')
-        if 'check_in_data' in self.request.session:
-            first_name = self.request.session['check_in_data'].get('first_name', first_name)
-            passport_no = self.request.session['check_in_data'].get('passport_no', passport_no)
-            nationality = self.request.session['check_in_data'].get('nationality', nationality)
-            birth_date = self.request.session['check_in_data'].get('birth_date', birth_date)
+        if 'pre_arrival_preload' in self.request.session:
+            first_name = self.request.session['pre_arrival_preload'].get('first_name', first_name)
+            passport_no = self.request.session['pre_arrival_preload'].get('passport_no', passport_no)
+            nationality = self.request.session['pre_arrival_preload'].get('nationality', nationality)
+            birth_date = self.request.session['pre_arrival_preload'].get('birth_date', birth_date)
         if 'ocr_details' in self.request.session['check_in_details']:
             first_name = self.request.session['check_in_details']['ocr_details'].get('names', first_name)
             passport_no = self.request.session['check_in_details']['ocr_details'].get('number', passport_no)
