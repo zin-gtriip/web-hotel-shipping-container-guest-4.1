@@ -16,23 +16,15 @@ class RequestInitializedMixin(object):
 
 class SessionDataRequiredMixin(object):
     """
-    Generic form view mixin that verifies the user has `check_in_details`
-    and `check_out_details` in `request.session`.
+    Generic form view mixin that verifies the user has `pre_arrival`
+    and `booking_details` in `request.session`.
 
     This mixin works similar like `LoginRequiredMixin` and must be put
     on every check-in page except login
     """
-    check_in_login_url   = 'pre_arrival:check-in-login'
-    check_out_login_url  = 'pre_arrival:check-out-login'
-
     def dispatch(self, request, *args, **kwargs):
-        if request.session.session_key:
-            if ('/check_in' in request.path and 'check_in_details' in request.session) or ('/check_out' in request.path and 'check_out_details' in request.session):
-                return super(SessionDataRequiredMixin, self).dispatch(request, *args, **kwargs)
-        if '/check_in' in request.path:
-            return redirect(self.check_in_login_url)
-        elif '/check_out' in request.path:
-            return redirect(self.check_out_login_url)
+        if request.session.session_key and '/check_in' in request.path and request.session.get('pre_arrival', {}).get('booking_details', {}):
+            return super(SessionDataRequiredMixin, self).dispatch(request, *args, **kwargs)
         return redirect('pre_arrival:index')
 
 
@@ -41,14 +33,14 @@ class MobileTemplateMixin(object):
     Generic form view mixin that replace `template_name` with mobile template.
 
     This mixin uses `django_user_agents` plugin to indicate if `user_agent` is
-    mobile. And will check view is accessed from app through `pre_arrival_preload`
+    mobile. And will check view is accessed from app through `preload`
     session. If one of them is fulfilled `mobile_template_name` will be used
     if it is provided.
     """
     mobile_template_name = None
 
     def get_template_names(self):
-        if ('pre_arrival_preload' in self.request.session and self.request.session['pre_arrival_preload'].get('app', False)) or not self.request.user_agent.is_pc:
+        if (self.request.session.get('pre_arrival', {}).get('preload', {}).get('app', False)) or not self.request.user_agent.is_pc:
             if self.mobile_template_name:
                 return [self.mobile_template_name]
         return super().get_template_names()

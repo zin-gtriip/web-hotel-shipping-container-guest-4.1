@@ -9,8 +9,8 @@ class ClearSessionCronJob(CronJobBase):
     """
     Cron job that clears expired session on database after 30 days.
 
-    The timedelta 30 days is to prevent `pre_arrival_preload` session is being
-    cleared along with `check_in_details` session which is expired within
+    The timedelta 30 days is to prevent `preload` session is being
+    cleared along with `pre_arrival` session which is expired within
     `settings.PRE_ARRIVAL_SESSION_AGE` time.
     
     This job also will clear saved passport image file that saved using

@@ -45,7 +45,7 @@
     </div>
     <div class="row page-footer">
         <div class="col-12 col-lg-4 mx-auto">
-            {% if not request.session.pre_arrival_preload.app %}
+            {% if not request.session.pre_arrival.preload.app %}
                 <div class="row mx-auto" id="alternative-1">
                     <div class="col-lg-12 text-secondary text-center">
                         {% trans 'Please proceed to the front desk to collect your room key' %}
