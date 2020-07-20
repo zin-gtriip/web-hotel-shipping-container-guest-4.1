@@ -63,7 +63,7 @@ class CheckInLoginForm(forms.Form):
         data = self.gateway_post()
         if not 'pre_arrival' in self.request.session:
             self.request.session['pre_arrival'] = {}
-        self.request.session['pre_arrival'].update({'booking_details': data.get('data', [])})
+        self.request.session['pre_arrival'].update({'bookings': data.get('data', [])})
         self.request.session.set_expiry(settings.PRE_ARRIVAL_SESSION_AGE)
         if 'preload' in self.request.session['pre_arrival'] and 'auto_login' in self.request.session['pre_arrival']['preload']:
             self.request.session['pre_arrival']['preload']['auto_login'] = False # set auto login to False
@@ -77,7 +77,7 @@ class CheckInReservationForm(forms.Form):
         super(CheckInReservationForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
-        self.fields['reservation_no'].choices = [(reservation.get('reservationNo', ''), reservation.get('reservationNo', '')) for reservation in self.request.session['pre_arrival'].get('booking_details', [])]
+        self.fields['reservation_no'].choices = [(reservation.get('reservationNo', ''), reservation.get('reservationNo', '')) for reservation in self.request.session['pre_arrival'].get('bookings', [])]
 
     def clean(self):
         super().clean()
@@ -89,7 +89,7 @@ class CheckInReservationForm(forms.Form):
 
     def save_data(self):
         reservation_no = self.cleaned_data.get('reservation_no')
-        reservation = next(reservation for reservation in self.request.session['pre_arrival'].get('booking_details', []) if reservation.get('reservationNo', '') == reservation_no)
+        reservation = next(reservation for reservation in self.request.session['pre_arrival'].get('bookings', []) if reservation.get('reservationNo', '') == reservation_no)
         self.request.session['pre_arrival'].update({'form': reservation})
         self.request.session.save()
 
@@ -364,7 +364,7 @@ class CheckInOtherInfoForm(forms.Form):
         data = self.request.session['pre_arrival']['form']
         response = samples.send_data(data) #gateways.post('/booking/submit_details', data)
         if response.get('status', '') == 'success':
-            self.request.session['pre_arrival'].update({'booking_details': response.get('data', [])})
+            self.request.session['pre_arrival'].update({'bookings': response.get('data', [])})
             self.request.session.save()
             self.request.session.set_expiry(settings.SESSION_COOKIE_AGE) # reset session expiry time
         else:

@@ -65,7 +65,7 @@ class CheckInReservationView(RequestInitializedMixin, SessionDataRequiredMixin, 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['reservations'] = []
-        for reservation in self.request.session['pre_arrival'].get('booking_details', []):
+        for reservation in self.request.session['pre_arrival'].get('bookings', []):
             reservation['formattedArrivalDate'] = format_display_date(reservation.get('arrivalDate', ''))
             reservation['formattedDepartureDate'] = format_display_date(reservation.get('departureDate', ''))
             context['reservations'].append(reservation)

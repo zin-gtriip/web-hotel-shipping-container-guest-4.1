@@ -17,13 +17,13 @@ class RequestInitializedMixin(object):
 class SessionDataRequiredMixin(object):
     """
     Generic form view mixin that verifies the user has `pre_arrival`
-    and `booking_details` in `request.session`.
+    and `bookings` in `request.session`.
 
     This mixin works similar like `LoginRequiredMixin` and must be put
     on every check-in page except login
     """
     def dispatch(self, request, *args, **kwargs):
-        if request.session.session_key and '/check_in' in request.path and request.session.get('pre_arrival', {}).get('booking_details', {}):
+        if request.session.session_key and '/check_in' in request.path and request.session.get('pre_arrival', {}).get('bookings', {}):
             return super(SessionDataRequiredMixin, self).dispatch(request, *args, **kwargs)
         return redirect('pre_arrival:index')
 
