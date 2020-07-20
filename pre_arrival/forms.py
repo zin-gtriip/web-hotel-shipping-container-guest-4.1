@@ -149,14 +149,15 @@ class CheckInPassportForm(forms.Form):
         return response
 
     def save_data(self):
+        main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', 0) == 1), {})
         if self.cleaned_data.get('skip_passport'):
-            self.request.session['pre_arrival']['form'].update({'passport_image': ''})
+            main_guest.update({'passportImage': ''})
         else:
             file_name = self.request.session.session_key +'.png'
             folder_name = os.path.join(settings.BASE_DIR, 'media', 'ocr')
             saved_file = os.path.join(folder_name, file_name)
-            self.request.session['pre_arrival']['form'].update({'passport_image': saved_file})
-            self.request.session['pre_arrival'].update({'ocr_details': self.gateway_ocr(saved_file)})
+            main_guest.update({'passportImage': saved_file})
+            self.request.session['pre_arrival'].update({'ocr': self.gateway_ocr(saved_file)})
             self.request.session.save()
 
 
@@ -187,10 +188,10 @@ class CheckInDetailForm(forms.Form):
         nationality = self.request.session.get('pre_arrival', {}).get('preload', {}).get('nationality', nationality)
         birth_date = self.request.session.get('pre_arrival', {}).get('preload', {}).get('birth_date', birth_date)
         # from `ocr`
-        first_name = self.request.session.get('pre_arrival', {}).get('ocr_details', {}).get('names', first_name)
-        passport_no = self.request.session.get('pre_arrival', {}).get('ocr_details', {}).get('number', passport_no)
-        nationality = Country(self.request.session.get('pre_arrival', {}).get('ocr_details', {}).get('nationality', '')).code or nationality
-        birth_date = utilities.parse_ocr_date(self.request.session.get('pre_arrival', {}).get('ocr_details', {}).get('date_of_birth', '')) or birth_date
+        first_name = self.request.session.get('pre_arrival', {}).get('ocr', {}).get('names', first_name)
+        passport_no = self.request.session.get('pre_arrival', {}).get('ocr', {}).get('number', passport_no)
+        nationality = Country(self.request.session.get('pre_arrival', {}).get('ocr', {}).get('nationality', '')).code or nationality
+        birth_date = utilities.parse_ocr_date(self.request.session.get('pre_arrival', {}).get('ocr', {}).get('date_of_birth', '')) or birth_date
 
         self.fields['guest_id'].initial = guest_id
         self.fields['first_name'].initial = first_name
