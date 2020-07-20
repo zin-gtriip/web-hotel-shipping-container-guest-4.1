@@ -63,7 +63,7 @@ class CheckInLoginForm(forms.Form):
     def save_data(self):
         data = self.gateway_post()
         self.request.session['check_in_details'] = {'booking_details': data.get('data', [])}
-        self.request.session.set_expiry(settings.CHECK_IN_SESSION_AGE)
+        self.request.session.set_expiry(settings.PRE_ARRIVAL_SESSION_AGE)
         if 'pre_arrival_preload' in self.request.session and 'auto_login' in self.request.session['pre_arrival_preload']:
             self.request.session['pre_arrival_preload']['auto_login'] = False # set auto login to False
 
