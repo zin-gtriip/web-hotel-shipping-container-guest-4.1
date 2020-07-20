@@ -26,9 +26,9 @@ class CheckInLoginForm(forms.Form):
         super(CheckInLoginForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
-        self.fields['reservation_no'].initial = request.session.get('pre_arrival', {}).get('preload', {}).get('reservation_no')
-        self.fields['arrival_date'].initial = request.session.get('pre_arrival', {}).get('preload', {}).get('arrival_date')
-        self.fields['last_name'].initial = request.session.get('pre_arrival', {}).get('preload', {}).get('last_name')
+        self.fields['reservation_no'].initial = self.request.session.get('pre_arrival', {}).get('preload', {}).get('reservation_no')
+        self.fields['arrival_date'].initial = self.request.session.get('pre_arrival', {}).get('preload', {}).get('arrival_date')
+        self.fields['last_name'].initial = self.request.session.get('pre_arrival', {}).get('preload', {}).get('last_name')
 
     def clean(self):
         super().clean()
@@ -61,10 +61,13 @@ class CheckInLoginForm(forms.Form):
     
     def save_data(self):
         data = self.gateway_post()
-        self.request.session['pre_arrival'] = {'booking_details': data.get('data', [])}
+        if not 'pre_arrival' in self.request.session:
+            self.request.session['pre_arrival'] = {}
+        self.request.session['pre_arrival'].update({'booking_details': data.get('data', [])})
         self.request.session.set_expiry(settings.PRE_ARRIVAL_SESSION_AGE)
         if 'preload' in self.request.session['pre_arrival'] and 'auto_login' in self.request.session['pre_arrival']['preload']:
             self.request.session['pre_arrival']['preload']['auto_login'] = False # set auto login to False
+        self.request.session.save()
 
 
 class CheckInReservationForm(forms.Form):
