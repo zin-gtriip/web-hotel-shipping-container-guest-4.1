@@ -1,5 +1,6 @@
 import datetime as dt
-from datetime import datetime
+from datetime       import datetime
+from django.utils   import timezone
 
 def calculate_age(date):
     """
@@ -7,7 +8,7 @@ def calculate_age(date):
     Passed date format needs to be `yyyy-mm-dd`
     """
     if not date or not isinstance(date, dt.date): return 0
-    today = datetime.today()
+    today = timezone.now()
     return today.year - date.year - ((today.month, today.day) < (date.month, date.day))
 
 
