@@ -57,7 +57,7 @@ class PreArrivalLoginForm(forms.Form):
             'arrival_date': self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d'),
             'last_name': self.cleaned_data.get('last_name'),
         }
-        return samples.get_data(data) #gateways.post('/testSample/checkBookingsPreArrival', data)
+        return gateways.post('/checkBookingsPreArrival', data)
     
     def save_data(self):
         data = self.gateway_post()
