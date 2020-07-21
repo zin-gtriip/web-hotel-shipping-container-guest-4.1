@@ -27,7 +27,7 @@ class SessionDataRequiredMixin(object):
     def dispatch(self, request, *args, **kwargs):
         if request.session.session_key and request.session.get('pre_arrival', {}).get('expiry_date', ''):
             try:
-                expiry_date = dt.strptime(request.session.get('pre_arrival', {}).get('expiry_date', ''), '%Y-%m-%d %H:%M:%S.%f%z')
+                expiry_date = dt.strptime(request.session.get['pre_arrival'].get('expiry_date', ''), '%Y-%m-%d %H:%M:%S.%f%z')
             except:
                 expiry_date = None
             if expiry_date and expiry_date >= timezone.now():
