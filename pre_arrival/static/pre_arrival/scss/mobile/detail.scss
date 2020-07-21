@@ -1,0 +1,30 @@
+.content {
+    .page-header {
+        width: 201px;
+    }
+    
+    .page-subheader {
+        width: 224px;
+        margin-bottom: 26px;
+    }
+    
+    .page-content {
+        margin-bottom: 35px;
+
+        .guest-index {
+            height: 24px;
+            margin: 15px 0 10px 0;
+        }
+    }
+    
+    .page-footer {
+        .btn {
+            width: 168px;
+            margin: 0;
+        }
+    }
+}
+
+.datepicker.datepicker-dropdown {
+    display: none !important;
+}

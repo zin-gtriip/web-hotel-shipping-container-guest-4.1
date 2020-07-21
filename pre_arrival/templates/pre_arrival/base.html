@@ -1,0 +1,19 @@
+{% extends 'guest_base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_name %}{{ HOTEL_NAME }} - {% trans 'Pre Arrival' %}{% endblock page_name %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'pre_arrival/scss/base.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block data_js %}
+{{ PRE_ARRIVAL_EXPIRY_DATE|json_script:'pre-arrival-expiry-date' }}
+{% endblock data_js %}
+
+{% block static_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'pre_arrival/js/base.js' %}"></script>
+{% endblock static_js %}

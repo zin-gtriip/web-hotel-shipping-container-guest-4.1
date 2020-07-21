@@ -1,0 +1,97 @@
+{% extends 'pre_arrival/desktop/base_desktop.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'pre_arrival/scss/desktop/reservation.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block timer %}
+    <div class="timer-text text-secondary">
+        <span class="timer-tick"></span>
+    </div>
+{% endblock timer %}
+
+{% block content %}
+    {{ block.super }}
+    <form method="post">
+        {% csrf_token %}
+        <div class="row page-header">
+            <div class="col-12 px-0 text-center">
+                {% trans 'Please select your room to Check-In' %}
+            </div>
+        </div>
+        <div class="row page-subheader">
+            <div class="col-12 px-0 text-center text-secondary">
+                {% trans "We've found the following room(s) under your reservation." %}
+            </div>
+        </div>
+        <div class="row page-content">
+            <div class="col-12 px-0">
+                {% for reservation in reservations %}
+                    <div class="reservation-container" id="reservation-container-{{ forloop.counter0 }}">
+                        <div class="reservation-overlay"></div>
+                        <label class="label-reservation" style="background-image: url('/static/pre_arrival/img/{{ reservation.roomType }}.jpg');">
+                            <div class="reservation-details">
+                                <div class="room-type text-12 text-white text-capitalize">{{ reservation.roomType }}</div>
+                                <div class="reservation-checkbox">
+                                    <span class="reservation-checkbox-icon"></span>
+                                </div>
+                            </div>
+                            <input type="radio" name="reservation_no" value="{{ reservation.reservationNo }}" id="id_reservation_no_{{ forloop.counter0 }}" required hidden>
+                        </label>
+                        <div class="reservation-date bg-dark text-white">
+                            <div class="text-left">
+                                <div class="text-10">{% trans 'Check-in Date' %}</div>
+                                <div class="text-primary">{{ reservation.formattedArrivalDate }}</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-10">{% trans 'Check-out Date' %}</div>
+                                <div class="text-primary">{{ reservation.formattedDepartureDate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row page-footer">
+            <div class="col-12 d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary btn-round m-0" id="btn-step-next" disabled>{% trans 'Next' %}</button>
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+
+{% block wrapper %}
+    {{ block.super }}
+    <!-- Error Modal -->
+    {% for error in form.non_field_errors %}
+        <div class="modal fade" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h4 class="modal-title mx-auto">{% trans 'Invalid Input' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ error|linebreaks }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'Close' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock wrapper %}
+
+{% block data_js %}
+    {{ block.super }}
+    {{ request.session.pre_arrival.form.reservation|json_script:'reservation' }}
+{% endblock data_js %}
+
+{% block static_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'pre_arrival/js/desktop/reservation.js' %}"></script>
+{% endblock static_js %}

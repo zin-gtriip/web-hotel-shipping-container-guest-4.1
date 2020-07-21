@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django_cron',
     'django_countries',
     'django_user_agents',
-    'guest_app',
+    'guest_base.apps.GuestBaseConfig',
+    'pre_arrival.apps.PreArrivalConfig',
+    # 'guest_app',
 ]
 
 MIDDLEWARE = [
@@ -70,8 +72,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'guest_app.context_processors.hotel_conf',
-                'guest_app.context_processors.session',
+                'guest_base.context_processors.hotel_conf',
+                'pre_arrival.context_processors.session',
             ],
         },
     },
@@ -113,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -138,7 +140,8 @@ LANGUAGES = [
 # https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-LOCALE_PATHS
 
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'guest_app', 'locale'),
+    os.path.join(BASE_DIR, 'pre_arrival', 'locale'),
+    os.path.join(BASE_DIR, 'guest_base', 'locale'),
 ]
 
 
@@ -197,7 +200,7 @@ GATEWAY_API_KEY     = '9a051acd7c9946dfbc7aa21139572824'
 
 CLEAR_SESSION_CRON_JOB_RUN_TIME = '00:00'
 CRON_CLASSES = [
-    "guest_app.cron_jobs.ClearSessionCronJob",
+    "pre_arrival.cron_jobs.ClearSessionCronJob",
 ]
 
 
@@ -205,8 +208,8 @@ CRON_CLASSES = [
 
 # page title on every page
 HOTEL_NAME                  = 'GTRIIP'
-# expiration time for the check in (in seconds)
-CHECK_IN_SESSION_AGE        = 60 * 15
+# expiration time for the pre-arrival (in minutes)
+PRE_ARRIVAL_AGE             = 15
 # age limit of ocr validation
 PASSPORT_AGE_LIMIT          = 18
 # age limit of detail form that should count as adult or child
