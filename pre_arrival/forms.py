@@ -64,7 +64,7 @@ class PreArrivalLoginForm(forms.Form):
         if not 'pre_arrival' in self.request.session:
             self.request.session['pre_arrival'] = {}
         expiry_date = (timezone.now() + datetime.timedelta(minutes=settings.PRE_ARRIVAL_AGE)).strftime('%Y-%m-%d %H:%M:%S.%f%z')
-        self.request.session['pre_arrival'].update({'bookings': data.get('data', []), 'expiry_date': expiry_date})
+        self.request.session['pre_arrival'].update({'bookings': data.get('data', []), 'expiry_date': expiry_date, 'input_reservation_no': self.cleaned_data.get('reservation_no')})
         if 'preload' in self.request.session['pre_arrival'] and 'auto_login' in self.request.session['pre_arrival']['preload']:
             self.request.session['pre_arrival']['preload']['auto_login'] = False # set auto login to False
         self.request.session.save()
@@ -365,6 +365,7 @@ class PreArrivalOtherInfoForm(forms.Form):
 
     def gateway_post(self):
         data = self.request.session['pre_arrival']['form']
+        data['customerInputNumber'] = self.request.session['pre_arrival'].get('input_reservation_no', '')
         response = samples.send_data(data) #gateways.post('/booking/submit_details', data)
         if response.get('status', '') == 'success':
             self.request.session['pre_arrival'].update({'bookings': response.get('data', [])})
