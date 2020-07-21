@@ -6,7 +6,7 @@ from django.utils.translation   import gettext, gettext_lazy as _
 from django_countries.fields    import Country, CountryField
 from .                          import gateways, utilities, samples
 
-class CheckInLoginForm(forms.Form):
+class PreArrivalLoginForm(forms.Form):
     reservation_no  = forms.CharField(label=_('Reservation Number'))
     arrival_date    = forms.DateField(label=_('Arrival Date'))
     last_name       = forms.CharField(label=_('Last Name'))
@@ -23,7 +23,7 @@ class CheckInLoginForm(forms.Form):
     }
 
     def __init__(self, request, *args, **kwargs):
-        super(CheckInLoginForm, self).__init__(*args, **kwargs)
+        super(PreArrivalLoginForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
         self.fields['reservation_no'].initial = self.request.session.get('pre_arrival', {}).get('preload', {}).get('reservation_no')
@@ -70,11 +70,11 @@ class CheckInLoginForm(forms.Form):
         self.request.session.save()
 
 
-class CheckInReservationForm(forms.Form):
+class PreArrivalReservationForm(forms.Form):
     reservation_no = forms.ChoiceField(widget=forms.RadioSelect())
 
     def __init__(self, request, *args, **kwargs):
-        super(CheckInReservationForm, self).__init__(*args, **kwargs)
+        super(PreArrivalReservationForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
         self.fields['reservation_no'].choices = [(reservation.get('reservationNo', ''), reservation.get('reservationNo', '')) for reservation in self.request.session['pre_arrival'].get('bookings', [])]
@@ -94,12 +94,12 @@ class CheckInReservationForm(forms.Form):
         self.request.session.save()
 
 
-class CheckInPassportForm(forms.Form):
+class PreArrivalPassportForm(forms.Form):
     passport_file = forms.CharField(widget=forms.HiddenInput(), required=False)
     skip_passport = forms.BooleanField(widget=forms.HiddenInput(), required=False)
     
     def __init__(self, request, *args, **kwargs):
-        super(CheckInPassportForm, self).__init__(*args, **kwargs)
+        super(PreArrivalPassportForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
 
@@ -161,7 +161,7 @@ class CheckInPassportForm(forms.Form):
             self.request.session.save()
 
 
-class CheckInDetailForm(forms.Form):
+class PreArrivalDetailForm(forms.Form):
     guest_id    = forms.CharField(widget=forms.HiddenInput())
     first_name  = forms.CharField(label=_('First Name'))
     last_name   = forms.CharField(label=_('Last Name'))
@@ -170,7 +170,7 @@ class CheckInDetailForm(forms.Form):
     birth_date  = forms.DateField(label=_('Date of Birth'))
 
     def __init__(self, request, *args, **kwargs):
-        super(CheckInDetailForm, self).__init__(*args, **kwargs)
+        super(PreArrivalDetailForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
 
@@ -252,7 +252,7 @@ class CheckInDetailForm(forms.Form):
         self.request.session.save()
 
 
-class CheckInDetailExtraForm(forms.Form):
+class PreArrivalDetailExtraForm(forms.Form):
     guest_id = forms.CharField(widget=forms.HiddenInput())
     first_name = forms.CharField(label=_('First Name'))
     last_name = forms.CharField(label=_('Last Name'))
@@ -261,7 +261,7 @@ class CheckInDetailExtraForm(forms.Form):
     birth_date = forms.DateField(label=_('Date of Birth'))
 
     def __init__(self, request, *args, **kwargs):
-        super(CheckInDetailExtraForm, self).__init__(*args, **kwargs)
+        super(PreArrivalDetailExtraForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
 
@@ -285,10 +285,10 @@ class CheckInDetailExtraForm(forms.Form):
             self._errors['birth_date'] = self.error_class([_('Enter the required information')])
         return self.cleaned_data
 
-class CheckInDetailExtraBaseFormSet(forms.BaseFormSet):
+class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
     
     def __init__(self, request, *args, **kwargs):
-        super(CheckInDetailExtraBaseFormSet, self).__init__(*args, **kwargs)
+        super(PreArrivalDetailExtraBaseFormSet, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
         additional_guests = [guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', 0) == 0]
@@ -317,14 +317,14 @@ class CheckInDetailExtraBaseFormSet(forms.BaseFormSet):
             self._non_form_errors = self.error_class([_('You have exceeded the number of adults.')])
     
 
-class CheckInOtherInfoForm(forms.Form):
+class PreArrivalOtherInfoForm(forms.Form):
     arrival_time        = forms.ChoiceField(label=_('Time of Arrival'))
     special_requests    = forms.CharField(label=_('Special Requests'), required=False)
     email               = forms.EmailField(label=_('Email'))
     is_subscribe        = forms.BooleanField(label=_('Is Subscribe'), required=False)
 
     def __init__(self, request, *args, **kwargs):
-        super(CheckInOtherInfoForm, self).__init__(*args, **kwargs)
+        super(PreArrivalOtherInfoForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
         self.fields['arrival_time'].choices = utilities.generate_arrival_time()

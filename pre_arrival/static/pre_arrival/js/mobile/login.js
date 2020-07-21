@@ -1,6 +1,6 @@
 $('.datepicker').datepicker();
 $('#id_arrival_date:not(.is_bound)').datepicker('update', new Date());
-try { nextPage.postMessage('/check_in/login/reservation_no'); } catch(error) {} // send message to app
+try { nextPage.postMessage('/pre_arrival/login/reservation_no'); } catch(error) {} // send message to app
 var loginStep = 0;
 
 
@@ -35,10 +35,10 @@ $('#btn-step-next').click(function() {
 	loginStep += 1;
 	switch(loginStep) {
 		case 1:
-			try { nextPage.postMessage('/check_in/login/last_name'); } catch(error) {}
+			try { nextPage.postMessage('/pre_arrival/login/last_name'); } catch(error) {}
 			break;
 		case 2:
-			try { nextPage.postMessage('/check_in/login/arrival_date'); } catch(error) {}
+			try { nextPage.postMessage('/pre_arrival/login/arrival_date'); } catch(error) {}
 			break;
 	}
 

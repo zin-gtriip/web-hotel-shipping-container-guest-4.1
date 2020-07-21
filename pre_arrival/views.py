@@ -9,11 +9,11 @@ from .mixins                    import *
 from .utilities                 import *
 
 class IndexView(GuestBaseViews.IndexView):
-    pattern_name = 'pre_arrival:check-in-login'
+    pattern_name = 'pre_arrival:pre-arrival-login'
 
 
-class CheckInDataView(RequestInitializedMixin, RedirectView):
-    pattern_name = 'pre_arrival:check-in-login'
+class PreArrivalDataView(RequestInitializedMixin, RedirectView):
+    pattern_name = 'pre_arrival:pre-arrival-login'
 
     def get_redirect_url(self, *args, **kwargs):
         self.request.session['pre_arrival'] = {'preload': {}}
@@ -31,10 +31,10 @@ class CheckInDataView(RequestInitializedMixin, RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
-class CheckInLoginView(RequestInitializedMixin, MobileTemplateMixin, FormView):
+class PreArrivalLoginView(RequestInitializedMixin, MobileTemplateMixin, FormView):
     template_name           = 'pre_arrival/desktop/login.html'
-    form_class              = CheckInLoginForm
-    success_url             = '/check_in/reservation'
+    form_class              = PreArrivalLoginForm
+    success_url             = '/pre_arrival/reservation'
     mobile_template_name    = 'pre_arrival/mobile/login.html'
 
     def dispatch(self, request, *args, **kwargs):
@@ -57,10 +57,10 @@ class CheckInLoginView(RequestInitializedMixin, MobileTemplateMixin, FormView):
         return super().form_valid(form)
 
 
-class CheckInReservationView(RequestInitializedMixin, SessionDataRequiredMixin, FormView):
+class PreArrivalReservationView(RequestInitializedMixin, SessionDataRequiredMixin, FormView):
     template_name           = 'pre_arrival/desktop/reservation.html'
-    form_class              = CheckInReservationForm
-    success_url             = '/check_in/passport'
+    form_class              = PreArrivalReservationForm
+    success_url             = '/pre_arrival/passport'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -76,10 +76,10 @@ class CheckInReservationView(RequestInitializedMixin, SessionDataRequiredMixin, 
         return super().form_valid(form)
 
 
-class CheckInPassportView(RequestInitializedMixin, SessionDataRequiredMixin, MobileTemplateMixin, FormView):
+class PreArrivalPassportView(RequestInitializedMixin, SessionDataRequiredMixin, MobileTemplateMixin, FormView):
     template_name           = 'pre_arrival/desktop/passport.html'
-    form_class              = CheckInPassportForm
-    success_url             = '/check_in/detail'
+    form_class              = PreArrivalPassportForm
+    success_url             = '/pre_arrival/detail'
     mobile_template_name    = 'pre_arrival/mobile/passport.html'
 
     def dispatch(self, request, *args, **kwargs):
@@ -100,10 +100,10 @@ class CheckInPassportView(RequestInitializedMixin, SessionDataRequiredMixin, Mob
         return super().form_valid(form)
 
 
-class CheckInDetailView(RequestInitializedMixin, SessionDataRequiredMixin, MobileTemplateMixin, FormView):
+class PreArrivalDetailView(RequestInitializedMixin, SessionDataRequiredMixin, MobileTemplateMixin, FormView):
     template_name           = 'pre_arrival/desktop/detail.html'
-    form_class              = CheckInDetailForm
-    success_url             = '/check_in/other_info'
+    form_class              = PreArrivalDetailForm
+    success_url             = '/pre_arrival/other_info'
     mobile_template_name    = 'pre_arrival/mobile/detail.html'
 
     def get_context_data(self, **kwargs):
@@ -116,11 +116,11 @@ class CheckInDetailView(RequestInitializedMixin, SessionDataRequiredMixin, Mobil
         context['max_extra_form'] = int(self.request.session['pre_arrival']['form'].get('adults', 1)) + int(self.request.session['pre_arrival']['form'].get('children', 0)) - 1
         # render extra form formset
         additional_guests = [guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', 0) == 0]
-        CheckInDetailExtraFormSet = forms.formset_factory(CheckInDetailExtraForm, formset=CheckInDetailExtraBaseFormSet, extra=len(additional_guests)) # extra based on `additional_guests` length
+        PreArrivalDetailExtraFormSet = forms.formset_factory(PreArrivalDetailExtraForm, formset=PreArrivalDetailExtraBaseFormSet, extra=len(additional_guests)) # extra based on `additional_guests` length
         if self.request.POST:
-            context['extra'] = CheckInDetailExtraFormSet(self.request, self.request.POST)
+            context['extra'] = PreArrivalDetailExtraFormSet(self.request, self.request.POST)
         else:
-            context['extra'] = CheckInDetailExtraFormSet(self.request)
+            context['extra'] = PreArrivalDetailExtraFormSet(self.request)
         return context
 
     def post(self, request, *args, **kwargs):
@@ -136,10 +136,10 @@ class CheckInDetailView(RequestInitializedMixin, SessionDataRequiredMixin, Mobil
         return super().form_valid(form)
 
 
-class CheckInOtherInfoView(RequestInitializedMixin, SessionDataRequiredMixin, FormView):
+class PreArrivalOtherInfoView(RequestInitializedMixin, SessionDataRequiredMixin, FormView):
     template_name           = 'pre_arrival/desktop/other_info.html'
-    form_class              = CheckInOtherInfoForm
-    success_url             = '/check_in/complete'
+    form_class              = PreArrivalOtherInfoForm
+    success_url             = '/pre_arrival/complete'
     
     def form_valid(self, form):
         form.save_data()
@@ -149,7 +149,7 @@ class CheckInOtherInfoView(RequestInitializedMixin, SessionDataRequiredMixin, Fo
         return super().form_valid(form)
 
 
-class CheckInCompleteView(RequestInitializedMixin, SessionDataRequiredMixin, TemplateView):
+class PreArrivalCompleteView(RequestInitializedMixin, SessionDataRequiredMixin, TemplateView):
     template_name           = 'pre_arrival/desktop/complete.html'
 
     def get_context_data(self, **kwargs):

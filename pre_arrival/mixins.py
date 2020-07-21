@@ -22,7 +22,7 @@ class SessionDataRequiredMixin(object):
     is not expired.
 
     This mixin works similar like `LoginRequiredMixin` and must be put on 
-    every check-in page except login
+    every pre-arrival page except login
     """
     def dispatch(self, request, *args, **kwargs):
         if request.session.session_key and request.session.get('pre_arrival', {}).get('expiry_date', ''):

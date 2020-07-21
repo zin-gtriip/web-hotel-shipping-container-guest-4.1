@@ -208,7 +208,7 @@ CRON_CLASSES = [
 
 # page title on every page
 HOTEL_NAME                  = 'GTRIIP'
-# expiration time for the check in (in minutes)
+# expiration time for the pre-arrival (in minutes)
 PRE_ARRIVAL_AGE             = 15
 # age limit of ocr validation
 PASSPORT_AGE_LIMIT          = 18
