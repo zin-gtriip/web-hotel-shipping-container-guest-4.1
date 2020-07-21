@@ -149,7 +149,7 @@ class PreArrivalPassportForm(forms.Form):
         return response
 
     def save_data(self):
-        main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', 0) == 1), {})
+        main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
         if self.cleaned_data.get('skip_passport'):
             main_guest.update({'passportImage': ''})
         else:
@@ -175,7 +175,7 @@ class PreArrivalDetailForm(forms.Form):
         self.label_suffix = ''
 
         # from backend
-        main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', 0) == 1), {})
+        main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
         guest_id = main_guest.get('guestID', 0)
         first_name = main_guest.get('firstName', '')
         last_name = main_guest.get('lastName', '')
@@ -291,7 +291,7 @@ class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
         super(PreArrivalDetailExtraBaseFormSet, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
-        additional_guests = [guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', 0) == 0]
+        additional_guests = [guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '0']
         for form, guest in zip(self.forms, additional_guests): # forms length based on `extra` declared on `forms.formset_factory()` in `views.py`
             form.initial = {
                 'guest_id': guest.get('guestID', ''),
@@ -329,7 +329,7 @@ class PreArrivalOtherInfoForm(forms.Form):
         self.label_suffix = ''
         self.fields['arrival_time'].choices = utilities.generate_arrival_time()
         self.fields['arrival_time'].initial = utilities.parse_arrival_time(self.request.session['pre_arrival']['form'].get('eta', ''))
-        main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', 0) == 1), {})
+        main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
         self.fields['email'].initial = main_guest.get('email', '')
 
     def clean(self):
@@ -350,7 +350,7 @@ class PreArrivalOtherInfoForm(forms.Form):
         email = self.cleaned_data.get('email')
         is_subscribe = self.cleaned_data.get('is_subscribe')
 
-        main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', 0) == 1), {})
+        main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
         main_guest.update({
             'email': email,
         })
