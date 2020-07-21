@@ -54,7 +54,7 @@
                     </div>
                     <div class="language">
                         <div class="container">
-                            {% if not request.session.check_in_data.app %}
+                            {% block language %}
                                 <form id="form-set-language" action="{% url 'set_language' %}" method="post">
                                     {% csrf_token %}
                                     <input name="next" type="hidden" value="{{ redirect_to }}">
@@ -67,7 +67,7 @@
                                         {% endfor %}
                                     </select>
                                 </form>
-                            {% endif %}
+                            {% endblock language %}
                         </div>
                     </div>
                 </div>
