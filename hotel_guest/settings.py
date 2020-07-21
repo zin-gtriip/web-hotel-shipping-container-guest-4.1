@@ -187,7 +187,7 @@ COMPRESS_PRECOMPILERS = (
 
 # Gateway API configuration
 
-GATEWAY_API_HOST    = 'http://175.41.166.197:8080'
+GATEWAY_API_HOST    = 'http://175.41.166.197:8080/hotelTemplate'
 GATEWAY_API_KEY     = '9a051acd7c9946dfbc7aa21139572824'
 # GATEWAY_API_HASH    = '6C209DED142B90DA15A65F129CFCB281108A9D4373E04C19C03719C3E5F1DB0EB538C'
 # GATEWAY_HOTEL_ID    = '13B76FAC767FAD58C03891014D8C2DF7B044D84DFDC870F76E80D577271E381D1FF5AD189FA3E37AD886BE2FD11027A8F263AFEFA999B97535CA4CC6615C5D6B'
@@ -210,11 +210,24 @@ CRON_CLASSES = [
 HOTEL_NAME                  = 'GTRIIP'
 # expiration time for the pre-arrival (in minutes)
 PRE_ARRIVAL_AGE             = 15
+# default django variable for date format
+DATE_INPUT_FORMATS          = ['%Y-%m-%d']
+# room mapping, use `room_type` as identifier
+ROOM_TYPES = [
+    {
+        'room_type' : 'Premier',
+        'room_name' : 'Premier Room',
+        'room_image': 'premier.jpg',
+    },
+    {
+        'room_type' : 'Deluxe',
+        'room_name' : 'Deluxe Room',
+        'room_image': 'deluxe.jpg',
+    },
+]
 # age limit of ocr validation
 PASSPORT_AGE_LIMIT          = 18
 # age limit of detail form that should count as adult or child
 DETAIL_FORM_AGE_LIMIT       = 13
-# default django variable for date format
-DATE_INPUT_FORMATS          = ['%Y-%m-%d']
 # timedelta for deleting expired session and ocr image (in days)
 EXPIRED_SESSION_TIMEDELTA   = 30

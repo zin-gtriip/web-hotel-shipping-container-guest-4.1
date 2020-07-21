@@ -10,5 +10,9 @@
     .page-content {
         height: 377px;
         overflow-y: auto;
+
+        .reservation-container:hover {
+            cursor: pointer;
+        }
     }
 }
