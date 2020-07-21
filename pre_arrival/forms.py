@@ -1,7 +1,7 @@
-import os
-import base64
+import os, base64, datetime
 from django                     import forms
 from django.conf                import settings
+from django.utils               import timezone
 from django.utils.translation   import gettext, gettext_lazy as _
 from django_countries.fields    import Country, CountryField
 from .                          import gateways, utilities, samples
@@ -63,8 +63,8 @@ class CheckInLoginForm(forms.Form):
         data = self.gateway_post()
         if not 'pre_arrival' in self.request.session:
             self.request.session['pre_arrival'] = {}
-        self.request.session['pre_arrival'].update({'bookings': data.get('data', [])})
-        self.request.session.set_expiry(settings.PRE_ARRIVAL_SESSION_AGE)
+        expiry_date = (timezone.now() + datetime.timedelta(minutes=settings.PRE_ARRIVAL_AGE)).strftime('%Y-%m-%d %H:%M:%S.%f%z')
+        self.request.session['pre_arrival'].update({'bookings': data.get('data', []), 'expiry_date': expiry_date})
         if 'preload' in self.request.session['pre_arrival'] and 'auto_login' in self.request.session['pre_arrival']['preload']:
             self.request.session['pre_arrival']['preload']['auto_login'] = False # set auto login to False
         self.request.session.save()

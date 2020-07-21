@@ -10,7 +10,7 @@
 {% endblock static_css %}
 
 {% block data_js %}
-{{ SESSION_EXPIRY_DATE|json_script:'session-expiry-date' }}
+{{ PRE_ARRIVAL_EXPIRY_DATE|json_script:'pre-arrival-expiry-date' }}
 {% endblock data_js %}
 
 {% block static_js %}

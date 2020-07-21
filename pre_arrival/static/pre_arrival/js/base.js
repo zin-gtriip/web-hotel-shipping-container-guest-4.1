@@ -1,5 +1,5 @@
 // Set time we're counting down to
-var expiryDate = new Date(JSON.parse($('#session-expiry-date').text()));
+var expiryDate = new Date(JSON.parse($('#pre-arrival-expiry-date').text()));
 // Update the count down every 1 second
 var interval = setInterval(function() {
     // Get time now
@@ -18,9 +18,9 @@ var interval = setInterval(function() {
     // Output the result in an element
     $('.timer-tick').text(minutes + ":" + seconds);
     // If the count down is over
-    if (distance <= 0) {
+    if ($('.timer-tick').length > 0 && distance <= 0) {
         alert('Your session is expired');
         clearInterval(interval);
-        window.location.href = '/check_in/login'; // go to login page
+        window.location.href = '/';
     }
 }, 1000);

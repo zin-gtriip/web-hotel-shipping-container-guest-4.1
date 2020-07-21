@@ -1,5 +1,4 @@
-import os
-import datetime
+import os, datetime
 from django_cron                    import CronJobBase, Schedule
 from django.conf                    import settings
 from django.contrib.sessions.models import Session
@@ -11,7 +10,7 @@ class ClearSessionCronJob(CronJobBase):
 
     The timedelta 30 days is to prevent `preload` session is being
     cleared along with `pre_arrival` session which is expired within
-    `settings.PRE_ARRIVAL_SESSION_AGE` time.
+    `settings.PRE_ARRIVAL_AGE` time.
     
     This job also will clear saved passport image file that saved using
     `session_key` as file name.

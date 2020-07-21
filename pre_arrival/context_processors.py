@@ -10,9 +10,6 @@ https://stackoverflow.com/a/433209
 from django.contrib.sessions.models import Session
 
 def session(request):
-    """Returns session expiry date"""
-    expire_date = ''
-    if request.session.session_key:
-        session = Session.objects.get(session_key=request.session.session_key)
-        expire_date = session.expire_date
-    return {'SESSION_EXPIRY_DATE': expire_date}
+    """Returns pre-arrival expiry date"""
+    expire_date = request.session.get('pre_arrival', {}).get('expiry_date', '')
+    return {'PRE_ARRIVAL_EXPIRY_DATE': expire_date}

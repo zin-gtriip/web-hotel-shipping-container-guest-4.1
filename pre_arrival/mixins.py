@@ -1,4 +1,6 @@
-from django.shortcuts		    import render, redirect
+from datetime           import datetime as dt
+from django.shortcuts   import redirect
+from django.utils       import timezone
 
 class RequestInitializedMixin(object):
     """
@@ -16,15 +18,20 @@ class RequestInitializedMixin(object):
 
 class SessionDataRequiredMixin(object):
     """
-    Generic form view mixin that verifies the user has `pre_arrival` and 
-    `bookings` in `request.session`.
+    Generic form view mixin that verifies the user has `pre_arrival`, `expiry_date`
+    is not expired.
 
     This mixin works similar like `LoginRequiredMixin` and must be put on 
     every check-in page except login
     """
     def dispatch(self, request, *args, **kwargs):
-        if request.session.session_key and '/check_in' in request.path and request.session.get('pre_arrival', {}).get('bookings', {}):
-            return super(SessionDataRequiredMixin, self).dispatch(request, *args, **kwargs)
+        if request.session.session_key and request.session.get('pre_arrival', {}).get('expiry_date', ''):
+            try:
+                expiry_date = dt.strptime(request.session.get('pre_arrival', {}).get('expiry_date', ''), '%Y-%m-%d %H:%M:%S.%f%z')
+            except:
+                expiry_date = None
+            if expiry_date and expiry_date >= timezone.now():
+                return super(SessionDataRequiredMixin, self).dispatch(request, *args, **kwargs)
         return redirect('pre_arrival:index')
 
 
