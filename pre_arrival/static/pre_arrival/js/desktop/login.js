@@ -1,5 +1,7 @@
 $('.datepicker').datepicker();
-$('#id_arrival_date:not(.is_bound)').datepicker('update', new Date());
+if ($('#id_arrival_date').val() == '') {
+    $('#id_arrival_date:not(.is_bound)').datepicker('update', new Date());
+}
 
 
 $('#id_reservation_no, #id_last_name, #id_arrival_date').keyup(function() {

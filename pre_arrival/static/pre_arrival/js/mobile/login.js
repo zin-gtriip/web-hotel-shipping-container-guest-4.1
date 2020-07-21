@@ -1,6 +1,11 @@
 $('.datepicker').datepicker();
-$('#id_arrival_date:not(.is_bound)').datepicker('update', new Date());
-try { nextPage.postMessage('/pre_arrival/login/reservation_no'); } catch(error) {} // send message to app
+if ($('#id_arrival_date').val() == '') {
+	$('#id_arrival_date:not(.is_bound)').datepicker('update', new Date());
+}
+
+
+// send message to app
+try { nextPage.postMessage('/pre_arrival/login/reservation_no'); } catch(error) {}
 var loginStep = 0;
 
 
@@ -12,7 +17,7 @@ $('#id_reservation_no, #id_last_name, #id_arrival_date').keyup(function() {
 		$('#btn-step-next').attr('disabled', true);
 	}
 });
-$('#id_reservation_no, #id_last_name').keyup();
+$('#id_reservation_no').keyup();
 
 
 $('#id_arrival_date').datepicker().on('changeDate', function() {
