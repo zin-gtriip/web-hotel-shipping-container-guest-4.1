@@ -48,7 +48,7 @@ class PreArrivalLoginForm(forms.Form):
         response = self.gateway_post()
         if response.get('overall_status', '') != self.SUCCESS_CODE:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([self.ERROR_MESSAGES.get(response.get('overall_status', 0), _('Unknown error'))])
-
+        
         return self.cleaned_data
 
     def gateway_post(self):
@@ -329,8 +329,10 @@ class PreArrivalOtherInfoForm(forms.Form):
         self.label_suffix = ''
         self.fields['arrival_time'].choices = utilities.generate_arrival_time()
         self.fields['arrival_time'].initial = utilities.parse_arrival_time(self.request.session['pre_arrival']['form'].get('eta', ''))
+        self.fields['special_requests'].initial = self.request.session['pre_arrival']['form'].get('comments', '')
         main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
         self.fields['email'].initial = main_guest.get('email', '')
+        self.fields['is_subscribe'].initial = main_guest.get('emailSubscription', '')
 
     def clean(self):
         super().clean()
@@ -353,11 +355,11 @@ class PreArrivalOtherInfoForm(forms.Form):
         main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
         main_guest.update({
             'email': email,
+            'emailSubscription': is_subscribe,
         })
         self.request.session['pre_arrival']['form'].update({
             'eta': arrival_time + ':00',
-            'specialRequests': special_requests,
-            'isSubscribe': is_subscribe,
+            'comments': special_requests,
         })
         self.request.session.save()
 

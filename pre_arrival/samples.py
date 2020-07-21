@@ -25,7 +25,7 @@ pre_arrival_get_data = {
                     "dob": "1980-12-31",
                     "email": "columbus@a.com",
                     "emailSubscription": "1",
-                    "isMainGuest": '1'
+                    "isMainGuest": "1"
                 },
                 {
                     "guestID": "2",
@@ -37,7 +37,7 @@ pre_arrival_get_data = {
                     "dob": "1986-07-05",
                     "email": "jacquelin@a.com",
                     "emailSubscription": "0",
-                    "isMainGuest": '0'
+                    "isMainGuest": "0"
                 }
             ],
             "roomNo": "736",
@@ -71,7 +71,7 @@ pre_arrival_get_data = {
                     "dob": "2010-12-02",
                     "email": "-",
                     "emailSubscription": "0",
-                    "isMainGuest": '0'
+                    "isMainGuest": "0"
                 },
                 {
                     "guestID": "6",
@@ -83,7 +83,7 @@ pre_arrival_get_data = {
                     "dob": "2000-07-04",
                     "email": "alexleo@a.com",
                     "emailSubscription": "0",
-                    "isMainGuest": '1'
+                    "isMainGuest": "1"
                 },
                 {
                     "guestID": "7",
@@ -95,7 +95,7 @@ pre_arrival_get_data = {
                     "dob": "2002-03-05",
                     "email": "janeleo@a.com",
                     "emailSubscription": "0",
-                    "isMainGuest": '0'
+                    "isMainGuest": "0"
                 }
             ],
             "roomNo": "737",
