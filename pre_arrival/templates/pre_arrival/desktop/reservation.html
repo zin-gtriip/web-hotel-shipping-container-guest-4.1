@@ -33,7 +33,7 @@
                 {% for reservation in reservations %}
                     <div class="reservation-container" id="reservation-container-{{ forloop.counter0 }}">
                         <div class="reservation-overlay"></div>
-                        <label class="label-reservation" style="background-image: url('/static/pre_arrival/img/{{ reservation.roomImage }}');">
+                        <label class="label-reservation" style="background-image: url('/static/img/{{ reservation.roomImage }}');">
                             <div class="reservation-details">
                                 <div class="room-type text-12 text-white text-capitalize">{{ reservation.roomName }}</div>
                                 <div class="reservation-checkbox">
