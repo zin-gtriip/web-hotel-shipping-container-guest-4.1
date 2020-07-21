@@ -355,7 +355,7 @@ class PreArrivalOtherInfoForm(forms.Form):
         main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
         main_guest.update({
             'email': email,
-            'emailSubscription': is_subscribe,
+            'emailSubscription': is_subscribe and '1' or '0',
         })
         self.request.session['pre_arrival']['form'].update({
             'eta': arrival_time + ':00',
