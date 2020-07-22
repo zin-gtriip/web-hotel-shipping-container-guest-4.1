@@ -234,5 +234,3 @@ ROOM_TYPES = [
 PASSPORT_AGE_LIMIT          = 18
 # age limit of detail form that should count as adult or child
 DETAIL_FORM_AGE_LIMIT       = 13
-# timedelta for deleting expired session and ocr image (in days)
-EXPIRED_SESSION_TIMEDELTA   = 30
