@@ -86,7 +86,7 @@ class PreArrivalPassportView(RequestInitializedMixin, SessionDataRequiredMixin, 
     mobile_template_name    = 'pre_arrival/mobile/passport.html'
 
     def dispatch(self, request, *args, **kwargs):
-        if request.session['pre_arrival'].get('preload', {}).get('skip_ocr', False):
+        if request.session.get('pre_arrival', {}).get('preload', {}).get('skip_ocr', False):
             data = {
                 'skip_passport': True
             }
