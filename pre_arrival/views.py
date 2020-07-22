@@ -1,4 +1,3 @@
-from django                     import forms
 from django.shortcuts           import render
 from django.views.generic       import *
 from django.utils               import translation
@@ -118,8 +117,6 @@ class PreArrivalDetailView(RequestInitializedMixin, SessionDataRequiredMixin, Mo
         # max extra form
         context['max_extra_form'] = int(self.request.session['pre_arrival']['form'].get('adults', 1)) + int(self.request.session['pre_arrival']['form'].get('children', 0)) - 1
         # render extra form formset
-        additional_guests = [guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '0']
-        PreArrivalDetailExtraFormSet = forms.formset_factory(PreArrivalDetailExtraForm, formset=PreArrivalDetailExtraBaseFormSet, extra=len(additional_guests)) # extra based on `additional_guests` length
         if self.request.POST:
             context['extra'] = PreArrivalDetailExtraFormSet(self.request, self.request.POST)
         else:

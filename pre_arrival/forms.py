@@ -292,7 +292,7 @@ class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
         self.request = request
         self.label_suffix = ''
         additional_guests = [guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '0']
-        for form, guest in zip(self.forms, additional_guests): # forms length based on `extra` declared on `forms.formset_factory()` in `views.py`
+        for form, guest in zip(self.forms, additional_guests): # forms length based on `total_form_count()`
             form.initial = {
                 'guest_id': guest.get('guestID', ''),
                 'first_name': guest.get('firstName', ''),
@@ -301,6 +301,10 @@ class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
                 'passport_no': guest.get('passportNo', ''),
                 'birth_date': guest.get('dob', ''),
             }
+
+    def total_form_count(self):
+        additional_guests = [guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '0']
+        return len(additional_guests)
 
     def get_form_kwargs(self, index):
         kwargs = super().get_form_kwargs(index)
@@ -315,7 +319,10 @@ class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
                 adult += 1
         if adult > max_adult:
             self._non_form_errors = self.error_class([_('You have exceeded the number of adults.')])
-    
+
+# extra based on `additional_guests` length which is declared by `total_form_count()`
+PreArrivalDetailExtraFormSet = forms.formset_factory(PreArrivalDetailExtraForm, formset=PreArrivalDetailExtraBaseFormSet)
+
 
 class PreArrivalOtherInfoForm(forms.Form):
     arrival_time        = forms.ChoiceField(label=_('Time of Arrival'))
