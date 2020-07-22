@@ -24,7 +24,9 @@
         </div>
         <div class="row page-subheader">
             <div class="col-12 px-0 text-center text-secondary">
-                {% trans 'To begin the online check-in process, please enter your reservation number.' %}
+                <span id="subheader-reservation-no" class="subheader-description active">{% trans 'To begin the online check-in process, please enter your reservation number.' %}</span>
+                <span id="subheader-last-name" class="subheader-description">{% trans 'To verify your reservation, please provide your last name is in your passport.' %}</span>
+                <span id="subheader-arrival-date" class="subheader-description">{% trans 'To verify your reservation, please confirm your arrival date at the hotel.' %}</span>
             </div>
         </div>
         <div class="row page-content">

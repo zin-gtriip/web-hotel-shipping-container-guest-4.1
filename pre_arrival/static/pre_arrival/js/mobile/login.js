@@ -35,15 +35,17 @@ $('#btn-step-next').click(function() {
 		, $nextStep = $currentStep.next('.input-step');
 		
 	$nextStep.find('input').keyup();
+	$('.subheader-description').removeClass('active');
 
-	// send message to app
 	loginStep += 1;
 	switch(loginStep) {
 		case 1:
-			try { nextPage.postMessage('/pre_arrival/login/last_name'); } catch(error) {}
+			$('#subheader-last-name').addClass('active');
+			try { nextPage.postMessage('/pre_arrival/login/last_name'); } catch(error) {} // send message to app
 			break;
 		case 2:
-			try { nextPage.postMessage('/pre_arrival/login/arrival_date'); } catch(error) {}
+			$('#subheader-arrival-date').addClass('active');
+			try { nextPage.postMessage('/pre_arrival/login/arrival_date'); } catch(error) {} // send message to app
 			break;
 	}
 

@@ -1,6 +1,10 @@
 .content {
     .page-subheader {
-        width: 230px;
+        width: 258px;
+
+        span:not(.active) {
+            display: none;
+        }
     }
     
     .page-content {
