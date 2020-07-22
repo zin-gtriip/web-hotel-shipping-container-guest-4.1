@@ -41,7 +41,7 @@ pre_arrival_get_data = {
                 }
             ],
             "roomNo": "736",
-            "roomType": "Deluxe Room",
+            "roomType": "Deluxe",
             "roomRate": "99.98999786376953",
             "roomStatus": "Ready",
             "paymentType": "Credit card",
@@ -99,7 +99,7 @@ pre_arrival_get_data = {
                 }
             ],
             "roomNo": "737",
-            "roomType": "Premier Room",
+            "roomType": "Premier",
             "roomRate": "99.98999786376953",
             "roomStatus": "Ready",
             "paymentType": "Credit card",
