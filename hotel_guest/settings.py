@@ -130,7 +130,7 @@ USE_TZ = True
 # https://samulinatri.com/blog/django-translation/
 
 LANGUAGES = [
-    ('en-gb', 'EN'),
+    ('en', 'EN'),
     ('ja', 'JA'),
     ('zh-hans', 'ZH'),
 ]
