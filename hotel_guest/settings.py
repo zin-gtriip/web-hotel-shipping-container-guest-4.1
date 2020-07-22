@@ -224,6 +224,11 @@ ROOM_TYPES = [
         'room_name' : 'Deluxe Room',
         'room_image': 'deluxe.jpg',
     },
+    {
+        'room_type' : 'Villa',
+        'room_name' : 'Villa',
+        'room_image': 'villa.jpg',
+    },
 ]
 # age limit of ocr validation
 PASSPORT_AGE_LIMIT          = 18
