@@ -409,7 +409,7 @@
 {% block lib_js %}
     {{ block.super }}
     <script type="text/javascript" src="{% static 'vendor/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
-    {% if bootstrap_datepicker_language != 'en-gb' %}
+    {% if bootstrap_datepicker_language != 'en' %}
         {% with 'vendor/node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.'|add:bootstrap_datepicker_language|add:'.min.js' as bootstrap_datepicker_language_file %}
             <script type="text/javascript" src="{% static bootstrap_datepicker_language_file %}" charset="UTF-8"></script>
         {% endwith %}

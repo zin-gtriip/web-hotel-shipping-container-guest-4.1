@@ -16,7 +16,7 @@ class PreArrivalDataView(RequestInitializedMixin, RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         self.request.session['pre_arrival'] = {'preload': {}}
-        if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en-gb')
+        if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
         if 'app' in self.request.GET: self.request.session['pre_arrival']['preload']['app'] = self.request.GET.get('app', False)
         if 'auto_login' in self.request.GET: self.request.session['pre_arrival']['preload']['auto_login'] = self.request.GET.get('auto_login', False)
         if 'skip_ocr' in self.request.GET: self.request.session['pre_arrival']['preload']['skip_ocr'] = self.request.GET.get('skip_ocr', False)
