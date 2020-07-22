@@ -68,9 +68,9 @@ class PreArrivalReservationView(RequestInitializedMixin, SessionDataRequiredMixi
         for reservation in self.request.session['pre_arrival'].get('bookings', []):
             reservation['formattedArrivalDate'] = format_display_date(reservation.get('arrivalDate', ''))
             reservation['formattedDepartureDate'] = format_display_date(reservation.get('departureDate', ''))
-            room = next(temp for temp in settings.ROOM_TYPES if temp['room_type'] == reservation['roomType'])
-            reservation['roomName'] = room['room_name']
-            reservation['roomImage'] = room['room_image']
+            room = next((temp for temp in settings.ROOM_TYPES if temp['room_type'] == reservation['roomType']), {})
+            reservation['roomName'] = room.get('room_name', '')
+            reservation['roomImage'] = room.get('room_image', '')
             context['reservations'].append(reservation)
         return context
 
