@@ -156,7 +156,9 @@ class PreArrivalPassportForm(forms.Form):
             file_name = self.request.session.session_key +'.png'
             folder_name = os.path.join(settings.BASE_DIR, 'media', 'ocr')
             saved_file = os.path.join(folder_name, file_name)
-            main_guest.update({'passportImage': saved_file})
+            with open(saved_file, 'rb') as image_file:
+                file_b64_encoded = base64.b64encode(image_file.read())
+            main_guest.update({'passportImage': file_b64_encoded.decode()})
             self.request.session['pre_arrival'].update({'ocr': self.gateway_ocr(saved_file)})
             self.request.session.save()
 
@@ -365,7 +367,7 @@ class PreArrivalOtherInfoForm(forms.Form):
             'emailSubscription': is_subscribe and '1' or '0',
         })
         self.request.session['pre_arrival']['form'].update({
-            'eta': arrival_time + ':00',
+            'eta': arrival_time + ':00.000',
             'comments': special_requests,
         })
         self.request.session.save()
