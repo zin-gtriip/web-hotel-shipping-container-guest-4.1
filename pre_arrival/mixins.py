@@ -32,7 +32,7 @@ class SessionDataRequiredMixin(object):
                 expiry_date = None
             if expiry_date and expiry_date >= timezone.now():
                 return super(SessionDataRequiredMixin, self).dispatch(request, *args, **kwargs)
-        return redirect('pre_arrival:pre-arrival-login')
+        return redirect('pre_arrival:login')
 
 
 class MobileTemplateMixin(object):
