@@ -8,11 +8,11 @@ from .mixins                    import *
 from .utilities                 import *
 
 class IndexView(GuestBaseViews.IndexView):
-    pattern_name = 'pre_arrival:pre-arrival-data'
+    pattern_name = 'pre_arrival:data'
 
 
 class PreArrivalDataView(RequestInitializedMixin, RedirectView):
-    pattern_name = 'pre_arrival:pre-arrival-login'
+    pattern_name = 'pre_arrival:login'
 
     def get_redirect_url(self, *args, **kwargs):
         self.request.session['pre_arrival'] = {'preload': {}}
@@ -80,9 +80,9 @@ class PreArrivalReservationView(RequestInitializedMixin, SessionDataRequiredMixi
 
 class PreArrivalPassportView(RequestInitializedMixin, SessionDataRequiredMixin, MobileTemplateMixin, FormView):
     template_name           = 'pre_arrival/desktop/passport.html'
+    mobile_template_name    = 'pre_arrival/mobile/passport.html'
     form_class              = PreArrivalPassportForm
     success_url             = '/pre_arrival/detail'
-    mobile_template_name    = 'pre_arrival/mobile/passport.html'
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('pre_arrival', {}).get('preload', {}).get('skip_ocr', False):
@@ -104,9 +104,9 @@ class PreArrivalPassportView(RequestInitializedMixin, SessionDataRequiredMixin, 
 
 class PreArrivalDetailView(RequestInitializedMixin, SessionDataRequiredMixin, MobileTemplateMixin, FormView):
     template_name           = 'pre_arrival/desktop/detail.html'
+    mobile_template_name    = 'pre_arrival/mobile/detail.html'
     form_class              = PreArrivalDetailForm
     success_url             = '/pre_arrival/other_info'
-    mobile_template_name    = 'pre_arrival/mobile/detail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
