@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django_user_agents',
     'guest_base.apps.GuestBaseConfig',
     'pre_arrival.apps.PreArrivalConfig',
-    # 'guest_app',
 ]
 
 MIDDLEWARE = [
@@ -140,8 +139,7 @@ LANGUAGES = [
 # https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-LOCALE_PATHS
 
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'pre_arrival', 'locale'),
-    os.path.join(BASE_DIR, 'guest_base', 'locale'),
+    os.path.join(BASE_DIR, 'locale'),
 ]
 
 
