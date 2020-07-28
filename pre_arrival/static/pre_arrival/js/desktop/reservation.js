@@ -1,4 +1,4 @@
-var reservation = JSON.parse($('#reservation').text());
+var reservation = JSON.parse($('#reservation').text() || '""');
 
 // event when reservation thumbnail is clicked
 $('.reservation-container').click(function() {
