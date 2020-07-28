@@ -203,13 +203,15 @@ CRON_CLASSES = [
 
 
 # Other configuration
-
+# General
 # page title on every page
-HOTEL_NAME                  = 'GTRIIP'
-# expiration time for the pre-arrival (in minutes)
-PRE_ARRIVAL_AGE             = 15
+HOTEL_NAME          = 'GTRIIP'
 # default django variable for date format
-DATE_INPUT_FORMATS          = ['%Y-%m-%d']
+DATE_INPUT_FORMATS  = ['%Y-%m-%d']
+
+# Pre Arrival
+# expiration time for the pre-arrival (in minutes)
+PRE_ARRIVAL_AGE     = 15
 # room mapping, use `room_type` as identifier
 ROOM_TYPES = [
     {
@@ -229,6 +231,18 @@ ROOM_TYPES = [
     },
 ]
 # age limit of ocr validation
-PASSPORT_AGE_LIMIT          = 18
+PASSPORT_AGE_LIMIT      = 18
 # age limit of detail form that should count as adult or child
-DETAIL_FORM_AGE_LIMIT       = 13
+DETAIL_FORM_AGE_LIMIT   = 13
+# progress bar rate on pre-arrival page
+PROGRESS_BAR_START_RATE = 10
+PROGRESS_BAR_END_RATE   = 100
+# urls that use progress bar
+PRE_ARRIVAL_URLS = [
+    'login',
+    'reservation',
+    'passport',
+    'detail',
+    'other_info',
+    'complete',
+]
