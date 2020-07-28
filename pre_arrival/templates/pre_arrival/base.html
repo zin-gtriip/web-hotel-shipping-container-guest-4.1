@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="{% static 'pre_arrival/scss/base.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
+{% block progress_page %}
+    <div class="progress ">
+        <div class="progress-bar" role="progressbar" style="width: {{ previous_page_progress_rate }}%;" aria-valuenow="{{ previous_page_progress_rate }}" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+{% endblock progress_page %}
+
 {% block language %}
     {% if not request.session.pre_arrival.preload.app %}
         <form id="form-set-language" action="{% url 'set_language' %}" method="post">
@@ -27,7 +33,9 @@
 {% endblock %}
 
 {% block data_js %}
-{{ PRE_ARRIVAL_EXPIRY_DATE|json_script:'pre-arrival-expiry-date' }}
+    {{ block.super }}
+    {{ PRE_ARRIVAL_EXPIRY_DATE|json_script:'pre-arrival-expiry-date' }}
+    {{ current_page_progress_rate|json_script:'current-page-progress-rate' }}
 {% endblock data_js %}
 
 {% block static_js %}

@@ -30,11 +30,11 @@ class PreArrivalDataView(RequestInitializedMixin, RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
-class PreArrivalLoginView(RequestInitializedMixin, MobileTemplateMixin, FormView):
+class PreArrivalLoginView(RequestInitializedMixin, ProgressRateInitializedMixin, MobileTemplateMixin, FormView):
     template_name           = 'pre_arrival/desktop/login.html'
+    mobile_template_name    = 'pre_arrival/mobile/login.html'
     form_class              = PreArrivalLoginForm
     success_url             = '/pre_arrival/reservation'
-    mobile_template_name    = 'pre_arrival/mobile/login.html'
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('pre_arrival', {}).get('preload', {}).get('auto_login', False):
@@ -56,7 +56,7 @@ class PreArrivalLoginView(RequestInitializedMixin, MobileTemplateMixin, FormView
         return super().form_valid(form)
 
 
-class PreArrivalReservationView(RequestInitializedMixin, SessionDataRequiredMixin, FormView):
+class PreArrivalReservationView(RequestInitializedMixin, SessionDataRequiredMixin, ProgressRateInitializedMixin, FormView):
     template_name           = 'pre_arrival/desktop/reservation.html'
     form_class              = PreArrivalReservationForm
     success_url             = '/pre_arrival/passport'
@@ -78,7 +78,7 @@ class PreArrivalReservationView(RequestInitializedMixin, SessionDataRequiredMixi
         return super().form_valid(form)
 
 
-class PreArrivalPassportView(RequestInitializedMixin, SessionDataRequiredMixin, MobileTemplateMixin, FormView):
+class PreArrivalPassportView(RequestInitializedMixin, SessionDataRequiredMixin, ProgressRateInitializedMixin, MobileTemplateMixin, FormView):
     template_name           = 'pre_arrival/desktop/passport.html'
     mobile_template_name    = 'pre_arrival/mobile/passport.html'
     form_class              = PreArrivalPassportForm
@@ -102,7 +102,7 @@ class PreArrivalPassportView(RequestInitializedMixin, SessionDataRequiredMixin, 
         return super().form_valid(form)
 
 
-class PreArrivalDetailView(RequestInitializedMixin, SessionDataRequiredMixin, MobileTemplateMixin, FormView):
+class PreArrivalDetailView(RequestInitializedMixin, SessionDataRequiredMixin, ProgressRateInitializedMixin, MobileTemplateMixin, FormView):
     template_name           = 'pre_arrival/desktop/detail.html'
     mobile_template_name    = 'pre_arrival/mobile/detail.html'
     form_class              = PreArrivalDetailForm
@@ -136,7 +136,7 @@ class PreArrivalDetailView(RequestInitializedMixin, SessionDataRequiredMixin, Mo
         return super().form_valid(form)
 
 
-class PreArrivalOtherInfoView(RequestInitializedMixin, SessionDataRequiredMixin, FormView):
+class PreArrivalOtherInfoView(RequestInitializedMixin, SessionDataRequiredMixin, ProgressRateInitializedMixin, FormView):
     template_name           = 'pre_arrival/desktop/other_info.html'
     form_class              = PreArrivalOtherInfoForm
     success_url             = '/pre_arrival/complete'
@@ -149,7 +149,7 @@ class PreArrivalOtherInfoView(RequestInitializedMixin, SessionDataRequiredMixin,
         return super().form_valid(form)
 
 
-class PreArrivalCompleteView(RequestInitializedMixin, SessionDataRequiredMixin, TemplateView):
+class PreArrivalCompleteView(RequestInitializedMixin, ProgressRateInitializedMixin, TemplateView):
     template_name           = 'pre_arrival/desktop/complete.html'
 
     def get_context_data(self, **kwargs):

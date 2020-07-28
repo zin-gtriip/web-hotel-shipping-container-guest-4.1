@@ -14,6 +14,7 @@ $('#id_arrival_date').datepicker().on('changeDate', function() {
     enableDisableButton();
 });
 
+
 function enableDisableButton() {
     $reservationNo = $('#id_reservation_no')
         , $lastName = $('#id_last_name')

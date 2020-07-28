@@ -1,7 +1,6 @@
-// Set time we're counting down to
-var expiryDate = new Date(JSON.parse($('#pre-arrival-expiry-date').text()));
-// Update the count down every 1 second
-var interval = setInterval(function() {
+// timer
+var expiryDate = new Date(JSON.parse($('#pre-arrival-expiry-date').text())); // set time we're counting down to
+var interval = setInterval(function() { // update the count down every 1 second
     // Get time now
     var now = new Date().getTime();
     // Find the distance between now and the count down date
@@ -24,3 +23,10 @@ var interval = setInterval(function() {
         window.location.href = '/';
     }
 }, 1000);
+
+
+// progress bar
+var currentPageProgressRate = JSON.parse($('#current-page-progress-rate').text());
+$('.progress-page .progress-bar').css({
+    'width': currentPageProgressRate +'%',
+}).attr('aria-valuenow', currentPageProgressRate);

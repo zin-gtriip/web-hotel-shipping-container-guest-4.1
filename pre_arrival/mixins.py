@@ -41,8 +41,8 @@ class ProgressRateInitializedMixin(object):
     """
     View mixin which puts progress rate into context of the view.
 
-    This mixin will calculate progress rate based on `PRE_ARRIVAL_START_PROGRESS_BAR`,
-    `PRE_ARRIVAL_END_PROGRESS_BAR`, and `PRE_ARRIVAL_URLS` length in `settings.py` 
+    This mixin will calculate progress rate based on `PROGRESS_BAR_START_RATE`,
+    `PROGRESS_BAR_END_RATE`, and `PRE_ARRIVAL_URLS` length in `settings.py` 
     by dividing averagely.
     This mixin also save previous page into `request` for calculating previous
     page progress bar.
@@ -57,12 +57,12 @@ class ProgressRateInitializedMixin(object):
         previous_url_index = 0
         if self.request.session.get('pre_arrival', {}).get('previous_url', '') in settings.PRE_ARRIVAL_URLS:
             previous_url_index = settings.PRE_ARRIVAL_URLS.index(self.request.session['pre_arrival']['previous_url']) # get previous url index from `session`
-        rate_per_page = (settings.PRE_ARRIVAL_END_PROGRESS_BAR - settings.PRE_ARRIVAL_START_PROGRESS_BAR) / (len(settings.PRE_ARRIVAL_URLS) - 1) # -1 to exclude login page
-        context['current_page_progress_bar'] = settings.PRE_ARRIVAL_START_PROGRESS_BAR + (current_url_index * rate_per_page)
-        context['previous_page_progress_bar'] = settings.PRE_ARRIVAL_START_PROGRESS_BAR + (previous_url_index * rate_per_page)
+        rate_per_page = (settings.PROGRESS_BAR_END_RATE - settings.PROGRESS_BAR_START_RATE) / (len(settings.PRE_ARRIVAL_URLS) - 1) # -1 to exclude login page
+        context['current_page_progress_rate'] = settings.PROGRESS_BAR_START_RATE + (current_url_index * rate_per_page)
+        context['previous_page_progress_rate'] = settings.PROGRESS_BAR_START_RATE + (previous_url_index * rate_per_page)
         if current_url_index == 0: # for `login` page
-            context['current_page_progress_bar'] = settings.PRE_ARRIVAL_START_PROGRESS_BAR
-            context['previous_page_progress_bar'] = 0
+            context['current_page_progress_rate'] = settings.PROGRESS_BAR_START_RATE
+            context['previous_page_progress_rate'] = 0
         # save current url to `session` as `previous_url`
         if not 'pre_arrival' in self.request.session:
             self.request.session['pre_arrival'] = {}
