@@ -115,7 +115,8 @@ def get_data(post_data):
 
 
 pre_arrival_post_data = {
-    'status': 'success',
+    'success': 'true',
+    'message': 'All OK',
     'data': [
         {
             "property": "Amara Sanctuary",
