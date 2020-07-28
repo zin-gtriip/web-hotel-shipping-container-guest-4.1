@@ -39,37 +39,47 @@
     {% block body %}
         <div class="wrapper">
             {% block wrapper %}
+                <!-- Progress Bar -->
+                <div class="progress-page">
+                    {% block progress_page %}
+                        <div class="progress ">
+                            <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    {% endblock progress_page %}
+                </div>
                 <!-- Header -->
                 <div class="header">
-                    <div class="nav">
-                        <div class="container">
-                            {% block nav %}{% endblock nav %}
+                    {% block header %}
+                        <div class="nav">
+                            <div class="container">
+                                {% block nav %}{% endblock nav %}
+                            </div>
                         </div>
-                    </div>
-                    <!-- Timer -->
-                    <div class="timer">
-                        <div class="container">
-                            {% block timer %}{% endblock timer %}
+                        <!-- Timer -->
+                        <div class="timer">
+                            <div class="container">
+                                {% block timer %}{% endblock timer %}
+                            </div>
                         </div>
-                    </div>
-                    <div class="language">
-                        <div class="container">
-                            {% block language %}
-                                <form id="form-set-language" action="{% url 'set_language' %}" method="post">
-                                    {% csrf_token %}
-                                    <input name="next" type="hidden" value="{{ redirect_to }}">
-                                    <select id="language" name="language" class="md-select borderless-select">
-                                        {% for language in AVAILABLE_LANGUAGES %}
-                                            <option value="{{ language.0 }}"
-                                            {% if language.0 == LANGUAGE_CODE %}selected{% endif %}>
-                                                {{ language.1 }}
-                                            </option>
-                                        {% endfor %}
-                                    </select>
-                                </form>
-                            {% endblock language %}
+                        <div class="language">
+                            <div class="container">
+                                {% block language %}
+                                    <form id="form-set-language" action="{% url 'set_language' %}" method="post">
+                                        {% csrf_token %}
+                                        <input name="next" type="hidden" value="{{ redirect_to }}">
+                                        <select id="language" name="language" class="md-select borderless-select">
+                                            {% for language in AVAILABLE_LANGUAGES %}
+                                                <option value="{{ language.0 }}"
+                                                {% if language.0 == LANGUAGE_CODE %}selected{% endif %}>
+                                                    {{ language.1 }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </form>
+                                {% endblock language %}
+                            </div>
                         </div>
-                    </div>
+                    {% endblock header %}
                 </div>
                 <!-- Content -->
                 <div class="content container">
