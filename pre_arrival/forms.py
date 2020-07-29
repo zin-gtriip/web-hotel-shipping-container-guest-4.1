@@ -67,7 +67,9 @@ class PreArrivalLoginForm(forms.Form):
         self.request.session['pre_arrival'].update({
             'bookings': data.get('data', []),
             'expiry_date': expiry_date,
-            'form': {'customerInputNumber': self.cleaned_data.get('reservation_no')}
+            'input_reservation_no': self.cleaned_data.get('reservation_no'),
+            'input_arrival_date': self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d'),
+            'input_last_name': self.cleaned_data.get('last_name'),
         })
         if 'preload' in self.request.session['pre_arrival'] and 'auto_login' in self.request.session['pre_arrival']['preload']:
             self.request.session['pre_arrival']['preload']['auto_login'] = False # set auto login to False
@@ -94,7 +96,7 @@ class PreArrivalReservationForm(forms.Form):
     def save_data(self):
         reservation_no = self.cleaned_data.get('reservation_no')
         reservation = next(reservation for reservation in self.request.session['pre_arrival'].get('bookings', []) if reservation.get('reservationNo', '') == reservation_no)
-        self.request.session['pre_arrival']['form'].update(reservation)
+        self.request.session['pre_arrival'].update({'form': reservation})
         self.request.session.save()
 
 
@@ -378,10 +380,17 @@ class PreArrivalOtherInfoForm(forms.Form):
 
     def gateway_post(self):
         data = self.request.session['pre_arrival']['form']
-        response = gateways.post('/processGuestsPreArrival', data)
+        data['customerInputNumber'] = self.request.session['pre_arrival'].get('input_reservation_no', '')
+        response = {'success': 'true'} #gateways.post('/processGuestsPreArrival', data)
         if response.get('success', '') == 'true':
-            self.request.session['pre_arrival'].update({'bookings': response.get('data', [])})
+            # get existing reservation from backend
+            new_booking_data = {
+                'reservation_no': self.request.session['pre_arrival'].get('input_reservation_no', ''),
+                'arrival_date': self.request.session['pre_arrival'].get('input_arrival_date', ''),
+                'last_name': self.request.session['pre_arrival'].get('input_last_name', ''),
+            }
+            new_booking_response = gateways.post('/checkBookingsPreArrival', new_booking_data)
+            self.request.session['pre_arrival'].update({'bookings': new_booking_response.get('data', [])})
             self.request.session.save()
-            self.request.session.set_expiry(settings.SESSION_COOKIE_AGE) # reset session expiry time
         else:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
