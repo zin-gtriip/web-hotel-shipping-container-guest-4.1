@@ -130,7 +130,7 @@ USE_TZ = True
 
 LANGUAGES = [
     ('en', 'EN'),
-    ('ja', 'JA'),
+    ('ja', 'JP'),
     ('zh-hans', 'ZH'),
 ]
 
