@@ -3,7 +3,7 @@ from django.shortcuts   import redirect
 from django.utils       import timezone
 from django.conf        import settings
 
-class RequestInitializedMixin(object):
+class RequestFormKwargsMixin(object):
     """
     View mixin which puts the request into the form kwargs.
 
@@ -17,7 +17,7 @@ class RequestInitializedMixin(object):
         return kwargs
 
 
-class SessionDataRequiredMixin(object):
+class ExpirySessionMixin(object):
     """
     View mixin that verifies the user has `pre_arrival`, `expiry_date`
     is not expired.
@@ -37,7 +37,22 @@ class SessionDataRequiredMixin(object):
         return redirect('pre_arrival:login')
 
 
-class ProgressRateInitializedMixin(object):
+class ExpiryFormRequiredMixin(ExpirySessionMixin):
+    """
+    View mixin that verifies the user has `pre_arrival`, `form`.
+
+    Inherit from `ExpirySessionMixin` that also validate `expiry_date` in
+    session. If `form` does not exist in `session`, page will be redirected to
+    reservation page.
+    """
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.session.get('pre_arrival', {}).get('form', ''):
+            return super().dispatch(request, *args, **kwargs)
+        return redirect('pre_arrival:reservation')
+
+
+class ProgressRateContextMixin(object):
     """
     View mixin which puts progress rate into context of the view.
 
