@@ -1,3 +1,6 @@
+@import '../../../../../guest_base/static/guest_base/scss/_variable.scss';
+
+
 .content {
     .page-header {
         width: 201px;
@@ -10,6 +13,10 @@
     
     .page-content {
         margin-bottom: 35px;
+
+        .extra-formset.even {
+            background-color: rgba(map-get($theme-colors, primary), .1);
+        }
 
         .guest-index {
             height: 24px;

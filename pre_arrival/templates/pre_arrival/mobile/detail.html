@@ -207,7 +207,7 @@
                     </div>
                     <!-- extra formset bound -->
                     {% for extra_form in extra.forms %}
-                        <div class="col-12 px-5 extra-formset {% if forloop.counter0|divisibleby:2 %}bg-transparent-primary-1{% endif %}" id="extra-formset-{{ forloop.counter0 }}">
+                        <div class="col-12 px-5 extra-formset" id="extra-formset-{{ forloop.counter0 }}">
                             <div class="row guest-index">
                                 <div class="col-12 px-0">
                                     {% render_field extra_form.guest_id %}

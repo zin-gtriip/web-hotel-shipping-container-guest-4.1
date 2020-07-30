@@ -138,9 +138,9 @@ function restyleExtra() {
     var $extraFormset = $('.extra-formset');
 
     $extraFormset.each(function(index) {
-        $(this).removeClass('bg-transparent-primary-1');
+        $(this).removeClass('even');
         if (index % 2 == 0) {
-            $(this).addClass('bg-transparent-primary-1');
+            $(this).addClass('even');
         }
     });
 }
