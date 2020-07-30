@@ -381,7 +381,7 @@ class PreArrivalOtherInfoForm(forms.Form):
     def gateway_post(self):
         data = self.request.session['pre_arrival']['form']
         data['customerInputNumber'] = self.request.session['pre_arrival'].get('input_reservation_no', '')
-        response = {'success': 'true'} #gateways.post('/processGuestsPreArrival', data)
+        response = gateways.post('/processGuestsPreArrival', data)
         if response.get('success', '') == 'true':
             # get existing reservation from backend
             new_booking_data = {
