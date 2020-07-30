@@ -181,7 +181,6 @@ class PreArrivalDetailForm(forms.Form):
         super(PreArrivalDetailForm, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
-
         # from backend
         main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
         guest_id = main_guest.get('guestID', 0)
@@ -200,7 +199,7 @@ class PreArrivalDetailForm(forms.Form):
         passport_no = self.request.session.get('pre_arrival', {}).get('ocr', {}).get('number', passport_no)
         nationality = Country(self.request.session.get('pre_arrival', {}).get('ocr', {}).get('nationality', '')).code or nationality
         birth_date = utilities.parse_ocr_date(self.request.session.get('pre_arrival', {}).get('ocr', {}).get('date_of_birth', '')) or birth_date
-
+        # assign
         self.fields['guest_id'].initial = guest_id
         self.fields['first_name'].initial = first_name
         self.fields['last_name'].initial = last_name
@@ -299,20 +298,20 @@ class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
         super(PreArrivalDetailExtraBaseFormSet, self).__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
-        additional_guests = [guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '0']
-        for form, guest in zip(self.forms, additional_guests): # forms length based on `total_form_count()`
-            form.initial = {
-                'guest_id': guest.get('guestID', ''),
-                'first_name': guest.get('firstName', ''),
-                'last_name': guest.get('lastName', ''),
-                'nationality': guest.get('nationality', ''),
-                'passport_no': guest.get('passportNo', ''),
-                'birth_date': guest.get('dob', ''),
-            }
-
-    def total_form_count(self):
-        additional_guests = [guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '0']
-        return len(additional_guests)
+        # populate additional guests
+        additional_guests = []
+        for guest in self.request.session['pre_arrival']['form'].get('guestsList', []):
+            if guest.get('isMainGuest', '0') == '0':
+                additional_guests.append({
+                    'guest_id': guest.get('guestID', ''),
+                    'first_name': guest.get('firstName', ''),
+                    'last_name': guest.get('lastName', ''),
+                    'nationality': guest.get('nationality', ''),
+                    'passport_no': guest.get('passportNo', ''),
+                    'birth_date': guest.get('dob', ''),
+                })
+        self.extra = 0 # number of empty extra form to be populated
+        self.initial = additional_guests
 
     def get_form_kwargs(self, index):
         kwargs = super().get_form_kwargs(index)
