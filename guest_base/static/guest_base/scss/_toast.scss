@@ -1,0 +1,11 @@
+.toast-wrapper {
+	position: relative;
+    // min-height: 200px;
+    
+    .toast-top-left {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 350px;
+    }
+}
