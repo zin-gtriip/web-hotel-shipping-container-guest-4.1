@@ -3,7 +3,7 @@ from django.shortcuts   import redirect
 from django.utils       import timezone
 from django.conf        import settings
 
-class RequestFormKwargsMixin(object):
+class RequestFormKwargsMixin:
     """
     View mixin which puts the request into the form kwargs.
 
@@ -17,7 +17,7 @@ class RequestFormKwargsMixin(object):
         return kwargs
 
 
-class ExpirySessionMixin(object):
+class ExpirySessionMixin:
     """
     View mixin that verifies the user has `pre_arrival`, `expiry_date`
     is not expired.
@@ -52,7 +52,7 @@ class ExpiryFormRequiredMixin(ExpirySessionMixin):
         return redirect('pre_arrival:reservation')
 
 
-class ProgressRateContextMixin(object):
+class ProgressRateContextMixin:
     """
     View mixin which puts progress rate into context of the view.
 
@@ -86,7 +86,7 @@ class ProgressRateContextMixin(object):
         return context
 
 
-class MobileTemplateMixin(object):
+class MobileTemplateMixin:
     """
     View mixin that replace `template_name` with mobile template.
 

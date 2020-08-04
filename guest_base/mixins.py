@@ -1,6 +1,6 @@
 from django.conf import settings
 
-class DependentAppConfigMixin(object):
+class DependentAppConfigMixin:
     dependencies = []
 
     def ready(self):
