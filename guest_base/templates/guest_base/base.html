@@ -28,10 +28,10 @@
     <!-- other css library based on page -->
     {% block lib_css %}{% endblock lib_css %}
     {% compress css %}
-    <!-- global scss -->
-    <link rel="stylesheet" href="{% static 'guest_base/scss/base.scss' %}" type="text/x-scss" media="screen">
-    <!-- scss based on page -->
-    {% block static_css %}{% endblock static_css %}
+        <!-- global scss -->
+        <link rel="stylesheet" href="{% static 'guest_base/scss/base.scss' %}" type="text/x-scss" media="screen">
+        <!-- scss based on page -->
+        {% block static_css %}{% endblock static_css %}
     {% endcompress %}
 </head>
 
