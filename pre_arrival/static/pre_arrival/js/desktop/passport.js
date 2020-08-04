@@ -11,15 +11,10 @@ Compressor.setDefaults({
     maxHeight: maxCanvasHeight,
 });
 // croppie options, for scaling and rotating captured and uploaded image
-// var croppieOpts = {
-//     viewport: { width: 320, height: 240 },
-//     boundary: { width: 427, height: 320 },
-//     showZoomer: true,
-//     enableOrientation: true,
-// };
+// standard passport size: 128 * 88, ratio = 1.42
 var croppieOpts = {
-    viewport: { width: 340, height: 240 },
-    boundary: { width: 375, height: 494 },
+    viewport: { width: 450, height: 318 },
+    boundary: { width: 500, height: 540 },
     showZoomer: true,
     enableOrientation: true,
 };
