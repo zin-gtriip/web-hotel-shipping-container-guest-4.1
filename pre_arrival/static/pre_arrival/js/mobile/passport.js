@@ -11,12 +11,14 @@ Compressor.setDefaults({
     maxHeight: maxCanvasHeight,
 });
 // croppie options, for scaling and rotating captured and uploaded image
-// standard passport size: 128 * 88, ratio = 1.42
-console.log(screen.width);
-console.log(parseInt(screen.width / 1.42));
-console.log(parseInt(screen.width / 1.42) + 1);
+// original calculation, calculate from `form-passport` width
+// var scale = 1.33 // get from `640 / 480` desktop video size
+//     , boundaryWidth = $('#form-passport').width()
+//     , boundaryHeight = Math.floor(boundaryWidth / scale)
+//     , viewportWidth = boundaryHeight
+//     , viewportHeight = Math.floor(viewportWidth / scale);
 var croppieOpts = {
-    viewport: { width: screen.width, height: parseInt(screen.width / 1.42) + 1 },
+    viewport: { width: 340, height: 240 },
     boundary: { width: screen.width, height: 525 },
     showZoomer: false,
     enableOrientation: true,
