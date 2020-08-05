@@ -1,4 +1,4 @@
-// based on link below, we will use minimum canvas size to do validation
+// do not compress more than declared below, otherwise canvas will be blank
 // https://github.com/jhildenbiddle/canvas-size
 var maxCanvasWidth = 4096, maxCanvasHeight = 4096;
 // accepted file type on uploading
@@ -6,9 +6,8 @@ var acceptedFileType = ['jpg', 'jpeg', 'png'];
 // compressor options, for compressing captured and uploaded image
 Compressor.setDefaults({
     mimeType: 'image/jpeg',
-    quality: 0.6,
-    maxWidth: maxCanvasWidth,
-    maxHeight: maxCanvasHeight,
+    maxWidth: 2400,
+    maxHeight: 2400,
     convertSize: 2000000,
 });
 // croppie options, for scaling and rotating captured and uploaded image
