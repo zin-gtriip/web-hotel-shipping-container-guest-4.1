@@ -6,9 +6,10 @@ var acceptedFileType = ['jpg', 'jpeg', 'png'];
 // compressor options, for compressing captured and uploaded image
 Compressor.setDefaults({
     mimeType: 'image/jpeg',
-    quality: 1.0,
+    quality: 0.6,
     maxWidth: maxCanvasWidth,
     maxHeight: maxCanvasHeight,
+    convertSize: 2000000,
 });
 // croppie options, for scaling and rotating captured and uploaded image
 // var croppieOpts = {
@@ -97,8 +98,8 @@ $('#btn-next').click(function() {
 
     $img.croppie('result', {
         'type': 'blob',
+        'size': 'original',
         'format': 'jpeg',
-        'quality': 1,
     }).then(function(blob) {
         blobToDataURL(blob, function(dataURL) {
             $passportFile.val(dataURL.substring(23)); // remove `data:image/jpeg;base64,` on dataURL
