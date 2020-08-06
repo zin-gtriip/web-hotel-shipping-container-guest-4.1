@@ -6,8 +6,8 @@ var acceptedFileType = ['jpg', 'jpeg', 'png'];
 // compressor options, for compressing captured and uploaded image
 Compressor.setDefaults({
     mimeType: 'image/jpeg',
-    maxWidth: 2400,
-    maxHeight: 2400,
+    maxWidth: 1050,
+    maxHeight: 800,
     convertSize: 2000000,
 });
 // croppie options, for scaling and rotating captured and uploaded image
