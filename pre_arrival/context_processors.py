@@ -7,7 +7,6 @@ For more information, visit link below:
 https://stackoverflow.com/a/433209
 """
 
-from django.contrib.sessions.models import Session
 
 def session(request):
     """Returns pre-arrival expiry date"""
