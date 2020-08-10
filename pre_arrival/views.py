@@ -7,6 +7,7 @@ from .forms                     import *
 from .mixins                    import *
 from .utilities                 import *
 
+
 class IndexView(GuestBaseViews.IndexView):
     pattern_name = 'pre_arrival:data'
 

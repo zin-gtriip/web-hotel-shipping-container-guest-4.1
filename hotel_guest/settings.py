@@ -215,6 +215,8 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760 # 10 MB
 HOTEL_NAME          = 'GTRIIP'
 # default django variable for date format
 DATE_INPUT_FORMATS  = ['%Y-%m-%d']
+# set session to be saved everytime
+SESSION_SAVE_EVERY_REQUEST = True
 
 # Pre Arrival
 # expiration time for the pre-arrival (in minutes)

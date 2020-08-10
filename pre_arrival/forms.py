@@ -73,7 +73,6 @@ class PreArrivalLoginForm(forms.Form):
         })
         if 'preload' in self.request.session['pre_arrival'] and 'auto_login' in self.request.session['pre_arrival']['preload']:
             self.request.session['pre_arrival']['preload']['auto_login'] = False # set auto login to False
-        self.request.session.save()
 
 
 class PreArrivalReservationForm(forms.Form):
@@ -97,7 +96,6 @@ class PreArrivalReservationForm(forms.Form):
         reservation_no = self.cleaned_data.get('reservation_no')
         reservation = next(reservation for reservation in self.request.session['pre_arrival'].get('bookings', []) if reservation.get('reservationNo', '') == reservation_no)
         self.request.session['pre_arrival'].update({'form': reservation})
-        self.request.session.save()
 
 
 class PreArrivalPassportForm(forms.Form):
@@ -166,7 +164,6 @@ class PreArrivalPassportForm(forms.Form):
                 file_b64_encoded = base64.b64encode(image_file.read())
             main_guest.update({'passportImage': file_b64_encoded.decode()})
             self.request.session['pre_arrival'].update({'ocr': self.gateway_ocr(saved_file)})
-            self.request.session.save()
 
 
 class PreArrivalDetailForm(forms.Form):
@@ -256,7 +253,6 @@ class PreArrivalDetailForm(forms.Form):
                 booking_details_guest.update(guest)
             else:
                 self.request.session['pre_arrival']['form']['guestsList'].append(guest)
-        self.request.session.save()
 
 
 class PreArrivalDetailExtraForm(forms.Form):
@@ -375,7 +371,6 @@ class PreArrivalOtherInfoForm(forms.Form):
             'eta': arrival_time + ':00.000',
             'comments': special_requests,
         })
-        self.request.session.save()
 
     def gateway_post(self):
         data = self.request.session['pre_arrival']['form']
@@ -390,6 +385,5 @@ class PreArrivalOtherInfoForm(forms.Form):
             }
             new_booking_response = gateways.post('/checkBookingsPreArrival', new_booking_data)
             self.request.session['pre_arrival'].update({'bookings': new_booking_response.get('data', [])})
-            self.request.session.save()
         else:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
