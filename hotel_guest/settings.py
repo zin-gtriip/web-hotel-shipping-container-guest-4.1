@@ -42,8 +42,9 @@ INSTALLED_APPS = [
     'django_cron',
     'django_countries',
     'django_user_agents',
-    'guest_base.apps.GuestBaseConfig',
+    
     'pre_arrival.apps.PreArrivalConfig',
+    'guest_base.apps.GuestBaseConfig',
 ]
 
 MIDDLEWARE = [
