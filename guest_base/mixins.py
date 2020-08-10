@@ -1,6 +1,10 @@
 from django.conf import settings
 
 class DependentAppConfigMixin:
+    """
+    A app mixin that verifies dependencies of an app.
+    """
+
     dependencies = []
 
     def ready(self):
