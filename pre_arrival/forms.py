@@ -4,7 +4,8 @@ from django.conf                import settings
 from django.utils               import timezone
 from django.utils.translation   import gettext, gettext_lazy as _
 from django_countries.fields    import Country, CountryField
-from .                          import gateways, utilities, samples
+from guest_base                 import gateways
+from .                          import utilities, samples
 
 class PreArrivalLoginForm(forms.Form):
     reservation_no  = forms.CharField(label=_('Reservation Number'))
