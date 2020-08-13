@@ -8,11 +8,10 @@ from django.utils.translation   import gettext, gettext_lazy as _
 
 # backend gateway
 def post(url, post_data):
-    # timestamp = datetime.datetime.now().timestamp() * 1e3
     post_data = {
         **post_data,
         'api_key': settings.GATEWAY_API_KEY,
-        # 'site_id': settings.GATEWAY_SITE_ID,
+        'site_id': settings.GATEWAY_SITE_ID,
         # 'site_name': settings.GATEWAY_SITE_NAME,
     }
     try:

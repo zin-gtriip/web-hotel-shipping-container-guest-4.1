@@ -188,7 +188,7 @@ COMPRESS_PRECOMPILERS = (
 
 GATEWAY_URL         = 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0'
 GATEWAY_API_KEY     = '75ce215db4ec4cb986a10992a9ff4e29bc3c9ec8b93f69d5eb56ec98a2118309c8b5cbaeb32a1628ba304b73291e896d1536df994caedcb85df8e401b63ecb50'
-GATEWAY_SITE_ID     = 'QAHotelProdSG11'
+GATEWAY_SITE_ID     = 'CRE_BOAT_QUAY_1' #'QAHotelProdSG11'
 GATEWAY_SITE_NAME   = 'QA_Hotel_Prod_SG_3.0'
 
 
