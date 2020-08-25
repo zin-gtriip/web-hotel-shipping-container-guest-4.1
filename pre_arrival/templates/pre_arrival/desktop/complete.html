@@ -89,6 +89,11 @@
     </div>
 {% endblock content %}
 
+{% block data_js %}
+    {{ block.super }}
+    {{ request.session.pre_arrival.form.reservationNo|json_script:'reservation-no' }}
+{% endblock data_js %}
+
 {% block static_js %}
     {{ block.super }}
     <script type="text/javascript" src="{% static 'pre_arrival/js/desktop/complete.js' %}"></script>

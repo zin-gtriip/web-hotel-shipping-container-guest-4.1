@@ -1,3 +1,4 @@
 $('#btn-ok').click(function() {
-    try { nextPage.postMessage('registrationDone'); } catch(error) {} // send message to app
+    var reservationNo = JSON.parse($('#reservation-no').text() || '""'); // set time we're counting down to
+    try { reservationNo.postMessage(reservationNo); } catch(error) {} // send message to app
 });
