@@ -58,13 +58,14 @@ class PreArrivalLoginForm(forms.Form):
             'arrival_date': self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d'),
             'last_name': self.cleaned_data.get('last_name'),
         }
-        return gateways.post('/checkBookingsPreArrival', data)
+        return gateways.backend_post('/checkBookingsPreArrival', data)
     
     def save_data(self):
         data = self.gateway_post()
         if not 'pre_arrival' in self.request.session:
             self.request.session['pre_arrival'] = {}
-        expiry_date = (timezone.now() + datetime.timedelta(minutes=settings.PRE_ARRIVAL_AGE)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
+        expiry_duration = gateways.amp('GET', settings.AMP_CONFIG_URL + str(settings.AMP_CONFIG_ID)).get('pre_arrival_session_expiry_duration', settings.PRE_ARRIVAL_AGE)
+        expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['pre_arrival'].update({
             'bookings': data.get('data', []),
             'expiry_date': expiry_date,
@@ -318,6 +319,7 @@ class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
     def clean(self):
         super().clean()
         adult, max_adult = 1, int(self.request.session['pre_arrival']['form'].get('adults', 1))
+        age_limit = gateways.amp('GET', settings.AMP_CONFIG_URL + str(settings.AMP_CONFIG_ID)).get('pre_arrival_adult_minimum_age', settings.DETAIL_FORM_AGE_LIMIT)
         for form in self.forms:
             if utilities.calculate_age(form.cleaned_data.get('birth_date')) > settings.DETAIL_FORM_AGE_LIMIT:
                 adult += 1
@@ -376,7 +378,7 @@ class PreArrivalOtherInfoForm(forms.Form):
     def gateway_post(self):
         data = self.request.session['pre_arrival']['form']
         data['customerInputNumber'] = self.request.session['pre_arrival'].get('input_reservation_no', '')
-        response = gateways.post('/processGuestsPreArrival', data)
+        response = gateways.backend_post('/processGuestsPreArrival', data)
         if response.get('success', '') == 'true':
             # get existing reservation from backend
             new_booking_data = {
@@ -384,7 +386,7 @@ class PreArrivalOtherInfoForm(forms.Form):
                 'arrival_date': self.request.session['pre_arrival'].get('input_arrival_date', ''),
                 'last_name': self.request.session['pre_arrival'].get('input_last_name', ''),
             }
-            new_booking_response = gateways.post('/checkBookingsPreArrival', new_booking_data)
+            new_booking_response = gateways.backend_post('/checkBookingsPreArrival', new_booking_data)
             self.request.session['pre_arrival'].update({'bookings': new_booking_response.get('data', [])})
         else:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])

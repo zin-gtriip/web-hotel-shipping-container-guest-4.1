@@ -186,10 +186,17 @@ COMPRESS_PRECOMPILERS = (
 
 # Gateway API configuration
 
-GATEWAY_URL         = 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0'
-GATEWAY_API_KEY     = '75ce215db4ec4cb986a10992a9ff4e29bc3c9ec8b93f69d5eb56ec98a2118309c8b5cbaeb32a1628ba304b73291e896d1536df994caedcb85df8e401b63ecb50'
-GATEWAY_SITE_ID     = 'CRE_BOAT_QUAY_1' #'QAHotelProdSG11'
-GATEWAY_SITE_NAME   = 'QA_Hotel_Prod_SG_3.0'
+BACKEND_URL         = 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0'
+BACKEND_API_KEY     = '75ce215db4ec4cb986a10992a9ff4e29bc3c9ec8b93f69d5eb56ec98a2118309c8b5cbaeb32a1628ba304b73291e896d1536df994caedcb85df8e401b63ecb50'
+BACKEND_SITE_ID     = 'CRE_BOAT_QUAY_1' #'QAHotelProdSG11'
+BACKEND_SITE_NAME   = 'QA_Hotel_Prod_SG_3.0'
+
+
+# AMP API configuration
+AMP_URL             = 'http://localhost:8000/api'
+AMP_API_KEY         = 'gGf4YY3pObsO5Ujx6LFcq78jetVUwNk3pvrAF37mR4srvXOWG1Jy5TTSGuNFHex4d0TXYKWlGVktovLow8c4HWPvgsTHXygvzZF1Ie0oYVYuyeefSu2oo2duSLvSSJTc'
+AMP_CONFIG_URL      = '/config/'
+AMP_CONFIG_ID       = 1
 
 
 # Cron job configuration
@@ -218,7 +225,7 @@ DATE_INPUT_FORMATS  = ['%Y-%m-%d']
 SESSION_SAVE_EVERY_REQUEST = True
 
 # Pre Arrival
-# expiration time for the pre-arrival (in minutes)
+# default expiry time for the pre-arrival (in minutes), if AMP is not provided
 PRE_ARRIVAL_AGE     = 15
 # room mapping, use `room_type` as identifier
 ROOM_TYPES = [
@@ -240,7 +247,7 @@ ROOM_TYPES = [
 ]
 # age limit of ocr validation
 PASSPORT_AGE_LIMIT      = 18
-# age limit of detail form that should count as adult or child
+# default age limit of detail form that should count as adult or child, if AMP is not provided
 DETAIL_FORM_AGE_LIMIT   = 13
 # progress bar rate on pre-arrival page
 PROGRESS_BAR_START_RATE = 10
