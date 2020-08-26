@@ -50,7 +50,7 @@ def ocr(image_file, scan_type):
 
 # AMP gateway
 def amp(method, url, **kwargs):
-    headers = {'HTTP_X_API_KEY': settings.AMP_API_KEY}
+    headers = {'x-api-key': settings.AMP_API_KEY}
     try:
         if method == 'GET':
             response = requests.get(settings.AMP_URL + url, json=kwargs, headers=headers, timeout=360, verify=False)
