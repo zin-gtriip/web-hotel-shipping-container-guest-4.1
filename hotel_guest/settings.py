@@ -193,7 +193,7 @@ BACKEND_SITE_NAME   = 'QA_Hotel_Prod_SG_3.0'
 
 
 # AMP API configuration
-AMP_URL             = 'http://localhost:8000/api'
+AMP_URL             = 'http://18.140.58.90:8003/api'
 AMP_API_KEY         = 'gGf4YY3pObsO5Ujx6LFcq78jetVUwNk3pvrAF37mR4srvXOWG1Jy5TTSGuNFHex4d0TXYKWlGVktovLow8c4HWPvgsTHXygvzZF1Ie0oYVYuyeefSu2oo2duSLvSSJTc'
 AMP_CONFIG_URL      = '/config/'
 AMP_CONFIG_ID       = 1
