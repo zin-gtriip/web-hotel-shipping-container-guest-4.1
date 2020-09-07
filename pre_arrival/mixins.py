@@ -91,14 +91,13 @@ class MobileTemplateMixin:
     View mixin that replace `template_name` with mobile template.
 
     This mixin uses `django_user_agents` plugin to indicate if `user_agent` is
-    mobile. And will check view is accessed from app through `preload`
-    session. If one of them is fulfilled `mobile_template_name` will be used
-    if it is provided.
+    mobile. And will check view is accessed from app through session. If one of 
+    them is fulfilled `mobile_template_name` will be used if it is provided.
     """
     mobile_template_name = None
 
     def get_template_names(self):
-        if (self.request.session.get('pre_arrival', {}).get('preload', {}).get('app', False)) or not self.request.user_agent.is_pc:
+        if self.request.session.get('app', False) or not self.request.user_agent.is_pc:
             if self.mobile_template_name:
                 return [self.mobile_template_name]
         return super().get_template_names()
