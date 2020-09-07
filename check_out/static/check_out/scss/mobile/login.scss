@@ -1,0 +1,41 @@
+.content {
+    .page-header {
+        width: 212px;
+
+        span:not(.active) {
+            display: none;
+        }
+    }
+
+    .page-subheader {
+        width: 289px;
+
+        span:not(.active) {
+            display: none;
+        }
+    }
+    
+    .page-content {
+        .input-step {
+            &:not(.active) {
+                display: none;
+            }
+        }
+    
+        .md-form {
+            input {
+                font-size: 18px;
+                width: 263px;
+                height: 58px;
+                margin: 0;
+            }
+        }
+    }
+    
+    .page-footer {
+        button {
+            width: 178px;
+            height: 56px;
+        }
+    }
+}

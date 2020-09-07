@@ -1,0 +1,74 @@
+{% extends 'pre_arrival/mobile/base_mobile.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'check_out/scss/mobile/login.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block content %}
+    {{ block.super }}
+    <form method="post" id="form-mobile-login">
+        {% csrf_token %}
+        <div class="row page-header">
+            <div class="col-12 text-center">
+                <span id="header-room-no" class="header-description active">{% trans 'Please enter your Room Number' %}</span>
+                <span id="header-last-name" class="header-description">{% trans 'Please enter your Last Name' %}</span>
+            </div>
+        </div>
+        <div class="row page-subheader">
+            <div class="col-12 px-0 text-center text-secondary">
+                <span id="subheader-room-no" class="subheader-description active">{% trans 'The following information is required to retrieve your check-in status, and messages.' %}</span>
+                <span id="subheader-last-name" class="subheader-description">{% trans 'To verify your reservation, please provide your last name is in your passport.' %}</span>
+            </div>
+        </div>
+        <div class="row page-content">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="input-step active" id="step-room-no">
+                    <div class="md-form input-center input-boxed my-0">
+                        {% render_field form.room_no class="form-control" placeholder="Room Number" %}
+                    </div>
+                </div>
+                <div class="input-step" id="step-last-name">
+                    <div class="md-form input-center input-boxed my-0">
+                        {% render_field form.last_name class="form-control" placeholder="Last Name" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row page-footer">
+            <div class="col-12 d-flex justify-content-center">
+                <button type="button" class="btn btn-primary btn-round m-0" id="btn-step-next" disabled>{% trans 'Next' %}</button>
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+
+{% block wrapper %}
+    {{ block.super }}
+    <!-- Error Modal -->
+    {% for error in form.non_field_errors %}
+        <div class="modal fade" id="form-error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h4 class="modal-title mx-auto">{% trans 'Invalid Input' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ error|linebreaks }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'Fix' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock wrapper %}
+
+{% block static_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'check_out/js/mobile/login.js' %}"></script>
+{% endblock static_js %}
