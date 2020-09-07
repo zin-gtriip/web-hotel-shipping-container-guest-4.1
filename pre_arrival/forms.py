@@ -24,7 +24,7 @@ class PreArrivalLoginForm(forms.Form):
     }
 
     def __init__(self, request, *args, **kwargs):
-        super(PreArrivalLoginForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
         self.fields['reservation_no'].initial = self.request.session.get('pre_arrival', {}).get('preload', {}).get('reservation_no')
@@ -81,7 +81,7 @@ class PreArrivalReservationForm(forms.Form):
     reservation_no = forms.ChoiceField(widget=forms.RadioSelect())
 
     def __init__(self, request, *args, **kwargs):
-        super(PreArrivalReservationForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
         self.fields['reservation_no'].choices = [(reservation.get('reservationNo', ''), reservation.get('reservationNo', '')) for reservation in self.request.session['pre_arrival'].get('bookings', [])]
@@ -105,7 +105,7 @@ class PreArrivalPassportForm(forms.Form):
     skip_passport = forms.BooleanField(widget=forms.HiddenInput(), required=False)
     
     def __init__(self, request, *args, **kwargs):
-        super(PreArrivalPassportForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
 
@@ -177,7 +177,7 @@ class PreArrivalDetailForm(forms.Form):
     birth_date  = forms.DateField(label=_('Date of Birth'))
 
     def __init__(self, request, *args, **kwargs):
-        super(PreArrivalDetailForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
         # from backend
@@ -266,7 +266,7 @@ class PreArrivalDetailExtraForm(forms.Form):
     birth_date = forms.DateField(label=_('Date of Birth'))
 
     def __init__(self, request, *args, **kwargs):
-        super(PreArrivalDetailExtraForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
 
@@ -293,7 +293,7 @@ class PreArrivalDetailExtraForm(forms.Form):
 class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
     
     def __init__(self, request, *args, **kwargs):
-        super(PreArrivalDetailExtraBaseFormSet, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
         # populate additional guests
@@ -337,7 +337,7 @@ class PreArrivalOtherInfoForm(forms.Form):
     is_subscribe        = forms.BooleanField(label=_('Is Subscribe'), required=False)
 
     def __init__(self, request, *args, **kwargs):
-        super(PreArrivalOtherInfoForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
         self.fields['arrival_time'].choices = utilities.generate_arrival_time()
