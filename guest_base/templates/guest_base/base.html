@@ -50,20 +50,20 @@
                 <!-- Header -->
                 <div class="header">
                     {% block header %}
-                        <div class="nav">
+                        <div class="header-left">
                             <div class="container">
-                                {% block nav %}{% endblock nav %}
+                                {% block header_left %}{% endblock header_left %}
                             </div>
                         </div>
                         <!-- Timer -->
-                        <div class="timer">
+                        <div class="header-middle">
                             <div class="container">
-                                {% block timer %}{% endblock timer %}
+                                {% block header_middle %}{% endblock header_middle %}
                             </div>
                         </div>
-                        <div class="language">
+                        <div class="header-right">
                             <div class="container">
-                                {% block language %}
+                                {% block header_right %}
                                     <form id="form-set-language" action="{% url 'set_language' %}" method="post">
                                         {% csrf_token %}
                                         <input name="next" type="hidden" value="{{ redirect_to }}">
@@ -76,7 +76,7 @@
                                             {% endfor %}
                                         </select>
                                     </form>
-                                {% endblock language %}
+                                {% endblock header_right %}
                             </div>
                         </div>
                     {% endblock header %}
