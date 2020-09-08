@@ -25,7 +25,19 @@ var croppieOpts = {
 };
 
 
-// btn-upload click
+// file-capture click
+$('.file-capture').click(function() {
+    try { passportAction.postMessage('take photo'); } catch(error) {} // send message to app
+});
+
+
+// file-upload click
+$('.file-upload').click(function() {
+    try { passportAction.postMessage('upload photo'); } catch(error) {} // send message to app
+});
+
+
+// file change
 $('.file-capture, .file-upload').change(function() {
     var file = event.target.files[0];
 
