@@ -27,13 +27,17 @@ var croppieOpts = {
 
 // file-capture click
 $('.file-capture').click(function() {
-    try { passportAction.postMessage('take photo'); } catch(error) {} // send message to app
+    window.addEventListener("flutterInAppWebViewPlatformReady", function(event) { // send message to app
+        window.flutter_inappwebview.callHandler('takePhoto', true);
+    });
 });
 
 
 // file-upload click
 $('.file-upload').click(function() {
-    try { passportAction.postMessage('upload photo'); } catch(error) {} // send message to app
+    window.addEventListener("flutterInAppWebViewPlatformReady", function(event) { // send message to app
+        window.flutter_inappwebview.callHandler('uploadPhoto', true);
+    });
 });
 
 
