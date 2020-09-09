@@ -14,26 +14,26 @@
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-12 text-center">
-                <span id="header-room-no" class="header-description active">{% trans 'Please enter your Room Number' %}</span>
-                <span id="header-last-name" class="header-description">{% trans 'Please enter your Last Name' %}</span>
+                <span id="header-reservation-no" class="header-description active">{% trans 'Please enter your Reservation Number' %}</span>
+                <span id="header-room-no" class="header-description">{% trans 'Please enter your Room Number' %}</span>
             </div>
         </div>
         <div class="row page-subheader">
             <div class="col-12 px-0 text-center text-secondary">
-                <span id="subheader-room-no" class="subheader-description active">{% trans 'The following information is required to retrieve your check-in status, and messages.' %}</span>
-                <span id="subheader-last-name" class="subheader-description">{% trans 'To verify your reservation, please provide your last name is in your passport.' %}</span>
+                <span id="subheader-reservation-no" class="subheader-description active">{% trans 'To verify your reservation, please provide your reservation number.' %}</span>
+                <span id="subheader-room-no" class="subheader-description">{% trans 'The following information is required to retrieve your check-in status, and messages.' %}</span>
             </div>
         </div>
         <div class="row page-content">
             <div class="col-12 d-flex justify-content-center">
-                <div class="input-step active" id="step-room-no">
+                <div class="input-step active" id="step-reservation-no">
                     <div class="md-form input-center input-boxed my-0">
-                        {% render_field form.room_no class="form-control" placeholder="Room Number" %}
+                        {% render_field form.reservation_no class="form-control" placeholder="Reservation Number" %}
                     </div>
                 </div>
-                <div class="input-step" id="step-last-name">
+                <div class="input-step" id="step-room-no">
                     <div class="md-form input-center input-boxed my-0">
-                        {% render_field form.last_name class="form-control" placeholder="Last Name" %}
+                        {% render_field form.room_no class="form-control" placeholder="Room Number" %}
                     </div>
                 </div>
             </div>

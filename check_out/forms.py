@@ -3,8 +3,8 @@ from django.utils.translation   import gettext, gettext_lazy as _
 from .                          import samples
 
 class CheckOutLoginForm(forms.Form):
-    room_no     = forms.CharField(label=_('Room Number'))
-    last_name   = forms.CharField(label=_('Last Name'))
+    reservation_no  = forms.CharField(label=_('Reservation Number'))
+    room_no         = forms.CharField(label=_('Room Number'))
 
     SUCCESS_CODE    = 500
 
@@ -12,19 +12,19 @@ class CheckOutLoginForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
+        self.fields['reservation_no'].initial = self.request.session.get('check_out', {}).get('preload', {}).get('reservation_no')
         self.fields['room_no'].initial = self.request.session.get('check_out', {}).get('preload', {}).get('room_no')
-        self.fields['last_name'].initial = self.request.session.get('check_out', {}).get('preload', {}).get('last_name')
 
     def clean(self):
         super().clean()
+        reservation_no = self.cleaned_data.get('reservation_no')
         room_no = self.cleaned_data.get('room_no')
-        last_name = self.cleaned_data.get('last_name')
 
         # validate required field
+        if not reservation_no:
+            self._errors['reservation_no'] = self.error_class([_('Enter the required information')])
         if not room_no:
             self._errors['room_no'] = self.error_class([_('Enter the required information')])
-        if not last_name:
-            self._errors['last_name'] = self.error_class([_('Enter the required information')])
 
         # validate to backend
         response = self.gateway_post()
@@ -35,10 +35,9 @@ class CheckOutLoginForm(forms.Form):
 
     def gateway_post(self):
         data = {
-            'room_no': self.cleaned_data.get('reservation_no'),
-            'last_name': self.cleaned_data.get('last_name'),
+            'reservation_no': self.cleaned_data.get('reservation_no'),
+            'room_no': self.cleaned_data.get('room_no'),
         }
-        print(data)
         return samples.check_out_data #gateways.backend_post('/checkBookingsPreArrival', data)
     
     def save_data(self):

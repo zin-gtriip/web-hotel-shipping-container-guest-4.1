@@ -2,7 +2,7 @@
 try { nextPage.postMessage('/check_out/login/room_no'); } catch(error) {}
 
 
-$('#id_room_no, #id_last_name').keyup(function() {
+$('#id_reservation_no, #id_room_no').keyup(function() {
 	var $this = $(this);
 	if ($this.val() != '') {
 		$('#btn-step-next').attr('disabled', false);
@@ -18,11 +18,11 @@ $('#btn-step-next').click(function() {
 		, $nextStep = $currentStep.next('.input-step');
 		
 	$nextStep.find('input').keyup();
-	$('.subheader-description').removeClass('active');
+	$('.header-description, .subheader-description').removeClass('active');
 
 	// send message to app
-	$('#subheader-last-name').addClass('active');
-	try { nextPage.postMessage('/check_out/login/last_name'); } catch(error) {}
+	$('#header-room-no, #subheader-room-no').addClass('active');
+	try { nextPage.postMessage('/check_out/login/room_no'); } catch(error) {}
 
 	// submit if no more nextStep
 	if ($nextStep.length == 0) {

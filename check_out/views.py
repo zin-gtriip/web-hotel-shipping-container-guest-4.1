@@ -20,7 +20,7 @@ class CheckOutDataView(RedirectView):
         if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
         if 'auto_login' in self.request.GET: self.request.session['check_out']['preload']['auto_login'] = self.request.GET.get('auto_login', False)
         if 'room_no' in self.request.GET: self.request.session['check_out']['preload']['room_no'] = self.request.GET.get('room_no', '')
-        if 'last_name' in self.request.GET: self.request.session['check_out']['preload']['last_name'] = self.request.GET.get('last_name', '')
+        if 'reservation_no' in self.request.GET: self.request.session['check_out']['preload']['reservation_no'] = self.request.GET.get('reservation_no', '')
         return super().get_redirect_url(*args, **kwargs)
 
 
@@ -34,7 +34,7 @@ class CheckOutLoginView(RequestFormKwargsMixin, MobileTemplateMixin, FormView):
         if request.session.get('check_out', {}).get('preload', {}).get('auto_login', False):
             data = {
                 'room_no': request.session.get('check_out', {}).get('preload', {}).get('room_no', ''),
-                'last_name': request.session.get('check_out', {}).get('preload', {}).get('last_name', ''),
+                'reservation_no': request.session.get('check_out', {}).get('preload', {}).get('reservation_no', ''),
             }
             form = self.get_form_class()
             form = form(request, data)
