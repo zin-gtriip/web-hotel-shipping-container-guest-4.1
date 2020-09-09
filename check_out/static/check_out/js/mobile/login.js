@@ -1,5 +1,5 @@
-// send message to app
-try { nextPage.postMessage('/check_out/login/room_no'); } catch(error) {}
+window.addEventListener("flutterInAppWebViewPlatformReady", null); // add event to send message to app
+try { window.flutter_inappwebview.callHandler('nextPage', '/check_out/login/reservation_no'); } catch(error) {} // send message to app
 
 
 $('#id_reservation_no, #id_room_no').keyup(function() {
@@ -10,7 +10,7 @@ $('#id_reservation_no, #id_room_no').keyup(function() {
 		$('#btn-step-next').attr('disabled', true);
 	}
 });
-$('#id_room_no').keyup();
+$('#id_reservation_no').keyup();
 
 
 $('#btn-step-next').click(function() {
@@ -22,7 +22,7 @@ $('#btn-step-next').click(function() {
 
 	// send message to app
 	$('#header-room-no, #subheader-room-no').addClass('active');
-	try { nextPage.postMessage('/check_out/login/room_no'); } catch(error) {}
+	try { window.flutter_inappwebview.callHandler('nextPage', '/check_out/login/room_no'); } catch(error) {} // send message to app
 
 	// submit if no more nextStep
 	if ($nextStep.length == 0) {

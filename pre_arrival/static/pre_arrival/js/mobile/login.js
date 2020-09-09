@@ -1,12 +1,11 @@
+window.addEventListener("flutterInAppWebViewPlatformReady", null); // add event to send message to app
+try { window.flutter_inappwebview.callHandler('nextPage', '/pre_arrival/login/reservation_no'); } catch(error) {} // send message to app
+var loginStep = 0;
+
 $('.datepicker').datepicker();
 if ($('#id_arrival_date').val() == '') {
 	$('#id_arrival_date:not(.is_bound)').datepicker('update', new Date());
 }
-
-
-// send message to app
-try { nextPage.postMessage('/pre_arrival/login/reservation_no'); } catch(error) {}
-var loginStep = 0;
 
 
 $('#id_reservation_no, #id_last_name, #id_arrival_date').keyup(function() {
@@ -41,11 +40,11 @@ $('#btn-step-next').click(function() {
 	switch(loginStep) {
 		case 1:
 			$('#subheader-last-name').addClass('active');
-			try { nextPage.postMessage('/pre_arrival/login/last_name'); } catch(error) {} // send message to app
+			try { window.flutter_inappwebview.callHandler('nextPage', '/pre_arrival/login/last_name'); } catch(error) {} // send message to app
 			break;
-		case 2:
-			$('#subheader-arrival-date').addClass('active');
-			try { nextPage.postMessage('/pre_arrival/login/arrival_date'); } catch(error) {} // send message to app
+			case 2:
+				$('#subheader-arrival-date').addClass('active');
+			try { window.flutter_inappwebview.callHandler('nextPage', '/pre_arrival/login/arrival_date'); } catch(error) {} // send message to app
 			break;
 	}
 
