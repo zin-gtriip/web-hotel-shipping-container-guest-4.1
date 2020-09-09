@@ -158,7 +158,7 @@ class PreArrivalPassportForm(forms.Form):
         main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
         if self.cleaned_data.get('skip_passport'):
             main_guest.update({'passportImage': ''})
-            self.request.session['pre_arrival'].pop('ocr')
+            self.request.session['pre_arrival'].pop('ocr', None)
         else:
             file_name = self.request.session.session_key +'.png'
             folder_name = os.path.join(settings.BASE_DIR, 'media', 'ocr')
