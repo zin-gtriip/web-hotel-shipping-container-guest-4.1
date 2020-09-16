@@ -1,15 +1,14 @@
-$('#id_reservation_no, #id_last_name, #id_arrival_date').keyup(function() {
+$('#id_reservation_no, #id_room_no').keyup(function() {
     enableDisableButton();
 });
-$('#id_reservation_no, #id_last_name').keyup();
+$('#id_reservation_no, #id_room_no').keyup();
 
 
 function enableDisableButton() {
     $reservationNo = $('#id_reservation_no')
-        , $lastName = $('#id_last_name')
-        , $arrivalDate = $('#id_arrival_date');
+        , $roomNo = $('#id_room_no');
 
-    if ($reservationNo.val() != '' && $lastName.val() != '' && $arrivalDate.val() != '') {
+    if ($reservationNo.val() != '' && $roomNo.val() != '') {
 		$('#btn-step-next').attr('disabled', false);
 	} else {
 		$('#btn-step-next').attr('disabled', true);
