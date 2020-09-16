@@ -1,0 +1,21 @@
+.content {
+    .page-subheader {
+        width: 274px;
+        margin: 0 auto 10px auto; 
+    }
+    
+    .page-content {
+        margin-bottom: 25px;
+
+        .md-form {
+            width: 305px;
+            margin: 0 auto;
+
+            select {
+                font-size: 18px;
+                height: 58px;
+                margin: 0;
+            }
+        }
+    }
+}

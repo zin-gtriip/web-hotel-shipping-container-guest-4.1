@@ -1,5 +1,6 @@
 from django                     import forms
 from django.utils.translation   import gettext, gettext_lazy as _
+from guest_base                 import gateways
 from .                          import samples
 
 class CheckOutLoginForm(forms.Form):
@@ -28,7 +29,7 @@ class CheckOutLoginForm(forms.Form):
 
         # validate to backend
         response = self.gateway_post()
-        if response.get('overall_status', '') != self.SUCCESS_CODE:
+        if response.get('status', '') != self.SUCCESS_CODE:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([self.ERROR_MESSAGES.get(response.get('overall_status', 0), _('Unknown error'))])
         
         return self.cleaned_data
@@ -38,7 +39,7 @@ class CheckOutLoginForm(forms.Form):
             'reservation_no': self.cleaned_data.get('reservation_no'),
             'room_no': self.cleaned_data.get('room_no'),
         }
-        return samples.check_out_data #gateways.backend_post('/checkBookingsPreArrival', data)
+        return samples.check_out_login #gateways.backend_post('/checkBookingsPreArrival', data)
     
     def save_data(self):
         data = self.gateway_post()
@@ -46,6 +47,44 @@ class CheckOutLoginForm(forms.Form):
             self.request.session['check_out'] = {}
         self.request.session['check_out'].update({
             'bills': data.get('data', []),
+            'input_reservation_no': self.cleaned_data.get('reservation_no'),
+            'input_room_no': self.cleaned_data.get('room_no'),
         })
-        if 'preload' in self.request.session['check_out'] and 'auto_login' in self.request.session['pre_arrival']['preload']:
+        if 'preload' in self.request.session['check_out'] and 'auto_login' in self.request.session['check_out']['preload']:
             self.request.session['check_out']['preload']['auto_login'] = False # set auto login to False
+
+
+class CheckOutBillForm(forms.Form):
+    reservation_no  = forms.ChoiceField(label=_('Reservation Number'))
+
+    def __init__(self, instance, request, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.instance = instance
+        self.request = request
+        self.label_suffix = ''
+        # populate choices
+        reservations_no = [reservation.get('reservation_no', '') for reservation in self.request.session['check_out'].get('bills', [])]
+        self.fields['reservation_no'].choices = [('all', 'All Guests')]
+        for reservation in self.request.session['check_out'].get('bills', []):
+            self.fields['reservation_no'].choices.append((reservation.get('reservation_no', ''), reservation.get('first_name', '') + ' ' + reservation.get('last_name', '')))
+        # set initial
+        self.fields['reservation_no'].initial = self.instance.get('reservation_no', '')
+        if len(self.instance.get('reservation_no', '').split(',')) > 1:
+            self.fields['reservation_no'].initial = 'all'
+
+    def clean(self):
+        reservation_no = self.cleaned_data.get('reservation_no', '')
+        if not reservation_no:
+            self._errors['reservation_no'] = self.error_class([_('Enter the required information')])
+        return self.cleaned_data
+
+    def gateway_post(self):
+        reservation_info = self.instance.get('reservation_info', [])
+        data = {'reservation_info': reservation_info}
+        return {'success': 'true'} #gateways.backend_post('', data)
+
+    def save(self):
+        response = self.gateway_post()
+        if response.get('success', '') != 'true':
+            raise Exception(response.get('message', _('Unknown error')))
+        return self.instance

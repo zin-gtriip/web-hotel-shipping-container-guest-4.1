@@ -1,0 +1,179 @@
+{% extends 'check_out/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+{% load humanize %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'check_out/scss/desktop/bill.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block content %}
+    {{ block.super }}
+    <form method="post">
+        {% csrf_token %}
+        <div class="row page-header">
+            <div class="col-lg-12 text-center">
+                {% trans 'Bill Review & Check Out' %}
+            </div>
+        </div>
+        <div class="row page-subheader">
+            <div class="col-lg-12 px-0 text-center text-secondary">
+                {% trans 'Select which of the guest to view the bill folio' %}
+            </div>
+        </div>
+        <div class="row page-content">
+            <div class="col-lg-12">
+                <div class="row mb-5">
+                    <div class="col-lg-12">
+                        <div class="md-form input-center input-boxed my-0">
+                            {% render_field form.reservation_no class="form-control" %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span id="reservation-no">{% trans 'Reservation No:' %} {{ object.reservation_no }}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span id="room-no">{% trans 'Room No:' %} {{ object.room_no }}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span id="arrival-date">{% trans 'Arrival Date:' %} {{ object.arrival_date }}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span id="departure-date">{% trans 'Departure Date:' %} {{ object.departure_date }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span id="gst-no">{% trans 'GST Reg. No:' %} {{ gst_no }}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span id="gst-no">{% trans 'Business Reg. No:' %} {{ business_no }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-borderless">
+                                <thead class="border-top-2 border-bottom-2">
+                                    <th class="text-uppercase font-weight-normal">{% trans 'Date' %}</th>
+                                    <th class="text-uppercase font-weight-normal">{% trans 'Description' %}</th>
+                                    <th class="text-uppercase font-weight-normal text-right">{% trans 'Amount' %}</th>
+                                </thead>
+                                <tbody>
+                                    {% for item in object.items %}
+                                        <tr>
+                                            <td>{{ item.date }}</td>
+                                            <td>{{ item.item_name }}</td>
+                                            <td class="text-right">{{ item.amount|floatformat:2|intcomma }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot class="border-top-2 border-bottom-2">
+                                    <tr>
+                                        <td class="text-uppercase font-weight-normal text-right" colspan="2">{% trans 'Balance Due' %}</td>
+                                        <td class="text-right">{{ currency_symbol }} {{ object.grand_total|floatformat:2|intcomma }}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row mb-3">
+                            <div class="col-lg-12">
+                                {% blocktrans %}
+                                    This is a computer-generated preliminary bill folio and not a tax invoice.
+                                {% endblocktrans %}
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-lg-12">
+                                {% blocktrans %}
+                                    I agree that my liability for this bill is not waived and agree to be held personally liable in the event that the indicated person, company or association fails to pay for any part of the full amount of the charges.
+                                {% endblocktrans %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 text-center text-secondary">
+                                {% blocktrans %}
+                                    Outstanding balance will be charged to the credit card registered.
+                                {% endblocktrans %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row page-footer">
+            <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-9 col-sm-5 col-lg-4 mx-auto">
+                            <button type="submit" class="btn btn-danger btn-block btn-round m-0" {% if not object.check_out_ok %}disabled{% endif %}>
+                                {% trans 'Check Out' %}
+                            </button>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+
+{% block wrapper %}
+    {{ block.super }}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <!-- Success Modal -->
+            <div class="modal fade" id="message-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary text-white">
+                            <h4 class="modal-title mx-auto">{% trans 'Check Out Successful' %}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mb-3">
+                                <div class="col-lg-12">
+                                    {{ message }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    {% trans "We hope you enjoy your stay with us, and we'll see you again soon!" %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'OK' %}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock wrapper %}
+
+{% block static_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'check_out/js/desktop/bill.js' %}"></script>
+{% endblock static_js %}
