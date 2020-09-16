@@ -7,8 +7,6 @@ class CheckOutLoginForm(forms.Form):
     reservation_no  = forms.CharField(label=_('Reservation Number'))
     room_no         = forms.CharField(label=_('Room Number'))
 
-    SUCCESS_CODE    = 500
-
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.request = request
@@ -29,7 +27,7 @@ class CheckOutLoginForm(forms.Form):
 
         # validate to backend
         response = self.gateway_post()
-        if response.get('status', '') != self.SUCCESS_CODE:
+        if response.get('status_code', '') != 500:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([self.ERROR_MESSAGES.get(response.get('overall_status', 0), _('Unknown error'))])
         
         return self.cleaned_data
@@ -39,7 +37,7 @@ class CheckOutLoginForm(forms.Form):
             'reservation_no': self.cleaned_data.get('reservation_no'),
             'room_no': self.cleaned_data.get('room_no'),
         }
-        return samples.check_out_login #gateways.backend_post('/checkBookingsPreArrival', data)
+        return gateways.backend_post('/signInForCheckOut', data)
     
     def save_data(self):
         data = self.gateway_post()
@@ -81,10 +79,10 @@ class CheckOutBillForm(forms.Form):
     def gateway_post(self):
         reservation_info = self.instance.get('reservation_info', [])
         data = {'reservation_info': reservation_info}
-        return {'success': 'true'} #gateways.backend_post('', data)
+        return gateways.backend_post('/postCheckOut', data)
 
     def save(self):
         response = self.gateway_post()
-        if response.get('success', '') != 'true':
+        if response.get('status_code', '') != 500:
             raise Exception(response.get('message', _('Unknown error')))
         return self.instance

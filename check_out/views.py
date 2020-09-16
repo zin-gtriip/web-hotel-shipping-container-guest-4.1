@@ -69,8 +69,8 @@ class CheckOutBillView(RequestFormKwargsMixin, BillRequiredAndExistMixin, Update
         if not reservations_no:
             raise ValueError('No reservation number is provided')
         data = {'reservation_no': reservations_no}
-        response = samples.get_bill(**data) #gateways.backend_post('/checkBookingsPreArrival', data)
-        if response.get('status', '') == 500:
+        response = gateways.backend_post('/billsForCheckOut', data)
+        if response.get('status_code', '') == 500:
             bill = response.get('data', {})
         else:
             raise Http404('No matching entries with the Reservation No. found')
