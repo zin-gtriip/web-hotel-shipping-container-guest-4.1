@@ -12,7 +12,6 @@ class PreArrivalLoginForm(forms.Form):
     arrival_date    = forms.DateField(label=_('Arrival Date'))
     last_name       = forms.CharField(label=_('Last Name'))
 
-    SUCCESS_CODE    = 500
     ERROR_MESSAGES  = {
         100: _('No matching PMS reservation with given Reservation Number.'),
         101: _('No matching PMS reservation with given Arrival Date.'),
@@ -47,7 +46,7 @@ class PreArrivalLoginForm(forms.Form):
 
         # validate to backend
         response = self.gateway_post()
-        if response.get('overall_status', '') != self.SUCCESS_CODE:
+        if response.get('overall_status', '') != 500:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([self.ERROR_MESSAGES.get(response.get('overall_status', 0), _('Unknown error'))])
         
         return self.cleaned_data
