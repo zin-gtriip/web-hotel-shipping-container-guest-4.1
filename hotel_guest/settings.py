@@ -189,7 +189,7 @@ COMPRESS_PRECOMPILERS = (
 # Gateway API configuration
 
 BACKEND_URL         = 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0'
-BACKEND_API_KEY     = '75ce215db4ec4cb986a10992a9ff4e29bc3c9ec8b93f69d5eb56ec98a2118309c8b5cbaeb32a1628ba304b73291e896d1536df994caedcb85df8e401b63ecb50'
+BACKEND_API_KEY     = '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45'
 BACKEND_SITE_ID     = 'CRE_BOAT_QUAY_1' #'QAHotelProdSG11'
 BACKEND_SITE_NAME   = 'QA_Hotel_Prod_SG_3.0'
 
