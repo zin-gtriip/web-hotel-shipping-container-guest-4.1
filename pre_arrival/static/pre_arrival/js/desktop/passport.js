@@ -23,6 +23,7 @@ var croppieOpts = {
     showZoomer: true,
     enableOrientation: true,
 };
+$('#img-preview').croppie(croppieOpts); // init croppie to element, use `bind` to add image data
 
 
 // btn-upload click
@@ -34,7 +35,9 @@ $('.file-upload').change(function() {
     new Compressor(file, {
         success: function(result) {
             blobToDataURL(result, function(dataURL) {
-                $('#img-preview').attr('src', dataURL);
+                $('#img-preview').croppie('bind', dataURL).then(function() { // update image data
+                    $('#img-preview').croppie('setZoom', 0); // change zoom level
+                });
                 initCroppieComponents();
                 initBorderGuide();
             });
@@ -68,7 +71,9 @@ $('#btn-webcam').click(function() {
                 new Compressor(dataURLtoBlob(draw.toDataURL('image/jpeg')), {
                     success: function(result) {
                         blobToDataURL(result, function(dataURL) {
-                            $img.attr('src', dataURL);
+                            $img.croppie('bind', dataURL).then(function() { // update image data
+                                $img.croppie('setZoom', 0); // change zoom level
+                            });
                             initCroppieComponents();
                             initBorderGuide();
                         });
@@ -143,7 +148,7 @@ function dataURLtoBlob(dataURL) {
 }
 
 
-// initiate croppie and additional elements
+// initiate croppie components, ie: moving timer, add rotate button, etc
 function initCroppieComponents() {
     var $previewText = $('<div></div>').addClass('text-white text-center').attr('id', 'text-preview').text(gettext('Please adjust the image to make sure that all information is within the box.'))
         , $zoomWrap
@@ -155,7 +160,6 @@ function initCroppieComponents() {
 
     $('.page-header, .page-subheader, .default-container, .webcam-container').hide();
     $('.cr-slider-wrap').appendTo('.croppie-container'); // move back to prevent error on `croppie('destroy')`
-    $('#img-preview').croppie('destroy').croppie(croppieOpts);
     $('.preview-container, #btn-skip').show();
     $zoomWrap = $('.cr-slider-wrap');
     $zoomWord.prependTo($zoomWrap);

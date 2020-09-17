@@ -23,6 +23,7 @@ var croppieOpts = {
     showZoomer: false,
     enableOrientation: true,
 };
+$('#img-preview').croppie(croppieOpts); // init croppie to element, use `bind` to add image data
 
 
 // file-capture click
@@ -50,7 +51,9 @@ $('.file-capture, .file-upload').change(function() {
     new Compressor(file, {
         success: function(result) {
             blobToDataURL(result, function(dataURL) {
-                $('#img-preview').attr('src', dataURL);
+                $('#img-preview').croppie('bind', dataURL).then(function() { // update image data
+                    $('#img-preview').croppie('setZoom', 0); // change zoom level
+                });
                 initCroppieComponents();
                 initBorderGuide();
             });
@@ -119,7 +122,7 @@ function dataURLtoBlob(dataURL) {
 }
 
 
-// initiate croppie and additional elements
+// initiate croppie components, ie: moving timer, add rotate button, etc
 function initCroppieComponents() {
     var $timer = $('.timer-text').clone().removeClass('text-secondary').addClass('text-white')
         , $previewText = $('<div></div>').addClass('text-white text-center').attr('id', 'text-preview').text(gettext('Drag, rotate, or pinch the image to make sure that all information is within the box.'))
@@ -129,7 +132,6 @@ function initCroppieComponents() {
         });
 
     $('.header, .page-header, .page-subheader, .default-container').hide();
-    $('#img-preview').croppie('destroy').croppie(croppieOpts);
     $('.preview-container').show();
     $('.cr-boundary').append($timer, $previewText, $btnRotate);
 }
