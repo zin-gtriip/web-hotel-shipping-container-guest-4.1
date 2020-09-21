@@ -52,6 +52,5 @@ def parse_arrival_time(time):
     try:
         time = dt.strptime(time, '%H:%M:%S')
     except:
-        time = None
-    if not time: return
+        time = dt.strptime('14:00', '%H:%M')
     return time.strftime('%H:%M')
