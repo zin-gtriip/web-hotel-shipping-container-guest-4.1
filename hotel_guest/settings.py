@@ -224,6 +224,8 @@ HOTEL_NAME          = 'GTRIIP'
 GST_NO              = 'A13572468B'
 BUSINESS_NO         = '975308642Z'
 CURRENCY_SYMBOL     = 'S$'
+TNC_LINK            = 'https://www.gtriip.com'
+PRIVACY_LINK        = 'https://www.gtriip.com'
 # default django variable for date format
 DATE_INPUT_FORMATS  = ['%Y-%m-%d']
 # set session to be saved everytime
