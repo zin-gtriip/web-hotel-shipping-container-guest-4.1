@@ -345,7 +345,7 @@ class PreArrivalOtherInfoForm(forms.Form):
         self.fields['special_requests'].initial = self.request.session['pre_arrival']['form'].get('comments', '')
         main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
         self.fields['email'].initial = main_guest.get('email', '')
-        self.fields['is_subscribe'].initial = main_guest.get('emailSubscription', '')
+        self.fields['is_subscribe'].initial = main_guest.get('emailSubscription', True)
 
     def clean(self):
         super().clean()
