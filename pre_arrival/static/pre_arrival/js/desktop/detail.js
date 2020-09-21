@@ -75,7 +75,7 @@ function rearrangeExtraIndex() {
 
     $extraFormset.each(function(index) {
         $(this).attr('id', 'extra-formset-'+ index)
-            .find('.guest-index span').text(gettext('Guest') +' '+ (index + 1));
+            .find('.guest-index span').text(gettext('Guest') +' '+ (index + 2)); // extra formset starts from 2
     });
 
     // add or remove main guest title
