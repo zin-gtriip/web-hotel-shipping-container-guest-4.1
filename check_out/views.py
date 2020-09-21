@@ -70,11 +70,7 @@ class CheckOutBillView(RequestFormKwargsMixin, BillRequiredAndExistMixin, Update
             raise ValueError('No reservation number is provided')
         data = {'reservation_no': reservations_no}
         response = gateways.backend_post('/billsForCheckOut', data)
-        if response.get('status_code', '') == 500:
-            bill = response.get('data', {})
-        else:
-            raise Http404('No matching entries with the Reservation No. found')
-        return bill
+        return response.get('data', {})
 
     def get_object(self, queryset=None):
         reservation_no = self.kwargs.get('reservation_no', None)
@@ -83,6 +79,7 @@ class CheckOutBillView(RequestFormKwargsMixin, BillRequiredAndExistMixin, Update
             reservations_no = [resv['reservation_no'] for resv in self.request.session['check_out'].get('bills', []) if resv.get('reservation_no', '')]
         obj = self.gateway_post(reservations_no)
         reservation_info = obj.get('reservation_info', [])
+        obj['id'] = reservation_no # set `reservation_no` as unique identifier
         if len(reservation_info) == 1:
             reservation = next(iter(reservation_info), {})
             obj.update(**reservation)

@@ -66,9 +66,7 @@ class CheckOutBillForm(forms.Form):
         for reservation in self.request.session['check_out'].get('bills', []):
             self.fields['reservation_no'].choices.append((reservation.get('reservation_no', ''), reservation.get('first_name', '') + ' ' + reservation.get('last_name', '')))
         # set initial
-        self.fields['reservation_no'].initial = self.instance.get('reservation_no', '')
-        if len(self.instance.get('reservation_no', '').split(',')) > 1:
-            self.fields['reservation_no'].initial = 'all'
+        self.fields['reservation_no'].initial = self.instance.get('id', '')
 
     def clean(self):
         reservation_no = self.cleaned_data.get('reservation_no', '')
