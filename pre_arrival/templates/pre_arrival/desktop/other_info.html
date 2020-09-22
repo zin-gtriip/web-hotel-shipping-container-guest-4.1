@@ -108,8 +108,8 @@
                     <div class="col-lg-12 px-0">
                         <div class="text-10" id="terms-conditions">
                             {% block trans %}
-                                We are commited to protecting your privacy. By proceeding, you agree to our <a href="{{ tnc_link }}" target="_blank">Terms & Conditions</a>.
-                                View our Global Privacy Statement <a href="{{ privacy_link }}" target="_blank">here</a>.
+                                We are commited to protecting your privacy. By proceeding, you agree to our <a href="{{ tnc_link }}" target="_blank" class="new-window-link">Terms & Conditions</a>.
+                                View our Global Privacy Statement <a href="{{ privacy_link }}" target="_blank" class="new-window-link">here</a>.
                             {% endblock trans %}
                         </div>
                     </div>
@@ -145,6 +145,11 @@
         </div>
     {% endfor %}
 {% endblock wrapper %}
+
+{% block data_js %}
+    {{ block.super }}
+    {{ request.session.app|json_script:'app' }}
+{% endblock data_js %}
 
 {% block static_js %}
     {{ block.super }}
