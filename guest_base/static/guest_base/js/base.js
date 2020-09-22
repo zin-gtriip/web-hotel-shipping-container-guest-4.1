@@ -5,7 +5,7 @@ $('#form-set-language select#language').change(function() {
 
 
 // header nav back button
-$('.header .nav #btn-back').click(function () {
+$('.header .header-left #btn-back').click(function () {
 	if ($(this).data('target') != '') {
 		window.location.href = $(this).data('target');
 	} else {
