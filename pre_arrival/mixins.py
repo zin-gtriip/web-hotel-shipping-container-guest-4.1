@@ -24,19 +24,24 @@ class ExpirySessionMixin:
         return redirect('pre_arrival:login')
 
 
-class ExpiryFormRequiredMixin(ExpirySessionMixin):
+class PageParameterRequiredMixin(ExpirySessionMixin):
     """
-    View mixin that verifies the user has `pre_arrival`, `form`.
+    View mixin that verifies the user has `pre_arrival`, `{page_parameter}`.
+    Note: `page_parameter` needs to be defined on each view and assigned after 
+    form is valid on each form. It also must be same `name` in `urls.py`.
 
     Inherit from `ExpirySessionMixin` that also validate `expiry_date` in
-    session. If `form` does not exist in `session`, page will be redirected to
-    reservation page.
+    session. If `page_parameter` does not exist in `session`, page will be 
+    redirected to page of `page_parameter` value.
     """
+    page_parameter = None
 
     def dispatch(self, request, *args, **kwargs):
-        if request.session.get('pre_arrival', {}).get('form', ''):
+        if request.session.get('pre_arrival', {}).get(self.page_parameter, ''):
             return super().dispatch(request, *args, **kwargs)
-        return redirect('pre_arrival:reservation')
+        if not self.page_parameter:
+            return redirect('pre_arrival:login')
+        return redirect('pre_arrival:%s' % self.page_parameter)
 
 
 class ProgressRateContextMixin:

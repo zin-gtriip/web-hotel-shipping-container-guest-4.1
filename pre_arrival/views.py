@@ -80,11 +80,12 @@ class PreArrivalReservationView(RequestFormKwargsMixin, ExpirySessionMixin, Prog
         return super().form_valid(form)
 
 
-class PreArrivalPassportView(RequestFormKwargsMixin, ExpiryFormRequiredMixin, ProgressRateContextMixin, MobileTemplateMixin, FormView):
+class PreArrivalPassportView(RequestFormKwargsMixin, PageParameterRequiredMixin, ProgressRateContextMixin, MobileTemplateMixin, FormView):
     template_name           = 'pre_arrival/desktop/passport.html'
     mobile_template_name    = 'pre_arrival/mobile/passport.html'
     form_class              = PreArrivalPassportForm
     success_url             = '/pre_arrival/detail'
+    page_parameter          = 'reservation'
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('pre_arrival', {}).get('preload', {}).get('skip_ocr', False):
@@ -104,11 +105,12 @@ class PreArrivalPassportView(RequestFormKwargsMixin, ExpiryFormRequiredMixin, Pr
         return super().form_valid(form)
 
 
-class PreArrivalDetailView(RequestFormKwargsMixin, ExpiryFormRequiredMixin, ProgressRateContextMixin, MobileTemplateMixin, FormView):
+class PreArrivalDetailView(RequestFormKwargsMixin, PageParameterRequiredMixin, ProgressRateContextMixin, MobileTemplateMixin, FormView):
     template_name           = 'pre_arrival/desktop/detail.html'
     mobile_template_name    = 'pre_arrival/mobile/detail.html'
     form_class              = PreArrivalDetailForm
     success_url             = '/pre_arrival/other_info'
+    page_parameter          = 'passport'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -117,7 +119,7 @@ class PreArrivalDetailView(RequestFormKwargsMixin, ExpiryFormRequiredMixin, Prog
         if context['bootstrap_datepicker_language'] == 'zh-hans':
             context['bootstrap_datepicker_language'] = 'zh-CN'
         # max extra form
-        context['max_extra_form'] = int(self.request.session['pre_arrival']['form'].get('adults', 1)) + int(self.request.session['pre_arrival']['form'].get('children', 0)) - 1
+        context['max_extra_form'] = int(self.request.session['pre_arrival']['reservation'].get('adults', 1)) + int(self.request.session['pre_arrival']['reservation'].get('children', 0)) - 1
         # render extra form formset
         if self.request.POST:
             context['extra'] = PreArrivalDetailExtraFormSet(self.request, self.request.POST)
@@ -138,10 +140,11 @@ class PreArrivalDetailView(RequestFormKwargsMixin, ExpiryFormRequiredMixin, Prog
         return super().form_valid(form)
 
 
-class PreArrivalOtherInfoView(RequestFormKwargsMixin, ExpiryFormRequiredMixin, ProgressRateContextMixin, FormView):
+class PreArrivalOtherInfoView(RequestFormKwargsMixin, PageParameterRequiredMixin, ProgressRateContextMixin, FormView):
     template_name           = 'pre_arrival/desktop/other_info.html'
     form_class              = PreArrivalOtherInfoForm
     success_url             = '/pre_arrival/complete'
+    page_parameter          = 'detail'
     
     def form_valid(self, form):
         form.save_data()
@@ -157,12 +160,13 @@ class PreArrivalOtherInfoView(RequestFormKwargsMixin, ExpiryFormRequiredMixin, P
         return context
 
 
-class PreArrivalCompleteView(ProgressRateContextMixin, TemplateView):
+class PreArrivalCompleteView(PageParameterRequiredMixin, ProgressRateContextMixin, TemplateView):
     template_name           = 'pre_arrival/desktop/complete.html'
+    page_parameter          = 'other_info'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        reservation = self.request.session['pre_arrival']['form']
+        reservation = self.request.session['pre_arrival']['reservation']
         reservation['formattedArrivalDate'] = format_display_date(reservation.get('arrivalDate', ''))
         reservation['formattedDepartureDate'] = format_display_date(reservation.get('departureDate', ''))
         reservation['mainGuestLastName'] = next(guest.get('lastName', '') for guest in reservation.get('guestsList', []) if guest.get('isMainGuest', '0') == '1')

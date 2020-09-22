@@ -96,7 +96,7 @@ class PreArrivalReservationForm(forms.Form):
     def save_data(self):
         reservation_no = self.cleaned_data.get('reservation_no')
         reservation = next(reservation for reservation in self.request.session['pre_arrival'].get('bookings', []) if reservation.get('reservationNo', '') == reservation_no)
-        self.request.session['pre_arrival'].update({'form': reservation})
+        self.request.session['pre_arrival'].update({'reservation': reservation}) # also working as variable to prevent page jump
 
 
 class PreArrivalPassportForm(forms.Form):
@@ -154,7 +154,7 @@ class PreArrivalPassportForm(forms.Form):
         return response
 
     def save_data(self):
-        main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
+        main_guest = next((guest for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
         if self.cleaned_data.get('skip_passport'):
             main_guest.update({'passportImage': ''})
             self.request.session['pre_arrival'].pop('ocr', None)
@@ -166,6 +166,7 @@ class PreArrivalPassportForm(forms.Form):
                 file_b64_encoded = base64.b64encode(image_file.read())
             main_guest.update({'passportImage': file_b64_encoded.decode()})
             self.request.session['pre_arrival'].update({'ocr': self.gateway_ocr(saved_file)})
+        self.request.session['pre_arrival']['passport'] = True # variable to prevent page jump
 
 
 class PreArrivalDetailForm(forms.Form):
@@ -181,7 +182,7 @@ class PreArrivalDetailForm(forms.Form):
         self.request = request
         self.label_suffix = ''
         # from backend
-        main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
+        main_guest = next((guest for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
         guest_id = main_guest.get('guestID', 0)
         first_name = main_guest.get('firstName', '')
         last_name = main_guest.get('lastName', '')
@@ -250,11 +251,12 @@ class PreArrivalDetailForm(forms.Form):
             })
 
         for guest in guests:
-            booking_details_guest = next((guest_temp for guest_temp in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest_temp.get('guestID', '') == guest.get('guestID', '')), {})
+            booking_details_guest = next((guest_temp for guest_temp in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest_temp.get('guestID', '') == guest.get('guestID', '')), {})
             if booking_details_guest:
                 booking_details_guest.update(guest)
             else:
-                self.request.session['pre_arrival']['form']['guestsList'].append(guest)
+                self.request.session['pre_arrival']['reservation']['guestsList'].append(guest)
+        self.request.session['pre_arrival']['detail'] = True # variable to prevent page jump
 
 
 class PreArrivalDetailExtraForm(forms.Form):
@@ -298,7 +300,7 @@ class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
         self.label_suffix = ''
         # populate additional guests
         additional_guests = []
-        for guest in self.request.session['pre_arrival']['form'].get('guestsList', []):
+        for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []):
             if guest.get('isMainGuest', '0') == '0':
                 additional_guests.append({
                     'guest_id': guest.get('guestID', ''),
@@ -318,7 +320,7 @@ class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
 
     def clean(self):
         super().clean()
-        adult, max_adult = 1, int(self.request.session['pre_arrival']['form'].get('adults', 1))
+        adult, max_adult = 1, int(self.request.session['pre_arrival']['reservation'].get('adults', 1))
         age_limit = gateways.amp('GET', settings.AMP_CONFIG_URL + str(settings.AMP_CONFIG_ID)).get('pre_arrival_adult_minimum_age', settings.DETAIL_FORM_AGE_LIMIT)
         for form in self.forms:
             if utilities.calculate_age(form.cleaned_data.get('birth_date')) > settings.DETAIL_FORM_AGE_LIMIT:
@@ -341,9 +343,9 @@ class PreArrivalOtherInfoForm(forms.Form):
         self.request = request
         self.label_suffix = ''
         self.fields['arrival_time'].choices = utilities.generate_arrival_time()
-        self.fields['arrival_time'].initial = utilities.parse_arrival_time(self.request.session['pre_arrival']['form'].get('eta', ''))
-        self.fields['special_requests'].initial = self.request.session['pre_arrival']['form'].get('comments', '')
-        main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
+        self.fields['arrival_time'].initial = utilities.parse_arrival_time(self.request.session['pre_arrival']['reservation'].get('eta', ''))
+        self.fields['special_requests'].initial = self.request.session['pre_arrival']['reservation'].get('comments', '')
+        main_guest = next((guest for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
         self.fields['email'].initial = main_guest.get('email', '')
         self.fields['is_subscribe'].initial = main_guest.get('emailSubscription', True)
 
@@ -365,18 +367,19 @@ class PreArrivalOtherInfoForm(forms.Form):
         email = self.cleaned_data.get('email')
         is_subscribe = self.cleaned_data.get('is_subscribe')
 
-        main_guest = next((guest for guest in self.request.session['pre_arrival']['form'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
+        main_guest = next((guest for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
         main_guest.update({
             'email': email,
             'emailSubscription': is_subscribe and '1' or '0',
         })
-        self.request.session['pre_arrival']['form'].update({
+        self.request.session['pre_arrival']['reservation'].update({
             'eta': arrival_time + ':00.000',
             'comments': special_requests,
         })
+        self.request.session['pre_arrival']['other_info'] = True # variable to prevent page jump
 
     def gateway_post(self):
-        data = self.request.session['pre_arrival']['form']
+        data = self.request.session['pre_arrival']['reservation']
         data['customerInputNumber'] = self.request.session['pre_arrival'].get('input_reservation_no', '')
         response = gateways.backend_post('/processGuestsPreArrival', data)
         if response.get('success', '') == 'true':
