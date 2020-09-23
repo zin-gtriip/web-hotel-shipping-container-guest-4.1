@@ -34,3 +34,11 @@ var currentPageProgressRate = JSON.parse($('#current-page-progress-rate').text()
 $('.progress-page .progress-bar').css({
     'width': currentPageProgressRate +'%',
 }).attr('aria-valuenow', currentPageProgressRate);
+
+
+// header nav back button
+$('.header .header-left #btn-back').click(function () {
+	if ($(this).data('target') !== undefined) {
+		window.location.href = $(this).data('target');
+	}
+});

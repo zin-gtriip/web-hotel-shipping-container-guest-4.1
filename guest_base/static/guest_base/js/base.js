@@ -4,16 +4,6 @@ $('#form-set-language select#language').change(function() {
 });
 
 
-// header nav back button
-$('.header .header-left #btn-back').click(function () {
-	if ($(this).data('target') != '') {
-		window.location.href = $(this).data('target');
-	} else {
-		window.history.back();
-	}
-});
-
-
 // alert using modal
 $('.modal').each(function() {
 	if (!$('body').hasClass('modal-open')) {
