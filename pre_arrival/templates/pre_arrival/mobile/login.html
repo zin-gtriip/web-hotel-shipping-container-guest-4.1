@@ -13,13 +13,20 @@
     <link rel="stylesheet" href="{% static 'pre_arrival/scss/mobile/login.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
+{% block header_left %}
+    {{ block.super }}
+    <button type="button" class="btn btn-link" id="btn-back"><i class="fas fa-arrow-left"></i></button>
+{% endblock header_left %}
+
 {% block content %}
     {{ block.super }}
     <form method="post" id="form-mobile-login">
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-12 text-center">
-                {% blocktrans %}Welcome to<br>Hotel {{ HOTEL_NAME }}{% endblocktrans %}
+                <span id="header-reservation-no" class="header-description active">{% blocktrans %}Welcome to<br>Hotel {{ HOTEL_NAME }}{% endblocktrans %}</span>
+                <span id="header-last-name" class="header-description">{% blocktrans %}Please enter your<br>Last Name{% endblocktrans %}</span>
+                <span id="header-arrival-date" class="header-description">{% blocktrans %}Please confirm your<br>Arrival Date{% endblocktrans %}</span>
             </div>
         </div>
         <div class="row page-subheader">
@@ -31,23 +38,19 @@
         </div>
         <div class="row page-content">
             <div class="col-12 d-flex justify-content-center">
-                <div class="input-step active" id="step-reservation-no">
+                <div id="content-reservation-no" class="content-input active">
                     <div class="md-form input-center input-boxed my-0">
                         {% render_field form.reservation_no class="form-control" placeholder="e.g. 12345678" %}
                     </div>
                 </div>
-                <div class="input-step" id="step-last-name">
+                <div id="content-last-name" class="content-input">
                     <div class="md-form input-center input-boxed my-0">
                         {% render_field form.last_name class="form-control" placeholder="Last Name" %}
                     </div>
                 </div>
-                <div class="input-step" id="step-arrival-date">
+                <div id="content-arrival-date" class="content-input">
                     <div class="md-form input-boxed input-with-post-icon my-0">
-                        {% if form.is_bound %}
-                            {% render_field form.arrival_date class="form-control datepicker is_bound" data-date-format="yyyy-mm-dd" %}
-                        {% else %}
-                            {% render_field form.arrival_date class="form-control datepicker" data-date-format="yyyy-mm-dd" %}
-                        {% endif %}
+                        {% render_field form.arrival_date class="form-control datepicker" data-date-format="yyyy-mm-dd" %}
                         <i class="far fa-calendar input-prefix text-primary text-22"></i>
                     </div>
                 </div>
@@ -55,7 +58,15 @@
         </div>
         <div class="row page-footer">
             <div class="col-12 d-flex justify-content-center">
-                <button type="button" class="btn btn-primary btn-round m-0" id="btn-step-next" disabled>{% trans 'Next' %}</button>
+                <div id="footer-reservation-no" class="footer-button active">
+                    <button type="button" class="btn btn-primary btn-round m-0" disabled>{% trans 'Next' %}</button>
+                </div>
+                <div id="footer-last-name" class="footer-button">
+                    <button type="button" class="btn btn-primary btn-round m-0" disabled>{% trans 'Next' %}</button>
+                </div>
+                <div id="footer-arrival-date" class="footer-button">
+                    <button type="submit" class="btn btn-primary btn-round m-0">{% trans 'Next' %}</button>
+                </div>
             </div>
         </div>
     </form>

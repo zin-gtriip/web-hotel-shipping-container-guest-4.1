@@ -1,58 +1,50 @@
-window.addEventListener("flutterInAppWebViewPlatformReady", null); // add event to send message to app
-try { window.flutter_inappwebview.callHandler('nextPage', '/pre_arrival/login/reservation_no'); } catch(error) {} // send message to app
-var loginStep = 0;
+$('.datepicker').datepicker({
+	startDate: new Date(),
+});
 
-$('.datepicker').datepicker();
+
 if ($('#id_arrival_date').val() == '') {
-	$('#id_arrival_date:not(.is_bound)').datepicker('update', new Date());
+	$('#id_arrival_date').datepicker('update', new Date());
 }
 
 
-$('#id_reservation_no, #id_last_name, #id_arrival_date').keyup(function() {
+$('#id_reservation_no').keyup(function() {
 	var $this = $(this);
 	if ($this.val() != '') {
-		$('#btn-step-next').attr('disabled', false);
+		$('#footer-reservation-no button').attr('disabled', false);
 	} else {
-		$('#btn-step-next').attr('disabled', true);
+		$('#footer-reservation-no button').attr('disabled', true);
 	}
 });
 $('#id_reservation_no').keyup();
 
 
+$('#id_last_name').keyup(function() {
+	var $this = $(this);
+	if ($this.val() != '') {
+		$('#footer-last-name button').attr('disabled', false);
+	} else {
+		$('#footer-last-name button').attr('disabled', true);
+	}
+});
+$('#id_last_name').keyup();
+
+
 $('#id_arrival_date').datepicker().on('changeDate', function() {
 	var $this = $(this);
 	if ($this.val() != '') {
-		$('#btn-step-next').attr('disabled', false);
+		$('#footer-arrival-date button').attr('disabled', false);
 	} else {
-		$('#btn-step-next').attr('disabled', true);
+		$('#footer-arrival-date button').attr('disabled', true);
 	}
 });
 
 
-$('#btn-step-next').click(function() {
-	var $currentStep = $('.input-step.active')
-		, $nextStep = $currentStep.next('.input-step');
-		
-	$nextStep.find('input').keyup();
-	$('.subheader-description').removeClass('active');
+$('#footer-reservation-no button').click(function() {
+	var $currentStep = $('#header-reservation-no, #subheader-reservation-no, #content-reservation-no, #footer-reservation-no')
+		, $nextStep = $('#header-last-name, #subheader-last-name, #content-last-name, #footer-last-name');
 
-	loginStep += 1;
-	switch(loginStep) {
-		case 1:
-			$('#subheader-last-name').addClass('active');
-			try { window.flutter_inappwebview.callHandler('nextPage', '/pre_arrival/login/last_name'); } catch(error) {} // send message to app
-			break;
-			case 2:
-				$('#subheader-arrival-date').addClass('active');
-			try { window.flutter_inappwebview.callHandler('nextPage', '/pre_arrival/login/arrival_date'); } catch(error) {} // send message to app
-			break;
-	}
-
-	// submit if no more nextStep
-	if ($nextStep.length == 0) {
-		$('#form-mobile-login').submit();
-	}
-
+	$('.header #btn-back').show();
 	$nextStep.show().addClass('active');
 	$currentStep.animate({opacity: 0}, {
 		step: function(now) {
@@ -61,6 +53,50 @@ $('#btn-step-next').click(function() {
 			$currentStep.css({'display': 'none', 'position': 'relative'});
 			$nextStep.css({'opacity': opacity});
 		}
-		, duration: 1000
+		, duration: 300
+	}).removeClass('active');
+});
+
+
+$('#footer-last-name button').click(function() {
+	var $currentStep = $('#header-last-name, #subheader-last-name, #content-last-name, #footer-last-name')
+		, $nextStep = $('#header-arrival-date, #subheader-arrival-date, #content-arrival-date, #footer-arrival-date');
+
+	$('.header #btn-back').show();
+	$nextStep.show().addClass('active');
+	$currentStep.animate({opacity: 0}, {
+		step: function(now) {
+			// for making fielset appear animation
+			opacity = 1 - now;
+			$currentStep.css({'display': 'none', 'position': 'relative'});
+			$nextStep.css({'opacity': opacity});
+		}
+		, duration: 300
+	}).removeClass('active');
+});
+
+
+$('#btn-back').click(function() {
+	var $currentActive = $('.content-input.active')
+		, $previousStep;
+
+	if ($currentActive.attr('id') == 'content-last-name') {
+		$currentStep = $('#header-last-name, #subheader-last-name, #content-last-name, #footer-last-name');
+		$previousStep = $('#header-reservation-no, #subheader-reservation-no, #content-reservation-no, #footer-reservation-no');
+		$(this).hide();
+	} else if ($currentActive.attr('id') == 'content-arrival-date') {
+		$currentStep = $('#header-arrival-date, #subheader-arrival-date, #content-arrival-date, #footer-arrival-date');
+		$previousStep = $('#header-last-name, #subheader-last-name, #content-last-name, #footer-last-name');
+	}
+
+	$previousStep.show().addClass('active');
+	$currentStep.animate({opacity: 0}, {
+		step: function(now) {
+			// for making fielset appear animation
+			opacity = 1 - now;
+			$currentStep.css({'display': 'none', 'position': 'relative'});
+			$previousStep.css({'opacity': opacity});
+		}
+		, duration: 300
 	}).removeClass('active');
 });

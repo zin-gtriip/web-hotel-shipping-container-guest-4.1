@@ -1,17 +1,27 @@
+.header {
+    #btn-back {
+        display: none;
+    }
+}
+
 .content {
+    .page-header {
+        .header-description:not(.active) {
+            display: none;
+        }
+    }
+
     .page-subheader {
         width: 258px;
 
-        span:not(.active) {
+        .subheader-description:not(.active) {
             display: none;
         }
     }
     
     .page-content {
-        .input-step {
-            &:not(.active) {
-                display: none;
-            }
+        .content-input:not(.active) {
+            display: none;
         }
     
         .md-form {
@@ -25,6 +35,10 @@
     }
     
     .page-footer {
+        .footer-button:not(.active) {
+            display: none;
+        }
+
         button {
             width: 178px;
             height: 56px;
