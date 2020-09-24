@@ -20,6 +20,11 @@
     </div>
 {% endblock header_middle %}
 
+{% block header_left %}
+    {{ block.super }}
+    <button type="button" class="btn btn-link" id="btn-back" data-target="{% url 'pre_arrival:passport' %}"><i class="fas fa-arrow-left"></i></button>
+{% endblock header_left %}
+
 {% block content %}
     {{ block.super }}
     {% get_countries as countries %}
