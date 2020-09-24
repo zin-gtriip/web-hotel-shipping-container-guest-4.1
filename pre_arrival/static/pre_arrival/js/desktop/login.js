@@ -1,6 +1,10 @@
-$('.datepicker').datepicker();
+$('.datepicker').datepicker({
+    startDate: new Date(),
+});
+
+
 if ($('#id_arrival_date').val() == '') {
-    $('#id_arrival_date:not(.is_bound)').datepicker('update', new Date());
+    $('#id_arrival_date').datepicker('update', new Date());
 }
 
 
