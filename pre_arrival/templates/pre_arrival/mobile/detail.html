@@ -355,7 +355,7 @@
     {{ block.super }}
     <!-- form error -->
     {% for error in form.non_field_errors %}
-        <div class="modal fade" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade auto-show" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header bg-primary text-white">
@@ -374,7 +374,7 @@
     <!-- extra form error -->
     {% for extra_form in extra.forms %}
         {% for error in extra_form.non_field_errors %}
-            <div class="modal fade" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal fade auto-show" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header bg-primary text-white">
@@ -393,7 +393,7 @@
     {% endfor %}
     <!-- extra formset error -->
     {% for error in extra.non_form_errors %}
-        <div class="modal fade" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade auto-show" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header bg-primary text-white">

@@ -5,13 +5,13 @@ $('#form-set-language select#language').change(function() {
 
 
 // alert using modal
-$('.modal').each(function() {
+$('.modal.auto-show').each(function() {
 	if (!$('body').hasClass('modal-open')) {
 		$(this).modal('show').addClass('shown');
 	}
 	// trigger next modal
 	$(this).on('hidden.bs.modal', function(e) {
-		$('.modal:not(.shown)').first().modal('show').addClass('shown');
+		$('.modal.auto-show:not(.shown)').first().modal('show').addClass('shown');
 	});
 });
 
@@ -19,7 +19,7 @@ $('.modal').each(function() {
 // initiate and show alert modal
 function modalAlert(title='Error', body='Error', btnDismissText='Close') {
 	var modal =
-		'<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">' +
+		'<div class="modal fade auto-show" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">' +
             '<div class="modal-dialog modal-dialog-centered modal-sm">'+
                 '<div class="modal-content">'+
                     '<div class="modal-header bg-primary text-white">'+

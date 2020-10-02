@@ -95,7 +95,7 @@
     {{ block.super }}
     <!-- Error Modal -->
     {% for error in form.non_field_errors %}
-        <div class="modal fade" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade auto-show" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-sm">
                 <div class="modal-content">
                     <div class="modal-header bg-primary text-white">

@@ -145,7 +145,7 @@
     {% for message in messages %}
         {% if message.tags == 'success' %}
             <!-- Success Modal -->
-            <div class="modal fade" id="message-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal fade auto-show" id="message-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header bg-primary text-white">
