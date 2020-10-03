@@ -5,7 +5,7 @@ var maxCanvasWidth = 4096, maxCanvasHeight = 4096;
 var acceptedFileType = ['jpg', 'jpeg', 'png'];
 // compressor options, for compressing captured and uploaded image
 Compressor.setDefaults({
-    mimeType: 'image/jpeg',
+    mimeType: 'image/png',
     maxWidth: 1050,
     maxHeight: 800,
     convertSize: 2000000,
@@ -69,20 +69,24 @@ $('.file-capture, .file-upload').change(function() {
 // btn-next click
 $('#btn-next').click(function() {
     var $img = $('#img-preview')
-        , $passportFile = $('#id_passport_file');
+        , $passportFile = $('#id_passport_file')
+        , ctx, dataURL;
         
     // disable all button
     $('.btn').attr('disabled', true).addClass('disabled');
 
     $img.croppie('result', {
-        'type': 'blob',
+        'type': 'rawcanvas',
         'size': 'original',
-        'format': 'jpeg',
-    }).then(function(blob) {
-        blobToDataURL(blob, function(dataURL) {
-            $passportFile.val(dataURL.substring(23)); // remove `data:image/jpeg;base64,` on dataURL
-            $('#form-passport').submit();
-        });
+        'format': 'png',
+    }).then(function(canvas) {
+        ctx = canvas.getContext('2d')
+        // add border to canvas
+        ctx.lineWidth = 15;
+        ctx.strokeRect(0, 0, canvas.width, canvas.height);
+        dataURL = canvas.toDataURL();
+        $passportFile.val(dataURL.substring(22)); // remove `data:image/png;base64,` on dataURL
+        $('#form-passport').submit();
     });
 });
 

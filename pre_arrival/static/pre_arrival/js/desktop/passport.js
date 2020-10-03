@@ -5,7 +5,7 @@ var maxCanvasWidth = 4096, maxCanvasHeight = 4096;
 var acceptedFileType = ['jpg', 'jpeg', 'png'];
 // compressor options, for compressing captured and uploaded image
 Compressor.setDefaults({
-    mimeType: 'image/jpeg',
+    mimeType: 'image/png',
     maxWidth: 1050,
     maxHeight: 800,
     convertSize: 2000000,
@@ -50,65 +50,102 @@ $('.file-upload').change(function() {
 });
 
 
+// btn-webcam click
 $('#btn-webcam').click(function() {
-    navigator.mediaDevices.getUserMedia({ video : true })
-        .then(function (stream) {
-            var video = document.getElementById('vid-webcam')
-                , $img = $('#img-preview')
-                , $capture = $('#btn-capture');
-
-            $('.default-container, #btn-skip').hide();
-            $('.webcam-container').show();
-            video.srcObject = stream;
-            video.play();
-
-            $capture.click(function() {
-                var draw = document.createElement('canvas')
-                    , context2D = draw.getContext('2d');
-                draw.width = video.videoWidth;
-                draw.height = video.videoHeight;
-                context2D.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-                new Compressor(dataURLtoBlob(draw.toDataURL('image/jpeg')), {
-                    success: function(result) {
-                        blobToDataURL(result, function(dataURL) {
-                            $img.croppie('bind', dataURL).then(function() { // update image data
-                                $img.croppie('setZoom', 0); // change zoom level
-                            });
-                            initCroppieComponents();
-                            initBorderGuide();
-                        });
-                    },
-                    error: function(err) {
-                        console.error('Compressor() error:'+ err.message);
-                        modalAlert(gettext('Error'), gettext('Error capturing image'));
-                    },
-                });
-            });
-        })
-        .catch(function(error) {
+    var video = document.getElementById('vid-webcam')
+        , mediaConfig =  { video: true }
+        , errorConsole = function(error) {
             console.error('getUserMedia() error:', error);
             modalAlert(gettext('Error'), gettext('No camera media is detected'));
+        };
+    
+    // Put video listeners into place
+    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
+            video.srcObject = stream;
+            video.play();
+            $('.default-container, #btn-skip').hide();
+            $('.webcam-container').show();
         });
+    }
+
+    /* Legacy code below! */
+    else if(navigator.getUserMedia) { // Standard
+        navigator.getUserMedia(mediaConfig, function(stream) {
+            video.src = stream;
+            video.play();
+            $('.default-container, #btn-skip').hide();
+            $('.webcam-container').show();
+        }, errorConsole);
+    } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+        navigator.webkitGetUserMedia(mediaConfig, function(stream){
+            video.play();
+            $('.default-container, #btn-skip').hide();
+            $('.webcam-container').show();
+        }, errorConsole);
+    } else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
+        navigator.mozGetUserMedia(mediaConfig, function(stream){
+            video.play();
+            $('.default-container, #btn-skip').hide();
+            $('.webcam-container').show();
+        }, errorConsole);
+    }
+});
+
+
+// btn-capture click
+$('#btn-capture').click(function() {
+    var video = document.getElementById('vid-webcam')
+        , stream = video.srcObject
+        , tracks = stream.getTracks()
+        , $img = $('#img-preview')
+        , draw = document.createElement('canvas')
+        , context2D = draw.getContext('2d');
+        
+    draw.width = video.videoWidth;
+    draw.height = video.videoHeight;
+    context2D.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+    // stop video
+    tracks.forEach(function(track) { track.stop(); });
+    new Compressor(dataURLtoBlob(draw.toDataURL('image/png')), {
+        success: function(result) {
+            blobToDataURL(result, function(dataURL) {
+                $img.croppie('bind', dataURL).then(function() { // update image data
+                    $img.croppie('setZoom', 0); // change zoom level
+                });
+                initCroppieComponents();
+                initBorderGuide();
+            });
+        },
+        error: function(err) {
+            console.error('Compressor() error:'+ err.message);
+            modalAlert(gettext('Error'), gettext('Error capturing image'));
+        },
+    });
 });
 
 
 // btn-next click
 $('#btn-next').click(function() {
     var $img = $('#img-preview')
-        , $passportFile = $('#id_passport_file');
+        , $passportFile = $('#id_passport_file')
+        , ctx, dataURL;
 
     // disable all button
     $('.btn').attr('disabled', true).addClass('disabled');
 
     $img.croppie('result', {
-        'type': 'blob',
+        'type': 'rawcanvas',
         'size': 'original',
-        'format': 'jpeg',
-    }).then(function(blob) {
-        blobToDataURL(blob, function(dataURL) {
-            $passportFile.val(dataURL.substring(23)); // remove `data:image/jpeg;base64,` on dataURL
-            $('#form-passport').submit();
-        });
+        'format': 'png',
+    }).then(function(canvas) {
+        ctx = canvas.getContext('2d')
+        // add border to canvas
+        ctx.lineWidth = 15;
+        ctx.strokeRect(0, 0, canvas.width, canvas.height);
+        dataURL = canvas.toDataURL();
+        $passportFile.val(dataURL.substring(22)); // remove `data:image/png;base64,` on dataURL
+        $('#form-passport').submit();
     });
 });
 
