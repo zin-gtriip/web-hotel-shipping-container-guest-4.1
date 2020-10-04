@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.http import JsonResponse
 
 class DependentAppConfigMixin:
     """
@@ -42,3 +43,24 @@ class MobileTemplateMixin:
             if self.mobile_template_name:
                 return [self.mobile_template_name]
         return super().get_template_names()
+
+
+class JSONResponseMixin:
+    """
+    A view mixin that can be used to render a JSON response.
+    """
+
+    json_status = None
+    json_errors = []
+    json_data   = {}
+
+    def render_to_json_response(self, context, **response_kwargs):
+        """ Returns a JSON response, transforming 'context' to make the payload. """
+        return JsonResponse(self.get_json_data(context), **response_kwargs)
+
+    def get_json_data(self, context):
+        """ Returns an object that will be serialized as JSON by json.dumps(). """
+        data = self.json_data
+        data['status'] = self.json_status or 'error'
+        data['errors'] = self.json_errors
+        return data
