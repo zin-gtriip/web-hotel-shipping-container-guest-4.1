@@ -233,7 +233,8 @@ SESSION_SAVE_EVERY_REQUEST = True
 
 # Pre Arrival
 # default expiry time for the pre-arrival (in minutes), if AMP is not provided
-PRE_ARRIVAL_AGE     = 15
+PRE_ARRIVAL_AGE         = 15
+PRE_ARRIVAL_AGE_EXTEND  = 10
 # room mapping, use `room_type` as identifier
 ROOM_TYPES = [
     {
