@@ -21,6 +21,14 @@
     {% endif %}
 {% endblock header_right %}
 
+{% block header_middle %}
+    {% if request.path not in '/pre_arrival/login/,/pre_arrival/complete/' %}
+        <div class="timer-text text-secondary">
+            <span class="timer-tick"></span>
+        </div>
+    {% endif %}
+{% endblock header_middle %}
+
 {% block data_js %}
     {{ block.super }}
     {{ PRE_ARRIVAL_EXPIRY_DATE|json_script:'pre-arrival-expiry-date' }}

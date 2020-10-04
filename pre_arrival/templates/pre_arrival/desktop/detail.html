@@ -14,12 +14,6 @@
     <link rel="stylesheet" href="{% static 'pre_arrival/scss/desktop/detail.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
-{% block header_middle %}
-    <div class="timer-text text-secondary">
-        <span class="timer-tick"></span>
-    </div>
-{% endblock header_middle %}
-
 {% block header_left %}
     {{ block.super }}
     <button type="button" class="btn btn-link" id="btn-back" data-target="{% url 'pre_arrival:passport' %}"><i class="fas fa-arrow-left"></i></button>
