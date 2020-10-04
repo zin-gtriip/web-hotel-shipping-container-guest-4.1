@@ -6,7 +6,7 @@ from django.conf        import settings
 
 class ExpirySessionMixin:
     """
-    View mixin that verifies the user has `pre_arrival`, `expiry_date`
+    View mixin that verifies the user has `pre_arrival`, `initial_expiry_date`
     is not expired.
     
     If it does not exist or expired, page will be redirected to login page. This
@@ -14,9 +14,9 @@ class ExpirySessionMixin:
     """
     
     def dispatch(self, request, *args, **kwargs):
-        if request.session.session_key and request.session.get('pre_arrival', {}).get('expiry_date', ''):
+        if request.session.session_key and request.session.get('pre_arrival', {}).get('initial_expiry_date', ''):
             try:
-                expiry_date = dt.strptime(request.session['pre_arrival'].get('expiry_date', ''), '%Y-%m-%dT%H:%M:%S.%f%z')
+                expiry_date = dt.strptime(request.session['pre_arrival'].get('initial_expiry_date', ''), '%Y-%m-%dT%H:%M:%S.%f%z')
             except:
                 expiry_date = None
             if expiry_date and expiry_date >= timezone.now():
@@ -30,8 +30,8 @@ class PageParameterRequiredMixin(ExpirySessionMixin):
     Note: `page_parameter` needs to be defined on each view and assigned after 
     form is valid on each form. It also must be same `name` in `urls.py`.
 
-    Inherit from `ExpirySessionMixin` that also validate `expiry_date` in
-    session. If `page_parameter` does not exist in `session`, page will be 
+    Inherit from `ExpirySessionMixin` that also validate `initial_expiry_date` 
+    in session. If `page_parameter` does not exist in `session`, page will be 
     redirected to page of `page_parameter` value.
     """
     page_parameter = None

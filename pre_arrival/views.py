@@ -3,7 +3,7 @@ from django.views.generic       import *
 from django.utils               import translation
 from django.utils.translation   import gettext, gettext_lazy as _
 from guest_base                 import views as GuestBaseViews
-from guest_base.mixins          import RequestFormKwargsMixin, MobileTemplateMixin
+from guest_base.mixins          import RequestFormKwargsMixin, MobileTemplateMixin, JSONResponseMixin
 from .forms                     import *
 from .mixins                    import *
 from .utilities                 import *
@@ -56,6 +56,21 @@ class PreArrivalLoginView(RequestFormKwargsMixin, ProgressRateContextMixin, Mobi
     def form_valid(self, form):
         form.save_data()
         return super().form_valid(form)
+
+
+class PreArrivalTimerExtensionView(RequestFormKwargsMixin, JSONResponseMixin, FormView):
+    form_class              = PreArrivalTimerExtensionForm
+
+    def form_valid(self, form):
+        form.save_data()
+        self.json_data = {'pre_arrival_extended_expiry_date': self.request.session['pre_arrival'].get('extended_expiry_date', '')}
+        self.json_status = 'success'
+        return self.render_to_json_response(self.get_context_data())
+
+    def form_invalid(self, form):
+        self.json_errors = form.errors
+        self.json_status = 'error'
+        return self.render_to_json_response(self.get_context_data())
 
 
 class PreArrivalReservationView(RequestFormKwargsMixin, ExpirySessionMixin, ProgressRateContextMixin, FormView):

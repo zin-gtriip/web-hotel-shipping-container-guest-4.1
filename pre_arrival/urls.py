@@ -7,6 +7,7 @@ urlpatterns = [
     path('pre_arrival/', IndexView.as_view(), name='index'),
     path('pre_arrival/data/', PreArrivalDataView.as_view(), name='data'),
     path('pre_arrival/login/', PreArrivalLoginView.as_view(), name='login'),
+    path('pre_arrival/timer_extension/', PreArrivalTimerExtensionView.as_view(), name='timer_extension'),
     path('pre_arrival/reservation/', PreArrivalReservationView.as_view(), name='reservation'),
     path('pre_arrival/passport/', PreArrivalPassportView.as_view(), name='passport'),
     path('pre_arrival/detail/', PreArrivalDetailView.as_view(), name='detail'),

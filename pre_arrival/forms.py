@@ -63,17 +63,43 @@ class PreArrivalLoginForm(forms.Form):
         data = self.gateway_post()
         if not 'pre_arrival' in self.request.session:
             self.request.session['pre_arrival'] = {}
-        expiry_duration = gateways.amp('GET', settings.AMP_CONFIG_URL + str(settings.AMP_CONFIG_ID)).get('pre_arrival_session_expiry_duration', settings.PRE_ARRIVAL_AGE)
-        expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
+        expiry_duration = settings.PRE_ARRIVAL_AGE
+        initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['pre_arrival'].update({
             'bookings': data.get('data', []),
-            'expiry_date': expiry_date,
+            'initial_expiry_date': initial_expiry_date,
             'input_reservation_no': self.cleaned_data.get('reservation_no'),
             'input_arrival_date': self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d'),
             'input_last_name': self.cleaned_data.get('last_name'),
         })
         if 'preload' in self.request.session['pre_arrival'] and 'auto_login' in self.request.session['pre_arrival']['preload']:
             self.request.session['pre_arrival']['preload']['auto_login'] = False # set auto login to False
+
+
+class PreArrivalTimerExtensionForm(forms.Form):
+    expiry_date = forms.CharField()
+
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.request = request
+
+    def clear(self):
+        super().clean()
+        expiry_date = self.cleaned_data.get('expiry_date')
+
+        if not expiry_date:
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Expiry Date is not defined.')])
+        else:
+            if expiry_date != self.request.session['pre_arrival'].get('initial_expiry_date', ''):
+                self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Expiry Date is not matched.')])
+        return self.cleaned_data
+
+    def save_data(self):
+        initial_expiry_date = self.request.session['pre_arrival'].get('initial_expiry_date', '')
+        initial_expiry_date = datetime.datetime.strptime(initial_expiry_date, '%Y-%m-%dT%H:%M:%S.%f%z')
+        extend_duration = settings.PRE_ARRIVAL_AGE_EXTEND
+        extended_expiry_date = (initial_expiry_date + datetime.timedelta(minutes=extend_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
+        self.request.session['pre_arrival']['extended_expiry_date'] = extended_expiry_date
 
 
 class PreArrivalReservationForm(forms.Form):
