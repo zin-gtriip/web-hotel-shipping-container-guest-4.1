@@ -73,5 +73,5 @@ class ProgressRateContextMixin:
         # save current url to `session` as `previous_url`
         if not 'pre_arrival' in self.request.session:
             self.request.session['pre_arrival'] = {}
-        self.request.session['pre_arrival'].update({'previous_url': (current_url if current_url != 'login' else '')})
+        self.request.session['pre_arrival']['previous_url'] = (current_url if current_url != 'login' else '')
         return context

@@ -63,15 +63,13 @@ class PreArrivalLoginForm(forms.Form):
         data = self.gateway_post()
         if not 'pre_arrival' in self.request.session:
             self.request.session['pre_arrival'] = {}
+        self.request.session['pre_arrival']['bookings'] = data.get('data', [])
+        self.request.session['pre_arrival']['input_reservation_no'] = self.cleaned_data.get('reservation_no')
+        self.request.session['pre_arrival']['input_arrival_date'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
+        self.request.session['pre_arrival']['input_last_name'] = self.cleaned_data.get('last_name')
         expiry_duration = settings.PRE_ARRIVAL_AGE
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
-        self.request.session['pre_arrival'].update({
-            'bookings': data.get('data', []),
-            'initial_expiry_date': initial_expiry_date,
-            'input_reservation_no': self.cleaned_data.get('reservation_no'),
-            'input_arrival_date': self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d'),
-            'input_last_name': self.cleaned_data.get('last_name'),
-        })
+        self.request.session['pre_arrival']['initial_expiry_date'] = initial_expiry_date
         if 'preload' in self.request.session['pre_arrival'] and 'auto_login' in self.request.session['pre_arrival']['preload']:
             self.request.session['pre_arrival']['preload']['auto_login'] = False # set auto login to False
 
@@ -122,7 +120,7 @@ class PreArrivalReservationForm(forms.Form):
     def save_data(self):
         reservation_no = self.cleaned_data.get('reservation_no')
         reservation = next(reservation for reservation in self.request.session['pre_arrival'].get('bookings', []) if reservation.get('reservationNo', '') == reservation_no)
-        self.request.session['pre_arrival'].update({'reservation': reservation}) # also working as variable to prevent page jump
+        self.request.session['pre_arrival']['reservation'] = reservation # also working as variable to prevent page jump
 
 
 class PreArrivalPassportForm(forms.Form):
@@ -176,7 +174,7 @@ class PreArrivalPassportForm(forms.Form):
         # if 'status' in response or 'message' in response:
         #     scan_type = 'nric'
         #     response = gateways.ocr(saved_file, 'nric')
-        response.update({'scan_type': scan_type})
+        response['scan_type'] = scan_type
         return response
 
     def save_data(self):
@@ -191,7 +189,7 @@ class PreArrivalPassportForm(forms.Form):
             with open(saved_file, 'rb') as image_file:
                 file_b64_encoded = base64.b64encode(image_file.read())
             main_guest.update({'passportImage': file_b64_encoded.decode()})
-            self.request.session['pre_arrival'].update({'ocr': self.gateway_ocr(saved_file)})
+            self.request.session['pre_arrival']['ocr'] = self.gateway_ocr(saved_file)
         self.request.session['pre_arrival']['passport'] = True # variable to prevent page jump
 
 
@@ -398,10 +396,8 @@ class PreArrivalOtherInfoForm(forms.Form):
             'email': email,
             'emailSubscription': is_subscribe and '1' or '0',
         })
-        self.request.session['pre_arrival']['reservation'].update({
-            'eta': arrival_time + ':00.000',
-            'comments': special_requests,
-        })
+        self.request.session['pre_arrival']['reservation']['eta'] = arrival_time + ':00.000'
+        self.request.session['pre_arrival']['comments'] = special_requests,
         self.request.session['pre_arrival']['other_info'] = True # variable to prevent page jump
 
     def gateway_post(self):
@@ -416,7 +412,7 @@ class PreArrivalOtherInfoForm(forms.Form):
                 'last_name': self.request.session['pre_arrival'].get('input_last_name', ''),
             }
             new_booking_response = gateways.backend_post('/checkBookingsPreArrival', new_booking_data)
-            self.request.session['pre_arrival'].update({'bookings': new_booking_response.get('data', [])})
+            self.request.session['pre_arrival']['bookings'] = new_booking_response.get('data', [])
         else:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
 
@@ -441,5 +437,5 @@ class PreArrivalCompleteForm(forms.Form):
         self.request.session['pre_arrival'].pop('other_info', None)
         expiry_duration = settings.PRE_ARRIVAL_AGE
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
-        self.request.session['pre_arrival'].update({'initial_expiry_date': initial_expiry_date})
+        self.request.session['pre_arrival']['initial_expiry_date'] = initial_expiry_date
         self.request.session['pre_arrival'].pop('extended_expiry_date', None)

@@ -43,11 +43,9 @@ class CheckOutLoginForm(forms.Form):
         data = self.gateway_post()
         if not 'check_out' in self.request.session:
             self.request.session['check_out'] = {}
-        self.request.session['check_out'].update({
-            'bills': data.get('data', []),
-            'input_reservation_no': self.cleaned_data.get('reservation_no'),
-            'input_room_no': self.cleaned_data.get('room_no'),
-        })
+        self.request.session['check_out']['bills'] = data.get('data', [])
+        self.request.session['check_out']['input_reservation_no'] = self.cleaned_data.get('reservation_no')
+        self.request.session['check_out']['input_room_no'] = self.cleaned_data.get('room_no')
         if 'preload' in self.request.session['check_out'] and 'auto_login' in self.request.session['check_out']['preload']:
             self.request.session['check_out']['preload']['auto_login'] = False # set auto login to False
 
