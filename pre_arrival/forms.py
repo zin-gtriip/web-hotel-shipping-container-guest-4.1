@@ -419,3 +419,27 @@ class PreArrivalOtherInfoForm(forms.Form):
             self.request.session['pre_arrival'].update({'bookings': new_booking_response.get('data', [])})
         else:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
+
+
+class PreArrivalCompleteForm(forms.Form):
+
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.request = request
+
+    def clean(self):
+        super().clean()
+        if not self.request.session['pre_arrival'].get('bookings', []):
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('There is no reservation can be done for pre-arrival')])
+        return self.cleaned_data
+
+    def save_data(self):
+        # reset data on session
+        self.request.session['pre_arrival'].pop('reservation', None)
+        self.request.session['pre_arrival'].pop('passport', None)
+        self.request.session['pre_arrival'].pop('detail', None)
+        self.request.session['pre_arrival'].pop('other_info', None)
+        expiry_duration = settings.PRE_ARRIVAL_AGE
+        initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
+        self.request.session['pre_arrival'].update({'initial_expiry_date': initial_expiry_date})
+        self.request.session['pre_arrival'].pop('extended_expiry_date', None)

@@ -9,27 +9,16 @@
 
     .page-footer {
 
-        #alternative-1 {
-            width: 230px;
+        #footer-description {
+            width: 352px;
+            margin-bottom: 26px;
         }
 
-        #alternative-separator {
-            margin: 15px 0;
-
-            & > div {
-                display: flex;
-                justify-content: space-between;
-            }
-
-            .separator-line {
-                border-top: 1px dashed;
-                width: 40%;
-                position: relative;
-                top: 10px;
-            }
+        #footer-next {
+            margin-bottom: 26px;
         }
 
-        #alternative-2 {
+        #footer-app {
             #instruction {
                 width: 190px;
                 margin: 0 25px;

@@ -175,9 +175,15 @@ class PreArrivalOtherInfoView(RequestFormKwargsMixin, PageParameterRequiredMixin
         return context
 
 
-class PreArrivalCompleteView(PageParameterRequiredMixin, ProgressRateContextMixin, TemplateView):
+class PreArrivalCompleteView(RequestFormKwargsMixin, PageParameterRequiredMixin, ProgressRateContextMixin, TemplateView):
     template_name           = 'pre_arrival/desktop/complete.html'
+    form_class              = PreArrivalCompleteForm
+    success_url             = '/pre_arrival/reservation'
     page_parameter          = 'other_info'
+    
+    def form_valid(self, form):
+        form.save_data()
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
