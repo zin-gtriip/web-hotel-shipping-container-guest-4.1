@@ -40,11 +40,9 @@ class PreArrivalLoginView(RequestFormKwargsMixin, MobileTemplateMixin, ProgressR
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('pre_arrival', {}).get('preload', {}).get('auto_login', False):
-            data = {
-                'reservation_no': request.session.get('pre_arrival', {}).get('preload', {}).get('reservation_no', ''),
-                'arrival_date': request.session.get('pre_arrival', {}).get('preload', {}).get('arrival_date', ''),
-                'last_name': request.session.get('pre_arrival', {}).get('preload', {}).get('last_name', ''),
-            }
+            data['reservation_no'] = request.session.get('pre_arrival', {}).get('preload', {}).get('reservation_no', '')
+            data['arrival_date'] = request.session.get('pre_arrival', {}).get('preload', {}).get('arrival_date', '')
+            data['last_name'] = request.session.get('pre_arrival', {}).get('preload', {}).get('last_name', '')
             form = self.get_form_class()
             form = form(request, data)
             if form.is_valid():
@@ -104,9 +102,7 @@ class PreArrivalPassportView(PageParameterRequiredMixin, RequestFormKwargsMixin,
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('pre_arrival', {}).get('preload', {}).get('skip_ocr', False):
-            data = {
-                'skip_passport': True
-            }
+            data['skip_passport'] = True
             form = self.get_form_class()
             form = form(request, data)
             if form.is_valid():
