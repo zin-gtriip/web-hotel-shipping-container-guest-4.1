@@ -47,7 +47,7 @@ class CheckOutLoginForm(forms.Form):
         self.request.session['check_out']['input_reservation_no'] = self.cleaned_data.get('reservation_no')
         self.request.session['check_out']['input_room_no'] = self.cleaned_data.get('room_no')
         if 'preload' in self.request.session['check_out'] and 'auto_login' in self.request.session['check_out']['preload']:
-            self.request.session['check_out']['preload']['auto_login'] = False # set auto login to False
+            self.request.session['check_out']['preload']['auto_login'] = 0 # set auto login to False
 
 
 class CheckOutBillForm(forms.Form):

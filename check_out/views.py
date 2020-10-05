@@ -21,9 +21,9 @@ class CheckOutDataView(RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         self.request.session['check_out'] = {'preload': {}}
-        self.request.session['app'] = self.request.GET.get('app', False) if 'app' in self.request.GET else False
+        self.request.session['app'] = self.request.GET.get('app', 0)
         if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
-        if 'auto_login' in self.request.GET: self.request.session['check_out']['preload']['auto_login'] = self.request.GET.get('auto_login', False)
+        if 'auto_login' in self.request.GET: self.request.session['check_out']['preload']['auto_login'] = self.request.GET.get('auto_login', 0)
         if 'reservation_no' in self.request.GET: self.request.session['check_out']['preload']['reservation_no'] = self.request.GET.get('reservation_no', '')
         if 'room_no' in self.request.GET: self.request.session['check_out']['preload']['room_no'] = self.request.GET.get('room_no', '')
         return super().get_redirect_url(*args, **kwargs)
@@ -36,11 +36,9 @@ class CheckOutLoginView(RequestFormKwargsMixin, MobileTemplateMixin, FormView):
     success_url             = '/check_out/bill/{reservation_no}'
 
     def dispatch(self, request, *args, **kwargs):
-        if request.session.get('check_out', {}).get('preload', {}).get('auto_login', False):
-            data = {
-                'reservation_no': request.session.get('check_out', {}).get('preload', {}).get('reservation_no', ''),
-                'room_no': request.session.get('check_out', {}).get('preload', {}).get('room_no', ''),
-            }
+        if request.session.get('check_out', {}).get('preload', {}).get('auto_login', 0):
+            data['reservation_no'] = request.session.get('check_out', {}).get('preload', {}).get('reservation_no', '')
+            data['room_no'] = request.session.get('check_out', {}).get('preload', {}).get('room_no', '')
             form = self.get_form_class()
             form = form(request, data)
             if form.is_valid():
