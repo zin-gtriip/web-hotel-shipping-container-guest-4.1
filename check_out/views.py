@@ -50,7 +50,7 @@ class CheckOutLoginView(RequestFormKwargsMixin, MobileTemplateMixin, FormView):
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        form.save_data()
+        form.save()
         return super().form_valid(form)
 
     def get_success_url(self):

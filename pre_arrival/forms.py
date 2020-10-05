@@ -59,7 +59,7 @@ class PreArrivalLoginForm(forms.Form):
         }
         return gateways.backend_post('/checkBookingsPreArrival', data)
     
-    def save_data(self):
+    def save(self):
         data = self.gateway_post()
         if not 'pre_arrival' in self.request.session:
             self.request.session['pre_arrival'] = {}
@@ -92,7 +92,7 @@ class PreArrivalTimerExtensionForm(forms.Form):
                 self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Expiry Date is not matched.')])
         return self.cleaned_data
 
-    def save_data(self):
+    def save(self):
         initial_expiry_date = self.request.session['pre_arrival'].get('initial_expiry_date', '')
         initial_expiry_date = datetime.datetime.strptime(initial_expiry_date, '%Y-%m-%dT%H:%M:%S.%f%z')
         extend_duration = settings.PRE_ARRIVAL_AGE_EXTEND
@@ -117,7 +117,7 @@ class PreArrivalReservationForm(forms.Form):
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('No reservation selected.')])
         return self.cleaned_data
 
-    def save_data(self):
+    def save(self):
         reservation_no = self.cleaned_data.get('reservation_no')
         reservation = next(reservation for reservation in self.request.session['pre_arrival'].get('bookings', []) if reservation.get('reservationNo', '') == reservation_no)
         self.request.session['pre_arrival']['reservation'] = reservation # also working as variable to prevent page jump
@@ -177,7 +177,7 @@ class PreArrivalPassportForm(forms.Form):
         response['scan_type'] = scan_type
         return response
 
-    def save_data(self):
+    def save(self):
         main_guest = next((guest for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
         if self.cleaned_data.get('skip_passport'):
             main_guest.update({'passportImage': ''})
@@ -255,7 +255,7 @@ class PreArrivalDetailForm(forms.Form):
                 self._errors['birth_date'] = self.error_class([_('Main guest has to be %(age)s and above.') % {'age': settings.PASSPORT_AGE_LIMIT}])
         return self.cleaned_data
 
-    def save_data(self, extra):
+    def save(self, extra):
         guests = [{
             'guestID': self.cleaned_data.get('guest_id'),
             'firstName': self.cleaned_data.get('first_name'),
@@ -385,7 +385,7 @@ class PreArrivalOtherInfoForm(forms.Form):
 
         return self.cleaned_data
 
-    def save_data(self):
+    def save(self):
         arrival_time = self.cleaned_data.get('arrival_time')
         special_requests = self.cleaned_data.get('special_requests')
         email = self.cleaned_data.get('email')
@@ -429,7 +429,7 @@ class PreArrivalCompleteForm(forms.Form):
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('There is no reservation can be done for pre-arrival')])
         return self.cleaned_data
 
-    def save_data(self):
+    def save(self):
         # reset data on session
         self.request.session['pre_arrival'].pop('reservation', None)
         self.request.session['pre_arrival'].pop('passport', None)

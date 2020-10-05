@@ -54,7 +54,7 @@ class PreArrivalLoginView(RequestFormKwargsMixin, MobileTemplateMixin, ProgressR
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        form.save_data()
+        form.save()
         return super().form_valid(form)
 
 
@@ -62,7 +62,7 @@ class PreArrivalTimerExtensionView(JSONResponseMixin, RequestFormKwargsMixin, Fo
     form_class              = PreArrivalTimerExtensionForm
 
     def form_valid(self, form):
-        form.save_data()
+        form.save()
         self.json_data = {'pre_arrival_extended_expiry_date': self.request.session['pre_arrival'].get('extended_expiry_date', '')}
         self.json_status = 'success'
         return self.render_to_json_response(self.get_context_data())
@@ -91,7 +91,7 @@ class PreArrivalReservationView(ExpirySessionMixin, RequestFormKwargsMixin, Prog
         return context
 
     def form_valid(self, form):
-        form.save_data()
+        form.save()
         return super().form_valid(form)
 
 
@@ -116,7 +116,7 @@ class PreArrivalPassportView(PageParameterRequiredMixin, RequestFormKwargsMixin,
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        form.save_data()
+        form.save()
         return super().form_valid(form)
 
 
@@ -151,7 +151,7 @@ class PreArrivalDetailView(PageParameterRequiredMixin, RequestFormKwargsMixin, M
             return self.form_invalid(form)
 
     def form_valid(self, form, extra):
-        form.save_data(extra)
+        form.save(extra)
         return super().form_valid(form)
 
 
@@ -162,7 +162,7 @@ class PreArrivalOtherInfoView(PageParameterRequiredMixin, RequestFormKwargsMixin
     page_parameter          = 'detail'
     
     def form_valid(self, form):
-        form.save_data()
+        form.save()
         form.gateway_post()
         if form.errors:
             return self.form_invalid(form)
@@ -182,7 +182,7 @@ class PreArrivalCompleteView(PageParameterRequiredMixin, RequestFormKwargsMixin,
     page_parameter          = 'other_info'
     
     def form_valid(self, form):
-        form.save_data()
+        form.save()
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):

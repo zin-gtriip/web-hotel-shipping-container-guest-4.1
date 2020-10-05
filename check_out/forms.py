@@ -39,7 +39,7 @@ class CheckOutLoginForm(forms.Form):
         }
         return gateways.backend_post('/signInForCheckOut', data)
     
-    def save_data(self):
+    def save(self):
         data = self.gateway_post()
         if not 'check_out' in self.request.session:
             self.request.session['check_out'] = {}
