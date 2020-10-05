@@ -181,6 +181,8 @@ class PreArrivalPassportForm(forms.Form):
             main_guest.update({'passportImage': file_b64_encoded.decode()})
             self.request.session['pre_arrival']['ocr'] = self.gateway_ocr(saved_file)
         self.request.session['pre_arrival']['passport'] = True # variable to prevent page jump
+        if 'preload' in self.request.session['pre_arrival'] and 'skip_ocr' in self.request.session['pre_arrival']['preload']:
+            self.request.session['pre_arrival']['preload']['skip_ocr'] = 0 # set auto login to False
 
 
 class PreArrivalDetailForm(forms.Form):
