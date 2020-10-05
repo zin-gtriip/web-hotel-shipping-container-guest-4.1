@@ -15,7 +15,9 @@
 
 {% block header_left %}
     {{ block.super }}
-    <button type="button" class="btn btn-link" id="btn-back"><i class="fas fa-arrow-left"></i></button>
+    <button type="button" class="btn btn-link" id="btn-back"
+        {% if request.session.app and not request.session.pre_arrival.preload.reservation_no or not request.session.app %}style="display: none;"{% endif %}>
+        <i class="fas fa-arrow-left"></i></button>
 {% endblock header_left %}
 
 {% block content %}
@@ -24,26 +26,38 @@
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-12 text-center">
-                <span id="header-reservation-no" class="header-description active">{% blocktrans %}Welcome to<br>Hotel {{ HOTEL_NAME }}{% endblocktrans %}</span>
-                <span id="header-last-name" class="header-description">{% blocktrans %}Please enter your<br>Last Name{% endblocktrans %}</span>
-                <span id="header-arrival-date" class="header-description">{% blocktrans %}Please confirm your<br>Arrival Date{% endblocktrans %}</span>
+                <span id="header-reservation-no"
+                    class="header-description {% if request.session.app and not request.session.pre_arrival.preload.reservation_no or not request.session.app %}active{% endif %}">
+                    {% blocktrans %}Welcome to<br>Hotel {{ HOTEL_NAME }}{% endblocktrans %}</span>
+                <span id="header-last-name"
+                    class="header-description {% if request.session.app and request.session.pre_arrival.preload.reservation_no %}active{% endif %}">
+                    {% blocktrans %}Please enter your<br>Last Name{% endblocktrans %}</span>
+                <span id="header-arrival-date"
+                    class="header-description">
+                    {% blocktrans %}Please confirm your<br>Arrival Date{% endblocktrans %}</span>
             </div>
         </div>
         <div class="row page-subheader">
             <div class="col-12 px-0 text-center text-secondary">
-                <span id="subheader-reservation-no" class="subheader-description active">{% trans 'To begin the online check-in process, please enter your reservation number.' %}</span>
-                <span id="subheader-last-name" class="subheader-description">{% trans 'To verify your reservation, please provide your last name is in your passport.' %}</span>
-                <span id="subheader-arrival-date" class="subheader-description">{% trans 'To verify your reservation, please confirm your arrival date at the hotel.' %}</span>
+                <span id="subheader-reservation-no"
+                    class="subheader-description {% if request.session.app and not request.session.pre_arrival.preload.reservation_no or not request.session.app %}active{% endif %}">
+                    {% trans 'To begin the online check-in process, please enter your reservation number.' %}</span>
+                <span id="subheader-last-name"
+                    class="subheader-description {% if request.session.app and request.session.pre_arrival.preload.reservation_no %}active{% endif %}">
+                    {% trans 'To verify your reservation, please provide your last name is in your passport.' %}</span>
+                <span id="subheader-arrival-date"
+                    class="subheader-description">
+                    {% trans 'To verify your reservation, please confirm your arrival date at the hotel.' %}</span>
             </div>
         </div>
         <div class="row page-content">
             <div class="col-12 d-flex justify-content-center">
-                <div id="content-reservation-no" class="content-input active">
+                <div id="content-reservation-no" class="content-input {% if request.session.app and not request.session.pre_arrival.preload.reservation_no or not request.session.app %}active{% endif %}">
                     <div class="md-form input-center input-boxed my-0">
                         {% render_field form.reservation_no class="form-control" placeholder="e.g. 12345678" %}
                     </div>
                 </div>
-                <div id="content-last-name" class="content-input">
+                <div id="content-last-name" class="content-input {% if request.session.app and request.session.pre_arrival.preload.reservation_no %}active{% endif %}">
                     <div class="md-form input-center input-boxed my-0">
                         {% render_field form.last_name class="form-control" placeholder="Last Name" %}
                     </div>
@@ -58,10 +72,10 @@
         </div>
         <div class="row page-footer">
             <div class="col-12 d-flex justify-content-center">
-                <div id="footer-reservation-no" class="footer-button active">
+                <div id="footer-reservation-no" class="footer-button {% if request.session.app and not request.session.pre_arrival.preload.reservation_no or not request.session.app %}active{% endif %}">
                     <button type="button" class="btn btn-primary btn-round m-0" disabled>{% trans 'Next' %}</button>
                 </div>
-                <div id="footer-last-name" class="footer-button">
+                <div id="footer-last-name" class="footer-button {% if request.session.app and request.session.pre_arrival.preload.reservation_no %}active{% endif %}">
                     <button type="button" class="btn btn-primary btn-round m-0" disabled>{% trans 'Next' %}</button>
                 </div>
                 <div id="footer-arrival-date" class="footer-button">
