@@ -61,7 +61,7 @@ class PreArrivalLoginForm(forms.Form):
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['pre_arrival']['initial_expiry_date'] = initial_expiry_date
         if 'preload' in self.request.session['pre_arrival'] and 'auto_login' in self.request.session['pre_arrival']['preload']:
-            self.request.session['pre_arrival']['preload']['auto_login'] = False # set auto login to False
+            self.request.session['pre_arrival']['preload']['auto_login'] = 0 # set auto login to False
 
 
 class PreArrivalTimerExtensionForm(forms.Form):

@@ -18,10 +18,10 @@ class PreArrivalDataView(RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         self.request.session['pre_arrival'] = {'preload': {}}
-        self.request.session['app'] = self.request.GET.get('app', False) if 'app' in self.request.GET else False
+        self.request.session['app'] = self.request.GET.get('app', 0)
         if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
-        if 'auto_login' in self.request.GET: self.request.session['pre_arrival']['preload']['auto_login'] = self.request.GET.get('auto_login', False)
-        if 'skip_ocr' in self.request.GET: self.request.session['pre_arrival']['preload']['skip_ocr'] = self.request.GET.get('skip_ocr', False)
+        if 'auto_login' in self.request.GET: self.request.session['pre_arrival']['preload']['auto_login'] = self.request.GET.get('auto_login', 0)
+        if 'skip_ocr' in self.request.GET: self.request.session['pre_arrival']['preload']['skip_ocr'] = self.request.GET.get('skip_ocr', 0)
         if 'reservation_no' in self.request.GET: self.request.session['pre_arrival']['preload']['reservation_no'] = self.request.GET.get('reservation_no', '')
         if 'arrival_date' in self.request.GET: self.request.session['pre_arrival']['preload']['arrival_date'] = self.request.GET.get('arrival_date', '')
         if 'last_name' in self.request.GET: self.request.session['pre_arrival']['preload']['last_name'] = self.request.GET.get('last_name', '')
@@ -39,7 +39,7 @@ class PreArrivalLoginView(RequestFormKwargsMixin, MobileTemplateMixin, ProgressR
     success_url             = '/pre_arrival/reservation'
 
     def dispatch(self, request, *args, **kwargs):
-        if request.session.get('pre_arrival', {}).get('preload', {}).get('auto_login', False):
+        if request.session.get('pre_arrival', {}).get('preload', {}).get('auto_login', 0):
             data['reservation_no'] = request.session.get('pre_arrival', {}).get('preload', {}).get('reservation_no', '')
             data['arrival_date'] = request.session.get('pre_arrival', {}).get('preload', {}).get('arrival_date', '')
             data['last_name'] = request.session.get('pre_arrival', {}).get('preload', {}).get('last_name', '')
