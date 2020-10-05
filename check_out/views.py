@@ -60,7 +60,7 @@ class CheckOutLoginView(RequestFormKwargsMixin, MobileTemplateMixin, FormView):
         return url
     
 
-class CheckOutBillView(RequestFormKwargsMixin, BillRequiredAndExistMixin, UpdateView):
+class CheckOutBillView(BillRequiredAndExistMixin, RequestFormKwargsMixin, UpdateView):
     template_name           = 'check_out/desktop/bill.html'
     form_class              = CheckOutBillForm
     success_url             = '/check_out/bill/{reservation_no}'
