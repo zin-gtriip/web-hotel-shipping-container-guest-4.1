@@ -82,7 +82,7 @@
 
 {% block data_js %}
     {{ block.super }}
-    {{ request.session.pre_arrival.form.reservation|json_script:'reservation' }}
+    {{ request.session.pre_arrival.reservation.reservationNo|json_script:'reservation' }}
 {% endblock data_js %}
 
 {% block static_js %}
