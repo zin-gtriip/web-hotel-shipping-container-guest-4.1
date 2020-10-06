@@ -42,11 +42,10 @@ class PreArrivalLoginForm(forms.Form):
         return self.cleaned_data
 
     def gateway_post(self):
-        data = {
-            'reservation_no': self.cleaned_data.get('reservation_no'),
-            'arrival_date': self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d'),
-            'last_name': self.cleaned_data.get('last_name'),
-        }
+        data = {}
+        data['reservation_no'] = self.cleaned_data.get('reservation_no'),
+        data['arrival_date'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
+        data['last_name'] = self.cleaned_data.get('last_name')
         return gateways.backend_post('/checkBookingsPreArrival', data)
     
     def save(self):
@@ -398,11 +397,10 @@ class PreArrivalOtherInfoForm(forms.Form):
         response = gateways.backend_post('/processGuestsPreArrival', data)
         if response.get('success', '') == 'true':
             # get existing reservation from backend
-            new_booking_data = {
-                'reservation_no': self.request.session['pre_arrival'].get('input_reservation_no', ''),
-                'arrival_date': self.request.session['pre_arrival'].get('input_arrival_date', ''),
-                'last_name': self.request.session['pre_arrival'].get('input_last_name', ''),
-            }
+            new_booking_data = {}
+            new_booking_data['reservation_no'] = self.request.session['pre_arrival'].get('input_reservation_no', '')
+            new_booking_data['arrival_date'] = self.request.session['pre_arrival'].get('input_arrival_date', '')
+            new_booking_data['last_name'] = self.request.session['pre_arrival'].get('input_last_name', '')
             new_booking_response = gateways.backend_post('/checkBookingsPreArrival', new_booking_data)
             self.request.session['pre_arrival']['bookings'] = new_booking_response.get('data', [])
         else:
