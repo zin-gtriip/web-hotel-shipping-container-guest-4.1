@@ -37,6 +37,7 @@ class CheckOutLoginView(RequestFormKwargsMixin, MobileTemplateMixin, FormView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('check_out', {}).get('preload', {}).get('auto_login', 0):
+            data = {}
             data['reservation_no'] = request.session.get('check_out', {}).get('preload', {}).get('reservation_no', '')
             data['room_no'] = request.session.get('check_out', {}).get('preload', {}).get('room_no', '')
             form = self.get_form_class()

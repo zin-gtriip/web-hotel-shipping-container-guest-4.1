@@ -40,6 +40,7 @@ class PreArrivalLoginView(RequestFormKwargsMixin, MobileTemplateMixin, ProgressR
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('pre_arrival', {}).get('preload', {}).get('auto_login', 0):
+            data = {}
             data['reservation_no'] = request.session.get('pre_arrival', {}).get('preload', {}).get('reservation_no', '')
             data['arrival_date'] = request.session.get('pre_arrival', {}).get('preload', {}).get('arrival_date', '')
             data['last_name'] = request.session.get('pre_arrival', {}).get('preload', {}).get('last_name', '')
@@ -102,6 +103,7 @@ class PreArrivalPassportView(PageParameterRequiredMixin, RequestFormKwargsMixin,
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('pre_arrival', {}).get('preload', {}).get('skip_ocr', False):
+            data = {}
             data['skip_passport'] = True
             form = self.get_form_class()
             form = form(request, data)
