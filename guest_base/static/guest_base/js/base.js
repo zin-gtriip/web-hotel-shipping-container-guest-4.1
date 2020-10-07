@@ -62,3 +62,8 @@ function toastNotify(msg, bgColor='bg-danger', textColor='text-white') {
 $('form').submit(function() {
 	$('body').addClass('loading');
 });
+// add loading when ajax
+$(document).on({
+    ajaxStart: function() { $('body').addClass('loading'); },
+    ajaxStop: function() { $('body').removeClass('loading'); }
+});
