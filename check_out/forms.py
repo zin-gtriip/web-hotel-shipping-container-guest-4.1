@@ -33,10 +33,9 @@ class CheckOutLoginForm(forms.Form):
         return self.cleaned_data
 
     def gateway_post(self):
-        data = {
-            'reservation_no': self.cleaned_data.get('reservation_no'),
-            'room_no': self.cleaned_data.get('room_no'),
-        }
+        data = {}
+        data['reservation_no'] = self.cleaned_data.get('reservation_no')
+        data['room_no'] = self.cleaned_data.get('room_no')
         return gateways.backend_post('/signInForCheckOut', data)
     
     def save(self):

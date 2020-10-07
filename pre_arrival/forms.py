@@ -43,7 +43,7 @@ class PreArrivalLoginForm(forms.Form):
 
     def gateway_post(self):
         data = {}
-        data['reservation_no'] = self.cleaned_data.get('reservation_no'),
+        data['reservation_no'] = self.cleaned_data.get('reservation_no')
         data['arrival_date'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
         data['last_name'] = self.cleaned_data.get('last_name')
         return gateways.backend_post('/checkBookingsPreArrival', data)
