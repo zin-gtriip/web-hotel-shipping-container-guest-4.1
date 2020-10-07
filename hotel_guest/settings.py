@@ -246,10 +246,8 @@ ROOM_TYPES = [
         'room_image': 'villa.jpg',
     },
 ]
-# age limit of ocr validation
-PASSPORT_AGE_LIMIT      = 18
-# default age limit of detail form that should count as adult or child, if AMP is not provided
-DETAIL_FORM_AGE_LIMIT   = 13
+# age limit for adult, used on passport, detail page
+ADULT_AGE_LIMIT         = 18
 # progress bar rate on pre-arrival page
 PROGRESS_BAR_START_RATE = 10
 PROGRESS_BAR_END_RATE   = 100
