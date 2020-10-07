@@ -85,7 +85,8 @@ class PreArrivalTimerExtensionForm(forms.Form):
     def save(self):
         initial_expiry_date = self.request.session['pre_arrival'].get('initial_expiry_date', '')
         initial_expiry_date = datetime.datetime.strptime(initial_expiry_date, '%Y-%m-%dT%H:%M:%S.%f%z')
-        extend_duration = settings.PRE_ARRIVAL_AGE_EXTEND
+        config = gateways.backend_post('/getConfigVariables', {}) # get config variables
+        extend_duration = config.get('prearrival_session_extend_duration_minutes', settings.PRE_ARRIVAL_AGE_EXTEND)
         extended_expiry_date = (initial_expiry_date + datetime.timedelta(minutes=extend_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['pre_arrival']['extended_expiry_date'] = extended_expiry_date
 
