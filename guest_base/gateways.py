@@ -13,7 +13,7 @@ def backend_post(url, post_data):
         **post_data,
         'api_key': settings.BACKEND_API_KEY,
         'site_id': settings.BACKEND_SITE_ID,
-        # 'site_name': settings.BACKEND_SITE_NAME,
+        'site_name': settings.BACKEND_SITE_NAME,
     }
     try:
         response = requests.post(settings.BACKEND_URL + url, json=post_data, timeout=360, verify=False)
