@@ -1,4 +1,4 @@
-var reservation = JSON.parse($('#reservation').text() || '""');
+var reservationNo = JSON.parse($('#reservation').text() || '""');
 
 // event when reservation thumbnail is clicked
 $('.reservation-container').click(function() {
@@ -15,8 +15,8 @@ $('input[name=reservation_no]').change(function() {
 
 
 // default selected value condition
-if (reservation == '') {
+if (reservationNo == '') {
     $('.reservation-container:first').click();
 } else {
-    $('input[name=reservation_no][value='+ reservation +']').parents('.reservation-container').click();
+    $('input[name=reservation_no][value='+ reservationNo +']').parents('.reservation-container').click();
 }

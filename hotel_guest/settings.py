@@ -190,15 +190,8 @@ COMPRESS_PRECOMPILERS = (
 
 BACKEND_URL         = 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0'
 BACKEND_API_KEY     = '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45'
-BACKEND_SITE_ID     = 'CRE_BOAT_QUAY_1' #'QAHotelProdSG11'
+BACKEND_SITE_ID     = 'QAHotelProdSG11'
 BACKEND_SITE_NAME   = 'QA_Hotel_Prod_SG_3.0'
-
-
-# AMP API configuration
-AMP_URL             = 'http://18.140.58.90:8003/api'
-AMP_API_KEY         = 'gGf4YY3pObsO5Ujx6LFcq78jetVUwNk3pvrAF37mR4srvXOWG1Jy5TTSGuNFHex4d0TXYKWlGVktovLow8c4HWPvgsTHXygvzZF1Ie0oYVYuyeefSu2oo2duSLvSSJTc'
-AMP_CONFIG_URL      = '/config/'
-AMP_CONFIG_ID       = 1
 
 
 # Cron job configuration
@@ -253,10 +246,8 @@ ROOM_TYPES = [
         'room_image': 'villa.jpg',
     },
 ]
-# age limit of ocr validation
-PASSPORT_AGE_LIMIT      = 18
-# default age limit of detail form that should count as adult or child, if AMP is not provided
-DETAIL_FORM_AGE_LIMIT   = 13
+# age limit for adult, used on passport, detail page
+ADULT_AGE_LIMIT         = 18
 # progress bar rate on pre-arrival page
 PROGRESS_BAR_START_RATE = 10
 PROGRESS_BAR_END_RATE   = 100

@@ -56,3 +56,14 @@ function toastNotify(msg, bgColor='bg-danger', textColor='text-white') {
 	$('.toast-wrapper .toast-top-left').append(element);
     $('.toast').toast('show');
 }
+
+
+// add loading when form submit
+$('form').submit(function() {
+	$('body').addClass('loading');
+});
+// add loading when ajax
+$(document).on({
+    ajaxStart: function() { $('body').addClass('loading'); },
+    ajaxStop: function() { $('body').removeClass('loading'); }
+});
