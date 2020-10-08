@@ -56,6 +56,13 @@ class PreArrivalLoginView(RequestFormKwargsMixin, MobileTemplateMixin, ProgressR
         form.save()
         return super().form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        form = context.get('form', None)
+        if self.request.session.get('app', 0) and self.request.session.get('pre_arrival', {}).get('preload', {}).get('reservation_no', '') and (form and not form.is_bound):
+            context['skip_reservation_no'] = True
+        return context
+
 
 class PreArrivalTimerExtensionView(JSONResponseMixin, RequestFormKwargsMixin, FormView):
     form_class              = PreArrivalTimerExtensionForm
