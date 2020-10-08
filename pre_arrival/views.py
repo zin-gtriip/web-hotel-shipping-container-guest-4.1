@@ -176,7 +176,8 @@ class PreArrivalOtherInfoView(PageParameterRequiredMixin, RequestFormKwargsMixin
 
 
 class PreArrivalCompleteView(PageParameterRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
-    template_name           = 'pre_arrival/desktop/complete.html'
+    template_name           = 'pre_arrival/mobile/complete.html'
+    mobile_template_name    = 'pre_arrival/mobile/complete.html'
     form_class              = PreArrivalCompleteForm
     success_url             = '/pre_arrival/reservation'
     page_parameter          = 'other_info'

@@ -1,0 +1,107 @@
+{% extends 'pre_arrival/desktop/base_desktop.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'pre_arrival/scss/desktop/404_page.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block content %}
+    {{ block.super }}
+    <form method="post">
+        {% csrf_token %}
+        <div class="row page-header">
+            <div class="col-12 px-0 col-lg-4 mx-auto text-center">
+                {% trans 'Registration Complete' %}
+            </div>
+        </div>
+        <div class="row page-content">
+            <div class="col-12 px-0 col-lg-4 mx-auto">
+                <div class="reservation-container">
+                    <label class="label-reservation" style="background-image: url('/static/img/{{ reservation.roomImage }}');">
+                        <div class="reservation-details">
+                            <div class="room-type text-12 text-white">{{ reservation.roomName }}</div>
+                            <div class="reservation-checkbox">
+                                <span class="reservation-checkbox-icon"></span>
+                            </div>
+                        </div>
+                    </label>
+                    <div class="reservation-date bg-dark text-white">
+                        <div class="text-left">
+                            <div class="text-10">{% trans 'Reservation No' %}</div>
+                            <div class="text-primary">{{ reservation.reservationNo }}</div>
+                            <div class="text-10">{% trans 'Last Name' %}</div>
+                            <div class="text-primary">{{ reservation.mainGuestLastName }}</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-10">{% trans 'Check-in Date' %}</div>
+                            <div class="text-primary">{{ reservation.formattedArrivalDate }}</div>
+                            <div class="text-10">{% trans 'Check-out Date' %}</div>
+                            <div class="text-primary">{{ reservation.formattedDepartureDate }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row page-footer">
+            <div class="col-12 col-lg-4 mx-auto">
+                {% if not request.session.app %}
+                    <div class="row" id="footer-description">
+                        <div class="col-lg-12 text-secondary text-center">
+                            {% blocktrans %}
+                                Please proceed to the front office to collect your key.
+                                Or alternatively, download our mobile app so you can
+                                head straight to your room using the digital key.
+                            {% endblocktrans %}
+                        </div>
+                    </div>
+                    {% if request.session.pre_arrival.bookings %}
+                        <div class="row" id="footer-next">
+                            <div class="col-lg-12 text-secondary text-center">
+                                <button type="submit" class="btn btn-outline-primary text-capitalize">Next Registration</button>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="row" id="footer-app">
+                        <div class="col-lg-12">
+                            <div class="row mb-4">
+                                <div class="col-lg-12 d-flex justify-content-center">
+                                    <img src="{% static 'img/logo.png' %}" id="hotel-logo">
+                                    <span id="instruction">{% trans 'Check-In via our mobile app and head straight to your room using the digital key.' %}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 d-flex justify-content-center">
+                                    <a href="javascript:void(0)" id="app-store">
+                                        <img src="{% static 'img/app-store.png' %}">
+                                    </a>
+                                    <a href="javascript:void(0)" id="google-play">
+                                        <img src="{% static 'img/google-play.png' %}" >
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="row mt-5">
+                        <div class="col-lg-12 d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary" id="btn-ok">{% trans 'Ok' %}</button>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+
+{% block data_js %}
+    {{ block.super }}
+    {{ request.session.pre_arrival.form.reservationNo|json_script:'reservation-no' }}
+{% endblock data_js %}
+
+{% block static_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'pre_arrival/js/desktop/complete.js' %}"></script>
+{% endblock static_js %}
