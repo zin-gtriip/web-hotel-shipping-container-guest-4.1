@@ -14,3 +14,5 @@ urlpatterns = [
     path('pre_arrival/other_info/', PreArrivalOtherInfoView.as_view(), name='other_info'),
     path('pre_arrival/complete/', PreArrivalCompleteView.as_view(), name='complete'),
 ]
+
+

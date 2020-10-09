@@ -1,0 +1,31 @@
+{% extends 'pre_arrival/mobile/base_mobile.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'pre_arrival/scss/mobile/404_page.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block content %}
+    {{block.super }}
+    <div class="row page-subheader">
+        <div class="col-12 px-0 text-center text-dark">
+            <h3>{% trans "Oops! We couldn't find the page you're looking for" %}</h3>
+        </div>
+    </div>
+    <div class="row page-content">
+        <div class="col-md-auto px-0 text-center text-secondary">
+            {% blocktrans %}
+                It looks like that page doesn't exit.   
+                Please check the URL and try again.
+            {% endblocktrans %}
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+            <div class="default-container">
+                <img src="{% static 'img/hotel_illust_404.png' %}">
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -7,6 +7,8 @@ from guest_base.mixins          import RequestFormKwargsMixin, MobileTemplateMix
 from .forms                     import *
 from .mixins                    import *
 from .utilities                 import *
+from django.template            import RequestContext
+from django.views.generic       import TemplateView
 
 
 class IndexView(GuestBaseViews.IndexView):
@@ -173,8 +175,8 @@ class PreArrivalOtherInfoView(PageParameterRequiredMixin, RequestFormKwargsMixin
         return context
 
 
-class PreArrivalCompleteView(PageParameterRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
-    template_name           = 'pre_arrival/mobile/complete.html'
+class PreArrivalCompleteView(PageParameterRequiredMixin,MobileTemplateMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
+    template_name           = 'pre_arrival/desktop/complete.html'
     mobile_template_name    = 'pre_arrival/mobile/complete.html'
     form_class              = PreArrivalCompleteForm
     success_url             = '/pre_arrival/reservation'
@@ -195,3 +197,25 @@ class PreArrivalCompleteView(PageParameterRequiredMixin, RequestFormKwargsMixin,
         reservation['roomImage'] = room['room_image']
         context['reservation'] = reservation
         return context
+
+#def handler404(request, exception):
+#    return render(request, 'pre_arrival/desktop/error_page.html')
+
+class errorView(MobileTemplateMixin,TemplateView):
+    template_name              = 'pre_arrival/desktop/error_page.html'
+    mobile_template_name       = 'pre_arrival/mobile/error_page.html'
+
+    def get(self, request, *args, **kwargs):
+        response = super(errorView, self).get(request, *args, **kwargs)
+        response.status_code = 404
+        return response
+
+    def as_error_view(error):
+        as_view_fun = error.as_view()
+
+        def view(request):
+            response = as_view_fun(request)
+            response.render()
+            return response
+
+        return view
