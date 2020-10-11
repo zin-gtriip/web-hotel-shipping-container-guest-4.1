@@ -88,11 +88,11 @@
                                         </tr>
                                     {% endfor %}
                                 </tbody>
+                                <tfoot>
                                     <tr class="border-top-2 border-bottom-2">
                                         <td class="text-uppercase font-weight-normal text-right" colspan="2">{% trans 'Balance Due' %}</td>
                                         <td class="text-right">{{ currency_symbol }} {{ object.item_total_amount|floatformat:2|intcomma }}</td>
                                     </tr>
-                                <tfoot>
                                     <tr>
                                         <td class="text font-weight-normal text-right" colspan="2">{% trans 'GST at 7%'%}</d>
                                         <td class="text-right">{{ currency_symbol }} {{ object.tax_amount|floatformat:2|intcomma }}</td>
