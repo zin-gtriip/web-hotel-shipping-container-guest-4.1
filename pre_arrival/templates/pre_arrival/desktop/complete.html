@@ -59,13 +59,24 @@
                     </div>
                     {% if request.session.pre_arrival.bookings %}
                         <div class="row" id="footer-next">
-                            <div class="col-lg-12 text-secondary text-center">
+                            <div class="col-xs-12 text-secondary text-center">
                                 <button type="submit" class="btn btn-outline-primary text-capitalize">Next Registration</button>
                             </div>
                         </div>
                     {% endif %}
                     <div class="row" id="footer-app">
-                        <div class="col-lg-12">
+                        {% if not request.user_agent.is_pc %}
+                            <div class="col-12 d-flex justify-content-center">
+                                {% if request.user_agent.os.family == 'iOS' %}
+                                    <a type="button" class="btn btn-primary btn-round m-0" href="{{ ios_url }}"><img src="/static/img/vpn_key-24px.svg">&nbsp;&nbsp;{% trans 'Get The App' %}
+                                    </a>
+                                {% else %}
+                                    <a type="button" class="btn btn-primary btn-round m-0" href="{{ android_url }}"><img src="/static/img/vpn_key-24px.svg">&nbsp;&nbsp;{% trans 'Get The App' %}
+                                    </a>
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <div class="col-lg-12">
                             <div class="row mb-4">
                                 <div class="col-lg-12 d-flex justify-content-center">
                                     <img src="{% static 'img/logo.png' %}" id="hotel-logo">
@@ -83,6 +94,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% endif %}
                     </div>
                 {% else %}
                     <div class="row mt-5">
