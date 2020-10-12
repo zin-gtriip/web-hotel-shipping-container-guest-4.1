@@ -9,11 +9,7 @@ from guest_base.mixins          import RequestFormKwargsMixin, MobileTemplateMix
 from .forms                     import *
 from .mixins                    import *
 from .utilities                 import *
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/pwp-branch
-
+from .views                     import *
 
 class IndexView(GuestBaseViews.IndexView):
     pattern_name = 'pre_arrival:data'
