@@ -1,11 +1,11 @@
-{% extends 'check_out/base.html' %}
+{% extends 'guest_base/base.html' %}
 {% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
 
 {% block static_css %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'check_out/scss/desktop/404_page.scss' %}" type="text/x-scss" media="screen">
+    <link rel="stylesheet" href="{% static 'guest_base/scss/404.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
 {% block content %}
@@ -22,8 +22,10 @@
         
         <div class="col-lg-12 d-flex justify-content-center">
             <div class="default-container">
-                <img src="{% static 'img/hotel_illust_404.png' %}">
+                <img src="{% static 'img/404.png' %}">
             </div>
         </div>
     </div>
+{% block header_right %}{% endblock header_right %}
+
 {% endblock content %}

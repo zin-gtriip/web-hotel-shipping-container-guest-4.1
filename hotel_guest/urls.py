@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path, include
 from django.views.i18n import JavaScriptCatalog
-from pre_arrival.views import errorView
+from guest_base.views import HTML404View
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +28,4 @@ urlpatterns = [
     path('', include('guest_base.urls')),
 ]
 
-handler404 = errorView.as_view()
+handler404 = HTML404View.as_view()
