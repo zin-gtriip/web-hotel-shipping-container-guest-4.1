@@ -3,84 +3,87 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-26 18:09+0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2020-09-29 13:15+0700\n"
+"PO-Revision-Date: 2020-09-30 18:33+0800\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: pre_arrival/static/pre_arrival/js/desktop/detail.js:78
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:84
 msgid "Guest"
-msgstr ""
+msgstr "Guest"
 
 #: pre_arrival/static/pre_arrival/js/desktop/detail.js:83
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:89
 msgid "Main Guest"
-msgstr ""
+msgstr "Main Guest"
 
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:32
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:33
-#: pre_arrival/static/pre_arrival/js/mobile/passport.js:32
-#: pre_arrival/static/pre_arrival/js/mobile/passport.js:33
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:34
+#: pre_arrival/static/pre_arrival/js/mobile/passport.js:49
+#: pre_arrival/static/pre_arrival/js/mobile/passport.js:50
 msgid "Invalid Image"
-msgstr ""
-
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:32
-#: pre_arrival/static/pre_arrival/js/mobile/passport.js:32
-msgid "No image file selected"
-msgstr ""
+msgstr "Invalid Image"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:33
-#: pre_arrival/static/pre_arrival/js/mobile/passport.js:33
+#: pre_arrival/static/pre_arrival/js/mobile/passport.js:49
+msgid "No image file selected"
+msgstr "No image file selected"
+
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:34
+#: pre_arrival/static/pre_arrival/js/mobile/passport.js:50
 msgid "Please upload valid identification in JPEG/PNG format"
-msgstr ""
+msgstr "Please upload valid identification in JPEG/PNG format."
 
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:44
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:78
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:85
-#: pre_arrival/static/pre_arrival/js/mobile/passport.js:44
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:47
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:83
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:90
+#: pre_arrival/static/pre_arrival/js/mobile/passport.js:63
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:44
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:78
-#: pre_arrival/static/pre_arrival/js/mobile/passport.js:44
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:47
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:83
+#: pre_arrival/static/pre_arrival/js/mobile/passport.js:63
 msgid "Error capturing image"
-msgstr ""
+msgstr "Unable to capture image."
 
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:85
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:90
 msgid "No camera media is detected"
-msgstr ""
+msgstr "No camera media is detected."
 
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:148
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:153
 msgid ""
 "Please adjust the image to make sure that all information is within the box."
 msgstr ""
+"Please adjust the image to make sure that all information is within the box."
 
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:119
 msgid "Select Date"
-msgstr ""
+msgstr "Select Date"
 
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:120
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:121
 msgid "Confirm"
-msgstr ""
+msgstr "Confirm"
 
-#: pre_arrival/static/pre_arrival/js/mobile/passport.js:109
+#: pre_arrival/static/pre_arrival/js/mobile/passport.js:128
 msgid ""
 "Drag, rotate, or pinch the image to make sure that all information is within "
 "the box."
 msgstr ""
+"Drag, rotate, or pinch the image to make sure that all information is within "
+"the box."

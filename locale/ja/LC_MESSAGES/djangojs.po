@@ -7,35 +7,83 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-25 14:08+0700\n"
-"PO-Revision-Date: 2020-07-01 11:52+0800\n"
+"POT-Creation-Date: 2020-09-29 13:15+0700\n"
+"PO-Revision-Date: 2020-09-30 18:32+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.1\n"
 
-#: static/js/desktop/check_in/passport.js:54
-#: static/js/mobile/check_in/passport.js:54
-msgid "No camera media is detected"
-msgstr "カメラメディアが検出されません"
+#: pre_arrival/static/pre_arrival/js/desktop/detail.js:78
+#: pre_arrival/static/pre_arrival/js/mobile/detail.js:84
+msgid "Guest"
+msgstr "ゲスト"
 
-#: static/js/desktop/check_in/passport.js:94
-#: static/js/mobile/check_in/passport.js:94
+#: pre_arrival/static/pre_arrival/js/desktop/detail.js:83
+#: pre_arrival/static/pre_arrival/js/mobile/detail.js:89
+msgid "Main Guest"
+msgstr "メインゲスト"
+
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:33
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:34
+#: pre_arrival/static/pre_arrival/js/mobile/passport.js:49
+#: pre_arrival/static/pre_arrival/js/mobile/passport.js:50
+msgid "Invalid Image"
+msgstr "無効な画像"
+
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:33
+#: pre_arrival/static/pre_arrival/js/mobile/passport.js:49
 msgid "No image file selected"
 msgstr "画像ファイルが選択されていません"
 
-#: static/js/desktop/check_in/passport.js:95
-#: static/js/mobile/check_in/passport.js:95
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:34
+#: pre_arrival/static/pre_arrival/js/mobile/passport.js:50
 msgid "Please upload valid identification in JPEG/PNG format"
-msgstr "有効なIDをJPEG / PNG形式でアップロードしてください"
+msgstr "有効な身分証明書をJPEG / PNG形式でアップロードしてください。"
 
-#: static/js/desktop/check_in/passport.js:105
-#: static/js/desktop/check_in/passport.js:141
-#: static/js/mobile/check_in/passport.js:105
-#: static/js/mobile/check_in/passport.js:141
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:47
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:83
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:90
+#: pre_arrival/static/pre_arrival/js/mobile/passport.js:63
+msgid "Error"
+msgstr "エラー"
+
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:47
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:83
+#: pre_arrival/static/pre_arrival/js/mobile/passport.js:63
 msgid "Error capturing image"
-msgstr "画像のキャプチャ中にエラーが発生しました"
+msgstr "画像をキャプチャできません。"
+
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:90
+msgid "No camera media is detected"
+msgstr "カメラメディアが検出されません。"
+
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:153
+msgid ""
+"Please adjust the image to make sure that all information is within the box."
+msgstr ""
+"すべての情報がボックス内にあることを確認するために画像を調整してください。"
+
+#: pre_arrival/static/pre_arrival/js/mobile/detail.js:119
+msgid "Select Date"
+msgstr "日付を選択"
+
+#: pre_arrival/static/pre_arrival/js/mobile/detail.js:120
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: pre_arrival/static/pre_arrival/js/mobile/detail.js:121
+msgid "Confirm"
+msgstr "確認"
+
+#: pre_arrival/static/pre_arrival/js/mobile/passport.js:128
+msgid ""
+"Drag, rotate, or pinch the image to make sure that all information is within "
+"the box."
+msgstr ""
+"画像をドラッグ、回転、またはピンチして、すべての情報がボックス内にあることを"
+"確認します。"
