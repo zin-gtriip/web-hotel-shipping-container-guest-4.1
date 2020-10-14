@@ -2,14 +2,11 @@ from django.shortcuts           import render
 from django.views.generic       import *
 from django.utils               import translation
 from django.utils.translation   import gettext, gettext_lazy as _
-from django.template            import RequestContext
-from django.views.generic       import TemplateView
 from guest_base                 import views as GuestBaseViews
 from guest_base.mixins          import RequestFormKwargsMixin, MobileTemplateMixin, JSONResponseMixin
 from .forms                     import *
 from .mixins                    import *
 from .utilities                 import *
-from .views                     import *
 
 class IndexView(GuestBaseViews.IndexView):
     pattern_name = 'pre_arrival:data'

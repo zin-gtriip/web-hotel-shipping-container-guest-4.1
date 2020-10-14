@@ -124,10 +124,3 @@ class errorView(TemplateView):
 
     def as_error_view(error):
         as_view_fun = error.as_view()
-
-        def view(request):
-            response = as_view_fun(request)
-            response.render()
-            return response
-
-        return view

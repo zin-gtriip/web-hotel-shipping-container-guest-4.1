@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="{% static 'pre_arrival/scss/desktop/complete.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
+{% block header_middle %}
+    {{ block.super }}
+{% endblock header_middle %}
+
 {% block content %}
     {{ block.super }}
     <form method="post">
@@ -68,10 +72,10 @@
                         {% if not request.user_agent.is_pc %}
                             <div class="col-12 d-flex justify-content-center">
                                 {% if request.user_agent.os.family == 'iOS' %}
-                                    <a type="button" class="btn btn-primary btn-round m-0" href="{{ ios_url }}"><img src="/static/img/vpn_key-24px.svg">&nbsp;&nbsp;{% trans 'Get The App' %}
+                                    <a type="button" class="btn btn-primary btn-round m-0" href="{{ ios_url }}"><img src="/static/img/key.svg">&nbsp;&nbsp;{% trans 'Get The App' %}
                                     </a>
                                 {% else %}
-                                    <a type="button" class="btn btn-primary btn-round m-0" href="{{ android_url }}"><img src="/static/img/vpn_key-24px.svg">&nbsp;&nbsp;{% trans 'Get The App' %}
+                                    <a type="button" class="btn btn-primary btn-round m-0" href="{{ android_url }}"><img src="/static/img/key.svg">&nbsp;&nbsp;{% trans 'Get The App' %}
                                     </a>
                                 {% endif %}
                             </div>
@@ -98,8 +102,8 @@
                                     </div>
                                 </div>
                             </div>
-                    </div>
                         {% endif %}
+                    </div>       
                 {% else %}
                     <div class="row mt-5">
                         <div class="col-lg-12 d-flex justify-content-center">
