@@ -21,12 +21,16 @@
     {% endif %}
 {% endblock header_right %}
 
-{% block header_middle %}
+{% block header_left %}
     {% if request.path not in '/pre_arrival/login/,/pre_arrival/complete/'%}
-        <div class="timer-text text-secondary">
+        <div class="timer-text text-secondary ">
             <span class="timer-tick"></span>
         </div>
     {% endif %}
+{% endblock header_left %}
+
+{% block header_middle %}
+    {{ block.super }}
 {% endblock header_middle %}
 
 {% block wrapper %}
