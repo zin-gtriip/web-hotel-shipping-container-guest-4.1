@@ -46,7 +46,7 @@ class PreArrivalLoginForm(forms.Form):
         data['reservation_no'] = self.cleaned_data.get('reservation_no')
         data['arrival_date'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
         data['last_name'] = self.cleaned_data.get('last_name')
-        return gateways.backend_post('/checkBookingsPreArrival', data)
+        return gateways.guest_endpoint('/checkBookingsPreArrival', data)
     
     def save(self):
         data = self.gateway_post()
@@ -56,7 +56,7 @@ class PreArrivalLoginForm(forms.Form):
         self.request.session['pre_arrival']['input_reservation_no'] = self.cleaned_data.get('reservation_no')
         self.request.session['pre_arrival']['input_arrival_date'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
         self.request.session['pre_arrival']['input_last_name'] = self.cleaned_data.get('last_name')
-        config = gateways.backend_post('/getConfigVariables', {}) # get config variables
+        config = gateways.amp_endpoint('/getConfigVariables') # get config variables
         expiry_duration = config.get('prearrival_session_duration_minutes', settings.PRE_ARRIVAL_AGE)
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['pre_arrival']['initial_expiry_date'] = initial_expiry_date
@@ -85,7 +85,7 @@ class PreArrivalTimerExtensionForm(forms.Form):
     def save(self):
         initial_expiry_date = self.request.session['pre_arrival'].get('initial_expiry_date', '')
         initial_expiry_date = datetime.datetime.strptime(initial_expiry_date, '%Y-%m-%dT%H:%M:%S.%f%z')
-        config = gateways.backend_post('/getConfigVariables', {}) # get config variables
+        config = gateways.amp_endpoint('/getConfigVariables') # get config variables
         extend_duration = config.get('prearrival_session_extend_duration_minutes', settings.PRE_ARRIVAL_AGE_EXTEND)
         extended_expiry_date = (initial_expiry_date + datetime.timedelta(minutes=extend_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['pre_arrival']['extended_expiry_date'] = extended_expiry_date
@@ -138,7 +138,7 @@ class PreArrivalPassportForm(forms.Form):
             if 'status' not in response and 'message' not in response:
                 if response.get('scan_type', 'passport') == 'passport':
                     if response.get('expired', '') == 'false':
-                        config = gateways.backend_post('/getConfigVariables', {}) # get config variables
+                        config = gateways.amp_endpoint('/getConfigVariables') # get config variables
                         age_limit = config.get('prearrival_adult_min_age_years', settings.ADULT_AGE_LIMIT)
                         if utilities.calculate_age(utilities.parse_ocr_date(response.get('date_of_birth', ''))) <= age_limit:
                             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You must be at least %(age)s years of age to proceed with your registration.') % {'age': age_limit}])
@@ -246,7 +246,7 @@ class PreArrivalDetailForm(forms.Form):
         if not birth_date:
             self._errors['birth_date'] = self.error_class([_('Enter the required information')])
         else:
-            config = gateways.backend_post('/getConfigVariables', {}) # get config variables
+            config = gateways.amp_endpoint('/getConfigVariables') # get config variables
             age_limit = config.get('prearrival_adult_min_age_years', settings.ADULT_AGE_LIMIT)
             if utilities.calculate_age(birth_date) <= age_limit:
                 self._errors['birth_date'] = self.error_class([_('Main guest has to be %(age)s and above.') % {'age': age_limit}])
@@ -343,7 +343,7 @@ class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
         super().clean()
         adult, max_adult = 1, int(self.request.session['pre_arrival']['reservation'].get('adults', 1))
         for form in self.forms:
-            config = gateways.backend_post('/getConfigVariables', {}) # get config variables
+            config = gateways.amp_endpoint('/getConfigVariables') # get config variables
             age_limit = config.get('prearrival_adult_min_age_years', settings.ADULT_AGE_LIMIT)
             if utilities.calculate_age(form.cleaned_data.get('birth_date')) > age_limit:
                 adult += 1
@@ -401,14 +401,14 @@ class PreArrivalOtherInfoForm(forms.Form):
     def gateway_post(self):
         data = self.request.session['pre_arrival']['reservation']
         data['customerInputNumber'] = self.request.session['pre_arrival'].get('input_reservation_no', '')
-        response = gateways.backend_post('/processGuestsPreArrival', data)
+        response = gateways.guest_endpoint('/processGuestsPreArrival', data)
         if response.get('success', '') == 'true':
             # get existing reservation from backend
             new_booking_data = {}
             new_booking_data['reservation_no'] = self.request.session['pre_arrival'].get('input_reservation_no', '')
             new_booking_data['arrival_date'] = self.request.session['pre_arrival'].get('input_arrival_date', '')
             new_booking_data['last_name'] = self.request.session['pre_arrival'].get('input_last_name', '')
-            new_booking_response = gateways.backend_post('/checkBookingsPreArrival', new_booking_data)
+            new_booking_response = gateways.guest_endpoint('/checkBookingsPreArrival', new_booking_data)
             self.request.session['pre_arrival']['bookings'] = new_booking_response.get('data', [])
         else:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])

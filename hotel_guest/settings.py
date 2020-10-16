@@ -186,12 +186,20 @@ COMPRESS_PRECOMPILERS = (
 )
 
 
-# Gateway API configuration
+# Guest Facing Endpoint configuration
 
-BACKEND_URL         = 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0'
-BACKEND_API_KEY     = '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45'
-BACKEND_SITE_ID     = 'QAHotelProdSG11'
-BACKEND_SITE_NAME   = 'QA_Hotel_Prod_SG_3.0'
+GUEST_ENDPOINT_URL          = 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0'
+GUEST_ENDPOINT_KEY          = '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45'
+GUEST_ENDPOINT_SITE_ID      = 'QAHotelProdSG11'
+GUEST_ENDPOINT_SITE_NAME    = 'QA_Hotel_Prod_SG_3.0'
+
+
+# AMP Endpoint configuration
+
+AMP_ENDPOINT_URL            = 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0'
+AMP_ENDPOINT_KEY            = '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717'
+AMP_ENDPOINT_SITE_ID        = 'QAHotelProdSG11'
+AMP_ENDPOINT_SITE_NAME      = 'QA_Hotel_Prod_SG_3.0'
 
 
 # Cron job configuration

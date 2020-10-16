@@ -68,7 +68,7 @@ class CheckOutBillView(BillRequiredAndExistMixin, RequestFormKwargsMixin, Update
         if not reservations_no:
             raise ValueError('No reservation number is provided')
         data = {'reservation_no': reservations_no}
-        response = gateways.backend_post('/billsForCheckOut', data)
+        response = gateways.guest_endpoint('/billsForCheckOut', data)
         return response.get('data', {})
 
     def get_object(self, queryset=None):
