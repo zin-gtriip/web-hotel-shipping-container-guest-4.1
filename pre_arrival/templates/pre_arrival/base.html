@@ -29,10 +29,6 @@
     {% endif %}
 {% endblock header_left %}
 
-{% block header_middle %}
-    {{ block.super }}
-{% endblock header_middle %}
-
 {% block wrapper %}
     {{ block.super }}
     {% if request.path not in '/pre_arrival/login/,/pre_arrival/complete/' %}
