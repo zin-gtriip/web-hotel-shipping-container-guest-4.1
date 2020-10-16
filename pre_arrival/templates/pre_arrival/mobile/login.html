@@ -48,12 +48,12 @@
             <div class="col-12 d-flex justify-content-center">
                 <div id="content-reservation-no" class="content-input {% if not skip_reservation_no %}active{% endif %}">
                     <div class="md-form input-center input-boxed my-0">
-                        {% render_field form.reservation_no class="form-control" placeholder="e.g. 12345678" %}
+                        {% render_field form.reservation_no class="form-control" placeholder="e.g. 12345678" autofocus="autofocus"%}
                     </div>
                 </div>
                 <div id="content-last-name" class="content-input {% if skip_reservation_no %}active{% endif %}">
                     <div class="md-form input-center input-boxed my-0">
-                        {% render_field form.last_name class="form-control" placeholder="Last Name" %}
+                        {% render_field form.last_name class="form-control" placeholder="Last Name" autofocus="autofocus"%}
                     </div>
                 </div>
                 <div id="content-arrival-date" class="content-input">
