@@ -48,7 +48,7 @@ $reservation-radius: 10px;
 .reservation-container {
     margin: 0 auto 18px auto;
     width: 100%;
-    max-width: 340px;
+    max-width: 330px;
     position: relative; 
 
     &.active {
@@ -73,7 +73,7 @@ $reservation-radius: 10px;
     .label-reservation {
         background-size: cover;
         width: 100%; 
-        max-width: 340px;
+        max-width: 330px;
         height: 172px;
         margin-bottom: 0;
         border-top-right-radius: $reservation-radius;
@@ -130,7 +130,7 @@ $reservation-radius: 10px;
 
     .reservation-date {
         width: 100%;
-        max-width: 340px;
+        max-width: 330px;
         margin: 0 auto;
         padding: 11px 20px;
         display: flex;
