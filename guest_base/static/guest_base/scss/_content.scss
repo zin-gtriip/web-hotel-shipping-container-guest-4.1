@@ -1,3 +1,11 @@
+/* WRAPPER */
+.wrapper {
+    height: 100vh;
+    width: 100%;
+}
+
+
+/* HEADER */
 .header {
     display: flex;
     justify-content: space-between;
@@ -41,5 +49,23 @@
 
     select#language {
         line-height: 18px;
+    }
+}
+
+
+/* CONTENT */
+.content {
+    min-height: calc(100vh - 87px);
+}
+
+
+/* FOOTER */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px 12px 20px;
+
+    .container {
+        padding: 0;
     }
 }
