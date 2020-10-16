@@ -8,10 +8,11 @@
     }
 
     .page-footer {
-
         #footer-description {
-            width: 352px;
             margin-bottom: 26px;
+            max-width: 352px;
+            margin-right: auto;
+            margin-left: auto;
         }
 
         #footer-next {
@@ -19,11 +20,8 @@
         }
 
         #footer-app {
-            #instruction {
-                width: 190px;
-                margin: 0 25px;
-                display: flex;
-                align-items: center;
+            .img-get-key {
+                margin-right: 10px;
             }
             
             #app-store img {
@@ -34,13 +32,6 @@
             #google-play img {
                 width: 145px;
                 margin-left: 27px;
-            }
-            #footer-logo {
-                margin-top: 85px;
-                .gtriip-grey {
-                    width: 10px;
-                    height: 15px;
-                }
             }
         }
 

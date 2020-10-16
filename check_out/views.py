@@ -113,14 +113,3 @@ class CheckOutBillView(BillRequiredAndExistMixin, RequestFormKwargsMixin, Update
             return super().get_success_url()
         url = self.success_url.format(**{'reservation_no': self.kwargs.get('reservation_no', None)})
         return url
-
-class errorView(TemplateView):
-    template_name              = 'check_out/desktop/error_page.html'
-
-    def get(self, request, *args, **kwargs):
-        response = super(errorView, self).get(request, *args, **kwargs)
-        response.status_code = 404
-        return response
-
-    def as_error_view(error):
-        as_view_fun = error.as_view()

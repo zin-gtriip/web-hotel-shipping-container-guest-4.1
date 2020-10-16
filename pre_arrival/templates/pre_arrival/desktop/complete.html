@@ -13,12 +13,12 @@
     <form method="post">
         {% csrf_token %}
         <div class="row page-header">
-            <div class="col-12 px-0 col-lg-4 mx-auto text-center">
+            <div class="col-12 px-0 col-lg-5 mx-auto text-center">
                 {% trans 'Registration Complete' %}
             </div>
         </div>
         <div class="row page-content">
-            <div class="col-12 px-0 col-lg-4 mx-auto">
+            <div class="col-12 px-0 col-lg-5 mx-auto">
                 <div class="reservation-container">
                     <label class="label-reservation" style="background-image: url('/static/img/{{ reservation.roomImage }}');">
                         <div class="reservation-details">
@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="row page-footer">
-            <div class="col-12 col-lg-4 mx-auto">
+            <div class="col-12 col-lg-5 mx-auto">
                 {% if not request.session.app %}
                     <div class="row" id="footer-description">
                         <div class="col-lg-12 text-secondary text-center">
@@ -59,44 +59,32 @@
                     </div>
                     {% if request.session.pre_arrival.bookings %}
                         <div class="row" id="footer-next">
-                            <div class="col-xs-12 text-secondary text-center">
-                                <button type="submit" class="btn btn-outline-primary text-capitalize">Next Registration</button>
+                            <div class="col-lg-12 d-flex justify-content-center text-secondary">
+                                <button type="submit" class="btn btn-outline-primary text-capitalize mx-auto">Next Registration</button>
                             </div>
                         </div>
                     {% endif %}
                     <div class="row" id="footer-app">
                         {% if not request.user_agent.is_pc %}
-                            <div class="col-12 d-flex justify-content-center">
+                            <div class="col-lg-12 d-flex justify-content-center">
                                 {% if request.user_agent.os.family == 'iOS' %}
-                                    <a type="button" class="btn btn-primary btn-round m-0" href="{{ ios_url }}"><img src="/static/img/key.svg">&nbsp;&nbsp;{% trans 'Get The App' %}
+                                    <a type="button" class="btn btn-primary btn-round m-0" href="{{ ios_url }}">
+                                        <img class="img-get-key" src="{% static 'img/key.svg' %}">{% trans 'Get The App' %}
                                     </a>
                                 {% else %}
-                                    <a type="button" class="btn btn-primary btn-round m-0" href="{{ android_url }}"><img src="/static/img/key.svg">&nbsp;&nbsp;{% trans 'Get The App' %}
+                                    <a type="button" class="btn btn-primary btn-round m-0" href="{{ android_url }}">
+                                        <img class="img-get-key" src="{% static 'img/key.svg' %}">{% trans 'Get The App' %}
                                     </a>
                                 {% endif %}
                             </div>
-                            <div class="col-12 d-flex justify-content-center" id="footer-logo">
-                                    <img class="gtriip-grey" src="/static/img/gtriip-grey.png">&nbsp;&nbsp; 
-                                    <small class="text-secondary">Powered by GTRIIP</small>
-                            </div>
                         {% else %}
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-lg-12 d-flex justify-content-center">
-                                        <a href="javascript:void(0)" id="app-store">
-                                            <img src="{% static 'img/app-store.png' %}">
-                                        </a>
-                                        <a href="javascript:void(0)" id="google-play">
-                                            <img src="{% static 'img/google-play.png' %}" >
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="row" id="footer-logo">
-                                    <div class="col-lg-12 d-flex justify-content-center">
-                                        <img class="gtriip-grey" src="/static/img/gtriip-grey.png">&nbsp;&nbsp; 
-                                        <small class="text-secondary">Powered by GTRIIP</small>
-                                    </div>
-                                </div>
+                            <div class="col-lg-12 d-flex justify-content-center">
+                                <a href="{{ ios_url }}" id="app-store">
+                                    <img src="{% static 'img/app-store.png' %}">
+                                </a>
+                                <a href="{{ android_url }}" id="google-play">
+                                    <img src="{% static 'img/google-play.png' %}" >
+                                </a>
                             </div>
                         {% endif %}
                     </div>       
@@ -111,6 +99,13 @@
         </div>
     </form>
 {% endblock content %}
+
+{% block footer_middle %}
+    <div class="logo-gtriip">
+        <img class="img-logo" src="{% static 'img/gtriip.png' %}">
+        <small class="text-secondary">Powered by GTRIIP</small>
+    </div>
+{% endblock footer_middle %}
 
 {% block data_js %}
     {{ block.super }}

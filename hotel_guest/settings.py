@@ -260,6 +260,6 @@ PRE_ARRIVAL_URLS = [
     'other_info',
     'complete',
 ]
-
+# link to download hotel app
 ANDROID_URL = 'http://play.google.com/store/apps'
 IOS_URL     = 'http://itunes.apple.com'

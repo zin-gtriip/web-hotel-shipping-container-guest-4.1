@@ -30,12 +30,25 @@
 }
 
 
+/* FOOTER */
+.footer {
+    .logo-gtriip {
+        .img-logo {
+            width: 10px;
+            height: 15px;
+            margin-right: 10px;
+        }
+    }
+}
+
+
 /* RESERVATION THUMBNAIL */
 $reservation-radius: 10px;
 
 .reservation-container {
     margin: 0 auto 18px auto;
-    width: 340px;
+    width: 100%;
+    max-width: 340px;
     position: relative; 
 
     &.active {
@@ -59,7 +72,8 @@ $reservation-radius: 10px;
 
     .label-reservation {
         background-size: cover;
-        width: 340px; 
+        width: 100%; 
+        max-width: 340px;
         height: 172px;
         margin-bottom: 0;
         border-top-right-radius: $reservation-radius;
@@ -115,7 +129,8 @@ $reservation-radius: 10px;
     }
 
     .reservation-date {
-        width: 340px;
+        width: 100%;
+        max-width: 340px;
         margin: 0 auto;
         padding: 11px 20px;
         display: flex;
