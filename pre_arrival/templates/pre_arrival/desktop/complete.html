@@ -75,10 +75,6 @@
                                     </a>
                                 {% endif %}
                             </div>
-                            <div class="col-12 d-flex justify-content-center" id="footer-logo">
-                                    <img class="gtriip-grey" src="/static/img/gtriip-grey.png">&nbsp;&nbsp; 
-                                    <small class="text-secondary">Powered by GTRIIP</small>
-                            </div>
                         {% else %}
                             <div class="col-lg-12">
                                 <div class="row">
@@ -89,12 +85,6 @@
                                         <a href="javascript:void(0)" id="google-play">
                                             <img src="{% static 'img/google-play.png' %}" >
                                         </a>
-                                    </div>
-                                </div>
-                                <div class="row" id="footer-logo">
-                                    <div class="col-lg-12 d-flex justify-content-center">
-                                        <img class="gtriip-grey" src="/static/img/gtriip-grey.png">&nbsp;&nbsp; 
-                                        <small class="text-secondary">Powered by GTRIIP</small>
                                     </div>
                                 </div>
                             </div>
@@ -111,6 +101,13 @@
         </div>
     </form>
 {% endblock content %}
+
+{% block footer_middle %}
+    <div class="logo-gtriip">
+        <img class="img-logo" src="{% static 'img/gtriip.png' %}">
+        <small class="text-secondary">Powered by GTRIIP</small>
+    </div>
+{% endblock footer_middle %}
 
 {% block data_js %}
     {{ block.super }}
