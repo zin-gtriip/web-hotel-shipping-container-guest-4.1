@@ -195,10 +195,10 @@ class PreArrivalCompleteView(PageParameterRequiredMixin, RequestFormKwargsMixin,
         reservation['formattedArrivalDate'] = format_display_date(reservation.get('arrivalDate', ''))
         reservation['formattedDepartureDate'] = format_display_date(reservation.get('departureDate', ''))
         reservation['mainGuestLastName'] = next(guest.get('lastName', '') for guest in reservation.get('guestsList', []) if guest.get('isMainGuest', '0') == '1')
-        room = next(temp for temp in settings.ROOM_TYPES if temp['room_type'] == reservation['roomType'])
-        reservation['roomName'] = room['room_name']
-        reservation['roomImage'] = room['room_image']
+        room = next((temp for temp in settings.ROOM_TYPES if temp['room_type'] == reservation['roomType']), {})
+        reservation['roomName'] = room.get('room_name', '')
+        reservation['roomImage'] = room.get('room_image', '')
         context['reservation'] = reservation
-        context['android_url'] = settings.ANDROID_URL
         context['ios_url'] = settings.IOS_URL
+        context['android_url'] = settings.ANDROID_URL
         return context
