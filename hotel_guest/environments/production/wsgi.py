@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hotel_guest.environments.prod_settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hotel_guest.environments.production.settings')
 
 application = get_wsgi_application()
