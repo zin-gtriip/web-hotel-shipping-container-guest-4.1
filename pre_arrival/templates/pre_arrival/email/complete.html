@@ -1,0 +1,331 @@
+{% load i18n %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:v="urn:schemas-microsoft-com:vml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+    <!--[if !mso]--><!-- -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- <![endif]-->
+
+    <title>Registration Complete - {{ reservationNo }}</title>
+
+    <style type="text/css">
+        body {
+            width: 100%;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            font-family: "Roboto",sans-serif;
+            -webkit-font-smoothing: antialiased;
+            mso-margin-top-alt: 0px;
+            mso-margin-bottom-alt: 0px;
+            mso-padding-alt: 0px 0px 0px 0px;
+        }
+        
+        p,
+        h1,
+        h2,
+        h3,
+        h4 {
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        
+        span.preheader {
+            display: none;
+            font-size: 1px;
+        }
+        
+        html {
+            width: 100%;
+        }
+        
+        table {
+            font-size: 14px;
+            border: 0;
+        }
+        /* ----------- responsivity ----------- */
+        
+        @media only screen and (max-width: 640px) {
+            /*------ top header ------ */
+            .main-header {
+                font-size: 20px !important;
+            }
+            .main-section-header {
+                font-size: 28px !important;
+            }
+            .show {
+                display: block !important;
+            }
+            .hide {
+                display: none !important;
+            }
+            .align-center {
+                text-align: center !important;
+            }
+            .no-bg {
+                background: none !important;
+            }
+            /*----- main image -------*/
+            .main-image img {
+                width: 440px !important;
+                height: auto !important;
+            }
+            /* ====== divider ====== */
+            .divider img {
+                width: 440px !important;
+            }
+            /*-------- container --------*/
+            .container590 {
+                width: 440px !important;
+            }
+            .container580 {
+                width: 400px !important;
+            }
+            .main-button {
+                width: 220px !important;
+            }
+            /*-------- secions ----------*/
+            .section-img img {
+                width: 320px !important;
+                height: auto !important;
+            }
+            .team-img img {
+                width: 100% !important;
+                height: auto !important;
+            }
+        }
+        
+        @media only screen and (max-width: 479px) {
+            /*------ top header ------ */
+            .main-header {
+                font-size: 18px !important;
+            }
+            .main-section-header {
+                font-size: 26px !important;
+            }
+            /* ====== divider ====== */
+            .divider img {
+                width: 280px !important;
+            }
+            /*-------- container --------*/
+            .container590 {
+                width: 280px !important;
+            }
+            .container590 {
+                width: 280px !important;
+            }
+            .container580 {
+                width: 260px !important;
+            }
+            /*-------- secions ----------*/
+            .section-img img {
+                width: 280px !important;
+                height: auto !important;
+            }
+        }
+    </style>
+    <!-- [if gte mso 9]><style type=”text/css”>
+        body {
+        font-family: arial, sans-serif!important;
+        }
+        </style>
+    <![endif]-->
+</head>
+
+
+<body class="respond" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+    <!-- header -->
+    <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff">
+        <tr>
+            <td align="center">
+
+                <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
+                    <tr>
+                        <td height="45" style="font-size: 45px; line-height: 45px;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+
+                            <table border="0" align="center" cellpadding="0" cellspacing="0" width="330" class="container590">
+                                <tr>
+                                    <td align="center" height="29" style="font-size: 24px; line-height: 29px; font-weight: 300;">
+                                        {% trans 'Registration Complete' %}
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="45" style="font-size: 45px; line-height: 45px;">&nbsp;</td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+    </table>
+    <!-- end header -->
+
+    <!-- content section -->
+    <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff" class="bg_color">
+        <tr>
+            <td align="center">
+
+                <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
+                    <tr>
+                        <td align="center" class="section-img">
+
+                            <table border="0" align="center" cellpadding="0" cellspacing="0" width="330" height="172" class="container590" style="background-image: url('{{ static_url }}/{{ roomImage }}'); background-size: cover; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                                <tr>
+                                    <td align="center" width="109" height="34" bgcolor="#000000" style="font-size: 12px; line-height: 34px; color: #ffffff; border-top-left-radius: 10px; border-bottom-right-radius: 10px;">{{ roomName }}</td>
+                                    <td height="34" style="font-size: 34px; line-height: 34px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td height="138" style="font-size: 138px; line-height: 138px;">&nbsp;</td>
+                                    <td height="138" style="font-size: 138px; line-height: 138px;">&nbsp;</td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+
+                            <table border="0" align="center" cellpadding="0" cellspacing="0" width="330" bgcolor="#000000" class="container590" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;"">
+                                <tr>
+                                    <td width="20" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
+                                    <td width="100" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
+                                    <td height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
+                                    <td width="100" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
+                                    <td width="20" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td width="20" height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                    <td align="left" width="100" height="15" style="line-height: 15px; font-size: 10px; color: #ffffff;">{% trans 'Reservation No' %}</td>
+                                    <td height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                    <td align="right" width="100" height="15" style="line-height: 15px; font-size: 10px; color: #ffffff;">{% trans 'Check-in Date<' %}/td>
+                                    <td width="20" height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td width="20" height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
+                                    <td align="left" width="100" height="21" style="line-height: 21px; font-size: 14px; color: #ff9e1b;">{{ reservationNo }}</td>
+                                    <td height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
+                                    <td align="right" width="100" height="21" style="line-height: 21px; font-size: 14px; color: #ff9e1b;">{{ formattedArrivalDate }}</td>
+                                    <td width="20" height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td width="20" height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                    <td align="left" width="100" height="15" style="line-height: 15px; font-size: 10px; color: #ffffff;">{% trans 'Last Name' %}</td>
+                                    <td height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                    <td align="right" width="100" height="15" style="line-height: 15px; font-size: 10px; color: #ffffff;">{% trans 'Check-out Date' %}</td>
+                                    <td width="20" height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td width="20" height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
+                                    <td align="left" width="100" height="21" style="line-height: 21px; font-size: 14px; color: #ff9e1b;">{{ mainGuestLastName }}</td>
+                                    <td height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
+                                    <td align="right" width="100" height="21" style="line-height: 21px; font-size: 14px; color: #ff9e1b;">{{ formattedDepartureDate }}</td>
+                                    <td width="20" height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td width="20" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
+                                    <td width="100" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
+                                    <td height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
+                                    <td width="100" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
+                                    <td width="20" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="18" style="font-size: 18px; line-height: 18px;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+
+                            <table border="0" align="center" cellpadding="0" cellspacing="0" width="330" class="container590">
+                                <tr>
+                                    <td align="center" style="color: #aaaaaa; font-size: 14px; line-height: 21px;">
+                                        <div style="line-height: 21px">
+                                            Please proceed to the front office to collect your key. Or alternatively, download our mobile app so you can head straight to your room using the digital key.
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="26" style="font-size: 26px; line-height: 26px;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+
+                            <table border="0" align="center" width="330" cellpadding="0" cellspacing="0" width="330" class="container590">
+                                <tr>
+                                    <td align="center" height="55" style="font-size: 55px; line-height: 55px;">
+                                        <a href="{{ ios_url }}" style="border-style: none !important; display: block; border: 0 !important;">
+                                            <img src="{{ static_url }}/app-store.png" style="display: block; width: 145px; height: 55px;" width="145" border="0" alt="" />
+                                        </a>
+                                    </td>
+                                    <td align="center" height="55" width="55" style="font-size: 55px; line-height: 55px; width: 55px;">&nbsp;</td>
+                                    <td align="center" height="55" style="font-size: 55px; line-height: 55px;">
+                                        <a href="{{ android_url }}" style="border-style: none !important; display: block; border: 0 !important;">
+                                            <img src="{{ static_url }}/google-play.png" style="display: block; width: 145px; height: 55px;" width="145" border="0" alt="" />
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+    </table>
+    <!-- end section -->
+
+    <!-- footer ====== -->
+    <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff">
+        <tr>
+            <td height="100" style="font-size: 100px; line-height: 100px;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="center">
+
+                <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
+                    <tr>
+                        <td>
+
+                            <table border="0" align="center" cellpadding="0" cellspacing="0" width="330" class="container590">
+                                <tr>
+                                    <td align="center" height="21" style="line-height: 21px;">
+                                        <img src="{{ static_url }}/gtriip.png" style="width: 10px; height: 15px; position: relative; top: 3px;">
+                                        <span style="color: #aaaaaa; font-size: 11px;">&nbsp;&nbsp;&nbsp;Powered by GTRIIP</span>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+        <tr>
+            <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
+        </tr>
+    </table>
+    <!-- end footer ====== -->
+
+</body>
+
+</html>

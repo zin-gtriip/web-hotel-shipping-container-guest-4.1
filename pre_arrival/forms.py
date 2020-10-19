@@ -1,6 +1,7 @@
 import os, base64, datetime
 from django                     import forms
 from django.conf                import settings
+from django.template.loader     import render_to_string
 from django.utils               import timezone
 from django.utils.translation   import gettext, gettext_lazy as _
 from django_countries.fields    import Country, CountryField
@@ -398,9 +399,28 @@ class PreArrivalOtherInfoForm(forms.Form):
         self.request.session['pre_arrival']['comments'] = special_requests,
         self.request.session['pre_arrival']['other_info'] = True # variable to prevent page jump
 
+    def prepare_email(self):
+        context = self.request.session['pre_arrival']['reservation']
+        context['formattedArrivalDate'] = utilities.format_display_date(context.get('arrivalDate', ''))
+        context['formattedDepartureDate'] = utilities.format_display_date(context.get('departureDate', ''))
+        context['mainGuestLastName'] = next(guest.get('lastName', '') for guest in context.get('guestsList', []) if guest.get('isMainGuest', '0') == '1')
+        room = next((temp for temp in settings.ROOM_TYPES if temp['room_type'] == context['roomType']), {})
+        context['roomName'] = room.get('room_name', '')
+        context['roomImage'] = room.get('room_image', '')
+        context['static_url'] = settings.HOST_URL + settings.STATIC_IMAGE_URL
+        context['ios_url'] = settings.IOS_URL
+        context['android_url'] = settings.ANDROID_URL
+        data = {}
+        template = os.path.join(settings.BASE_DIR, 'pre_arrival', 'templates', 'pre_arrival', 'email', 'complete.html')
+        data['title'] = _('Registration Complete - %(reservation_no)s') % {'reservation_no': context.get('reservationNo', '')}
+        data['html'] = render_to_string(template, context)
+        return data
+
     def gateway_post(self):
         data = self.request.session['pre_arrival']['reservation']
+        email = self.prepare_email()
         data['customerInputNumber'] = self.request.session['pre_arrival'].get('input_reservation_no', '')
+        data = {**data, **email} # add email data
         response = gateways.guest_endpoint('/processGuestsPreArrival', data)
         if response.get('success', '') == 'true':
             # get existing reservation from backend
