@@ -16,7 +16,7 @@ def backend_post(url, post_data):
         'site_name': settings.BACKEND_SITE_NAME,
     }
     try:
-        response = requests.post(settings.BACKEND_URL + url, json=post_data, timeout=360, verify=False)
+        response = requests.post(settings.BACKEND_URL + url, json=post_data, timeout=30, verify=False)
         response.raise_for_status()
         json_response = json.loads(response.content.decode('utf-8'))
     except requests.exceptions.HTTPError as http_error:
@@ -25,7 +25,7 @@ def backend_post(url, post_data):
         except JSONDecodeError:
             json_response = {'status': 'error', 'message': response.content.decode('utf-8')}
     except requests.exceptions.RequestException as request_error:
-        json_response = {'status': 'error', 'message': _('Error connecting to server')}
+        json_response = {'status': 'error', 'message': _('Unable to connect to server, please try again.')}
     return json_response
 
 
