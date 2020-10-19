@@ -1,22 +1,37 @@
-import datetime
 import requests
 import json
-import hashlib
 from json                       import JSONDecodeError
 from django.conf                import settings
 from django.utils.translation   import gettext, gettext_lazy as _
 
 
-# backend gateway
-def backend_post(url, post_data):
-    post_data = {
-        **post_data,
-        'api_key': settings.BACKEND_API_KEY,
-        'site_id': settings.BACKEND_SITE_ID,
-        'site_name': settings.BACKEND_SITE_NAME,
-    }
+# guest facing endpoint gateway
+def guest_endpoint(url, post_data):
+    post_data['api_key'] = settings.GUEST_ENDPOINT_KEY
+    post_data['site_id'] = settings.GUEST_ENDPOINT_SITE_ID
+    post_data['site_name'] = settings.GUEST_ENDPOINT_SITE_NAME
     try:
-        response = requests.post(settings.BACKEND_URL + url, json=post_data, timeout=30, verify=False)
+        response = requests.post(settings.GUEST_ENDPOINT_URL + url, json=post_data, timeout=30, verify=False)
+        response.raise_for_status()
+        json_response = json.loads(response.content.decode('utf-8'))
+    except requests.exceptions.HTTPError as http_error:
+        try:
+            json_response = json.loads(response.content.decode('utf-8'))
+        except JSONDecodeError:
+            json_response = {'status': 'error', 'message': response.content.decode('utf-8')}
+    except requests.exceptions.RequestException as request_error:
+        json_response = {'status': 'error', 'message': _('Unable to connect to server, please try again.')}
+    return json_response
+
+
+# AMP endpoint gateway
+def amp_endpoint(url):
+    post_data = {}
+    post_data['api_key'] = settings.AMP_ENDPOINT_KEY
+    post_data['site_id'] = settings.AMP_ENDPOINT_SITE_ID
+    post_data['site_name'] = settings.AMP_ENDPOINT_SITE_NAME
+    try:
+        response = requests.post(settings.AMP_ENDPOINT_URL + url, json=post_data, timeout=360, verify=False)
         response.raise_for_status()
         json_response = json.loads(response.content.decode('utf-8'))
     except requests.exceptions.HTTPError as http_error:

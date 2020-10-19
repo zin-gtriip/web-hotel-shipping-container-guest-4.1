@@ -36,7 +36,7 @@ class CheckOutLoginForm(forms.Form):
         data = {}
         data['reservation_no'] = self.cleaned_data.get('reservation_no')
         data['room_no'] = self.cleaned_data.get('room_no')
-        return gateways.backend_post('/signInForCheckOut', data)
+        return gateways.guest_endpoint('/signInForCheckOut', data)
     
     def save(self):
         data = self.gateway_post()
@@ -74,7 +74,7 @@ class CheckOutBillForm(forms.Form):
     def gateway_post(self):
         reservation_info = self.instance.get('reservation_info', [])
         data = {'reservation_info': reservation_info}
-        return gateways.backend_post('/postCheckOut', data)
+        return gateways.guest_endpoint('/postCheckOut', data)
 
     def save(self):
         response = self.gateway_post()
