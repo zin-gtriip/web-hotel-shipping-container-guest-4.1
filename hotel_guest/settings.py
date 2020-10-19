@@ -220,13 +220,17 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760 # 10 MB
 
 # Other configuration
 # General
-# page title on every page
 HOTEL_NAME          = 'GTRIIP'
 GST_NO              = 'A13572468B'
 BUSINESS_NO         = '975308642Z'
 CURRENCY_SYMBOL     = 'S$'
 TNC_LINK            = 'https://www.gtriip.com'
 PRIVACY_LINK        = 'https://www.gtriip.com'
+HOST_URL            = 'https://hoteltemplateqa.gtriip.com'
+ANDROID_URL         = 'http://play.google.com/store/apps'
+IOS_URL             = 'http://itunes.apple.com'
+# link to access static images, configured on webserver
+STATIC_IMAGE_URL    = '/static/img'
 # default django variable for date format
 DATE_INPUT_FORMATS  = ['%Y-%m-%d']
 # set session to be saved everytime
@@ -268,6 +272,3 @@ PRE_ARRIVAL_URLS = [
     'other_info',
     'complete',
 ]
-# link to download hotel app
-ANDROID_URL = 'http://play.google.com/store/apps'
-IOS_URL     = 'http://itunes.apple.com'
