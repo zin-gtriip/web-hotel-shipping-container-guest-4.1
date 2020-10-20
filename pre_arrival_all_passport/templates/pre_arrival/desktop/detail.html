@@ -1,0 +1,413 @@
+{% extends 'pre_arrival/desktop/base_desktop.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+{% load countries %}
+
+{% block lib_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'vendor/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
+{% endblock lib_css %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'pre_arrival/scss/desktop/detail.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block header_left %}
+    <button type="button" class="btn btn-link" id="btn-back" data-target="{% url 'pre_arrival:passport' %}"><i class="fas fa-arrow-left"></i></button>
+    {{ block.super }}
+{% endblock header_left %}
+
+{% block content %}
+    {{ block.super }}
+    {% get_countries as countries %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="row page-header">
+            <div class="col-lg-12 px-0 text-center">
+                {% trans 'Enter Guest Details' %}
+            </div>
+        </div>
+        <div class="row page-subheader">
+            <div class="col-lg-12 px-0 text-center text-secondary">
+                {% trans "Please enter the personal particulars and check-in information below." %}
+            </div>
+        </div>
+        <div class="row page-content">
+            <div class="col-lg-12">
+                <div class="row guests">
+                    <div class="col-lg-4 px-4 mx-auto" id="main-guest">
+                        <div class="row guest-index">
+                            <div class="col-lg-12 px-0">
+                                {% render_field form.guest_id %}
+                                <span class="float-left text-primary text-uppercase font-weight-bold">
+                                    {% if form.is_bound and extra.forms|length > 0 %}
+                                        {% trans 'Main Guest' %}
+                                    {% else %}
+                                        &nbsp;
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="md-form mt-0">
+                                    {{ form.first_name.label_tag }}
+                                    {% if form.is_bound and form.first_name.errors %}
+                                        <!-- bound and has error -->
+                                        {% render_field form.first_name class="form-control is-invalid" %}
+                                        <!-- error feedback -->
+                                        {% for error in form.first_name.errors %}
+                                            <div class="invalid-feedback">{{ error }}</div>
+                                        {% endfor %}
+                                    {% else %}
+                                        <!-- not bound or no error -->
+                                        {% render_field form.first_name class="form-control" %}
+                                        {% if form.first_name.help_text %}
+                                            <small class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="md-form mt-2">
+                                    {{ form.last_name.label_tag }}
+                                    {% render_field form.last_name class="form-control disabled" readonly="true" %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="md-form mt-2">
+                                    {{ form.passport_no.label_tag }}
+                                    {% if form.is_bound and form.passport_no.errors %}
+                                        <!-- bound and has error -->
+                                        {% render_field form.passport_no class="form-control is-invalid" %}
+                                        <!-- error feedback -->
+                                        {% for error in form.passport_no.errors %}
+                                            <div class="invalid-feedback">{{ error }}</div>
+                                        {% endfor %}
+                                    {% else %}
+                                        <!-- not bound or no error -->
+                                        {% render_field form.passport_no class="form-control" %}
+                                        {% if form.passport_no.help_text %}
+                                            <small class="form-text text-muted">{{ form.passport_no.help_text }}</small>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="md-form mt-2">
+                                    <label for="id_nationality" class="active">{% trans 'Nationality' %}</label>
+                                    {% if form.is_bound and form.nationality.errors %}
+                                        <!-- bound and has error -->
+                                        {% render_field form.nationality class="form-control md-select is-invalid" %}
+                                        <!-- error feedback -->
+                                        {% for error in form.nationality.errors %}
+                                            <div class="invalid-feedback">{{ error }}</div>
+                                        {% endfor %}
+                                    {% else %}
+                                        <!-- not bound or no error -->
+                                        {% render_field form.nationality class="form-control md-select" %}
+                                        {% if form.nationality.help_text %}
+                                            <small class="form-text text-muted">{{ form.nationality.help_text }}</small>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="md-form mt-2 input-with-post-icon">
+                                    {{ form.birth_date.label_tag }}
+                                    {% if form.is_bound and form.birth_date.errors %}
+                                        <!-- bound and has error -->
+                                        {% render_field form.birth_date class="form-control datepicker is-invalid" data-date-format="yyyy-mm-dd" %}
+                                        <!-- error feedback -->
+                                        {% for error in form.birth_date.errors %}
+                                            <div class="invalid-feedback">{{ error }}</div>
+                                        {% endfor %}
+                                    {% else %}
+                                        <!-- not bound or no error -->
+                                        {% render_field form.birth_date class="form-control datepicker" data-date-format="yyyy-mm-dd" %}
+                                        <i class="far fa-calendar input-prefix"></i>
+                                        {% if form.birth_date.help_text %}
+                                            <small class="form-text text-muted">{{ form.birth_date.help_text }}</small>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- extra formset template -->
+                    <div class="col-lg-4 px-4 mr-auto" id="extra-formset-template" hidden>
+                        <div class="row guest-index">
+                            <div class="col-lg-12 px-0">
+                                <input type="hidden" id="guest-id-template" value="0">
+                                <span class="float-left text-primary text-uppercase font-weight-bold"></span>
+                                <button type="button" class="btn btn-link float-right m-0 p-0 d-flex text-24 text-secondary btn-remove-extra">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="md-form mt-0">
+                                    <label>{% trans 'First Name' %}</label>
+                                    <input type="text" id="first-name-template" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="md-form mt-2">
+                                    <label>{% trans 'Last Name' %}</label>
+                                    <input type="text" id="last-name-template" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="md-form mt-2">
+                                    <label>{% trans 'Passport Number' %}</label>
+                                    <input type="text" id="passport-no-template" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="md-form mt-2">
+                                    <label class="active">{% trans 'Nationality' %}</label>
+                                    <select id="nationality-template" class="form-control md-select">
+                                        <option value="">{% trans '[Select Country]' %}</option>
+                                        {% for country in countries %}
+                                        <option value="{{ country.code }}">{{ country.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="md-form mt-2 input-with-post-icon">
+                                    <label>{% trans 'Date of Birth' %}</label>
+                                    <input type="text" id="birth-date-template" class="form-control datepicker" data-date-format="yyyy-mm-dd"/>
+                                    <i class="far fa-calendar input-prefix"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- extra formset bound -->
+                    {% for extra_form in extra.forms %}
+                        <div class="col-lg-4 px-4 mr-auto extra-formset">
+                            <div class="row guest-index">
+                                <div class="col-lg-12 px-0">
+                                    {% render_field extra_form.guest_id %}
+                                    <span class="float-left text-primary text-uppercase font-weight-bold">{% trans 'Guest' %} {{ forloop.counter }}</span>
+                                    <button type="button" class="btn btn-link float-right m-0 p-0 d-flex text-24 text-secondary btn-remove-extra">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="md-form mt-0">
+                                        {{ extra_form.first_name.label_tag }}
+                                        {% if extra_form.first_name.errors %}
+                                            <!-- has error -->
+                                            {% render_field extra_form.first_name class="form-control is-invalid" required="true" %}
+                                            {% for error in extra_form.first_name.errors %}
+                                                <div class="invalid-feedback">{{ error }}</div>
+                                            {% endfor %}
+                                        {% else %}
+                                            <!-- no error -->
+                                            {% render_field extra_form.first_name class="form-control" required="true" %}
+                                            {% if extra_form.first_name.help_text %}
+                                                <small class="form-text text-muted">{{ extra_form.first_name.help_text }}</small>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="md-form mt-2">
+                                        {{ extra_form.last_name.label_tag }}
+                                        {% if extra_form.last_name.errors %}
+                                            <!-- has error -->
+                                            {% render_field extra_form.last_name class="form-control is-invalid" required="true" %}
+                                            {% for error in extra_form.last_name.errors %}
+                                                <div class="invalid-feedback">{{ error }}</div>
+                                            {% endfor %}
+                                        {% else %}
+                                            <!-- no error -->
+                                            {% render_field extra_form.last_name class="form-control" required="true" %}
+                                            {% if extra_form.last_name.help_text %}
+                                                <small class="form-text text-muted">{{ extra_form.last_name.help_text }}</small>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="md-form mt-2">
+                                        <label for="{{ extra_form.nationality.id }}" class="active">{% trans 'Nationality' %}</label>
+                                        {% if extra_form.nationality.errors %}
+                                            <!-- has error -->
+                                            {% render_field extra_form.nationality class="form-control md-select is-invalid" required="true" %}
+                                            {% for error in extra_form.nationality.errors %}
+                                                <div class="invalid-feedback">{{ error }}</div>
+                                            {% endfor %}
+                                        {% else %}
+                                            <!-- no error -->
+                                            {% render_field extra_form.nationality class="form-control md-select" required="true" %}
+                                            {% if extra_form.nationality.help_text %}
+                                                <small class="form-text text-muted">{{ extra_form.nationality.help_text }}</small>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="md-form mt-2">
+                                        {{ extra_form.passport_no.label_tag }}
+                                        {% if extra_form.passport_no.errors %}
+                                            <!-- has error -->
+                                            {% render_field extra_form.passport_no class="form-control is-invalid" required="true" %}
+                                            {% for error in extra_form.passport_no.errors %}
+                                                <div class="invalid-feedback">{{ error }}</div>
+                                            {% endfor %}
+                                        {% else %}
+                                            <!-- no error -->
+                                            {% render_field extra_form.passport_no class="form-control" required="true" %}
+                                            {% if extra_form.passport_no.help_text %}
+                                                <small class="form-text text-muted">{{ extra_form.passport_no.help_text }}</small>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="md-form mt-2 input-with-post-icon">
+                                        {{ extra_form.birth_date.label_tag }}
+                                        {% if extra_form.birth_date.errors %}
+                                            <!-- has error -->
+                                            {% render_field extra_form.birth_date class="form-control datepicker is-invalid" required="true" %}
+                                            {% for error in extra_form.birth_date.errors %}
+                                                <div class="invalid-feedback">{{ error }}</div>
+                                            {% endfor %}
+                                        {% else %}
+                                            <!-- no error -->
+                                            {% render_field extra_form.birth_date class="form-control" required="true" %}
+                                            <i class="far fa-calendar input-prefix"></i>
+                                            {% if extra_form.birth_date.help_text %}
+                                                <small class="form-text text-muted">{{ extra_form.passport_no.help_text }}</small>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <!-- extra formset newly inserted -->
+                </div>
+            </div>
+        </div>
+        <div class="row page-footer">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12 mb-3 d-flex justify-content-center">
+                        <input type="hidden" name="form-TOTAL_FORMS" value="{{ extra.forms|length }}" id="id_form-TOTAL_FORMS">
+                        <input type="hidden" name="form-INITIAL_FORMS" value="0" id="id_form-INITIAL_FORMS">
+                        <input type="hidden" name="form-MIN_NUM_FORMS" value="0" id="id_form-MIN_NUM_FORMS">
+                        <input type="hidden" name="form-MAX_NUM_FORMS" value="{{ max_extra_form }}" id="id_form-MAX_NUM_FORMS">
+                        <input type="submit" class="btn btn-outline-primary text-capitalize" name="type" value="{% trans 'add guest' %}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 mt-1 d-flex justify-content-center">
+                        <input type="submit" class="btn btn-primary text-uppercase" name="type" value="{% trans 'next' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+
+{% block wrapper %}
+    {{ block.super }}
+    <!-- form error -->
+    {% for error in form.non_field_errors %}
+        <div class="modal fade auto-show" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h4 class="modal-title mx-auto">{% trans 'Invalid Input' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ error|linebreaks }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'Fix' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <!-- extra form error -->
+    {% for extra_form in extra.forms %}
+        {% for error in extra_form.non_field_errors %}
+            <div class="modal fade auto-show" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary text-white">
+                            <h4 class="modal-title mx-auto">{% trans 'Invalid Input' %}</h4>
+                        </div>
+                        <div class="modal-body">
+                            {{ error|linebreaks }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'Fix' %}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    <!-- extra formset error -->
+    {% for error in extra.non_form_errors %}
+        <div class="modal fade auto-show" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h4 class="modal-title mx-auto">{% trans 'Invalid Input' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ error|linebreaks }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'Fix' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock wrapper %}
+
+{% block lib_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'vendor/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
+{% endblock lib_js %}
+
+{% block static_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'pre_arrival/js/desktop/detail.js' %}"></script>
+{% endblock static_js %}
