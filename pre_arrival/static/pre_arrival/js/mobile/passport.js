@@ -70,7 +70,7 @@ $('.file-capture, .file-upload').change(function() {
 $('#btn-next').click(function() {
     var $img = $('#img-preview')
         , $passportFile = $('#id_passport_file')
-        , ctx, dataURL;
+        , dataURL;
         
     // disable all button
     $('.btn').attr('disabled', true).addClass('disabled');
@@ -80,10 +80,6 @@ $('#btn-next').click(function() {
         'size': 'original',
         'format': 'png',
     }).then(function(canvas) {
-        ctx = canvas.getContext('2d')
-        // add border to canvas
-        ctx.lineWidth = 15;
-        ctx.strokeRect(0, 0, canvas.width, canvas.height);
         dataURL = canvas.toDataURL();
         $passportFile.val(dataURL.substring(22)); // remove `data:image/png;base64,` on dataURL
         $('#form-passport').submit();
