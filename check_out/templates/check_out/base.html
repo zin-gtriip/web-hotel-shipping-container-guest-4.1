@@ -15,10 +15,6 @@
     </div>
 {% endblock progress_page %}
 
-{% block header_middle %}
-    {{ block.super }}
-{% endblock header_middle %}
-
 {% block header_right %}
     {% if not request.session.app %}
         {{ block.super }}

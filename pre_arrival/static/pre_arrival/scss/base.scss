@@ -1,7 +1,11 @@
 /* HEADER */
 .header {
-    .timer-tick {
-        line-height: 18px;
+    .timer-text {
+        margin-left: 10px;
+
+        .timer-tick {
+            line-height: 18px;
+        }
     }
 }
 
