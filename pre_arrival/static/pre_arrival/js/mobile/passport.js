@@ -129,15 +129,16 @@ function dataURLtoBlob(dataURL) {
 // initiate croppie components, ie: moving timer, add rotate button, etc
 function initCroppieComponents() {
     var $timer = $('.timer-text').clone().removeClass('text-secondary').addClass('text-white')
-        , $previewText = $('<div></div>').addClass('text-white text-center').attr('id', 'text-preview').text(gettext('Drag, rotate, or pinch the image to make sure that all information is within the box.'))
+        , $previewText = $('<div></div>').addClass('text-white text-center').attr('id', 'text-preview').html(gettext('Drag, rotate, or pinch the image to make sure<br>that all information is within the box.'))
         , $iconRotate = $('<i></i>').addClass('fas fa-undo-alt').attr('aria-hidden', true)
         , $btnRotate = $('<button></button>').attr('type', 'button').addClass('btn btn-floating').attr('id', 'btn-rotate').data('degree', 90).html($iconRotate).click(function () {
             $('#img-preview').croppie('rotate', $(this).data('degree'));
-        });
+        })
+        , $rotateContainer = $('<div></div>').attr('id', 'rotate-container').append($btnRotate);
 
     $('.header, .page-header, .page-subheader, .default-container').hide();
     $('.preview-container').show();
-    $('.cr-boundary').append($timer, $previewText, $btnRotate);
+    $('.cr-boundary').append($timer, $previewText, $rotateContainer);
 }
 
 
