@@ -1,7 +1,7 @@
 from django.shortcuts           import render
-from django.views.generic       import *
 from django.utils               import translation
 from django.utils.translation   import gettext, gettext_lazy as _
+from django.views.generic       import *
 from guest_base                 import views as GuestBaseViews
 from guest_base.mixins          import RequestFormKwargsMixin, MobileTemplateMixin, JSONResponseMixin
 from .forms                     import *
