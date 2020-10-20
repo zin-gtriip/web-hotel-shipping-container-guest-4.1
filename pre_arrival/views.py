@@ -36,6 +36,7 @@ class PreArrivalLoginView(RequestFormKwargsMixin, MobileTemplateMixin, ProgressR
     mobile_template_name    = 'pre_arrival/mobile/login.html'
     form_class              = PreArrivalLoginForm
     success_url             = '/pre_arrival/reservation'
+    progress_bar_page       = 'login'
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('pre_arrival', {}).get('preload', {}).get('auto_login', 0):
@@ -82,6 +83,7 @@ class PreArrivalReservationView(ExpirySessionMixin, RequestFormKwargsMixin, Prog
     template_name           = 'pre_arrival/desktop/reservation.html'
     form_class              = PreArrivalReservationForm
     success_url             = '/pre_arrival/passport'
+    progress_bar_page       = 'reservation'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -106,6 +108,7 @@ class PreArrivalPassportView(PageParameterRequiredMixin, RequestFormKwargsMixin,
     form_class              = PreArrivalPassportForm
     success_url             = '/pre_arrival/detail'
     page_parameter          = 'reservation'
+    progress_bar_page       = 'passport'
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('pre_arrival', {}).get('preload', {}).get('skip_ocr', False):
@@ -130,6 +133,7 @@ class PreArrivalDetailView(PageParameterRequiredMixin, RequestFormKwargsMixin, M
     form_class              = PreArrivalDetailForm
     success_url             = '/pre_arrival/other_info'
     page_parameter          = 'passport'
+    progress_bar_page       = 'detail'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -164,6 +168,7 @@ class PreArrivalOtherInfoView(PageParameterRequiredMixin, RequestFormKwargsMixin
     form_class              = PreArrivalOtherInfoForm
     success_url             = '/pre_arrival/complete'
     page_parameter          = 'detail'
+    progress_bar_page       = 'other_info'
     
     def form_valid(self, form):
         form.save()
@@ -184,6 +189,7 @@ class PreArrivalCompleteView(PageParameterRequiredMixin, RequestFormKwargsMixin,
     form_class              = PreArrivalCompleteForm
     success_url             = '/pre_arrival/reservation'
     page_parameter          = 'other_info'
+    progress_bar_page       = 'complete'
     
     def form_valid(self, form):
         form.save()

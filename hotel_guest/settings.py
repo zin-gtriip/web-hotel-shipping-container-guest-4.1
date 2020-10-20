@@ -259,12 +259,11 @@ ROOM_TYPES = [
     },
 ]
 # age limit for adult, used on passport, detail page
-ADULT_AGE_LIMIT         = 18
+ADULT_AGE_LIMIT             = 18
 # progress bar rate on pre-arrival page
-PROGRESS_BAR_START_RATE = 10
-PROGRESS_BAR_END_RATE   = 100
-# urls that use progress bar
-PRE_ARRIVAL_URLS = [
+PROGRESS_BAR_START_RATE     = 10
+PROGRESS_BAR_END_RATE       = 100
+PROGRESS_BAR_PAGES          = [
     'login',
     'reservation',
     'passport',
@@ -272,3 +271,5 @@ PRE_ARRIVAL_URLS = [
     'other_info',
     'complete',
 ]
+# progress bar rate calculation, -1 to exclude first page
+PROGRESS_BAR_RATE_PER_PAGE  = (PROGRESS_BAR_END_RATE - PROGRESS_BAR_START_RATE) / (len(PROGRESS_BAR_PAGES) - 1)
