@@ -65,10 +65,10 @@ $('#timer-expired-modal').on('hidden.bs.modal', function (e) {
 
 
 // progress bar
-var currentPageProgressRate = JSON.parse($('#current-page-progress-rate').text() || '""');
+var currentProgressRate = JSON.parse($('#current-progress-rate').text() || '""');
 $('.progress-page .progress-bar').css({
-    'width': currentPageProgressRate +'%',
-}).attr('aria-valuenow', currentPageProgressRate);
+    'width': currentProgressRate +'%',
+}).attr('aria-valuenow', currentProgressRate);
 
 
 // header nav back button

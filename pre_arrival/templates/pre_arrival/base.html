@@ -10,8 +10,8 @@
 {% endblock static_css %}
 
 {% block progress_page %}
-    <div class="progress ">
-        <div class="progress-bar" role="progressbar" style="width: {{ previous_page_progress_rate }}%;" aria-valuenow="{{ previous_page_progress_rate }}" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: {{ request.session.pre_arrival.previous_progress_rate }}%;" aria-valuenow="{{ request.session.pre_arrival.previous_progress_rate }}" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
 {% endblock progress_page %}
 
@@ -89,7 +89,7 @@
     {{ block.super }}
     {{ PRE_ARRIVAL_INITIAL_EXPIRY_DATE|json_script:'pre-arrival-initial-expiry-date' }}
     {{ PRE_ARRIVAL_EXTENDED_EXPIRY_DATE|json_script:'pre-arrival-extended-expiry-date' }}
-    {{ current_page_progress_rate|json_script:'current-page-progress-rate' }}
+    {{ request.session.pre_arrival.current_progress_rate|json_script:'current-progress-rate' }}
 {% endblock data_js %}
 
 {% block static_js %}

@@ -1,29 +1,22 @@
-@mixin slider-track() {
-    background: rgba(255,255,255,.75);
-    height: 2px;
-}
-
-@mixin slider-thumb() {
-    height: 24px;
-    width: 8px;
-    border-radius: 0;
-    margin-top: -11px;
-    background: #fff;
-}
-
 .content {
-    .page-content {
-        margin-bottom: 70px;
+    .page-header {
+        width: 234px;
+    }
 
+    .page-subheader {
+        width: 340px;
+        margin-bottom: 19px;
+    }
+
+    .page-content {
         .default-container img {
             width: 298px;
         }
     }
 
     .page-footer {
-        .btn:not(#btn-skip) {
-            width: 158px;
-            padding: 17px;
+        .btn {
+            width: 230px;
             margin: 0;
         }
     }
@@ -32,26 +25,26 @@
 .croppie-container {
     .cr-boundary {
         background-color: rgba(#000, .6);
+
+        .timer-tick {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+        }
         
         #text-preview {
             position: absolute;
-            top: 20px;
+            top: 52px;
             width: 100%;
             text-align: center;
             z-index: 2;
         }
 
-        .cr-slider-wrap {
-            position: absolute;
-            bottom: 75px;
-            width: 100%;
-            margin: 0;
-            z-index: 2;
-        }
-
         #rotate-container {
             position: absolute;
-            bottom: 10px;
+            bottom: 28px;
             width: 100%;
             text-align: center;
             z-index: 2;
@@ -65,18 +58,10 @@
         }
     }
 
-    .cr-slider {
-        width: 340px;
-
-        &::-webkit-slider-runnable-track { @include slider-track }
-        &::-moz-range-track { @include slider-track }
-        &::-ms-track { @include slider-track }
-
-        &::-webkit-slider-thumb { @include slider-thumb }
-        &::-moz-range-thumb { @include slider-thumb }
-        &::-ms-thumb { @include slider-thumb }
+    .cr-slider-wrap {
+        display: none;
     }
-    
+
     .cr-viewport {
         border: none;
 

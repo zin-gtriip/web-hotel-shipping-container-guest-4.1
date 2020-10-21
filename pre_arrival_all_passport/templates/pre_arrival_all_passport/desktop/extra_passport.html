@@ -1,0 +1,123 @@
+{% extends 'pre_arrival/desktop/base_desktop.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block lib_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'vendor/node_modules/croppie/croppie.css' %}">
+{% endblock lib_css %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'pre_arrival_all_passport/scss/desktop/extra_passport.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block header_left %}
+    <button type="button" class="btn btn-link" id="btn-back" data-target="{% url 'pre_arrival:detail' %}"><i class="fas fa-arrow-left"></i></button>
+    {{ block.super }}
+{% endblock header_left %}
+
+{% block content %}
+    {{ block.super }}
+    <form method="post" id="form-passport">
+        {% csrf_token %}
+        <div class="row page-header">
+            <div class="col-lg-12 px-0 text-center">
+                {% trans 'Upload a photo of Passport' %}
+            </div>
+        </div>
+        <div class="row page-subheader">
+            <div class="col-lg-12 px-0 text-center text-secondary">
+                <div class="default-container">
+                    {% trans 'Please make sure the photo is clear and all information is within the box.' %}
+                </div>
+                <div class="webcam-container" style="display: none;">
+                    {% trans 'Please make sure that all of the passport information is within the box.' %}
+                </div>
+            </div>
+        </div>
+        <div class="row page-content">
+            <div class="col-lg-12 d-flex justify-content-center">
+                {% render_field form.passport_file %}
+                {% render_field form.skip_passport %}
+                <div class="default-container">
+                    <img src="{% static 'img/desktop-passport.png' %}">
+                </div>
+                <div class="webcam-container" style="display: none;">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <video id="vid-webcam" autoplay width="427" height="320"></video>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-lg-12 d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary" id="btn-capture">{% trans 'Capture' %}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-container" style="display: none;">
+                    <img id="img-preview">
+                </div>
+            </div>
+        </div>
+        <div class="row page-footer">
+            <div class="col-lg-12">
+                <div class="row default-container">
+                    <div class="col-5 col-lg-3 ml-auto mr-2 mb-3 px-0 text-right">
+                        <button type="button" class="btn btn-outline-primary btn-round text-capitalize" id="btn-webcam">{% trans 'Take Photo' %}</button>
+                    </div>
+                    <div class="col-5 col-lg-3 ml-2 mr-auto mb-3 px-0 text-left">
+                        <label class="btn btn-primary btn-round text-capitalize">
+                            {% trans 'Upload' %}
+                            <input type="file" class="file-upload" accept="image/*" hidden>
+                        </label>
+                    </div>
+                </div>
+                <div class="row preview-container" style="display: none;">
+                    <div class="col-5 col-lg-3 ml-auto mr-2 px-0 text-right">
+                        <label class="btn btn-outline-primary btn-round text-capitalize mb-3">
+                            {% trans 'Reupload' %}
+                            <input type="file" class="file-upload" accept="image/*" hidden>
+                        </label>
+                    </div>
+                    <div class="col-5 col-lg-3 ml-2 mr-auto px-0 text-left">
+                        <button type="button" class="btn btn-primary mb-3" id="btn-next">{% trans 'Next' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock content %}
+
+{% block wrapper %}
+    {{ block.super }}
+    <!-- Error Modal -->
+    {% for error in form.non_field_errors %}
+        <div class="modal fade auto-show" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h4 class="modal-title mx-auto">{% trans 'Invalid Image' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ error|linebreaks }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'Close' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock wrapper %}
+
+{% block lib_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'vendor/node_modules/compressorjs/dist/compressor.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/node_modules/croppie/croppie.min.js' %}"></script>
+{% endblock lib_js %}
+
+{% block static_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'pre_arrival_all_passport/js/desktop/extra_passport.js' %}"></script>
+{% endblock static_js %}
