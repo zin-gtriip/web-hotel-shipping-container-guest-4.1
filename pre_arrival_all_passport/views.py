@@ -10,7 +10,7 @@ class PreArrivalDetailView(PreArrivalView.PreArrivalDetailView):
     
     def form_valid(self, form, extra):
         form.save(extra)
-        if self.request.POST.get('type', '') == 'add guest':
+        if self.request.POST.get('form_type', '') == 'add_guest':
             return redirect('pre_arrival_all_passport:extra_passport')
         return super().form_valid(form, extra)
 
