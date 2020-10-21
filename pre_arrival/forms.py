@@ -403,7 +403,7 @@ class PreArrivalOtherInfoForm(forms.Form):
         self.request.session['pre_arrival']['other_info'] = True # variable to prevent page jump
 
     def prepare_email(self):
-        context = self.request.session['pre_arrival']['reservation']
+        context = dict(self.request.session['pre_arrival']['reservation']) # create new variable to prevent modification on `request.session`
         context['formattedArrivalDate'] = utilities.format_display_date(context.get('arrivalDate', ''))
         context['formattedDepartureDate'] = utilities.format_display_date(context.get('departureDate', ''))
         context['mainGuestLastName'] = next(guest.get('lastName', '') for guest in context.get('guestsList', []) if guest.get('isMainGuest', '0') == '1')
