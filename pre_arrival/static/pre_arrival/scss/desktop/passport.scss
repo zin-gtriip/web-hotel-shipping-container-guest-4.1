@@ -12,6 +12,10 @@
 }
 
 .content {
+    .page-header {
+        width: 174px;
+    }
+
     .page-content {
         margin-bottom: 70px;
 
@@ -35,25 +39,17 @@
         
         #text-preview {
             position: absolute;
+            width: 230px;
             top: 20px;
-            width: 100%;
-            text-align: center;
+            left: 73px;
             z-index: 2;
         }
 
         .cr-slider-wrap {
             position: absolute;
             bottom: 75px;
-            width: 100%;
+            left: 47px;
             margin: 0;
-            z-index: 2;
-        }
-
-        #rotate-container {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
-            text-align: center;
             z-index: 2;
         }
 
@@ -62,6 +58,10 @@
             color: #fff;
             width: 56px;
             height: 56px;
+            position: absolute;
+            bottom: 10px;
+            left: 153px;
+            z-index: 2;
         }
     }
 
