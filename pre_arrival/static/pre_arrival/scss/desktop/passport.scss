@@ -39,17 +39,25 @@
         
         #text-preview {
             position: absolute;
-            width: 230px;
             top: 20px;
-            left: 73px;
+            width: 100%;
+            text-align: center;
             z-index: 2;
         }
 
         .cr-slider-wrap {
             position: absolute;
             bottom: 75px;
-            left: 47px;
+            width: 100%;
             margin: 0;
+            z-index: 2;
+        }
+
+        #rotate-container {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
             z-index: 2;
         }
 
@@ -58,10 +66,6 @@
             color: #fff;
             width: 56px;
             height: 56px;
-            position: absolute;
-            bottom: 10px;
-            left: 153px;
-            z-index: 2;
         }
     }
 
