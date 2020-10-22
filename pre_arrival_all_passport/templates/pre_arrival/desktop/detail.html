@@ -300,13 +300,13 @@
                                         {{ extra_form.birth_date.label_tag }}
                                         {% if extra_form.birth_date.errors %}
                                             <!-- has error -->
-                                            {% render_field extra_form.birth_date class="form-control datepicker is-invalid" required="true" %}
+                                            {% render_field extra_form.birth_date class="form-control datepicker is-invalid" data-date-format="yyyy-mm-dd" required="true" %}
                                             {% for error in extra_form.birth_date.errors %}
                                                 <div class="invalid-feedback">{{ error }}</div>
                                             {% endfor %}
                                         {% else %}
                                             <!-- no error -->
-                                            {% render_field extra_form.birth_date class="form-control" required="true" %}
+                                            {% render_field extra_form.birth_date class="form-control datepicker" data-date-format="yyyy-mm-dd" required="true" %}
                                             <i class="far fa-calendar input-prefix"></i>
                                             {% if extra_form.birth_date.help_text %}
                                                 <small class="form-text text-muted">{{ extra_form.passport_no.help_text }}</small>

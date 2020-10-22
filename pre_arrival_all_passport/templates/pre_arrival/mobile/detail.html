@@ -128,7 +128,7 @@
                                     {% render_field form.birth_date class="rolldate" hidden="true" %}
                                     {% if form.is_bound and form.birth_date.errors %}
                                         <!-- bound and has error -->
-                                        <input type="text" id="datepicker-birth-date" class="form-control is-invalid datepicker" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly required>
+                                        <input type="text" id="datepicker-birth-date" class="form-control datepicker is-invalid" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly required>
                                         <!-- error feedback -->
                                         {% for error in form.birth_date.errors %}
                                             <div class="invalid-feedback">{{ error }}</div>
@@ -303,7 +303,7 @@
                                         {% render_field extra_form.birth_date class="rolldate" hidden="true" %}
                                         {% if extra_form.birth_date.errors %}
                                             <!-- has error -->
-                                            <input type="text" id="datepicker-{{ forloop.counter0 }}-birth-date" class="form-control is-invalid datepicker" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly required>
+                                            <input type="text" id="datepicker-{{ forloop.counter0 }}-birth-date" class="form-control datepicker is-invalid" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly required>
                                             {% for error in extra_form.birth_date.errors %}
                                                 <div class="invalid-feedback">{{ error }}</div>
                                             {% endfor %}
