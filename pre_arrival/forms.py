@@ -324,10 +324,10 @@ class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
         self.request = request
         self.label_suffix = ''
         # populate additional guests
-        additional_guests = []
+        prefilled = []
         for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []):
             if guest.get('isMainGuest', '0') == '0':
-                additional_guests.append({
+                prefilled.append({
                     'guest_id': guest.get('guestID', ''),
                     'first_name': guest.get('firstName', ''),
                     'last_name': guest.get('lastName', ''),
@@ -336,7 +336,7 @@ class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
                     'birth_date': guest.get('dob', ''),
                 })
         self.extra = 0 # number of empty extra form to be populated
-        self.initial = additional_guests
+        self.initial = prefilled
 
     def get_form_kwargs(self, index):
         kwargs = super().get_form_kwargs(index)
@@ -354,7 +354,6 @@ class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
         if adult > max_adult:
             self._non_form_errors = self.error_class([_('You have exceeded the number of adults.')])
 
-# extra based on `additional_guests` length which is declared by `total_form_count()`
 PreArrivalDetailExtraFormSet = forms.formset_factory(PreArrivalDetailExtraForm, formset=PreArrivalDetailExtraBaseFormSet)
 
 
