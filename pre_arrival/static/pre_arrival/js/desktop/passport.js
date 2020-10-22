@@ -182,7 +182,7 @@ function dataURLtoBlob(dataURL) {
 function initCroppieComponents() {
     var $previewText = $('<div></div>').addClass('text-white text-center').attr('id', 'text-preview').html(gettext('Please adjust the image to make sure<br>that all information is within the box.'))
         , $zoomWrap
-        , $zoomWord = $('<span></span>').addClass('text-white').text('Zoom')
+        , $zoomWord = $('<span></span>').addClass('text-white').gettext('Zoom')
         , $iconRotate = $('<i></i>').addClass('fas fa-undo-alt').attr('aria-hidden', true)
         , $btnRotate = $('<button></button>').attr('type', 'button').addClass('btn btn-floating').attr('id', 'btn-rotate').data('degree', 90).html($iconRotate).click(function () {
             $('#img-preview').croppie('rotate', $(this).data('degree'));

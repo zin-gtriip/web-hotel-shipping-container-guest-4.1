@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-29 13:15+0700\n"
+"POT-Creation-Date: 2020-10-22 22:51+0800\n"
 "PO-Revision-Date: 2020-09-30 18:33+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,11 +20,19 @@ msgstr ""
 
 #: pre_arrival/static/pre_arrival/js/desktop/detail.js:78
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:84
+#: pre_arrival_all_passport/static/pre_arrival/js/desktop/detail.js:40
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:43
+#: static/CACHE/js/output.d8f79976cd8b.js:70
+#: static/CACHE/js/output.fb0d628bed29.js:71
 msgid "Guest"
 msgstr "客人"
 
 #: pre_arrival/static/pre_arrival/js/desktop/detail.js:83
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:89
+#: pre_arrival_all_passport/static/pre_arrival/js/desktop/detail.js:45
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:48
+#: static/CACHE/js/output.d8f79976cd8b.js:70
+#: static/CACHE/js/output.fb0d628bed29.js:71
 msgid "Main Guest"
 msgstr "主要客人"
 
@@ -32,55 +40,373 @@ msgstr "主要客人"
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:34
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:49
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:50
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:33
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:34
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:49
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:50
+#: static/CACHE/js/output.4d29ee689029.js:72
+#: static/CACHE/js/output.7f74b7df1c48.js:72
 msgid "Invalid Image"
 msgstr "图片无效"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:33
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:49
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:33
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:49
+#: static/CACHE/js/output.4d29ee689029.js:72
+#: static/CACHE/js/output.7f74b7df1c48.js:72
 msgid "No image file selected"
 msgstr "未选择图像文件"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:34
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:50
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:34
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:50
+#: static/CACHE/js/output.4d29ee689029.js:72
+#: static/CACHE/js/output.7f74b7df1c48.js:72
 msgid "Please upload valid identification in JPEG/PNG format"
 msgstr "请以JPEG / PNG格式上传有效的身份证明。"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:47
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:83
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:90
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:59
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:122
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:63
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:47
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:59
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:122
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:63
+#: static/CACHE/js/output.4d29ee689029.js:72
+#: static/CACHE/js/output.4d29ee689029.js:73
+#: static/CACHE/js/output.7f74b7df1c48.js:72
 msgid "Error"
 msgstr "错误"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:47
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:83
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:122
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:63
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:47
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:122
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:63
+#: static/CACHE/js/output.4d29ee689029.js:72
+#: static/CACHE/js/output.4d29ee689029.js:73
+#: static/CACHE/js/output.7f74b7df1c48.js:72
 msgid "Error capturing image"
 msgstr "无法捕获图像。"
 
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:90
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:59
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:59
+#: static/CACHE/js/output.4d29ee689029.js:72
 msgid "No camera media is detected"
 msgstr "未检测到相机媒体。"
 
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:153
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:183
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:183
 msgid ""
-"Please adjust the image to make sure that all information is within the box."
+"Please adjust the image to make sure<br>that all information is within the "
+"box."
 msgstr "请调整图像以确保所有信息都在框中。"
 
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:185
+msgid "Zoom"
+msgstr "放大"
+
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:119
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:78
+#: static/CACHE/js/output.fb0d628bed29.js:73
 msgid "Select Date"
 msgstr "选择日期"
 
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:120
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:79
+#: static/CACHE/js/output.fb0d628bed29.js:73
+#: static/admin/js/admin/DateTimeShortcuts.js:180
+#: static/admin/js/admin/DateTimeShortcuts.js:340
 msgid "Cancel"
 msgstr "取消"
 
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:121
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:80
+#: static/CACHE/js/output.fb0d628bed29.js:73
 msgid "Confirm"
 msgstr "确认"
 
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:128
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:128
+#, fuzzy
+#| msgid ""
+#| "Drag, rotate, or pinch the image to make sure that all information is "
+#| "within the box."
+msgid ""
+"Drag, rotate, or pinch the image to make sure<br>that all information is "
+"within the box."
+msgstr "拖动，旋转或收缩图像，以确保所有信息都在框中。"
+
+#: static/CACHE/js/output.0a288bb8a301.js:29
+#: static/CACHE/js/output.0de0bc77535d.js:29
+#: static/CACHE/js/output.156d4cc9f9c8.js:29
+#: static/CACHE/js/output.1b191bab1d92.js:29
+#: static/CACHE/js/output.43c7ec408f66.js:29
+#: static/CACHE/js/output.4d29ee689029.js:29
+#: static/CACHE/js/output.5838ce255ae9.js:29
+#: static/CACHE/js/output.641448b39392.js:29
+#: static/CACHE/js/output.76ae1445b74e.js:29
+#: static/CACHE/js/output.7b025d05ff51.js:29
+#: static/CACHE/js/output.7f74b7df1c48.js:29
+#: static/CACHE/js/output.8d8ce153f7c4.js:29
+#: static/CACHE/js/output.91c2434f4113.js:29
+#: static/CACHE/js/output.ba7e5fe5efc6.js:29
+#: static/CACHE/js/output.c4ad63d01dcf.js:29
+#: static/CACHE/js/output.d07f0c41c552.js:29
+#: static/CACHE/js/output.d541a38ab79a.js:29
+#: static/CACHE/js/output.d8f79976cd8b.js:29
+#: static/CACHE/js/output.dd12da3e963b.js:29
+#: static/CACHE/js/output.fb0d628bed29.js:29
+#: static/vendor/node_modules/mdbootstrap/js/mdb.js:1098
+#: static/vendor/node_modules/mdbootstrap/js/mdb.min.js:25
+msgid "hidden"
+msgstr ""
+
+#: static/CACHE/js/output.4d29ee689029.js:79
+msgid ""
+"Please adjust the image to make sure that all information is within the box."
+msgstr "请调整图像以确保所有信息都在框中。"
+
+#: static/CACHE/js/output.7f74b7df1c48.js:78
 msgid ""
 "Drag, rotate, or pinch the image to make sure that all information is within "
 "the box."
 msgstr "拖动，旋转或收缩图像，以确保所有信息都在框中。"
+
+#: static/admin/js/SelectFilter2.js:47
+#, javascript-format
+msgid "Available %s"
+msgstr ""
+
+#: static/admin/js/SelectFilter2.js:53
+#, javascript-format
+msgid ""
+"This is the list of available %s. You may choose some by selecting them in "
+"the box below and then clicking the \"Choose\" arrow between the two boxes."
+msgstr ""
+
+#: static/admin/js/SelectFilter2.js:69
+#, javascript-format
+msgid "Type into this box to filter down the list of available %s."
+msgstr ""
+
+#: static/admin/js/SelectFilter2.js:74
+msgid "Filter"
+msgstr ""
+
+#: static/admin/js/SelectFilter2.js:78
+msgid "Choose all"
+msgstr ""
+
+#: static/admin/js/SelectFilter2.js:78
+#, javascript-format
+msgid "Click to choose all %s at once."
+msgstr ""
+
+#: static/admin/js/SelectFilter2.js:84
+msgid "Choose"
+msgstr ""
+
+#: static/admin/js/SelectFilter2.js:86
+msgid "Remove"
+msgstr ""
+
+#: static/admin/js/SelectFilter2.js:92
+#, javascript-format
+msgid "Chosen %s"
+msgstr ""
+
+#: static/admin/js/SelectFilter2.js:98
+#, javascript-format
+msgid ""
+"This is the list of chosen %s. You may remove some by selecting them in the "
+"box below and then clicking the \"Remove\" arrow between the two boxes."
+msgstr ""
+
+#: static/admin/js/SelectFilter2.js:108
+msgid "Remove all"
+msgstr ""
+
+#: static/admin/js/SelectFilter2.js:108
+#, javascript-format
+msgid "Click to remove all chosen %s at once."
+msgstr ""
+
+#: static/admin/js/actions.js:48 static/admin/js/actions.min.js:2
+msgid "%(sel)s of %(cnt)s selected"
+msgid_plural "%(sel)s of %(cnt)s selected"
+msgstr[0] ""
+
+#: static/admin/js/actions.js:117 static/admin/js/actions.min.js:5
+msgid ""
+"You have unsaved changes on individual editable fields. If you run an "
+"action, your unsaved changes will be lost."
+msgstr ""
+
+#: static/admin/js/actions.js:129 static/admin/js/actions.min.js:5
+msgid ""
+"You have selected an action, but you haven't saved your changes to "
+"individual fields yet. Please click OK to save. You'll need to re-run the "
+"action."
+msgstr ""
+
+#: static/admin/js/actions.js:131 static/admin/js/actions.min.js:6
+msgid ""
+"You have selected an action, and you haven't made any changes on individual "
+"fields. You're probably looking for the Go button rather than the Save "
+"button."
+msgstr ""
+
+#: static/admin/js/admin/DateTimeShortcuts.js:13
+#: static/admin/js/admin/DateTimeShortcuts.js:115
+msgid "Now"
+msgstr ""
+
+#: static/admin/js/admin/DateTimeShortcuts.js:14
+msgid "Midnight"
+msgstr ""
+
+#: static/admin/js/admin/DateTimeShortcuts.js:15
+msgid "6 a.m."
+msgstr ""
+
+#: static/admin/js/admin/DateTimeShortcuts.js:16
+msgid "Noon"
+msgstr ""
+
+#: static/admin/js/admin/DateTimeShortcuts.js:17
+msgid "6 p.m."
+msgstr ""
+
+#: static/admin/js/admin/DateTimeShortcuts.js:82
+#, javascript-format
+msgid "Note: You are %s hour ahead of server time."
+msgid_plural "Note: You are %s hours ahead of server time."
+msgstr[0] ""
+
+#: static/admin/js/admin/DateTimeShortcuts.js:90
+#, javascript-format
+msgid "Note: You are %s hour behind server time."
+msgid_plural "Note: You are %s hours behind server time."
+msgstr[0] ""
+
+#: static/admin/js/admin/DateTimeShortcuts.js:133
+msgid "Choose a Time"
+msgstr ""
+
+#: static/admin/js/admin/DateTimeShortcuts.js:163
+msgid "Choose a time"
+msgstr ""
+
+#: static/admin/js/admin/DateTimeShortcuts.js:245
+#: static/admin/js/admin/DateTimeShortcuts.js:325
+msgid "Today"
+msgstr ""
+
+#: static/admin/js/admin/DateTimeShortcuts.js:262
+msgid "Choose a Date"
+msgstr ""
+
+#: static/admin/js/admin/DateTimeShortcuts.js:319
+msgid "Yesterday"
+msgstr ""
+
+#: static/admin/js/admin/DateTimeShortcuts.js:331
+msgid "Tomorrow"
+msgstr ""
+
+#: static/admin/js/calendar.js:12
+msgid "January"
+msgstr ""
+
+#: static/admin/js/calendar.js:13
+msgid "February"
+msgstr ""
+
+#: static/admin/js/calendar.js:14
+msgid "March"
+msgstr ""
+
+#: static/admin/js/calendar.js:15
+msgid "April"
+msgstr ""
+
+#: static/admin/js/calendar.js:16
+msgid "May"
+msgstr ""
+
+#: static/admin/js/calendar.js:17
+msgid "June"
+msgstr ""
+
+#: static/admin/js/calendar.js:18
+msgid "July"
+msgstr ""
+
+#: static/admin/js/calendar.js:19
+msgid "August"
+msgstr ""
+
+#: static/admin/js/calendar.js:20
+msgid "September"
+msgstr ""
+
+#: static/admin/js/calendar.js:21
+msgid "October"
+msgstr ""
+
+#: static/admin/js/calendar.js:22
+msgid "November"
+msgstr ""
+
+#: static/admin/js/calendar.js:23
+msgid "December"
+msgstr ""
+
+#: static/admin/js/calendar.js:26
+msgctxt "one letter Sunday"
+msgid "S"
+msgstr ""
+
+#: static/admin/js/calendar.js:27
+msgctxt "one letter Monday"
+msgid "M"
+msgstr ""
+
+#: static/admin/js/calendar.js:28
+msgctxt "one letter Tuesday"
+msgid "T"
+msgstr ""
+
+#: static/admin/js/calendar.js:29
+msgctxt "one letter Wednesday"
+msgid "W"
+msgstr ""
+
+#: static/admin/js/calendar.js:30
+msgctxt "one letter Thursday"
+msgid "T"
+msgstr ""
+
+#: static/admin/js/calendar.js:31
+msgctxt "one letter Friday"
+msgid "F"
+msgstr ""
+
+#: static/admin/js/calendar.js:32
+msgctxt "one letter Saturday"
+msgid "S"
+msgstr ""
+
+#: static/admin/js/collapse.js:27 static/admin/js/collapse.js:45
+#: static/admin/js/collapse.min.js:2
+msgid "Show"
+msgstr ""
+
+#: static/admin/js/collapse.js:41 static/admin/js/collapse.min.js:2
+msgid "Hide"
+msgstr ""

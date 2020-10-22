@@ -32,14 +32,16 @@
                 <div class="row mb-4">
                     <div class="col-lg-3 mx-auto">
                         <div class="md-form input-center input-boxed my-0">
-                            {% render_field form.reservation_no class="form-control" placeholder="Reservation Number" %}
+                            {% trans 'Reservation Number' as reservation_number %}
+                            {% render_field form.reservation_no class="form-control" placeholder=reservation_number %}
                         </div>
                     </div>
                 </div>
                 <div class="row my-4">
                     <div class="col-lg-3 mx-auto">
                         <div class="md-form input-center input-boxed my-0">
-                            {% render_field form.last_name class="form-control" placeholder="Last Name" %}
+                            {% trans 'Last Name' as last_name %}
+                            {% render_field form.last_name class="form-control" placeholder=last_name %}
                         </div>
                     </div>
                 </div>
