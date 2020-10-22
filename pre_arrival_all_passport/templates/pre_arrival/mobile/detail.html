@@ -145,65 +145,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- extra formset template -->
-                    <div class="col-12 px-5" id="extra-formset-template" hidden>
-                        <div class="row guest-index">
-                            <div class="col-12 px-0">
-                                <input type="hidden" id="guest-id-template" value="0">
-                                <span class="float-left text-primary text-uppercase font-weight-bold"></span>
-                                <button type="button" class="btn btn-link float-right m-0 p-0 d-flex text-24 text-secondary btn-remove-extra">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="md-form mt-0">
-                                    <label>{% trans 'First Name' %}</label>
-                                    <input type="text" id="first-name-template" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="md-form mt-2">
-                                    <label>{% trans 'Last Name' %}</label>
-                                    <input type="text" id="last-name-template" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="md-form mt-2">
-                                    <label>{% trans 'Passport Number' %}</label>
-                                    <input type="text" id="passport-no-template" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="md-form mt-2">
-                                    <label class="active">{% trans 'Nationality' %}</label>
-                                    <select id="nationality-template" class="form-control md-select">
-                                        <option value="">{% trans '[Select Country]' %}</option>
-                                        {% for country in countries %}
-                                        <option value="{{ country.code }}">{{ country.name }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="md-form mt-2 input-with-post-icon">
-                                    <label>{% trans 'Date of Birth' %}</label>
-                                    <input type="text" id="birth-date-template" hidden>
-                                    <input type="text" id="datepicker-birth-date-template" class="form-control" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly>
-                                    <i class="far fa-calendar input-prefix"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- extra formset bound -->
                     {% for extra_form in extra.forms %}
                         <div class="col-12 px-5 extra-formset" id="extra-formset-{{ forloop.counter0 }}">
