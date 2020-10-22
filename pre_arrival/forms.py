@@ -272,12 +272,15 @@ class PreArrivalDetailForm(forms.Form):
                 'dob': form.cleaned_data.get('birth_date').strftime('%Y-%m-%d'),
             })
 
+        updated_guests = []
         for guest in guests:
-            booking_details_guest = next((guest_temp for guest_temp in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest_temp.get('guestID', '') == guest.get('guestID', '')), {})
-            if booking_details_guest:
-                booking_details_guest.update(guest)
+            reservation_guest = next((guest_temp for guest_temp in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest_temp.get('guestID', '') == guest.get('guestID', '')), {})
+            if reservation_guest:
+                reservation_guest.update(guest)
+                updated_guests.append(reservation_guest)
             else:
-                self.request.session['pre_arrival']['reservation']['guestsList'].append(guest)
+                updated_guests.append(guest)
+        self.request.session['pre_arrival']['reservation']['guestsList'] = updated_guests # replace with whole new list
         self.request.session['pre_arrival']['detail'] = True # variable to prevent page jump
 
 
@@ -400,7 +403,7 @@ class PreArrivalOtherInfoForm(forms.Form):
         self.request.session['pre_arrival']['other_info'] = True # variable to prevent page jump
 
     def prepare_email(self):
-        context = self.request.session['pre_arrival']['reservation']
+        context = dict(self.request.session['pre_arrival']['reservation']) # create new variable to prevent modification on `request.session`
         context['formattedArrivalDate'] = utilities.format_display_date(context.get('arrivalDate', ''))
         context['formattedDepartureDate'] = utilities.format_display_date(context.get('departureDate', ''))
         context['mainGuestLastName'] = next(guest.get('lastName', '') for guest in context.get('guestsList', []) if guest.get('isMainGuest', '0') == '1')

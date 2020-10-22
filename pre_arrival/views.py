@@ -89,6 +89,7 @@ class PreArrivalReservationView(ExpirySessionMixin, RequestFormKwargsMixin, Prog
         context = super().get_context_data(**kwargs)
         context['reservations'] = []
         for reservation in self.request.session['pre_arrival'].get('bookings', []):
+            reservation = dict(reservation) # create new variable to prevent modification on `request.session`
             reservation['formattedArrivalDate'] = format_display_date(reservation.get('arrivalDate', ''))
             reservation['formattedDepartureDate'] = format_display_date(reservation.get('departureDate', ''))
             room = next((temp for temp in settings.ROOM_TYPES if temp['room_type'] == reservation['roomType']), {})
@@ -197,7 +198,7 @@ class PreArrivalCompleteView(ParameterRequiredMixin, RequestFormKwargsMixin, Pro
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        reservation = self.request.session['pre_arrival']['reservation']
+        reservation = dict(self.request.session['pre_arrival']['reservation']) # create new variable to prevent modification on `request.session`
         reservation['formattedArrivalDate'] = format_display_date(reservation.get('arrivalDate', ''))
         reservation['formattedDepartureDate'] = format_display_date(reservation.get('departureDate', ''))
         reservation['mainGuestLastName'] = next(guest.get('lastName', '') for guest in reservation.get('guestsList', []) if guest.get('isMainGuest', '0') == '1')

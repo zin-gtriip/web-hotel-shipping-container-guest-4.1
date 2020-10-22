@@ -3,6 +3,9 @@ $('.datepicker').datepicker({
 });
 
 
+$('input:visible').first().focus();
+
+
 if ($('#id_arrival_date').val() == '') {
     $('#id_arrival_date').datepicker('update', new Date());
 }

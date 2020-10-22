@@ -257,26 +257,6 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="md-form mt-2">
-                                        <label for="{{ extra_form.nationality.id }}" class="active">{% trans 'Nationality' %}</label>
-                                        {% if extra_form.nationality.errors %}
-                                            <!-- has error -->
-                                            {% render_field extra_form.nationality class="form-control md-select is-invalid" required="true" %}
-                                            {% for error in extra_form.nationality.errors %}
-                                                <div class="invalid-feedback">{{ error }}</div>
-                                            {% endfor %}
-                                        {% else %}
-                                            <!-- no error -->
-                                            {% render_field extra_form.nationality class="form-control md-select" required="true" %}
-                                            {% if extra_form.nationality.help_text %}
-                                                <small class="form-text text-muted">{{ extra_form.nationality.help_text }}</small>
-                                            {% endif %}
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="md-form mt-2">
                                         {{ extra_form.passport_no.label_tag }}
                                         {% if extra_form.passport_no.errors %}
                                             <!-- has error -->
@@ -289,6 +269,26 @@
                                             {% render_field extra_form.passport_no class="form-control" required="true" %}
                                             {% if extra_form.passport_no.help_text %}
                                                 <small class="form-text text-muted">{{ extra_form.passport_no.help_text }}</small>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="md-form mt-2">
+                                        <label for="{{ extra_form.nationality.id }}" class="active">{% trans 'Nationality' %}</label>
+                                        {% if extra_form.nationality.errors %}
+                                            <!-- has error -->
+                                            {% render_field extra_form.nationality class="form-control md-select is-invalid" required="true" %}
+                                            {% for error in extra_form.nationality.errors %}
+                                                <div class="invalid-feedback">{{ error }}</div>
+                                            {% endfor %}
+                                        {% else %}
+                                            <!-- no error -->
+                                            {% render_field extra_form.nationality class="form-control md-select" required="true" %}
+                                            {% if extra_form.nationality.help_text %}
+                                                <small class="form-text text-muted">{{ extra_form.nationality.help_text }}</small>
                                             {% endif %}
                                         {% endif %}
                                     </div>
@@ -329,12 +329,13 @@
                         <input type="hidden" name="form-INITIAL_FORMS" value="0" id="id_form-INITIAL_FORMS">
                         <input type="hidden" name="form-MIN_NUM_FORMS" value="0" id="id_form-MIN_NUM_FORMS">
                         <input type="hidden" name="form-MAX_NUM_FORMS" value="{{ max_extra_form }}" id="id_form-MAX_NUM_FORMS">
-                        <input type="submit" class="btn btn-outline-primary text-capitalize" name="type" value="{% trans 'add guest' %}">
+                        <input type="hidden" name="form_type" value="submit" id="form-type">
+                        <button type="button" class="btn btn-outline-primary text-capitalize" id="btn-add-extra">{% trans 'Add Guest' %}</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12 mt-1 d-flex justify-content-center">
-                        <input type="submit" class="btn btn-primary text-uppercase" name="type" value="{% trans 'next' %}">
+                        <button type="submit" class="btn btn-primary">{% trans 'Next' %}</button>
                     </div>
                 </div>
             </div>

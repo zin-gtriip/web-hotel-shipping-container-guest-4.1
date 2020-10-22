@@ -4,6 +4,7 @@ from django.conf                import settings
 from django.utils.translation   import gettext, gettext_lazy as _
 from django_countries.fields    import Country
 from guest_base                 import gateways
+from pre_arrival                import utilities
 
 
 class PreArrivalAllPassportExtraPassportForm(forms.Form):
@@ -61,12 +62,16 @@ class PreArrivalAllPassportExtraPassportForm(forms.Form):
         with open(saved_file, 'rb') as image_file:
             file_b64_encoded = base64.b64encode(image_file.read())
         ocr = self.gateway_ocr(saved_file)
+        dob = utilities.parse_ocr_date(ocr.get('date_of_birth', ''))
+        if dob:
+            date_format = settings.DATE_INPUT_FORMATS[0] if settings.DATE_INPUT_FORMATS else '%Y-%m-%d'
+            dob = dob.strftime(date_format)
         extra_guest = {}
-        extra_guest['guestID'] = ''
+        extra_guest['guestID'] = '0'
         extra_guest['firstName'] = ocr.get('names', '')
         extra_guest['lastName'] = ocr.get('surname', '')
         extra_guest['nationality'] = Country(ocr.get('nationality', '')).code
         extra_guest['passportNo'] = ocr.get('number', '')
-        extra_guest['dob'] = ocr.get('date_of_birth', '')
+        extra_guest['dob'] = dob
         extra_guest['passportImage'] = file_b64_encoded.decode()
         self.request.session['pre_arrival']['reservation']['guestsList'].append(extra_guest)
