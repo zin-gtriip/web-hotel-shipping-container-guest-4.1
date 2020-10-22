@@ -22,6 +22,14 @@ $('.btn-remove-extra').click(function() {
 });
 
 
+$('.modal').on('hide.bs.modal', function() {
+    var guestID = $(this).find('#guest-id').val();
+    if (guestID !== undefined) {
+        window.location.href = '/pre_arrival/extra_passport/?guest_id='+ guestID;
+    }
+});
+
+
 function getFormsetIndex() {
     return $('.extra-formset').length;
 }

@@ -7,6 +7,15 @@ from .forms                 import *
 
 
 class PreArrivalDetailView(PreArrivalView.PreArrivalDetailView):
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # render extra form formset
+        if self.request.POST:
+            context['extra'] = PreArrivalDetailExtraFormSet(self.request, self.request.POST)
+        else:
+            context['extra'] = PreArrivalDetailExtraFormSet(self.request)
+        return context
     
     def form_valid(self, form, extra):
         form.save(extra)
@@ -22,6 +31,12 @@ class PreArrivalAllPassportExtraPassportView(ParameterRequiredMixin, RequestForm
     success_url             = '/pre_arrival/detail'
     parameter_required      = 'passport'
     progress_bar_page       = 'detail'
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        guest_id = self.request.GET.get('guest_id', None)
+        kwargs.update(guest_id=guest_id)
+        return kwargs
 
     def form_valid(self, form):
         form.save()
