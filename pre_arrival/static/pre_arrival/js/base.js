@@ -25,11 +25,13 @@ var initialExpiryDate = JSON.parse($('#pre-arrival-initial-expiry-date').text() 
             // not extended yet
             if (distance > 0 && distance <= 300000 && !extendedExpiryDate) {
                 if (!$('#timer-extension-modal').hasClass('show')) {
-                    $('#timer-extension-modal').modal('show');
+                    if (!$('body').hasClass('modal-open')) { // show when no other modal is opened
+                        $('#timer-extension-modal').modal('show');
+                    }
                 }
             } else if (distance <= 0) {
-				$('#timer-extension-modal').modal('hide');
                 clearInterval(interval);
+				$('.modal').modal('hide');
 				$('#timer-expired-modal').modal('show');
             }
         }
