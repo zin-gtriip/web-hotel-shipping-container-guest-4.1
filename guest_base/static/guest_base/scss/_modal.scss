@@ -1,0 +1,15 @@
+.modal-dialog {
+    
+    .modal-content {
+        border-radius: $modal-radius;
+
+        .modal-header {
+            border-top-left-radius: $modal-radius;
+            border-top-right-radius: $modal-radius;
+        }
+
+        .modal-footer {
+            border: 0;
+        }
+    }
+}
