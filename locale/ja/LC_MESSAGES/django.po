@@ -490,7 +490,7 @@ msgstr "アップロード"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:86
 msgid "Reupload"
-msgstr "再アップロード"
+msgstr "再び"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:96
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:86
