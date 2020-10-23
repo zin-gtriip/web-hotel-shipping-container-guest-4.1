@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-23 12:19+0800\n"
+"POT-Creation-Date: 2020-10-23 12:39+0800\n"
 "PO-Revision-Date: 2020-09-30 18:11+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1684,6 +1684,10 @@ msgid "Check-out Date"
 msgstr "退房日期"
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:53
+#, fuzzy
+#| msgid ""
+#| "Check-In via our mobile app and head straight to your room using the "
+#| "digital key."
 msgid ""
 "\n"
 "                                Please proceed to the front office to "
@@ -1693,7 +1697,7 @@ msgid ""
 "                                head straight to your room using the digital "
 "key.\n"
 "                            "
-msgstr ""
+msgstr "通过我们的移动应用程序办理登机手续，然后使用手机钥匙直接进入您的房间。"
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:72
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:76
@@ -1773,12 +1777,12 @@ msgstr "我想通过电子邮件收到独家优惠和新闻。"
 #, python-format
 msgid ""
 "\n"
-" We are commited to protecting your privacy. "
+"                                We are commited to protecting your privacy. "
 "By proceeding, you agree to our <a href=\"%(tnc_link)s\" target=\"_blank\" "
 "class=\"new-window-link\">Terms & Conditions</a>.\n"
 "                                View our Global Privacy Statement <a href="
 "\"%(privacy_link)s\" target=\"_blank\" class=\"new-window-link\">here</a>.\n"
-""
+"                            "
 msgstr ""
 
 #: pre_arrival/templates/pre_arrival/desktop/other_info.html:140
@@ -1960,9 +1964,3 @@ msgstr "跳跃"
 
 #~ msgid "Please proceed to the front desk to collect your room key"
 #~ msgstr "请前往前台领取房间钥匙"
-
-#~ msgid ""
-#~ "Check-In via our mobile app and head straight to your room using the "
-#~ "digital key."
-#~ msgstr ""
-#~ "通过我们的移动应用程序办理登机手续，然后使用手机钥匙直接进入您的房间。"

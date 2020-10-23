@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-23 12:18+0800\n"
+"POT-Creation-Date: 2020-10-23 12:39+0800\n"
 "PO-Revision-Date: 2020-09-30 18:11+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1703,6 +1703,10 @@ msgid "Check-out Date"
 msgstr "Check-out Date"
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:53
+#, fuzzy
+#| msgid ""
+#| "Check-In via our mobile app and head straight to your room using the "
+#| "digital key."
 msgid ""
 "\n"
 "                                Please proceed to the front office to "
@@ -1713,6 +1717,8 @@ msgid ""
 "key.\n"
 "                            "
 msgstr ""
+"Check-In via our mobile app and head straight to your room using the mobile "
+"key."
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:72
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:76
@@ -1991,10 +1997,3 @@ msgstr "Do it manually"
 
 #~ msgid "Please proceed to the front desk to collect your room key"
 #~ msgstr "Please proceed to the front desk to collect your room key"
-
-#~ msgid ""
-#~ "Check-In via our mobile app and head straight to your room using the "
-#~ "digital key."
-#~ msgstr ""
-#~ "Check-In via our mobile app and head straight to your room using the "
-#~ "mobile key."
