@@ -19,7 +19,7 @@ $('.modal.auto-show').each(function() {
 // initiate and show alert modal
 function modalAlert(title='Error', body='Error', btnDismissText='Close') {
 	var modal =
-		'<div class="modal fade auto-show" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">' +
+		'<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">' +
             '<div class="modal-dialog modal-dialog-centered modal-sm">'+
                 '<div class="modal-content">'+
                     '<div class="modal-header bg-primary text-white">'+
@@ -34,7 +34,7 @@ function modalAlert(title='Error', body='Error', btnDismissText='Close') {
 		'</div>';
 
 	$('.wrapper').append(modal);
-	$('.modal').modal('show');
+	$('.modal:last').modal('show').addClass('shown');
 }
 
 
