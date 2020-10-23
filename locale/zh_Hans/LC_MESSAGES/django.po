@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-23 12:39+0800\n"
+"POT-Creation-Date: 2020-10-23 12:56+0800\n"
 "PO-Revision-Date: 2020-09-30 18:11+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1674,6 +1674,7 @@ msgstr "预约号码"
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:39
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:41
+#: pre_arrival/templates/pre_arrival/email/complete.html:212
 msgid "Check-in Date"
 msgstr "入住日期"
 
@@ -1846,12 +1847,6 @@ msgstr "请选择您要入住的房间"
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:22
 msgid "We've found the following room(s) under your reservation."
 msgstr "在您的预订中找到以下房间。"
-
-#: pre_arrival/templates/pre_arrival/email/complete.html:212
-#, fuzzy
-#| msgid "Check-in Date"
-msgid "Check-in Date<"
-msgstr "入住日期"
 
 #: pre_arrival/templates/pre_arrival/mobile/login.html:32
 msgid "Please enter your<br>Last Name"
