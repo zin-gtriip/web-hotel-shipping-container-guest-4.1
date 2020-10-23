@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-22 22:51+0800\n"
+"POT-Creation-Date: 2020-10-23 10:02+0800\n"
 "PO-Revision-Date: 2020-09-30 18:33+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,8 +20,8 @@ msgstr ""
 
 #: pre_arrival/static/pre_arrival/js/desktop/detail.js:78
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:84
-#: pre_arrival_all_passport/static/pre_arrival/js/desktop/detail.js:40
-#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:43
+#: pre_arrival_all_passport/static/pre_arrival/js/desktop/detail.js:48
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:51
 #: static/CACHE/js/output.d8f79976cd8b.js:70
 #: static/CACHE/js/output.fb0d628bed29.js:71
 msgid "Guest"
@@ -29,8 +29,8 @@ msgstr "客人"
 
 #: pre_arrival/static/pre_arrival/js/desktop/detail.js:83
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:89
-#: pre_arrival_all_passport/static/pre_arrival/js/desktop/detail.js:45
-#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:48
+#: pre_arrival_all_passport/static/pre_arrival/js/desktop/detail.js:53
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:56
 #: static/CACHE/js/output.d8f79976cd8b.js:70
 #: static/CACHE/js/output.fb0d628bed29.js:71
 msgid "Main Guest"
@@ -107,17 +107,18 @@ msgid ""
 msgstr "请调整图像以确保所有信息都在框中。"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:185
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:185
 msgid "Zoom"
 msgstr "放大"
 
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:119
-#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:78
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:86
 #: static/CACHE/js/output.fb0d628bed29.js:73
 msgid "Select Date"
 msgstr "选择日期"
 
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:120
-#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:79
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:87
 #: static/CACHE/js/output.fb0d628bed29.js:73
 #: static/admin/js/admin/DateTimeShortcuts.js:180
 #: static/admin/js/admin/DateTimeShortcuts.js:340
@@ -125,7 +126,7 @@ msgid "Cancel"
 msgstr "取消"
 
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:121
-#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:80
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:88
 #: static/CACHE/js/output.fb0d628bed29.js:73
 msgid "Confirm"
 msgstr "确认"
