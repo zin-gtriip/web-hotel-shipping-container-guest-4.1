@@ -50,11 +50,7 @@
                 {% if not request.session.app %}
                     <div class="row" id="footer-description">
                         <div class="col-lg-12 text-secondary text-center">
-                            {% blocktrans %}
-                                Please proceed to the front office to collect your key.
-                                Or alternatively, download our mobile app so you can
-                                head straight to your room using the digital key.
-                            {% endblocktrans %}
+                            {% blocktrans %}Please proceed to the front office to collect your key.Or alternatively, download our mobile app so you canhead straight to your room using the digital key.{% endblocktrans %}
                         </div>
                     </div>
                     {% if request.session.pre_arrival.bookings %}

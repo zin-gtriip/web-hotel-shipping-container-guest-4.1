@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-23 12:55+0800\n"
+"POT-Creation-Date: 2020-10-23 15:01+0800\n"
 "PO-Revision-Date: 2020-09-30 18:11+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -178,7 +178,7 @@ msgstr "The following information is required for verification."
 #: check_out/templates/check_out/mobile/login.html:43
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:337
 #: pre_arrival/templates/pre_arrival/desktop/login.html:62
-#: pre_arrival/templates/pre_arrival/desktop/other_info.html:120
+#: pre_arrival/templates/pre_arrival/desktop/other_info.html:117
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:85
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:55
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:340
@@ -199,7 +199,7 @@ msgstr "Next"
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:372
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:391
 #: pre_arrival/templates/pre_arrival/desktop/login.html:78
-#: pre_arrival/templates/pre_arrival/desktop/other_info.html:134
+#: pre_arrival/templates/pre_arrival/desktop/other_info.html:131
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:69
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:356
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:375
@@ -1676,8 +1676,8 @@ msgid "Your session is expired"
 msgstr "Please complete the registration before time expires."
 
 #: pre_arrival/templates/pre_arrival/base.html:80
-#: pre_arrival/templates/pre_arrival/desktop/complete.html:95
-#: pre_arrival/templates/pre_arrival/desktop/complete.html:97
+#: pre_arrival/templates/pre_arrival/desktop/complete.html:91
+#: pre_arrival/templates/pre_arrival/desktop/complete.html:93
 msgid "Ok"
 msgstr "Ok"
 
@@ -1704,25 +1704,16 @@ msgid "Check-out Date"
 msgstr "Check-out Date"
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:53
-#, fuzzy
-#| msgid ""
-#| "Check-In via our mobile app and head straight to your room using the "
-#| "digital key."
 msgid ""
-"\n"
-"                                Please proceed to the front office to "
-"collect your key.\n"
-"                                Or alternatively, download our mobile app so "
-"you can\n"
-"                                head straight to your room using the digital "
-"key.\n"
-"                            "
+"Please proceed to the front office to collect your key.Or alternatively, "
+"download our mobile app so you canhead straight to your room using the "
+"digital key."
 msgstr ""
 "Check-In via our mobile app and head straight to your room using the mobile "
 "key."
 
+#: pre_arrival/templates/pre_arrival/desktop/complete.html:68
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:72
-#: pre_arrival/templates/pre_arrival/desktop/complete.html:76
 msgid "Get The App"
 msgstr ""
 
@@ -1799,16 +1790,13 @@ msgstr "I would like to receive exclusive offers, and news via email."
 #: pre_arrival/templates/pre_arrival/desktop/other_info.html:109
 #, python-format
 msgid ""
-"\n"
-"                                We are commited to protecting your privacy. "
-"By proceeding, you agree to our <a href=\"%(tnc_link)s\" target=\"_blank\" "
-"class=\"new-window-link\">Terms & Conditions</a>.\n"
-"                                View our Global Privacy Statement <a href="
-"\"%(privacy_link)s\" target=\"_blank\" class=\"new-window-link\">here</a>.\n"
-"                            "
+"We are commited to protecting your privacy. By proceeding, you agree to our "
+"<a href=\"%(tnc_link)s\" target=\"_blank\" class=\"new-window-link\">Terms & "
+"Conditions</a>.View our Global Privacy Statement <a href=\"%(privacy_link)s"
+"\" target=\"_blank\" class=\"new-window-link\">here</a>."
 msgstr ""
 
-#: pre_arrival/templates/pre_arrival/desktop/other_info.html:140
+#: pre_arrival/templates/pre_arrival/desktop/other_info.html:137
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:114
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:75
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:108
@@ -1871,6 +1859,15 @@ msgstr "Please select your room to Check-In"
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:22
 msgid "We've found the following room(s) under your reservation."
 msgstr "The following room(s) are found under your reservation."
+
+#: pre_arrival/templates/pre_arrival/email/complete.html:257
+msgid ""
+" Please proceed to the front office to collect your key. Or alternatively, "
+"download our mobile app so you can head straight to your room using the "
+"digital key."
+msgstr ""
+"Check-In via our mobile app and head straight to your room using the mobile "
+"key."
 
 #: pre_arrival/templates/pre_arrival/mobile/login.html:32
 msgid "Please enter your<br>Last Name"
