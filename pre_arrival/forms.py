@@ -272,10 +272,11 @@ class PreArrivalDetailForm(forms.Form):
                 'dob': form.cleaned_data.get('birth_date').strftime('%Y-%m-%d'),
             })
 
+        # update with session `guestList` data, in case there are other fields in session `guestList`
         updated_guests = []
         for guest in guests:
-            reservation_guest = next((guest_temp for guest_temp in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest_temp.get('guestID', '') == guest.get('guestID', '')), {})
-            if reservation_guest:
+            if guest.get('guestID', '0') != '0': # update prefilled guest only
+                reservation_guest = next((guest_temp for guest_temp in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest_temp.get('guestID', '') == guest.get('guestID', '')), {})
                 reservation_guest.update(guest)
                 updated_guests.append(reservation_guest)
             else:
@@ -318,6 +319,7 @@ class PreArrivalDetailExtraForm(forms.Form):
             self._errors['birth_date'] = self.error_class([_('Enter the required information')])
         return self.cleaned_data
 
+
 class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
     
     def __init__(self, request, *args, **kwargs):
@@ -355,6 +357,8 @@ class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
         if adult > max_adult:
             self._non_form_errors = self.error_class([_('You have exceeded the number of adults.')])
 
+
+# initiate formset, for one2many field
 PreArrivalDetailExtraFormSet = forms.formset_factory(PreArrivalDetailExtraForm, formset=PreArrivalDetailExtraBaseFormSet)
 
 
