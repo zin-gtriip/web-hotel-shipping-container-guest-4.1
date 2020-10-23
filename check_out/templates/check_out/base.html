@@ -10,9 +10,11 @@
 {% endblock static_css %}
 
 {% block progress_page %}
-    <div class="progress ">
-        <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
+    {% if not request.session.app %}
+        <div class="progress ">
+            <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+    {% endif %}
 {% endblock progress_page %}
 
 {% block header_right %}
