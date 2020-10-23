@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-22 22:12+0800\n"
+"POT-Creation-Date: 2020-10-23 12:18+0800\n"
 "PO-Revision-Date: 2020-09-30 18:11+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -32,7 +32,7 @@ msgstr "Room Number"
 #: pre_arrival/forms.py:240 pre_arrival/forms.py:242 pre_arrival/forms.py:244
 #: pre_arrival/forms.py:246 pre_arrival/forms.py:248 pre_arrival/forms.py:309
 #: pre_arrival/forms.py:311 pre_arrival/forms.py:313 pre_arrival/forms.py:315
-#: pre_arrival/forms.py:317 pre_arrival/forms.py:384 pre_arrival/forms.py:386
+#: pre_arrival/forms.py:317 pre_arrival/forms.py:383 pre_arrival/forms.py:385
 msgid "Enter the required information"
 msgstr "Enter the required information."
 
@@ -40,8 +40,8 @@ msgstr "Enter the required information."
 msgid "We were unable to retrieve your reservation from our database."
 msgstr "Reservation is not found."
 
-#: check_out/forms.py:82 pre_arrival/forms.py:149 pre_arrival/forms.py:438
-#: pre_arrival_all_passport/forms.py:33
+#: check_out/forms.py:82 pre_arrival/forms.py:149 pre_arrival/forms.py:437
+#: pre_arrival_all_passport/forms.py:51
 msgid "Unknown error"
 msgstr "Unknown error"
 
@@ -185,10 +185,9 @@ msgstr "The following information is required for verification."
 #: pre_arrival/templates/pre_arrival/mobile/login.html:70
 #: pre_arrival/templates/pre_arrival/mobile/login.html:73
 #: pre_arrival/templates/pre_arrival/mobile/login.html:76
-#: pre_arrival/templates/pre_arrival/mobile/passport.html:52
-#: pre_arrival/templates/pre_arrival/mobile/passport.html:59
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:338
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:341
+#: pre_arrival/templates/pre_arrival/mobile/passport.html:78
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:280
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:282
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:85
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:67
 msgid "Next"
@@ -206,12 +205,12 @@ msgstr "Next"
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:375
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:394
 #: pre_arrival/templates/pre_arrival/mobile/login.html:91
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:354
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:373
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:392
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:357
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:376
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:395
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:296
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:315
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:334
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:298
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:317
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:336
 msgid "Invalid Input"
 msgstr "Invalid Input"
 
@@ -1535,8 +1534,6 @@ msgstr "Arrival Date"
 #: pre_arrival/templates/pre_arrival/desktop/login.html:43
 #: pre_arrival/templates/pre_arrival/email/complete.html:224
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:170
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:169
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:170
 msgid "Last Name"
 msgstr "Last Name"
 
@@ -1556,7 +1553,7 @@ msgstr ""
 msgid "No reservation selected."
 msgstr "No reservation selected."
 
-#: pre_arrival/forms.py:133 pre_arrival_all_passport/forms.py:23
+#: pre_arrival/forms.py:133 pre_arrival_all_passport/forms.py:41
 msgid "No image file selected."
 msgstr "No image file selected."
 
@@ -1567,7 +1564,7 @@ msgid ""
 msgstr ""
 "You must be at least %(age)s years of age to proceed with your registration."
 
-#: pre_arrival/forms.py:147 pre_arrival_all_passport/forms.py:31
+#: pre_arrival/forms.py:147 pre_arrival_all_passport/forms.py:49
 msgid ""
 "Your passport has expired, please capture / upload a valid passport photo to "
 "proceed"
@@ -1576,24 +1573,18 @@ msgstr "The passport has expired, please use a valid passport."
 #: pre_arrival/forms.py:194 pre_arrival/forms.py:289
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:161
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:162
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:161
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:162
 msgid "First Name"
 msgstr "First Name"
 
 #: pre_arrival/forms.py:196 pre_arrival/forms.py:292
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:177
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:178
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:177
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:178
 msgid "Passport Number"
 msgstr "Passport Number"
 
 #: pre_arrival/forms.py:197
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:187
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:188
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:187
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:188
 msgid "[Select Country]"
 msgstr "[Select Country]"
 
@@ -1605,19 +1596,15 @@ msgstr "[Select Country]"
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:186
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:282
 #: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:106
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:185
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:280
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:222
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:106
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:186
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:282
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:223
 msgid "Nationality"
 msgstr "Nationality"
 
 #: pre_arrival/forms.py:198 pre_arrival/forms.py:293
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:198
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:199
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:198
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:199
 msgid "Date of Birth"
 msgstr "Date of Birth"
 
@@ -1630,29 +1617,29 @@ msgstr "Main guest must be at least %(age)s years old."
 msgid "You have exceeded the number of adults."
 msgstr "You have exceeded the number of adults."
 
-#: pre_arrival/forms.py:362
+#: pre_arrival/forms.py:361
 #: pre_arrival/templates/pre_arrival/desktop/other_info.html:35
 msgid "Time of Arrival"
 msgstr "Time of Arrival"
 
-#: pre_arrival/forms.py:363
+#: pre_arrival/forms.py:362
 msgid "Special Requests"
 msgstr "Special Requests"
 
-#: pre_arrival/forms.py:364
+#: pre_arrival/forms.py:363
 msgid "Email"
 msgstr "Email"
 
-#: pre_arrival/forms.py:365
+#: pre_arrival/forms.py:364
 msgid "Is Subscribe"
 msgstr "Subscribe"
 
-#: pre_arrival/forms.py:419
+#: pre_arrival/forms.py:418
 #, python-format
 msgid "Registration Complete - %(hotel_name)s - %(reservation_no)s"
 msgstr ""
 
-#: pre_arrival/forms.py:450
+#: pre_arrival/forms.py:449
 msgid "There is no reservation can be done for pre-arrival"
 msgstr ""
 
@@ -1753,17 +1740,10 @@ msgstr "Please enter the personal particulars below."
 msgid "Main Guest"
 msgstr "Main Guest"
 
-#: pre_arrival/templates/pre_arrival/desktop/detail.html:211
-#: pre_arrival/templates/pre_arrival/mobile/detail.html:213
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:211
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:213
-msgid "Guest"
-msgstr "Guest"
-
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:332
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:335
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:333
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:336
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:275
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:277
 msgid "Add Guest"
 msgstr "Add Guest"
 
@@ -1773,12 +1753,12 @@ msgstr "Add Guest"
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:362
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:381
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:400
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:360
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:379
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:398
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:363
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:382
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:401
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:302
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:321
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:340
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:304
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:323
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:342
 msgid "Fix"
 msgstr "Fix"
 
@@ -1809,10 +1789,22 @@ msgstr "Please let us know if you have any check-in preferences."
 msgid "I would like to receive exclusive offers, and news via email."
 msgstr "I would like to receive exclusive offers, and news via email."
 
+#: pre_arrival/templates/pre_arrival/desktop/other_info.html:109
+#, python-format
+msgid ""
+"\n"
+"                                We are commited to protecting your privacy. "
+"By proceeding, you agree to our <a href=\"%(tnc_link)s\" target=\"_blank\" "
+"class=\"new-window-link\">Terms & Conditions</a>.\n"
+"                                View our Global Privacy Statement <a href="
+"\"%(privacy_link)s\" target=\"_blank\" class=\"new-window-link\">here</a>.\n"
+"                            "
+msgstr ""
+
 #: pre_arrival/templates/pre_arrival/desktop/other_info.html:140
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:114
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:75
-#: pre_arrival/templates/pre_arrival/mobile/passport.html:97
+#: pre_arrival/templates/pre_arrival/mobile/passport.html:108
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:106
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:104
 msgid "Close"
@@ -1842,6 +1834,7 @@ msgid "Capture"
 msgstr "Capture"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:68
+#: pre_arrival/templates/pre_arrival/mobile/passport.html:62
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:68
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:52
 msgid "Take Photo"
@@ -1858,7 +1851,7 @@ msgid "Reupload"
 msgstr "Reupload"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:108
-#: pre_arrival/templates/pre_arrival/mobile/passport.html:91
+#: pre_arrival/templates/pre_arrival/mobile/passport.html:102
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:100
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:98
 msgid "Invalid Image"
@@ -1917,10 +1910,33 @@ msgstr ""
 "An image of your passport is required for registration. Use the camera to "
 "capture or choose an existing image from your device."
 
-#: pre_arrival/templates/pre_arrival/mobile/passport.html:65
+#: pre_arrival/templates/pre_arrival/mobile/passport.html:53
+msgid "NEXT"
+msgstr ""
+
+#: pre_arrival/templates/pre_arrival/mobile/passport.html:70
+#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:60
+msgid "Upload Photo"
+msgstr "Upload Photo"
+
+#: pre_arrival/templates/pre_arrival/mobile/passport.html:84
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:73
 msgid "Retake"
 msgstr "Retake"
+
+#: pre_arrival_all_passport/forms.py:19
+#, python-format
+msgid ""
+"Please provide the passport photo for the additional guest:\n"
+"\n"
+"Guest %i\n"
+"\n"
+msgstr ""
+
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:153
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:154
+msgid "Guest"
+msgstr "Guest"
 
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:27
 #, fuzzy
@@ -1945,10 +1961,6 @@ msgid ""
 msgstr ""
 "An image of your passport is required for registration. Use the camera to "
 "capture or choose an existing image from your device."
-
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:60
-msgid "Upload Photo"
-msgstr "Upload Photo"
 
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:81
 msgid "Do it manually"
