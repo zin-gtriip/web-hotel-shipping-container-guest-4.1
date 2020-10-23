@@ -281,6 +281,7 @@ class PreArrivalDetailForm(forms.Form):
             else:
                 updated_guests.append(guest)
         self.request.session['pre_arrival']['reservation']['guestsList'] = updated_guests # replace with whole new list
+        self.request.session['pre_arrival'].pop('ocr', None) # remove ocr after save detail
         self.request.session['pre_arrival']['detail'] = True # variable to prevent page jump
 
 
