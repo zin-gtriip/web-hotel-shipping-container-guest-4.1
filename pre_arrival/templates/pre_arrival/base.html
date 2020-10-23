@@ -22,7 +22,7 @@
 {% endblock header_right %}
 
 {% block header_left %}
-    {% if request.path not in '/pre_arrival/login/,/pre_arrival/complete/'%}
+    {% if request.path in '/pre_arrival/reservation/,/pre_arrival/passport/,/pre_arrival/detail/,/pre_arrival/other_info/' %}
         <div class="timer-text text-secondary ">
             <span class="timer-tick"></span>
         </div>
@@ -31,7 +31,7 @@
 
 {% block wrapper %}
     {{ block.super }}
-    {% if request.path not in '/pre_arrival/login/,/pre_arrival/complete/' %}
+    {% if request.path in '/pre_arrival/reservation/,/pre_arrival/passport/,/pre_arrival/detail/,/pre_arrival/other_info/' %}
         <!-- Timer Extension Modal -->
         <div class="modal fade" id="timer-extension-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-sm">
