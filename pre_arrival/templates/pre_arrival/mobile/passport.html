@@ -46,14 +46,33 @@
         </div>
         <div class="row page-footer">
             <div class="col-12">
-                <div class="row default-container">
-                    <div class="col-12 mb-3 d-flex justify-content-center">
-                        <label class="btn btn-primary btn-round text-capitalize">
-                            {% trans 'Next' %}
-                            <input type="file" class="file-upload" accept="image/*" hidden>
-                        </label>
+                {% if request.session.app %}
+                    <div class="row default-container">
+                        <div class="col-12 mb-3 d-flex justify-content-center">
+                            <label class="btn btn-primary btn-round">
+                                {% trans 'NEXT' %}
+                                <input type="file" class="file-capture" accept="image/*" capture="camera" hidden>
+                            </label>
+                        </div>
                     </div>
-                </div>
+                {% else %}
+                    <div class="row default-container">
+                        <div class="col-12 mb-3 d-flex justify-content-center">
+                            <label class="btn btn-primary btn-round text-capitalize">
+                                {% trans 'Take Photo' %}
+                                <input type="file" class="file-capture" accept="image/*" capture="camera" hidden>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row default-container">
+                        <div class="col-12 mb-3 d-flex justify-content-center">
+                            <label class="btn btn-outline-primary btn-round text-capitalize">
+                                {% trans 'Upload Photo' %}
+                                <input type="file" class="file-upload" accept="image/*" hidden>
+                            </label>
+                        </div>
+                    </div>
+                {% endif %}
                 <div class="row preview-container" style="display: none;">
                     <div class="col-12 mb-3 d-flex justify-content-center">
                         <button type="button" class="btn btn-primary" id="btn-next">{% trans 'Next' %}</button>
@@ -67,13 +86,6 @@
                         </label>
                     </div>
                 </div>
-                {% comment %}
-                <div class="row">
-                    <div class="col-12 d-flex justify-content-center">
-                        <button type="button" class="btn btn-link text-primary text-capitalize text-14" id="btn-skip">{% trans "Do it manually" %}</button>
-                    </div>
-                </div>
-                {% endcomment %}
             </div>
         </div>
     </form>
