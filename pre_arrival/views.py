@@ -208,4 +208,5 @@ class PreArrivalCompleteView(ParameterRequiredMixin, RequestFormKwargsMixin, Pro
         context['reservation'] = reservation
         context['ios_url'] = settings.IOS_URL
         context['android_url'] = settings.ANDROID_URL
+        context['another_url'] = settings.ANOTHER_URL
         return context

@@ -50,7 +50,7 @@
                 {% if not request.session.app %}
                     <div class="row" id="footer-description">
                         <div class="col-lg-12 text-secondary text-center">
-                            {% blocktrans %}Please proceed to the front office to collect your key.Or alternatively, download our mobile app so you canhead straight to your room using the digital key.{% endblocktrans %}
+                            {% blocktrans %}Please proceed to the front office to collect your key.Or alternatively, download our mobile app so you can head straight to your room using the digital key.{% endblocktrans %}
                         </div>
                     </div>
                     {% if request.session.pre_arrival.bookings %}
@@ -67,8 +67,12 @@
                                     <a type="button" class="btn btn-primary btn-round m-0" href="{{ ios_url }}">
                                         <img class="img-get-key" src="{% static 'img/key.svg' %}">{% trans 'Get The App' %}
                                     </a>
-                                {% else %}
+                                {% elif request.user_agent.os.family == 'Android' %}
                                     <a type="button" class="btn btn-primary btn-round m-0" href="{{ android_url }}">
+                                        <img class="img-get-key" src="{% static 'img/key.svg' %}">{% trans 'Get The App' %}
+                                    </a>
+                                {% else %}
+                                    <a type="button" class="btn btn-primary btn-round m-0" href="{{ another_url }}">
                                         <img class="img-get-key" src="{% static 'img/key.svg' %}">{% trans 'Get The App' %}
                                     </a>
                                 {% endif %}
@@ -87,11 +91,7 @@
                 {% else %}
                     <div class="row mt-5">
                         <div class="col-lg-12 d-flex justify-content-center">
-                            {% if request.user_agent.os.family == 'iOS' %}
-                                    <a type="button" class="btn btn-primary" id="btn-ok" href="{{ ios_url }}">{% trans 'Ok'%}</a>
-                                {% else %}
-                                    <a type="button" class="btn btn-primary" id="btn-ok" href="{{ android_url }}">{% trans 'Ok'%}</a>
-                            {% endif %}
+                            <button type="button" class="btn btn-primary" id="btn-ok">{% trans 'Ok' %}</button>
                         </div>
                     </div>
                 {% endif %}
