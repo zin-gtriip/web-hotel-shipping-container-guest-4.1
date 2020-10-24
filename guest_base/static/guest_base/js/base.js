@@ -1,3 +1,21 @@
+// loading
+// add loading when page is loading
+$('body').addClass('loading');
+// remove loading when page is loaded
+$(window).on('load', function() {
+	$('body').removeClass('loading');
+});
+// add loading when form submit
+$('form').submit(function() {
+	$('body').addClass('loading');
+});
+// add loading when ajax
+$(document).on({
+    ajaxStart: function() { $('body').addClass('loading'); },
+    ajaxStop: function() { $('body').removeClass('loading'); }
+});
+
+
 // submit language form 
 $('#form-set-language select#language').change(function() {
     $('#form-set-language').submit();
@@ -56,14 +74,3 @@ function toastNotify(msg, bgColor='bg-danger', textColor='text-white') {
 	$('.toast-wrapper .toast-top-left').append(element);
     $('.toast').toast('show');
 }
-
-
-// add loading when form submit
-$('form').submit(function() {
-	$('body').addClass('loading');
-});
-// add loading when ajax
-$(document).on({
-    ajaxStart: function() { $('body').addClass('loading'); },
-    ajaxStop: function() { $('body').removeClass('loading'); }
-});
