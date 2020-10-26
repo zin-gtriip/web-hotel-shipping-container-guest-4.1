@@ -14,14 +14,14 @@
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-12 text-center">
-                <span id="header-reservation-no" class="header-description active">{% trans 'Please enter your Reservation Number' %}</span>
-                <span id="header-room-no" class="header-description">{% trans 'Please enter your Room Number' %}</span>
+                <span id="header-reservation-no" class="header-description active">{% blocktrans %}Please enter your<br>Reservation Number{% endblocktrans %}</span>
+                <span id="header-room-no" class="header-description">{% blocktrans %}Please enter your<br>Room Number{% endblocktrans %}</span>
             </div>
         </div>
         <div class="row page-subheader">
             <div class="col-12 px-0 text-center text-secondary">
-                <span id="subheader-reservation-no" class="subheader-description active">{% trans 'To verify your reservation, please provide your reservation number.' %}</span>
-                <span id="subheader-room-no" class="subheader-description">{% trans 'The following information is required to retrieve your check-in status, and messages.' %}</span>
+                <span id="subheader-reservation-no" class="subheader-description active">{% blocktrans %}To verify your reservation, please provide your<br>reservation number.{% endblocktrans %}</span>
+                <span id="subheader-room-no" class="subheader-description">{% blocktrans %}The following information is required for<br>verification.{% endblocktrans %}</span>
             </div>
         </div>
         <div class="row page-content">
