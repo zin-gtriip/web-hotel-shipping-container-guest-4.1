@@ -24,16 +24,16 @@
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-lg-12 px-0 text-center">
-                {% trans 'Upload a photo of Passport' %}
+                {% blocktrans %}Upload a photo<br>of Passport{% endblocktrans %}
             </div>
         </div>
         <div class="row page-subheader">
             <div class="col-lg-12 px-0 text-center text-secondary">
                 <div class="default-container">
-                    {% trans 'Please make sure the photo is clear and all information is within the box.' %}
+                    {% blocktrans %}Please make sure the photo is clear and all<br>information is within the box.{% endblocktrans %}
                 </div>
                 <div class="webcam-container" style="display: none;">
-                    {% trans 'Please make sure that all of the passport information is within the box.' %}
+                    {% blocktrans %}Please make sure that all of the passport information<br>is within the box.{% endblocktrans %}
                 </div>
             </div>
         </div>

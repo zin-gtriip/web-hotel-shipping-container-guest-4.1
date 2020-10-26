@@ -180,7 +180,7 @@ function dataURLtoBlob(dataURL) {
 
 // initiate croppie components, ie: moving timer, add rotate button, etc
 function initCroppieComponents() {
-    var $previewText = $('<div></div>').addClass('text-white text-center').attr('id', 'text-preview').html(gettext('Please adjust the image to make sure<br>that all information is within the box.'))
+    var $previewText = $('<div></div>').addClass('text-white').attr('id', 'text-preview').html(gettext('Please adjust the image to make sure<br>that all information is within the box.'))
         , $zoomWrap
         , $zoomWord = $('<span></span>').addClass('text-white').text('Zoom')
         , $iconRotate = $('<i></i>').addClass('fas fa-undo-alt').attr('aria-hidden', true)

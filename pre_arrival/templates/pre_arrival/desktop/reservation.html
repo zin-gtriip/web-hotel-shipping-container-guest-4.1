@@ -14,12 +14,12 @@
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-12 px-0 text-center">
-                {% trans 'Please select your room to Check-In' %}
+                {% blocktrans %}Please select your<br>room to Check-In{% endblocktrans %}
             </div>
         </div>
         <div class="row page-subheader">
             <div class="col-12 px-0 text-center text-secondary">
-                {% trans "We've found the following room(s) under your reservation." %}
+                {% blocktrans %}The following room(s) are found<br>under your reservation.{% endblocktrans %}
             </div>
         </div>
         <div class="row page-content">

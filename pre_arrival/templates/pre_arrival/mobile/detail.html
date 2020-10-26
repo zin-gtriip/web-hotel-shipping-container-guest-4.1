@@ -26,12 +26,12 @@
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-12 px-0 text-center">
-                {% trans 'Enter Guest Details' %}
+                {% blocktrans %}Enter Guest Details{% endblocktrans %}
             </div>
         </div>
         <div class="row page-subheader">
             <div class="col-12 px-0 text-center text-secondary">
-                {% trans "Please enter the personal particulars and check-in information below." %}
+                {% blocktrans %}Please enter the personal particulars below.{% endblocktrans %}
             </div>
         </div>
         <div class="row page-content">
