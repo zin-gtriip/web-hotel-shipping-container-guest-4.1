@@ -36,7 +36,7 @@ $('#btn-add-extra').click(function() {
     // $newLastName.val('TEST');
     // nationality
     $newNationality.siblings('label').attr('for', 'id_form-'+ index +'-nationality');
-    $newNationality.attr('id', 'id_form-'+ index +'-nationality').attr('name', 'form-'+ index +'-nationality').attr('required', true).val('SG');
+    $newNationality.attr('id', 'id_form-'+ index +'-nationality').attr('name', 'form-'+ index +'-nationality').attr('required', true);
     // passport no
     $newPassportNo.siblings('label').attr('for', 'id_form-'+ index +'-passport_no');
     $newPassportNo.attr('id', 'id_form-'+ index +'-passport_no').attr('name', 'form-'+ index +'-passport_no').attr('required', true);

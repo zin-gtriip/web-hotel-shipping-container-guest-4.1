@@ -8,20 +8,78 @@ from guest_base                 import gateways
 from pre_arrival                import utilities, forms as PreArrivalForms
 
 
+class PreArrivalDetailForm(PreArrivalForms.PreArrivalDetailForm):
+
+    def save(self, extra):
+        guests = [{
+            'guestID': self.cleaned_data.get('guest_id'),
+            'firstName': self.cleaned_data.get('first_name'),
+            'lastName': self.cleaned_data.get('last_name'),
+            'nationality': self.cleaned_data.get('nationality'),
+            'passportNo': self.cleaned_data.get('passport_no'),
+            'dob': self.cleaned_data.get('birth_date').strftime('%Y-%m-%d'),
+        }]
+        for form in extra.forms:
+            guests.append({
+                'guestID': form.cleaned_data.get('guest_id'),
+                'firstName': form.cleaned_data.get('first_name'),
+                'lastName': form.cleaned_data.get('last_name'),
+                'nationality': form.cleaned_data.get('nationality'),
+                'passportNo': form.cleaned_data.get('passport_no'),
+                'dob': form.cleaned_data.get('birth_date').strftime('%Y-%m-%d'),
+                'passportImage': form.cleaned_data.get('passport_file'),
+            })
+
+        # update with session `guestList` data, in case there are other fields in session `guestList`
+        updated_guests = []
+        for guest in guests:
+            if guest.get('guestID', '0') != '0': # update prefilled guest only
+                reservation_guest = next((guest_temp for guest_temp in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest_temp.get('guestID', '') == guest.get('guestID', '')), {})
+                reservation_guest.update(guest)
+                updated_guests.append(reservation_guest)
+            else:
+                updated_guests.append(guest)
+        self.request.session['pre_arrival']['reservation']['guestsList'] = updated_guests # replace with whole new list
+        self.request.session['pre_arrival'].pop('ocr', None) # remove ocr after save detail
+        self.request.session['pre_arrival']['detail'] = True # variable to prevent page jump
+
+
+class PreArrivalDetailExtraForm(PreArrivalForms.PreArrivalDetailExtraForm):
+    passport_file = forms.CharField(widget=forms.HiddenInput(), required=False)
+
+
 class PreArrivalDetailExtraBaseFormSet(PreArrivalForms.PreArrivalDetailExtraBaseFormSet):
+
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(request, *args, **kwargs)
+        # populate additional guests
+        prefilled = []
+        for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []):
+            if guest.get('isMainGuest', '0') == '0':
+                prefilled.append({
+                    'guest_id': guest.get('guestID', ''),
+                    'first_name': guest.get('firstName', ''),
+                    'last_name': guest.get('lastName', ''),
+                    'nationality': guest.get('nationality', ''),
+                    'passport_no': guest.get('passportNo', ''),
+                    'birth_date': guest.get('dob', ''),
+                    'passport_file': guest.get('passportImage', ''),
+                })
+        self.initial = prefilled
 
     def clean(self):
         for index, form in enumerate(self.forms):
             guest_id = form.cleaned_data.get('guest_id')
-            # validate for pre-filled guest only
-            prefilled_guest = next((guest for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('guestID', '') == guest_id), {})
-            if prefilled_guest and not prefilled_guest.get('passportImage', ''):
+            passport_file = form.cleaned_data.get('passport_file')
+            if guest_id and not passport_file: # validate for pre-filled guest only
                 error_message = _('Please provide the passport photo for the additional guest:\n\nGuest %i\n\n' % (index + 2))
                 hidden_input = format_html('<input type="hidden" id="guest-id" value="{}">', guest_id)
                 self._non_form_errors = self.error_class([format_html(error_message + hidden_input)])
         super().clean()
 
-PreArrivalDetailExtraFormSet = forms.formset_factory(PreArrivalForms.PreArrivalDetailExtraForm, formset=PreArrivalDetailExtraBaseFormSet)
+
+# initiate formset, for one2many field
+PreArrivalDetailExtraFormSet = forms.formset_factory(PreArrivalDetailExtraForm, formset=PreArrivalDetailExtraBaseFormSet)
 
 
 class PreArrivalAllPassportExtraPassportForm(forms.Form):

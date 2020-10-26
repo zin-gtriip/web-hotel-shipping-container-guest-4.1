@@ -1,3 +1,21 @@
+// loading
+// add loading when page is loading
+$('body').addClass('loading');
+// remove loading when page is loaded
+$(window).on('load', function() {
+	$('body').removeClass('loading');
+});
+// add loading when form submit
+$('form').submit(function() {
+	$('body').addClass('loading');
+});
+// add loading when ajax
+$(document).on({
+    ajaxStart: function() { $('body').addClass('loading'); },
+    ajaxStop: function() { $('body').removeClass('loading'); }
+});
+
+
 // submit language form 
 $('#form-set-language select#language').change(function() {
     $('#form-set-language').submit();
@@ -19,7 +37,7 @@ $('.modal.auto-show').each(function() {
 // initiate and show alert modal
 function modalAlert(title='Error', body='Error', btnDismissText='Close') {
 	var modal =
-		'<div class="modal fade auto-show" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">' +
+		'<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">' +
             '<div class="modal-dialog modal-dialog-centered modal-sm">'+
                 '<div class="modal-content">'+
                     '<div class="modal-header bg-primary text-white">'+
@@ -34,7 +52,7 @@ function modalAlert(title='Error', body='Error', btnDismissText='Close') {
 		'</div>';
 
 	$('.wrapper').append(modal);
-	$('.modal').modal('show');
+	$('.modal:last').modal('show').addClass('shown');
 }
 
 
@@ -56,14 +74,3 @@ function toastNotify(msg, bgColor='bg-danger', textColor='text-white') {
 	$('.toast-wrapper .toast-top-left').append(element);
     $('.toast').toast('show');
 }
-
-
-// add loading when form submit
-$('form').submit(function() {
-	$('body').addClass('loading');
-});
-// add loading when ajax
-$(document).on({
-    ajaxStart: function() { $('body').addClass('loading'); },
-    ajaxStop: function() { $('body').removeClass('loading'); }
-});
