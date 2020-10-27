@@ -228,9 +228,9 @@ CURRENCY_SYMBOL     = 'S$'
 TNC_LINK            = 'https://www.gtriip.com'
 PRIVACY_LINK        = 'https://www.gtriip.com'
 HOST_URL            = 'https://hoteltemplateqa.gtriip.com'
-ANDROID_URL         = 'http://play.google.com/store/apps'
-IOS_URL             = 'http://itunes.apple.com'
-ANOTHER_URL         = 'https://www.google.com'
+APP_IOS_URL         = 'http://itunes.apple.com'
+APP_ANDROID_URL     = 'http://play.google.com/store/apps'
+APP_DIRECT_URL      = 'https://www.google.com'
 # link to access static images, configured on webserver
 STATIC_IMAGE_URL    = '/static/img'
 # default django variable for date format

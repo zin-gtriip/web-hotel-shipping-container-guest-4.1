@@ -207,7 +207,7 @@ class PreArrivalCompleteView(ParameterRequiredMixin, RequestFormKwargsMixin, Pro
         reservation['roomName'] = room.get('room_name', '')
         reservation['roomImage'] = room.get('room_image', '')
         context['reservation'] = reservation
-        context['ios_url'] = settings.IOS_URL
-        context['android_url'] = settings.ANDROID_URL
-        context['another_url'] = settings.ANOTHER_URL
+        context['ios_url'] = settings.APP_IOS_URL
+        context['android_url'] = settings.APP_ANDROID_URL
+        context['direct_url'] = settings.APP_DIRECT_URL
         return context
