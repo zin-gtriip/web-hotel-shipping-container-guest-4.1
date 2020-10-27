@@ -69,7 +69,8 @@ class PreArrivalTimerExtensionView(JSONResponseMixin, RequestFormKwargsMixin, Fo
 
     def form_valid(self, form):
         form.save()
-        self.json_data = {'pre_arrival_extended_expiry_date': self.request.session['pre_arrival'].get('extended_expiry_date', '')}
+        self.json_data['pre_arrival_extended_expiry_date'] = self.request.session['pre_arrival'].get('extended_expiry_date', '')
+        self.json_data['pre_arrival_extended_expiry_duration'] = self.request.session['pre_arrival'].pop('extended_expiry_duration', '')
         self.json_status = 'success'
         return self.render_to_json_response(self.get_context_data())
 

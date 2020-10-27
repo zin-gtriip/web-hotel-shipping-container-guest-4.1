@@ -61,6 +61,7 @@ class PreArrivalLoginForm(forms.Form):
         expiry_duration = config.get('prearrival_session_duration_minutes', settings.PRE_ARRIVAL_AGE)
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['pre_arrival']['initial_expiry_date'] = initial_expiry_date
+        self.request.session['pre_arrival']['initial_expiry_duration'] = expiry_duration # will be popped after pass to templates
         if 'preload' in self.request.session['pre_arrival'] and 'auto_login' in self.request.session['pre_arrival']['preload']:
             self.request.session['pre_arrival']['preload']['auto_login'] = 0 # set auto login to False
 
@@ -90,6 +91,7 @@ class PreArrivalTimerExtensionForm(forms.Form):
         extend_duration = config.get('prearrival_session_extend_duration_minutes', settings.PRE_ARRIVAL_AGE_EXTEND)
         extended_expiry_date = (initial_expiry_date + datetime.timedelta(minutes=extend_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['pre_arrival']['extended_expiry_date'] = extended_expiry_date
+        self.request.session['pre_arrival']['extended_expiry_duration'] = extend_duration # will be popped after pass to templates
 
 
 class PreArrivalReservationForm(forms.Form):
