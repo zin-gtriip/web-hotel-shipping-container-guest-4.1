@@ -418,8 +418,8 @@ class PreArrivalOtherInfoForm(forms.Form):
         context['roomImage'] = room.get('room_image', '')
         context['hotel_name'] = settings.HOTEL_NAME
         context['static_url'] = settings.HOST_URL + settings.STATIC_IMAGE_URL
-        context['ios_url'] = settings.IOS_URL
-        context['android_url'] = settings.ANDROID_URL
+        context['ios_url'] = settings.APP_IOS_URL
+        context['android_url'] = settings.APP_ANDROID_URL
         data = {}
         template = os.path.join(settings.BASE_DIR, 'pre_arrival', 'templates', 'pre_arrival', 'email', 'complete.html')
         data['title'] = _('Registration Complete - %(hotel_name)s - %(reservation_no)s') % {'hotel_name': settings.HOTEL_NAME, 'reservation_no': context.get('reservationNo', '')}
