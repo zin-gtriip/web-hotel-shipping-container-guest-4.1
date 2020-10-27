@@ -24,12 +24,12 @@
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-12 px-0 text-center">
-                {% trans 'Prepare your Passport for photo verification' %}
+                {% blocktrans %}Submit Passport<br>image{% endblocktrans %}
             </div>
         </div>
         <div class="row page-subheader">
             <div class="col-12 px-0 text-center text-secondary">
-                {% trans 'We need a photograph of your passport, or alternatively you may upload the image file.' %}
+                {% blocktrans %}An image of your passport is required for<br>registration. Use the camera to capture or<br>choose an existing image from your device.{% endblocktrans %}
             </div>
         </div>
         <div class="row page-content">

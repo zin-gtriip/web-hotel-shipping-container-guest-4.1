@@ -19,12 +19,12 @@
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-lg-12 px-0 text-center">
-                {% trans 'Additional Information' %}
+                {% blocktrans %}Additional Information{% endblocktrans %}
             </div>
         </div>
         <div class="row page-subheader">
             <div class="col-lg-12 px-0 text-center text-secondary">
-                {% trans "Please let us know if you have check-in preferences, and we will do our best to accommodate them." %}
+                {% blocktrans %}Please let us know if you have check-in<br>preferences.{% endblocktrans %}
             </div>
         </div>
         <div class="row page-content">
@@ -106,7 +106,10 @@
                 <div class="row my-5">
                     <div class="col-lg-12 px-0">
                         <div class="text-10" id="terms-conditions">
-                            {% blocktrans %}We are commited to protecting your privacy. By proceeding, you agree to our <a href="{{ tnc_link }}" target="_blank" class="new-window-link">Terms & Conditions</a>.View our Global Privacy Statement <a href="{{ privacy_link }}" target="_blank" class="new-window-link">here</a>.{% endblocktrans %}
+                            {% blocktrans %}
+                                We are commited to protecting your privacy. By proceeding, you agree to our <a href="{{ tnc_link }}" target="_blank" class="new-window-link">Terms & Conditions</a>.
+                                View our Global Privacy Statement <a href="{{ privacy_link }}" target="_blank" class="new-window-link">here</a>.
+                            {% endblocktrans %}
                         </div>
                     </div>
                 </div>

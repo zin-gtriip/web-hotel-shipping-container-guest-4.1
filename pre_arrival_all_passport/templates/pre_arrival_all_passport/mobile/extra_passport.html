@@ -24,12 +24,12 @@
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-12 px-0 text-center">
-                {% trans 'Prepare Passport for photo verification' %}
+                {% blocktrans %}Prepare Passport for<br>photo verification{% endblocktrans %}
             </div>
         </div>
         <div class="row page-subheader">
             <div class="col-12 px-0 text-center text-secondary">
-                {% trans "We need a photograph of the additional guest's passport, or alternatively you may upload the image file." %}
+                {% blocktrans %}We need a photograph of the additional guest's<br>passport, or alternatively you may upload<br>the image file.{% endblocktrans %}
             </div>
         </div>
         <div class="row page-content">
