@@ -68,8 +68,12 @@
                                     <a type="button" class="btn btn-primary btn-round m-0" href="{{ ios_url }}">
                                         <img class="img-get-key" src="{% static 'img/key.svg' %}">{% trans 'Get The App' %}
                                     </a>
-                                {% else %}
+                                {% elif request.user_agent.os.family == 'Android' %}
                                     <a type="button" class="btn btn-primary btn-round m-0" href="{{ android_url }}">
+                                        <img class="img-get-key" src="{% static 'img/key.svg' %}">{% trans 'Get The App' %}
+                                    </a>
+                                {% else %}
+                                    <a type="button" class="btn btn-primary btn-round m-0" href="{{ another_url }}">
                                         <img class="img-get-key" src="{% static 'img/key.svg' %}">{% trans 'Get The App' %}
                                     </a>
                                 {% endif %}
