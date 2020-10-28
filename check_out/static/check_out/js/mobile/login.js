@@ -2,7 +2,7 @@ window.addEventListener("flutterInAppWebViewPlatformReady", null); // add event 
 try { window.flutter_inappwebview.callHandler('nextPage', '/check_out/login/reservation_no'); } catch(error) {} // send message to app
 
 
-$('#id_reservation_no, #id_room_no').keyup(function() {
+$('#id_last_name, #id_room_no').keyup(function() {
 	var $this = $(this);
 	if ($this.val() != '') {
 		$('#btn-step-next').attr('disabled', false);
@@ -10,7 +10,7 @@ $('#id_reservation_no, #id_room_no').keyup(function() {
 		$('#btn-step-next').attr('disabled', true);
 	}
 });
-$('#id_reservation_no').keyup();
+$('#id_last_name').keyup();
 
 
 $('#btn-step-next').click(function() {

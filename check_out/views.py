@@ -25,6 +25,7 @@ class CheckOutDataView(RedirectView):
         if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
         if 'auto_login' in self.request.GET: self.request.session['check_out']['preload']['auto_login'] = self.request.GET.get('auto_login', 0)
         if 'reservation_no' in self.request.GET: self.request.session['check_out']['preload']['reservation_no'] = self.request.GET.get('reservation_no', '')
+        if 'last_name' in self.request.GET: self.request.session['check_out']['preload']['last_name'] = self.request.GET.get('last_name', '')
         if 'room_no' in self.request.GET: self.request.session['check_out']['preload']['room_no'] = self.request.GET.get('room_no', '')
         return super().get_redirect_url(*args, **kwargs)
 
