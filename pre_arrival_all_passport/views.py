@@ -1,12 +1,12 @@
 from django.shortcuts       import redirect
 from django.views.generic   import *
 from guest_base.mixins      import RequestFormKwargsMixin, MobileTemplateMixin
-from pre_arrival            import views as PreArrivalView
 from pre_arrival.mixins     import *
+from pre_arrival.views      import PreArrivalDetailView
 from .forms                 import *
 
 
-class PreArrivalDetailView(PreArrivalView.PreArrivalDetailView):
+class PreArrivalDetailView(PreArrivalDetailView):
     form_class = PreArrivalDetailForm
 
     def get_context_data(self, **kwargs):

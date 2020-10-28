@@ -61,6 +61,7 @@ class PreArrivalLoginForm(forms.Form):
         expiry_duration = config.get('prearrival_session_duration_minutes', settings.PRE_ARRIVAL_AGE)
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['pre_arrival']['initial_expiry_date'] = initial_expiry_date
+        self.request.session['pre_arrival']['initial_expiry_duration'] = expiry_duration # will be popped after pass to templates
         if 'preload' in self.request.session['pre_arrival'] and 'auto_login' in self.request.session['pre_arrival']['preload']:
             self.request.session['pre_arrival']['preload']['auto_login'] = 0 # set auto login to False
 
@@ -90,6 +91,7 @@ class PreArrivalTimerExtensionForm(forms.Form):
         extend_duration = config.get('prearrival_session_extend_duration_minutes', settings.PRE_ARRIVAL_AGE_EXTEND)
         extended_expiry_date = (initial_expiry_date + datetime.timedelta(minutes=extend_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['pre_arrival']['extended_expiry_date'] = extended_expiry_date
+        self.request.session['pre_arrival']['extended_expiry_duration'] = extend_duration # will be popped after pass to templates
 
 
 class PreArrivalReservationForm(forms.Form):
@@ -165,9 +167,9 @@ class PreArrivalPassportForm(forms.Form):
     def gateway_ocr(self, saved_file):
         scan_type = 'passport'
         response = gateways.ocr(saved_file, 'passport')
-        # if 'status' in response or 'message' in response:
-        #     scan_type = 'nric'
-        #     response = gateways.ocr(saved_file, 'nric')
+        if 'status' in response or 'message' in response:
+            scan_type = 'nric'
+            response = gateways.ocr(saved_file, 'nric')
         response['scan_type'] = scan_type
         return response
 
@@ -416,8 +418,8 @@ class PreArrivalOtherInfoForm(forms.Form):
         context['roomImage'] = room.get('room_image', '')
         context['hotel_name'] = settings.HOTEL_NAME
         context['static_url'] = settings.HOST_URL + settings.STATIC_IMAGE_URL
-        context['ios_url'] = settings.IOS_URL
-        context['android_url'] = settings.ANDROID_URL
+        context['ios_url'] = settings.APP_IOS_URL
+        context['android_url'] = settings.APP_ANDROID_URL
         data = {}
         template = os.path.join(settings.BASE_DIR, 'pre_arrival', 'templates', 'pre_arrival', 'email', 'complete.html')
         data['title'] = _('Registration Complete - %(hotel_name)s - %(reservation_no)s') % {'hotel_name': settings.HOTEL_NAME, 'reservation_no': context.get('reservationNo', '')}

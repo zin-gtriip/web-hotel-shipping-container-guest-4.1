@@ -1,13 +1,18 @@
 // timer
-var initialExpiryDate = JSON.parse($('#pre-arrival-initial-expiry-date').text() || '""')
-    , extendedExpiryDate = JSON.parse($('#pre-arrival-extended-expiry-date').text() || '""')
-    , interval = setInterval(function() { // update the count down every 1 second
-        var expiryDate = extendedExpiryDate || initialExpiryDate
+var expiryDuration = JSON.parse($('#pre-arrival-initial-expiry-duration').text() || '""')
+    , expiryDate
+    , interval;
+if (expiryDuration) {
+    expiryDate = new Date().getTime() + (expiryDuration * 60 * 1000); // 60 = seconds, 1000 = miliseconds
+    localStorage.setItem('expiryDate', expiryDate);
+    localStorage.setItem('extended', false);
+}
+interval = setInterval(function() { // update the count down every 1 second
+        var expiryDate = localStorage.expiryDate
             , now = new Date().getTime()
             , distance
             , hours, minutes, seconds;
-        expiryDate = expiryDate.slice(0, -2) + ':' + expiryDate.slice(-2, expiryDate.length); // add `:` to timezone (Safari, Firefox)
-        expiryDate = new Date(expiryDate); // convert to date object
+        if (!expiryDate) return false;
         distance = expiryDate - now; // find the distance between now and the count down date
         // time calculations for hours, minutes and seconds
         hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
@@ -23,7 +28,7 @@ var initialExpiryDate = JSON.parse($('#pre-arrival-initial-expiry-date').text() 
                 $('.timer-tick').text(minutes + ":" + seconds);
             }
             // not extended yet
-            if (distance > 0 && distance <= 300000 && !extendedExpiryDate) {
+            if (distance > 0 && distance <= 300000 && (localStorage.extended && localStorage.extended == 'false')) {
                 if (!$('#timer-extension-modal').hasClass('show')) {
                     if (!$('body').hasClass('modal-open')) { // show when no other modal is opened
                         $('#timer-extension-modal').modal('show');
@@ -31,8 +36,10 @@ var initialExpiryDate = JSON.parse($('#pre-arrival-initial-expiry-date').text() 
                 }
             } else if (distance <= 0) {
                 clearInterval(interval);
-				$('.modal').modal('hide');
-				$('#timer-expired-modal').modal('show');
+                localStorage.removeItem('expiryDate');
+                localStorage.removeItem('extended');
+                $('.modal').modal('hide');
+                $('#timer-expired-modal').modal('show');
             }
         }
     }, 1000);
@@ -48,8 +55,11 @@ $('#form-timer-extension').submit(function() {
         type: 'POST',
         success: function(result) {
             if ((result.status || 'error') == 'success') {
-                if (result.pre_arrival_extended_expiry_date) {
-                    extendedExpiryDate = result.pre_arrival_extended_expiry_date;
+                if (result.pre_arrival_extended_expiry_duration) {
+                    var initialExpiryDate = localStorage.expiryDate;
+                    extendedExpiryDate = parseInt(initialExpiryDate) + (result.pre_arrival_extended_expiry_duration * 60 * 1000); // 60 = seconds, 1000 = miliseconds
+                    localStorage.setItem('expiryDate', extendedExpiryDate);
+                    localStorage.setItem('extended', true);
                     $('#timer-extension-modal').modal('hide');
                 }
             }

@@ -87,8 +87,7 @@
 
 {% block data_js %}
     {{ block.super }}
-    {{ PRE_ARRIVAL_INITIAL_EXPIRY_DATE|json_script:'pre-arrival-initial-expiry-date' }}
-    {{ PRE_ARRIVAL_EXTENDED_EXPIRY_DATE|json_script:'pre-arrival-extended-expiry-date' }}
+    {{ PRE_ARRIVAL_INITIAL_EXPIRY_DURATION|json_script:'pre-arrival-initial-expiry-duration' }}
     {{ request.session.pre_arrival.current_progress_rate|json_script:'current-progress-rate' }}
 {% endblock data_js %}
 

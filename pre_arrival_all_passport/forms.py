@@ -5,10 +5,11 @@ from django.utils.html          import format_html
 from django.utils.translation   import gettext, gettext_lazy as _
 from django_countries.fields    import Country
 from guest_base                 import gateways
-from pre_arrival                import utilities, forms as PreArrivalForms
+from pre_arrival                import utilities
+from pre_arrival.forms          import PreArrivalDetailForm, PreArrivalDetailExtraForm, PreArrivalDetailExtraBaseFormSet
 
 
-class PreArrivalDetailForm(PreArrivalForms.PreArrivalDetailForm):
+class PreArrivalDetailForm(PreArrivalDetailForm):
 
     def save(self, extra):
         guests = [{
@@ -44,11 +45,11 @@ class PreArrivalDetailForm(PreArrivalForms.PreArrivalDetailForm):
         self.request.session['pre_arrival']['detail'] = True # variable to prevent page jump
 
 
-class PreArrivalDetailExtraForm(PreArrivalForms.PreArrivalDetailExtraForm):
+class PreArrivalDetailExtraForm(PreArrivalDetailExtraForm):
     passport_file = forms.CharField(widget=forms.HiddenInput(), required=False)
 
 
-class PreArrivalDetailExtraBaseFormSet(PreArrivalForms.PreArrivalDetailExtraBaseFormSet):
+class PreArrivalDetailExtraBaseFormSet(PreArrivalDetailExtraBaseFormSet):
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(request, *args, **kwargs)

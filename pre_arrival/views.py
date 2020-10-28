@@ -69,7 +69,8 @@ class PreArrivalTimerExtensionView(JSONResponseMixin, RequestFormKwargsMixin, Fo
 
     def form_valid(self, form):
         form.save()
-        self.json_data = {'pre_arrival_extended_expiry_date': self.request.session['pre_arrival'].get('extended_expiry_date', '')}
+        self.json_data['pre_arrival_extended_expiry_date'] = self.request.session['pre_arrival'].get('extended_expiry_date', '')
+        self.json_data['pre_arrival_extended_expiry_duration'] = self.request.session['pre_arrival'].pop('extended_expiry_duration', '')
         self.json_status = 'success'
         return self.render_to_json_response(self.get_context_data())
 
@@ -206,7 +207,7 @@ class PreArrivalCompleteView(ParameterRequiredMixin, RequestFormKwargsMixin, Pro
         reservation['roomName'] = room.get('room_name', '')
         reservation['roomImage'] = room.get('room_image', '')
         context['reservation'] = reservation
-        context['ios_url'] = settings.IOS_URL
-        context['android_url'] = settings.ANDROID_URL
-        context['another_url'] = settings.ANOTHER_URL
+        context['ios_url'] = settings.APP_IOS_URL
+        context['android_url'] = settings.APP_ANDROID_URL
+        context['direct_url'] = settings.APP_DIRECT_URL
         return context
