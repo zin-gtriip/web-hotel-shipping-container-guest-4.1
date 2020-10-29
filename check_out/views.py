@@ -64,11 +64,9 @@ class CheckOutLoginView(RequestFormKwargsMixin, MobileTemplateMixin, FormView):
 class CheckOutBillView(BillRequiredAndExistMixin, RequestFormKwargsMixin, UpdateView):
     template_name           = 'check_out/desktop/bill.html'
     form_class              = CheckOutBillForm
-    success_url             = '/check_out/bill/{reservation_no}'
+    success_url             = '/check_out/bill/all'
 
     def gateway_post(self, reservations_no):
-        if not reservations_no:
-            raise ValueError('No reservation number is provided')
         data = {'reservation_no': reservations_no}
         response = gateways.guest_endpoint('/billsForCheckOut', data)
         return response.get('data', {})
@@ -79,20 +77,7 @@ class CheckOutBillView(BillRequiredAndExistMixin, RequestFormKwargsMixin, Update
         if reservation_no == 'all':
             reservations_no = [resv['reservation_no'] for resv in self.request.session['check_out'].get('bills', []) if resv.get('reservation_no', '')]
         obj = self.gateway_post(reservations_no)
-        reservation_info = obj.get('reservation_info', [])
         obj['id'] = reservation_no # set `reservation_no` as unique identifier
-        if len(reservation_info) == 1:
-            reservation = next(iter(reservation_info), {})
-            obj.update(**reservation)
-        elif len(reservation_info) > 1:
-            reservations_no = [reservation.get('reservation_no', '') for reservation in reservation_info]
-            rooms_no = [reservation.get('room_no', '') for reservation in reservation_info]
-            arrivals_date = [reservation.get('arrival_date', '') for reservation in reservation_info]
-            departures_date = [reservation.get('departure_date', '') for reservation in reservation_info]
-            obj['reservation_no'] = ','.join(reservations_no)
-            obj['room_no'] = ','.join(list(set(rooms_no))) # `set` is for removing duplicate value
-            obj['arrival_date'] = ','.join(list(set(arrivals_date)))
-            obj['departure_date'] = ','.join(list(set(departures_date)))
         return obj
 
     def get_context_data(self, *args, **kwargs):
@@ -104,10 +89,14 @@ class CheckOutBillView(BillRequiredAndExistMixin, RequestFormKwargsMixin, Update
 
     def form_valid(self, form):
         data = super().form_valid(form)
-        guest_name = self.object.get('first_name', '') +' '+ self.object.get('last_name', '')
-        if len(self.object.get('reservation_no', '').split(',')) > 1:
-            guest_name = 'All Guests'
-        messages.add_message(self.request, messages.SUCCESS, _('%(name)s have been successfully checked out.') % {'name': guest_name})
+        if self.request.session['check_out'].get('complete', None):
+            messages.add_message(self.request, messages.SUCCESS, _("All Guests have been successfully checked out.\n\nWe hope you enjoy your stay with us, and we'll see you again soon!"))
+        else:
+            reservation = next((temp for temp in self.object.get('reservation_info') if temp.get('reservation_no', '') == self.object.get('id', None)), {})
+            guest_name = reservation.get('first_name', '') +' '+ reservation.get('last_name', '')
+            guests_left = [temp.get('first_name', '') +' '+ temp.get('last_name', '') for temp in self.request.session['check_out'].get('bills', [])]
+            names_left = '\n- '.join(guests_left)
+            messages.add_message(self.request, messages.SUCCESS, _('We have checked-out the guest:\n- %(name)s\n\nOther guests left to check-out:\n- %(names_left)s') % {'name': guest_name, 'names_left': names_left})
         return data
 
     def get_success_url(self):

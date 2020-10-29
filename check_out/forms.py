@@ -47,6 +47,7 @@ class CheckOutLoginForm(forms.Form):
         data = self.gateway_post()
         if not 'check_out' in self.request.session:
             self.request.session['check_out'] = {}
+        self.request.session['check_out']['bookings'] = data.get('data', [])
         self.request.session['check_out']['bills'] = data.get('data', [])
         self.request.session['check_out']['input_reservation_no'] = self.cleaned_data.get('reservation_no')
         self.request.session['check_out']['input_last_name'] = self.cleaned_data.get('last_name')
@@ -64,8 +65,7 @@ class CheckOutBillForm(forms.Form):
         self.request = request
         self.label_suffix = ''
         # populate choices
-        reservations_no = [reservation.get('reservation_no', '') for reservation in self.request.session['check_out'].get('bills', [])]
-        self.fields['reservation_no'].choices = [('all', 'All Guests')]
+        self.fields['reservation_no'].choices = [('all', _('Checked-in Guests'))]
         for reservation in self.request.session['check_out'].get('bills', []):
             self.fields['reservation_no'].choices.append((reservation.get('reservation_no', ''), reservation.get('first_name', '') + ' ' + reservation.get('last_name', '')))
         # set initial
@@ -84,6 +84,16 @@ class CheckOutBillForm(forms.Form):
 
     def save(self):
         response = self.gateway_post()
-        if response.get('status_code', '') != 500:
-            raise Exception(response.get('message', _('Unknown error')))
+        if response.get('status_code', '') == 500:
+            # get existing guest from backend
+            new_guest_data = {}
+            new_guest_data['reservation_no'] = self.request.session['check_out'].get('input_reservation_no', None)
+            new_guest_data['last_name'] = self.request.session['check_out'].get('last_name', None)
+            new_guest_data['room_no'] = self.request.session['check_out'].get('room_no')
+            new_guest_response = gateways.guest_endpoint('/signInForCheckOut', new_guest_data)
+            self.request.session['check_out']['bills'] = new_guest_response.get('data', [])
+            if not new_guest_response.get('data', []):
+                self.request.session['check_out']['complete'] = True
+        else:
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
         return self.instance
