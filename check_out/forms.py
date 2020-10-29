@@ -4,7 +4,8 @@ from guest_base                 import gateways
 from .                          import samples
 
 class CheckOutLoginForm(forms.Form):
-    reservation_no  = forms.CharField(label=_('Reservation Number'))
+    reservation_no  = forms.CharField(label=_('Reservation Number'), required=False)
+    last_name       = forms.CharField(label=_('Last Name'), required=False)
     room_no         = forms.CharField(label=_('Room Number'))
 
     def __init__(self, request, *args, **kwargs):
@@ -12,16 +13,19 @@ class CheckOutLoginForm(forms.Form):
         self.request = request
         self.label_suffix = ''
         self.fields['reservation_no'].initial = self.request.session.get('check_out', {}).get('preload', {}).get('reservation_no')
+        self.fields['last_name'].initial = self.request.session.get('check_out', {}).get('preload', {}).get('last_name')
         self.fields['room_no'].initial = self.request.session.get('check_out', {}).get('preload', {}).get('room_no')
 
     def clean(self):
         super().clean()
         reservation_no = self.cleaned_data.get('reservation_no')
+        last_name = self.cleaned_data.get('last_name')
         room_no = self.cleaned_data.get('room_no')
 
         # validate required field
-        if not reservation_no:
+        if not reservation_no and not last_name:
             self._errors['reservation_no'] = self.error_class([_('Enter the required information')])
+            self._errors['last_name'] = self.error_class([_('Enter the required information')])
         if not room_no:
             self._errors['room_no'] = self.error_class([_('Enter the required information')])
 
@@ -34,7 +38,8 @@ class CheckOutLoginForm(forms.Form):
 
     def gateway_post(self):
         data = {}
-        data['reservation_no'] = self.cleaned_data.get('reservation_no')
+        data['reservation_no'] = self.cleaned_data.get('reservation_no', None)
+        data['last_name'] = self.cleaned_data.get('last_name', None)
         data['room_no'] = self.cleaned_data.get('room_no')
         return gateways.guest_endpoint('/signInForCheckOut', data)
     
@@ -42,8 +47,10 @@ class CheckOutLoginForm(forms.Form):
         data = self.gateway_post()
         if not 'check_out' in self.request.session:
             self.request.session['check_out'] = {}
+        self.request.session['check_out']['bookings'] = data.get('data', [])
         self.request.session['check_out']['bills'] = data.get('data', [])
         self.request.session['check_out']['input_reservation_no'] = self.cleaned_data.get('reservation_no')
+        self.request.session['check_out']['input_last_name'] = self.cleaned_data.get('last_name')
         self.request.session['check_out']['input_room_no'] = self.cleaned_data.get('room_no')
         if 'preload' in self.request.session['check_out'] and 'auto_login' in self.request.session['check_out']['preload']:
             self.request.session['check_out']['preload']['auto_login'] = 0 # set auto login to False
@@ -58,8 +65,7 @@ class CheckOutBillForm(forms.Form):
         self.request = request
         self.label_suffix = ''
         # populate choices
-        reservations_no = [reservation.get('reservation_no', '') for reservation in self.request.session['check_out'].get('bills', [])]
-        self.fields['reservation_no'].choices = [('all', 'All Guests')]
+        self.fields['reservation_no'].choices = [('all', _('Checked-in Guests'))]
         for reservation in self.request.session['check_out'].get('bills', []):
             self.fields['reservation_no'].choices.append((reservation.get('reservation_no', ''), reservation.get('first_name', '') + ' ' + reservation.get('last_name', '')))
         # set initial
@@ -78,6 +84,16 @@ class CheckOutBillForm(forms.Form):
 
     def save(self):
         response = self.gateway_post()
-        if response.get('status_code', '') != 500:
-            raise Exception(response.get('message', _('Unknown error')))
+        if response.get('status_code', '') == 500:
+            # get existing guest from backend
+            new_guest_data = {}
+            new_guest_data['reservation_no'] = self.request.session['check_out'].get('input_reservation_no', None)
+            new_guest_data['last_name'] = self.request.session['check_out'].get('last_name', None)
+            new_guest_data['room_no'] = self.request.session['check_out'].get('room_no')
+            new_guest_response = gateways.guest_endpoint('/signInForCheckOut', new_guest_data)
+            self.request.session['check_out']['bills'] = new_guest_response.get('data', [])
+            if not new_guest_response.get('data', []):
+                self.request.session['check_out']['complete'] = True
+        else:
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
         return self.instance
