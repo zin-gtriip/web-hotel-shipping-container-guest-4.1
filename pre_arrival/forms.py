@@ -42,7 +42,7 @@ class PreArrivalLoginForm(forms.Form):
         elif response.get('overall_status','') == 400:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Pre-arrival registration has been completed.')])
         elif response.get('overall_status','') == 100 or response.get('overall_status','') == 103:
-            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Pre-arrival registration details are incorrect.')])
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Incorrect reservation details, please check and try again.')])
         return self.cleaned_data
 
     def gateway_post(self):
