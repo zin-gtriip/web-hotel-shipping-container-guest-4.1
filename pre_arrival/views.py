@@ -20,7 +20,6 @@ class PreArrivalDataView(RedirectView):
         self.request.session['app'] = self.request.GET.get('app', 0)
         if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
         if 'auto_login' in self.request.GET: self.request.session['pre_arrival']['preload']['auto_login'] = self.request.GET.get('auto_login', 0)
-        if 'skip_ocr' in self.request.GET: self.request.session['pre_arrival']['preload']['skip_ocr'] = self.request.GET.get('skip_ocr', 0)
         if 'reservation_no' in self.request.GET: self.request.session['pre_arrival']['preload']['reservation_no'] = self.request.GET.get('reservation_no', '')
         if 'arrival_date' in self.request.GET: self.request.session['pre_arrival']['preload']['arrival_date'] = self.request.GET.get('arrival_date', '')
         if 'last_name' in self.request.GET: self.request.session['pre_arrival']['preload']['last_name'] = self.request.GET.get('last_name', '')
@@ -111,18 +110,6 @@ class PreArrivalPassportView(ParameterRequiredMixin, RequestFormKwargsMixin, Mob
     success_url             = '/pre_arrival/detail'
     parameter_required      = 'reservation'
     progress_bar_page       = 'passport'
-
-    def dispatch(self, request, *args, **kwargs):
-        if request.session.get('pre_arrival', {}).get('preload', {}).get('skip_ocr', False):
-            data = {}
-            data['skip_passport'] = True
-            form = self.get_form_class()
-            form = form(request, data)
-            if form.is_valid():
-                return self.form_valid(form)
-            else:
-                return self.form_invalid(form)
-        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.save()
