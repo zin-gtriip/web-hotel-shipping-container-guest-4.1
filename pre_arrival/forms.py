@@ -292,7 +292,7 @@ class PreArrivalDetailExtraForm(forms.Form):
     guest_id = forms.CharField(widget=forms.HiddenInput())
     first_name = forms.CharField(label=_('First Name'))
     last_name = forms.CharField(label=_('Last Name'))
-    nationality = CountryField(blank_label='[Select Country]').formfield(label=_('Nationality'))
+    nationality = CountryField(blank_label=_('[Select Country]')).formfield(label=_('Nationality'))
     passport_no = forms.CharField(label=_('Passport Number'))
     birth_date = forms.DateField(label=_('Date of Birth'))
 
@@ -405,7 +405,7 @@ class PreArrivalOtherInfoForm(forms.Form):
             'emailSubscription': is_subscribe and '1' or '0',
         })
         self.request.session['pre_arrival']['reservation']['eta'] = arrival_time + ':00.000'
-        self.request.session['pre_arrival']['comments'] = special_requests,
+        self.request.session['pre_arrival']['reservation']['comments'] = special_requests
         self.request.session['pre_arrival']['other_info'] = True # variable to prevent page jump
 
     def prepare_email(self):
