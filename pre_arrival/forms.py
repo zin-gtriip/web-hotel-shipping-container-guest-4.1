@@ -51,8 +51,9 @@ class PreArrivalLoginForm(forms.Form):
     
     def save(self):
         data = self.gateway_post()
-        if not 'pre_arrival' in self.request.session:
-            self.request.session['pre_arrival'] = {}
+        preload_data = dict(self.request.session.get('pre_arrival', {}).get('preload', {})) # get and store preload because session will be cleared
+        self.request.session['pre_arrival'] = {} # clear session data
+        self.request.session['pre_arrival']['preload'] = preload_data # restore preload data
         self.request.session['pre_arrival']['bookings'] = data.get('data', [])
         self.request.session['pre_arrival']['input_reservation_no'] = self.cleaned_data.get('reservation_no')
         self.request.session['pre_arrival']['input_arrival_date'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
@@ -427,6 +428,10 @@ class PreArrivalOtherInfoForm(forms.Form):
         return data
 
     def gateway_post(self):
+        for temp in self.request.session['pre_arrival']['reservation'].get('guestsList', []):
+            temp.pop('passportImage', None)
+        print(self.request.session['pre_arrival'])
+        print(asdf)
         data = self.request.session['pre_arrival']['reservation']
         email = self.prepare_email()
         data['customerInputNumber'] = self.request.session['pre_arrival'].get('input_reservation_no', '')

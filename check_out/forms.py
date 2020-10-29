@@ -45,8 +45,9 @@ class CheckOutLoginForm(forms.Form):
     
     def save(self):
         data = self.gateway_post()
-        if not 'check_out' in self.request.session:
-            self.request.session['check_out'] = {}
+        preload_data = dict(self.request.session.get('check_out', {}).get('preload', {})) # get and store preload because session will be cleared
+        self.request.session['check_out'] = {} # clear session data
+        self.request.session['check_out']['preload'] = preload_data # restore preload data
         self.request.session['check_out']['bookings'] = data.get('data', [])
         self.request.session['check_out']['bills'] = data.get('data', [])
         self.request.session['check_out']['input_reservation_no'] = self.cleaned_data.get('reservation_no')
