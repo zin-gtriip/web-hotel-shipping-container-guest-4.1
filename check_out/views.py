@@ -109,3 +109,8 @@ class CheckOutBillView(BillRequiredAndExistMixin, RequestFormKwargsMixin, Update
 
 class CheckOutComplete(TemplateView):
     template_name           = 'check_out/desktop/complete.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.session.get('check_out', {}).get('complete', None):
+            return redirect('check_out:login')
+        return super().dispatch(request, *args, **kwargs)
