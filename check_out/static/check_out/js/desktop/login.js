@@ -1,3 +1,5 @@
+$('input:visible').first().focus();
+
 $('#id_last_name, #id_room_no').keyup(function() {
     enableDisableButton();
 });

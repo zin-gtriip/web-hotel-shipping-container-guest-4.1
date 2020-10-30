@@ -27,14 +27,16 @@
                 <div class="row mb-4">
                     <div class="col-lg-3 mx-auto">
                         <div class="md-form input-center input-boxed my-0">
-                            {% render_field form.last_name class="form-control" placeholder="Last Name" autofocus="autofocus" %}
+                            {% trans 'Last Name' as last_name_placeholder %}
+                            {% render_field form.last_name class="form-control" placeholder=last_name_placeholder %}
                         </div>
                     </div>
                 </div>
                 <div class="row my-4">
                     <div class="col-lg-3 mx-auto">
                         <div class="md-form input-center input-boxed my-0">
-                            {% render_field form.room_no class="form-control" placeholder="Room Number" autofocus="autofocus" %}
+                            {% trans 'Room Number' as room_no_placeholder %}
+                            {% render_field form.room_no class="form-control" placeholder=room_no_placeholder %}
                         </div>
                     </div>
                 </div>

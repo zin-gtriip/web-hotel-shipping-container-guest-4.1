@@ -8,39 +8,52 @@
     <link rel="stylesheet" href="{% static 'check_out/scss/mobile/login.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
+{% block header_left %}
+    {{ block.super }}
+    <button type="button" class="btn btn-link" id="btn-back" style="display: none;">
+        <i class="fas fa-arrow-left"></i></button>
+{% endblock header_left %}
+
 {% block content %}
     {{ block.super }}
     <form method="post" id="form-mobile-login">
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-12 text-center">
-                <span id="header-reservation-no" class="header-description active">{% blocktrans %}Please enter your<br>Last Name{% endblocktrans %}</span>
+                <span id="header-last-name" class="header-description active">{% blocktrans %}Please enter your<br>Last Name{% endblocktrans %}</span>
                 <span id="header-room-no" class="header-description">{% blocktrans %}Please enter your<br>Room Number{% endblocktrans %}</span>
             </div>
         </div>
         <div class="row page-subheader">
             <div class="col-12 px-0 text-center text-secondary">
-                <span id="subheader-reservation-no" class="subheader-description active">{% blocktrans %}To begin the online check-out process,<br>please enter your last name.{% endblocktrans %}</span>
+                <span id="subheader-last-name" class="subheader-description active">{% blocktrans %}To begin the online check-out process,<br>please enter your last name.{% endblocktrans %}</span>
                 <span id="subheader-room-no" class="subheader-description">{% blocktrans %}The following information is required for<br>verification.{% endblocktrans %}</span>
             </div>
         </div>
         <div class="row page-content">
             <div class="col-12 d-flex justify-content-center">
-                <div class="input-step active" id="step-reservation-no">
+                <div id="content-last-name" class="content-input active">
                     <div class="md-form input-center input-boxed my-0">
-                        {% render_field form.last_name class="form-control" placeholder="Last Name" autofocus="autofocus" %}
+                        {% trans 'Last Name' as last_name_placeholder %}
+                        {% render_field form.last_name class="form-control" placeholder=last_name_placeholder %}
                     </div>
                 </div>
-                <div class="input-step" id="step-room-no">
+                <div id="content-room-no" class="content-input">
                     <div class="md-form input-center input-boxed my-0">
-                        {% render_field form.room_no class="form-control" placeholder="Room Number" autofocus="autofocus" %}
+                        {% trans 'Room Number' as room_no_placeholder %}
+                        {% render_field form.room_no class="form-control" placeholder=room_no_placeholder %}
                     </div>
                 </div>
             </div>
         </div>
         <div class="row page-footer">
             <div class="col-12 d-flex justify-content-center">
-                <button type="button" class="btn btn-primary btn-round m-0" id="btn-step-next" disabled>{% trans 'Next' %}</button>
+                <div id="footer-last-name" class="footer-button active">
+                    <button type="button" class="btn btn-primary btn-round m-0" disabled>{% trans 'Next' %}</button>
+                </div>
+                <div id="footer-room-no" class="footer-button">
+                    <button type="submit" class="btn btn-primary btn-round m-0" disabled>{% trans 'Next' %}</button>
+                </div>
             </div>
         </div>
     </form>
