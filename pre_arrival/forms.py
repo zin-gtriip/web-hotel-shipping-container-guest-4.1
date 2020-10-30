@@ -435,7 +435,6 @@ class PreArrivalOtherInfoForm(forms.Form):
         for temp in self.request.session['pre_arrival']['reservation'].get('guestsList', []):
             temp.pop('passportImage', None)
         print(self.request.session['pre_arrival'])
-        print(asdf)
         data = self.request.session['pre_arrival']['reservation']
         email = self.prepare_email()
         data['customerInputNumber'] = self.request.session['pre_arrival'].get('input_reservation_no', '')
