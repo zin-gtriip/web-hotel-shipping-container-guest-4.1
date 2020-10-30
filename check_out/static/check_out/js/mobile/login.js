@@ -1,34 +1,33 @@
-window.addEventListener("flutterInAppWebViewPlatformReady", null); // add event to send message to app
-try { window.flutter_inappwebview.callHandler('nextPage', '/check_out/login/reservation_no'); } catch(error) {} // send message to app
+$('input:visible').first().focus();
 
 
-$('#id_last_name, #id_room_no').keyup(function() {
+$('#id_last_name').keyup(function() {
 	var $this = $(this);
 	if ($this.val() != '') {
-		$('#btn-step-next').attr('disabled', false);
+		$('#footer-last-name button').attr('disabled', false);
 	} else {
-		$('#btn-step-next').attr('disabled', true);
+		$('#footer-last-name button').attr('disabled', true);
 	}
 });
 $('#id_last_name').keyup();
 
 
-$('#btn-step-next').click(function() {
-	var $currentStep = $('.input-step.active')
-		, $nextStep = $currentStep.next('.input-step');
-		
-	$nextStep.find('input').keyup();
-	$('.header-description, .subheader-description').removeClass('active');
-
-	// send message to app
-	$('#header-room-no, #subheader-room-no').addClass('active');
-	try { window.flutter_inappwebview.callHandler('nextPage', '/check_out/login/room_no'); } catch(error) {} // send message to app
-
-	// submit if no more nextStep
-	if ($nextStep.length == 0) {
-		$('#form-mobile-login').submit();
+$('#id_room_no').keyup(function() {
+	var $this = $(this);
+	if ($this.val() != '') {
+		$('#footer-room-no button').attr('disabled', false);
+	} else {
+		$('#footer-room-no button').attr('disabled', true);
 	}
+});
+$('#id_room_no').keyup();
 
+
+$('#footer-last-name button').click(function() {
+	var $currentStep = $('#header-last-name, #subheader-last-name, #content-last-name, #footer-last-name')
+		, $nextStep = $('#header-room-no, #subheader-room-no, #content-room-no, #footer-room-no');
+
+	$('.header #btn-back').show();
 	$nextStep.show().addClass('active');
 	$currentStep.animate({opacity: 0}, {
 		step: function(now) {
@@ -37,6 +36,29 @@ $('#btn-step-next').click(function() {
 			$currentStep.css({'display': 'none', 'position': 'relative'});
 			$nextStep.css({'opacity': opacity});
 		}
-		, duration: 1000
+		, duration: 300
+	}).removeClass('active');
+});
+
+
+$('#btn-back').click(function() {
+	var $currentActive = $('.content-input.active')
+		, $previousStep;
+
+	if ($currentActive.attr('id') == 'content-room-no') {
+		$currentStep = $('#header-room-no, #subheader-room-no, #content-room-no, #footer-room-no');
+		$previousStep = $('#header-last-name, #subheader-last-name, #content-last-name, #footer-last-name');
+		$(this).hide();
+	}
+
+	$previousStep.show().addClass('active');
+	$currentStep.animate({opacity: 0}, {
+		step: function(now) {
+			// for making fielset appear animation
+			opacity = 1 - now;
+			$currentStep.css({'display': 'none', 'position': 'relative'});
+			$previousStep.css({'opacity': opacity});
+		}
+		, duration: 300
 	}).removeClass('active');
 });

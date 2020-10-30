@@ -434,7 +434,6 @@ class PreArrivalOtherInfoForm(forms.Form):
     def gateway_post(self):
         for temp in self.request.session['pre_arrival']['reservation'].get('guestsList', []):
             temp.pop('passportImage', None)
-        print(self.request.session['pre_arrival'])
         data = self.request.session['pre_arrival']['reservation']
         email = self.prepare_email()
         data['customerInputNumber'] = self.request.session['pre_arrival'].get('input_reservation_no', '')
