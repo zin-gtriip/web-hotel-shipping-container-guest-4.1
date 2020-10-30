@@ -100,10 +100,12 @@ class CheckOutBillView(BillRequiredAndExistMixin, RequestFormKwargsMixin, Update
         return data
 
     def get_success_url(self):
-        if not self.success_url:
-            return super().get_success_url()
-        url = self.success_url.format(**{'reservation_no': self.kwargs.get('reservation_no', None)})
+        url = self.success_url
+        if len(self.request.session['check_out'].get('bills', [])) == 1: # redirect to last bill if left 1 bill to check-out
+            bill = next(iter(self.request.session['check_out'].get('bills', [])), None)
+            url = '/check_out/bill/%(reservation_no)s' % {'reservation_no': bill.get('reservation_no', 'all')}
         return url
+
 
 class CheckOutComplete(TemplateView):
     template_name           = 'check_out/desktop/complete.html'
