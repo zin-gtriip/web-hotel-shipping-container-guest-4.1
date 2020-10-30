@@ -1,9 +1,15 @@
-$('.datepicker').datepicker({
-	startDate: new Date(),
+$(document).ready(function() {
+    // to auto focus
+    $('input:visible').first().focus();
+    
+    // to enable disable button
+    $('#id_reservation_no, #id_last_name').keyup();
 });
 
 
-$('input:visible').first().focus();
+$('.datepicker').datepicker({
+	startDate: new Date(),
+});
 
 
 if ($('#id_arrival_date').val() == '') {
@@ -19,7 +25,6 @@ $('#id_reservation_no').keyup(function() {
 		$('#footer-reservation-no button').attr('disabled', true);
 	}
 });
-$('#id_reservation_no').keyup();
 
 
 $('#id_last_name').keyup(function() {
@@ -30,7 +35,6 @@ $('#id_last_name').keyup(function() {
 		$('#footer-last-name button').attr('disabled', true);
 	}
 });
-$('#id_last_name').keyup();
 
 
 $('#id_arrival_date').datepicker().on('changeDate', function() {

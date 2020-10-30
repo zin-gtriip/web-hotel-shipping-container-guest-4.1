@@ -1,4 +1,11 @@
-$('input:visible').first().focus();
+$(document).ready(function() {
+    // to auto focus
+    $('input:visible').first().focus();
+    
+    // to enable disable button
+    $('#id_last_name, #id_room_no').keyup();
+});
+
 
 $('#id_last_name, #id_room_no').keyup(function() {
     enableDisableButton();

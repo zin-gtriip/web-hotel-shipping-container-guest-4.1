@@ -1,4 +1,10 @@
-$('input:visible').first().focus();
+$(document).ready(function() {
+    // to auto focus
+    $('input:visible').first().focus();
+    
+    // to enable disable button
+    $('#id_last_name, #id_room_no').keyup();
+});
 
 
 $('#id_last_name').keyup(function() {
@@ -9,7 +15,6 @@ $('#id_last_name').keyup(function() {
 		$('#footer-last-name button').attr('disabled', true);
 	}
 });
-$('#id_last_name').keyup();
 
 
 $('#id_room_no').keyup(function() {
@@ -20,7 +25,6 @@ $('#id_room_no').keyup(function() {
 		$('#footer-room-no button').attr('disabled', true);
 	}
 });
-$('#id_room_no').keyup();
 
 
 $('#footer-last-name button').click(function() {

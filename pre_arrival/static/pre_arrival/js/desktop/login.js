@@ -1,9 +1,14 @@
+$(document).ready(function() {
+    // to auto focus
+    $('input:visible').first().focus();
+    
+    // to enable disable button
+    $('#id_reservation_no, #id_last_name').keyup();
+});
+
 $('.datepicker').datepicker({
     startDate: new Date(),
 });
-
-
-$('input:visible').first().focus();
 
 
 if ($('#id_arrival_date').val() == '') {
@@ -14,7 +19,6 @@ if ($('#id_arrival_date').val() == '') {
 $('#id_reservation_no, #id_last_name, #id_arrival_date').keyup(function() {
     enableDisableButton();
 });
-$('#id_reservation_no, #id_last_name').keyup();
 
 
 $('#id_arrival_date').datepicker().on('changeDate', function() {
