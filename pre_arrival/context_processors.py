@@ -6,7 +6,7 @@ returns a dictionary to add to the context.
 For more information, visit link below:
 https://stackoverflow.com/a/433209
 """
-from guest_base import base_utilities
+from guest_base import utilities as base_utilities
 
 
 def session(request):
