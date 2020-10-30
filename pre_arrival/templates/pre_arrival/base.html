@@ -55,7 +55,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <span class="timer-tick"></span>
-                                    <input type="hidden" name="expiry_date" value="{{ PRE_ARRIVAL_INITIAL_EXPIRY_DATE }}">
+                                    <input type="hidden" name="token_id" value="{{ SESSION_EXTEND_TOKEN_ID }}">
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
 
 {% block data_js %}
     {{ block.super }}
-    {{ PRE_ARRIVAL_INITIAL_EXPIRY_DURATION|json_script:'pre-arrival-initial-expiry-duration' }}
+    {{ SESSION_INITIAL_EXPIRY_DURATION|json_script:'session-initial-expiry-duration' }}
     {{ request.session.pre_arrival.current_progress_rate|json_script:'current-progress-rate' }}
 {% endblock data_js %}
 

@@ -1,5 +1,5 @@
 // timer
-var expiryDuration = JSON.parse($('#pre-arrival-initial-expiry-duration').text() || '""')
+var expiryDuration = JSON.parse($('#session-initial-expiry-duration').text() || '""')
     , expiryDate
     , interval;
 if (expiryDuration) {

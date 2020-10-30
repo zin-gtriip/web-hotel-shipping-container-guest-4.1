@@ -5,7 +5,7 @@ from django.template.loader     import render_to_string
 from django.utils               import timezone
 from django.utils.translation   import gettext, gettext_lazy as _
 from django_countries.fields    import Country, CountryField
-from guest_base                 import gateways
+from guest_base                 import gateways, utilities as base_utilities
 from .                          import utilities, samples
 
 class PreArrivalLoginForm(forms.Form):
@@ -72,7 +72,7 @@ class PreArrivalLoginForm(forms.Form):
 
 
 class PreArrivalTimerExtensionForm(forms.Form):
-    expiry_date = forms.CharField()
+    token_id = forms.CharField()
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -80,13 +80,15 @@ class PreArrivalTimerExtensionForm(forms.Form):
 
     def clear(self):
         super().clean()
-        expiry_date = self.cleaned_data.get('expiry_date')
+        token_id = self.cleaned_data.get('token_id')
 
-        if not expiry_date:
-            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Expiry Date is not defined.')])
+        if not token_id:
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Token ID is not defined.')])
         else:
-            if expiry_date != self.request.session['pre_arrival'].get('initial_expiry_date', ''):
-                self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Expiry Date is not matched.')])
+            session_key = request.session.session_key
+            initial_expiry_date = request.session.get('pre_arrival', {}).get('initial_expiry_date', '')
+            if base_utilities.decrypt(token_id) != (session_key + initial_expiry_date):
+                self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Token ID is not correct.')])
         return self.cleaned_data
 
     def save(self):
