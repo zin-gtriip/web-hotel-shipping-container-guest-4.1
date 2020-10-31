@@ -83,7 +83,7 @@ class PreArrivalTimerExtensionForm(forms.Form):
         token_id = self.cleaned_data.get('token_id')
 
         if not token_id:
-            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Token ID is not defined.')])
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Token ID is missing.')])
         else:
             session_key = request.session.session_key
             initial_expiry_date = request.session.get('pre_arrival', {}).get('initial_expiry_date', '')
