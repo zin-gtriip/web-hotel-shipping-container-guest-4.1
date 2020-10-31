@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-29 13:15+0700\n"
-"PO-Revision-Date: 2020-09-30 18:33+0800\n"
+"POT-Creation-Date: 2020-10-29 15:41+0700\n"
+"PO-Revision-Date: 2020-10-30 14:21+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -20,11 +20,15 @@ msgstr ""
 
 #: pre_arrival/static/pre_arrival/js/desktop/detail.js:78
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:84
+#: pre_arrival_all_passport/static/pre_arrival/js/desktop/detail.js:48
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:51
 msgid "Guest"
 msgstr "客人"
 
 #: pre_arrival/static/pre_arrival/js/desktop/detail.js:83
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:89
+#: pre_arrival_all_passport/static/pre_arrival/js/desktop/detail.js:53
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:56
 msgid "Main Guest"
 msgstr "主要客人"
 
@@ -32,55 +36,82 @@ msgstr "主要客人"
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:34
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:49
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:50
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:33
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:34
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:49
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:50
 msgid "Invalid Image"
 msgstr "图片无效"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:33
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:49
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:33
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:49
 msgid "No image file selected"
 msgstr "未选择图像文件"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:34
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:50
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:34
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:50
 msgid "Please upload valid identification in JPEG/PNG format"
 msgstr "请以JPEG / PNG格式上传有效的身份证明。"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:47
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:83
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:90
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:59
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:122
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:63
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:47
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:59
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:122
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:63
 msgid "Error"
 msgstr "错误"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:47
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:83
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:122
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:63
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:47
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:122
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:63
 msgid "Error capturing image"
 msgstr "无法捕获图像。"
 
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:90
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:59
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:59
 msgid "No camera media is detected"
 msgstr "未检测到相机媒体。"
 
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:153
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:183
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:183
 msgid ""
-"Please adjust the image to make sure that all information is within the box."
+"Please adjust the image to make sure<br>that all information is within the "
+"box."
 msgstr "请调整图像以确保所有信息都在框中。"
 
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:185
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:185
+msgid "Zoom"
+msgstr "放大"
+
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:119
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:86
 msgid "Select Date"
 msgstr "选择日期"
 
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:120
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:87
 msgid "Cancel"
 msgstr "取消"
 
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:121
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:88
 msgid "Confirm"
 msgstr "确认"
 
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:128
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:128
 msgid ""
-"Drag, rotate, or pinch the image to make sure that all information is within "
-"the box."
+"Drag, rotate, or pinch the image to make sure<br>that all information is "
+"within the box."
 msgstr "拖动，旋转或收缩图像，以确保所有信息都在框中。"
