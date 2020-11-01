@@ -108,6 +108,10 @@ class PreArrivalAllPassportExtraPassportForm(forms.Form):
                     self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Your passport has expired, please capture / upload a valid passport photo to proceed')])
         else:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
+            
+        # remove saved file if fail
+        if self._errors:
+            os.remove(saved_file)
 
         return self.cleaned_data
 
@@ -139,6 +143,7 @@ class PreArrivalAllPassportExtraPassportForm(forms.Form):
         with open(saved_file, 'rb') as image_file:
             file_b64_encoded = base64.b64encode(image_file.read())
         ocr = self.gateway_ocr(saved_file)
+
         dob = utilities.parse_ocr_date(ocr.get('date_of_birth', ''))
         if dob:
             date_format = settings.DATE_INPUT_FORMATS[0] if settings.DATE_INPUT_FORMATS else '%Y-%m-%d'
@@ -156,3 +161,5 @@ class PreArrivalAllPassportExtraPassportForm(forms.Form):
             prefilled_guest.update(extra_guest)
         else:
             self.request.session['pre_arrival']['reservation']['guestsList'].append(extra_guest)
+
+        os.remove(saved_file) # remove saved file

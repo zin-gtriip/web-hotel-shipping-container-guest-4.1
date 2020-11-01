@@ -156,6 +156,9 @@ class PreArrivalPassportForm(forms.Form):
                         self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Your passport has expired, please capture / upload a valid passport photo to proceed')])
             else:
                 self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
+            # remove saved file if fail
+            if self._errors:
+                os.remove(saved_file)
 
         return self.cleaned_data
 
@@ -193,6 +196,7 @@ class PreArrivalPassportForm(forms.Form):
                 file_b64_encoded = base64.b64encode(image_file.read())
             main_guest.update({'passportImage': file_b64_encoded.decode()})
             self.request.session['pre_arrival']['ocr'] = self.gateway_ocr(saved_file)
+            os.remove(saved_file) # remove saved file
         self.request.session['pre_arrival']['passport'] = True # variable to prevent page jump
         if 'preload' in self.request.session['pre_arrival'] and 'skip_ocr' in self.request.session['pre_arrival']['preload']:
             self.request.session['pre_arrival']['preload']['skip_ocr'] = 0 # set auto login to False
