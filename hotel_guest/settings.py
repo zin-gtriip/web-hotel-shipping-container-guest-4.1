@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'compressor',
     'widget_tweaks',
-    'django_cron',
     'django_countries',
     'django_user_agents',
     
@@ -201,16 +200,6 @@ AMP_ENDPOINT_URL            = 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0'
 AMP_ENDPOINT_KEY            = '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717'
 AMP_ENDPOINT_SITE_ID        = 'QAHotelProdSG11'
 AMP_ENDPOINT_SITE_NAME      = 'QA_Hotel_Prod_SG_3.0'
-
-
-# Cron job configuration
-# Also need to setup scheduled cron on server, ex crontab on Unix
-# https://django-cron.readthedocs.io/en/latest/
-
-CLEAR_SESSION_CRON_JOB_RUN_TIME = '00:00'
-CRON_CLASSES = [
-    "pre_arrival.cron_jobs.ClearSessionCronJob",
-]
 
 
 # Maximum size in bytes of request data (excluding file uploads) that will be
