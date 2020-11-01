@@ -128,6 +128,13 @@ USE_L10N = False
 USE_TZ = True
 
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_URL = '/static/'
+
+
 # Available languages for translation
 # https://samulinatri.com/blog/django-translation/
 
@@ -144,13 +151,6 @@ LANGUAGES = [
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
 ]
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-STATIC_URL = '/static/'
 
 
 # django-compressor setting for compressing file
