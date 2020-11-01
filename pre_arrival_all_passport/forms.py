@@ -130,9 +130,9 @@ class PreArrivalAllPassportExtraPassportForm(forms.Form):
     def gateway_ocr(self, saved_file):
         scan_type = 'passport'
         response = gateways.ocr(saved_file, 'passport')
-        # if 'status' in response or 'message' in response:
-        #     scan_type = 'nric'
-        #     response = gateways.ocr(saved_file, 'nric')
+        if 'status' in response or 'message' in response:
+            scan_type = 'nric'
+            response = gateways.ocr(saved_file, 'nric')
         response['scan_type'] = scan_type
         return response
 
