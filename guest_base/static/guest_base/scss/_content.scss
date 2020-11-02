@@ -66,7 +66,7 @@
         select#language {
             max-height: 32px;
             line-height: 18px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: $locale-font;
             font-weight: 400;
             padding: 0;
         }
