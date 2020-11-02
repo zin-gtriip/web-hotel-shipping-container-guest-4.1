@@ -11,7 +11,7 @@ from guest_base import utilities as base_utilities
 
 def session(request):
     """Returns pre-arrival expiry date and duration"""
-    session_key = request.session.session_key
+    session_key = request.session.session_key or ''
     initial_expiry_date = request.session.get('pre_arrival', {}).get('initial_expiry_date', '')
     token_id = base_utilities.encrypt(session_key + initial_expiry_date)
     initial_expiry_duration = request.session.get('pre_arrival', {}).pop('initial_expiry_duration', '') # use once only, otherwise considered new session
