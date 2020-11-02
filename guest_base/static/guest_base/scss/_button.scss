@@ -1,6 +1,6 @@
 .btn {
     font-size: 18px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: $button-font;
     font-weight: 500;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -11,9 +11,7 @@
         box-shadow: none;
     }
 
-    @if $all-round-btn {
-        border-radius: $all-btn-radius;
-    }
+    border-radius: $button-radius;
 }
 
 .btn-floating {
