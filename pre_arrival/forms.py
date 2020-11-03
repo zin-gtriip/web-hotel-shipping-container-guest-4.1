@@ -421,17 +421,19 @@ class PreArrivalOtherInfoForm(forms.Form):
         context = dict(self.request.session['pre_arrival']['reservation']) # create new variable to prevent modification on `request.session`
         context['formattedArrivalDate'] = utilities.format_display_date(context.get('arrivalDate', ''))
         context['formattedDepartureDate'] = utilities.format_display_date(context.get('departureDate', ''))
-        context['mainGuestLastName'] = next(guest.get('lastName', '') for guest in context.get('guestsList', []) if guest.get('isMainGuest', '0') == '1')
+        main_guest = next(guest for guest in context.get('guestsList', []) if guest.get('isMainGuest', '0') == '1')
+        context['mainGuestFirstName'] = main_guest.get('firstName', '')
+        context['mainGuestLastName'] = main_guest.get('lastName', '')
         room = next((temp for temp in settings.ROOM_TYPES if temp['room_type'] == context['roomType']), {})
         context['roomName'] = room.get('room_name', '')
         context['roomImage'] = room.get('room_image', '')
-        context['hotel_name'] = settings.HOTEL_NAME
-        context['static_url'] = settings.HOST_URL + settings.STATIC_IMAGE_URL
-        context['ios_url'] = settings.APP_IOS_URL
-        context['android_url'] = settings.APP_ANDROID_URL
+        context['hotelName'] = settings.HOTEL_NAME
+        context['staticURL'] = settings.HOST_URL + settings.STATIC_IMAGE_URL
+        context['iOSURL'] = settings.APP_IOS_URL
+        context['androidURL'] = settings.APP_ANDROID_URL
         data = {}
         template = os.path.join(settings.BASE_DIR, 'pre_arrival', 'templates', 'pre_arrival', 'email', 'complete.html')
-        data['title'] = _('Registration Complete - %(hotel_name)s - %(reservation_no)s') % {'hotel_name': settings.HOTEL_NAME, 'reservation_no': context.get('reservationNo', '')}
+        data['title'] = _('Registration Complete - %(hotel_name)s - Reservation #%(reservation_no)s') % {'hotel_name': settings.HOTEL_NAME, 'reservation_no': context.get('reservationNo', '')}
         data['html'] = render_to_string(template, context)
         return data
 
