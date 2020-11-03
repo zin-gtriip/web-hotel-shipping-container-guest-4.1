@@ -62,6 +62,14 @@ $('#form-timer-extension').submit(function() {
                     localStorage.setItem('extended', true);
                     $('#timer-extension-modal').modal('hide');
                 }
+            } else {
+                $('#timer-extension-modal').modal('hide');
+                $('#timer-extension-modal').on('hidden.bs.modal', function(e) {
+                    modalAlert(gettext('Session Expiry Error'), gettext('Fail to extend timer'), gettext('OK'));
+                    $('.modal:last').on('hidden.bs.modal', function(e) {
+                        window.location.reload();
+                    });
+                });
             }
         }, error: function(xhr, text, error) {
             console.error('Error client: '+ error);
