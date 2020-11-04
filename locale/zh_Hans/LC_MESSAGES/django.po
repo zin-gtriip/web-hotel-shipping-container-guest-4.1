@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-31 23:19+0700\n"
-"PO-Revision-Date: 2020-10-31 23:38+0700\n"
+"POT-Creation-Date: 2020-11-03 16:00+0700\n"
+"PO-Revision-Date: 2020-11-04 10:37+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -25,11 +25,11 @@ msgstr "预订号码"
 
 #: check_out/forms.py:8 check_out/templates/check_out/desktop/login.html:30
 #: check_out/templates/check_out/mobile/login.html:37 pre_arrival/forms.py:14
-#: pre_arrival/forms.py:204 pre_arrival/forms.py:301
+#: pre_arrival/forms.py:206 pre_arrival/forms.py:303
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:32
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:169
 #: pre_arrival/templates/pre_arrival/desktop/login.html:43
-#: pre_arrival/templates/pre_arrival/email/complete.html:224
+#: pre_arrival/templates/pre_arrival/email/complete.html:242
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:170
 #: pre_arrival/templates/pre_arrival/mobile/login.html:57
 msgid "Last Name"
@@ -42,11 +42,11 @@ msgstr "部屋番号"
 
 #: check_out/forms.py:27 check_out/forms.py:28 check_out/forms.py:30
 #: check_out/forms.py:80 pre_arrival/forms.py:32 pre_arrival/forms.py:34
-#: pre_arrival/forms.py:36 pre_arrival/forms.py:249 pre_arrival/forms.py:251
-#: pre_arrival/forms.py:253 pre_arrival/forms.py:255 pre_arrival/forms.py:257
-#: pre_arrival/forms.py:320 pre_arrival/forms.py:322 pre_arrival/forms.py:324
-#: pre_arrival/forms.py:326 pre_arrival/forms.py:328 pre_arrival/forms.py:397
-#: pre_arrival/forms.py:399
+#: pre_arrival/forms.py:36 pre_arrival/forms.py:251 pre_arrival/forms.py:253
+#: pre_arrival/forms.py:255 pre_arrival/forms.py:257 pre_arrival/forms.py:259
+#: pre_arrival/forms.py:322 pre_arrival/forms.py:324 pre_arrival/forms.py:326
+#: pre_arrival/forms.py:328 pre_arrival/forms.py:330 pre_arrival/forms.py:399
+#: pre_arrival/forms.py:401
 msgid "Enter the required information"
 msgstr "输入所需的信息。"
 
@@ -58,7 +58,7 @@ msgstr "找不到预订。"
 msgid "Checked-in Guests"
 msgstr "入住日期"
 
-#: check_out/forms.py:103 pre_arrival/forms.py:158 pre_arrival/forms.py:453
+#: check_out/forms.py:103 pre_arrival/forms.py:158 pre_arrival/forms.py:455
 #: pre_arrival_all_passport/forms.py:110
 msgid "Unknown error"
 msgstr "未知错误"
@@ -310,11 +310,11 @@ msgstr "预订详细信息不正确，请检查并重试。"
 
 #: pre_arrival/forms.py:86
 msgid "Token ID is missing."
-msgstr "未定义令牌。"
+msgstr "无法找到会话令牌，因此分配了新的会话令牌。"
 
 #: pre_arrival/forms.py:91
 msgid "Token ID is not correct."
-msgstr "令牌不正确。"
+msgstr "会话令牌不匹配，时间延长已禁用。"
 
 #: pre_arrival/forms.py:118
 msgid "No reservation selected."
@@ -336,25 +336,25 @@ msgid ""
 "proceed"
 msgstr "护照已过期，请使用有效的护照。"
 
-#: pre_arrival/forms.py:203 pre_arrival/forms.py:300
+#: pre_arrival/forms.py:205 pre_arrival/forms.py:302
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:161
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:162
 msgid "First Name"
 msgstr "名字"
 
-#: pre_arrival/forms.py:205 pre_arrival/forms.py:303
+#: pre_arrival/forms.py:207 pre_arrival/forms.py:305
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:177
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:178
 msgid "Passport Number"
 msgstr "护照号码"
 
-#: pre_arrival/forms.py:206 pre_arrival/forms.py:302
+#: pre_arrival/forms.py:208 pre_arrival/forms.py:304
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:187
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:188
 msgid "[Select Country]"
 msgstr "[选择国家]"
 
-#: pre_arrival/forms.py:206 pre_arrival/forms.py:302
+#: pre_arrival/forms.py:208 pre_arrival/forms.py:304
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:106
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:185
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:280
@@ -368,44 +368,44 @@ msgstr "[选择国家]"
 msgid "Nationality"
 msgstr "国籍"
 
-#: pre_arrival/forms.py:207 pre_arrival/forms.py:304
+#: pre_arrival/forms.py:209 pre_arrival/forms.py:306
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:198
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:199
 msgid "Date of Birth"
 msgstr "出生日期"
 
-#: pre_arrival/forms.py:262
+#: pre_arrival/forms.py:264
 #, python-format
 msgid "Main guest has to be %(age)s and above."
 msgstr "主要客人必须年满%(age)s岁。"
 
-#: pre_arrival/forms.py:367
+#: pre_arrival/forms.py:369
 msgid "You have exceeded the number of adults."
 msgstr "您已超过成人人数。"
 
-#: pre_arrival/forms.py:375
+#: pre_arrival/forms.py:377
 #: pre_arrival/templates/pre_arrival/desktop/other_info.html:35
 msgid "Time of Arrival"
 msgstr "到达的时间"
 
-#: pre_arrival/forms.py:376
+#: pre_arrival/forms.py:378
 msgid "Special Requests"
 msgstr "特别要求"
 
-#: pre_arrival/forms.py:377
+#: pre_arrival/forms.py:379
 msgid "Email"
 msgstr "电子邮件"
 
-#: pre_arrival/forms.py:378
+#: pre_arrival/forms.py:380
 msgid "Is Subscribe"
 msgstr "订阅"
 
-#: pre_arrival/forms.py:432
-#, python-format
-msgid "Registration Complete - %(hotel_name)s - %(reservation_no)s"
-msgstr "注册完成 - %(hotel_name)s - %(reservation_no)s"
+#: pre_arrival/forms.py:436
+msgid ""
+"Registration Complete - %(hotel_name)s - Reservation #%(reservation_no)s"
+msgstr "注册完成 - %(hotel_name)s - 预约号码 #%(reservation_no)s"
 
-#: pre_arrival/forms.py:465
+#: pre_arrival/forms.py:467
 msgid "There is no reservation can be done for pre-arrival"
 msgstr "预订已被注册或签到。"
 
@@ -451,24 +451,23 @@ msgid "Ok"
 msgstr "好"
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:17
-#: pre_arrival/templates/pre_arrival/email/complete.html:158
 msgid "Registration Complete"
 msgstr "注册完成"
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:30
-#: pre_arrival/templates/pre_arrival/email/complete.html:210
+#: pre_arrival/templates/pre_arrival/email/complete.html:228
 msgid "Reservation No"
 msgstr "预约号码"
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:36
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:41
-#: pre_arrival/templates/pre_arrival/email/complete.html:212
+#: pre_arrival/templates/pre_arrival/email/complete.html:230
 msgid "Check-in Date"
 msgstr "入住日期"
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:38
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:45
-#: pre_arrival/templates/pre_arrival/email/complete.html:226
+#: pre_arrival/templates/pre_arrival/email/complete.html:244
 msgid "Check-out Date"
 msgstr "退房日期"
 
@@ -646,7 +645,17 @@ msgstr "请选择您要入住的房间"
 msgid "The following room(s) are found<br>under your reservation."
 msgstr "在您的预订中找到以下房间。"
 
-#: pre_arrival/templates/pre_arrival/email/complete.html:257
+#: pre_arrival/templates/pre_arrival/email/complete.html:168
+msgid "Dear"
+msgstr "亲爱的"
+
+#: pre_arrival/templates/pre_arrival/email/complete.html:176
+msgid ""
+"We are pleased to inform you that your registration is completed with "
+"details as follow:"
+msgstr "我们很高兴地通知您，您的注册完成，详情如下："
+
+#: pre_arrival/templates/pre_arrival/email/complete.html:275
 msgid ""
 " Please proceed to the front office to collect your key. Or alternatively, "
 "download our mobile app so you can head straight to your room using the "
