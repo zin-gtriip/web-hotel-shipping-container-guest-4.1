@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-03 16:00+0700\n"
-"PO-Revision-Date: 2020-11-04 10:37+0800\n"
+"PO-Revision-Date: 2020-11-04 12:58+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -56,7 +56,7 @@ msgstr "Reservation is not found."
 
 #: check_out/forms.py:71
 msgid "Checked-in Guests"
-msgstr "Check-in Date"
+msgstr "Checked-in Guests"
 
 #: check_out/forms.py:103 pre_arrival/forms.py:158 pre_arrival/forms.py:455
 #: pre_arrival_all_passport/forms.py:110
@@ -448,13 +448,13 @@ msgstr "Session Expiry Alert"
 #: pre_arrival/templates/pre_arrival/base.html:77
 #: pre_arrival_all_passport/templates/pre_arrival/base.html:77
 msgid "Your session is expired"
-msgstr "Please complete the registration before time expires."
+msgstr "Your session has expired."
 
 #: pre_arrival/templates/pre_arrival/base.html:80
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:95
 #: pre_arrival_all_passport/templates/pre_arrival/base.html:80
 msgid "Ok"
-msgstr "Ok"
+msgstr "OK"
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:17
 msgid "Registration Complete"
@@ -544,7 +544,7 @@ msgstr "Add Guest"
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:324
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:343
 msgid "Fix"
-msgstr "Fix"
+msgstr "OK"
 
 #: pre_arrival/templates/pre_arrival/desktop/login.html:22
 #: pre_arrival/templates/pre_arrival/mobile/login.html:30
