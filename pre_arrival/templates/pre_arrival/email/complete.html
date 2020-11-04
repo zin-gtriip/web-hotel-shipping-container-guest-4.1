@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <!-- <![endif]-->
 
-    <title>Registration Complete - {{ hotel_name }} - {{ reservationNo }}</title>
+    <title>Registration Complete - {{ hotelName }} - {{ reservationNo }}</title>
 
     <style type="text/css">
         body {
@@ -147,23 +147,41 @@
 
                 <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
                     <tr>
-                        <td height="45" style="font-size: 45px; line-height: 45px;">&nbsp;</td>
+                        <td height="64" style="font-size: 64px; line-height: 64px;">
+                        
+                            <table border="0" align="center" cellpadding="0" cellspacing="0" width="330" class="container590">
+                                <tr>
+                                    <td align="center" height="32" style="font-size: 32px; line-height: 32px;">
+                                        <img src="{{ staticURL }}/hotel_logo.jpg" height="32">
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
                     </tr>
                     <tr>
                         <td align="center">
 
                             <table border="0" align="center" cellpadding="0" cellspacing="0" width="330" class="container590">
                                 <tr>
-                                    <td align="center" height="29" style="font-size: 24px; line-height: 29px; font-weight: 300;">
-                                        {% trans 'Registration Complete' %}
+                                    <td align="left" height="17" style="line-height: 17px; font-weight: 300;" class="container590">
+                                        {% trans 'Dear' %} {{ mainGuestFirstName }} {{ mainGuestLastName }},
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" height="14" style="font-size: 14px; line-height: 14px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td align="left" height="17" style="line-height: 17px; font-weight: 300;">
+                                        {% trans 'We are pleased to inform you that your registration is completed with details as follow:' %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" height="14" style="font-size: 14px; line-height: 14px;">&nbsp;</td>
                                 </tr>
                             </table>
                             
                         </td>
-                    </tr>
-                    <tr>
-                        <td height="45" style="font-size: 45px; line-height: 45px;">&nbsp;</td>
                     </tr>
                 </table>
 
@@ -181,7 +199,7 @@
                     <tr>
                         <td align="center" class="section-img">
 
-                            <table border="0" align="center" cellpadding="0" cellspacing="0" width="330" height="172" class="container590" style="background-image: url('{{ static_url }}/{{ roomImage }}'); background-size: cover; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                            <table border="0" align="center" cellpadding="0" cellspacing="0" height="172" width="330" class="container590" style="background-image: url('{{ staticURL }}/{{ roomImage }}'); background-size: cover; border-top-left-radius: 10px; border-top-right-radius: 10px;">
                                 <tr>
                                     <td align="center" width="109" height="34" bgcolor="#000000" style="font-size: 12px; line-height: 34px; color: #ffffff; border-top-left-radius: 10px; border-bottom-right-radius: 10px;">{{ roomName }}</td>
                                     <td height="34" style="font-size: 34px; line-height: 34px;">&nbsp;</td>
@@ -197,47 +215,47 @@
                     <tr>
                         <td align="center">
 
-                            <table border="0" align="center" cellpadding="0" cellspacing="0" width="330" bgcolor="#000000" class="container590" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;"">
+                            <table border="0" align="center" cellpadding="0" cellspacing="0" width="330" class="container590" style="border-right: 2px solid #dee2e6; border-bottom: 2px solid #dee2e6; border-left: 2px solid #dee2e6; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
                                 <tr>
                                     <td width="20" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
-                                    <td width="100" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
                                     <td height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
-                                    <td width="100" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
-                                    <td width="20" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td width="20" height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
-                                    <td align="left" width="100" height="15" style="line-height: 15px; font-size: 10px; color: #ffffff;">{% trans 'Reservation No' %}</td>
-                                    <td height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
-                                    <td align="right" width="100" height="15" style="line-height: 15px; font-size: 10px; color: #ffffff;">{% trans 'Check-in Date' %}/td>
-                                    <td width="20" height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td width="20" height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
-                                    <td align="left" width="100" height="21" style="line-height: 21px; font-size: 14px; color: #ff9e1b;">{{ reservationNo }}</td>
-                                    <td height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
-                                    <td align="right" width="100" height="21" style="line-height: 21px; font-size: 14px; color: #ff9e1b;">{{ formattedArrivalDate }}</td>
-                                    <td width="20" height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td width="20" height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
-                                    <td align="left" width="100" height="15" style="line-height: 15px; font-size: 10px; color: #ffffff;">{% trans 'Last Name' %}</td>
-                                    <td height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
-                                    <td align="right" width="100" height="15" style="line-height: 15px; font-size: 10px; color: #ffffff;">{% trans 'Check-out Date' %}</td>
-                                    <td width="20" height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td width="20" height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
-                                    <td align="left" width="100" height="21" style="line-height: 21px; font-size: 14px; color: #ff9e1b;">{{ mainGuestLastName }}</td>
-                                    <td height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
-                                    <td align="right" width="100" height="21" style="line-height: 21px; font-size: 14px; color: #ff9e1b;">{{ formattedDepartureDate }}</td>
-                                    <td width="20" height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td width="20" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
-                                    <td width="100" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
                                     <td height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
-                                    <td width="100" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
+                                    <td height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
+                                    <td width="20" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td width="20" height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                    <td align="left" height="15" style="line-height: 15px; font-size: 10px; color: #aaaaaa;">{% trans 'Reservation No' %}</td>
+                                    <td height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                    <td align="right" height="15" style="line-height: 15px; font-size: 10px; color: #aaaaaa;">{% trans 'Check-in Date' %}/td>
+                                    <td width="20" height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td width="20" height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
+                                    <td align="left" height="21" style="line-height: 21px; font-size: 14px; color: #000000;">{{ reservationNo }}</td>
+                                    <td height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
+                                    <td align="right" height="21" style="line-height: 21px; font-size: 14px; color: #000000;">{{ formattedArrivalDate }}</td>
+                                    <td width="20" height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td width="20" height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                    <td align="left" height="15" style="line-height: 15px; font-size: 10px; color: #aaaaaa;">{% trans 'Last Name' %}</td>
+                                    <td height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                    <td align="right" height="15" style="line-height: 15px; font-size: 10px; color: #aaaaaa;">{% trans 'Check-out Date' %}</td>
+                                    <td width="20" height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td width="20" height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
+                                    <td align="left" height="21" style="line-height: 21px; font-size: 14px; color: #000000;">{{ mainGuestLastName }}</td>
+                                    <td height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
+                                    <td align="right" height="21" style="line-height: 21px; font-size: 14px; color: #000000;">{{ formattedDepartureDate }}</td>
+                                    <td width="20" height="21" style="font-size: 21px; line-height: 21px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td width="20" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
+                                    <td height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
+                                    <td height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
+                                    <td height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
                                     <td width="20" height="11" style="font-size: 11px; line-height: 11px;">&nbsp;</td>
                                 </tr>
                             </table>
@@ -268,17 +286,17 @@
                     <tr>
                         <td align="center">
 
-                            <table border="0" align="center" width="330" cellpadding="0" cellspacing="0" width="330" class="container590">
+                            <table border="0" align="center" cellpadding="0" cellspacing="0" width="330" class="container590">
                                 <tr>
                                     <td align="center" height="55" style="font-size: 55px; line-height: 55px;">
-                                        <a href="{{ ios_url }}" style="border-style: none !important; display: block; border: 0 !important;">
-                                            <img src="{{ static_url }}/app-store.png" style="display: block; width: 145px; height: 55px;" width="145" border="0" alt="" />
+                                        <a href="{{ iOSURL }}" style="border-style: none !important; display: block; border: 0 !important;">
+                                            <img src="{{ staticURL }}/app-store.png" style="display: block; width: 145px; height: 55px;" width="145" border="0" alt="" />
                                         </a>
                                     </td>
                                     <td align="center" height="55" width="55" style="font-size: 55px; line-height: 55px; width: 55px;">&nbsp;</td>
                                     <td align="center" height="55" style="font-size: 55px; line-height: 55px;">
-                                        <a href="{{ android_url }}" style="border-style: none !important; display: block; border: 0 !important;">
-                                            <img src="{{ static_url }}/google-play.png" style="display: block; width: 145px; height: 55px;" width="145" border="0" alt="" />
+                                        <a href="{{ androidURL }}" style="border-style: none !important; display: block; border: 0 !important;">
+                                            <img src="{{ staticURL }}/google-play.png" style="display: block; width: 145px; height: 55px;" width="145" border="0" alt="" />
                                         </a>
                                     </td>
                                 </tr>
@@ -308,7 +326,7 @@
                             <table border="0" align="center" cellpadding="0" cellspacing="0" width="330" class="container590">
                                 <tr>
                                     <td align="center" height="21" style="line-height: 21px;">
-                                        <img src="{{ static_url }}/gtriip.png" style="width: 10px; height: 15px; position: relative; top: 3px;">
+                                        <img src="{{ staticURL }}/gtriip.png" style="width: 10px; height: 15px; position: relative; top: 3px;">
                                         <span style="color: #aaaaaa; font-size: 11px;">&nbsp;&nbsp;&nbsp;Powered by GTRIIP</span>
                                     </td>
                                 </tr>

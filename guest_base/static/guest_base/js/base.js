@@ -35,7 +35,7 @@ $('.modal.auto-show').each(function() {
 
 
 // initiate and show alert modal
-function modalAlert(title='Error', body='Error', btnDismissText='Close') {
+function modalAlert(title=gettext('Error'), body=gettext('Error'), btnDismissText=gettext('Close')) {
 	var modal =
 		'<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">' +
             '<div class="modal-dialog modal-dialog-centered modal-sm">'+

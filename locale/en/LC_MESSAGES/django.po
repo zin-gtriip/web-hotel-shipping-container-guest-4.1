@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-31 23:19+0700\n"
-"PO-Revision-Date: 2020-10-30 14:19+0800\n"
+"POT-Creation-Date: 2020-11-03 16:00+0700\n"
+"PO-Revision-Date: 2020-11-04 10:37+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -25,11 +25,11 @@ msgstr "Reservation Number"
 
 #: check_out/forms.py:8 check_out/templates/check_out/desktop/login.html:30
 #: check_out/templates/check_out/mobile/login.html:37 pre_arrival/forms.py:14
-#: pre_arrival/forms.py:204 pre_arrival/forms.py:301
+#: pre_arrival/forms.py:206 pre_arrival/forms.py:303
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:32
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:169
 #: pre_arrival/templates/pre_arrival/desktop/login.html:43
-#: pre_arrival/templates/pre_arrival/email/complete.html:224
+#: pre_arrival/templates/pre_arrival/email/complete.html:242
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:170
 #: pre_arrival/templates/pre_arrival/mobile/login.html:57
 msgid "Last Name"
@@ -42,11 +42,11 @@ msgstr "Room Number"
 
 #: check_out/forms.py:27 check_out/forms.py:28 check_out/forms.py:30
 #: check_out/forms.py:80 pre_arrival/forms.py:32 pre_arrival/forms.py:34
-#: pre_arrival/forms.py:36 pre_arrival/forms.py:249 pre_arrival/forms.py:251
-#: pre_arrival/forms.py:253 pre_arrival/forms.py:255 pre_arrival/forms.py:257
-#: pre_arrival/forms.py:320 pre_arrival/forms.py:322 pre_arrival/forms.py:324
-#: pre_arrival/forms.py:326 pre_arrival/forms.py:328 pre_arrival/forms.py:397
-#: pre_arrival/forms.py:399
+#: pre_arrival/forms.py:36 pre_arrival/forms.py:251 pre_arrival/forms.py:253
+#: pre_arrival/forms.py:255 pre_arrival/forms.py:257 pre_arrival/forms.py:259
+#: pre_arrival/forms.py:322 pre_arrival/forms.py:324 pre_arrival/forms.py:326
+#: pre_arrival/forms.py:328 pre_arrival/forms.py:330 pre_arrival/forms.py:399
+#: pre_arrival/forms.py:401
 msgid "Enter the required information"
 msgstr "Enter the required information."
 
@@ -58,7 +58,7 @@ msgstr "Reservation is not found."
 msgid "Checked-in Guests"
 msgstr "Check-in Date"
 
-#: check_out/forms.py:103 pre_arrival/forms.py:158 pre_arrival/forms.py:453
+#: check_out/forms.py:103 pre_arrival/forms.py:158 pre_arrival/forms.py:455
 #: pre_arrival_all_passport/forms.py:110
 msgid "Unknown error"
 msgstr "Unknown error"
@@ -130,7 +130,7 @@ msgstr "Balance Due"
 #: check_out/templates/check_out/desktop/bill.html:196
 #, python-format
 msgid "GST at 7%%"
-msgstr ""
+msgstr "GST at 7%%"
 
 #: check_out/templates/check_out/desktop/bill.html:119
 #: check_out/templates/check_out/desktop/bill.html:200
@@ -291,8 +291,7 @@ msgid "Oops! We couldn't find the page you're looking for"
 msgstr "Oops! We couldn't find the page you're looking for."
 
 #: guest_base/templates/404.html:20
-msgid ""
-"It looks like that page doesn't exit. Please check the URL and try again."
+msgid "It looks like that page doesn't exit. Please check the URL and try again."
 msgstr ""
 "It looks like that page doesn't exist. Please check the URL and try again."
 
@@ -304,24 +303,24 @@ msgstr "Arrival Date"
 msgid ""
 "Pre-arrival for this reservation is unavailable yet. Please try again later."
 msgstr ""
-"Registration for this reservation is not available yet. Please try again at "
-"a later date."
+"Registration for this reservation is not available yet. Please try again at a "
+"later date."
 
 #: pre_arrival/forms.py:44
 msgid "Pre-arrival registration has been completed."
-msgstr ""
+msgstr "Registration has been completed."
 
 #: pre_arrival/forms.py:46
 msgid "Incorrect reservation details, please check and try again."
-msgstr ""
+msgstr "Incorrect reservation details, please check and try again."
 
 #: pre_arrival/forms.py:86
 msgid "Token ID is missing."
-msgstr "Expiry date is missing."
+msgstr "Unable to find session token, a new session token is assigned."
 
 #: pre_arrival/forms.py:91
 msgid "Token ID is not correct."
-msgstr ""
+msgstr "Session token does not match, time extension is disabled."
 
 #: pre_arrival/forms.py:118
 msgid "No reservation selected."
@@ -344,25 +343,25 @@ msgid ""
 "proceed"
 msgstr "The passport has expired, please use a valid passport."
 
-#: pre_arrival/forms.py:203 pre_arrival/forms.py:300
+#: pre_arrival/forms.py:205 pre_arrival/forms.py:302
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:161
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:162
 msgid "First Name"
 msgstr "First Name"
 
-#: pre_arrival/forms.py:205 pre_arrival/forms.py:303
+#: pre_arrival/forms.py:207 pre_arrival/forms.py:305
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:177
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:178
 msgid "Passport Number"
 msgstr "Passport Number"
 
-#: pre_arrival/forms.py:206 pre_arrival/forms.py:302
+#: pre_arrival/forms.py:208 pre_arrival/forms.py:304
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:187
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:188
 msgid "[Select Country]"
 msgstr "[Select Country]"
 
-#: pre_arrival/forms.py:206 pre_arrival/forms.py:302
+#: pre_arrival/forms.py:208 pre_arrival/forms.py:304
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:106
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:185
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:280
@@ -376,44 +375,43 @@ msgstr "[Select Country]"
 msgid "Nationality"
 msgstr "Nationality"
 
-#: pre_arrival/forms.py:207 pre_arrival/forms.py:304
+#: pre_arrival/forms.py:209 pre_arrival/forms.py:306
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:198
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:199
 msgid "Date of Birth"
 msgstr "Date of Birth"
 
-#: pre_arrival/forms.py:262
+#: pre_arrival/forms.py:264
 #, python-format
 msgid "Main guest has to be %(age)s and above."
 msgstr "Main guest must be at least %(age)s years old."
 
-#: pre_arrival/forms.py:367
+#: pre_arrival/forms.py:369
 msgid "You have exceeded the number of adults."
 msgstr "You have exceeded the number of adults."
 
-#: pre_arrival/forms.py:375
+#: pre_arrival/forms.py:377
 #: pre_arrival/templates/pre_arrival/desktop/other_info.html:35
 msgid "Time of Arrival"
 msgstr "Time of Arrival"
 
-#: pre_arrival/forms.py:376
+#: pre_arrival/forms.py:378
 msgid "Special Requests"
 msgstr "Special Requests"
 
-#: pre_arrival/forms.py:377
+#: pre_arrival/forms.py:379
 msgid "Email"
 msgstr "Email"
 
-#: pre_arrival/forms.py:378
+#: pre_arrival/forms.py:380
 msgid "Is Subscribe"
 msgstr "Subscribe"
 
-#: pre_arrival/forms.py:432
-#, python-format
-msgid "Registration Complete - %(hotel_name)s - %(reservation_no)s"
-msgstr "Registration Complete - %(hotel_name)s - %(reservation_no)s"
+#: pre_arrival/forms.py:436
+msgid "Registration Complete - %(hotel_name)s - Reservation #%(reservation_no)s"
+msgstr "Registration Complete - %(hotel_name)s - Reservation #%(reservation_no)s"
 
-#: pre_arrival/forms.py:465
+#: pre_arrival/forms.py:467
 msgid "There is no reservation can be done for pre-arrival"
 msgstr "Reservations have already been registered or checked-in."
 
@@ -459,32 +457,31 @@ msgid "Ok"
 msgstr "Ok"
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:17
-#: pre_arrival/templates/pre_arrival/email/complete.html:158
 msgid "Registration Complete"
 msgstr "Registration Complete"
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:30
-#: pre_arrival/templates/pre_arrival/email/complete.html:210
+#: pre_arrival/templates/pre_arrival/email/complete.html:228
 msgid "Reservation No"
 msgstr "Reservation No"
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:36
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:41
-#: pre_arrival/templates/pre_arrival/email/complete.html:212
+#: pre_arrival/templates/pre_arrival/email/complete.html:230
 msgid "Check-in Date"
 msgstr "Check-in Date"
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:38
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:45
-#: pre_arrival/templates/pre_arrival/email/complete.html:226
+#: pre_arrival/templates/pre_arrival/email/complete.html:244
 msgid "Check-out Date"
 msgstr "Check-out Date"
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:50
 msgid ""
 "\n"
-"                                Please proceed to the front office to "
-"collect your key.\n"
+"                                Please proceed to the front office to collect "
+"your key.\n"
 "                                Or alternatively, download our mobile app so "
 "you can\n"
 "                                head straight to your room using the digital "
@@ -581,9 +578,9 @@ msgstr "I would like to receive exclusive offers, and news via email."
 #, python-format
 msgid ""
 "\n"
-"                                We are commited to protecting your privacy. "
-"By proceeding, you agree to our <a href=\"%(tnc_link)s\" target=\"_blank\" "
-"class=\"new-window-link\">Terms & Conditions</a>.\n"
+"                                We are commited to protecting your privacy. By "
+"proceeding, you agree to our <a href=\"%(tnc_link)s\" target=\"_blank\" class="
+"\"new-window-link\">Terms & Conditions</a>.\n"
 "                                View our Global Privacy Statement <a href="
 "\"%(privacy_link)s\" target=\"_blank\" class=\"new-window-link\">here</a>.\n"
 "                            "
@@ -620,8 +617,7 @@ msgstr ""
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:36
 msgid ""
 "Please make sure that all of the passport information<br>is within the box."
-msgstr ""
-"Please make sure that all of the passport information is within the box."
+msgstr "Please make sure that all of the passport information is within the box."
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:55
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:55
@@ -660,7 +656,19 @@ msgstr "Please select your room to Check-In"
 msgid "The following room(s) are found<br>under your reservation."
 msgstr "The following room(s) are found under your reservation."
 
-#: pre_arrival/templates/pre_arrival/email/complete.html:257
+#: pre_arrival/templates/pre_arrival/email/complete.html:168
+msgid "Dear"
+msgstr "Dear"
+
+#: pre_arrival/templates/pre_arrival/email/complete.html:176
+msgid ""
+"We are pleased to inform you that your registration is completed with details "
+"as follow:"
+msgstr ""
+"We are pleased to inform you that your registration is completed with details "
+"as follow:"
+
+#: pre_arrival/templates/pre_arrival/email/complete.html:275
 msgid ""
 " Please proceed to the front office to collect your key. Or alternatively, "
 "download our mobile app so you can head straight to your room using the "
@@ -676,11 +684,9 @@ msgstr "Please confirm your<br>Arrival Date"
 
 #: pre_arrival/templates/pre_arrival/mobile/login.html:40
 msgid ""
-"To begin the online check-in process,<br>please enter your reservation "
-"number."
+"To begin the online check-in process,<br>please enter your reservation number."
 msgstr ""
-"To begin the online check-in process, <br>please enter your reservation "
-"number."
+"To begin the online check-in process, <br>please enter your reservation number."
 
 #: pre_arrival/templates/pre_arrival/mobile/login.html:42
 msgid ""
@@ -697,7 +703,7 @@ msgstr "To verify your reservation, <br>please confirm the arrival date."
 
 #: pre_arrival/templates/pre_arrival/mobile/login.html:51
 msgid "e.g. 12345678"
-msgstr ""
+msgstr "e.g. 12345678"
 
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:27
 msgid "Submit Passport<br>image"
@@ -759,5 +765,5 @@ msgid ""
 "We need a photograph of the additional guest's<br>passport, or alternatively "
 "you may upload<br>the image file."
 msgstr ""
-"An image of your passport is required for registration. <br>Use the camera "
-"to capture or choose an existing image from your device."
+"An image of your passport is required for registration. <br>Use the camera to "
+"capture or choose an existing image from your device."

@@ -63,7 +63,7 @@ class PreArrivalLoginForm(forms.Form):
         self.request.session['pre_arrival']['input_arrival_date'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
         self.request.session['pre_arrival']['input_last_name'] = self.cleaned_data.get('last_name')
         config = gateways.amp_endpoint('/getConfigVariables') # get config variables
-        expiry_duration = config.get('prearrival_session_duration_minutes', settings.PRE_ARRIVAL_AGE)
+        expiry_duration = 5 #config.get('prearrival_session_duration_minutes', settings.PRE_ARRIVAL_AGE)
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['pre_arrival']['initial_expiry_date'] = initial_expiry_date
         self.request.session['pre_arrival']['initial_expiry_duration'] = expiry_duration # will be popped after pass to templates
@@ -78,17 +78,17 @@ class PreArrivalTimerExtensionForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.request = request
 
-    def clear(self):
+    def clean(self):
         super().clean()
         token_id = self.cleaned_data.get('token_id')
 
         if not token_id:
-            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Token ID is missing.')])
+            self._errors['token_id'] = self.error_class([_('Token ID is missing.')])
         else:
-            session_key = request.session.session_key
-            initial_expiry_date = request.session.get('pre_arrival', {}).get('initial_expiry_date', '')
+            session_key = self.request.session.session_key
+            initial_expiry_date = self.request.session.get('pre_arrival', {}).get('initial_expiry_date', '')
             if base_utilities.decrypt(token_id) != (session_key + initial_expiry_date):
-                self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Token ID is not correct.')])
+                self._errors['token_id'] = self.error_class([_('Token ID is not correct.')])
         return self.cleaned_data
 
     def save(self):
@@ -421,17 +421,19 @@ class PreArrivalOtherInfoForm(forms.Form):
         context = dict(self.request.session['pre_arrival']['reservation']) # create new variable to prevent modification on `request.session`
         context['formattedArrivalDate'] = utilities.format_display_date(context.get('arrivalDate', ''))
         context['formattedDepartureDate'] = utilities.format_display_date(context.get('departureDate', ''))
-        context['mainGuestLastName'] = next(guest.get('lastName', '') for guest in context.get('guestsList', []) if guest.get('isMainGuest', '0') == '1')
+        main_guest = next(guest for guest in context.get('guestsList', []) if guest.get('isMainGuest', '0') == '1')
+        context['mainGuestFirstName'] = main_guest.get('firstName', '')
+        context['mainGuestLastName'] = main_guest.get('lastName', '')
         room = next((temp for temp in settings.ROOM_TYPES if temp['room_type'] == context['roomType']), {})
         context['roomName'] = room.get('room_name', '')
         context['roomImage'] = room.get('room_image', '')
-        context['hotel_name'] = settings.HOTEL_NAME
-        context['static_url'] = settings.HOST_URL + settings.STATIC_IMAGE_URL
-        context['ios_url'] = settings.APP_IOS_URL
-        context['android_url'] = settings.APP_ANDROID_URL
+        context['hotelName'] = settings.HOTEL_NAME
+        context['staticURL'] = settings.HOST_URL + settings.STATIC_IMAGE_URL
+        context['iOSURL'] = settings.APP_IOS_URL
+        context['androidURL'] = settings.APP_ANDROID_URL
         data = {}
         template = os.path.join(settings.BASE_DIR, 'pre_arrival', 'templates', 'pre_arrival', 'email', 'complete.html')
-        data['title'] = _('Registration Complete - %(hotel_name)s - %(reservation_no)s') % {'hotel_name': settings.HOTEL_NAME, 'reservation_no': context.get('reservationNo', '')}
+        data['title'] = _('Registration Complete - %(hotel_name)s - Reservation #%(reservation_no)s') % {'hotel_name': settings.HOTEL_NAME, 'reservation_no': context.get('reservationNo', '')}
         data['html'] = render_to_string(template, context)
         return data
 
