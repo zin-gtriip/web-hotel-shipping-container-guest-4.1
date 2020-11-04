@@ -63,7 +63,7 @@ class PreArrivalLoginForm(forms.Form):
         self.request.session['pre_arrival']['input_arrival_date'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
         self.request.session['pre_arrival']['input_last_name'] = self.cleaned_data.get('last_name')
         config = gateways.amp_endpoint('/getConfigVariables') # get config variables
-        expiry_duration = 5 #config.get('prearrival_session_duration_minutes', settings.PRE_ARRIVAL_AGE)
+        expiry_duration = config.get('prearrival_session_duration_minutes', settings.PRE_ARRIVAL_AGE)
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['pre_arrival']['initial_expiry_date'] = initial_expiry_date
         self.request.session['pre_arrival']['initial_expiry_duration'] = expiry_duration # will be popped after pass to templates
