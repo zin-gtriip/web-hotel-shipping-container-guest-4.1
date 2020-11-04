@@ -78,17 +78,17 @@ class PreArrivalTimerExtensionForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.request = request
 
-    def clear(self):
+    def clean(self):
         super().clean()
         token_id = self.cleaned_data.get('token_id')
 
         if not token_id:
-            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Token ID is missing.')])
+            self._errors['token_id'] = self.error_class([_('Token ID is missing.')])
         else:
             session_key = request.session.session_key
             initial_expiry_date = request.session.get('pre_arrival', {}).get('initial_expiry_date', '')
             if base_utilities.decrypt(token_id) != (session_key + initial_expiry_date):
-                self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Token ID is not correct.')])
+                self._errors['token_id'] = self.error_class([_('Token ID is not correct.')])
         return self.cleaned_data
 
     def save(self):
