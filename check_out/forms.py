@@ -94,8 +94,6 @@ class CheckOutBillForm(forms.Form):
             new_guest_data['last_name'] = self.request.session['check_out'].get('input_last_name', None)
             new_guest_data['room_no'] = self.request.session['check_out'].get('input_room_no')
             new_guest_response = gateways.guest_endpoint('/signInForCheckOut', new_guest_data)
-            if new_guest_response.get('status_code', '') != 500:
-                raise ValueError(new_guest_response.get('message', 'Unknown error'))
             self.request.session['check_out']['bills'] = new_guest_response.get('data', [])
             if not new_guest_response.get('data', []):
                 self.request.session['check_out']['complete'] = True
