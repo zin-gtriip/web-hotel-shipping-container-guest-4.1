@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-31 23:18+0700\n"
-"PO-Revision-Date: 2020-10-30 14:21+0800\n"
+"POT-Creation-Date: 2020-11-04 11:16+0700\n"
+"PO-Revision-Date: 2020-11-04 11:35+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -17,6 +17,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 2.4.1\n"
+
+#: guest_base/static/guest_base/js/base.js:38
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:47
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:59
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:122
+#: pre_arrival/static/pre_arrival/js/mobile/passport.js:63
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:47
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:59
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:122
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:63
+msgid "Error"
+msgstr "エラー"
+
+#: guest_base/static/guest_base/js/base.js:38
+msgid "Close"
+msgstr "閉じる"
+
+#: pre_arrival/static/pre_arrival/js/base.js:68
+msgid "Fail to extend timer"
+msgstr "ログイン時間を延長できません。"
+
+#: pre_arrival/static/pre_arrival/js/base.js:69
+msgid "Session Expiry Error"
+msgstr "ログイン有効期限アラート"
+
+#: pre_arrival/static/pre_arrival/js/base.js:69
+msgid "OK"
+msgstr "はい"
 
 #: pre_arrival/static/pre_arrival/js/desktop/detail.js:78
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:84
@@ -56,17 +84,6 @@ msgstr "画像ファイルが選択されていません"
 #: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:50
 msgid "Please upload valid identification in JPEG/PNG format"
 msgstr "有効な身分証明書をJPEG / PNG形式でアップロードしてください。"
-
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:47
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:59
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:122
-#: pre_arrival/static/pre_arrival/js/mobile/passport.js:63
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:47
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:59
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:122
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:63
-msgid "Error"
-msgstr "エラー"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:47
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:122
@@ -116,5 +133,5 @@ msgid ""
 "Drag, rotate, or pinch the image to make sure<br>that all information is "
 "within the box."
 msgstr ""
-"画像をドラッグ、回転、またはピンチして、すべての情報がボックス内にあることを"
-"確認します。"
+"画像をドラッグ、回転、またはピンチして、すべての情報がボックス内にあること"
+"を確認します。"

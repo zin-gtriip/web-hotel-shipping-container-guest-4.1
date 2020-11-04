@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-31 23:18+0700\n"
-"PO-Revision-Date: 2020-10-30 14:21+0800\n"
+"POT-Creation-Date: 2020-11-04 11:16+0700\n"
+"PO-Revision-Date: 2020-11-04 11:30+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -17,6 +17,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 2.4.1\n"
+
+#: guest_base/static/guest_base/js/base.js:38
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:47
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:59
+#: pre_arrival/static/pre_arrival/js/desktop/passport.js:122
+#: pre_arrival/static/pre_arrival/js/mobile/passport.js:63
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:47
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:59
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:122
+#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:63
+msgid "Error"
+msgstr "错误"
+
+#: guest_base/static/guest_base/js/base.js:38
+msgid "Close"
+msgstr "关"
+
+#: pre_arrival/static/pre_arrival/js/base.js:68
+msgid "Fail to extend timer"
+msgstr "无法延伸登录时间。"
+
+#: pre_arrival/static/pre_arrival/js/base.js:69
+msgid "Session Expiry Error"
+msgstr "登录到期警报"
+
+#: pre_arrival/static/pre_arrival/js/base.js:69
+msgid "OK"
+msgstr "好"
 
 #: pre_arrival/static/pre_arrival/js/desktop/detail.js:78
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:84
@@ -56,17 +84,6 @@ msgstr "未选择图像文件"
 #: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:50
 msgid "Please upload valid identification in JPEG/PNG format"
 msgstr "请以JPEG / PNG格式上传有效的身份证明。"
-
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:47
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:59
-#: pre_arrival/static/pre_arrival/js/desktop/passport.js:122
-#: pre_arrival/static/pre_arrival/js/mobile/passport.js:63
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:47
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:59
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:122
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:63
-msgid "Error"
-msgstr "错误"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:47
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:122
