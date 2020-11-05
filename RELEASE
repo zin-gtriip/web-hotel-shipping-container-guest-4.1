@@ -1,5 +1,5 @@
-name = hotel_template
-version = 1.0.4
+name = hotel_template_guest
+version = 1.0.5
 description = A Django app for hotel guest facing.
 url = https://www.gtriip.com/
 environment = Web Environment
