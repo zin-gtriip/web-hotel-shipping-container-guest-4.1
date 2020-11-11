@@ -3,9 +3,12 @@
 // CUSTOM FONT
 // @font-face {
 //     font-family: 'Roboto';
+//     font-style: normal;
+//     font-weight: 300; // auto, block, swap, fallback, optional
+//     font-display: swap;
 //     src:
-//     local('Roboto Light'),
-//     local('Roboto-Light'),
+//         local('Roboto Light'),
+//         local('Roboto-Light'),
 //         url('/static/fonts/Roboto.woff2')
 //         format('woff2'); // woff2: woff2, woff: woff, ttf: truetype, otf: opentype
 // }
