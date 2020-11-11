@@ -11,6 +11,13 @@ from pre_arrival.forms          import PreArrivalDetailForm, PreArrivalDetailExt
 
 class PreArrivalDetailForm(PreArrivalDetailForm):
 
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(request, *args, **kwargs)
+        # store additional guests to temp in session because `guestsList` will be saved with no additional guests
+        if not self.request.session['pre_arrival'].get('detail', None):
+            prefilled = [guest for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') != '1']
+            self.request.session['pre_arrival']['detail'] = {'prefilled_guest_temp': prefilled}
+        
     def save(self, extra):
         guests = [{
             'guestID': self.cleaned_data.get('guest_id'),
@@ -42,7 +49,6 @@ class PreArrivalDetailForm(PreArrivalDetailForm):
                 updated_guests.append(guest)
         self.request.session['pre_arrival']['reservation']['guestsList'] = updated_guests # replace with whole new list
         self.request.session['pre_arrival'].pop('ocr', None) # remove ocr after save detail
-        self.request.session['pre_arrival']['detail'] = True # variable to prevent page jump
 
 
 class PreArrivalDetailExtraForm(PreArrivalDetailExtraForm):
@@ -53,10 +59,10 @@ class PreArrivalDetailExtraBaseFormSet(PreArrivalDetailExtraBaseFormSet):
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(request, *args, **kwargs)
-        # populate additional guests
+        # populate additional guests that only have passport image
         prefilled = []
         for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []):
-            if guest.get('isMainGuest', '0') == '0':
+            if guest.get('isMainGuest', '0') == '0' and guest.get('passportImage', ''):
                 prefilled.append({
                     'guest_id': guest.get('guestID', ''),
                     'first_name': guest.get('firstName', ''),
@@ -68,16 +74,6 @@ class PreArrivalDetailExtraBaseFormSet(PreArrivalDetailExtraBaseFormSet):
                 })
         self.initial = prefilled
 
-    def clean(self):
-        for index, form in enumerate(self.forms):
-            guest_id = form.cleaned_data.get('guest_id')
-            passport_file = form.cleaned_data.get('passport_file')
-            if guest_id and not passport_file: # validate for pre-filled guest only
-                error_message = _('Please provide the passport photo for the additional guest:\n\nGuest %i\n\n' % (index + 2))
-                hidden_input = format_html('<input type="hidden" id="guest-id" value="{}">', guest_id)
-                self._non_form_errors = self.error_class([format_html(error_message + hidden_input)])
-        super().clean()
-
 
 # initiate formset, for one2many field
 PreArrivalDetailExtraFormSet = forms.formset_factory(PreArrivalDetailExtraForm, formset=PreArrivalDetailExtraBaseFormSet)
@@ -86,10 +82,9 @@ PreArrivalDetailExtraFormSet = forms.formset_factory(PreArrivalDetailExtraForm, 
 class PreArrivalAllPassportExtraPassportForm(forms.Form):
     passport_file = forms.CharField(widget=forms.HiddenInput())
     
-    def __init__(self, request, guest_id, *args, **kwargs):
+    def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.request = request
-        self.guest_id = guest_id
         self.label_suffix = ''
 
     def clean(self):
@@ -137,29 +132,28 @@ class PreArrivalAllPassportExtraPassportForm(forms.Form):
         return response
 
     def save(self):
+        # prepare for ocr
         file_name = self.request.session.session_key +'.png'
         folder_name = os.path.join(settings.BASE_DIR, 'media', 'ocr')
         saved_file = os.path.join(folder_name, file_name)
         with open(saved_file, 'rb') as image_file:
             file_b64_encoded = base64.b64encode(image_file.read())
         ocr = self.gateway_ocr(saved_file)
+        os.remove(saved_file) # remove saved file after got response
 
+        # parse dob
         dob = utilities.parse_ocr_date(ocr.get('date_of_birth', ''))
         if dob:
             date_format = settings.DATE_INPUT_FORMATS[0] if settings.DATE_INPUT_FORMATS else '%Y-%m-%d'
             dob = dob.strftime(date_format)
-        extra_guest = {}
-        extra_guest['guestID'] = self.guest_id or '0'
+        
+        # get data from additional guests temp in session
+        extra_guest = next((guest for guest in self.request.session['pre_arrival']['detail'].get('prefilled_guest_temp', []) if not guest.get('passportImage', '')), {})
+        extra_guest['guestID'] = extra_guest.get('guestID', '0')
         extra_guest['firstName'] = ocr.get('names', '')
         extra_guest['lastName'] = ocr.get('surname', '')
         extra_guest['nationality'] = Country(ocr.get('nationality', '')).code
         extra_guest['passportNo'] = ocr.get('number', '')
         extra_guest['dob'] = dob
         extra_guest['passportImage'] = file_b64_encoded.decode()
-        if self.guest_id:
-            prefilled_guest = next((guest for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('guestID', '') == self.guest_id), {})
-            prefilled_guest.update(extra_guest)
-        else:
-            self.request.session['pre_arrival']['reservation']['guestsList'].append(extra_guest)
-
-        os.remove(saved_file) # remove saved file
+        self.request.session['pre_arrival']['reservation']['guestsList'].append(extra_guest)

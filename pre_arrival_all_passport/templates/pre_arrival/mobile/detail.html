@@ -278,11 +278,13 @@
                         <button type="button" class="btn btn-outline-primary text-capitalize" id="btn-add-extra">{% trans 'Add Guest' %}</button>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12 mt-1 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">{% trans 'Next' %}</button>
+                {% if extra.forms|length >= max_extra_form %}
+                    <div class="row">
+                        <div class="col-12 mt-1 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">{% trans 'Next' %}</button>
+                        </div>
                     </div>
-                </div>
+                {% endif %}
             </div>
         </div>
     </form>
