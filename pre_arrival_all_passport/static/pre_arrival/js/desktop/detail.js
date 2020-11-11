@@ -75,6 +75,7 @@ function restyleExtra() {
         $mainGuest.removeClass('ml-auto').addClass('mx-auto');
     } else if ($extraFormset.length == 1) {
         $mainGuest.removeClass('mx-auto').addClass('ml-auto');
+        $extraFormset.addClass('mr-auto');
     } else {
         $mainGuest.removeClass('ml-auto, mx-auto');
     }
