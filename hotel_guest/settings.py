@@ -238,10 +238,10 @@ SESSION_SAVE_EVERY_REQUEST = True
 
 # Pre Arrival
 # default expiry time for the pre-arrival (in minutes), if AMP is not provided
-PRE_ARRIVAL_AGE         = 15
-PRE_ARRIVAL_AGE_EXTEND  = 10
+PRE_ARRIVAL_SESSION_AGE_INITIAL = 15
+PRE_ARRIVAL_SESSION_AGE_EXTEND  = 10
 # room mapping, use `room_type` as identifier
-ROOM_TYPES = [
+PRE_ARRIVAL_ROOM_TYPES = [
     {
         'room_type' : 'Premier',
         'room_name' : 'Premier Room',
@@ -259,11 +259,11 @@ ROOM_TYPES = [
     },
 ]
 # age limit for adult, used on passport, detail page
-ADULT_AGE_LIMIT             = 18
+PRE_ARRIVAL_ADULT_AGE_LIMIT             = 18
 # progress bar rate on pre-arrival page
-PROGRESS_BAR_START_RATE     = 10
-PROGRESS_BAR_END_RATE       = 100
-PROGRESS_BAR_PAGES          = [
+PRE_ARRIVAL_PROGRESS_BAR_START_RATE     = 10
+PRE_ARRIVAL_PROGRESS_BAR_END_RATE       = 100
+PRE_ARRIVAL_PROGRESS_BAR_PAGES          = [
     'login',
     'reservation',
     'passport',
@@ -272,5 +272,6 @@ PROGRESS_BAR_PAGES          = [
     'complete',
 ]
 # progress bar rate calculation, -1 to exclude first page
-PROGRESS_BAR_RATE_PER_PAGE  = (PROGRESS_BAR_END_RATE - PROGRESS_BAR_START_RATE) / (len(PROGRESS_BAR_PAGES) - 1)
-PRE_ARRIVAL_COMPLETE_EMAIL  = os.path.join(BASE_DIR, 'pre_arrival', 'templates', 'pre_arrival', 'email', 'complete.html')
+PRE_ARRIVAL_PROGRESS_BAR_RATE_PER_PAGE  = (PRE_ARRIVAL_PROGRESS_BAR_END_RATE - PRE_ARRIVAL_PROGRESS_BAR_START_RATE) / (len(PRE_ARRIVAL_PROGRESS_BAR_PAGES) - 1)
+# complete email template directory
+PRE_ARRIVAL_COMPLETE_EMAIL = os.path.join(BASE_DIR, 'pre_arrival', 'templates', 'pre_arrival', 'email', 'complete.html')

@@ -60,11 +60,11 @@ class ProgressRateContextMixin:
     def dispatch(self, request, *args, **kwargs):
         if not 'pre_arrival' in request.session:
             request.session['pre_arrival'] = {}
-        page_index = settings.PROGRESS_BAR_PAGES.index(self.progress_bar_page) if self.progress_bar_page in settings.PROGRESS_BAR_PAGES else 0
+        page_index = settings.PRE_ARRIVAL_PROGRESS_BAR_PAGES.index(self.progress_bar_page) if self.progress_bar_page in settings.PRE_ARRIVAL_PROGRESS_BAR_PAGES else 0
         if page_index == 0:
             request.session['pre_arrival']['previous_progress_rate'] = 0
-            request.session['pre_arrival']['current_progress_rate'] = settings.PROGRESS_BAR_START_RATE
+            request.session['pre_arrival']['current_progress_rate'] = settings.PRE_ARRIVAL_PROGRESS_BAR_START_RATE
         else:
-            request.session['pre_arrival']['previous_progress_rate'] = request.session['pre_arrival'].get('current_progress_rate', settings.PROGRESS_BAR_START_RATE)
-            request.session['pre_arrival']['current_progress_rate'] = settings.PROGRESS_BAR_START_RATE + (page_index * settings.PROGRESS_BAR_RATE_PER_PAGE)
+            request.session['pre_arrival']['previous_progress_rate'] = request.session['pre_arrival'].get('current_progress_rate', settings.PRE_ARRIVAL_PROGRESS_BAR_START_RATE)
+            request.session['pre_arrival']['current_progress_rate'] = settings.PRE_ARRIVAL_PROGRESS_BAR_START_RATE + (page_index * settings.PRE_ARRIVAL_PROGRESS_BAR_RATE_PER_PAGE)
         return super().dispatch(request, *args, **kwargs)
