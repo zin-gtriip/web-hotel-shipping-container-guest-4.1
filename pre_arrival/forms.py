@@ -432,7 +432,7 @@ class PreArrivalOtherInfoForm(forms.Form):
         context['iOSURL'] = settings.APP_IOS_URL
         context['androidURL'] = settings.APP_ANDROID_URL
         data = {}
-        template = os.path.join(settings.BASE_DIR, 'pre_arrival', 'templates', 'pre_arrival', 'email', 'complete.html')
+        template = settings.PRE_ARRIVAL_COMPLETE_EMAIL or os.path.join(settings.BASE_DIR, 'pre_arrival', 'templates', 'pre_arrival', 'email', 'complete.html')
         data['title'] = _('Registration Complete - %(hotel_name)s - Reservation #%(reservation_no)s') % {'hotel_name': settings.HOTEL_NAME, 'reservation_no': context.get('reservationNo', '')}
         data['html'] = render_to_string(template, context)
         return data
