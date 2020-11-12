@@ -273,3 +273,4 @@ PROGRESS_BAR_PAGES          = [
 ]
 # progress bar rate calculation, -1 to exclude first page
 PROGRESS_BAR_RATE_PER_PAGE  = (PROGRESS_BAR_END_RATE - PROGRESS_BAR_START_RATE) / (len(PROGRESS_BAR_PAGES) - 1)
+PRE_ARRIVAL_COMPLETE_EMAIL  = os.path.join(BASE_DIR, 'pre_arrival', 'templates', 'pre_arrival', 'email', 'complete.html')
