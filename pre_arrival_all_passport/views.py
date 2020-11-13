@@ -33,12 +33,6 @@ class PreArrivalAllPassportExtraPassportView(ParameterRequiredMixin, RequestForm
     parameter_required      = 'passport'
     progress_bar_page       = 'detail'
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        guest_id = self.request.GET.get('guest_id', None)
-        kwargs.update(guest_id=guest_id)
-        return kwargs
-
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)

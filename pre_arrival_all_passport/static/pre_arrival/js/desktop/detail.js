@@ -19,14 +19,6 @@ $('.btn-remove-extra').click(function() {
 });
 
 
-$('.modal').on('hide.bs.modal', function() {
-    var guestID = $(this).find('#guest-id').val();
-    if (guestID !== undefined) {
-        window.location.href = '/pre_arrival/extra_passport/?guest_id='+ guestID;
-    }
-});
-
-
 function getFormsetIndex() {
     return $('.extra-formset').length;
 }
@@ -83,6 +75,7 @@ function restyleExtra() {
         $mainGuest.removeClass('ml-auto').addClass('mx-auto');
     } else if ($extraFormset.length == 1) {
         $mainGuest.removeClass('mx-auto').addClass('ml-auto');
+        $extraFormset.addClass('mr-auto');
     } else {
         $mainGuest.removeClass('ml-auto, mx-auto');
     }
