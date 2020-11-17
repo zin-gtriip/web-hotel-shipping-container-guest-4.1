@@ -127,7 +127,17 @@ class PreArrivalReservationForm(forms.Form):
 class PreArrivalPassportForm(forms.Form):
     passport_file = forms.CharField(widget=forms.HiddenInput(), required=False)
     skip_passport = forms.BooleanField(widget=forms.HiddenInput(), required=False)
-    
+
+    error_messages = {
+        'Incorrect API key': _('Incorrect API key'),
+        'Invalid passport image.': _('Invalid passport image.'),
+        'Invalid passport image. MRZ Code is invalid.': _('Invalid passport image. MRZ Code is invalid.'),
+        'Invalid passport image. Please make sure your passport page area is not blocked.': _('Invalid passport image. Please make sure your passport page area is not blocked.'),
+        'Image file is too big.': _('Image file is too big.'),
+        'Error scanning image. Please try again later.': _('Error scanning image. Please try again later.'),
+        'Invalid NRIC image.': _('Invalid NRIC image.'),
+    }
+
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.request = request
@@ -155,7 +165,8 @@ class PreArrivalPassportForm(forms.Form):
                     else:
                         self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Your passport has expired, please capture / upload a valid passport photo to proceed')])
             else:
-                self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
+                response_message = response.get('message', _('Unknown error'))
+                self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([self.error_messages.get(response_message, response_message)])
             # remove saved file if fail
             if self._errors:
                 os.remove(saved_file)
