@@ -371,9 +371,9 @@ class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
     def clean(self):
         super().clean()
         adult, max_adult = 1, int(self.request.session['pre_arrival']['reservation'].get('adults', 1))
+        config = gateways.amp_endpoint('/getConfigVariables') or {} # get config variables
+        age_limit = config.get('prearrival_adult_min_age_years', settings.PRE_ARRIVAL_ADULT_AGE_LIMIT)
         for form in self.forms:
-            config = gateways.amp_endpoint('/getConfigVariables') or {} # get config variables
-            age_limit = config.get('prearrival_adult_min_age_years', settings.PRE_ARRIVAL_ADULT_AGE_LIMIT)
             if utilities.calculate_age(form.cleaned_data.get('birth_date')) > age_limit:
                 adult += 1
         if adult > max_adult:
