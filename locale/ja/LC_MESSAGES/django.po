@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-03 16:00+0700\n"
-"PO-Revision-Date: 2020-11-04 12:58+0800\n"
+"POT-Creation-Date: 2020-11-17 12:11+0700\n"
+"PO-Revision-Date: 2020-11-17 21:05+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -25,7 +25,7 @@ msgstr "予約番号"
 
 #: check_out/forms.py:8 check_out/templates/check_out/desktop/login.html:30
 #: check_out/templates/check_out/mobile/login.html:37 pre_arrival/forms.py:14
-#: pre_arrival/forms.py:206 pre_arrival/forms.py:303
+#: pre_arrival/forms.py:217 pre_arrival/forms.py:314
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:32
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:169
 #: pre_arrival/templates/pre_arrival/desktop/login.html:43
@@ -42,11 +42,11 @@ msgstr "部屋番号"
 
 #: check_out/forms.py:27 check_out/forms.py:28 check_out/forms.py:30
 #: check_out/forms.py:80 pre_arrival/forms.py:32 pre_arrival/forms.py:34
-#: pre_arrival/forms.py:36 pre_arrival/forms.py:251 pre_arrival/forms.py:253
-#: pre_arrival/forms.py:255 pre_arrival/forms.py:257 pre_arrival/forms.py:259
-#: pre_arrival/forms.py:322 pre_arrival/forms.py:324 pre_arrival/forms.py:326
-#: pre_arrival/forms.py:328 pre_arrival/forms.py:330 pre_arrival/forms.py:399
-#: pre_arrival/forms.py:401
+#: pre_arrival/forms.py:36 pre_arrival/forms.py:262 pre_arrival/forms.py:264
+#: pre_arrival/forms.py:266 pre_arrival/forms.py:268 pre_arrival/forms.py:270
+#: pre_arrival/forms.py:333 pre_arrival/forms.py:335 pre_arrival/forms.py:337
+#: pre_arrival/forms.py:339 pre_arrival/forms.py:341 pre_arrival/forms.py:410
+#: pre_arrival/forms.py:412
 msgid "Enter the required information"
 msgstr "必要な情報を入力します。"
 
@@ -58,8 +58,8 @@ msgstr "予約が見つかりません。"
 msgid "Checked-in Guests"
 msgstr "チェックインしたゲスト"
 
-#: check_out/forms.py:103 pre_arrival/forms.py:158 pre_arrival/forms.py:455
-#: pre_arrival_all_passport/forms.py:110
+#: check_out/forms.py:101 pre_arrival/forms.py:168 pre_arrival/forms.py:466
+#: pre_arrival_all_passport/forms.py:105
 msgid "Unknown error"
 msgstr "不明なエラー"
 
@@ -217,8 +217,8 @@ msgstr "確認には以下の情報が必要です。"
 #: pre_arrival/templates/pre_arrival/mobile/login.html:75
 #: pre_arrival/templates/pre_arrival/mobile/login.html:78
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:78
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:281
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:283
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:282
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:284
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:85
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:78
 msgid "Next"
@@ -235,12 +235,12 @@ msgstr "次"
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:375
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:394
 #: pre_arrival/templates/pre_arrival/mobile/login.html:93
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:297
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:316
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:335
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:299
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:318
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:337
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:299
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:318
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:337
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:301
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:320
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:339
 msgid "Invalid Input"
 msgstr "無効入力"
 
@@ -255,8 +255,7 @@ msgstr "部屋番号を入力してください"
 
 #: check_out/templates/check_out/mobile/login.html:29
 msgid "To begin the online check-out process,<br>please enter your last name."
-msgstr ""
-"オンラインチェックアウトプロセスを開始するには、<br>姓を入力してください。"
+msgstr "チェックアウトプロセスを開始するには、姓を入力してください。"
 
 #: check_out/views.py:93
 msgid ""
@@ -296,7 +295,7 @@ msgstr "おっと！ お探しのページが見つかりませんでした。"
 msgid ""
 "It looks like that page doesn't exit. Please check the URL and try again."
 msgstr ""
-"そのページは存在しないようです。 URLを確認して、もう一度お試しください。"
+"そのページは存在しないようです。<br>URLを確認して、もう一度お試しください。"
 
 #: pre_arrival/forms.py:13
 msgid "Arrival Date"
@@ -327,42 +326,75 @@ msgstr "トークンが正しくない。"
 msgid "No reservation selected."
 msgstr "予約が選択されていません。"
 
-#: pre_arrival/forms.py:142 pre_arrival_all_passport/forms.py:100
+#: pre_arrival/forms.py:132
+msgid "Incorrect API key"
+msgstr "不正なAPIキー"
+
+#: pre_arrival/forms.py:133
+msgid "Invalid passport image."
+msgstr "パスポート画像が無効です。"
+
+#: pre_arrival/forms.py:134
+msgid "Invalid passport image. MRZ Code is invalid."
+msgstr ""
+"パスポートの下部にあるMRZコードが取得されていることを確認してください。"
+
+#: pre_arrival/forms.py:135
+msgid ""
+"Invalid passport image. Please make sure your passport page area is not "
+"blocked."
+msgstr ""
+"パスポートページ全体がフレーム内にキャプチャされていることを確認してくださ"
+"い。"
+
+#: pre_arrival/forms.py:136
+msgid "Image file is too big."
+msgstr "画像ファイルのサイズが大きすぎます（> 2MB）。"
+
+#: pre_arrival/forms.py:137
+msgid "Error scanning image. Please try again later."
+msgstr "画像を処理できません。 後でもう一度やり直してください。"
+
+#: pre_arrival/forms.py:138
+msgid "Invalid NRIC image."
+msgstr "NRIC image is invalid."
+
+#: pre_arrival/forms.py:152 pre_arrival_all_passport/forms.py:95
 msgid "No image file selected."
 msgstr "画像ファイルが選択されていません。"
 
-#: pre_arrival/forms.py:154
+#: pre_arrival/forms.py:164
 #, python-format
 msgid ""
 "You must be at least %(age)s years of age to proceed with your registration."
 msgstr "登録を続行するには、%(age)s歳以上である必要があります。"
 
-#: pre_arrival/forms.py:156 pre_arrival_all_passport/forms.py:108
+#: pre_arrival/forms.py:166 pre_arrival_all_passport/forms.py:103
 msgid ""
 "Your passport has expired, please capture / upload a valid passport photo to "
 "proceed"
 msgstr ""
 "パスポートの有効期限が切れています。有効なパスポートを使用してください。"
 
-#: pre_arrival/forms.py:205 pre_arrival/forms.py:302
+#: pre_arrival/forms.py:216 pre_arrival/forms.py:313
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:161
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:162
 msgid "First Name"
 msgstr "名"
 
-#: pre_arrival/forms.py:207 pre_arrival/forms.py:305
+#: pre_arrival/forms.py:218 pre_arrival/forms.py:316
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:177
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:178
 msgid "Passport Number"
 msgstr "パスポート番号"
 
-#: pre_arrival/forms.py:208 pre_arrival/forms.py:304
+#: pre_arrival/forms.py:219 pre_arrival/forms.py:315
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:187
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:188
 msgid "[Select Country]"
 msgstr "[国を選択]"
 
-#: pre_arrival/forms.py:208 pre_arrival/forms.py:304
+#: pre_arrival/forms.py:219 pre_arrival/forms.py:315
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:106
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:185
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:280
@@ -376,44 +408,45 @@ msgstr "[国を選択]"
 msgid "Nationality"
 msgstr "国籍"
 
-#: pre_arrival/forms.py:209 pre_arrival/forms.py:306
+#: pre_arrival/forms.py:220 pre_arrival/forms.py:317
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:198
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:199
 msgid "Date of Birth"
 msgstr "生年月日"
 
-#: pre_arrival/forms.py:264
+#: pre_arrival/forms.py:275
 #, python-format
 msgid "Main guest has to be %(age)s and above."
 msgstr "メインゲストは%(age)s歳以上である必要があります。"
 
-#: pre_arrival/forms.py:369
+#: pre_arrival/forms.py:380
 msgid "You have exceeded the number of adults."
 msgstr "大人の数を超えました。"
 
-#: pre_arrival/forms.py:377
+#: pre_arrival/forms.py:388
 #: pre_arrival/templates/pre_arrival/desktop/other_info.html:35
 msgid "Time of Arrival"
 msgstr "到着時刻"
 
-#: pre_arrival/forms.py:378
+#: pre_arrival/forms.py:389
 msgid "Special Requests"
 msgstr "特別なお願い"
 
-#: pre_arrival/forms.py:379
+#: pre_arrival/forms.py:390
 msgid "Email"
 msgstr "Eメール"
 
-#: pre_arrival/forms.py:380
+#: pre_arrival/forms.py:391
 msgid "Is Subscribe"
 msgstr "申し込む"
 
-#: pre_arrival/forms.py:436
+#: pre_arrival/forms.py:447
+#, python-format
 msgid ""
 "Registration Complete - %(hotel_name)s - Reservation #%(reservation_no)s"
 msgstr "登録完了 - %(hotel_name)s - 予約番号 #%(reservation_no)s"
 
-#: pre_arrival/forms.py:467
+#: pre_arrival/forms.py:478
 msgid "There is no reservation can be done for pre-arrival"
 msgstr "予約はすでに登録またはチェックインされています。"
 
@@ -515,7 +548,7 @@ msgstr "ゲストの詳細を入力"
 #: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:34
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:34
 msgid "Please enter the personal particulars below."
-msgstr "以下に個人情報を入力してください。"
+msgstr "以下の個人情報を確認してください。"
 
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:46
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:46
@@ -537,12 +570,12 @@ msgstr "ゲストを追加"
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:362
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:381
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:400
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:303
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:322
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:341
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:305
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:324
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:343
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:305
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:324
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:343
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:307
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:326
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:345
 msgid "Fix"
 msgstr "はい"
 
@@ -555,9 +588,7 @@ msgstr "%(HOTEL_NAME)s<br>へようこそ"
 #: pre_arrival/templates/pre_arrival/desktop/login.html:27
 msgid ""
 "To begin the online check-in process, please enter the<br>information below."
-msgstr ""
-"オンラインチェックインプロセスを開始するには、<br>予約番号を入力してくださ"
-"い。"
+msgstr "チェックインプロセスを開始するには、<br>予約番号を入力してください"
 
 #: pre_arrival/templates/pre_arrival/desktop/login.html:78
 msgid "Error"
@@ -686,20 +717,18 @@ msgstr "到着日をご確認ください"
 msgid ""
 "To begin the online check-in process,<br>please enter your reservation "
 "number."
-msgstr ""
-"オンラインチェックインプロセスを開始するには、<br>予約番号を入力してくださ"
-"い。"
+msgstr "チェックインプロセスを開始するには、<br>予約番号を入力してください"
 
 #: pre_arrival/templates/pre_arrival/mobile/login.html:42
 msgid ""
 "To verify your reservation, please provide<br>your last name is in your "
 "passport."
-msgstr "予約を確認するには、<br>予約に使用した姓を入力してください。"
+msgstr "予約を確認するために、<br>予約で使用した姓を入力してください。"
 
 #: pre_arrival/templates/pre_arrival/mobile/login.html:44
 msgid ""
 "To verify your reservation, please confirm<br>the arrival date at the hotel."
-msgstr "予約を確認するには、<br>到着日を確認してください。"
+msgstr "到着日を確認して<br>予約を確認してください。"
 
 #: pre_arrival/templates/pre_arrival/mobile/login.html:51
 msgid "e.g. 12345678"
@@ -714,7 +743,7 @@ msgid ""
 "An image of your passport is required for<br>registration. Use the camera to "
 "capture or<br>choose an existing image from your device."
 msgstr ""
-"登録にはパスポートの画像が必要です。<br>カメラを使用して、デバイスから既存の"
+"登録にはパスポート画像が必要です。<br>カメラを使用して、デバイスから既存の"
 "<br>画像をキャプチャまたは選択します。"
 
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:53
@@ -733,19 +762,6 @@ msgstr "写真をアップする"
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:94
 msgid "Retake"
 msgstr "リテイク"
-
-#: pre_arrival_all_passport/forms.py:76
-#, python-format
-msgid ""
-"Please provide the passport photo for the additional guest:\n"
-"\n"
-"Guest %i\n"
-"\n"
-msgstr ""
-"追加ゲストのパスポート写真を提供してください。\n"
-"\n"
-"Guest %i\n"
-"\n"
 
 #: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:154
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:155
@@ -767,3 +783,15 @@ msgid ""
 msgstr ""
 "登録にはパスポートの画像が必要です。 <br>カメラを使用して、デバイスから既存の"
 "<br>画像をキャプチャまたは選択します。"
+
+#, python-format
+#~ msgid ""
+#~ "Please provide the passport photo for the additional guest:\n"
+#~ "\n"
+#~ "Guest %i\n"
+#~ "\n"
+#~ msgstr ""
+#~ "追加ゲストのパスポート写真を提供してください。\n"
+#~ "\n"
+#~ "Guest %i\n"
+#~ "\n"
