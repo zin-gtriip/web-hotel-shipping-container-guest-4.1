@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-04 11:16+0700\n"
-"PO-Revision-Date: 2020-11-04 11:35+0700\n"
+"POT-Creation-Date: 2020-11-17 12:11+0700\n"
+"PO-Revision-Date: 2020-11-17 21:07+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -48,15 +48,15 @@ msgstr "はい"
 
 #: pre_arrival/static/pre_arrival/js/desktop/detail.js:78
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:84
-#: pre_arrival_all_passport/static/pre_arrival/js/desktop/detail.js:48
-#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:51
+#: pre_arrival_all_passport/static/pre_arrival/js/desktop/detail.js:40
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:43
 msgid "Guest"
 msgstr "ゲスト"
 
 #: pre_arrival/static/pre_arrival/js/desktop/detail.js:83
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:89
-#: pre_arrival_all_passport/static/pre_arrival/js/desktop/detail.js:53
-#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:56
+#: pre_arrival_all_passport/static/pre_arrival/js/desktop/detail.js:45
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:48
 msgid "Main Guest"
 msgstr "メインゲスト"
 
@@ -113,17 +113,17 @@ msgid "Zoom"
 msgstr "ズーム"
 
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:119
-#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:86
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:78
 msgid "Select Date"
 msgstr "日付を選択"
 
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:120
-#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:87
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:79
 msgid "Cancel"
 msgstr "キャンセル"
 
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:121
-#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:88
+#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:80
 msgid "Confirm"
 msgstr "確認"
 
@@ -133,5 +133,5 @@ msgid ""
 "Drag, rotate, or pinch the image to make sure<br>that all information is "
 "within the box."
 msgstr ""
-"画像をドラッグ、回転、またはピンチして、すべての情報がボックス内にあることを"
-"確認します。"
+"画像をドラッグ、回転、またはピンチして、<br>すべての情報がボックス内にある"
+"ことを確認します。"
