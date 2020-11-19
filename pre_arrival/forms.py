@@ -387,7 +387,7 @@ PreArrivalDetailExtraFormSet = forms.formset_factory(PreArrivalDetailExtraForm, 
 class PreArrivalOtherInfoForm(forms.Form):
     arrival_time        = forms.ChoiceField(label=_('Time of Arrival'))
     special_requests    = forms.CharField(label=_('Special Requests'), required=False)
-    email               = forms.EmailField(label=_('Email'))
+    email               = forms.EmailField(label=_('Email'),label_suffix='*')
     is_subscribe        = forms.BooleanField(label=_('Is Subscribe'), required=False)
 
     def __init__(self, request, *args, **kwargs):
