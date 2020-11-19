@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-03 16:00+0700\n"
-"PO-Revision-Date: 2020-11-04 12:58+0800\n"
+"POT-Creation-Date: 2020-11-17 12:11+0700\n"
+"PO-Revision-Date: 2020-11-17 21:05+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -25,7 +25,7 @@ msgstr "预订号码"
 
 #: check_out/forms.py:8 check_out/templates/check_out/desktop/login.html:30
 #: check_out/templates/check_out/mobile/login.html:37 pre_arrival/forms.py:14
-#: pre_arrival/forms.py:206 pre_arrival/forms.py:303
+#: pre_arrival/forms.py:217 pre_arrival/forms.py:314
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:32
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:169
 #: pre_arrival/templates/pre_arrival/desktop/login.html:43
@@ -42,11 +42,11 @@ msgstr "部屋番号"
 
 #: check_out/forms.py:27 check_out/forms.py:28 check_out/forms.py:30
 #: check_out/forms.py:80 pre_arrival/forms.py:32 pre_arrival/forms.py:34
-#: pre_arrival/forms.py:36 pre_arrival/forms.py:251 pre_arrival/forms.py:253
-#: pre_arrival/forms.py:255 pre_arrival/forms.py:257 pre_arrival/forms.py:259
-#: pre_arrival/forms.py:322 pre_arrival/forms.py:324 pre_arrival/forms.py:326
-#: pre_arrival/forms.py:328 pre_arrival/forms.py:330 pre_arrival/forms.py:399
-#: pre_arrival/forms.py:401
+#: pre_arrival/forms.py:36 pre_arrival/forms.py:262 pre_arrival/forms.py:264
+#: pre_arrival/forms.py:266 pre_arrival/forms.py:268 pre_arrival/forms.py:270
+#: pre_arrival/forms.py:333 pre_arrival/forms.py:335 pre_arrival/forms.py:337
+#: pre_arrival/forms.py:339 pre_arrival/forms.py:341 pre_arrival/forms.py:410
+#: pre_arrival/forms.py:412
 msgid "Enter the required information"
 msgstr "输入所需的信息。"
 
@@ -58,8 +58,8 @@ msgstr "找不到预订。"
 msgid "Checked-in Guests"
 msgstr "入住客人"
 
-#: check_out/forms.py:103 pre_arrival/forms.py:158 pre_arrival/forms.py:455
-#: pre_arrival_all_passport/forms.py:110
+#: check_out/forms.py:101 pre_arrival/forms.py:168 pre_arrival/forms.py:466
+#: pre_arrival_all_passport/forms.py:105
 msgid "Unknown error"
 msgstr "未知错误"
 
@@ -212,8 +212,8 @@ msgstr "验证需要以下信息。"
 #: pre_arrival/templates/pre_arrival/mobile/login.html:75
 #: pre_arrival/templates/pre_arrival/mobile/login.html:78
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:78
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:281
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:283
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:282
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:284
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:85
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:78
 msgid "Next"
@@ -230,12 +230,12 @@ msgstr "下一个"
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:375
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:394
 #: pre_arrival/templates/pre_arrival/mobile/login.html:93
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:297
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:316
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:335
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:299
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:318
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:337
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:299
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:318
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:337
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:301
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:320
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:339
 msgid "Invalid Input"
 msgstr "無効入力"
 
@@ -250,7 +250,7 @@ msgstr "请输入您的房间号"
 
 #: check_out/templates/check_out/mobile/login.html:29
 msgid "To begin the online check-out process,<br>please enter your last name."
-msgstr "要开始在线退房，<br>请输入您的姓氏。"
+msgstr "请输入您的姓氏<br>以开始退房过程。"
 
 #: check_out/views.py:93
 msgid ""
@@ -289,7 +289,7 @@ msgstr "糟糕！ 我们找不到您要查找的页面。"
 #: guest_base/templates/404.html:20
 msgid ""
 "It looks like that page doesn't exit. Please check the URL and try again."
-msgstr "似乎该页面不存在。 请检查网址，然后重试。"
+msgstr "似乎该页面不存在。<br>请检查网址，然后重试。"
 
 #: pre_arrival/forms.py:13
 msgid "Arrival Date"
@@ -320,41 +320,71 @@ msgstr "会话令牌不匹配，时间延长已禁用。"
 msgid "No reservation selected."
 msgstr "未选择预订。"
 
-#: pre_arrival/forms.py:142 pre_arrival_all_passport/forms.py:100
+#: pre_arrival/forms.py:132
+msgid "Incorrect API key"
+msgstr "API密钥不正确"
+
+#: pre_arrival/forms.py:133
+msgid "Invalid passport image."
+msgstr "护照图像无效。"
+
+#: pre_arrival/forms.py:134
+msgid "Invalid passport image. MRZ Code is invalid."
+msgstr "请确保已捕获护照底部的MRZ码。"
+
+#: pre_arrival/forms.py:135
+msgid ""
+"Invalid passport image. Please make sure your passport page area is not "
+"blocked."
+msgstr "请确保整个护照页都被捕获在框架内。"
+
+#: pre_arrival/forms.py:136
+msgid "Image file is too big."
+msgstr "图像文件太大（>2 MB）。"
+
+#: pre_arrival/forms.py:137
+msgid "Error scanning image. Please try again later."
+msgstr "无法处理图像。 请稍后再试。"
+
+#: pre_arrival/forms.py:138
+msgid "Invalid NRIC image."
+msgstr "NRIC图片无效。"
+
+#: pre_arrival/forms.py:152 pre_arrival_all_passport/forms.py:95
 msgid "No image file selected."
 msgstr "未选择图像文件。"
 
-#: pre_arrival/forms.py:154
+#: pre_arrival/forms.py:164
 #, python-format
 msgid ""
 "You must be at least %(age)s years of age to proceed with your registration."
 msgstr "您必须年满%(age)s岁才能继续注册。"
 
-#: pre_arrival/forms.py:156 pre_arrival_all_passport/forms.py:108
+#: pre_arrival/forms.py:166 pre_arrival_all_passport/forms.py:103
 msgid ""
 "Your passport has expired, please capture / upload a valid passport photo to "
 "proceed"
 msgstr "护照已过期，请使用有效的护照。"
 
-#: pre_arrival/forms.py:205 pre_arrival/forms.py:302
+#: pre_arrival/forms.py:216 pre_arrival/forms.py:313
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:161
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:162
 msgid "First Name"
 msgstr "名字"
 
-#: pre_arrival/forms.py:207 pre_arrival/forms.py:305
+#: pre_arrival/forms.py:218 pre_arrival/forms.py:316
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:177
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:178
 msgid "Passport Number"
 msgstr "护照号码"
 
-#: pre_arrival/forms.py:208 pre_arrival/forms.py:304
+#: pre_arrival/forms.py:219 pre_arrival/forms.py:315
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:187
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:188
 msgid "[Select Country]"
 msgstr "[选择国家]"
 
-#: pre_arrival/forms.py:208 pre_arrival/forms.py:304
+#: pre_arrival/forms.py:219 pre_arrival/forms.py:315
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:106
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:185
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:280
@@ -368,44 +398,45 @@ msgstr "[选择国家]"
 msgid "Nationality"
 msgstr "国籍"
 
-#: pre_arrival/forms.py:209 pre_arrival/forms.py:306
+#: pre_arrival/forms.py:220 pre_arrival/forms.py:317
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:198
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:199
 msgid "Date of Birth"
 msgstr "出生日期"
 
-#: pre_arrival/forms.py:264
+#: pre_arrival/forms.py:275
 #, python-format
 msgid "Main guest has to be %(age)s and above."
 msgstr "主要客人必须年满%(age)s岁。"
 
-#: pre_arrival/forms.py:369
+#: pre_arrival/forms.py:380
 msgid "You have exceeded the number of adults."
 msgstr "您已超过成人人数。"
 
-#: pre_arrival/forms.py:377
+#: pre_arrival/forms.py:388
 #: pre_arrival/templates/pre_arrival/desktop/other_info.html:35
 msgid "Time of Arrival"
 msgstr "到达的时间"
 
-#: pre_arrival/forms.py:378
+#: pre_arrival/forms.py:389
 msgid "Special Requests"
 msgstr "特别要求"
 
-#: pre_arrival/forms.py:379
+#: pre_arrival/forms.py:390
 msgid "Email"
 msgstr "电子邮件"
 
-#: pre_arrival/forms.py:380
+#: pre_arrival/forms.py:391
 msgid "Is Subscribe"
 msgstr "订阅"
 
-#: pre_arrival/forms.py:436
+#: pre_arrival/forms.py:447
+#, python-format
 msgid ""
 "Registration Complete - %(hotel_name)s - Reservation #%(reservation_no)s"
 msgstr "注册完成 - %(hotel_name)s - 预约号码 #%(reservation_no)s"
 
-#: pre_arrival/forms.py:467
+#: pre_arrival/forms.py:478
 msgid "There is no reservation can be done for pre-arrival"
 msgstr "预订已被注册或签到。"
 
@@ -506,7 +537,7 @@ msgstr "输入客人详细信息"
 #: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:34
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:34
 msgid "Please enter the personal particulars below."
-msgstr "请在下面输入个人资料。"
+msgstr "请在下面验证个人信息。"
 
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:46
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:46
@@ -528,12 +559,12 @@ msgstr "添加访客"
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:362
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:381
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:400
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:303
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:322
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:341
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:305
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:324
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:343
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:305
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:324
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:343
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:307
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:326
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:345
 msgid "Fix"
 msgstr "好"
 
@@ -546,7 +577,7 @@ msgstr "欢迎来到<br>%(HOTEL_NAME)s"
 #: pre_arrival/templates/pre_arrival/desktop/login.html:27
 msgid ""
 "To begin the online check-in process, please enter the<br>information below."
-msgstr "要开始在线办理入住手续，<br>请输入您的预订号码。"
+msgstr "请输入您的预订号码<br>以开始办理入住手续"
 
 #: pre_arrival/templates/pre_arrival/desktop/login.html:78
 msgid "Error"
@@ -672,18 +703,18 @@ msgstr "请确认您的到达日期"
 msgid ""
 "To begin the online check-in process,<br>please enter your reservation "
 "number."
-msgstr "要开始在线办理入住手续，<br>请输入您的预订号码。"
+msgstr "请输入您的预订号码<br>以开始办理入住手续"
 
 #: pre_arrival/templates/pre_arrival/mobile/login.html:42
 msgid ""
 "To verify your reservation, please provide<br>your last name is in your "
 "passport."
-msgstr "要确认您的预订，<br>请提供预订中使用的姓氏。"
+msgstr "请提供预订中使用的姓氏，<br>以验证您的预订。"
 
 #: pre_arrival/templates/pre_arrival/mobile/login.html:44
 msgid ""
 "To verify your reservation, please confirm<br>the arrival date at the hotel."
-msgstr "若要确认您的预订，<br>请确认到达日期。"
+msgstr "请确认抵达日期<br>以确认您的预订。"
 
 #: pre_arrival/templates/pre_arrival/mobile/login.html:51
 msgid "e.g. 12345678"
@@ -697,7 +728,7 @@ msgstr "提交护照图片"
 msgid ""
 "An image of your passport is required for<br>registration. Use the camera to "
 "capture or<br>choose an existing image from your device."
-msgstr "注册时需要您的护照图像。<br> 使用相机捕获或从设备中选择现有图像。"
+msgstr "需要护照图像进行注册。<br> 使用相机捕获或从设备中选择现有图像。"
 
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:53
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:53
@@ -715,19 +746,6 @@ msgstr "上传图片"
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:94
 msgid "Retake"
 msgstr "重拍"
-
-#: pre_arrival_all_passport/forms.py:76
-#, python-format
-msgid ""
-"Please provide the passport photo for the additional guest:\n"
-"\n"
-"Guest %i\n"
-"\n"
-msgstr ""
-"请提供其他客人的护照照片：\n"
-"\n"
-"Guest %i\n"
-"\n"
 
 #: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:154
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:155
@@ -747,3 +765,15 @@ msgid ""
 "We need a photograph of the additional guest's<br>passport, or alternatively "
 "you may upload<br>the image file."
 msgstr "注册时需要您的护照图像。<br> 使用相机捕获或从设备中选择现有图像。"
+
+#, python-format
+#~ msgid ""
+#~ "Please provide the passport photo for the additional guest:\n"
+#~ "\n"
+#~ "Guest %i\n"
+#~ "\n"
+#~ msgstr ""
+#~ "请提供其他客人的护照照片：\n"
+#~ "\n"
+#~ "Guest %i\n"
+#~ "\n"

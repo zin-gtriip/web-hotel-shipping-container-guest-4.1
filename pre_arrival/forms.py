@@ -127,7 +127,17 @@ class PreArrivalReservationForm(forms.Form):
 class PreArrivalPassportForm(forms.Form):
     passport_file = forms.CharField(widget=forms.HiddenInput(), required=False)
     skip_passport = forms.BooleanField(widget=forms.HiddenInput(), required=False)
-    
+
+    error_messages = {
+        'Incorrect API key': _('Incorrect API key'),
+        'Invalid passport image.': _('Invalid passport image.'),
+        'Invalid passport image. MRZ Code is invalid.': _('Invalid passport image. MRZ Code is invalid.'),
+        'Invalid passport image. Please make sure your passport page area is not blocked.': _('Invalid passport image. Please make sure your passport page area is not blocked.'),
+        'Image file is too big.': _('Image file is too big.'),
+        'Error scanning image. Please try again later.': _('Error scanning image. Please try again later.'),
+        'Invalid NRIC image.': _('Invalid NRIC image.'),
+    }
+
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.request = request
@@ -155,7 +165,8 @@ class PreArrivalPassportForm(forms.Form):
                     else:
                         self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Your passport has expired, please capture / upload a valid passport photo to proceed')])
             else:
-                self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
+                response_message = response.get('message', _('Unknown error'))
+                self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([self.error_messages.get(response_message, response_message)])
             # remove saved file if fail
             if self._errors:
                 os.remove(saved_file)
@@ -360,9 +371,9 @@ class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
     def clean(self):
         super().clean()
         adult, max_adult = 1, int(self.request.session['pre_arrival']['reservation'].get('adults', 1))
+        config = gateways.amp_endpoint('/getConfigVariables') or {} # get config variables
+        age_limit = config.get('prearrival_adult_min_age_years', settings.PRE_ARRIVAL_ADULT_AGE_LIMIT)
         for form in self.forms:
-            config = gateways.amp_endpoint('/getConfigVariables') or {} # get config variables
-            age_limit = config.get('prearrival_adult_min_age_years', settings.PRE_ARRIVAL_ADULT_AGE_LIMIT)
             if utilities.calculate_age(form.cleaned_data.get('birth_date')) > age_limit:
                 adult += 1
         if adult > max_adult:
@@ -388,7 +399,7 @@ class PreArrivalOtherInfoForm(forms.Form):
         self.fields['special_requests'].initial = self.request.session['pre_arrival']['reservation'].get('comments', '')
         main_guest = next((guest for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
         self.fields['email'].initial = main_guest.get('email', '')
-        self.fields['is_subscribe'].initial = main_guest.get('emailSubscription', True)
+        self.fields['is_subscribe'].initial = True if main_guest.get('emailSubscription', '1') == '1' else False
 
     def clean(self):
         super().clean()
