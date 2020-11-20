@@ -8,9 +8,3 @@ $('.new-window-link').click(function() {
         return false;
     }
 });
-
-
-$('#btn-step-next').click(function(){
-    var addInfo = document.getElementsByClassName("add_info");
-    addInfo.scrollTop = addInfo.scrollHeight;
-});
