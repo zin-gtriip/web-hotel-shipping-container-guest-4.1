@@ -25,7 +25,6 @@ $('#btn-add-extra').click(function() {
         , $newDatepickerBirthDate = $newExtra.find('#datepicker-birth-date-template')
         , $newBtnRemove = $newExtra.find('.btn-remove-extra')
 
-    $newExtra.scrollIntoView();
     // guest id
     $newGuestId.attr('id', 'id_form-'+ index +'-guest_id').attr('name', 'form-'+ index +'-guest_id');
     // first name
