@@ -58,7 +58,7 @@
                 {% else %}
                     <div class="row default-container">
                         <div class="col-12 mb-3 d-flex justify-content-center">
-                            <label class="btn btn-primary btn-round text-capitalize">
+                            <label class="btn btn-primary btn-round">
                                 {% trans 'Take Photo' %}
                                 <input type="file" class="file-capture" accept="image/*" capture="camera" hidden>
                             </label>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="row default-container">
                         <div class="col-12 mb-3 d-flex justify-content-center">
-                            <label class="btn btn-outline-primary btn-round text-capitalize">
+                            <label class="btn btn-outline-primary btn-round">
                                 {% trans 'Upload Photo' %}
                                 <input type="file" class="file-upload" accept="image/*" hidden>
                             </label>
@@ -81,7 +81,7 @@
                 {% if request.session.app %}
                     <div class="row preview-container" style="display: none;">
                         <div class="col-12 mb-3 d-flex justify-content-center">
-                            <label class="btn btn-outline-primary btn-round text-capitalize">
+                            <label class="btn btn-outline-primary btn-round">
                                 {% trans 'Retake' %}
                                 <input type="file" class="file-capture" accept="image/*" hidden>
                             </label>
@@ -90,7 +90,7 @@
                 {% else %}
                     <div class="row preview-container" style="display: none;">
                         <div class="col-12 mb-3 d-flex justify-content-center">
-                            <label class="btn btn-outline-primary btn-round text-capitalize">
+                            <label class="btn btn-outline-primary btn-round">
                                 {% trans 'Retake' %}
                                 <input type="file" class="file-capture" accept="image/*" capture="camera" hidden>
                             </label>
