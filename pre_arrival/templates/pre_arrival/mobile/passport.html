@@ -74,21 +74,29 @@
                     </div>
                 {% endif %}
                 <div class="row preview-container" style="display: none;">
-                    <div class="col-12 mb-3 d-flex justify-content-around">
-                        {% if request.session.app %}
+                    <div class="col-12 mb-3 d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary" id="btn-next">{% trans 'Next' %}</button>
+                    </div>
+                </div>
+                {% if request.session.app %}
+                    <div class="row preview-container" style="display: none;">
+                        <div class="col-12 mb-3 d-flex justify-content-center">
                             <label class="btn btn-outline-primary btn-round">
                                 {% trans 'Retake' %}
                                 <input type="file" class="file-capture" accept="image/*" hidden>
                             </label>
-                        {% else %}
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="row preview-container" style="display: none;">
+                        <div class="col-12 mb-3 d-flex justify-content-center">
                             <label class="btn btn-outline-primary btn-round">
                                 {% trans 'Retake' %}
                                 <input type="file" class="file-capture" accept="image/*" capture="camera" hidden>
                             </label>
-                        {% endif %}
-                        <button type="button" class="btn btn-primary" id="btn-next">{% trans 'Next' %}</button>
+                        </div>
                     </div>
-                </div>
+                {% endif %}
             </div>
         </div>
     </form>
