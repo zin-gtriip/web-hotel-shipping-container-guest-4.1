@@ -217,7 +217,7 @@ class PreArrivalDetailForm(forms.Form):
     last_name   = forms.CharField(label=_('Last Name'))
     passport_no = forms.CharField(label=_('Passport Number'))
     nationality = CountryField(blank_label=_('[Select Country]')).formfield(label=_('Nationality'))
-    birth_date  = forms.DateField(label=_('Date of Birth'))
+    birth_date  = forms.DateField(label=_('Date of Birth (YYYY-MM-DD)'))
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -243,7 +243,7 @@ class PreArrivalDetailForm(forms.Form):
         birth_date = utilities.parse_ocr_date(self.request.session.get('pre_arrival', {}).get('ocr', {}).get('date_of_birth', '')) or birth_date
         # assign
         self.fields['guest_id'].initial = guest_id
-        self.fields['first_name'].initial = first_name
+        self.fields['first_name'].initial = first_name.capitalize()
         self.fields['last_name'].initial = last_name
         self.fields['passport_no'].initial = passport_no
         self.fields['nationality'].initial = nationality
@@ -314,7 +314,7 @@ class PreArrivalDetailExtraForm(forms.Form):
     last_name = forms.CharField(label=_('Last Name'))
     nationality = CountryField(blank_label=_('[Select Country]')).formfield(label=_('Nationality'))
     passport_no = forms.CharField(label=_('Passport Number'))
-    birth_date = forms.DateField(label=_('Date of Birth'))
+    birth_date = forms.DateField(label=_('Date of Birth (YYYY-MM-DD)'))
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -387,7 +387,7 @@ PreArrivalDetailExtraFormSet = forms.formset_factory(PreArrivalDetailExtraForm, 
 class PreArrivalOtherInfoForm(forms.Form):
     arrival_time        = forms.ChoiceField(label=_('Time of Arrival'))
     special_requests    = forms.CharField(label=_('Special Requests'), required=False)
-    email               = forms.EmailField(label=_('Email'))
+    email               = forms.EmailField(label=_('Email'), label_suffix='*')
     is_subscribe        = forms.BooleanField(label=_('Is Subscribe'), required=False)
 
     def __init__(self, request, *args, **kwargs):

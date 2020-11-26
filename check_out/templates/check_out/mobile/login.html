@@ -10,7 +10,7 @@
 
 {% block header_left %}
     {{ block.super }}
-    <button type="button" class="btn btn-link" id="btn-back" style="display: none;">
+    <button type="button" class="btn btn-link" id="btn-back" {% if not skip_last_name %}style="display: none;"{% endif %}>
         <i class="fas fa-arrow-left"></i></button>
 {% endblock header_left %}
 
@@ -20,25 +20,25 @@
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-12 text-center">
-                <span id="header-last-name" class="header-description active">{% blocktrans %}Please enter your<br>Last Name{% endblocktrans %}</span>
-                <span id="header-room-no" class="header-description">{% blocktrans %}Please enter your<br>Room Number{% endblocktrans %}</span>
+                <span id="header-last-name" class="header-description {% if not skip_last_name %}active{% endif %}">{% blocktrans %}Please enter your<br>Last Name{% endblocktrans %}</span>
+                <span id="header-room-no" class="header-description {% if skip_last_name %}active{% endif %}">{% blocktrans %}Please enter your<br>Room Number{% endblocktrans %}</span>
             </div>
         </div>
         <div class="row page-subheader">
             <div class="col-12 px-0 text-center text-secondary">
-                <span id="subheader-last-name" class="subheader-description active">{% blocktrans %}To begin the online check-out process,<br>please enter your last name.{% endblocktrans %}</span>
-                <span id="subheader-room-no" class="subheader-description">{% blocktrans %}The following information is required for<br>verification.{% endblocktrans %}</span>
+                <span id="subheader-last-name" class="subheader-description {% if not skip_last_name %}active{% endif %}">{% blocktrans %}To begin the online check-out process,<br>please enter your last name.{% endblocktrans %}</span>
+                <span id="subheader-room-no" class="subheader-description {% if skip_last_name %}active{% endif %}">{% blocktrans %}The following information is required for<br>verification.{% endblocktrans %}</span>
             </div>
         </div>
         <div class="row page-content">
             <div class="col-12 d-flex justify-content-center">
-                <div id="content-last-name" class="content-input active">
+                <div id="content-last-name" class="content-input {% if not skip_last_name %}active{% endif %}">
                     <div class="md-form input-center input-boxed my-0">
                         {% trans 'Last Name' as last_name_placeholder %}
                         {% render_field form.last_name class="form-control" placeholder=last_name_placeholder %}
                     </div>
                 </div>
-                <div id="content-room-no" class="content-input">
+                <div id="content-room-no" class="content-input {% if skip_last_name %}active{% endif %}">
                     <div class="md-form input-center input-boxed my-0">
                         {% trans 'Room Number' as room_no_placeholder %}
                         {% render_field form.room_no class="form-control" placeholder=room_no_placeholder %}
@@ -48,10 +48,10 @@
         </div>
         <div class="row page-footer">
             <div class="col-12 d-flex justify-content-center">
-                <div id="footer-last-name" class="footer-button active">
+                <div id="footer-last-name" class="footer-button {% if not skip_last_name %}active{% endif %}">
                     <button type="button" class="btn btn-primary btn-round m-0" disabled>{% trans 'Next' %}</button>
                 </div>
-                <div id="footer-room-no" class="footer-button">
+                <div id="footer-room-no" class="footer-button {% if skip_last_name %}active{% endif %}">
                     <button type="submit" class="btn btn-primary btn-round m-0" disabled>{% trans 'Next' %}</button>
                 </div>
             </div>

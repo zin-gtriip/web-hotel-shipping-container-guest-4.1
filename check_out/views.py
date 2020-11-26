@@ -59,6 +59,13 @@ class CheckOutLoginView(RequestFormKwargsMixin, MobileTemplateMixin, FormView):
             return super().get_success_url()
         url = self.success_url.format(**{'reservation_no': 'all'})
         return url
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        form = context.get('form', None)
+        if self.request.session.get('app', 0) and self.request.session.get('check_out', {}).get('preload', {}).get('last_name', '') and (form and not form.is_bound):
+            context['skip_last_name'] = True
+        return context
     
 
 class CheckOutBillView(BillRequiredAndExistMixin, RequestFormKwargsMixin, UpdateView):

@@ -1,3 +1,6 @@
+window.addEventListener("flutterInAppWebViewPlatformReady", null); // add event to send message to app
+
+
 $(document).ready(function() {
     // to auto focus
     $('input:visible').first().focus();
@@ -33,6 +36,7 @@ $('#footer-last-name button').click(function() {
 
 	$('.header #btn-back').show();
 	$nextStep.show().addClass('active');
+	try { window.flutter_inappwebview.callHandler('lastName', $('#id_last_name').val()); } catch(error) {} // send message to app
 	$currentStep.animate({opacity: 0}, {
 		step: function(now) {
 			// for making fielset appear animation
@@ -42,6 +46,12 @@ $('#footer-last-name button').click(function() {
 		}
 		, duration: 300
 	}).removeClass('active');
+});
+
+
+
+$('#footer-room-no button').click(function() {
+	try { window.flutter_inappwebview.callHandler('roomNo', $('#id_room_no').val()); } catch(error) {} // send message to app
 });
 
 
