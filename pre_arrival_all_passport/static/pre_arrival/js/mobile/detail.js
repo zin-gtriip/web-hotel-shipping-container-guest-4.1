@@ -108,11 +108,17 @@ function restyleExtra() {
 function validateMaxExtra() {
     var $extraFormset = $('.extra-formset')
         , $maxFormset = $('#id_form-MAX_NUM_FORMS')
-        , $btnAddExtra = $('#btn-add-extra');
+        , $btnAddExtra = $('#btn-add-extra')
+        , $btnSkip = $('#btn-skip')
+        , $btnNext = $('#btn-next');
     
     if ($extraFormset.length >= $maxFormset.val()) {
-        $btnAddExtra.attr('disabled', true);
+        $btnAddExtra.hide();
+        $btnSkip.hide();
+        $btnNext.show();
     } else {
-        $btnAddExtra.removeAttr('disabled');
+        $btnAddExtra.show();
+        $btnSkip.show();
+        $btnNext.hide();
     }
 }

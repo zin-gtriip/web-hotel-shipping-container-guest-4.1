@@ -74,6 +74,13 @@ class PreArrivalDetailExtraBaseFormSet(PreArrivalDetailExtraBaseFormSet):
                 })
         self.initial = prefilled
 
+    def clean(self):
+        super().clean()
+        if self.request.POST.get('form_type', '') == 'submit':
+            max_guest = int(self.request.session['pre_arrival']['reservation'].get('adults', 1)) + int(self.request.session['pre_arrival']['reservation'].get('children', 0)) - 1
+            if len(self.forms) > max_guest:
+                self._non_form_errors = self.error_class([_('You have exceeded the number of additional guests.')])
+
 
 # initiate formset, for one2many field
 PreArrivalDetailExtraFormSet = forms.formset_factory(PreArrivalDetailExtraForm, formset=PreArrivalDetailExtraBaseFormSet)

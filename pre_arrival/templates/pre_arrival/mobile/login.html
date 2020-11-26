@@ -15,8 +15,7 @@
 
 {% block header_left %}
     {{ block.super }}
-    <button type="button" class="btn btn-link" id="btn-back"
-        {% if request.session.app and not request.session.pre_arrival.preload.reservation_no or not request.session.app %}style="display: none;"{% endif %}>
+    <button type="button" class="btn btn-link" id="btn-back" {% if not skip_reservation_no %}style="display: none;"{% endif %}>
         <i class="fas fa-arrow-left"></i></button>
 {% endblock header_left %}
 
