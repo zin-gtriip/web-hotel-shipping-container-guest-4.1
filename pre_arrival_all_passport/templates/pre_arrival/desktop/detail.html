@@ -273,13 +273,13 @@
                         <input type="hidden" name="form-MIN_NUM_FORMS" value="0" id="id_form-MIN_NUM_FORMS">
                         <input type="hidden" name="form-MAX_NUM_FORMS" value="{{ max_extra_form }}" id="id_form-MAX_NUM_FORMS">
                         <input type="hidden" name="form_type" value="submit" id="form-type">
-                        <button type="button" class="btn btn-outline-primary" id="btn-add-extra"
+                        <button type="button" class="btn btn-outline-primary m-0" id="btn-add-extra"
                             {% if extra.forms|length >= max_extra_form %}style="display: none;"{% endif %}>
                             {% trans 'Next Guest' %}</button>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-12 mt-1 d-flex justify-content-center">
+                    <div class="col-lg-12 d-flex justify-content-center">
                         {% if extra.forms|length < max_extra_form %}
                             <button type="submit" class="btn btn-link text-primary text-10" id="btn-skip">{% trans 'Skip this for now' %}</button>
                             <button type="submit" class="btn btn-primary" id="btn-next" style="display: none;">{% trans 'Next' %}</button>
