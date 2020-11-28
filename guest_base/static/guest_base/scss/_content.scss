@@ -77,6 +77,12 @@
 /* CONTENT */
 .content {
     min-height: calc(100vh - 110px);
+
+    .page-footer {
+        .btn {
+            width: 180px;
+        }
+    }
 }
 
 
