@@ -53,17 +53,18 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="md-form mt-0">
+                                    {% trans 'Enter your name' as first_name_placeholder %}
                                     {{ form.first_name.label_tag }}
                                     {% if form.is_bound and form.first_name.errors %}
                                         <!-- bound and has error -->
-                                        {% render_field form.first_name class="form-control is-invalid" %}
+                                        {% render_field form.first_name class="form-control is-invalid" placeholder=first_name_placeholder %}
                                         <!-- error feedback -->
                                         {% for error in form.first_name.errors %}
                                             <div class="invalid-feedback">{{ error }}</div>
                                         {% endfor %}
                                     {% else %}
                                         <!-- not bound or no error -->
-                                        {% render_field form.first_name class="form-control" %}
+                                        {% render_field form.first_name class="form-control" placeholder=first_name_placeholder %}
                                         {% if form.first_name.help_text %}
                                             <small class="form-text text-muted">{{ form.first_name.help_text }}</small>
                                         {% endif %}
@@ -82,17 +83,18 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="md-form mt-2">
+                                    {% trans 'e.g. A12345Z' as passport_no_placeholder %}
                                     {{ form.passport_no.label_tag }}
                                     {% if form.is_bound and form.passport_no.errors %}
                                         <!-- bound and has error -->
-                                        {% render_field form.passport_no class="form-control is-invalid" %}
+                                        {% render_field form.passport_no class="form-control is-invalid" placeholder=passport_no_placeholder %}
                                         <!-- error feedback -->
                                         {% for error in form.passport_no.errors %}
                                             <div class="invalid-feedback">{{ error }}</div>
                                         {% endfor %}
                                     {% else %}
                                         <!-- not bound or no error -->
-                                        {% render_field form.passport_no class="form-control" %}
+                                        {% render_field form.passport_no class="form-control" placeholder=passport_no_placeholder %}
                                         {% if form.passport_no.help_text %}
                                             <small class="form-text text-muted">{{ form.passport_no.help_text }}</small>
                                         {% endif %}
@@ -124,17 +126,18 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="md-form mt-2 input-with-post-icon">
+                                    {% trans 'YYYY-MM-DD' as birth_date_placeholder %}
                                     {{ form.birth_date.label_tag }}
                                     {% if form.is_bound and form.birth_date.errors %}
                                         <!-- bound and has error -->
-                                        {% render_field form.birth_date class="form-control datepicker is-invalid" data-date-format="yyyy-mm-dd" %}
+                                        {% render_field form.birth_date class="form-control datepicker is-invalid" data-date-format="yyyy-mm-dd" placeholder=birth_date_placeholder %}
                                         <!-- error feedback -->
                                         {% for error in form.birth_date.errors %}
                                             <div class="invalid-feedback">{{ error }}</div>
                                         {% endfor %}
                                     {% else %}
                                         <!-- not bound or no error -->
-                                        {% render_field form.birth_date class="form-control datepicker" data-date-format="yyyy-mm-dd" %}
+                                        {% render_field form.birth_date class="form-control datepicker" data-date-format="yyyy-mm-dd" placeholder=birth_date_placeholder %}
                                         <i class="far fa-calendar input-prefix"></i>
                                         {% if form.birth_date.help_text %}
                                             <small class="form-text text-muted">{{ form.birth_date.help_text }}</small>
@@ -151,7 +154,7 @@
                                 <div class="col-lg-12 px-0">
                                     {% render_field extra_form.guest_id %}
                                     {% render_field extra_form.passport_file %}
-                                    <span class="float-left text-primary text-uppercase font-weight-bold">{% trans 'Guest' %} {{ forloop.counter }}</span>
+                                    <span class="float-left text-primary text-uppercase font-weight-bold"></span>
                                     <button type="button" class="btn btn-link float-right m-0 p-0 d-flex text-24 text-secondary btn-remove-extra">
                                         <i class="fas fa-times"></i>
                                     </button>
@@ -160,16 +163,17 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="md-form mt-0">
+                                        {% trans 'Enter your name' as first_name_placeholder %}
                                         {{ extra_form.first_name.label_tag }}
                                         {% if extra_form.first_name.errors %}
                                             <!-- has error -->
-                                            {% render_field extra_form.first_name class="form-control is-invalid" required="true" %}
+                                            {% render_field extra_form.first_name class="form-control is-invalid" required="true" placeholder=first_name_placeholder %}
                                             {% for error in extra_form.first_name.errors %}
                                                 <div class="invalid-feedback">{{ error }}</div>
                                             {% endfor %}
                                         {% else %}
                                             <!-- no error -->
-                                            {% render_field extra_form.first_name class="form-control" required="true" %}
+                                            {% render_field extra_form.first_name class="form-control" required="true" placeholder=first_name_placeholder %}
                                             {% if extra_form.first_name.help_text %}
                                                 <small class="form-text text-muted">{{ extra_form.first_name.help_text }}</small>
                                             {% endif %}
@@ -180,16 +184,17 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="md-form mt-2">
+                                        {% trans 'Enter your name' as last_name_placeholder %}
                                         {{ extra_form.last_name.label_tag }}
                                         {% if extra_form.last_name.errors %}
                                             <!-- has error -->
-                                            {% render_field extra_form.last_name class="form-control is-invalid" required="true" %}
+                                            {% render_field extra_form.last_name class="form-control is-invalid" required="true" placeholder=last_name_placeholder %}
                                             {% for error in extra_form.last_name.errors %}
                                                 <div class="invalid-feedback">{{ error }}</div>
                                             {% endfor %}
                                         {% else %}
                                             <!-- no error -->
-                                            {% render_field extra_form.last_name class="form-control" required="true" %}
+                                            {% render_field extra_form.last_name class="form-control" required="true" placeholder=last_name_placeholder %}
                                             {% if extra_form.last_name.help_text %}
                                                 <small class="form-text text-muted">{{ extra_form.last_name.help_text }}</small>
                                             {% endif %}
@@ -200,16 +205,17 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="md-form mt-2">
+                                        {% trans 'e.g. A12345Z' as passport_no_placeholder %}
                                         {{ extra_form.passport_no.label_tag }}
                                         {% if extra_form.passport_no.errors %}
                                             <!-- has error -->
-                                            {% render_field extra_form.passport_no class="form-control is-invalid" required="true" %}
+                                            {% render_field extra_form.passport_no class="form-control is-invalid" required="true" placeholder=passport_no_placeholder %}
                                             {% for error in extra_form.passport_no.errors %}
                                                 <div class="invalid-feedback">{{ error }}</div>
                                             {% endfor %}
                                         {% else %}
                                             <!-- no error -->
-                                            {% render_field extra_form.passport_no class="form-control" required="true" %}
+                                            {% render_field extra_form.passport_no class="form-control" required="true" placeholder=passport_no_placeholder %}
                                             {% if extra_form.passport_no.help_text %}
                                                 <small class="form-text text-muted">{{ extra_form.passport_no.help_text }}</small>
                                             {% endif %}
@@ -240,16 +246,17 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="md-form mt-2 input-with-post-icon">
+                                        {% trans 'YYYY-MM-DD' as birth_date_placeholder %}
                                         {{ extra_form.birth_date.label_tag }}
                                         {% if extra_form.birth_date.errors %}
                                             <!-- has error -->
-                                            {% render_field extra_form.birth_date class="form-control datepicker is-invalid" data-date-format="yyyy-mm-dd" required="true" %}
+                                            {% render_field extra_form.birth_date class="form-control datepicker is-invalid" data-date-format="yyyy-mm-dd" required="true" placeholder=birth_date_placeholder %}
                                             {% for error in extra_form.birth_date.errors %}
                                                 <div class="invalid-feedback">{{ error }}</div>
                                             {% endfor %}
                                         {% else %}
                                             <!-- no error -->
-                                            {% render_field extra_form.birth_date class="form-control datepicker" data-date-format="yyyy-mm-dd" required="true" %}
+                                            {% render_field extra_form.birth_date class="form-control datepicker" data-date-format="yyyy-mm-dd" required="true" placeholder=birth_date_placeholder %}
                                             <i class="far fa-calendar input-prefix"></i>
                                             {% if extra_form.birth_date.help_text %}
                                                 <small class="form-text text-muted">{{ extra_form.passport_no.help_text }}</small>
