@@ -35,8 +35,8 @@
             }
         }
 
-        #btn-ok {
-            width: 150px;
+        .btn:not(#btn-ok) {
+            width: 235px;
         }
     }
 }

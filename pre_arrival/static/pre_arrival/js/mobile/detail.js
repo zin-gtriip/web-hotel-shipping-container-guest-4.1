@@ -82,6 +82,13 @@ function rearrangeExtraIndex() {
     $extraFormset.each(function(index) {
         $(this).attr('id', 'extra-formset-'+ index)
             .find('.guest-index span').text(gettext('Guest') +' '+ (index + 2)); // extra formset starts from 2
+        $(this).find('[name^=form-]').each(function() { // change `name`, `id` for every input
+            var elementName = $(this).attr('name')
+                , elementId = $(this).attr('id');
+            elementName = elementName.replace(/form-\d+/g, 'form-'+index);
+            elementId = elementId.replace(/id_form-\d+/g, 'id_form-'+index);
+            $(this).attr('name', elementName).attr('id', elementId);
+        });
     });
 
     // add or remove main guest title
