@@ -217,7 +217,7 @@ class PreArrivalDetailForm(forms.Form):
     last_name   = forms.CharField(label=_('Last Name'))
     passport_no = forms.CharField(label=_('Passport Number'))
     nationality = CountryField(blank_label=_('[Select Country]')).formfield(label=_('Nationality'))
-    birth_date  = forms.DateField(label=_('Date of Birth (YYYY-MM-DD)'))
+    birth_date  = forms.DateField(label=_('Date of Birth'))
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -314,7 +314,7 @@ class PreArrivalDetailExtraForm(forms.Form):
     last_name = forms.CharField(label=_('Last Name'))
     nationality = CountryField(blank_label=_('[Select Country]')).formfield(label=_('Nationality'))
     passport_no = forms.CharField(label=_('Passport Number'))
-    birth_date = forms.DateField(label=_('Date of Birth (YYYY-MM-DD)'))
+    birth_date = forms.DateField(label=_('Date of Birth'))
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -444,7 +444,7 @@ class PreArrivalOtherInfoForm(forms.Form):
         context['androidURL'] = settings.APP_ANDROID_URL
         data = {}
         template = settings.PRE_ARRIVAL_COMPLETE_EMAIL or os.path.join(settings.BASE_DIR, 'pre_arrival', 'templates', 'pre_arrival', 'email', 'complete.html')
-        data['title'] = _('Registration Complete - %(hotel_name)s - Reservation #%(reservation_no)s') % {'hotel_name': settings.HOTEL_NAME, 'reservation_no': context.get('reservationNo', '')}
+        data['title'] = _('Pre-Check-In Complete - %(hotel_name)s - Reservation #%(reservation_no)s') % {'hotel_name': settings.HOTEL_NAME, 'reservation_no': context.get('reservationNo', '')}
         data['html'] = render_to_string(template, context)
         return data
 

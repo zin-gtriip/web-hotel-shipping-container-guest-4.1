@@ -250,24 +250,18 @@
             </div>
         </div>
         <div class="row page-footer">
-            <div class="col-lg-12">
+            <div class="col-lg-12 d-flex justify-content-center">
                 {% if not request.session.check_out.complete and object.overall_status %}
-                    <div class="row">
-                        <div class="col-9 col-sm-5 col-lg-4 mx-auto">
-                            <button type="submit" class="btn btn-danger btn-block btn-round m-0">
-                                {% trans 'Check Out' %}
-                            </button>
-                        </div>
-                    </div>
+                    <button type="submit" class="btn btn-danger btn-block btn-round m-0">
+                        {% trans 'Check Out' %}
+                    </button>
                 {% else %}
-                    <div class="row">
-                        <div class="col-lg-12 text-danger">
-                            {% if object.id == 'all' %}
-                                {% blocktrans %}Unable to proceed with some of the guest's check-out. Please check-out each guest individually.{% endblocktrans %}
-                            {% else %}
-                                {% blocktrans %}Unable to proceed with this guest's check-out. Please check-out at the Front Desk.{% endblocktrans %}
-                            {% endif %}
-                        </div>
+                    <div class="text-danger">
+                        {% if object.id == 'all' %}
+                            {% blocktrans %}Unable to proceed with some of the guest's check-out. Please check-out each guest individually.{% endblocktrans %}
+                        {% else %}
+                            {% blocktrans %}Unable to proceed with this guest's check-out. Please check-out at the Front Desk.{% endblocktrans %}
+                        {% endif %}
                     </div>
                 {% endif %}
             </div>
