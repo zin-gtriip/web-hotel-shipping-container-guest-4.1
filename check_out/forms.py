@@ -88,14 +88,17 @@ class CheckOutBillForm(forms.Form):
     def save(self):
         response = self.gateway_post()
         if response.get('status_code', '') == 500:
-            # get existing guest from backend
-            new_guest_data = {}
-            new_guest_data['reservation_no'] = self.request.session['check_out'].get('input_reservation_no', None)
-            new_guest_data['last_name'] = self.request.session['check_out'].get('input_last_name', None)
-            new_guest_data['room_no'] = self.request.session['check_out'].get('input_room_no')
-            new_guest_response = gateways.guest_endpoint('/signInForCheckOut', new_guest_data)
-            self.request.session['check_out']['bills'] = new_guest_response.get('data', [])
-            if not new_guest_response.get('data', []):
+            # get existing reservation from backend
+            if response.get('reservation_no_left', []):
+                new_guest_data = {}
+                new_guest_data['reservation_no'] = next(iter(response.get('reservation_no_left', [])), '')
+                new_guest_data['last_name'] = ''
+                new_guest_data['room_no'] = self.request.session['check_out'].get('input_room_no')
+                new_guest_response = gateways.guest_endpoint('/signInForCheckOut', new_guest_data)
+                self.request.session['check_out']['bills'] = new_guest_response.get('data', [])
+                if not new_guest_response.get('data', []):
+                    self.request.session['check_out']['complete'] = True
+            else:
                 self.request.session['check_out']['complete'] = True
         else:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
