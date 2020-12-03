@@ -13,6 +13,7 @@ pre_arrival_get_data = {
             "arrivalDate": "2020-07-14",
             "departureDate": "2020-07-20",
             "eta": "10:00:00",
+            "preArrivalDone": "1",
             "guestsId": [1, 2],
             "guestsList": [
                 {
@@ -25,7 +26,8 @@ pre_arrival_get_data = {
                     "dob": "1980-12-31",
                     "email": "columbus@a.com",
                     "emailSubscription": "1",
-                    "isMainGuest": "1"
+                    "isMainGuest": "1",
+                    "hasLocalRecord" : "1",
                 },
                 {
                     "guestID": "2",
@@ -37,7 +39,8 @@ pre_arrival_get_data = {
                     "dob": "1986-07-05",
                     "email": "jacquelin@a.com",
                     "emailSubscription": "0",
-                    "isMainGuest": "0"
+                    "isMainGuest": "0",
+                    "hasLocalRecord" : "1",
                 }
             ],
             "roomNo": "736",
