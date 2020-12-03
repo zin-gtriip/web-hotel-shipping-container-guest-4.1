@@ -2,6 +2,7 @@ $('.datepicker').datepicker();
 restyleExtra();
 rearrangeExtraIndex();
 validateMaxExtra();
+scrollToGuestIndex();
 
 
 $(document).ready(function() {
@@ -63,6 +64,7 @@ function removeExtra($btn) {
         rearrangeExtraIndex();
         recalculateTotalExtra();
         validateMaxExtra();
+        scrollToGuestIndex();
     });
 }
 
@@ -87,6 +89,13 @@ function restyleExtra() {
         $mainGuest.removeClass('ml-auto, mx-auto');
     }
     $('.guests > div:not(#main-guest, #extra-formset-template, :last-child)').removeClass('mr-auto');
+}
+
+
+function scrollToGuestIndex() {
+    $('html, body').animate({
+        scrollTop: $('.guest-index:last').offset().top
+    }, 800);
 }
 
 

@@ -5,6 +5,7 @@ $('.rolldate').each(function() {
 restyleExtra();
 rearrangeExtraIndex();
 validateMaxExtra();
+scrollToGuestIndex();
 
 
 $(document).ready(function() {
@@ -55,6 +56,7 @@ $('#btn-add-extra').click(function() {
     rearrangeExtraIndex();
     recalculateTotalExtra(); // `TOTAL_FORMS` needs to be updated
     validateMaxExtra(); // disable `btn-add-extra` if max is reached
+    scrollToGuestIndex(); // scroll to last guest index
 });
 
 
@@ -150,6 +152,13 @@ function restyleExtra() {
             $(this).addClass('even');
         }
     });
+}
+
+
+function scrollToGuestIndex() {
+    $('html, body').animate({
+        scrollTop: $('.guest-index:last').offset().top
+    }, 800);
 }
 
 

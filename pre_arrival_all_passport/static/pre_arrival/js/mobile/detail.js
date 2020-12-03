@@ -5,6 +5,7 @@ $('.rolldate').each(function() {
 restyleExtra();
 rearrangeExtraIndex();
 validateMaxExtra();
+scrollToGuestIndex();
 
 
 $(document).ready(function() {
@@ -66,6 +67,7 @@ function removeExtra($btn) {
         rearrangeExtraIndex();
         recalculateTotalExtra();
         validateMaxExtra();
+        scrollToGuestIndex();
     });
 }
 
@@ -109,6 +111,13 @@ function restyleExtra() {
             $(this).addClass('even');
         }
     });
+}
+
+
+function scrollToGuestIndex() {
+    $('html, body').animate({
+        scrollTop: $('.guest-index:last').offset().top
+    }, 800);
 }
 
 
