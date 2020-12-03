@@ -211,7 +211,7 @@
                     </div>
                     <!-- extra formset bound -->
                     {% for extra_form in extra.forms %}
-                        <div class="col-lg-4 px-4 mr-auto extra-formset">
+                        <div class="col-lg-4 px-4 mr-auto extra-formset" id="extra-formset-{{ forloop.counter0 }}">
                             <div class="row guest-index">
                                 <div class="col-lg-12 px-0">
                                     {% render_field extra_form.guest_id %}
