@@ -1,7 +1,6 @@
 import os, base64
 from django                     import forms
 from django.conf                import settings
-from django.utils.html          import format_html
 from django.utils.translation   import gettext, gettext_lazy as _
 from django_countries.fields    import Country
 from guest_base                 import gateways
