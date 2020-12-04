@@ -243,7 +243,7 @@ class PreArrivalDetailForm(forms.Form):
         birth_date = utilities.parse_ocr_date(self.request.session.get('pre_arrival', {}).get('ocr', {}).get('date_of_birth', '')) or birth_date
         # assign
         self.fields['guest_id'].initial = guest_id
-        self.fields['first_name'].initial = first_name.capitalize()
+        self.fields['first_name'].initial = first_name.title()
         self.fields['last_name'].initial = last_name
         self.fields['passport_no'].initial = passport_no
         self.fields['nationality'].initial = nationality
