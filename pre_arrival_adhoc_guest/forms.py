@@ -57,5 +57,5 @@ class PreArrivalAllPassportExtraPassportForm(PreArrivalAllPassportExtraPassportF
         extra_guest['nationality'] = Country(ocr.get('nationality', '')).code
         extra_guest['passportNo'] = ocr.get('number', '')
         extra_guest['dob'] = dob
-        extra_guest['passportImage'] = file_b64_encoded.decode()[:10]
+        extra_guest['passportImage'] = file_b64_encoded.decode()
         self.request.session['pre_arrival']['reservation']['guestsList'].append(extra_guest)
