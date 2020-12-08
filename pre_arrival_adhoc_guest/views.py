@@ -10,7 +10,6 @@ from .forms                         import *
 class PreArrivalPassportView(PreArrivalPassportView):
 
     def dispatch(self, request, *args, **kwargs):
-        print(request.session.get('pre_arrival', {}).get('reservation', {}))
         if request.session.get('pre_arrival', {}).get('reservation', {}).get('preArrivalDone', '0') == '1':
             request.session['pre_arrival']['passport'] = True # mark `passport` is done
             return redirect('pre_arrival_adhoc_guest:guest_list')
@@ -61,7 +60,6 @@ class PreArrivalAllPassportExtraPassportView(PreArrivalAllPassportExtraPassportV
 class PreArrivalOtherInfoView(PreArrivalOtherInfoView):
 
     def dispatch(self, request, *args, **kwargs):
-        print(request.session['pre_arrival']['reservation'])
         if request.session.get('pre_arrival', {}).get('reservation', {}).get('preArrivalDone', '0') == '1':
             request.session['pre_arrival']['other_info'] = True # mark `other_info` is done
             form = self.get_form()
