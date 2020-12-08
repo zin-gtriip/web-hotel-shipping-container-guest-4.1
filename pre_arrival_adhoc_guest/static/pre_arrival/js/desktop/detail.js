@@ -72,7 +72,7 @@ function removeExtra($btn) {
 
 
 function restyleExtra() {
-    var $extraFormset = $('.extra-formset')
+    var $extraFormset = $('.extra-formset:visible')
         , $mainGuest = $('#main-guest');
 
     $extraFormset.each(function(index) {
@@ -82,13 +82,21 @@ function restyleExtra() {
         }
     });
 
-    if ($extraFormset.length <= 0) {
-        $mainGuest.removeClass('ml-auto').addClass('mx-auto');
-    } else if ($extraFormset.length == 1) {
-        $mainGuest.removeClass('mx-auto').addClass('ml-auto');
-        $extraFormset.addClass('mr-auto');
+    if ($mainGuest.is(':visible')) {
+        if ($extraFormset.length <= 0) {
+            $mainGuest.removeClass('ml-auto').addClass('mx-auto');
+        } else if ($extraFormset.length == 1) {
+            $mainGuest.removeClass('mx-auto').addClass('ml-auto');
+            $extraFormset.addClass('mr-auto');
+        } else {
+            $mainGuest.removeClass('ml-auto, mx-auto');
+        }
     } else {
-        $mainGuest.removeClass('ml-auto, mx-auto');
+        if ($extraFormset.length == 1) {
+            $extraFormset.addClass('mx-auto');
+        } else if ($extraFormset.length == 2) {
+            $extraFormset.first().addClass('ml-auto');
+        }
     }
     $('.guests > div:not(#main-guest, #extra-formset-template, :last-child)').removeClass('mr-auto');
 }

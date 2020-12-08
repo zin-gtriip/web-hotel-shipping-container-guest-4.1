@@ -104,7 +104,7 @@ function initRolldate($rolldate) {
 
 
 function restyleExtra() {
-    var $extraFormset = $('.extra-formset');
+    var $extraFormset = $('.extra-formset:visible');
 
     $extraFormset.each(function(index) {
         $(this).removeClass('even');
