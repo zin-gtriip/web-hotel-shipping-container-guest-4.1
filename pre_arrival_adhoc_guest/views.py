@@ -26,7 +26,7 @@ class PreArrivalAdhocGuestGuestListView(ParameterRequiredMixin, ProgressRateCont
             return redirect('pre_arrival:passport')
         prefilled = []
         for guest in list(request.session['pre_arrival']['reservation'].get('guestsList', [])):
-            if not guest.get('hasLocalRecord', None):
+            if guest.get('passportImage', ''): # use `passportImage` to determine if guest is newly added
                 request.session['pre_arrival']['reservation']['guestsList'].remove(guest) # reset `guestsList` with no new guest
             else:
                 prefilled.append(guest) # store additional guests to `session.pre_arrival.detail` that will be used on `pre_arrival_all_passport.forms`
@@ -38,7 +38,7 @@ class PreArrivalDetailView(PreArrivalDetailView):
 
     def dispatch(self, request, *args, **kwargs):
         # redirect to `guest_list` if `session` has no new added guest
-        guests = [guest for guest in request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('passportImage', '')]
+        guests = [guest for guest in request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('passportImage', '')] # use `passportImage` to determine if guest is newly added
         if request.session['pre_arrival']['reservation'].get('preArrivalDone', '0') == '1' and not guests:
             return redirect('pre_arrival_adhoc_guest:guest_list')
         return super().dispatch(request, *args, **kwargs)
