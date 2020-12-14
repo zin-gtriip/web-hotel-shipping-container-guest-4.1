@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 class GuestBaseConfig(AppConfig):
     name    = 'guest_base'
-    version = '1.2.0'
+    version = '1.2.1'
