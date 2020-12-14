@@ -11,7 +11,12 @@ $(document).ready(function() {
 
 
 $('#btn-add-extra').click(function() {
-    $('#form-type').val('add_guest').parents('form').submit();
+    $('#form-type').val('add_guest');
+});
+
+
+$('#btn-skip, #btn-next').click(function() {
+    $('#form-type').val('submit');
 });
 
 
