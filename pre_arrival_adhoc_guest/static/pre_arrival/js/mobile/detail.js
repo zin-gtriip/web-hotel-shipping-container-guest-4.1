@@ -15,7 +15,12 @@ $(document).ready(function() {
 
 
 $('#btn-add-extra').click(function() {
-    $('#form-type').val('add_guest').parents('form').submit();
+    $('#form-type').val('add_guest');
+});
+
+
+$('#btn-skip, #btn-next').click(function() {
+    $('#form-type').val('submit');
 });
 
 
@@ -104,7 +109,7 @@ function initRolldate($rolldate) {
 
 
 function restyleExtra() {
-    var $extraFormset = $('.extra-formset');
+    var $extraFormset = $('.extra-formset:visible');
 
     $extraFormset.each(function(index) {
         $(this).removeClass('even');

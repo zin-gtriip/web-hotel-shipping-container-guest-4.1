@@ -10,7 +10,6 @@ from .forms                         import *
 class PreArrivalPassportView(PreArrivalPassportView):
 
     def dispatch(self, request, *args, **kwargs):
-        print(request.session.get('pre_arrival', {}).get('reservation', {}))
         if request.session.get('pre_arrival', {}).get('reservation', {}).get('preArrivalDone', '0') == '1':
             request.session['pre_arrival']['passport'] = True # mark `passport` is done
             return redirect('pre_arrival_adhoc_guest:guest_list')
@@ -27,29 +26,11 @@ class PreArrivalAdhocGuestGuestListView(ParameterRequiredMixin, ProgressRateCont
             return redirect('pre_arrival:passport')
         prefilled = []
         for guest in list(request.session['pre_arrival']['reservation'].get('guestsList', [])):
-            if not guest.get('hasLocalRecord', None):
+            if guest.get('passportImage', ''): # use `passportImage` to determine if guest is newly added
                 request.session['pre_arrival']['reservation']['guestsList'].remove(guest) # reset `guestsList` with no new guest
             else:
                 prefilled.append(guest) # store additional guests to `session.pre_arrival.detail` that will be used on `pre_arrival_all_passport.forms`
         request.session['pre_arrival']['detail'] = {'prefilled_guest_temp': prefilled}
-
-
-        # guests = list([guest for guest in request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('hasLocalRecord', None)])
-        # print(guests)
-        # request.session['pre_arrival']['reservation']['guestsList'] = guests
-        # print(asdf)
-        # # print(request.session['pre_arrival']['reservation'].get('guestsList', []))
-        # for test in request.session['pre_arrival']['reservation'].get('guestsList', []):
-        #     if not test.get('hasLocalRecord', None):
-        #         print(test)
-        #         request.session['pre_arrival']['reservation']['guestsList'].remove(test)
-        # # print(request.session['pre_arrival']['reservation'].get('guestsList', []))
-
-
-
-        # store additional guests to `session.pre_arrival.detail` that will be used on `pre_arrival_all_passport.forms`
-        # prefilled = [guest for guest in request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') != '1']
-        # request.session['pre_arrival']['detail'] = {'prefilled_guest_temp': prefilled}
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -57,7 +38,7 @@ class PreArrivalDetailView(PreArrivalDetailView):
 
     def dispatch(self, request, *args, **kwargs):
         # redirect to `guest_list` if `session` has no new added guest
-        guests = [guest for guest in request.session['pre_arrival']['reservation'].get('guestsList', []) if not guest.get('hasLocalRecord', None)]
+        guests = [guest for guest in request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('passportImage', '')] # use `passportImage` to determine if guest is newly added
         if request.session['pre_arrival']['reservation'].get('preArrivalDone', '0') == '1' and not guests:
             return redirect('pre_arrival_adhoc_guest:guest_list')
         return super().dispatch(request, *args, **kwargs)
@@ -79,7 +60,6 @@ class PreArrivalAllPassportExtraPassportView(PreArrivalAllPassportExtraPassportV
 class PreArrivalOtherInfoView(PreArrivalOtherInfoView):
 
     def dispatch(self, request, *args, **kwargs):
-        print(request.session['pre_arrival']['reservation'])
         if request.session.get('pre_arrival', {}).get('reservation', {}).get('preArrivalDone', '0') == '1':
             request.session['pre_arrival']['other_info'] = True # mark `other_info` is done
             form = self.get_form()

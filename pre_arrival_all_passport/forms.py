@@ -156,8 +156,8 @@ class PreArrivalAllPassportExtraPassportForm(forms.Form):
         # get data from additional guests temp in session
         extra_guest = next((guest for guest in self.request.session['pre_arrival']['detail'].get('prefilled_guest_temp', []) if not guest.get('passportImage', '')), {})
         extra_guest['guestID'] = extra_guest.get('guestID', '0')
-        extra_guest['firstName'] = ocr.get('names', '').capitalize()
-        extra_guest['lastName'] = ocr.get('surname', '').capitalize()
+        extra_guest['firstName'] = ocr.get('names', '').title()
+        extra_guest['lastName'] = ocr.get('surname', '').title()
         extra_guest['nationality'] = Country(ocr.get('nationality', '')).code
         extra_guest['passportNo'] = ocr.get('number', '')
         extra_guest['dob'] = dob
