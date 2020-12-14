@@ -45,7 +45,7 @@ $('.file-upload').click(function() {
 // file change
 $('.file-capture, .file-upload').change(function() {
     var file = event.target.files[0]
-        , initial = $(this).parent('label').text().indexOf('Retake') === -1;
+        , isInitial = $('.croppie-container #text-preview').length == 0;
 
     if (file === undefined) modalAlert(gettext('Invalid Image'), gettext('No image file selected'));
     if (!validateFileType($(this).val())) modalAlert(gettext('Invalid Image'), gettext('Please upload valid identification in JPEG/PNG format'));
@@ -55,7 +55,7 @@ $('.file-capture, .file-upload').change(function() {
                 $('#img-preview').croppie('bind', dataURL).then(function() { // update image data
                     $('#img-preview').croppie('setZoom', 0); // change zoom level
                 });
-                if (initial) { // will not init if re-upload or re-take
+                if (isInitial) { // will not init if re-upload or re-take
                     initCroppieComponents();
                     initBorderGuide();
                 }
