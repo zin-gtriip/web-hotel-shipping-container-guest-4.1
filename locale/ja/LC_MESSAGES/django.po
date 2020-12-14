@@ -371,7 +371,7 @@ msgstr "画像を処理できません。 後でもう一度やり直してく�
 
 #: pre_arrival/forms.py:138
 msgid "Invalid NRIC image."
-msgstr "NRIC image is invalid."
+msgstr "NRIC画像が無効です。"
 
 #: pre_arrival/forms.py:152 pre_arrival_all_passport/forms.py:101
 msgid "No image file selected."
