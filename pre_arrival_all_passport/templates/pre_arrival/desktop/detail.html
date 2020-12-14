@@ -149,7 +149,7 @@
                     </div>
                     <!-- extra formset bound -->
                     {% for extra_form in extra.forms %}
-                        <div class="col-lg-4 px-4 mr-auto extra-formset">
+                        <div class="col-lg-4 px-4 mr-auto extra-formset" id="extra-formset-{{ forloop.counter0 }}">
                             <div class="row guest-index">
                                 <div class="col-lg-12 px-0">
                                     {% render_field extra_form.guest_id %}
@@ -267,7 +267,6 @@
                             </div>
                         </div>
                     {% endfor %}
-                    <!-- extra formset newly inserted -->
                 </div>
             </div>
         </div>
@@ -280,7 +279,7 @@
                         <input type="hidden" name="form-MIN_NUM_FORMS" value="0" id="id_form-MIN_NUM_FORMS">
                         <input type="hidden" name="form-MAX_NUM_FORMS" value="{{ max_extra_form }}" id="id_form-MAX_NUM_FORMS">
                         <input type="hidden" name="form_type" value="submit" id="form-type">
-                        <button type="button" class="btn btn-outline-primary m-0" id="btn-add-extra"
+                        <button type="submit" class="btn btn-outline-primary m-0" id="btn-add-extra"
                             {% if extra.forms|length >= max_extra_form %}style="display: none;"{% endif %}>
                             {% trans 'Next Guest' %}</button>
                     </div>

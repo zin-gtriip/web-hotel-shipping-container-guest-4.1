@@ -5,6 +5,7 @@ $('.rolldate').each(function() {
 restyleExtra();
 rearrangeExtraIndex();
 validateMaxExtra();
+scrollToGuestIndex();
 
 
 $(document).ready(function() {
@@ -13,7 +14,12 @@ $(document).ready(function() {
 
 
 $('#btn-add-extra').click(function() {
-    $('#form-type').val('add_guest').parents('form').submit();
+    $('#form-type').val('add_guest');
+});
+
+
+$('#btn-skip, #btn-next').click(function() {
+    $('#form-type').val('submit');
 });
 
 
@@ -66,6 +72,7 @@ function removeExtra($btn) {
         rearrangeExtraIndex();
         recalculateTotalExtra();
         validateMaxExtra();
+        scrollToGuestIndex();
     });
 }
 
@@ -109,6 +116,13 @@ function restyleExtra() {
             $(this).addClass('even');
         }
     });
+}
+
+
+function scrollToGuestIndex() {
+    $('html, body').animate({
+        scrollTop: $('.guest-index:last').offset().top
+    }, 800);
 }
 
 

@@ -1,25 +1,6 @@
-{% extends 'guest_base/base.html' %}
+{% extends 'pre_arrival/base.html' %}
 {% load i18n %}
 {% load static %}
-
-{% block page_name %}{{ HOTEL_NAME }} | {% trans 'Pre Arrival' %}{% endblock page_name %}
-
-{% block static_css %}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static 'pre_arrival/scss/base.scss' %}" type="text/x-scss" media="screen">
-{% endblock static_css %}
-
-{% block progress_page %}
-    <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: {{ request.session.pre_arrival.previous_progress_rate }}%;" aria-valuenow="{{ request.session.pre_arrival.previous_progress_rate }}" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-{% endblock progress_page %}
-
-{% block header_right %}
-    {% if not request.session.app %}
-        {{ block.super }}
-    {% endif %}
-{% endblock header_right %}
 
 {% block header_left %}
     {% if request.path in '/pre_arrival/reservation/,/pre_arrival/passport/,/pre_arrival/detail/,/pre_arrival/extra_passport/,/pre_arrival/other_info/' %}
@@ -84,14 +65,3 @@
         </div>
     {% endif %}
 {% endblock wrapper %}
-
-{% block data_js %}
-    {{ block.super }}
-    {{ SESSION_INITIAL_EXPIRY_DURATION|json_script:'session-initial-expiry-duration' }}
-    {{ request.session.pre_arrival.current_progress_rate|json_script:'current-progress-rate' }}
-{% endblock data_js %}
-
-{% block static_js %}
-    {{ block.super }}
-    <script type="text/javascript" src="{% static 'pre_arrival/js/base.js' %}"></script>
-{% endblock static_js %}

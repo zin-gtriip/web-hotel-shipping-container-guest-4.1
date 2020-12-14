@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_user_agents',
     
     'check_out.apps.CheckOutConfig',
+    'pre_arrival_adhoc_guest.apps.PreArrivalAdhocGuestConfig',
     'pre_arrival_all_passport.apps.PreArrivalAllPassportConfig',
     'pre_arrival.apps.PreArrivalConfig',
     'guest_base.apps.GuestBaseConfig',
