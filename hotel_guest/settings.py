@@ -246,17 +246,17 @@ PRE_ARRIVAL_ROOM_TYPES = [
     {
         'room_type' : 'Premier',
         'room_name' : 'Premier Room',
-        'room_image': 'premier.jpg',
+        'room_image': 'room-premier.jpg',
     },
     {
         'room_type' : 'Deluxe',
         'room_name' : 'Deluxe Room',
-        'room_image': 'deluxe.jpg',
+        'room_image': 'room-deluxe.jpg',
     },
     {
         'room_type' : 'Villa',
         'room_name' : 'Villa',
-        'room_image': 'villa.jpg',
+        'room_image': 'room-villa.jpg',
     },
 ]
 # age limit for adult, used on passport, detail page
