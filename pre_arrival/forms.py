@@ -463,7 +463,7 @@ class PreArrivalOtherInfoForm(forms.Form):
             new_booking_response = gateways.guest_endpoint('/checkBookingsPreArrival', new_booking_data)
             self.request.session['pre_arrival']['bookings'] = new_booking_response.get('data', [])
         else:
-            raise forms.ValidationError(response.get('message', _('Unknown error')))
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
 
 
 class PreArrivalCompleteForm(forms.Form):
