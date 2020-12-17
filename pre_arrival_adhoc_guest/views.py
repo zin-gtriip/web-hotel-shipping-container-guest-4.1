@@ -1,6 +1,7 @@
 from django.shortcuts               import redirect
 from django.http                    import HttpResponseRedirect
 from django.views.generic           import *
+from pre_arrival                    import utilities
 from pre_arrival.mixins             import *
 from pre_arrival.views              import PreArrivalPassportView, PreArrivalOtherInfoView
 from pre_arrival_all_passport.views import PreArrivalDetailView, PreArrivalAllPassportExtraPassportView
@@ -61,8 +62,16 @@ class PreArrivalOtherInfoView(PreArrivalOtherInfoView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('pre_arrival', {}).get('reservation', {}).get('preArrivalDone', '0') == '1':
-            request.session['pre_arrival']['other_info'] = True # mark `other_info` is done
-            form = self.get_form()
-            form.gateway_post()
-            return HttpResponseRedirect(self.get_success_url())
+            data = {}
+            data['arrival_time'] = utilities.parse_arrival_time(self.request.session['pre_arrival']['reservation'].get('eta', ''))
+            data['special_requests'] = request.session.get('pre_arrival', {}).get('reservation', {}).get('comments', '')
+            main_guest = next((guest for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
+            data['email'] = main_guest.get('email', '')
+            data['is_subscribe'] = main_guest.get('emailSubscription', True)
+            form = self.get_form_class()
+            form = form(request, data)
+            if form.is_valid():
+                return self.form_valid(form)
+            else:
+                return self.form_invalid(form)
         return super().dispatch(request, *args, **kwargs)

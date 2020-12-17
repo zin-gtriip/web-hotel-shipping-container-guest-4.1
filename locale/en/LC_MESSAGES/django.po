@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-14 11:38+0700\n"
+"POT-Creation-Date: 2020-12-16 16:01+0700\n"
 "PO-Revision-Date: 2020-12-09 18:55+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -161,7 +161,7 @@ msgstr ""
 msgid "Outstanding balance will be charged to the credit card registered."
 msgstr "Outstanding balance will be charged to the credit card registered."
 
-#: check_out/templates/check_out/desktop/bill.html:261
+#: check_out/templates/check_out/desktop/bill.html:264
 msgid ""
 "Unable to proceed with some of the guest's check-out. Please check-out each "
 "guest individually."
@@ -169,7 +169,7 @@ msgstr ""
 "Unable to proceed with some of the guest's check-out.\n"
 "Please select a guest from the drop-down to check-out."
 
-#: check_out/templates/check_out/desktop/bill.html:263
+#: check_out/templates/check_out/desktop/bill.html:266
 msgid ""
 "Unable to proceed with this guest's check-out. Please check-out at the Front "
 "Desk."
@@ -177,12 +177,12 @@ msgstr ""
 "Unable to proceed with this guest's check-out. Please check-out at the Front "
 "Desk."
 
-#: check_out/templates/check_out/desktop/bill.html:281
+#: check_out/templates/check_out/desktop/bill.html:284
 #: check_out/templates/check_out/desktop/complete.html:15
 msgid "Check Out Successful"
 msgstr "Check-Out Successful"
 
-#: check_out/templates/check_out/desktop/bill.html:287
+#: check_out/templates/check_out/desktop/bill.html:290
 #: check_out/templates/check_out/desktop/login.html:67
 #: check_out/templates/check_out/mobile/login.html:76
 #: pre_arrival/templates/pre_arrival/desktop/login.html:80
@@ -878,7 +878,7 @@ msgstr "Upload Photo"
 #: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:284
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:286
 msgid "Next Guest"
-msgstr "Guest"
+msgstr "Next Guest"
 
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:293
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:296

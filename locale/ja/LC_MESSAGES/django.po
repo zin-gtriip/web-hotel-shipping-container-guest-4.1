@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-14 11:38+0700\n"
+"POT-Creation-Date: 2020-12-16 16:01+0700\n"
 "PO-Revision-Date: 2020-12-09 18:55+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -162,7 +162,7 @@ msgstr ""
 msgid "Outstanding balance will be charged to the credit card registered."
 msgstr "未払いの残高は、登録されたクレジットカードに請求されます。"
 
-#: check_out/templates/check_out/desktop/bill.html:261
+#: check_out/templates/check_out/desktop/bill.html:264
 msgid ""
 "Unable to proceed with some of the guest's check-out. Please check-out each "
 "guest individually."
@@ -170,7 +170,7 @@ msgstr ""
 "一部のゲストのチェックアウトを続行できません。\n"
 "ドロップダウンからゲストを選択してチェックアウトしてください。"
 
-#: check_out/templates/check_out/desktop/bill.html:263
+#: check_out/templates/check_out/desktop/bill.html:266
 msgid ""
 "Unable to proceed with this guest's check-out. Please check-out at the Front "
 "Desk."
@@ -178,12 +178,12 @@ msgstr ""
 "このゲストのチェックアウトを続行できません。 フロントでチェックアウトしてくだ"
 "さい。"
 
-#: check_out/templates/check_out/desktop/bill.html:281
+#: check_out/templates/check_out/desktop/bill.html:284
 #: check_out/templates/check_out/desktop/complete.html:15
 msgid "Check Out Successful"
 msgstr "チェックアウト成功"
 
-#: check_out/templates/check_out/desktop/bill.html:287
+#: check_out/templates/check_out/desktop/bill.html:290
 #: check_out/templates/check_out/desktop/login.html:67
 #: check_out/templates/check_out/mobile/login.html:76
 #: pre_arrival/templates/pre_arrival/desktop/login.html:80
