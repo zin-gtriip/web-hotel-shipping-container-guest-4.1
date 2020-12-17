@@ -149,7 +149,7 @@ class PreArrivalPassportForm(forms.Form):
         skip_passport = self.cleaned_data.get('skip_passport')
 
         if not skip_passport and not passport_file:
-            raise forms.ValidationError(_('No image file selected.'))
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('No image file selected.')])
 
         # validate based on `scan_type` (`passport` / `nric`)
         if not skip_passport:
