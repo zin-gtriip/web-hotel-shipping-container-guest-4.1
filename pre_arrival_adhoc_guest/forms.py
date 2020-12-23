@@ -1,4 +1,5 @@
 from django                         import forms
+from pre_arrival.forms              import PreArrivalOtherInfoForm
 from pre_arrival_all_passport.forms import *
 
 
@@ -59,3 +60,13 @@ class PreArrivalAllPassportExtraPassportForm(PreArrivalAllPassportExtraPassportF
         extra_guest['dob'] = dob
         extra_guest['passportImage'] = file_b64_encoded.decode()
         self.request.session['pre_arrival']['reservation']['guestsList'].append(extra_guest)
+
+
+class PreArrivalOtherInfoForm(PreArrivalOtherInfoForm):
+    
+    def gateway_post(self):
+        super().gateway_post()
+        registered_reservation_no = self.request.session['pre_arrival'].get('reservation', {}).get('reservationNo', '')
+        registered_reservation = next((reservation for reservation in self.request.session['pre_arrival']['bookings'] if reservation.get('reservationNo', '') == registered_reservation_no), {})
+        if registered_reservation:
+            self.request.session['pre_arrival']['bookings'].remove(registered_reservation) # remove just registered reservation to prevent "Next Registration" displayed on complete page

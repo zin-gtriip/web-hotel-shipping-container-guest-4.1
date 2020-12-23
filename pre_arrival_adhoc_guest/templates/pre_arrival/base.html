@@ -10,8 +10,7 @@
     {% endif %}
 {% endblock header_left %}
 
-{% block wrapper %}
-    {{ block.super }}
+{% block timer %}
     {% if request.path in '/pre_arrival/reservation/,/pre_arrival/passport/,/pre_arrival/guest_list/,/pre_arrival/detail/,/pre_arrival/extra_passport/,/pre_arrival/other_info/' %}
         <!-- Timer Extension Modal -->
         <div class="modal fade" id="timer-extension-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
@@ -64,4 +63,4 @@
             </div>
         </div>
     {% endif %}
-{% endblock wrapper %}
+{% endblock timer %}

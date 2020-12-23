@@ -28,7 +28,20 @@
                 <div class="row mb-4">
                     <div class="col-12 col-lg-4 mx-auto">
                         <div class="md-form input-center input-boxed">
-                            {% render_field form.reservation_no class="form-control" %}
+                            {% if form.is_bound and form.reservation_no.errors %}
+                                <!-- bound and has error -->
+                                {% render_field form.reservation_no class="form-control md-select is-invalid" %}
+                                <!-- error feedback -->
+                                {% for error in form.reservation_no.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            {% else %}
+                                <!-- not bound or no error -->
+                                {% render_field form.reservation_no class="form-control md-select" %}
+                                {% if form.reservation_no.help_text %}
+                                    <small class="form-text text-muted">{{ form.reservation_no.help_text }}</small>
+                                {% endif %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>

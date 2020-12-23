@@ -59,6 +59,7 @@ class PreArrivalAllPassportExtraPassportView(PreArrivalAllPassportExtraPassportV
 
 
 class PreArrivalOtherInfoView(PreArrivalOtherInfoView):
+    form_class = PreArrivalOtherInfoForm
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('pre_arrival', {}).get('reservation', {}).get('preArrivalDone', '0') == '1':

@@ -75,7 +75,9 @@ class CheckOutBillForm(forms.Form):
         self.fields['reservation_no'].initial = self.instance.get('id', '')
 
     def clean(self):
+        super().clean()
         reservation_no = self.cleaned_data.get('reservation_no', '')
+        
         if not reservation_no:
             self._errors['reservation_no'] = self.error_class([_('Enter the required information')])
         return self.cleaned_data
