@@ -4,7 +4,7 @@ from guest_base.mixins  import DependentAppConfigMixin
 
 class PreArrivalConfig(DependentAppConfigMixin, AppConfig):
     name            = 'pre_arrival'
-    version         = '1.2.3'
+    version         = '1.2.4'
     dependencies    = [
         'guest_base.apps.GuestBaseConfig',
     ]
