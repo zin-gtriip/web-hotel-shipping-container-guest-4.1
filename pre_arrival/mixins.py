@@ -7,16 +7,17 @@ from django.conf        import settings
 class ExpirySessionMixin:
     """
     View mixin that verifies the user has `pre_arrival`, `initial_expiry_date`
-    is not expired.
+    or 'extended_expiry_date' is not expired.
     
     If it does not exist or expired, page will be redirected to login page. This
     mixin must be put on every pre-arrival page except login and complete page.
     """
     
     def dispatch(self, request, *args, **kwargs):
-        if request.session.session_key and request.session.get('pre_arrival', {}).get('initial_expiry_date', ''):
+        if request.session.session_key and (request.session['pre_arrival'].get('initial_expiry_date', '') or request.session['pre_arrival'].get('extended_expiry_date', '')):
+            expiry_date = request.session['pre_arrival'].get('extended_expiry_date', '') or request.session['pre_arrival'].get('initial_expiry_date', '')
             try:
-                expiry_date = dt.strptime(request.session['pre_arrival'].get('initial_expiry_date', ''), '%Y-%m-%dT%H:%M:%S.%f%z')
+                expiry_date = dt.strptime(expiry_date, '%Y-%m-%dT%H:%M:%S.%f%z')
             except:
                 expiry_date = None
             if expiry_date and expiry_date >= timezone.now():
