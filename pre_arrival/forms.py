@@ -487,4 +487,5 @@ class PreArrivalCompleteForm(forms.Form):
         expiry_duration = settings.PRE_ARRIVAL_SESSION_AGE_INITIAL
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['pre_arrival']['initial_expiry_date'] = initial_expiry_date
+        self.request.session['pre_arrival']['initial_expiry_duration'] = expiry_duration # will be popped after pass to templates
         self.request.session['pre_arrival'].pop('extended_expiry_date', None)
