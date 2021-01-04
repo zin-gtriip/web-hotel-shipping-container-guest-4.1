@@ -4,7 +4,7 @@ from django.conf                import settings
 from django.utils.translation   import gettext, gettext_lazy as _
 from django_countries.fields    import Country
 from guest_base                 import gateways
-from pre_arrival                import utilities
+from pre_arrival                import utils
 from pre_arrival.forms          import PreArrivalDetailForm, PreArrivalDetailExtraForm, PreArrivalDetailExtraBaseFormSet
 
 
@@ -148,7 +148,7 @@ class PreArrivalAllPassportExtraPassportForm(forms.Form):
         os.remove(saved_file) # remove saved file after got response
 
         # parse dob
-        dob = utilities.parse_ocr_date(ocr.get('date_of_birth', ''))
+        dob = utils.parse_ocr_date(ocr.get('date_of_birth', ''))
         if dob:
             date_format = settings.DATE_INPUT_FORMATS[0] if settings.DATE_INPUT_FORMATS else '%Y-%m-%d'
             dob = dob.strftime(date_format)

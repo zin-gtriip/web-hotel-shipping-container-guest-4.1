@@ -6,7 +6,7 @@ from guest_base                 import views as GuestBaseViews
 from guest_base.mixins          import RequestFormKwargsMixin, MobileTemplateMixin, JSONResponseMixin
 from .forms                     import *
 from .mixins                    import *
-from .utilities                 import *
+from .utils                     import *
 
 class IndexView(GuestBaseViews.IndexView):
     pattern_name = 'pre_arrival:data'

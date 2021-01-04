@@ -5,8 +5,8 @@ from django.template.loader     import render_to_string
 from django.utils               import timezone
 from django.utils.translation   import gettext, gettext_lazy as _
 from django_countries.fields    import Country, CountryField
-from guest_base                 import gateways, utilities as base_utilities
-from .                          import utilities, samples
+from guest_base                 import gateways, utils as base_utils
+from .                          import utils, samples
 
 class PreArrivalLoginForm(forms.Form):
     reservation_no  = forms.CharField(label=_('Reservation Number'))
@@ -87,7 +87,7 @@ class PreArrivalTimerExtensionForm(forms.Form):
         else:
             session_key = self.request.session.session_key
             initial_expiry_date = self.request.session.get('pre_arrival', {}).get('initial_expiry_date', '')
-            if base_utilities.decrypt(token_id) != (session_key + initial_expiry_date):
+            if base_utils.decrypt(token_id) != (session_key + initial_expiry_date):
                 self._errors['token_id'] = self.error_class([_('Token ID is not correct.')])
         return self.cleaned_data
 
@@ -160,7 +160,7 @@ class PreArrivalPassportForm(forms.Form):
                     if response.get('expired', '') == 'false':
                         config = gateways.amp_endpoint('/getConfigVariables') or {} # get config variables
                         age_limit = config.get('prearrival_adult_min_age_years', settings.PRE_ARRIVAL_ADULT_AGE_LIMIT)
-                        if utilities.calculate_age(utilities.parse_ocr_date(response.get('date_of_birth', ''))) <= age_limit:
+                        if utils.calculate_age(utils.parse_ocr_date(response.get('date_of_birth', ''))) <= age_limit:
                             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You must be at least %(age)s years of age to proceed with your registration.') % {'age': age_limit}])
                     else:
                         self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Your passport has expired, please capture / upload a valid passport photo to proceed')])
@@ -240,7 +240,7 @@ class PreArrivalDetailForm(forms.Form):
         first_name = self.request.session.get('pre_arrival', {}).get('ocr', {}).get('names', first_name)
         passport_no = self.request.session.get('pre_arrival', {}).get('ocr', {}).get('number', passport_no)
         nationality = Country(self.request.session.get('pre_arrival', {}).get('ocr', {}).get('nationality', '')).code or nationality
-        birth_date = utilities.parse_ocr_date(self.request.session.get('pre_arrival', {}).get('ocr', {}).get('date_of_birth', '')) or birth_date
+        birth_date = utils.parse_ocr_date(self.request.session.get('pre_arrival', {}).get('ocr', {}).get('date_of_birth', '')) or birth_date
         # assign
         self.fields['guest_id'].initial = guest_id
         self.fields['first_name'].initial = first_name.title()
@@ -271,7 +271,7 @@ class PreArrivalDetailForm(forms.Form):
         else:
             config = gateways.amp_endpoint('/getConfigVariables') or {} # get config variables
             age_limit = config.get('prearrival_adult_min_age_years', settings.PRE_ARRIVAL_ADULT_AGE_LIMIT)
-            if utilities.calculate_age(birth_date) <= age_limit:
+            if utils.calculate_age(birth_date) <= age_limit:
                 self._errors['birth_date'] = self.error_class([_('Main guest has to be %(age)s and above.') % {'age': age_limit}])
         return self.cleaned_data
 
@@ -374,7 +374,7 @@ class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
         config = gateways.amp_endpoint('/getConfigVariables') or {} # get config variables
         age_limit = config.get('prearrival_adult_min_age_years', settings.PRE_ARRIVAL_ADULT_AGE_LIMIT)
         for form in self.forms:
-            if utilities.calculate_age(form.cleaned_data.get('birth_date')) > age_limit:
+            if utils.calculate_age(form.cleaned_data.get('birth_date')) > age_limit:
                 adult += 1
         if adult > max_adult:
             self._non_form_errors = self.error_class([_('You have exceeded the number of adults.')])
@@ -394,8 +394,8 @@ class PreArrivalOtherInfoForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
-        self.fields['arrival_time'].choices = utilities.generate_arrival_time()
-        self.fields['arrival_time'].initial = utilities.parse_arrival_time(self.request.session['pre_arrival']['reservation'].get('eta', ''))
+        self.fields['arrival_time'].choices = utils.generate_arrival_time()
+        self.fields['arrival_time'].initial = utils.parse_arrival_time(self.request.session['pre_arrival']['reservation'].get('eta', ''))
         self.fields['special_requests'].initial = self.request.session['pre_arrival']['reservation'].get('comments', '')
         main_guest = next((guest for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
         self.fields['email'].initial = main_guest.get('email', '')
@@ -430,8 +430,8 @@ class PreArrivalOtherInfoForm(forms.Form):
 
     def prepare_email(self):
         context = dict(self.request.session['pre_arrival']['reservation']) # create new variable to prevent modification on `request.session`
-        context['formattedArrivalDate'] = utilities.format_display_date(context.get('arrivalDate', ''))
-        context['formattedDepartureDate'] = utilities.format_display_date(context.get('departureDate', ''))
+        context['formattedArrivalDate'] = utils.format_display_date(context.get('arrivalDate', ''))
+        context['formattedDepartureDate'] = utils.format_display_date(context.get('departureDate', ''))
         main_guest = next(guest for guest in context.get('guestsList', []) if guest.get('isMainGuest', '0') == '1')
         context['mainGuestFirstName'] = main_guest.get('firstName', '')
         context['mainGuestLastName'] = main_guest.get('lastName', '')
