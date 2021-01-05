@@ -59,7 +59,7 @@ msgid "Checked-in Guests"
 msgstr "入住客人"
 
 #: check_out/forms.py:104 pre_arrival/forms.py:168 pre_arrival/forms.py:466
-#: pre_arrival_all_passport/forms.py:111
+#: pre_arrival_ocr_required/forms.py:111
 msgid "Unknown error"
 msgstr "未知错误"
 
@@ -217,13 +217,13 @@ msgstr "验证需要以下信息。"
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:297
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:296
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:299
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:291
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:294
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:293
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:296
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:85
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:53
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:94
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:291
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:294
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:293
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:296
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:85
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:53
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:94
 msgid "Next"
 msgstr "下一个"
 
@@ -244,12 +244,12 @@ msgstr "下一个"
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:316
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:335
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:354
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:311
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:330
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:349
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:313
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:332
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:351
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:311
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:330
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:349
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:313
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:332
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:351
 msgid "Invalid Input"
 msgstr "無効入力"
 
@@ -364,7 +364,7 @@ msgstr "无法处理图像。 请稍后再试。"
 msgid "Invalid NRIC image."
 msgstr "NRIC图片无效。"
 
-#: pre_arrival/forms.py:152 pre_arrival_all_passport/forms.py:101
+#: pre_arrival/forms.py:152 pre_arrival_ocr_required/forms.py:101
 msgid "No image file selected."
 msgstr "未选择图像文件。"
 
@@ -374,7 +374,7 @@ msgid ""
 "You must be at least %(age)s years of age to proceed with your registration."
 msgstr "您必须年满%(age)s岁才能继续注册。"
 
-#: pre_arrival/forms.py:166 pre_arrival_all_passport/forms.py:109
+#: pre_arrival/forms.py:166 pre_arrival_ocr_required/forms.py:109
 msgid ""
 "Your passport has expired, please capture / upload a valid passport photo to "
 "proceed"
@@ -409,10 +409,10 @@ msgstr "[选择国家]"
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:232
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:108
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:233
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:108
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:229
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:108
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:230
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:108
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:229
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:108
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:230
 msgid "Nationality"
 msgstr "国籍"
 
@@ -464,44 +464,44 @@ msgstr "抵达前登记"
 
 #: pre_arrival/templates/pre_arrival/base.html:42
 #: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:23
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:23
+#: pre_arrival_ocr_required/templates/pre_arrival/base.html:23
 msgid "Session Expiring"
 msgstr "登录到期警报"
 
 #: pre_arrival/templates/pre_arrival/base.html:47
 #: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:28
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:28
+#: pre_arrival_ocr_required/templates/pre_arrival/base.html:28
 msgid "Your session is expiring soon"
 msgstr "请在时间到期之前完成注册。"
 
 #: pre_arrival/templates/pre_arrival/base.html:52
 #: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:33
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:33
+#: pre_arrival_ocr_required/templates/pre_arrival/base.html:33
 msgid "Remaining session time:"
 msgstr "剩余时间:"
 
 #: pre_arrival/templates/pre_arrival/base.html:63
 #: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:44
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:44
+#: pre_arrival_ocr_required/templates/pre_arrival/base.html:44
 msgid "Extend"
 msgstr "延伸"
 
 #: pre_arrival/templates/pre_arrival/base.html:74
 #: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:55
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:55
+#: pre_arrival_ocr_required/templates/pre_arrival/base.html:55
 msgid "Session Expired"
 msgstr "登录到期警报"
 
 #: pre_arrival/templates/pre_arrival/base.html:77
 #: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:58
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:58
+#: pre_arrival_ocr_required/templates/pre_arrival/base.html:58
 msgid "Your session is expired"
 msgstr "您的会话已过期。"
 
 #: pre_arrival/templates/pre_arrival/base.html:80
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:95
 #: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:61
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:61
+#: pre_arrival_ocr_required/templates/pre_arrival/base.html:61
 msgid "Ok"
 msgstr "好"
 
@@ -557,8 +557,8 @@ msgstr "下载应用程式"
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:29
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:29
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:29
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:29
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:29
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:29
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:29
 msgid "Enter Guest Details"
 msgstr "输入客人详细信息"
 
@@ -566,8 +566,8 @@ msgstr "输入客人详细信息"
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:34
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:34
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:34
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:34
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:34
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:34
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:34
 msgid "Please enter the personal particulars below."
 msgstr "请在下面验证个人信息。"
 
@@ -575,8 +575,8 @@ msgstr "请在下面验证个人信息。"
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:46
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:46
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:46
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:46
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:46
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:46
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:46
 msgid "Main Guest"
 msgstr "主要客人"
 
@@ -596,12 +596,12 @@ msgstr "主要客人"
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:56
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:170
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:191
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:56
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:166
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:187
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:56
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:167
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:188
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:56
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:166
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:187
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:56
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:167
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:188
 msgid "Enter your name"
 msgstr "输入你的名字"
 
@@ -615,10 +615,10 @@ msgstr "输入你的名字"
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:211
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:86
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:212
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:86
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:208
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:86
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:209
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:86
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:208
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:86
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:209
 msgid "e.g. A12345Z"
 msgstr "例如 12345678"
 
@@ -632,10 +632,10 @@ msgstr "例如 12345678"
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:252
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:129
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:253
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:129
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:249
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:129
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:250
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:129
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:249
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:129
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:250
 msgid "YYYY-MM-DD"
 msgstr "YYYY-MM-DD"
 
@@ -657,12 +657,12 @@ msgstr "添加访客"
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:322
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:341
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:360
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:317
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:336
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:355
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:319
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:338
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:357
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:317
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:336
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:355
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:319
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:338
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:357
 msgid "Fix"
 msgstr "好"
 
@@ -724,8 +724,8 @@ msgstr ""
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:115
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:75
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:116
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:107
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:116
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:107
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:116
 msgid "Close"
 msgstr "关"
 
@@ -734,43 +734,43 @@ msgid "Upload a photo<br>of your Passport"
 msgstr "上传您的护照照片"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:33
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:33
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:33
 msgid ""
 "Please make sure the photo is clear and all<br>information is within the box."
 msgstr "请确保照片清晰，所有信息均在包装盒内。"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:36
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:36
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:36
 msgid ""
 "Please make sure that all of the passport information<br>is within the box."
 msgstr "请确保所有护照信息都在框中。"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:55
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:55
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:55
 msgid "Capture"
 msgstr "捕获"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:68
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:78
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:68
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:78
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:68
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:78
 msgid "Take Photo"
 msgstr "拍照"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:72
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:72
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:72
 msgid "Upload"
 msgstr "上载"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:80
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:80
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:80
 msgid "Reupload"
 msgstr "重新上载"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:109
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:110
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:101
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:110
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:101
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:110
 msgid "Invalid Image"
 msgstr "图片无效"
 
@@ -838,20 +838,20 @@ msgstr "需要护照图像进行注册。<br> 使用相机捕获或从设备中�
 
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:61
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:86
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:61
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:86
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:61
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:86
 msgid "Retake"
 msgstr "重拍"
 
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:70
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:70
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:70
 msgid "Upload Photo"
 msgstr "上传图片"
 
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:287
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:289
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:284
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:286
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:284
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:286
 msgid "Next Guest"
 msgstr "下一位"
 
@@ -859,10 +859,10 @@ msgstr "下一位"
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:296
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:295
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:298
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:290
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:293
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:292
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:295
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:290
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:293
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:292
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:295
 msgid "Skip this for now"
 msgstr "跳跃"
 
@@ -874,19 +874,19 @@ msgstr "您想注册<br>更多客人吗？"
 msgid "We've found the following guests profiles<br>under your reservation."
 msgstr "已添加以下客人。"
 
-#: pre_arrival_all_passport/forms.py:81
+#: pre_arrival_ocr_required/forms.py:81
 msgid "You have exceeded the number of additional guests."
 msgstr "您已超过成人人数。"
 
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:27
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:27
 msgid "Upload a photo<br>of Passport"
 msgstr "上传您的护照照片"
 
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:27
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:27
 msgid "Prepare Passport for<br>photo verification"
 msgstr "提交护照图片"
 
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:32
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:32
 msgid ""
 "We need a photograph of the additional guest's<br>passport, or alternatively "
 "you may upload<br>the image file."

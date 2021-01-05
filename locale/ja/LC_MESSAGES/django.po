@@ -59,7 +59,7 @@ msgid "Checked-in Guests"
 msgstr "チェックインしたゲスト"
 
 #: check_out/forms.py:104 pre_arrival/forms.py:168 pre_arrival/forms.py:466
-#: pre_arrival_all_passport/forms.py:111
+#: pre_arrival_ocr_required/forms.py:111
 msgid "Unknown error"
 msgstr "不明なエラー"
 
@@ -222,13 +222,13 @@ msgstr "確認には以下の情報が必要です。"
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:297
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:296
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:299
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:291
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:294
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:293
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:296
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:85
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:53
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:94
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:291
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:294
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:293
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:296
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:85
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:53
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:94
 msgid "Next"
 msgstr "次"
 
@@ -249,12 +249,12 @@ msgstr "次"
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:316
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:335
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:354
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:311
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:330
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:349
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:313
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:332
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:351
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:311
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:330
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:349
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:313
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:332
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:351
 msgid "Invalid Input"
 msgstr "無効入力"
 
@@ -373,7 +373,7 @@ msgstr "画像を処理できません。 後でもう一度やり直してく�
 msgid "Invalid NRIC image."
 msgstr "NRIC画像が無効です。"
 
-#: pre_arrival/forms.py:152 pre_arrival_all_passport/forms.py:101
+#: pre_arrival/forms.py:152 pre_arrival_ocr_required/forms.py:101
 msgid "No image file selected."
 msgstr "画像ファイルが選択されていません。"
 
@@ -383,7 +383,7 @@ msgid ""
 "You must be at least %(age)s years of age to proceed with your registration."
 msgstr "登録を続行するには、%(age)s歳以上である必要があります。"
 
-#: pre_arrival/forms.py:166 pre_arrival_all_passport/forms.py:109
+#: pre_arrival/forms.py:166 pre_arrival_ocr_required/forms.py:109
 msgid ""
 "Your passport has expired, please capture / upload a valid passport photo to "
 "proceed"
@@ -419,10 +419,10 @@ msgstr "[国を選択]"
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:232
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:108
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:233
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:108
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:229
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:108
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:230
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:108
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:229
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:108
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:230
 msgid "Nationality"
 msgstr "国籍"
 
@@ -474,44 +474,44 @@ msgstr "到着前登録"
 
 #: pre_arrival/templates/pre_arrival/base.html:42
 #: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:23
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:23
+#: pre_arrival_ocr_required/templates/pre_arrival/base.html:23
 msgid "Session Expiring"
 msgstr "ログイン有効期限アラート"
 
 #: pre_arrival/templates/pre_arrival/base.html:47
 #: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:28
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:28
+#: pre_arrival_ocr_required/templates/pre_arrival/base.html:28
 msgid "Your session is expiring soon"
 msgstr "期限が切れる前に登録を完了してください。"
 
 #: pre_arrival/templates/pre_arrival/base.html:52
 #: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:33
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:33
+#: pre_arrival_ocr_required/templates/pre_arrival/base.html:33
 msgid "Remaining session time:"
 msgstr "残り時間:"
 
 #: pre_arrival/templates/pre_arrival/base.html:63
 #: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:44
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:44
+#: pre_arrival_ocr_required/templates/pre_arrival/base.html:44
 msgid "Extend"
 msgstr "拡張する"
 
 #: pre_arrival/templates/pre_arrival/base.html:74
 #: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:55
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:55
+#: pre_arrival_ocr_required/templates/pre_arrival/base.html:55
 msgid "Session Expired"
 msgstr "ログイン有効期限アラート"
 
 #: pre_arrival/templates/pre_arrival/base.html:77
 #: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:58
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:58
+#: pre_arrival_ocr_required/templates/pre_arrival/base.html:58
 msgid "Your session is expired"
 msgstr "セッションの有効期限が切れました。"
 
 #: pre_arrival/templates/pre_arrival/base.html:80
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:95
 #: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:61
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:61
+#: pre_arrival_ocr_required/templates/pre_arrival/base.html:61
 msgid "Ok"
 msgstr "はい"
 
@@ -568,8 +568,8 @@ msgstr "アプリをダウンロードする"
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:29
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:29
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:29
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:29
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:29
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:29
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:29
 msgid "Enter Guest Details"
 msgstr "ゲストの詳細を入力"
 
@@ -577,8 +577,8 @@ msgstr "ゲストの詳細を入力"
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:34
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:34
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:34
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:34
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:34
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:34
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:34
 msgid "Please enter the personal particulars below."
 msgstr "以下の個人情報を確認してください。"
 
@@ -586,8 +586,8 @@ msgstr "以下の個人情報を確認してください。"
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:46
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:46
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:46
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:46
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:46
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:46
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:46
 msgid "Main Guest"
 msgstr "メインゲスト"
 
@@ -607,12 +607,12 @@ msgstr "メインゲスト"
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:56
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:170
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:191
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:56
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:166
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:187
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:56
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:167
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:188
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:56
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:166
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:187
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:56
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:167
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:188
 msgid "Enter your name"
 msgstr "あなたの名前を入力してください"
 
@@ -626,10 +626,10 @@ msgstr "あなたの名前を入力してください"
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:211
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:86
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:212
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:86
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:208
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:86
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:209
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:86
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:208
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:86
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:209
 msgid "e.g. A12345Z"
 msgstr "例: 12345678"
 
@@ -643,10 +643,10 @@ msgstr "例: 12345678"
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:252
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:129
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:253
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:129
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:249
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:129
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:250
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:129
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:249
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:129
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:250
 msgid "YYYY-MM-DD"
 msgstr "YYYY-MM-DD"
 
@@ -668,12 +668,12 @@ msgstr "ゲストを追加"
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:322
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:341
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:360
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:317
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:336
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:355
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:319
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:338
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:357
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:317
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:336
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:355
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:319
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:338
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:357
 msgid "Fix"
 msgstr "はい"
 
@@ -736,8 +736,8 @@ msgstr ""
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:115
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:75
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:116
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:107
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:116
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:107
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:116
 msgid "Close"
 msgstr "閉じる"
 
@@ -746,43 +746,43 @@ msgid "Upload a photo<br>of your Passport"
 msgstr "パスポートの写真をアップロードする"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:33
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:33
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:33
 msgid ""
 "Please make sure the photo is clear and all<br>information is within the box."
 msgstr "写真が鮮明で、すべての情報が箱の中にあることを確認してください。"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:36
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:36
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:36
 msgid ""
 "Please make sure that all of the passport information<br>is within the box."
 msgstr "すべてのパスポート情報が箱の中にあることを確認してください。"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:55
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:55
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:55
 msgid "Capture"
 msgstr "キャプチャー"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:68
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:78
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:68
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:78
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:68
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:78
 msgid "Take Photo"
 msgstr "写真を撮る"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:72
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:72
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:72
 msgid "Upload"
 msgstr "アップロード"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:80
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:80
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:80
 msgid "Reupload"
 msgstr "再び"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:109
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:110
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:101
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:110
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:101
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:110
 msgid "Invalid Image"
 msgstr "無効な画像"
 
@@ -854,20 +854,20 @@ msgstr ""
 
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:61
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:86
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:61
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:86
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:61
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:86
 msgid "Retake"
 msgstr "リテイク"
 
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:70
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:70
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:70
 msgid "Upload Photo"
 msgstr "写真をアップする"
 
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:287
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:289
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:284
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:286
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:284
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:286
 msgid "Next Guest"
 msgstr "次のゲスト"
 
@@ -875,10 +875,10 @@ msgstr "次のゲスト"
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:296
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:295
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:298
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:290
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:293
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:292
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:295
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:290
+#: pre_arrival_ocr_required/templates/pre_arrival/desktop/detail.html:293
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:292
+#: pre_arrival_ocr_required/templates/pre_arrival/mobile/detail.html:295
 msgid "Skip this for now"
 msgstr "スキップ"
 
@@ -890,19 +890,19 @@ msgstr "より多くのゲストを登録しますか？"
 msgid "We've found the following guests profiles<br>under your reservation."
 msgstr "以下のゲストが予約に<br>追加されました。"
 
-#: pre_arrival_all_passport/forms.py:81
+#: pre_arrival_ocr_required/forms.py:81
 msgid "You have exceeded the number of additional guests."
 msgstr "大人の数を超えました。"
 
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:27
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/desktop/extra_passport.html:27
 msgid "Upload a photo<br>of Passport"
 msgstr "パスポートの写真をアップロードする"
 
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:27
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:27
 msgid "Prepare Passport for<br>photo verification"
 msgstr "パスポート画像を送信する"
 
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:32
+#: pre_arrival_ocr_required/templates/pre_arrival_ocr_required/mobile/extra_passport.html:32
 msgid ""
 "We need a photograph of the additional guest's<br>passport, or alternatively "
 "you may upload<br>the image file."

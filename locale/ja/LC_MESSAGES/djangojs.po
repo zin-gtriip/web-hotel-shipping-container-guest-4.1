@@ -23,10 +23,10 @@ msgstr ""
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:62
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:125
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:66
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:50
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:62
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:125
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:66
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/desktop/extra_passport.js:50
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/desktop/extra_passport.js:62
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/desktop/extra_passport.js:125
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/mobile/extra_passport.js:66
 msgid "Error"
 msgstr "エラー"
 
@@ -50,8 +50,8 @@ msgstr "はい"
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:86
 #: pre_arrival_adhoc_guest/static/pre_arrival/js/desktop/detail.js:47
 #: pre_arrival_adhoc_guest/static/pre_arrival/js/mobile/detail.js:50
-#: pre_arrival_all_passport/static/pre_arrival/js/desktop/detail.js:46
-#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:49
+#: pre_arrival_ocr_required/static/pre_arrival/js/desktop/detail.js:46
+#: pre_arrival_ocr_required/static/pre_arrival/js/mobile/detail.js:49
 msgid "Guest"
 msgstr "ゲスト"
 
@@ -59,8 +59,8 @@ msgstr "ゲスト"
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:98
 #: pre_arrival_adhoc_guest/static/pre_arrival/js/desktop/detail.js:59
 #: pre_arrival_adhoc_guest/static/pre_arrival/js/mobile/detail.js:62
-#: pre_arrival_all_passport/static/pre_arrival/js/desktop/detail.js:58
-#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:61
+#: pre_arrival_ocr_required/static/pre_arrival/js/desktop/detail.js:58
+#: pre_arrival_ocr_required/static/pre_arrival/js/mobile/detail.js:61
 msgid "Main Guest"
 msgstr "メインゲスト"
 
@@ -68,43 +68,43 @@ msgstr "メインゲスト"
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:35
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:50
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:51
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:34
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:35
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:50
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:51
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/desktop/extra_passport.js:34
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/desktop/extra_passport.js:35
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/mobile/extra_passport.js:50
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/mobile/extra_passport.js:51
 msgid "Invalid Image"
 msgstr "無効な画像"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:34
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:50
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:34
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:50
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/desktop/extra_passport.js:34
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/mobile/extra_passport.js:50
 msgid "No image file selected"
 msgstr "画像ファイルが選択されていません"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:35
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:51
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:35
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:51
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/desktop/extra_passport.js:35
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/mobile/extra_passport.js:51
 msgid "Please upload valid identification in JPEG/PNG format"
 msgstr "有効な身分証明書をJPEG / PNG形式でアップロードしてください。"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:50
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:125
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:66
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:50
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:125
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:66
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/desktop/extra_passport.js:50
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/desktop/extra_passport.js:125
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/mobile/extra_passport.js:66
 msgid "Error capturing image"
 msgstr "画像をキャプチャできません。"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:62
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:62
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/desktop/extra_passport.js:62
 msgid "No camera media is detected"
 msgstr "カメラメディアが検出されません。"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:186
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:186
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/desktop/extra_passport.js:186
 msgid ""
 "Please adjust the image to make sure<br>that all information is within the "
 "box."
@@ -112,30 +112,30 @@ msgstr ""
 "すべての情報がボックス内にあることを確認するために画像を調整してください。"
 
 #: pre_arrival/static/pre_arrival/js/desktop/passport.js:188
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/desktop/extra_passport.js:188
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/desktop/extra_passport.js:188
 msgid "Zoom"
 msgstr "ズーム"
 
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:128
 #: pre_arrival_adhoc_guest/static/pre_arrival/js/mobile/detail.js:93
-#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:92
+#: pre_arrival_ocr_required/static/pre_arrival/js/mobile/detail.js:92
 msgid "Select Date"
 msgstr "日付を選択"
 
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:129
 #: pre_arrival_adhoc_guest/static/pre_arrival/js/mobile/detail.js:94
-#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:93
+#: pre_arrival_ocr_required/static/pre_arrival/js/mobile/detail.js:93
 msgid "Cancel"
 msgstr "キャンセル"
 
 #: pre_arrival/static/pre_arrival/js/mobile/detail.js:130
 #: pre_arrival_adhoc_guest/static/pre_arrival/js/mobile/detail.js:95
-#: pre_arrival_all_passport/static/pre_arrival/js/mobile/detail.js:94
+#: pre_arrival_ocr_required/static/pre_arrival/js/mobile/detail.js:94
 msgid "Confirm"
 msgstr "確認"
 
 #: pre_arrival/static/pre_arrival/js/mobile/passport.js:131
-#: pre_arrival_all_passport/static/pre_arrival_all_passport/js/mobile/extra_passport.js:131
+#: pre_arrival_ocr_required/static/pre_arrival_ocr_required/js/mobile/extra_passport.js:131
 msgid ""
 "Drag, rotate, or pinch the image to make sure<br>that all information is "
 "within the box."
