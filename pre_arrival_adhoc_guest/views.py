@@ -4,7 +4,7 @@ from django.views.generic           import *
 from pre_arrival                    import utils
 from pre_arrival.mixins             import *
 from pre_arrival.views              import PreArrivalPassportView, PreArrivalOtherInfoView
-from pre_arrival_all_passport.views import PreArrivalDetailView, PreArrivalAllPassportExtraPassportView
+from pre_arrival_ocr_required.views import PreArrivalDetailView, PreArrivalOcrRequiredExtraPassportView
 from .forms                         import *
 
 
@@ -30,7 +30,7 @@ class PreArrivalAdhocGuestGuestListView(ParameterRequiredMixin, ProgressRateCont
             if guest.get('passportImage', ''): # use `passportImage` to determine if guest is newly added
                 request.session['pre_arrival']['reservation']['guestsList'].remove(guest) # reset `guestsList` with no new guest
             else:
-                prefilled.append(guest) # store additional guests to `session.pre_arrival.detail` that will be used on `pre_arrival_all_passport.forms`
+                prefilled.append(guest) # store additional guests to `session.pre_arrival.detail` that will be used on `pre_arrival_ocr_required.forms`
         request.session['pre_arrival']['detail'] = {'prefilled_guest_temp': prefilled}
         return super().dispatch(request, *args, **kwargs)
 
@@ -54,8 +54,8 @@ class PreArrivalDetailView(PreArrivalDetailView):
         return context
 
 
-class PreArrivalAllPassportExtraPassportView(PreArrivalAllPassportExtraPassportView):
-    form_class = PreArrivalAllPassportExtraPassportForm
+class PreArrivalOcrRequiredExtraPassportView(PreArrivalOcrRequiredExtraPassportView):
+    form_class = PreArrivalOcrRequiredExtraPassportForm
 
 
 class PreArrivalOtherInfoView(PreArrivalOtherInfoView):

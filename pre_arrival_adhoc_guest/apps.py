@@ -7,5 +7,5 @@ class PreArrivalAdhocGuestConfig(AppConfig):
     version         = '1.2.4'
     dependencies    = [
         'pre_arrival.apps.PreArrivalConfig',
-        'pre_arrival_all_passport.apps.PreArrivalAllPassportConfig',
+        'pre_arrival_ocr_required.apps.PreArrivalOcrRequiredConfig',
     ]

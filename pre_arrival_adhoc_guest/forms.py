@@ -1,7 +1,7 @@
 from django                         import forms
 from pre_arrival                    import utils
 from pre_arrival.forms              import PreArrivalOtherInfoForm
-from pre_arrival_all_passport.forms import *
+from pre_arrival_ocr_required.forms import *
 
 
 class PreArrivalDetailExtraForm(PreArrivalDetailExtraForm):
@@ -33,7 +33,7 @@ class PreArrivalDetailExtraBaseFormSet(PreArrivalDetailExtraBaseFormSet):
 PreArrivalDetailExtraFormSet = forms.formset_factory(PreArrivalDetailExtraForm, formset=PreArrivalDetailExtraBaseFormSet)
 
 
-class PreArrivalAllPassportExtraPassportForm(PreArrivalAllPassportExtraPassportForm):
+class PreArrivalOcrRequiredExtraPassportForm(PreArrivalOcrRequiredExtraPassportForm):
     
     def save(self):
         # prepare for ocr
