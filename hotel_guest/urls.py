@@ -24,7 +24,7 @@ urlpatterns = [
     
     path('', include('check_out.urls')),
     path('', include('pre_arrival_adhoc_guest.urls')),
-    path('', include('pre_arrival_all_passport.urls')),
+    path('', include('pre_arrival_ocr_required.urls')),
     path('', include('pre_arrival.urls')),
     path('', include('guest_base.urls')),
 ]
