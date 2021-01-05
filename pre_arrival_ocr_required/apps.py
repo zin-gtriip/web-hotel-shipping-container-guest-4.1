@@ -2,8 +2,8 @@ from django.apps import AppConfig
 from guest_base.mixins  import DependentAppConfigMixin
 
 
-class PreArrivalAllPassportConfig(AppConfig):
-    name            = 'pre_arrival_all_passport'
+class PreArrivalOcrRequired(AppConfig):
+    name            = 'pre_arrival_ocr_required'
     version         = '1.2.4'
     dependencies    = [
         'pre_arrival.apps.PreArrivalConfig',

@@ -21,14 +21,14 @@ class PreArrivalDetailView(PreArrivalDetailView):
     def form_valid(self, form, extra):
         form.save(extra)
         if self.request.POST.get('form_type', '') == 'add_guest':
-            return redirect('pre_arrival_all_passport:extra_passport')
+            return redirect('pre_arrival_ocr_required:extra_passport')
         return super().form_valid(form, extra)
 
 
-class PreArrivalAllPassportExtraPassportView(ParameterRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
-    template_name           = 'pre_arrival_all_passport/desktop/extra_passport.html'
-    mobile_template_name    = 'pre_arrival_all_passport/mobile/extra_passport.html'
-    form_class              = PreArrivalAllPassportExtraPassportForm
+class PreArrivalOcrRequiredExtraPassportView(ParameterRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
+    template_name           = 'pre_arrival_ocr_required/desktop/extra_passport.html'
+    mobile_template_name    = 'pre_arrival_ocr_required/mobile/extra_passport.html'
+    form_class              = PreArrivalOcrRequiredExtraPassportForm
     success_url             = '/pre_arrival/detail'
     parameter_required      = 'passport'
     progress_bar_page       = 'detail'
