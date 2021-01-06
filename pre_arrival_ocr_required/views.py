@@ -26,8 +26,8 @@ class PreArrivalDetailView(PreArrivalDetailView):
 
 
 class PreArrivalOcrRequiredExtraPassportView(ParameterRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
-    template_name           = 'pre_arrival_ocr_required/desktop/extra_passport.html'
-    mobile_template_name    = 'pre_arrival_ocr_required/mobile/extra_passport.html'
+    template_name           = 'pre_arrival/desktop/extra_passport.html'
+    mobile_template_name    = 'pre_arrival/mobile/extra_passport.html'
     form_class              = PreArrivalOcrRequiredExtraPassportForm
     success_url             = '/pre_arrival/detail'
     parameter_required      = 'passport'
