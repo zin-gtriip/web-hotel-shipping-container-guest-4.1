@@ -4,7 +4,7 @@ from django.views.generic           import *
 from pre_arrival                    import utils
 from pre_arrival.mixins             import *
 from pre_arrival.views              import PreArrivalPassportView, PreArrivalOtherInfoView
-from pre_arrival_ocr_required.views import PreArrivalDetailView, PreArrivalOcrRequiredExtraPassportView
+from pre_arrival_ocr_required.views import PreArrivalDetailView, PreArrivalExtraPassportView
 from .forms                         import *
 
 
@@ -17,7 +17,7 @@ class PreArrivalPassportView(PreArrivalPassportView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class PreArrivalAdhocGuestGuestListView(ParameterRequiredMixin, ProgressRateContextMixin, TemplateView):
+class PreArrivalGuestListView(ParameterRequiredMixin, ProgressRateContextMixin, TemplateView):
     template_name           = 'pre_arrival/desktop/guest_list.html'
     parameter_required      = 'passport'
     progress_bar_page       = 'passport'
@@ -54,8 +54,8 @@ class PreArrivalDetailView(PreArrivalDetailView):
         return context
 
 
-class PreArrivalOcrRequiredExtraPassportView(PreArrivalOcrRequiredExtraPassportView):
-    form_class = PreArrivalOcrRequiredExtraPassportForm
+class PreArrivalExtraPassportView(PreArrivalExtraPassportView):
+    form_class = PreArrivalExtraPassportForm
 
 
 class PreArrivalOtherInfoView(PreArrivalOtherInfoView):

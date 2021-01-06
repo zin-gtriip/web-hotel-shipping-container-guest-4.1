@@ -33,7 +33,7 @@ class PreArrivalDetailExtraBaseFormSet(PreArrivalDetailExtraBaseFormSet):
 PreArrivalDetailExtraFormSet = forms.formset_factory(PreArrivalDetailExtraForm, formset=PreArrivalDetailExtraBaseFormSet)
 
 
-class PreArrivalOcrRequiredExtraPassportForm(PreArrivalOcrRequiredExtraPassportForm):
+class PreArrivalExtraPassportForm(PreArrivalExtraPassportForm):
     
     def save(self):
         # prepare for ocr

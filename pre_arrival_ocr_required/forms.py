@@ -85,7 +85,7 @@ class PreArrivalDetailExtraBaseFormSet(PreArrivalDetailExtraBaseFormSet):
 PreArrivalDetailExtraFormSet = forms.formset_factory(PreArrivalDetailExtraForm, formset=PreArrivalDetailExtraBaseFormSet)
 
 
-class PreArrivalOcrRequiredExtraPassportForm(forms.Form):
+class PreArrivalExtraPassportForm(forms.Form):
     passport_file = forms.CharField(widget=forms.HiddenInput())
     
     def __init__(self, request, *args, **kwargs):
