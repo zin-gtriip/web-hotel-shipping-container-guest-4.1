@@ -18,7 +18,7 @@ class PreArrivalPassportView(PreArrivalPassportView):
 
 
 class PreArrivalAdhocGuestGuestListView(ParameterRequiredMixin, ProgressRateContextMixin, TemplateView):
-    template_name           = 'pre_arrival_adhoc_guest/desktop/guest_list.html'
+    template_name           = 'pre_arrival/desktop/guest_list.html'
     parameter_required      = 'passport'
     progress_bar_page       = 'passport'
 

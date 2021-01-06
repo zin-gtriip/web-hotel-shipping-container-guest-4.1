@@ -5,7 +5,7 @@
 
 {% block static_css %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'pre_arrival_adhoc_guest/scss/desktop/guest_list.scss' %}" type="text/x-scss" media="screen">
+    <link rel="stylesheet" href="{% static 'pre_arrival/scss/desktop/guest_list.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
 {% block header_left %}
@@ -45,5 +45,5 @@
 
 {% block static_js %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static 'pre_arrival_adhoc_guest/js/desktop/guest_list.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pre_arrival/js/desktop/guest_list.js' %}"></script>
 {% endblock static_js %}
