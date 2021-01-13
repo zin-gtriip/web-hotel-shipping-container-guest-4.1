@@ -484,7 +484,8 @@ class PreArrivalCompleteForm(forms.Form):
         self.request.session['pre_arrival'].pop('passport', None)
         self.request.session['pre_arrival'].pop('detail', None)
         self.request.session['pre_arrival'].pop('other_info', None)
-        expiry_duration = settings.PRE_ARRIVAL_SESSION_AGE_INITIAL
+        config = gateways.amp_endpoint('/getConfigVariables') or {} # get config variables
+        expiry_duration = config.get('prearrival_session_duration_minutes', settings.PRE_ARRIVAL_SESSION_AGE_INITIAL)
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['pre_arrival']['initial_expiry_date'] = initial_expiry_date
         self.request.session['pre_arrival']['initial_expiry_duration'] = expiry_duration # will be popped after pass to templates
