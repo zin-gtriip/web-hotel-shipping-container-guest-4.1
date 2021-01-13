@@ -264,6 +264,7 @@ PRE_ARRIVAL_ADULT_AGE_LIMIT             = 18
 # progress bar rate on pre-arrival page
 PRE_ARRIVAL_PROGRESS_BAR_START_RATE     = 10
 PRE_ARRIVAL_PROGRESS_BAR_END_RATE       = 100
+# this will also be used to clear session data on pre-arrival submission
 PRE_ARRIVAL_PROGRESS_BAR_PAGES          = [
     'login',
     'reservation',
