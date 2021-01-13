@@ -3,6 +3,26 @@ from pre_arrival.forms              import PreArrivalOtherInfoForm
 from pre_arrival_all_passport.forms import *
 
 
+class PreArrivalLoginForm(PreArrivalLoginForm):
+    pass
+
+
+class PreArrivalTimerExtensionForm(PreArrivalTimerExtensionForm):
+    pass
+
+
+class PreArrivalReservationForm(PreArrivalReservationForm):
+    pass
+
+
+class PreArrivalPassportForm(PreArrivalPassportForm):
+    pass
+
+
+class PreArrivalDetailForm(PreArrivalDetailForm):
+    pass
+
+
 class PreArrivalDetailExtraForm(PreArrivalDetailExtraForm):
     has_record = forms.BooleanField(widget=forms.HiddenInput(), required=False)
 
@@ -70,3 +90,7 @@ class PreArrivalOtherInfoForm(PreArrivalOtherInfoForm):
         registered_reservation = next((reservation for reservation in self.request.session['pre_arrival']['bookings'] if reservation.get('reservationNo', '') == registered_reservation_no), {})
         if registered_reservation:
             self.request.session['pre_arrival']['bookings'].remove(registered_reservation) # remove just registered reservation to prevent "Next Registration" displayed on complete page
+
+
+class PreArrivalCompleteForm(PreArrivalCompleteForm):
+    pass
