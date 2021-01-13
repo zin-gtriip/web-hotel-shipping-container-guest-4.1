@@ -5,7 +5,23 @@ from django.utils.translation   import gettext, gettext_lazy as _
 from django_countries.fields    import Country
 from guest_base                 import gateways
 from pre_arrival                import utilities
-from pre_arrival.forms          import PreArrivalDetailForm, PreArrivalDetailExtraForm, PreArrivalDetailExtraBaseFormSet
+from pre_arrival.forms          import *
+
+
+class PreArrivalLoginForm(PreArrivalLoginForm):
+    pass
+
+
+class PreArrivalTimerExtensionForm(PreArrivalTimerExtensionForm):
+    pass
+
+
+class PreArrivalReservationForm(PreArrivalReservationForm):
+    pass
+
+
+class PreArrivalPassportForm(PreArrivalPassportForm):
+    pass
 
 
 class PreArrivalDetailForm(PreArrivalDetailForm):
@@ -163,3 +179,11 @@ class PreArrivalAllPassportExtraPassportForm(forms.Form):
         extra_guest['dob'] = dob
         extra_guest['passportImage'] = file_b64_encoded.decode()
         self.request.session['pre_arrival']['reservation']['guestsList'].append(extra_guest)
+
+
+class PreArrivalOtherInfoForm(PreArrivalOtherInfoForm):
+    pass
+
+
+class PreArrivalCompleteForm(PreArrivalCompleteForm):
+    pass

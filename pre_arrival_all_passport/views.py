@@ -2,8 +2,32 @@ from django.shortcuts       import redirect
 from django.views.generic   import *
 from guest_base.mixins      import RequestFormKwargsMixin, MobileTemplateMixin
 from pre_arrival.mixins     import *
-from pre_arrival.views      import PreArrivalDetailView
+from pre_arrival.views      import *
 from .forms                 import *
+
+
+class IndexView(IndexView):
+    pass
+
+
+class PreArrivalDataView(PreArrivalDataView):
+    pass
+
+
+class PreArrivalLoginView(PreArrivalLoginView):
+    pass
+
+
+class PreArrivalTimerExtensionView(PreArrivalTimerExtensionView):
+    pass
+
+
+class PreArrivalReservationView(PreArrivalReservationView):
+    pass
+
+
+class PreArrivalPassportView(PreArrivalPassportView):
+    pass
 
 
 class PreArrivalDetailView(PreArrivalDetailView):
@@ -36,3 +60,11 @@ class PreArrivalAllPassportExtraPassportView(ParameterRequiredMixin, RequestForm
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+
+class PreArrivalOtherInfoView(PreArrivalOtherInfoView):
+    pass
+
+
+class PreArrivalCompleteView(PreArrivalCompleteView):
+    pass

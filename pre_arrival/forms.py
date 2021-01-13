@@ -479,11 +479,9 @@ class PreArrivalCompleteForm(forms.Form):
         return self.cleaned_data
 
     def save(self):
-        # reset data on session
-        self.request.session['pre_arrival'].pop('reservation', None)
-        self.request.session['pre_arrival'].pop('passport', None)
-        self.request.session['pre_arrival'].pop('detail', None)
-        self.request.session['pre_arrival'].pop('other_info', None)
+        # reset data on session using `PRE_ARRIVAL_PROGRESS_BAR_PAGES`
+        for page in settings.PRE_ARRIVAL_PROGRESS_BAR_PAGES or list():
+            self.request.session['pre_arrival'].pop(page, None)
         config = gateways.amp_endpoint('/getConfigVariables') or {} # get config variables
         expiry_duration = config.get('prearrival_session_duration_minutes', settings.PRE_ARRIVAL_SESSION_AGE_INITIAL)
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
