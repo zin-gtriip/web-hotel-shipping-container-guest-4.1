@@ -3,9 +3,28 @@ from django.http                    import HttpResponseRedirect
 from django.views.generic           import *
 from pre_arrival                    import utils
 from pre_arrival.mixins             import *
-from pre_arrival.views              import PreArrivalPassportView, PreArrivalOtherInfoView
-from pre_arrival_ocr_required.views import PreArrivalDetailView, PreArrivalExtraPassportView
+from pre_arrival_ocr_required.views import *
 from .forms                         import *
+
+
+class IndexView(IndexView):
+    pass
+
+
+class PreArrivalDataView(PreArrivalDataView):
+    pass
+
+
+class PreArrivalLoginView(PreArrivalLoginView):
+    pass
+
+
+class PreArrivalTimerExtensionView(PreArrivalTimerExtensionView):
+    pass
+
+
+class PreArrivalReservationView(PreArrivalReservationView):
+    pass
 
 
 class PreArrivalPassportView(PreArrivalPassportView):
@@ -76,3 +95,7 @@ class PreArrivalOtherInfoView(PreArrivalOtherInfoView):
             else:
                 return self.form_invalid(form)
         return super().dispatch(request, *args, **kwargs)
+
+
+class PreArrivalCompleteView(PreArrivalCompleteView):
+    pass
