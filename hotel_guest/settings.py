@@ -268,6 +268,14 @@ PRE_ARRIVAL_EXPIRY_SESSION_PAGES = [
     'detail',
     'other_info',
 ]
+# pre-arrival views that use `parameter_required` validation, will be used on `PreArrivalCompleteForm.save` function
+PRE_ARRIVAL_PARAMETER_REQUIRED_PAGES = [
+    'reservation',
+    'passport',
+    'detail',
+    'other_info',
+    'complete',
+]
 # progress bar rate on pre-arrival page
 PRE_ARRIVAL_PROGRESS_BAR_START_RATE = 10
 PRE_ARRIVAL_PROGRESS_BAR_END_RATE   = 100
