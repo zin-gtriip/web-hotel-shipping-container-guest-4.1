@@ -480,7 +480,7 @@ class PreArrivalCompleteForm(forms.Form):
 
     def save(self):
         # reset data on session using `PRE_ARRIVAL_PROGRESS_BAR_PAGES`
-        for page in settings.PRE_ARRIVAL_PROGRESS_BAR_PAGES or list():
+        for page in settings.PRE_ARRIVAL_PARAMETER_REQUIRED_PAGES or list():
             self.request.session['pre_arrival'].pop(page, None)
         config = gateways.amp_endpoint('/getConfigVariables') or {} # get config variables
         expiry_duration = config.get('prearrival_session_duration_minutes', settings.PRE_ARRIVAL_SESSION_AGE_INITIAL)
