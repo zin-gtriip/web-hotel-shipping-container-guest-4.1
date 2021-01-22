@@ -38,6 +38,7 @@ class CheckOutLoginView(RequestFormKwargsMixin, MobileTemplateMixin, FormView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('check_out', {}).get('preload', {}).get('auto_login', 0):
+            request.session['check_out']['preload']['auto_login'] = 0 # set auto login to False to prevent using `preload` data again
             data = {}
             data['reservation_no'] = request.session.get('check_out', {}).get('preload', {}).get('reservation_no', '')
             data['last_name'] = request.session.get('check_out', {}).get('preload', {}).get('last_name', '')
