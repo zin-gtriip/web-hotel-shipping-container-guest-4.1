@@ -1,6 +1,5 @@
 from django                             import forms
 from registration                       import utils
-from registration.forms                 import RegistrationOtherInfoForm
 from registration_ocr_required.forms    import *
 
 
@@ -84,13 +83,7 @@ class RegistrationExtraPassportForm(RegistrationExtraPassportForm):
 
 
 class RegistrationOtherInfoForm(RegistrationOtherInfoForm):
-    
-    def gateway_post(self):
-        super().gateway_post()
-        registered_reservation_no = self.request.session['registration'].get('reservation', {}).get('reservationNo', '')
-        registered_reservation = next((reservation for reservation in self.request.session['registration']['bookings'] if reservation.get('reservationNo', '') == registered_reservation_no), {})
-        if registered_reservation:
-            self.request.session['registration']['bookings'].remove(registered_reservation) # remove just registered reservation to prevent "Next Registration" displayed on complete page
+    pass
 
 
 class RegistrationCompleteForm(RegistrationCompleteForm):
