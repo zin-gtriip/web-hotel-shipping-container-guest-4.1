@@ -1,5 +1,5 @@
 from django.apps import AppConfig
-from guest_base.mixins  import DependentAppConfigMixin
+from core.mixins import DependentAppConfigMixin
 
 
 class PreArrivalAdhocGuestConfig(AppConfig):
