@@ -12,18 +12,18 @@ from core     		import utils as core_utils
 
 
 def session(request):
-    """Returns pre-arrival expiry date, duration, and pages that use expiry session"""
+    """Returns registration expiry date, duration, and pages that use expiry session"""
     # get token id
     session_key = request.session.session_key or ''
-    initial_expiry_date = request.session.get('pre_arrival', {}).get('initial_expiry_date', '')
+    initial_expiry_date = request.session.get('registration', {}).get('initial_expiry_date', '')
     token_id = core_utils.encrypt(session_key + initial_expiry_date)
     # get expiry duration
-    initial_expiry_duration = request.session.get('pre_arrival', {}).pop('initial_expiry_duration', '') # use once only, otherwise considered new session
+    initial_expiry_duration = request.session.get('registration', {}).pop('initial_expiry_duration', '') # use once only, otherwise considered new session
     # get expiry session pages
     expiry_pages = []
-    for page in settings.PRE_ARRIVAL_EXPIRY_SESSION_PAGES:
+    for page in settings.REGISTRATION_EXPIRY_SESSION_PAGES:
         try:
-            url = reverse('pre_arrival:'+ page)
+            url = reverse('registration:'+ page)
         except:
             url = None
         if url:

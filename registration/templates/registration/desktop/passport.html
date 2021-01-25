@@ -1,4 +1,4 @@
-{% extends 'pre_arrival/desktop/base_desktop.html' %}
+{% extends 'registration/desktop/base_desktop.html' %}
 {% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
@@ -10,11 +10,11 @@
 
 {% block static_css %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'pre_arrival/scss/desktop/passport.scss' %}" type="text/x-scss" media="screen">
+    <link rel="stylesheet" href="{% static 'registration/scss/desktop/passport.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
 {% block header_left %}
-    <button type="button" class="btn btn-link" id="btn-back" data-target="{% url 'pre_arrival:reservation' %}"><i class="fas fa-arrow-left"></i></button>
+    <button type="button" class="btn btn-link" id="btn-back" data-target="{% url 'registration:reservation' %}"><i class="fas fa-arrow-left"></i></button>
     {{ block.super }}
 {% endblock header_left %}
 
@@ -127,5 +127,5 @@
 
 {% block static_js %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static 'pre_arrival/js/desktop/passport.js' %}"></script>
+    <script type="text/javascript" src="{% static 'registration/js/desktop/passport.js' %}"></script>
 {% endblock static_js %}

@@ -1,4 +1,4 @@
-{% extends 'pre_arrival/desktop/base_desktop.html' %}
+{% extends 'registration/desktop/base_desktop.html' %}
 {% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
@@ -10,7 +10,7 @@
 
 {% block static_css %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'pre_arrival/scss/desktop/login.scss' %}" type="text/x-scss" media="screen">
+    <link rel="stylesheet" href="{% static 'registration/scss/desktop/login.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
 {% block content %}
@@ -92,5 +92,5 @@
 
 {% block static_js %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static 'pre_arrival/js/desktop/login.js' %}"></script>
+    <script type="text/javascript" src="{% static 'registration/js/desktop/login.js' %}"></script>
 {% endblock static_js %}

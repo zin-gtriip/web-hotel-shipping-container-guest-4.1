@@ -1,11 +1,11 @@
-{% extends 'pre_arrival/desktop/base_desktop.html' %}
+{% extends 'registration/desktop/base_desktop.html' %}
 {% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
 
 {% block static_css %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'pre_arrival/scss/desktop/complete.scss' %}" type="text/x-scss" media="screen">
+    <link rel="stylesheet" href="{% static 'registration/scss/desktop/complete.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
 {% block content %}
@@ -54,7 +54,7 @@
                             {% endblocktrans %}
                         </div>
                     </div>
-                    {% if request.session.pre_arrival.bookings %}
+                    {% if request.session.registration.bookings %}
                         <div class="row" id="footer-next">
                             <div class="col-12 d-flex justify-content-center text-secondary">
                                 <button type="submit" class="btn btn-outline-primary mx-auto">{% trans 'Next Registration' %}</button>
@@ -110,10 +110,10 @@
 
 {% block data_js %}
     {{ block.super }}
-    {{ request.session.pre_arrival.reservation.reservationNo|json_script:'reservation-no' }}
+    {{ request.session.registration.reservation.reservationNo|json_script:'reservation-no' }}
 {% endblock data_js %}
 
 {% block static_js %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static 'pre_arrival/js/desktop/complete.js' %}"></script>
+    <script type="text/javascript" src="{% static 'registration/js/desktop/complete.js' %}"></script>
 {% endblock static_js %}

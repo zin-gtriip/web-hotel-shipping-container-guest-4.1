@@ -1,6 +1,6 @@
 from django.utils.translation   import gettext, gettext_lazy as _
 
-pre_arrival_get_data = {
+registration_get_data = {
     "overall_status": 500,
     "data": [
         {
@@ -114,10 +114,10 @@ pre_arrival_get_data = {
 }
 
 def get_data(post_data):
-    return pre_arrival_get_data
+    return registration_get_data
 
 
-pre_arrival_post_data = {
+registration_post_data = {
     'success': 'true',
     'message': 'All OK',
     'data': [
@@ -171,4 +171,4 @@ pre_arrival_post_data = {
 }
 
 def send_data(post_data):
-    return pre_arrival_post_data
+    return registration_post_data

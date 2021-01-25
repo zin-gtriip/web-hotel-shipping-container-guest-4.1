@@ -50,14 +50,14 @@ $('#form-timer-extension').submit(function() {
     event.preventDefault();
     var data = $(this).serializeArray();
     $.ajax({
-        url: '/pre_arrival/timer_extension/',
+        url: '/registration/timer_extension/',
         data: data,
         type: 'POST',
         success: function(result) {
             if ((result.status || 'error') == 'success') {
-                if (result.pre_arrival_extended_expiry_duration) {
+                if (result.registration_extended_expiry_duration) {
                     var initialExpiryDate = localStorage.expiryDate;
-                    extendedExpiryDate = parseInt(initialExpiryDate) + (result.pre_arrival_extended_expiry_duration * 60 * 1000); // 60 = seconds, 1000 = miliseconds
+                    extendedExpiryDate = parseInt(initialExpiryDate) + (result.registration_extended_expiry_duration * 60 * 1000); // 60 = seconds, 1000 = miliseconds
                     localStorage.setItem('expiryDate', extendedExpiryDate);
                     localStorage.setItem('extended', true);
                     $('#timer-extension-modal').modal('hide');
