@@ -1,4 +1,7 @@
 $('.datepicker').datepicker();
+$('.rolldate').each(function() {
+    initRolldate($(this));
+});
 restyleExtra();
 rearrangeExtraIndex();
 validateMaxExtra();
@@ -71,14 +74,42 @@ function removeExtra($btn) {
         recalculateTotalExtra();
         validateMaxExtra();
         scrollToGuestIndex();
-        validateRedirect();
+    });
+}
+
+
+function initRolldate($rolldate) {
+    var rollDate
+        , $datepicker = $rolldate.parents('.md-form').find('.datepicker');
+
+    $rolldate.removeAttr('required');
+    rollDate = new Rolldate({
+        el: '#'+ $rolldate.attr('id'),
+        format: 'YYYY-MM-DD',
+        beginYear: 1900,
+        endYear: new Date().getFullYear(),
+        value: $rolldate.val(),
+        lang: {
+            title: gettext('Select Date'),
+            cancel: gettext('Cancel'),
+            confirm: gettext('Confirm'),
+            year: '', month: '', day: '', hour: '', min: '', sec: ''},
+        confirm: function(date) {
+            $datepicker.datepicker('update', new Date(date));
+        },
+    });
+    $datepicker.datepicker('update', new Date($rolldate.val()));
+    $datepicker.click(function() {
+        rollDate.show();
+    });
+    $datepicker.focus(function() {
+        rollDate.show();
     });
 }
 
 
 function restyleExtra() {
-    var $extraFormset = $('.extra-formset:visible')
-        , $mainGuest = $('#main-guest');
+    var $extraFormset = $('.extra-formset:visible');
 
     $extraFormset.each(function(index) {
         $(this).removeClass('even');
@@ -86,24 +117,6 @@ function restyleExtra() {
             $(this).addClass('even');
         }
     });
-
-    if ($mainGuest.is(':visible')) {
-        if ($extraFormset.length <= 0) {
-            $mainGuest.removeClass('ml-auto').addClass('mx-auto');
-        } else if ($extraFormset.length == 1) {
-            $mainGuest.removeClass('mx-auto').addClass('ml-auto');
-            $extraFormset.addClass('mr-auto');
-        } else {
-            $mainGuest.removeClass('ml-auto, mx-auto');
-        }
-    } else {
-        if ($extraFormset.length == 1) {
-            $extraFormset.addClass('mx-auto');
-        } else if ($extraFormset.length == 2) {
-            $extraFormset.first().addClass('ml-auto');
-        }
-    }
-    $('.guests > div:not(#main-guest, #extra-formset-template, :last-child)').removeClass('mr-auto');
 }
 
 
@@ -116,7 +129,7 @@ function scrollToGuestIndex() {
 
 function validateRedirect() {
     if (!$('#main-guest').is(':visible') && $('.extra-formset:visible').length == 0) {
-        window.location.href = '/pre_arrival/guest_list/';
+        window.location.href = '/registration/guest_list/';
     }
 }
 

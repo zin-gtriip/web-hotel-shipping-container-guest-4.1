@@ -1,40 +1,40 @@
-from django                         import forms
-from pre_arrival                    import utils
-from pre_arrival.forms              import PreArrivalOtherInfoForm
-from pre_arrival_ocr_required.forms import *
+from django                             import forms
+from registration                       import utils
+from registration.forms                 import RegistrationOtherInfoForm
+from registration_ocr_required.forms    import *
 
 
-class PreArrivalLoginForm(PreArrivalLoginForm):
+class RegistrationLoginForm(RegistrationLoginForm):
     pass
 
 
-class PreArrivalTimerExtensionForm(PreArrivalTimerExtensionForm):
+class RegistrationTimerExtensionForm(RegistrationTimerExtensionForm):
     pass
 
 
-class PreArrivalReservationForm(PreArrivalReservationForm):
+class RegistrationReservationForm(RegistrationReservationForm):
     pass
 
 
-class PreArrivalPassportForm(PreArrivalPassportForm):
+class RegistrationPassportForm(RegistrationPassportForm):
     pass
 
 
-class PreArrivalDetailForm(PreArrivalDetailForm):
+class RegistrationDetailForm(RegistrationDetailForm):
     pass
 
 
-class PreArrivalDetailExtraForm(PreArrivalDetailExtraForm):
+class RegistrationDetailExtraForm(RegistrationDetailExtraForm):
     has_record = forms.BooleanField(widget=forms.HiddenInput(), required=False)
 
 
-class PreArrivalDetailExtraBaseFormSet(PreArrivalDetailExtraBaseFormSet):
+class RegistrationDetailExtraBaseFormSet(RegistrationDetailExtraBaseFormSet):
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(request, *args, **kwargs)
         # populate additional guests that only have passport image
         prefilled = []
-        for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []):
+        for guest in self.request.session['registration']['reservation'].get('guestsList', []):
             if guest.get('isMainGuest', '0') == '0' and (guest.get('passportImage', '') or guest.get('hasLocalRecord', '0') == '1'):
                 prefilled.append({
                     'guest_id': guest.get('guestID', ''),
@@ -50,10 +50,10 @@ class PreArrivalDetailExtraBaseFormSet(PreArrivalDetailExtraBaseFormSet):
 
 
 # initiate formset, for one2many field
-PreArrivalDetailExtraFormSet = forms.formset_factory(PreArrivalDetailExtraForm, formset=PreArrivalDetailExtraBaseFormSet)
+RegistrationDetailExtraFormSet = forms.formset_factory(RegistrationDetailExtraForm, formset=RegistrationDetailExtraBaseFormSet)
 
 
-class PreArrivalExtraPassportForm(PreArrivalExtraPassportForm):
+class RegistrationExtraPassportForm(RegistrationExtraPassportForm):
     
     def save(self):
         # prepare for ocr
@@ -72,7 +72,7 @@ class PreArrivalExtraPassportForm(PreArrivalExtraPassportForm):
             dob = dob.strftime(date_format)
         
         # get data from additional guests temp in session, check if first login from `passportImage`, if relogin from `hasLocalRecord`
-        extra_guest = next((guest for guest in self.request.session['pre_arrival']['detail'].get('prefilled_guest_temp', []) if not guest.get('passportImage', '') and guest.get('hasLocalRecord', '0') == '0'), {})
+        extra_guest = next((guest for guest in self.request.session['registration']['detail'].get('prefilled_guest_temp', []) if not guest.get('passportImage', '') and guest.get('hasLocalRecord', '0') == '0'), {})
         extra_guest['guestID'] = extra_guest.get('guestID', '0')
         extra_guest['firstName'] = ocr.get('names', '').title()
         extra_guest['lastName'] = ocr.get('surname', '').title()
@@ -80,18 +80,18 @@ class PreArrivalExtraPassportForm(PreArrivalExtraPassportForm):
         extra_guest['passportNo'] = ocr.get('number', '')
         extra_guest['dob'] = dob
         extra_guest['passportImage'] = file_b64_encoded.decode()
-        self.request.session['pre_arrival']['reservation']['guestsList'].append(extra_guest)
+        self.request.session['registration']['reservation']['guestsList'].append(extra_guest)
 
 
-class PreArrivalOtherInfoForm(PreArrivalOtherInfoForm):
+class RegistrationOtherInfoForm(RegistrationOtherInfoForm):
     
     def gateway_post(self):
         super().gateway_post()
-        registered_reservation_no = self.request.session['pre_arrival'].get('reservation', {}).get('reservationNo', '')
-        registered_reservation = next((reservation for reservation in self.request.session['pre_arrival']['bookings'] if reservation.get('reservationNo', '') == registered_reservation_no), {})
+        registered_reservation_no = self.request.session['registration'].get('reservation', {}).get('reservationNo', '')
+        registered_reservation = next((reservation for reservation in self.request.session['registration']['bookings'] if reservation.get('reservationNo', '') == registered_reservation_no), {})
         if registered_reservation:
-            self.request.session['pre_arrival']['bookings'].remove(registered_reservation) # remove just registered reservation to prevent "Next Registration" displayed on complete page
+            self.request.session['registration']['bookings'].remove(registered_reservation) # remove just registered reservation to prevent "Next Registration" displayed on complete page
 
 
-class PreArrivalCompleteForm(PreArrivalCompleteForm):
+class RegistrationCompleteForm(RegistrationCompleteForm):
     pass
