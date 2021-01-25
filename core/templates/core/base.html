@@ -30,7 +30,7 @@
     {% block lib_css %}{% endblock lib_css %}
     {% compress css %}
         <!-- global scss -->
-        <link rel="stylesheet" href="{% static 'guest_base/scss/base.scss' %}" type="text/x-scss" media="screen">
+        <link rel="stylesheet" href="{% static 'core/scss/base.scss' %}" type="text/x-scss" media="screen">
         <!-- scss based on page -->
         {% block static_css %}{% endblock static_css %}
     {% endcompress %}
@@ -131,7 +131,7 @@
         <!-- other js library based on page -->
         {% block lib_js %}{% endblock lib_js %}
         <!-- global js -->
-        <script type="text/javascript" src="{% static 'guest_base/js/base.js' %}"></script>
+        <script type="text/javascript" src="{% static 'core/js/base.js' %}"></script>
         <!-- js based on page -->
         {% block static_js %}{% endblock static_js %}
     {% endcompress %}
