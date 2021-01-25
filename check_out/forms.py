@@ -1,6 +1,6 @@
 from django                     import forms
 from django.utils.translation   import gettext, gettext_lazy as _
-from guest_base                 import gateways
+from core                       import gateways
 from .                          import samples
 
 class CheckOutLoginForm(forms.Form):

@@ -5,14 +5,14 @@ from django.shortcuts           import render
 from django.utils               import translation
 from django.utils.translation   import gettext, gettext_lazy as _
 from django.views.generic       import *
-from guest_base                 import views as GuestBaseViews
-from guest_base.mixins          import RequestFormKwargsMixin, MobileTemplateMixin
+from core.views                 import IndexView
+from core.mixins                import RequestFormKwargsMixin, MobileTemplateMixin
 from .                          import samples
 from .forms                     import *
 from .mixins                    import *
 
 
-class IndexView(GuestBaseViews.IndexView):
+class IndexView(IndexView):
     pattern_name = 'check_out:data'
 
 
