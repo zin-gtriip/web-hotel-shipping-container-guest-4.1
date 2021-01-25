@@ -39,6 +39,7 @@ class PreArrivalLoginView(RequestFormKwargsMixin, MobileTemplateMixin, ProgressR
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('pre_arrival', {}).get('preload', {}).get('auto_login', 0):
+            request.session['pre_arrival']['preload']['auto_login'] = 0 # set auto login to False to prevent using `preload` data again
             data = {}
             data['reservation_no'] = request.session.get('pre_arrival', {}).get('preload', {}).get('reservation_no', '')
             data['arrival_date'] = request.session.get('pre_arrival', {}).get('preload', {}).get('arrival_date', '')
