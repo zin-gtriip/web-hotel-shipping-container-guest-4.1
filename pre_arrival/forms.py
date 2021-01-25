@@ -5,7 +5,7 @@ from django.template.loader     import render_to_string
 from django.utils               import timezone
 from django.utils.translation   import gettext, gettext_lazy as _
 from django_countries.fields    import Country, CountryField
-from guest_base                 import gateways, utils as base_utils
+from core                       import gateways, utils as core_utils
 from .                          import utils, samples
 
 class PreArrivalLoginForm(forms.Form):
@@ -87,7 +87,7 @@ class PreArrivalTimerExtensionForm(forms.Form):
         else:
             session_key = self.request.session.session_key
             initial_expiry_date = self.request.session.get('pre_arrival', {}).get('initial_expiry_date', '')
-            if base_utils.decrypt(token_id) != (session_key + initial_expiry_date):
+            if core_utils.decrypt(token_id) != (session_key + initial_expiry_date):
                 self._errors['token_id'] = self.error_class([_('Token ID is not correct.')])
         return self.cleaned_data
 
