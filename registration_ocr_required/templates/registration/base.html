@@ -1,9 +1,9 @@
-{% extends 'pre_arrival/base.html' %}
+{% extends 'registration/base.html' %}
 {% load i18n %}
 {% load static %}
 
 {% block header_left %}
-    {% if request.path in '/pre_arrival/reservation/,/pre_arrival/passport/,/pre_arrival/detail/,/pre_arrival/extra_passport/,/pre_arrival/other_info/' %}
+    {% if request.path in SESSION_EXPIRY_PAGES %}
         <div class="timer-text text-secondary ">
             <span class="timer-tick"></span>
         </div>
@@ -11,7 +11,7 @@
 {% endblock header_left %}
 
 {% block timer %}
-    {% if request.path in '/pre_arrival/reservation/,/pre_arrival/passport/,/pre_arrival/detail/,/pre_arrival/extra_passport/,/pre_arrival/other_info/' %}
+    {% if request.path in SESSION_EXPIRY_PAGES %}
         <!-- Timer Extension Modal -->
         <div class="modal fade" id="timer-extension-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-sm">

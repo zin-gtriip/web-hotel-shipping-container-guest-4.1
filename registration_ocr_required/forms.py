@@ -4,34 +4,34 @@ from django.conf                import settings
 from django.utils.translation   import gettext, gettext_lazy as _
 from django_countries.fields    import Country
 from core                       import gateways
-from pre_arrival                import utils
-from pre_arrival.forms          import *
+from registration               import utils
+from registration.forms         import *
 
 
-class PreArrivalLoginForm(PreArrivalLoginForm):
+class RegistrationLoginForm(RegistrationLoginForm):
     pass
 
 
-class PreArrivalTimerExtensionForm(PreArrivalTimerExtensionForm):
+class RegistrationTimerExtensionForm(RegistrationTimerExtensionForm):
     pass
 
 
-class PreArrivalReservationForm(PreArrivalReservationForm):
+class RegistrationReservationForm(RegistrationReservationForm):
     pass
 
 
-class PreArrivalPassportForm(PreArrivalPassportForm):
+class RegistrationPassportForm(RegistrationPassportForm):
     pass
 
 
-class PreArrivalDetailForm(PreArrivalDetailForm):
+class RegistrationDetailForm(RegistrationDetailForm):
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(request, *args, **kwargs)
         # store additional guests to temp in session because `guestsList` will be saved with no additional guests
-        if not self.request.session['pre_arrival'].get('detail', None):
-            prefilled = [guest for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') != '1']
-            self.request.session['pre_arrival']['detail'] = {'prefilled_guest_temp': prefilled}
+        if not self.request.session['registration'].get('detail', None):
+            prefilled = [guest for guest in self.request.session['registration']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') != '1']
+            self.request.session['registration']['detail'] = {'prefilled_guest_temp': prefilled}
         
     def save(self, extra):
         guests = [{
@@ -57,26 +57,26 @@ class PreArrivalDetailForm(PreArrivalDetailForm):
         updated_guests = []
         for guest in guests:
             if guest.get('guestID', '0') != '0': # update prefilled guest only
-                reservation_guest = next((guest_temp for guest_temp in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest_temp.get('guestID', '') == guest.get('guestID', '')), {})
+                reservation_guest = next((guest_temp for guest_temp in self.request.session['registration']['reservation'].get('guestsList', []) if guest_temp.get('guestID', '') == guest.get('guestID', '')), {})
                 reservation_guest.update(guest)
                 updated_guests.append(reservation_guest)
             else:
                 updated_guests.append(guest)
-        self.request.session['pre_arrival']['reservation']['guestsList'] = updated_guests # replace with whole new list
-        self.request.session['pre_arrival'].pop('ocr', None) # remove ocr after save detail
+        self.request.session['registration']['reservation']['guestsList'] = updated_guests # replace with whole new list
+        self.request.session['registration'].pop('ocr', None) # remove ocr after save detail
 
 
-class PreArrivalDetailExtraForm(PreArrivalDetailExtraForm):
+class RegistrationDetailExtraForm(RegistrationDetailExtraForm):
     passport_file = forms.CharField(widget=forms.HiddenInput(), required=False)
 
 
-class PreArrivalDetailExtraBaseFormSet(PreArrivalDetailExtraBaseFormSet):
+class RegistrationDetailExtraBaseFormSet(RegistrationDetailExtraBaseFormSet):
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(request, *args, **kwargs)
         # populate additional guests that only have passport image
         prefilled = []
-        for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []):
+        for guest in self.request.session['registration']['reservation'].get('guestsList', []):
             if guest.get('isMainGuest', '0') == '0' and guest.get('passportImage', ''):
                 prefilled.append({
                     'guest_id': guest.get('guestID', ''),
@@ -92,16 +92,16 @@ class PreArrivalDetailExtraBaseFormSet(PreArrivalDetailExtraBaseFormSet):
     def clean(self):
         super().clean()
         if self.request.POST.get('form_type', '') == 'submit':
-            max_guest = int(self.request.session['pre_arrival']['reservation'].get('adults', 1)) + int(self.request.session['pre_arrival']['reservation'].get('children', 0)) - 1
+            max_guest = int(self.request.session['registration']['reservation'].get('adults', 1)) + int(self.request.session['registration']['reservation'].get('children', 0)) - 1
             if len(self.forms) > max_guest:
                 self._non_form_errors = self.error_class([_('You have exceeded the number of additional guests.')])
 
 
 # initiate formset, for one2many field
-PreArrivalDetailExtraFormSet = forms.formset_factory(PreArrivalDetailExtraForm, formset=PreArrivalDetailExtraBaseFormSet)
+RegistrationDetailExtraFormSet = forms.formset_factory(RegistrationDetailExtraForm, formset=RegistrationDetailExtraBaseFormSet)
 
 
-class PreArrivalExtraPassportForm(forms.Form):
+class RegistrationExtraPassportForm(forms.Form):
     passport_file = forms.CharField(widget=forms.HiddenInput())
     
     def __init__(self, request, *args, **kwargs):
@@ -170,7 +170,7 @@ class PreArrivalExtraPassportForm(forms.Form):
             dob = dob.strftime(date_format)
         
         # get data from additional guests temp in session
-        extra_guest = next((guest for guest in self.request.session['pre_arrival']['detail'].get('prefilled_guest_temp', []) if not guest.get('passportImage', '')), {})
+        extra_guest = next((guest for guest in self.request.session['registration']['detail'].get('prefilled_guest_temp', []) if not guest.get('passportImage', '')), {})
         extra_guest['guestID'] = extra_guest.get('guestID', '0')
         extra_guest['firstName'] = ocr.get('names', '').title()
         extra_guest['lastName'] = ocr.get('surname', '').title()
@@ -178,12 +178,12 @@ class PreArrivalExtraPassportForm(forms.Form):
         extra_guest['passportNo'] = ocr.get('number', '')
         extra_guest['dob'] = dob
         extra_guest['passportImage'] = file_b64_encoded.decode()
-        self.request.session['pre_arrival']['reservation']['guestsList'].append(extra_guest)
+        self.request.session['registration']['reservation']['guestsList'].append(extra_guest)
 
 
-class PreArrivalOtherInfoForm(PreArrivalOtherInfoForm):
+class RegistrationOtherInfoForm(RegistrationOtherInfoForm):
     pass
 
 
-class PreArrivalCompleteForm(PreArrivalCompleteForm):
+class RegistrationCompleteForm(RegistrationCompleteForm):
     pass
