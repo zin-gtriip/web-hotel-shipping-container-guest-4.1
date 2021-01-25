@@ -23,8 +23,8 @@ urlpatterns = [
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     
     path('', include('check_out.urls')),
-    path('', include('pre_arrival_adhoc_guest.urls')),
-    path('', include('pre_arrival_ocr_required.urls')),
-    path('', include('pre_arrival.urls')),
+    # path('', include('pre_arrival_adhoc_guest.urls')),
+    # path('', include('pre_arrival_ocr_required.urls')),
+    path('', include('registration.urls')),
     path('', include('core.urls')),
 ]

@@ -44,9 +44,9 @@ INSTALLED_APPS = [
     'django_user_agents',
     
     'check_out.apps.CheckOutConfig',
-    'pre_arrival_adhoc_guest.apps.PreArrivalAdhocGuestConfig',
-    'pre_arrival_ocr_required.apps.PreArrivalOcrRequired',
-    'pre_arrival.apps.PreArrivalConfig',
+    # 'pre_arrival_adhoc_guest.apps.PreArrivalAdhocGuestConfig',
+    # 'pre_arrival_ocr_required.apps.PreArrivalOcrRequired',
+    'registration.apps.RegistrationConfig',
     'core.apps.CoreConfig',
 ]
 
@@ -76,7 +76,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'core.context_processors.hotel_conf',
-                'pre_arrival.context_processors.session',
+                'registration.context_processors.session',
             ],
         },
     },
@@ -237,12 +237,12 @@ DATE_INPUT_FORMATS  = ['%Y-%m-%d']
 # set session to be saved everytime
 SESSION_SAVE_EVERY_REQUEST = True
 
-# Pre Arrival
-# default expiry time for the pre-arrival (in minutes), if AMP is not provided
-PRE_ARRIVAL_SESSION_AGE_INITIAL = 15
-PRE_ARRIVAL_SESSION_AGE_EXTEND  = 10
+# Registration
+# default expiry time for the registration (in minutes), if AMP is not provided
+REGISTRATION_SESSION_AGE_INITIAL = 15
+REGISTRATION_SESSION_AGE_EXTEND = 10
 # room mapping, use `room_type` as identifier
-PRE_ARRIVAL_ROOM_TYPES = [
+REGISTRATION_ROOM_TYPES = [
     {
         'room_type' : 'Premier',
         'room_name' : 'Premier Room',
@@ -260,26 +260,26 @@ PRE_ARRIVAL_ROOM_TYPES = [
     },
 ]
 # age limit for adult, used on passport, detail page
-PRE_ARRIVAL_ADULT_AGE_LIMIT             = 18
-# pre-arrival pages that has expiry session (timer), will be used on `templates/pre_arrival/base.html`
-PRE_ARRIVAL_EXPIRY_SESSION_PAGES = [
+REGISTRATION_ADULT_AGE_LIMIT = 18
+# registration pages that has expiry session (timer), will be used on `templates/registration/base.html`
+REGISTRATION_EXPIRY_SESSION_PAGES = [
     'reservation',
     'passport',
     'detail',
     'other_info',
 ]
-# pre-arrival views that use `parameter_required` validation, will be used on `PreArrivalCompleteForm.save` function
-PRE_ARRIVAL_PARAMETER_REQUIRED_PAGES = [
+# registration views that use `parameter_required` validation, will be used on `RegistrationCompleteForm.save` function
+REGISTRATION_PARAMETER_REQUIRED_PAGES = [
     'reservation',
     'passport',
     'detail',
     'other_info',
     'complete',
 ]
-# progress bar rate on pre-arrival page
-PRE_ARRIVAL_PROGRESS_BAR_START_RATE = 10
-PRE_ARRIVAL_PROGRESS_BAR_END_RATE   = 100
-PRE_ARRIVAL_PROGRESS_BAR_PAGES      = [
+# progress bar rate on registration page
+REGISTRATION_PROGRESS_BAR_START_RATE = 10
+REGISTRATION_PROGRESS_BAR_END_RATE = 100
+REGISTRATION_PROGRESS_BAR_PAGES = [
     'login',
     'reservation',
     'passport',
@@ -288,6 +288,6 @@ PRE_ARRIVAL_PROGRESS_BAR_PAGES      = [
     'complete',
 ]
 # progress bar rate calculation, -1 to exclude first page
-PRE_ARRIVAL_PROGRESS_BAR_RATE_PER_PAGE  = (PRE_ARRIVAL_PROGRESS_BAR_END_RATE - PRE_ARRIVAL_PROGRESS_BAR_START_RATE) / (len(PRE_ARRIVAL_PROGRESS_BAR_PAGES) - 1)
+REGISTRATION_PROGRESS_BAR_RATE_PER_PAGE = (REGISTRATION_PROGRESS_BAR_END_RATE - REGISTRATION_PROGRESS_BAR_START_RATE) / (len(REGISTRATION_PROGRESS_BAR_PAGES) - 1)
 # complete email template directory
-PRE_ARRIVAL_COMPLETE_EMAIL = os.path.join(BASE_DIR, 'pre_arrival', 'templates', 'pre_arrival', 'email', 'complete.html')
+REGISTRATION_COMPLETE_EMAIL = os.path.join(BASE_DIR, 'registration', 'templates', 'registration', 'email', 'complete.html')
