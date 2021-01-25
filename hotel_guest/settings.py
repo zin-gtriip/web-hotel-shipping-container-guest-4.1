@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     
     'check_out.apps.CheckOutConfig',
     # 'pre_arrival_adhoc_guest.apps.PreArrivalAdhocGuestConfig',
-    # 'pre_arrival_ocr_required.apps.PreArrivalOcrRequired',
+    'registration_ocr_required.apps.RegistrationOcrRequired',
     'registration.apps.RegistrationConfig',
     'core.apps.CoreConfig',
 ]
@@ -266,6 +266,7 @@ REGISTRATION_EXPIRY_SESSION_PAGES = [
     'reservation',
     'passport',
     'detail',
+    'extra_passport',
     'other_info',
 ]
 # registration views that use `parameter_required` validation, will be used on `RegistrationCompleteForm.save` function
