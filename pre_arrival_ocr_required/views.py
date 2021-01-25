@@ -1,6 +1,6 @@
 from django.shortcuts       import redirect
 from django.views.generic   import *
-from guest_base.mixins      import RequestFormKwargsMixin, MobileTemplateMixin
+from core.mixins            import RequestFormKwargsMixin, MobileTemplateMixin
 from pre_arrival.mixins     import *
 from pre_arrival.views      import *
 from .forms                 import *

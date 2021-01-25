@@ -3,7 +3,7 @@ from django                     import forms
 from django.conf                import settings
 from django.utils.translation   import gettext, gettext_lazy as _
 from django_countries.fields    import Country
-from guest_base                 import gateways
+from core                       import gateways
 from pre_arrival                import utils
 from pre_arrival.forms          import *
 
