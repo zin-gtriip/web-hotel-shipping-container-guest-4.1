@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django_user_agents',
     
     'check_out.apps.CheckOutConfig',
-    # 'pre_arrival_adhoc_guest.apps.PreArrivalAdhocGuestConfig',
+    'registration_adhoc_guest.apps.RegistrationAdhocGuestConfig',
     'registration_ocr_required.apps.RegistrationOcrRequired',
     'registration.apps.RegistrationConfig',
     'core.apps.CoreConfig',
