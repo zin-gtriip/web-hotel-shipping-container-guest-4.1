@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'pre_arrival_adhoc_guest.apps.PreArrivalAdhocGuestConfig',
     'pre_arrival_ocr_required.apps.PreArrivalOcrRequired',
     'pre_arrival.apps.PreArrivalConfig',
-    'guest_base.apps.GuestBaseConfig',
+    'core.apps.CoreConfig',
 ]
 
 MIDDLEWARE = [
@@ -75,7 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'guest_base.context_processors.hotel_conf',
+                'core.context_processors.hotel_conf',
                 'pre_arrival.context_processors.session',
             ],
         },
