@@ -95,7 +95,11 @@
                         {{ error|linebreaks }}
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'OK' %}</button>
+                        {% if request.session.app and request.session.pre_arrival.login.status_code == 400 %}
+                            <button type="button" class="btn btn-primary mx-auto" id="btn-ok" data-dismiss="modal">{% trans 'OK' %}</button>
+                        {% else %}
+                            <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'OK' %}</button>
+                        {% endif %}
                     </div>
                 </div>
             </div>
