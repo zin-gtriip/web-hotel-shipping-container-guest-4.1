@@ -261,14 +261,14 @@ PRE_ARRIVAL_ROOM_TYPES = [
 ]
 # age limit for adult, used on passport, detail page
 PRE_ARRIVAL_ADULT_AGE_LIMIT             = 18
-# pre-arrival pages that has expiry session (timer), will be used on `templates/pre_arrival/base.html`
+# pre-arrival pages that has expiry session (timer), make sure this is the name in `urlpatterns`
 PRE_ARRIVAL_EXPIRY_SESSION_PAGES = [
     'reservation',
     'passport',
     'detail',
     'other_info',
 ]
-# pre-arrival views that use `parameter_required` validation, will be used on `PreArrivalCompleteForm.save` function
+# pre-arrival views that use `parameter_required` validation
 PRE_ARRIVAL_PARAMETER_REQUIRED_PAGES = [
     'reservation',
     'passport',
