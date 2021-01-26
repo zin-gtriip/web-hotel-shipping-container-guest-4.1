@@ -1,3 +1,6 @@
+window.addEventListener("flutterInAppWebViewPlatformReady", null); // add event to send message to app
+
+
 $(document).ready(function() {
     // to auto focus
     $('input:visible').first().focus();
@@ -106,4 +109,10 @@ $('#btn-back').click(function() {
 		}
 		, duration: 300
 	}).removeClass('active');
+});
+
+
+$('#btn-ok').click(function() {
+    var reservationNo = $('#id_reservation_no').val();
+    try { window.flutter_inappwebview.callHandler('reservationNo', reservationNo); } catch(error) {} // send message to app
 });
