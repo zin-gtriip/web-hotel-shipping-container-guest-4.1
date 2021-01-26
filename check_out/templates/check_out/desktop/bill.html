@@ -287,25 +287,29 @@
 
 {% block wrapper %}
     {{ block.super }}
+    <!-- Message Modal -->
     {% for message in messages %}
-        {% if message.tags == 'success' %}
-            <!-- Success Modal -->
-            <div class="modal fade auto-show" id="message-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary text-white">
-                            <h4 class="modal-title mx-auto">{% trans 'Check Out Successful' %}</h4>
-                        </div>
-                        <div class="modal-body">
-                            {{ message|linebreaks }}
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'OK' %}</button>
-                        </div>
+        <div class="modal fade auto-show" id="message-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h4 class="modal-title mx-auto">
+                            {% if message.tags == 'success' %}
+                                {% trans 'Check Out Successful' %}
+                            {% else %}
+                                {% trans 'Error' %}
+                            {% endif %}
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ message|linebreaks }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'OK' %}</button>
                     </div>
                 </div>
             </div>
-        {% endif %}
+        </div>
     {% endfor %}
     <!-- Error Modal -->
     {% for error in form.non_field_errors %}

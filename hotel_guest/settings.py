@@ -261,15 +261,16 @@ REGISTRATION_ROOM_TYPES = [
 ]
 # age limit for adult, used on passport, detail page
 REGISTRATION_ADULT_AGE_LIMIT = 18
-# registration pages that has expiry session (timer), will be used on `templates/registration/base.html`
+# registration pages that has expiry session (timer), make sure these are registration url
 REGISTRATION_EXPIRY_SESSION_PAGES = [
     'reservation',
     'passport',
+    'guest_list',
     'detail',
     'extra_passport',
     'other_info',
 ]
-# registration views that use `parameter_required` validation, will be used on `RegistrationCompleteForm.save` function
+# registration views that use `parameter_required` validation
 REGISTRATION_PARAMETER_REQUIRED_PAGES = [
     'reservation',
     'passport',

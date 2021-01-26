@@ -4,7 +4,7 @@ from core.mixins import DependentAppConfigMixin
 
 class RegistrationAdhocGuestConfig(AppConfig):
     name            = 'registration_adhoc_guest'
-    version         = '1.3.4'
+    version         = '1.3.5'
     dependencies    = [
         'registration.apps.RegistrationConfig',
         'registration_ocr_required.apps.RegistrationOcrRequiredConfig',
