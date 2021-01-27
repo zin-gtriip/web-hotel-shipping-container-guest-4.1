@@ -1,7 +1,0 @@
-name = hotel_template_guest
-version = 1.3.5
-description = A Django app for hotel guest facing.
-url = https://www.gtriip.com/
-environment = Web Environment
-framework = Django
-programming_language = Python
