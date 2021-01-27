@@ -9,8 +9,8 @@ __pycache__
 /storage
 
 # npm files
-hotel_guest/static/vendor/node_modules
-hotel_guest/static/vendor/package-lock.json
+node_modules
+package-lock.json
 
 # cache js and css files
 hotel_guest/static/CACHE/*
@@ -24,9 +24,7 @@ hotel_guest/media/*
 logs
 
 # lib
-*
-site-packages/guest_facing.egg-info
-!site-packages/guest_facing
+*.egg-info
 
 # mac-os
 .DS_Store
