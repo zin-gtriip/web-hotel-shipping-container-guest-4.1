@@ -9,19 +9,22 @@ __pycache__
 /storage
 
 # npm files
-/static/vendor/node_modules
-/static/vendor/package-lock.json
+hotel_guest/static/vendor/node_modules
+hotel_guest/static/vendor/package-lock.json
 
 # cache js and css files
-/static/CACHE/*
-!/static/CACHE/.keep
+hotel_guest/static/CACHE/*
+!hotel_guest/static/CACHE/.keep
 
 # uploaded file
-/media/*
-!/media/.keep
+hotel_guest/media/*
+!hotel_guest/media/.keep
 
 # logs
 logs
+
+# lib
+lib/guest_facing.egg-info
 
 # mac-os
 .DS_Store
