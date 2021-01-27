@@ -24,7 +24,7 @@ hotel_guest/media/*
 logs
 
 # lib
-lib/guest_facing.egg-info
+site-packages/guest_facing.egg-info
 
 # mac-os
 .DS_Store
