@@ -1,0 +1,92 @@
+.btn {
+    font-size: 18px;
+    font-family: $button-font;
+    font-weight: 500;
+    text-transform: capitalize;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+
+    &.disabled:hover, &.disabled:focus, &.disabled:active, 
+    &:disabled:hover, &:disabled:focus, &:disabled:active {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    border-radius: $button-radius;
+}
+
+.btn-floating {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    padding: 0;
+    overflow: hidden;
+    vertical-align: middle;
+    border-radius: 50%;
+    width: 47px;
+    height: 47px;
+
+    i {
+        display: inline-block;
+        width: inherit;
+        color: #fff;
+        text-align: center;
+        line-height: 47px;
+    }
+}
+
+@each $color, $value in $theme-colors {
+    .btn-#{$color} {
+        background-color: $value !important;
+        color: map-get($text-colors, $color);
+
+        &:not([disabled]):not(.disabled):active,
+        &:not([disabled]):not(.disabled).active,
+        &:not([disabled]):not(.disabled):focus,
+        &:not([disabled]):not(.disabled).focus,
+        &:not([disabled]):not(.disabled):hover,
+        &:not([disabled]):not(.disabled).hover,
+        &:not([disabled]):not(.disabled):active:focus,
+        &:not([disabled]):not(.disabled).active:focus,
+        &:not([disabled]):not(.disabled):active.focus,
+        &:not([disabled]):not(.disabled).active.focus {
+            background-color: $value !important;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+
+        &:disabled, &.disabled {
+            color: map-get($text-colors, secondary) !important;
+            background-color: map-get($theme-colors, secondary) !important;
+            border-color: map-get($theme-colors, secondary) !important;
+            opacity: 1;
+        }
+    }
+
+    .btn-outline-#{$color} {
+        background-color: transparent !important;
+        color: $value !important;
+        border: 2px solid $value !important;
+
+        &:not([disabled]):not(.disabled):active,
+        &:not([disabled]):not(.disabled).active,
+        &:not([disabled]):not(.disabled):focus,
+        &:not([disabled]):not(.disabled).focus,
+        &:not([disabled]):not(.disabled):hover,
+        &:not([disabled]):not(.disabled).hover,
+        &:not([disabled]):not(.disabled):active:focus,
+        &:not([disabled]):not(.disabled).active:focus,
+        &:not([disabled]):not(.disabled):active.focus,
+        &:not([disabled]):not(.disabled).active.focus {
+            color: $value !important;
+            border: 2px solid $value !important;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+
+        &:disabled, &.disabled {
+            color: map-get($theme-colors, secondary) !important;
+            border: 2px solid map-get($theme-colors, secondary) !important;
+        }
+    }
+}

@@ -1,0 +1,158 @@
+{% extends 'registration/desktop/base_desktop.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'registration/scss/desktop/other_info.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block header_left %}
+    <button type="button" class="btn btn-link" id="btn-back" data-target="{% url 'registration:detail' %}"><i class="fas fa-arrow-left"></i></button>
+    {{ block.super }}
+{% endblock header_left %}
+
+{% block content %}
+    {{ block.super }}
+    <form method="post">
+        {% csrf_token %}
+        <div class="row page-header">
+            <div class="col-lg-12 px-0 text-center">
+                {% blocktrans %}Additional Information{% endblocktrans %}
+            </div>
+        </div>
+        <div class="row page-subheader">
+            <div class="col-lg-12 px-0 text-center text-secondary">
+                {% blocktrans %}Please let us know if you have check-in<br>preferences.{% endblocktrans %}
+            </div>
+        </div>
+        <div class="row page-content">
+            <div class="col-lg-4 mx-auto">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="md-form">
+                            <label for="id_arrival_time" class="active">{% trans 'Time of Arrival' %}</label>
+                            {% if form.is_bound and form.arrival_time.errors %}
+                                <!-- bound and has error -->
+                                {% render_field form.arrival_time class="form-control md-select is-invalid" %}
+                                <!-- error feedback -->
+                                {% for error in form.arrival_time.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            {% else %}
+                                <!-- not bound or no error -->
+                                {% render_field form.arrival_time class="form-control md-select" %}
+                                {% if form.arrival_time.help_text %}
+                                    <small class="form-text text-muted">{{ form.arrival_time.help_text }}</small>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="md-form mt-2">
+                            {% trans 'e.g. Extra Towels, etc' as special_requests_placeholder %}
+                            {{ form.special_requests.label_tag }}
+                            {% if form.is_bound and form.special_requests.errors %}
+                                <!-- bound and has error -->
+                                {% render_field form.special_requests class="form-control is-invalid" placeholder=special_requests_placeholder %}
+                                <!-- error feedback -->
+                                {% for error in form.special_requests.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            {% else %}
+                                <!-- not bound or no error -->
+                                {% render_field form.special_requests class="form-control" placeholder=special_requests_placeholder %}
+                                {% if form.special_requests.help_text %}
+                                    <small class="form-text text-muted">{{ form.special_requests.help_text }}</small>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="md-form mt-2">
+                            {% trans 'e.g. example@email.com' as email_placeholder %}
+                            {{ form.email.label_tag }}
+                            {% if form.is_bound and form.email.errors %}
+                                <!-- bound and has error -->
+                                {% render_field form.email class="form-control is-invalid" placeholder=email_placeholder %}
+                                <!-- error feedback -->
+                                {% for error in form.email.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            {% else %}
+                                <!-- not bound or no error -->
+                                {% render_field form.email class="form-control" placeholder=email_placeholder %}
+                                {% if form.email.help_text %}
+                                    <small class="form-text text-muted">{{ form.email.help_text }}</small>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-lg-12">
+                        <div class="form-check pl-0">
+                            <label class="check-container">
+                                <span class="label-check">{% trans 'I would like to receive exclusive offers, and news via email.' %}</span>
+                                {% render_field form.is_subscribe class="check-input" %}
+                                <span class="check-icon"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-5">
+                    <div class="col-lg-12 px-0">
+                        <div class="text-10" id="terms-conditions">
+                            {% blocktrans %}
+                                We are commited to protecting your privacy. By proceeding, you agree to our <a href="{{ tnc_link }}" target="_blank" class="new-window-link">Terms & Conditions</a>.
+                                View our Global Privacy Statement <a href="{{ privacy_link }}" target="_blank" class="new-window-link">here</a>.
+                            {% endblocktrans %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row page-footer">
+            <div class="col-12 d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary btn-round m-0" id="btn-step-next">{% trans 'Next' %}</button>
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+
+{% block wrapper %}
+    {{ block.super }}
+    <!-- Error Modal -->
+    {% for error in form.non_field_errors %}
+        <div class="modal fade auto-show" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h4 class="modal-title mx-auto">{% trans 'Invalid Input' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ error|linebreaks }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'Close' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock wrapper %}
+
+{% block data_js %}
+    {{ block.super }}
+    {{ request.session.app|json_script:'app' }}
+{% endblock data_js %}
+
+{% block static_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'registration/js/desktop/other_info.js' %}"></script>
+{% endblock static_js %}

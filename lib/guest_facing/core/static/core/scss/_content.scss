@@ -1,0 +1,130 @@
+/* WRAPPER */
+.wrapper {
+    height: 100vh;
+    width: 100%;
+}
+
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px 20px 20px;
+
+    .container {
+        padding: 0;
+    }
+
+    .header-left {
+        display: flex;
+        align-items: center;
+        width: 30%;
+
+        .container {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 0;
+            margin: 0;
+            display: flex;
+
+            &:active, &:focus, &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .header-middle {
+        display: flex;
+        align-items: center;
+        width: 40%;
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        #hotel-logo {
+            max-height: 32px;
+            width: auto;
+        }
+    }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+        width: 30%;
+
+        .container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        select#language {
+            max-height: 32px;
+            line-height: 18px;
+            font-family: $locale-font;
+            font-weight: 400;
+            padding: 0;
+        }
+    }
+}
+
+
+/* CONTENT */
+.content {
+    min-height: calc(100vh - 110px);
+
+    .page-footer {
+        .btn {
+            width: 180px;
+        }
+    }
+}
+
+
+/* FOOTER */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+
+    .container {
+        padding: 0;
+    }
+
+    .footer-left {
+        display: flex;
+        align-items: center;
+        width: 30%;
+
+        .container {
+            display: flex;
+            justify-content: flex-start;
+        }
+    }
+
+    .footer-middle {
+        display: flex;
+        align-items: center;
+        width: 40%;
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+    }
+    .footer-right {
+        display: flex;
+        align-items: center;
+        width: 30%;
+
+        .container {
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+}
