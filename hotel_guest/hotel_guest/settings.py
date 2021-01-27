@@ -31,6 +31,12 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'guest_facing.registration_adhoc_guest',
+    'guest_facing.registration_ocr_required',
+    'guest_facing.registration',
+    'guest_facing.check_out',
+    'guest_facing.core',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,12 +48,6 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_countries',
     'django_user_agents',
-    
-    'check_out.apps.CheckOutConfig',
-    'registration_adhoc_guest.apps.RegistrationAdhocGuestConfig',
-    'registration_ocr_required.apps.RegistrationOcrRequired',
-    'registration.apps.RegistrationConfig',
-    'core.apps.CoreConfig',
 ]
 
 MIDDLEWARE = [
