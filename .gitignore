@@ -13,8 +13,7 @@ node_modules
 package-lock.json
 
 # cache js and css files
-hotel_guest/static/CACHE/*
-!hotel_guest/static/CACHE/.keep
+hotel_guest/static
 
 # uploaded file
 hotel_guest/media/*
