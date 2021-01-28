@@ -1,7 +1,7 @@
 {
-  "name": "guest_app",
+  "name": "guest_facing",
   "version": "1.0.0",
-  "description": "Static file for guest_app",
+  "description": "Static file for guest_facing",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,12 +9,11 @@
   "author": "GTRIIP",
   "license": "ISC",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.13.1",
+    "@fortawesome/fontawesome-free": "^5.15.2",
     "bootstrap-datepicker": "^1.9.0",
-    "compressorjs": "^1.0.6",
+    "compressorjs": "^1.0.7",
     "croppie": "^2.6.5",
-    "material-design-icons": "^3.0.1",
-    "mdbootstrap": "^4.15.0",
+    "mdbootstrap": "^4.19.2",
     "rolldate": "^3.1.3"
   }
 }
