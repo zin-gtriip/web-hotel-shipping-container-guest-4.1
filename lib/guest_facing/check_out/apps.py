@@ -3,7 +3,7 @@ from guest_facing.core.mixins   import DependentAppConfigMixin
 
 
 class CheckOutConfig(DependentAppConfigMixin, AppConfig):
-    name            = 'check_out'
+    name            = 'guest_facing.check_out'
     dependencies    = [
         'guest_facing.core',
     ]
