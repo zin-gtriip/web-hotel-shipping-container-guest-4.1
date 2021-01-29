@@ -46,11 +46,11 @@ def amp_endpoint(url):
 
 # ocr scanning
 def ocr(image_file, scan_type):
-    url = 'https://ocr.gtriip.com/ocr/'+ scan_type
+    url = settings.OCR_ENDPOINT_URL + scan_type
     files = {scan_type: open(image_file, 'rb')}
-    data = {'api_key':'F16430020E414D3CBB9FACB3DA8071F5'}
+    data = {'api_key': settings.OCR_ENDPOINT_KEY}
     try:
-        response = requests.post(url, files=files, data=data)
+        response = requests.post(url, files=files, data=data, timeout=settings.OCR_ENDPOINT_TIMEOUT_LIMIT)
         response.raise_for_status()
         json_response = json.loads(response.content.decode('utf-8'))
     except requests.exceptions.HTTPError as http_error:

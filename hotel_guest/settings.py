@@ -205,6 +205,12 @@ AMP_ENDPOINT_SITE_NAME          = 'QA_Hotel_Prod_SG_3.0'
 AMP_ENDPOINT_TIMEOUT_LIMIT      = 30
 
 
+# OCR Endpoint configuration
+OCR_ENDPOINT_URL                = 'https://ocr.gtriip.com/ocr/'
+OCR_ENDPOINT_KEY                = 'F16430020E414D3CBB9FACB3DA8071F5'
+OCR_ENDPOINT_TIMEOUT_LIMIT      = 60
+
+
 # Maximum size in bytes of request data (excluding file uploads) that will be
 # read before a SuspiciousOperation (RequestDataTooBig) is raised.
 # will be used when sending passport image to backend processing
