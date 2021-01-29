@@ -205,6 +205,12 @@ AMP_ENDPOINT_SITE_NAME          = 'QA_Hotel_Prod_SG_3.0'
 AMP_ENDPOINT_TIMEOUT_LIMIT      = 30
 
 
+# OCR Endpoint configuration
+OCR_ENDPOINT_URL                = 'https://ocr.gtriip.com/ocr/'
+OCR_ENDPOINT_KEY                = 'F16430020E414D3CBB9FACB3DA8071F5'
+OCR_ENDPOINT_TIMEOUT_LIMIT      = 60
+
+
 # Maximum size in bytes of request data (excluding file uploads) that will be
 # read before a SuspiciousOperation (RequestDataTooBig) is raised.
 # will be used when sending passport image to backend processing
@@ -216,6 +222,25 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760 # 10 MB
 # https://pypi.org/project/cryptography/
 
 FERNET_KEY = b'aJAwfZCJTITCVp-76x9_z8aaFSAFvlrOIFRQEDLm6p8='
+
+
+# Logging
+# https://docs.djangoproject.com/en/2.2/topics/logging/
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file': {
+#             'level': 'INFO',
+#             'class': 'logging.FileHandler',
+#             'filename': BASE_DIR +'/logs/info.log',
+#         },
+#     },
+#     'loggers': {
+#         'gateways': { 'handlers': ['file'], 'level': 'INFO', 'propagate': True },
+#     },
+# }
 
 
 # Other configuration

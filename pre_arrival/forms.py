@@ -17,6 +17,7 @@ class PreArrivalLoginForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
+        self.response = {}
         self.fields['reservation_no'].initial = self.request.session.get('pre_arrival', {}).get('preload', {}).get('reservation_no')
         self.fields['arrival_date'].initial = self.request.session.get('pre_arrival', {}).get('preload', {}).get('arrival_date')
         self.fields['last_name'].initial = self.request.session.get('pre_arrival', {}).get('preload', {}).get('last_name')
@@ -52,14 +53,15 @@ class PreArrivalLoginForm(forms.Form):
         data['reservation_no'] = self.cleaned_data.get('reservation_no')
         data['arrival_date'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
         data['last_name'] = self.cleaned_data.get('last_name')
-        return gateways.guest_endpoint('/checkBookingsPreArrival', data)
+        self.response = gateways.guest_endpoint('/checkBookingsPreArrival', data)
+        return self.response
     
     def save(self):
-        data = self.gateway_post()
+        response = self.response
         preload_data = dict(self.request.session.get('pre_arrival', {}).get('preload', {})) # get and store preload because session will be cleared
         self.request.session['pre_arrival'] = {} # clear session data
         self.request.session['pre_arrival']['preload'] = preload_data # restore preload data
-        self.request.session['pre_arrival']['bookings'] = data.get('data', [])
+        self.request.session['pre_arrival']['bookings'] = response.get('data', [])
         self.request.session['pre_arrival']['input_reservation_no'] = self.cleaned_data.get('reservation_no')
         self.request.session['pre_arrival']['input_arrival_date'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
         self.request.session['pre_arrival']['input_last_name'] = self.cleaned_data.get('last_name')
@@ -143,6 +145,7 @@ class PreArrivalPassportForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
+        self.reponse = {}
 
     def clean(self):
         super().clean()
@@ -193,7 +196,8 @@ class PreArrivalPassportForm(forms.Form):
             scan_type = 'nric'
             response = gateways.ocr(saved_file, 'nric')
         response['scan_type'] = scan_type
-        return response
+        self.response = response
+        return self.response
 
     def save(self):
         main_guest = next((guest for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
@@ -207,7 +211,7 @@ class PreArrivalPassportForm(forms.Form):
             with open(saved_file, 'rb') as image_file:
                 file_b64_encoded = base64.b64encode(image_file.read())
             main_guest.update({'passportImage': file_b64_encoded.decode()})
-            self.request.session['pre_arrival']['ocr'] = self.gateway_ocr(saved_file)
+            self.request.session['pre_arrival']['ocr'] = self.response
             os.remove(saved_file) # remove saved file
         self.request.session['pre_arrival']['passport'] = True # variable to prevent page jump
 
