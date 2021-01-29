@@ -21,7 +21,8 @@ __pycache__
 !/media/.keep
 
 # logs
-logs
+logs/*
+!logs/.keep
 
 # mac-os
 .DS_Store
