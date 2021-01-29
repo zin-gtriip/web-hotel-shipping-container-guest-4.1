@@ -1,5 +1,9 @@
+import os, base64
 from django                         import forms
-from pre_arrival.forms              import PreArrivalOtherInfoForm
+from django.conf                    import settings
+from django.utils.translation       import gettext, gettext_lazy as _
+from django_countries.fields        import Country
+from pre_arrival                    import utilities
 from pre_arrival_all_passport.forms import *
 
 
@@ -61,7 +65,7 @@ class PreArrivalAllPassportExtraPassportForm(PreArrivalAllPassportExtraPassportF
         saved_file = os.path.join(folder_name, file_name)
         with open(saved_file, 'rb') as image_file:
             file_b64_encoded = base64.b64encode(image_file.read())
-        ocr = self.gateway_ocr(saved_file)
+        ocr = self.response
         os.remove(saved_file) # remove saved file after got response
 
         # parse dob
