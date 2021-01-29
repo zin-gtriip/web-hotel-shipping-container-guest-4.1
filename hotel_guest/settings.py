@@ -224,6 +224,25 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760 # 10 MB
 FERNET_KEY = b'aJAwfZCJTITCVp-76x9_z8aaFSAFvlrOIFRQEDLm6p8='
 
 
+# Logging
+# https://docs.djangoproject.com/en/2.2/topics/logging/
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file': {
+#             'level': 'INFO',
+#             'class': 'logging.FileHandler',
+#             'filename': BASE_DIR +'/logs/info.log',
+#         },
+#     },
+#     'loggers': {
+#         'gateways': { 'handlers': ['file'], 'level': 'INFO', 'propagate': True },
+#     },
+# }
+
+
 # Other configuration
 # General
 HOTEL_NAME          = 'GTRIIP'
