@@ -20,17 +20,17 @@ SECURE_SSL_REDIRECT         = True
 # Logging
 # https://docs.djangoproject.com/en/2.2/topics/logging/
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'file': {
-#             'level': 'INFO',
-#             'class': 'logging.FileHandler',
-#             'filename': BASE_DIR +'/logs/info.log',
-#         },
-#     },
-#     'loggers': {
-#         'gateways': { 'handlers': ['file'], 'level': 'INFO', 'propagate': True },
-#     },
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR +'/logs/info.log',
+        },
+    },
+    'loggers': {
+        'gateways': { 'handlers': ['file'], 'level': 'INFO', 'propagate': True },
+    },
+}
