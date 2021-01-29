@@ -1,5 +1,9 @@
+import os, base64
 from django                         import forms
-from pre_arrival.forms              import PreArrivalOtherInfoForm
+from django.conf                    import settings
+from django.utils.translation       import gettext, gettext_lazy as _
+from django_countries.fields        import Country
+from pre_arrival                    import utilities
 from pre_arrival_all_passport.forms import *
 
 
