@@ -7,11 +7,12 @@ from django.utils.translation   import gettext, gettext_lazy as _
 
 # guest facing endpoint gateway
 def guest_endpoint(url, post_data):
+    url = settings.GUEST_ENDPOINT_URL + url
     post_data['api_key'] = settings.GUEST_ENDPOINT_KEY
     post_data['site_id'] = settings.GUEST_ENDPOINT_SITE_ID
     post_data['site_name'] = settings.GUEST_ENDPOINT_SITE_NAME
     try:
-        response = requests.post(settings.GUEST_ENDPOINT_URL + url, json=post_data, timeout=settings.GUEST_ENDPOINT_TIMEOUT_LIMIT, verify=False)
+        response = requests.post(url, json=post_data, timeout=settings.GUEST_ENDPOINT_TIMEOUT_LIMIT, verify=False)
         response.raise_for_status()
         json_response = json.loads(response.content.decode('utf-8'))
     except requests.exceptions.HTTPError as http_error:
@@ -26,12 +27,13 @@ def guest_endpoint(url, post_data):
 
 # AMP endpoint gateway
 def amp_endpoint(url):
+    url = settings.AMP_ENDPOINT_URL + url
     post_data = {}
     post_data['api_key'] = settings.AMP_ENDPOINT_KEY
     post_data['site_id'] = settings.AMP_ENDPOINT_SITE_ID
     post_data['site_name'] = settings.AMP_ENDPOINT_SITE_NAME
     try:
-        response = requests.post(settings.AMP_ENDPOINT_URL + url, json=post_data, timeout=settings.AMP_ENDPOINT_TIMEOUT_LIMIT, verify=False)
+        response = requests.post(url, json=post_data, timeout=settings.AMP_ENDPOINT_TIMEOUT_LIMIT, verify=False)
         response.raise_for_status()
         json_response = json.loads(response.content.decode('utf-8'))
     except requests.exceptions.HTTPError as http_error:
