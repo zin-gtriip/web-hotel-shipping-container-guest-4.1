@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'fontawesome-free',
     'compressor',
     'widget_tweaks',
     'django_countries',
