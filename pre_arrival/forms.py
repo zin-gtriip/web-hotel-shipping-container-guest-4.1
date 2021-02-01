@@ -145,7 +145,7 @@ class PreArrivalPassportForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
-        self.reponse = {}
+        self.response = {}
 
     def clean(self):
         super().clean()
