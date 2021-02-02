@@ -1,28 +1,29 @@
 # compile python file and pycache
 __pycache__
-*.pyc
+*.py[co]
 
 # db file
 *.sqlite3
 
 # storage, temp folder
-/storage
+/storage/
 
 # npm files
-node_modules
+node_modules/
 package-lock.json
 
 # cache js and css files
-hotel_guest/static
+/static/
 
 # uploaded file
-hotel_guest/media/*
-!hotel_guest/media/.keep
+/media/*
+!/media/.keep
 
 # logs
-logs
+/logs/
 
 # lib
+dist/
 *.egg-info
 
 # mac-os
