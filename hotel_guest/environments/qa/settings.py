@@ -23,11 +23,19 @@ SECURE_SSL_REDIRECT         = True
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '[%(asctime)s] %(message)s'
+        },
+    },
     'handlers': {
         'file': {
             'level': 'INFO',
-            'class': 'logging.FileHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': BASE_DIR +'/logs/info.log',
+            'maxBytes': 1024 * 1024 * 10, # 10MB
+            'backupCount': 10,
+            'formatter': 'simple',
         },
     },
     'loggers': {
