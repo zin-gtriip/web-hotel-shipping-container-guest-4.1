@@ -189,11 +189,28 @@ COMPRESS_PRECOMPILERS = (
 
 # Guest Facing Endpoint configuration
 
-GUEST_ENDPOINT_URL              = 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0'
-GUEST_ENDPOINT_KEY              = '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45'
-GUEST_ENDPOINT_SITE_ID          = 'QAHotelProdSG11'
-GUEST_ENDPOINT_SITE_NAME        = 'QA_Hotel_Prod_SG_3.0'
-GUEST_ENDPOINT_TIMEOUT_LIMIT    = 30
+GUEST_ENDPOINT = [
+    {
+        'id': 'QAHotelProdSG11_1',
+        'name': 'QA_Hotel_Prod_SG_3.0_1',
+        'description': 'GTRIIP - Aurum',
+        'image': '/static/img/property-1.jpg',
+        'address': '1 East Street, Singapore',
+        'url': 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0',
+        'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
+        'timeout': 30,
+    },
+    {
+        'id': 'QAHotelProdSG11_2',
+        'name': 'QA_Hotel_Prod_SG_3.0_2',
+        'description': 'GTRIIP - Nouveau',
+        'image': '/static/img/property-2.jpg',
+        'address': '1 South Beach Road, Singapore',
+        'url': 'http://hotel3qa.gtriip.com:8080/hotelprod3dot01',
+        'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
+        'timeout': 30,
+    },
+]
 
 
 # AMP Endpoint configuration
