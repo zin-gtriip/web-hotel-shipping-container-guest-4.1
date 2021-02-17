@@ -5,8 +5,8 @@ from django.shortcuts           import render
 from django.utils               import translation
 from django.utils.translation   import gettext, gettext_lazy as _
 from django.views.generic       import *
-from guest_base                 import views as GuestBaseViews
-from guest_base.mixins          import RequestFormKwargsMixin, MobileTemplateMixin
+from guest_base                 import views as GuestBaseViews, gateways
+from guest_base.mixins          import PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin
 from .                          import samples
 from .forms                     import *
 from .mixins                    import *
@@ -30,7 +30,7 @@ class CheckOutDataView(RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
-class CheckOutLoginView(RequestFormKwargsMixin, MobileTemplateMixin, FormView):
+class CheckOutLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, FormView):
     template_name           = 'check_out/desktop/login.html'
     mobile_template_name    = 'check_out/mobile/login.html'
     form_class              = CheckOutLoginForm
@@ -69,7 +69,7 @@ class CheckOutLoginView(RequestFormKwargsMixin, MobileTemplateMixin, FormView):
         return context
     
 
-class CheckOutBillView(BillRequiredAndExistMixin, RequestFormKwargsMixin, UpdateView):
+class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, RequestFormKwargsMixin, UpdateView):
     template_name           = 'check_out/desktop/bill.html'
     form_class              = CheckOutBillForm
     success_url             = '/check_out/bill/all'

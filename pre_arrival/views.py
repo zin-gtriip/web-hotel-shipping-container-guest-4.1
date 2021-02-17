@@ -1,9 +1,10 @@
+from django.conf                import settings
 from django.shortcuts           import render
 from django.utils               import translation
 from django.utils.translation   import gettext, gettext_lazy as _
 from django.views.generic       import *
 from guest_base                 import views as GuestBaseViews
-from guest_base.mixins          import RequestFormKwargsMixin, MobileTemplateMixin, JSONResponseMixin
+from guest_base.mixins          import PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, JSONResponseMixin
 from .forms                     import *
 from .mixins                    import *
 from .utilities                 import *
@@ -30,7 +31,7 @@ class PreArrivalDataView(RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
-class PreArrivalLoginView(RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
+class PreArrivalLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
     template_name           = 'pre_arrival/desktop/login.html'
     mobile_template_name    = 'pre_arrival/mobile/login.html'
     form_class              = PreArrivalLoginForm
@@ -64,7 +65,7 @@ class PreArrivalLoginView(RequestFormKwargsMixin, MobileTemplateMixin, ProgressR
         return context
 
 
-class PreArrivalTimerExtensionView(JSONResponseMixin, RequestFormKwargsMixin, FormView):
+class PreArrivalTimerExtensionView(PropertyRequiredMixin, JSONResponseMixin, RequestFormKwargsMixin, FormView):
     form_class              = PreArrivalTimerExtensionForm
 
     def form_valid(self, form):
@@ -80,7 +81,7 @@ class PreArrivalTimerExtensionView(JSONResponseMixin, RequestFormKwargsMixin, Fo
         return self.render_to_json_response(self.get_context_data())
 
 
-class PreArrivalReservationView(ExpirySessionMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
+class PreArrivalReservationView(ExpirySessionMixin, PropertyRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
     template_name           = 'pre_arrival/desktop/reservation.html'
     form_class              = PreArrivalReservationForm
     success_url             = '/pre_arrival/passport'
@@ -104,7 +105,7 @@ class PreArrivalReservationView(ExpirySessionMixin, RequestFormKwargsMixin, Prog
         return super().form_valid(form)
 
 
-class PreArrivalPassportView(ParameterRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
+class PreArrivalPassportView(ParameterRequiredMixin, PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
     template_name           = 'pre_arrival/desktop/passport.html'
     mobile_template_name    = 'pre_arrival/mobile/passport.html'
     form_class              = PreArrivalPassportForm
@@ -117,7 +118,7 @@ class PreArrivalPassportView(ParameterRequiredMixin, RequestFormKwargsMixin, Mob
         return super().form_valid(form)
 
 
-class PreArrivalDetailView(ParameterRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
+class PreArrivalDetailView(ParameterRequiredMixin, PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
     template_name           = 'pre_arrival/desktop/detail.html'
     mobile_template_name    = 'pre_arrival/mobile/detail.html'
     form_class              = PreArrivalDetailForm
@@ -153,7 +154,7 @@ class PreArrivalDetailView(ParameterRequiredMixin, RequestFormKwargsMixin, Mobil
         return super().form_valid(form)
 
 
-class PreArrivalOtherInfoView(ParameterRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
+class PreArrivalOtherInfoView(ParameterRequiredMixin, PropertyRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
     template_name           = 'pre_arrival/desktop/other_info.html'
     form_class              = PreArrivalOtherInfoForm
     success_url             = '/pre_arrival/complete'
@@ -174,7 +175,7 @@ class PreArrivalOtherInfoView(ParameterRequiredMixin, RequestFormKwargsMixin, Pr
         return context
 
 
-class PreArrivalCompleteView(ParameterRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
+class PreArrivalCompleteView(ParameterRequiredMixin, PropertyRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
     template_name           = 'pre_arrival/desktop/complete.html'
     form_class              = PreArrivalCompleteForm
     success_url             = '/pre_arrival/reservation'
