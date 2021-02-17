@@ -53,7 +53,7 @@ class PreArrivalLoginForm(forms.Form):
         data['reservation_no'] = self.cleaned_data.get('reservation_no')
         data['arrival_date'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
         data['last_name'] = self.cleaned_data.get('last_name')
-        self.response = gateways.guest_endpoint('/checkBookingsPreArrival', data)
+        self.response = gateways.guest_endpoint('/checkBookingsPreArrival', self.request.session.get('property', {}), data)
         return self.response
     
     def save(self):
@@ -458,14 +458,14 @@ class PreArrivalOtherInfoForm(forms.Form):
         email = self.prepare_email()
         data['customerInputNumber'] = self.request.session['pre_arrival'].get('input_reservation_no', '')
         data = {**data, **email} # add email data
-        response = gateways.guest_endpoint('/processGuestsPreArrival', data)
+        response = gateways.guest_endpoint('/processGuestsPreArrival', self.request.session.get('property', {}), data)
         if response.get('success', '') == 'true':
             # get existing reservation from backend
             new_booking_data = {}
             new_booking_data['reservation_no'] = self.request.session['pre_arrival'].get('input_reservation_no', '')
             new_booking_data['arrival_date'] = self.request.session['pre_arrival'].get('input_arrival_date', '')
             new_booking_data['last_name'] = self.request.session['pre_arrival'].get('input_last_name', '')
-            new_booking_response = gateways.guest_endpoint('/checkBookingsPreArrival', new_booking_data)
+            new_booking_response = gateways.guest_endpoint('/checkBookingsPreArrival', self.request.session.get('property', {}), new_booking_data)
             self.request.session['pre_arrival']['bookings'] = new_booking_response.get('data', [])
         else:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
