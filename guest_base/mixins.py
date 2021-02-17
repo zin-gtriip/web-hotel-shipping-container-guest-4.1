@@ -1,5 +1,6 @@
-from django.conf import settings
-from django.http import JsonResponse
+from django.conf        import settings
+from django.http        import JsonResponse
+from django.shortcuts   import redirect
 
 class DependentAppConfigMixin:
     """
@@ -12,6 +13,18 @@ class DependentAppConfigMixin:
         if not all(depend in settings.INSTALLED_APPS for depend in self.dependencies):
             raise ValueError('"%s" app depends on %s' % (self.name, ', '.join(self.dependencies)))
         return super().ready()
+
+
+class PropertyRequiredMixin:
+    """
+    View mixin that validates `property` in session. If it does not, page will
+    be redirected to `GuestBasePropertyView` to let user to select property.
+    """
+
+    def dispatch(self, request, *args, **kwargs):
+        if 'property' in request.session:
+            return super().dispatch(request, *args, **kwargs)
+        return redirect('guest_base:property')
 
 
 class RequestFormKwargsMixin:
