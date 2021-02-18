@@ -1,6 +1,7 @@
 from django.conf        import settings
 from django.http        import JsonResponse
 from django.shortcuts   import redirect
+from django.urls        import reverse
 
 class DependentAppConfigMixin:
     """
@@ -24,7 +25,7 @@ class PropertyRequiredMixin:
     def dispatch(self, request, *args, **kwargs):
         if 'property' in request.session:
             return super().dispatch(request, *args, **kwargs)
-        return redirect('guest_base:property')
+        return redirect(reverse('guest_base:property') + '?next=' + request.path)
 
 
 class RequestFormKwargsMixin:
