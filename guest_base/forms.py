@@ -25,8 +25,8 @@ class GuestBasePropertyForm(forms.Form):
 
     def save(self):
         property_id = self.cleaned_data.get('property_id')
-        prop = next((prop for prop in settings.GUEST_ENDPOINT or [] if prop.get('id') == property_id), None)
-        self.request.session['property'] = prop
+        prop_data = next((prop for prop in settings.GUEST_ENDPOINT or [] if prop.get('id') == property_id), None)
+        self.request.session['property'] = prop_data
         if 'pre_arrival' in self.request.session and 'preload' in self.request.session['pre_arrival'] and 'property_id' in self.request.session['pre_arrival']['preload']:
             self.request.session['pre_arrival']['preload'].pop('property_id', None)
         if 'check_out' in self.request.session and 'preload' in self.request.session['check_out'] and 'property_id' in self.request.session['check_out']['preload']:
