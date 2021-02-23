@@ -8,6 +8,10 @@ from .mixins                import *
 class IndexView(RedirectView):
     pattern_name = 'admin:index'
 
+    def dispatch(self, request, *args, **kwargs):
+        self.request.session.pop('property', None)
+        return super().dispatch(request, *args, **kwargs)
+
 
 class GuestBasePropertyView(RequestFormKwargsMixin, FormView):
     template_name   = 'guest_base/desktop/property.html'
