@@ -23,7 +23,7 @@ class PropertyRequiredMixin:
     """
 
     def dispatch(self, request, *args, **kwargs):
-        if 'property' in request.session:
+        if 'property' in request.session and request.session['property']:
             return super().dispatch(request, *args, **kwargs)
         return redirect(reverse('guest_base:property') + '?next=' + request.path)
 
