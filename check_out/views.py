@@ -20,6 +20,7 @@ class CheckOutDataView(RedirectView):
     pattern_name = 'check_out:login'
 
     def get_redirect_url(self, *args, **kwargs):
+        self.request.session.pop('property', None)
         prop = next((prop for prop in settings.GUEST_ENDPOINT if prop.get('id', None) == self.request.GET.get('property', None)), None)
         if prop:
             self.request.session['property'] = prop
