@@ -9,7 +9,7 @@
 {% endblock static_css %}
 
 {% block header_left %}
-    <button type="button" class="btn btn-link" id="btn-back" data-target="{% url 'pre_arrival:detail' %}"><i class="fas fa-arrow-left"></i></button>
+    <a href="{% url 'pre_arrival:detail' %}" class="btn btn-link"><i class="fas fa-arrow-left"></i></a>
     {{ block.super }}
 {% endblock header_left %}
 
