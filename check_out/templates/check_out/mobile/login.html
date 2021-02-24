@@ -11,7 +11,13 @@
 {% block header_left %}
     {{ block.super }}
     <button type="button" class="btn btn-link" id="btn-back" {% if not skip_last_name %}style="display: none;"{% endif %}>
-        <i class="fas fa-arrow-left"></i></button>
+        <i class="fas fa-arrow-left"></i>
+    </button>
+    {% if not request.session.app %}
+        <a href="{% url 'check_out:index' %}" class="btn btn-link" id="btn-home" {% if skip_last_name %}style="display: none;"{% endif %}>
+            <span class="material-icons">home</span>
+        </a>
+    {% endif %}
 {% endblock header_left %}
 
 {% block content %}

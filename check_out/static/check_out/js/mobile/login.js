@@ -35,6 +35,7 @@ $('#footer-last-name button').click(function() {
 		, $nextStep = $('#header-room-no, #subheader-room-no, #content-room-no, #footer-room-no');
 
 	$('.header #btn-back').show();
+	$('.header #btn-home').hide();
 	$nextStep.show().addClass('active');
 	try { window.flutter_inappwebview.callHandler('lastName', $('#id_last_name').val()); } catch(error) {} // send message to app
 	$currentStep.animate({opacity: 0}, {
@@ -63,6 +64,7 @@ $('#btn-back').click(function() {
 		$currentStep = $('#header-room-no, #subheader-room-no, #content-room-no, #footer-room-no');
 		$previousStep = $('#header-last-name, #subheader-last-name, #content-last-name, #footer-last-name');
 		$(this).hide();
+		$('.header #btn-home').show();
 	}
 
 	$previousStep.show().addClass('active');
