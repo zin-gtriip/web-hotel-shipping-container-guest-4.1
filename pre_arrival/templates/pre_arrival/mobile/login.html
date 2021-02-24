@@ -14,7 +14,6 @@
 {% endblock static_css %}
 
 {% block header_left %}
-    {{ block.super }}
     <button type="button" class="btn btn-link" id="btn-back" {% if not skip_reservation_no %}style="display: none;"{% endif %}>
         <i class="fas fa-arrow-left"></i>
     </button>
@@ -23,6 +22,7 @@
             <span class="material-icons">home</span>
         </a>
     {% endif %}
+    {{ block.super }}
 {% endblock header_left %}
 
 {% block content %}
