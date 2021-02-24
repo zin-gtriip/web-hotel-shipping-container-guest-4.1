@@ -9,10 +9,10 @@
 {% endblock static_css %}
 
 {% block header_left %}
-    {{ block.super }}
     <a href="{% url 'check_out:index' %}" class="btn btn-link">
         <span class="material-icons">home</span>
     </a>
+    {{ block.super }}
 {% endblock header_left %}
 
 {% block content %}
