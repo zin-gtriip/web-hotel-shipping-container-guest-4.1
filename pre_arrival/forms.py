@@ -65,7 +65,7 @@ class PreArrivalLoginForm(forms.Form):
         self.request.session['pre_arrival']['input_reservation_no'] = self.cleaned_data.get('reservation_no')
         self.request.session['pre_arrival']['input_arrival_date'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
         self.request.session['pre_arrival']['input_last_name'] = self.cleaned_data.get('last_name')
-        config = gateways.amp_endpoint('/getConfigVariables') or {} # get config variables
+        config = gateways.amp_endpoint('/getConfigVariables', self.request.session.get('property_id', '')) or {} # get config variables
         expiry_duration = config.get('prearrival_session_duration_minutes', settings.PRE_ARRIVAL_SESSION_AGE_INITIAL)
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['pre_arrival']['initial_expiry_date'] = initial_expiry_date
@@ -97,7 +97,7 @@ class PreArrivalTimerExtensionForm(forms.Form):
     def save(self):
         initial_expiry_date = self.request.session['pre_arrival'].get('initial_expiry_date', '')
         initial_expiry_date = datetime.datetime.strptime(initial_expiry_date, '%Y-%m-%dT%H:%M:%S.%f%z')
-        config = gateways.amp_endpoint('/getConfigVariables') or {} # get config variables
+        config = gateways.amp_endpoint('/getConfigVariables', self.request.session.get('property_id', '')) or {} # get config variables
         extend_duration = config.get('prearrival_session_extend_duration_minutes', settings.PRE_ARRIVAL_SESSION_AGE_EXTEND)
         extended_expiry_date = (initial_expiry_date + datetime.timedelta(minutes=extend_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['pre_arrival']['extended_expiry_date'] = extended_expiry_date
@@ -162,7 +162,7 @@ class PreArrivalPassportForm(forms.Form):
             if 'status' not in response and 'message' not in response:
                 if response.get('scan_type', 'passport') == 'passport':
                     if response.get('expired', '') == 'false':
-                        config = gateways.amp_endpoint('/getConfigVariables') or {} # get config variables
+                        config = gateways.amp_endpoint('/getConfigVariables', self.request.session.get('property_id', '')) or {} # get config variables
                         age_limit = config.get('prearrival_adult_min_age_years', settings.PRE_ARRIVAL_ADULT_AGE_LIMIT)
                         if utilities.calculate_age(utilities.parse_ocr_date(response.get('date_of_birth', ''))) <= age_limit:
                             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You must be at least %(age)s years of age to proceed with your registration.') % {'age': age_limit}])
@@ -274,7 +274,7 @@ class PreArrivalDetailForm(forms.Form):
         if not birth_date:
             self._errors['birth_date'] = self.error_class([_('Enter the required information')])
         else:
-            config = gateways.amp_endpoint('/getConfigVariables') or {} # get config variables
+            config = gateways.amp_endpoint('/getConfigVariables', self.request.session.get('property_id', '')) or {} # get config variables
             age_limit = config.get('prearrival_adult_min_age_years', settings.PRE_ARRIVAL_ADULT_AGE_LIMIT)
             if utilities.calculate_age(birth_date) <= age_limit:
                 self._errors['birth_date'] = self.error_class([_('Main guest has to be %(age)s and above.') % {'age': age_limit}])
@@ -376,7 +376,7 @@ class PreArrivalDetailExtraBaseFormSet(forms.BaseFormSet):
     def clean(self):
         super().clean()
         adult, max_adult = 1, int(self.request.session['pre_arrival']['reservation'].get('adults', 1))
-        config = gateways.amp_endpoint('/getConfigVariables') or {} # get config variables
+        config = gateways.amp_endpoint('/getConfigVariables', self.request.session.get('property_id', '')) or {} # get config variables
         age_limit = config.get('prearrival_adult_min_age_years', settings.PRE_ARRIVAL_ADULT_AGE_LIMIT)
         for form in self.forms:
             if utilities.calculate_age(form.cleaned_data.get('birth_date')) > age_limit:
@@ -487,7 +487,7 @@ class PreArrivalCompleteForm(forms.Form):
         # reset data on session using `PRE_ARRIVAL_PROGRESS_BAR_PAGES`
         for page in settings.PRE_ARRIVAL_PARAMETER_REQUIRED_PAGES or list():
             self.request.session['pre_arrival'].pop(page, None)
-        config = gateways.amp_endpoint('/getConfigVariables') or {} # get config variables
+        config = gateways.amp_endpoint('/getConfigVariables', self.request.session.get('property_id', '')) or {} # get config variables
         expiry_duration = config.get('prearrival_session_duration_minutes', settings.PRE_ARRIVAL_SESSION_AGE_INITIAL)
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['pre_arrival']['initial_expiry_date'] = initial_expiry_date
