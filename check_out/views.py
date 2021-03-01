@@ -20,10 +20,7 @@ class CheckOutDataView(RedirectView):
     pattern_name = 'check_out:login'
 
     def get_redirect_url(self, *args, **kwargs):
-        self.request.session.pop('property', None)
-        prop = next((prop for prop in settings.GUEST_ENDPOINT if prop.get('id', None) == self.request.GET.get('property', None)), None)
-        if prop:
-            self.request.session['property'] = prop
+        self.request.session['property_id'] = self.request.GET.get('property', None)
         self.request.session['app'] = self.request.GET.get('app', 0)
         self.request.session['check_out'] = {'preload': {}}
         if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
@@ -80,7 +77,7 @@ class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, Request
 
     def gateway_post(self, reservations_no):
         data = {'reservation_no': reservations_no}
-        response = gateways.guest_endpoint('/billsForCheckOut', self.request.session.get('property', {}), data)
+        response = gateways.guest_endpoint('/billsForCheckOut', self.request.session.get('property_id', ''), data)
         return response.get('data', {})
 
     def get_object(self, queryset=None):

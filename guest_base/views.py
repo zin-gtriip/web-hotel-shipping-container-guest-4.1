@@ -9,7 +9,7 @@ class IndexView(RedirectView):
     pattern_name = 'admin:index'
 
     def dispatch(self, request, *args, **kwargs):
-        self.request.session.pop('property', None)
+        self.request.session.pop('property_id', None)
         return super().dispatch(request, *args, **kwargs)
 
 

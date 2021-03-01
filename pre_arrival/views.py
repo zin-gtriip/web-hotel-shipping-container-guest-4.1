@@ -17,10 +17,7 @@ class PreArrivalDataView(RedirectView):
     pattern_name = 'pre_arrival:login'
 
     def get_redirect_url(self, *args, **kwargs):
-        self.request.session.pop('property', None)
-        prop = next((prop for prop in settings.GUEST_ENDPOINT if prop.get('id', None) == self.request.GET.get('property', None)), None)
-        if prop:
-            self.request.session['property'] = prop
+        self.request.session['property_id'] = self.request.GET.get('property', None)
         self.request.session['app'] = self.request.GET.get('app', 0)
         self.request.session['pre_arrival'] = {'preload': {}}
         if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
