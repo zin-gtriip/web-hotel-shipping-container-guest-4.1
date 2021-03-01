@@ -256,7 +256,7 @@ FERNET_KEY = b'aJAwfZCJTITCVp-76x9_z8aaFSAFvlrOIFRQEDLm6p8='
 #         'file': {
 #             'level': 'INFO',
 #             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': BASE_DIR +'/logs/info.log',
+#             'filename': BASE_DIR +'/logs/log.log',
 #             'maxBytes': 1024 * 1024 * 10, # 10MB
 #             'backupCount': 10,
 #             'formatter': 'simple',
@@ -264,6 +264,7 @@ FERNET_KEY = b'aJAwfZCJTITCVp-76x9_z8aaFSAFvlrOIFRQEDLm6p8='
 #     },
 #     'loggers': {
 #         'gateways': { 'handlers': ['file'], 'level': 'INFO', 'propagate': True },
+#         'django': { 'handlers': ['file'], 'level': 'ERROR', 'propagate': True },
 #     },
 # }
 
