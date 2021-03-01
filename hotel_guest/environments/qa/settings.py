@@ -40,5 +40,6 @@ LOGGING = {
     },
     'loggers': {
         'gateways': { 'handlers': ['file'], 'level': 'INFO', 'propagate': True },
+        'django': { 'handlers': ['file'], 'level': 'ERROR', 'propagate': True },
     },
 }
