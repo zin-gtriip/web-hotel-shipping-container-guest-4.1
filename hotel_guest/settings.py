@@ -215,11 +215,22 @@ GUEST_ENDPOINT = [
 
 # AMP Endpoint configuration
 
-AMP_ENDPOINT_URL                = 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0'
-AMP_ENDPOINT_KEY                = '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717'
-AMP_ENDPOINT_SITE_ID            = 'QAHotelProdSG11'
-AMP_ENDPOINT_SITE_NAME          = 'QA_Hotel_Prod_SG_3.0'
-AMP_ENDPOINT_TIMEOUT_LIMIT      = 30
+AMP_ENDPOINT = [
+    {
+        'id': 'QAHotelProdSG11_1',
+        'name': 'QA_Hotel_Prod_SG_3.0_1',
+        'url': 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0',
+        'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
+        'timeout': 30,
+    },
+    {
+        'id': 'QAHotelProdSG11_2',
+        'name': 'QA_Hotel_Prod_SG_3.0_2',
+        'url': 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0',
+        'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
+        'timeout': 30,
+    },
+]
 
 
 # OCR Endpoint configuration
