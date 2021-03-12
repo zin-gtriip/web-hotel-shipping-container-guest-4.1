@@ -38,14 +38,8 @@ class PreArrivalLoginForm(forms.Form):
 
         # validate to backend
         response = self.gateway_post()
-        self.request.session['pre_arrival']['login'] = {'status_code': response.get('overall_status', '')} # save status code to `session` for determining if send reservation no. to app
         if response.get('overall_status', '') != 500:
-            if response.get('overall_status', '') == 300:
-                self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Pre-arrival for this reservation is unavailable yet. Please try again later.')])
-            elif response.get('overall_status','') == 400:
-                self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Pre-arrival registration has been completed.')])
-            else:
-                self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Incorrect reservation details, please check and try again.')])
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('overall_status', '')])
         return self.cleaned_data
 
     def gateway_post(self):

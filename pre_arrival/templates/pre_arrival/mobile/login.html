@@ -95,13 +95,27 @@
             <div class="modal-dialog modal-dialog-centered modal-sm">
                 <div class="modal-content">
                     <div class="modal-header bg-primary text-white">
-                        <h4 class="modal-title mx-auto">{% trans 'Invalid Input' %}</h4>
+                        <h4 class="modal-title mx-auto">
+                            {% if error == 300 %}
+                                {% trans 'registration_login_error_modal_title:300' %}
+                            {% elif error == 400 %}
+                                {% trans 'registration_login_error_modal_title:400' %}
+                            {% else %}
+                                {% trans 'registration_login_error_modal_title:other' %}
+                            {% endif %}
+                        </h4>
                     </div>
                     <div class="modal-body">
-                        {{ error|linebreaks }}
+                        {% if error == 300 %}
+                            {% trans 'registration_login_error_modal_body:300' %}
+                        {% elif error == 400 %}
+                            {% trans 'registration_login_error_modal_body:400' %}
+                        {% else %}
+                            {% trans 'registration_login_error_modal_body:other' %}
+                        {% endif %}
                     </div>
                     <div class="modal-footer">
-                        {% if request.session.app and request.session.pre_arrival.login.status_code == 400 %}
+                        {% if request.session.app and error == 400 %}
                             <button type="button" class="btn btn-primary mx-auto" id="btn-ok" data-dismiss="modal">{% trans 'OK' %}</button>
                         {% else %}
                             <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'OK' %}</button>
