@@ -221,8 +221,8 @@ msgstr "OK"
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:313
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:332
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:351
-msgid "Incorrect Input"
-msgstr "Invalid Input"
+msgid "Invalid Input"
+msgstr "Incorrect Input"
 
 #: check_out/templates/check_out/desktop/complete.html:20
 msgid "We hope you enjoy your stay with us,<br>and well see you again soon!"
