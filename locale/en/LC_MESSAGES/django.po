@@ -221,7 +221,7 @@ msgstr "OK"
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:313
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:332
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:351
-msgid "Invalid Input"
+msgid "Incorrect Input"
 msgstr "Invalid Input"
 
 #: check_out/templates/check_out/desktop/complete.html:20
