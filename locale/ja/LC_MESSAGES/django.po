@@ -222,7 +222,7 @@ msgstr "はい"
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:332
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:351
 msgid "Invalid Input"
-msgstr "输入错误"
+msgstr "入力エラー"
 
 #: check_out/templates/check_out/desktop/complete.html:20
 msgid "We hope you enjoy your stay with us,<br>and well see you again soon!"
