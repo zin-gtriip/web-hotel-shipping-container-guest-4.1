@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-16 16:01+0700\n"
+"POT-Creation-Date: 2021-03-12 06:20+0000\n"
 "PO-Revision-Date: 2020-12-09 18:55+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,53 +18,53 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 2.4.1\n"
 
-#: check_out/forms.py:7 check_out/forms.py:61 pre_arrival/forms.py:12
-#: pre_arrival/templates/pre_arrival/desktop/login.html:35
+#: check_out/forms.py:7 check_out/forms.py:63 pre_arrival/forms.py:12
+#: pre_arrival/templates/pre_arrival/desktop/login.html:42
 msgid "Reservation Number"
 msgstr "予約番号"
 
-#: check_out/forms.py:8 check_out/templates/check_out/desktop/login.html:30
-#: check_out/templates/check_out/mobile/login.html:37 pre_arrival/forms.py:14
-#: pre_arrival/forms.py:217 pre_arrival/forms.py:314
-#: pre_arrival/templates/pre_arrival/desktop/complete.html:32
+#: check_out/forms.py:8 check_out/templates/check_out/desktop/login.html:37
+#: check_out/templates/check_out/mobile/login.html:43 pre_arrival/forms.py:14
+#: pre_arrival/forms.py:216 pre_arrival/forms.py:313
+#: pre_arrival/templates/pre_arrival/desktop/complete.html:39
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:174
-#: pre_arrival/templates/pre_arrival/desktop/login.html:43
+#: pre_arrival/templates/pre_arrival/desktop/login.html:50
 #: pre_arrival/templates/pre_arrival/email/complete.html:242
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:175
-#: pre_arrival/templates/pre_arrival/mobile/login.html:56
+#: pre_arrival/templates/pre_arrival/mobile/login.html:62
 msgid "Last Name"
 msgstr "苗字"
 
-#: check_out/forms.py:9 check_out/templates/check_out/desktop/login.html:38
-#: check_out/templates/check_out/mobile/login.html:43
+#: check_out/forms.py:9 check_out/templates/check_out/desktop/login.html:45
+#: check_out/templates/check_out/mobile/login.html:49
 msgid "Room Number"
 msgstr "部屋番号"
 
-#: check_out/forms.py:27 check_out/forms.py:28 check_out/forms.py:30
-#: check_out/forms.py:80 pre_arrival/forms.py:32 pre_arrival/forms.py:34
-#: pre_arrival/forms.py:36 pre_arrival/forms.py:262 pre_arrival/forms.py:264
-#: pre_arrival/forms.py:266 pre_arrival/forms.py:268 pre_arrival/forms.py:270
-#: pre_arrival/forms.py:333 pre_arrival/forms.py:335 pre_arrival/forms.py:337
-#: pre_arrival/forms.py:339 pre_arrival/forms.py:341 pre_arrival/forms.py:410
-#: pre_arrival/forms.py:412
+#: check_out/forms.py:28 check_out/forms.py:29 check_out/forms.py:31
+#: check_out/forms.py:84 pre_arrival/forms.py:33 pre_arrival/forms.py:35
+#: pre_arrival/forms.py:37 pre_arrival/forms.py:261 pre_arrival/forms.py:263
+#: pre_arrival/forms.py:265 pre_arrival/forms.py:267 pre_arrival/forms.py:269
+#: pre_arrival/forms.py:332 pre_arrival/forms.py:334 pre_arrival/forms.py:336
+#: pre_arrival/forms.py:338 pre_arrival/forms.py:340 pre_arrival/forms.py:409
+#: pre_arrival/forms.py:411
 msgid "Enter the required information"
 msgstr "必要な情報を入力します。"
 
-#: check_out/forms.py:35
+#: check_out/forms.py:36
 msgid "We were unable to retrieve your reservation from our database."
 msgstr "予約が見つかりません。"
 
-#: check_out/forms.py:71
+#: check_out/forms.py:73
 msgid "Checked-in Guests"
 msgstr "チェックインしたゲスト"
 
-#: check_out/forms.py:104 pre_arrival/forms.py:168 pre_arrival/forms.py:466
-#: pre_arrival_all_passport/forms.py:111
+#: check_out/forms.py:108 pre_arrival/forms.py:166 pre_arrival/forms.py:465
+#: pre_arrival_all_passport/forms.py:128
 msgid "Unknown error"
 msgstr "不明なエラー"
 
 #: check_out/templates/check_out/base.html:5
-#: check_out/templates/check_out/desktop/bill.html:256
+#: check_out/templates/check_out/desktop/bill.html:269
 msgid "Check Out"
 msgstr "チェックアウト"
 
@@ -76,79 +76,79 @@ msgstr "請求書のレビューとチェックアウト"
 msgid "Select which of the guest to view the bill folio."
 msgstr "表示する請求書フォリオを選択"
 
-#: check_out/templates/check_out/desktop/bill.html:57
-#: check_out/templates/check_out/desktop/bill.html:138
+#: check_out/templates/check_out/desktop/bill.html:70
+#: check_out/templates/check_out/desktop/bill.html:151
 msgid "Reservation No:"
 msgstr "予約番号:"
 
-#: check_out/templates/check_out/desktop/bill.html:62
-#: check_out/templates/check_out/desktop/bill.html:143
+#: check_out/templates/check_out/desktop/bill.html:75
+#: check_out/templates/check_out/desktop/bill.html:156
 msgid "Room No:"
 msgstr "部屋番号:"
 
-#: check_out/templates/check_out/desktop/bill.html:67
-#: check_out/templates/check_out/desktop/bill.html:148
+#: check_out/templates/check_out/desktop/bill.html:80
+#: check_out/templates/check_out/desktop/bill.html:161
 msgid "Arrival Date:"
 msgstr "到着日："
 
-#: check_out/templates/check_out/desktop/bill.html:72
-#: check_out/templates/check_out/desktop/bill.html:153
+#: check_out/templates/check_out/desktop/bill.html:85
+#: check_out/templates/check_out/desktop/bill.html:166
 msgid "Departure Date:"
 msgstr "チェックアウト日："
 
-#: check_out/templates/check_out/desktop/bill.html:81
-#: check_out/templates/check_out/desktop/bill.html:162
+#: check_out/templates/check_out/desktop/bill.html:94
+#: check_out/templates/check_out/desktop/bill.html:175
 msgid "GST Reg. No:"
 msgstr "GST登録番号："
 
-#: check_out/templates/check_out/desktop/bill.html:86
-#: check_out/templates/check_out/desktop/bill.html:167
+#: check_out/templates/check_out/desktop/bill.html:99
+#: check_out/templates/check_out/desktop/bill.html:180
 msgid "Business Reg. No:"
 msgstr "事業者登録番号："
 
-#: check_out/templates/check_out/desktop/bill.html:96
-#: check_out/templates/check_out/desktop/bill.html:177
+#: check_out/templates/check_out/desktop/bill.html:109
+#: check_out/templates/check_out/desktop/bill.html:190
 msgid "Date"
 msgstr "日付"
 
-#: check_out/templates/check_out/desktop/bill.html:97
-#: check_out/templates/check_out/desktop/bill.html:178
+#: check_out/templates/check_out/desktop/bill.html:110
+#: check_out/templates/check_out/desktop/bill.html:191
 msgid "Description"
 msgstr "説明"
 
-#: check_out/templates/check_out/desktop/bill.html:98
-#: check_out/templates/check_out/desktop/bill.html:179
+#: check_out/templates/check_out/desktop/bill.html:111
+#: check_out/templates/check_out/desktop/bill.html:192
 msgid "Amount"
 msgstr "額"
 
-#: check_out/templates/check_out/desktop/bill.html:111
-#: check_out/templates/check_out/desktop/bill.html:192
+#: check_out/templates/check_out/desktop/bill.html:124
+#: check_out/templates/check_out/desktop/bill.html:205
 msgid "Balance Due"
 msgstr "残高"
 
-#: check_out/templates/check_out/desktop/bill.html:115
-#: check_out/templates/check_out/desktop/bill.html:196
+#: check_out/templates/check_out/desktop/bill.html:128
+#: check_out/templates/check_out/desktop/bill.html:209
 #, python-format
 msgid "GST at 7%%"
 msgstr "GST 7%%"
 
-#: check_out/templates/check_out/desktop/bill.html:119
-#: check_out/templates/check_out/desktop/bill.html:200
+#: check_out/templates/check_out/desktop/bill.html:132
+#: check_out/templates/check_out/desktop/bill.html:213
 msgid "Charges"
 msgstr "料金"
 
-#: check_out/templates/check_out/desktop/bill.html:220
+#: check_out/templates/check_out/desktop/bill.html:233
 msgid "Total Charges"
 msgstr "総料金"
 
-#: check_out/templates/check_out/desktop/bill.html:235
+#: check_out/templates/check_out/desktop/bill.html:248
 msgid ""
 "This is a computer-generated preliminary bill folio and not a tax invoice."
 msgstr ""
 "これはコンピューターで生成された予備請求書フォリオであり、請求書ではありませ"
 "ん。"
 
-#: check_out/templates/check_out/desktop/bill.html:240
+#: check_out/templates/check_out/desktop/bill.html:253
 msgid ""
 "I agree that my liability for this bill is not waived and agree to be held "
 "personally liable in the event that the indicated person, company or "
@@ -158,11 +158,11 @@ msgstr ""
 "社、または協会が料金の全額の一部を支払わなかった場合に個人的に責任を負うこと"
 "に同意します。"
 
-#: check_out/templates/check_out/desktop/bill.html:245
+#: check_out/templates/check_out/desktop/bill.html:258
 msgid "Outstanding balance will be charged to the credit card registered."
 msgstr "未払いの残高は、登録されたクレジットカードに請求されます。"
 
-#: check_out/templates/check_out/desktop/bill.html:264
+#: check_out/templates/check_out/desktop/bill.html:277
 msgid ""
 "Unable to proceed with some of the guest's check-out. Please check-out each "
 "guest individually."
@@ -170,7 +170,7 @@ msgstr ""
 "一部のゲストのチェックアウトを続行できません。\n"
 "ドロップダウンからゲストを選択してチェックアウトしてください。"
 
-#: check_out/templates/check_out/desktop/bill.html:266
+#: check_out/templates/check_out/desktop/bill.html:279
 msgid ""
 "Unable to proceed with this guest's check-out. Please check-out at the Front "
 "Desk."
@@ -178,44 +178,77 @@ msgstr ""
 "このゲストのチェックアウトを続行できません。 フロントでチェックアウトしてくだ"
 "さい。"
 
-#: check_out/templates/check_out/desktop/bill.html:284
+#: check_out/templates/check_out/desktop/bill.html:298
 #: check_out/templates/check_out/desktop/complete.html:15
 msgid "Check Out Successful"
 msgstr "チェックアウト成功"
 
-#: check_out/templates/check_out/desktop/bill.html:290
-#: check_out/templates/check_out/desktop/login.html:67
-#: check_out/templates/check_out/mobile/login.html:76
-#: pre_arrival/templates/pre_arrival/desktop/login.html:80
-#: pre_arrival/templates/pre_arrival/mobile/login.html:98
+#: check_out/templates/check_out/desktop/bill.html:300
+msgid "Error"
+msgstr "エラー"
+
+#: check_out/templates/check_out/desktop/bill.html:308
+#: check_out/templates/check_out/desktop/bill.html:326
+#: check_out/templates/check_out/desktop/login.html:74
+#: check_out/templates/check_out/mobile/login.html:82
+#: pre_arrival/templates/pre_arrival/desktop/login.html:101
+#: pre_arrival/templates/pre_arrival/mobile/login.html:119
+#: pre_arrival/templates/pre_arrival/mobile/login.html:121
 msgid "OK"
 msgstr "はい"
+
+#: check_out/templates/check_out/desktop/bill.html:320
+#: check_out/templates/check_out/desktop/login.html:68
+#: check_out/templates/check_out/mobile/login.html:76
+#: guest_base/templates/guest_base/desktop/property.html:49
+#: pre_arrival/templates/pre_arrival/desktop/detail.html:364
+#: pre_arrival/templates/pre_arrival/desktop/detail.html:383
+#: pre_arrival/templates/pre_arrival/desktop/detail.html:402
+#: pre_arrival/templates/pre_arrival/desktop/other_info.html:136
+#: pre_arrival/templates/pre_arrival/desktop/reservation.html:69
+#: pre_arrival/templates/pre_arrival/mobile/detail.html:367
+#: pre_arrival/templates/pre_arrival/mobile/detail.html:386
+#: pre_arrival/templates/pre_arrival/mobile/detail.html:405
+#: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:314
+#: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:333
+#: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:352
+#: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:316
+#: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:335
+#: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:354
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:311
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:330
+#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:349
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:313
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:332
+#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:351
+msgid "Invalid Input"
+msgstr "無効入力"
 
 #: check_out/templates/check_out/desktop/complete.html:20
 msgid "We hope you enjoy your stay with us,<br>and well see you again soon!"
 msgstr "どうぞよろしくお願いいたします。<br>またお会いしましょう！"
 
-#: check_out/templates/check_out/desktop/login.html:17
+#: check_out/templates/check_out/desktop/login.html:24
 msgid "Please enter your<br>reservation details"
 msgstr "予約の詳細を<br>入力してください"
 
-#: check_out/templates/check_out/desktop/login.html:22
-#: check_out/templates/check_out/mobile/login.html:30
+#: check_out/templates/check_out/desktop/login.html:29
+#: check_out/templates/check_out/mobile/login.html:36
 msgid "The following information is required for<br>verification."
 msgstr "確認には以下の情報が必要です。"
 
-#: check_out/templates/check_out/desktop/login.html:47
-#: check_out/templates/check_out/mobile/login.html:52
-#: check_out/templates/check_out/mobile/login.html:55
+#: check_out/templates/check_out/desktop/login.html:54
+#: check_out/templates/check_out/mobile/login.html:58
+#: check_out/templates/check_out/mobile/login.html:61
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:348
-#: pre_arrival/templates/pre_arrival/desktop/login.html:60
+#: pre_arrival/templates/pre_arrival/desktop/login.html:67
 #: pre_arrival/templates/pre_arrival/desktop/other_info.html:122
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:85
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:55
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:351
-#: pre_arrival/templates/pre_arrival/mobile/login.html:71
-#: pre_arrival/templates/pre_arrival/mobile/login.html:74
 #: pre_arrival/templates/pre_arrival/mobile/login.html:77
+#: pre_arrival/templates/pre_arrival/mobile/login.html:80
+#: pre_arrival/templates/pre_arrival/mobile/login.html:83
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:53
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:94
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:294
@@ -232,53 +265,27 @@ msgstr "確認には以下の情報が必要です。"
 msgid "Next"
 msgstr "次"
 
-#: check_out/templates/check_out/desktop/login.html:61
-#: check_out/templates/check_out/mobile/login.html:70
-#: pre_arrival/templates/pre_arrival/desktop/detail.html:364
-#: pre_arrival/templates/pre_arrival/desktop/detail.html:383
-#: pre_arrival/templates/pre_arrival/desktop/detail.html:402
-#: pre_arrival/templates/pre_arrival/desktop/other_info.html:136
-#: pre_arrival/templates/pre_arrival/desktop/reservation.html:69
-#: pre_arrival/templates/pre_arrival/mobile/detail.html:367
-#: pre_arrival/templates/pre_arrival/mobile/detail.html:386
-#: pre_arrival/templates/pre_arrival/mobile/detail.html:405
-#: pre_arrival/templates/pre_arrival/mobile/login.html:92
-#: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:314
-#: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:333
-#: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:352
-#: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:316
-#: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:335
-#: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:354
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:311
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:330
-#: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:349
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:313
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:332
-#: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:351
-msgid "Invalid Input"
-msgstr "無効入力"
-
-#: check_out/templates/check_out/mobile/login.html:23
-#: pre_arrival/templates/pre_arrival/mobile/login.html:31
+#: check_out/templates/check_out/mobile/login.html:29
+#: pre_arrival/templates/pre_arrival/mobile/login.html:37
 msgid "Please enter your<br>Last Name"
 msgstr "あなたの姓を入力"
 
-#: check_out/templates/check_out/mobile/login.html:24
+#: check_out/templates/check_out/mobile/login.html:30
 msgid "Please enter your<br>Room Number"
 msgstr "部屋番号を入力してください"
 
-#: check_out/templates/check_out/mobile/login.html:29
+#: check_out/templates/check_out/mobile/login.html:35
 msgid "To begin the online check-out process,<br>please enter your last name."
 msgstr "チェックアウトプロセスを開始するには、姓を入力してください。"
 
-#: check_out/views.py:100
+#: check_out/views.py:102
 msgid ""
 "All Guests have been successfully checked out.\n"
 "\n"
 "We hope you enjoy your stay with us, and we'll see you again soon!"
 msgstr "どうぞよろしくお願いいたします。またお会いしましょう！"
 
-#: check_out/views.py:106
+#: check_out/views.py:108
 #, python-format
 msgid ""
 "We have checked-out the guest:\n"
@@ -293,11 +300,15 @@ msgstr ""
 "チェックアウトするために残された他のゲスト：\n"
 "- %(names_left)s"
 
-#: guest_base/gateways.py:23 guest_base/gateways.py:43
+#: guest_base/forms.py:19 guest_base/forms.py:23
+msgid "No property selected."
+msgstr "ホテルが選択されていません。"
+
+#: guest_base/gateways.py:30 guest_base/gateways.py:54
 msgid "Unable to connect to server, please try again."
 msgstr "サーバーに接続できません。もう一度やり直してください。"
 
-#: guest_base/gateways.py:62
+#: guest_base/gateways.py:75
 msgid "Error connecting to server"
 msgstr "サーバーへの接続中にエラーが発生しました。"
 
@@ -311,49 +322,54 @@ msgid ""
 msgstr ""
 "そのページは存在しないようです。<br>URLを確認して、もう一度お試しください。"
 
+#: guest_base/templates/guest_base/desktop/property.html:5
+msgid "Property"
+msgstr "ホテルリスト"
+
+#: guest_base/templates/guest_base/desktop/property.html:18
+msgid "Select Hotel"
+msgstr "ホテルリスト"
+
+#: guest_base/templates/guest_base/desktop/property.html:55
+#: pre_arrival/templates/pre_arrival/desktop/other_info.html:142
+#: pre_arrival/templates/pre_arrival/desktop/passport.html:115
+#: pre_arrival/templates/pre_arrival/desktop/reservation.html:75
+#: pre_arrival/templates/pre_arrival/mobile/passport.html:116
+#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:107
+#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:116
+msgid "Close"
+msgstr "閉じる"
+
 #: pre_arrival/forms.py:13
 msgid "Arrival Date"
 msgstr "到着日"
 
-#: pre_arrival/forms.py:42
-msgid ""
-"Pre-arrival for this reservation is unavailable yet. Please try again later."
-msgstr "この予約の登録はまだできません。 後日、もう一度お試しください。"
-
-#: pre_arrival/forms.py:44
-msgid "Pre-arrival registration has been completed."
-msgstr "到着前の登録が完了しました。"
-
-#: pre_arrival/forms.py:46
-msgid "Incorrect reservation details, please check and try again."
-msgstr "予約内容が間違っていますので、もう一度確認してお試しください。"
-
-#: pre_arrival/forms.py:86
+#: pre_arrival/forms.py:83
 msgid "Token ID is missing."
 msgstr "トークンは定義されていません。"
 
-#: pre_arrival/forms.py:91
+#: pre_arrival/forms.py:88
 msgid "Token ID is not correct."
 msgstr "トークンが正しくない。"
 
-#: pre_arrival/forms.py:118
+#: pre_arrival/forms.py:115
 msgid "No reservation selected."
 msgstr "予約が選択されていません。"
 
-#: pre_arrival/forms.py:132
+#: pre_arrival/forms.py:129
 msgid "Incorrect API key"
 msgstr "不正なAPIキー"
 
-#: pre_arrival/forms.py:133
+#: pre_arrival/forms.py:130
 msgid "Invalid passport image."
 msgstr "パスポート画像が無効です。"
 
-#: pre_arrival/forms.py:134
+#: pre_arrival/forms.py:131
 msgid "Invalid passport image. MRZ Code is invalid."
 msgstr ""
 "パスポートの下部にあるMRZコードが取得されていることを確認してください。"
 
-#: pre_arrival/forms.py:135
+#: pre_arrival/forms.py:132
 msgid ""
 "Invalid passport image. Please make sure your passport page area is not "
 "blocked."
@@ -361,54 +377,54 @@ msgstr ""
 "パスポートページ全体がフレーム内にキャプチャされていることを確認してくださ"
 "い。"
 
-#: pre_arrival/forms.py:136
+#: pre_arrival/forms.py:133
 msgid "Image file is too big."
 msgstr "画像ファイルのサイズが大きすぎます（> 2MB）。"
 
-#: pre_arrival/forms.py:137
+#: pre_arrival/forms.py:134
 msgid "Error scanning image. Please try again later."
 msgstr "画像を処理できません。 後でもう一度やり直してください。"
 
-#: pre_arrival/forms.py:138
+#: pre_arrival/forms.py:135
 msgid "Invalid NRIC image."
 msgstr "NRIC画像が無効です。"
 
-#: pre_arrival/forms.py:152 pre_arrival_all_passport/forms.py:101
+#: pre_arrival/forms.py:150 pre_arrival_all_passport/forms.py:118
 msgid "No image file selected."
 msgstr "画像ファイルが選択されていません。"
 
-#: pre_arrival/forms.py:164
+#: pre_arrival/forms.py:162
 #, python-format
 msgid ""
 "You must be at least %(age)s years of age to proceed with your registration."
 msgstr "登録を続行するには、%(age)s歳以上である必要があります。"
 
-#: pre_arrival/forms.py:166 pre_arrival_all_passport/forms.py:109
+#: pre_arrival/forms.py:164 pre_arrival_all_passport/forms.py:126
 msgid ""
 "Your passport has expired, please capture / upload a valid passport photo to "
 "proceed"
 msgstr ""
 "パスポートの有効期限が切れています。有効なパスポートを使用してください。"
 
-#: pre_arrival/forms.py:216 pre_arrival/forms.py:313
+#: pre_arrival/forms.py:215 pre_arrival/forms.py:312
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:165
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:166
 msgid "First Name"
 msgstr "名"
 
-#: pre_arrival/forms.py:218 pre_arrival/forms.py:316
+#: pre_arrival/forms.py:217 pre_arrival/forms.py:315
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:183
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:184
 msgid "Passport Number"
 msgstr "パスポート番号"
 
-#: pre_arrival/forms.py:219 pre_arrival/forms.py:315
+#: pre_arrival/forms.py:218 pre_arrival/forms.py:314
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:193
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:194
 msgid "[Select Country]"
 msgstr "[国を選択]"
 
-#: pre_arrival/forms.py:219 pre_arrival/forms.py:315
+#: pre_arrival/forms.py:218 pre_arrival/forms.py:314
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:108
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:191
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:290
@@ -426,45 +442,45 @@ msgstr "[国を選択]"
 msgid "Nationality"
 msgstr "国籍"
 
-#: pre_arrival/forms.py:220 pre_arrival/forms.py:317
+#: pre_arrival/forms.py:219 pre_arrival/forms.py:316
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:205
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:206
 msgid "Date of Birth"
 msgstr "生年月日"
 
-#: pre_arrival/forms.py:275
+#: pre_arrival/forms.py:274
 #, python-format
 msgid "Main guest has to be %(age)s and above."
 msgstr "メインゲストは%(age)s歳以上である必要があります。"
 
-#: pre_arrival/forms.py:380
+#: pre_arrival/forms.py:379
 msgid "You have exceeded the number of adults."
 msgstr "大人の数を超えました。"
 
-#: pre_arrival/forms.py:388
+#: pre_arrival/forms.py:387
 #: pre_arrival/templates/pre_arrival/desktop/other_info.html:35
 msgid "Time of Arrival"
 msgstr "到着時刻"
 
-#: pre_arrival/forms.py:389
+#: pre_arrival/forms.py:388
 msgid "Special Requests"
 msgstr "特別なお願い"
 
-#: pre_arrival/forms.py:390
+#: pre_arrival/forms.py:389
 msgid "Email"
 msgstr "Eメール"
 
-#: pre_arrival/forms.py:391
+#: pre_arrival/forms.py:390
 msgid "Is Subscribe"
 msgstr "申し込む"
 
-#: pre_arrival/forms.py:447
+#: pre_arrival/forms.py:446
 #, python-format
 msgid ""
 "Pre-Check-In Complete - %(hotel_name)s - Reservation #%(reservation_no)s"
 msgstr "登録完了 - %(hotel_name)s - 予約番号 #%(reservation_no)s"
 
-#: pre_arrival/forms.py:478
+#: pre_arrival/forms.py:477
 msgid "There is no reservation can be done for pre-arrival"
 msgstr "予約はすでに登録またはチェックインされています。"
 
@@ -472,71 +488,57 @@ msgstr "予約はすでに登録またはチェックインされています。
 msgid "Pre Arrival"
 msgstr "到着前登録"
 
-#: pre_arrival/templates/pre_arrival/base.html:42
-#: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:23
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:23
+#: pre_arrival/templates/pre_arrival/base.html:43
 msgid "Session Expiring"
 msgstr "ログイン有効期限アラート"
 
-#: pre_arrival/templates/pre_arrival/base.html:47
-#: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:28
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:28
+#: pre_arrival/templates/pre_arrival/base.html:48
 msgid "Your session is expiring soon"
 msgstr "期限が切れる前に登録を完了してください。"
 
-#: pre_arrival/templates/pre_arrival/base.html:52
-#: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:33
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:33
+#: pre_arrival/templates/pre_arrival/base.html:53
 msgid "Remaining session time:"
 msgstr "残り時間:"
 
-#: pre_arrival/templates/pre_arrival/base.html:63
-#: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:44
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:44
+#: pre_arrival/templates/pre_arrival/base.html:64
 msgid "Extend"
 msgstr "拡張する"
 
-#: pre_arrival/templates/pre_arrival/base.html:74
-#: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:55
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:55
+#: pre_arrival/templates/pre_arrival/base.html:75
 msgid "Session Expired"
 msgstr "ログイン有効期限アラート"
 
-#: pre_arrival/templates/pre_arrival/base.html:77
-#: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:58
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:58
+#: pre_arrival/templates/pre_arrival/base.html:78
 msgid "Your session is expired"
 msgstr "セッションの有効期限が切れました。"
 
-#: pre_arrival/templates/pre_arrival/base.html:80
-#: pre_arrival/templates/pre_arrival/desktop/complete.html:95
-#: pre_arrival_adhoc_guest/templates/pre_arrival/base.html:61
-#: pre_arrival_all_passport/templates/pre_arrival/base.html:61
+#: pre_arrival/templates/pre_arrival/base.html:81
+#: pre_arrival/templates/pre_arrival/desktop/complete.html:102
 msgid "Ok"
 msgstr "はい"
 
-#: pre_arrival/templates/pre_arrival/desktop/complete.html:17
+#: pre_arrival/templates/pre_arrival/desktop/complete.html:24
 msgid "Pre-Check-In Complete"
 msgstr "登録完了"
 
-#: pre_arrival/templates/pre_arrival/desktop/complete.html:30
+#: pre_arrival/templates/pre_arrival/desktop/complete.html:37
 #: pre_arrival/templates/pre_arrival/email/complete.html:228
 msgid "Reservation No"
 msgstr "予約番号"
 
-#: pre_arrival/templates/pre_arrival/desktop/complete.html:36
+#: pre_arrival/templates/pre_arrival/desktop/complete.html:43
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:41
 #: pre_arrival/templates/pre_arrival/email/complete.html:230
 msgid "Check-in Date"
 msgstr "チェックイン日"
 
-#: pre_arrival/templates/pre_arrival/desktop/complete.html:38
+#: pre_arrival/templates/pre_arrival/desktop/complete.html:45
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:45
 #: pre_arrival/templates/pre_arrival/email/complete.html:244
 msgid "Check-out Date"
 msgstr "チェックアウト日"
 
-#: pre_arrival/templates/pre_arrival/desktop/complete.html:50
+#: pre_arrival/templates/pre_arrival/desktop/complete.html:57
 msgid ""
 "\n"
 "                                Please proceed to the front office to "
@@ -554,13 +556,13 @@ msgstr ""
 "ます。\n"
 "                            "
 
-#: pre_arrival/templates/pre_arrival/desktop/complete.html:60
+#: pre_arrival/templates/pre_arrival/desktop/complete.html:67
 msgid "Next Registration"
 msgstr "次の登録"
 
-#: pre_arrival/templates/pre_arrival/desktop/complete.html:69
-#: pre_arrival/templates/pre_arrival/desktop/complete.html:73
-#: pre_arrival/templates/pre_arrival/desktop/complete.html:77
+#: pre_arrival/templates/pre_arrival/desktop/complete.html:76
+#: pre_arrival/templates/pre_arrival/desktop/complete.html:80
+#: pre_arrival/templates/pre_arrival/desktop/complete.html:84
 msgid "Get The App"
 msgstr "アプリをダウンロードする"
 
@@ -677,20 +679,46 @@ msgstr "ゲストを追加"
 msgid "Fix"
 msgstr "はい"
 
-#: pre_arrival/templates/pre_arrival/desktop/login.html:22
-#: pre_arrival/templates/pre_arrival/mobile/login.html:29
+#: pre_arrival/templates/pre_arrival/desktop/login.html:29
+#: pre_arrival/templates/pre_arrival/mobile/login.html:35
 #, python-format
 msgid "Welcome to<br>Hotel %(HOTEL_NAME)s"
 msgstr "%(HOTEL_NAME)s<br>へようこそ"
 
-#: pre_arrival/templates/pre_arrival/desktop/login.html:27
+#: pre_arrival/templates/pre_arrival/desktop/login.html:34
 msgid ""
 "To begin the online check-in process, please enter the<br>information below."
 msgstr "チェックインプロセスを開始するには、<br>予約番号を入力してください"
 
-#: pre_arrival/templates/pre_arrival/desktop/login.html:74
-msgid "Error"
-msgstr "エラー"
+#: pre_arrival/templates/pre_arrival/desktop/login.html:83
+#: pre_arrival/templates/pre_arrival/mobile/login.html:100
+msgid "registration_login_error_modal_title:300"
+msgstr "登録できません"
+
+#: pre_arrival/templates/pre_arrival/desktop/login.html:85
+#: pre_arrival/templates/pre_arrival/mobile/login.html:102
+msgid "registration_login_error_modal_title:400"
+msgstr "登録が完了しました"
+
+#: pre_arrival/templates/pre_arrival/desktop/login.html:87
+#: pre_arrival/templates/pre_arrival/mobile/login.html:104
+msgid "registration_login_error_modal_title:other"
+msgstr "予約が見つかりません"
+
+#: pre_arrival/templates/pre_arrival/desktop/login.html:93
+#: pre_arrival/templates/pre_arrival/mobile/login.html:110
+msgid "registration_login_error_modal_body:300"
+msgstr "まだ登録手続きはできません。 後でもう一度やり直してください。"
+
+#: pre_arrival/templates/pre_arrival/desktop/login.html:95
+#: pre_arrival/templates/pre_arrival/mobile/login.html:112
+msgid "registration_login_error_modal_body:400"
+msgstr "この予約は正常に登録されたため、リクエストを送信できません。"
+
+#: pre_arrival/templates/pre_arrival/desktop/login.html:97
+#: pre_arrival/templates/pre_arrival/mobile/login.html:114
+msgid "registration_login_error_modal_body:other"
+msgstr "予約の詳細が正しくない場合は、確認してもう一度お試しください。"
 
 #: pre_arrival/templates/pre_arrival/desktop/other_info.html:22
 msgid "Additional Information"
@@ -731,15 +759,6 @@ msgstr ""
 "\" class=\"new-window-link\">こちら</a>からグローバルプライバシーステートメン"
 "トをご覧ください。\n"
 "                            "
-
-#: pre_arrival/templates/pre_arrival/desktop/other_info.html:142
-#: pre_arrival/templates/pre_arrival/desktop/passport.html:115
-#: pre_arrival/templates/pre_arrival/desktop/reservation.html:75
-#: pre_arrival/templates/pre_arrival/mobile/passport.html:116
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:107
-#: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:116
-msgid "Close"
-msgstr "閉じる"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:27
 msgid "Upload a photo<br>of your Passport"
@@ -815,28 +834,28 @@ msgstr ""
 "フロントデスクで鍵をお受け取りください。または、モバイルアプリをダウンロード"
 "して、携帯キーを使用して部屋に直接向かうこともできます。"
 
-#: pre_arrival/templates/pre_arrival/mobile/login.html:33
+#: pre_arrival/templates/pre_arrival/mobile/login.html:39
 msgid "Please confirm your<br>Arrival Date"
 msgstr "到着日をご確認ください"
 
-#: pre_arrival/templates/pre_arrival/mobile/login.html:39
+#: pre_arrival/templates/pre_arrival/mobile/login.html:45
 msgid ""
 "To begin the online check-in process,<br>please enter your reservation "
 "number."
 msgstr "チェックインプロセスを開始するには、<br>予約番号を入力してください"
 
-#: pre_arrival/templates/pre_arrival/mobile/login.html:41
+#: pre_arrival/templates/pre_arrival/mobile/login.html:47
 msgid ""
 "To verify your reservation, please provide<br>your last name is in your "
 "passport."
 msgstr "予約を確認するために、<br>予約で使用した姓を入力してください。"
 
-#: pre_arrival/templates/pre_arrival/mobile/login.html:43
+#: pre_arrival/templates/pre_arrival/mobile/login.html:49
 msgid ""
 "To verify your reservation, please confirm<br>the arrival date at the hotel."
 msgstr "到着日を確認して<br>予約を確認してください。"
 
-#: pre_arrival/templates/pre_arrival/mobile/login.html:50
+#: pre_arrival/templates/pre_arrival/mobile/login.html:56
 msgid "e.g. 12345678"
 msgstr "例: 12345678"
 
@@ -890,7 +909,7 @@ msgstr "より多くのゲストを登録しますか？"
 msgid "We've found the following guests profiles<br>under your reservation."
 msgstr "以下のゲストが予約に<br>追加されました。"
 
-#: pre_arrival_all_passport/forms.py:81
+#: pre_arrival_all_passport/forms.py:97
 msgid "You have exceeded the number of additional guests."
 msgstr "大人の数を超えました。"
 
