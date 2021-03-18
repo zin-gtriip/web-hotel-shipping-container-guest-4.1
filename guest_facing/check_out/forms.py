@@ -12,6 +12,7 @@ class CheckOutLoginForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
+        self.response = {}
         self.fields['reservation_no'].initial = self.request.session.get('check_out', {}).get('preload', {}).get('reservation_no')
         self.fields['last_name'].initial = self.request.session.get('check_out', {}).get('preload', {}).get('last_name')
         self.fields['room_no'].initial = self.request.session.get('check_out', {}).get('preload', {}).get('room_no')
@@ -41,10 +42,11 @@ class CheckOutLoginForm(forms.Form):
         data['reservation_no'] = self.cleaned_data.get('reservation_no', None)
         data['last_name'] = self.cleaned_data.get('last_name', None)
         data['room_no'] = self.cleaned_data.get('room_no')
-        return gateways.guest_endpoint('/signInForCheckOut', data)
+        self.response = gateways.guest_endpoint('/signInForCheckOut', self.request.session.get('property_id', ''), data)
+        return self.response
     
     def save(self):
-        data = self.gateway_post()
+        data = self.response
         preload_data = dict(self.request.session.get('check_out', {}).get('preload', {})) # get and store preload because session will be cleared
         self.request.session['check_out'] = {} # clear session data
         self.request.session['check_out']['preload'] = preload_data # restore preload data
@@ -85,7 +87,7 @@ class CheckOutBillForm(forms.Form):
     def gateway_post(self):
         reservation_info = self.instance.get('reservation_info', [])
         data = {'reservation_info': reservation_info}
-        return gateways.guest_endpoint('/postCheckOut', data)
+        return gateways.guest_endpoint('/postCheckOut', self.request.session.get('property_id', ''), data)
 
     def save(self):
         response = self.gateway_post()
@@ -96,7 +98,7 @@ class CheckOutBillForm(forms.Form):
                 new_guest_data['reservation_no'] = next(iter(response.get('reservation_no_left', [])), '')
                 new_guest_data['last_name'] = ''
                 new_guest_data['room_no'] = self.request.session['check_out'].get('input_room_no')
-                new_guest_response = gateways.guest_endpoint('/signInForCheckOut', new_guest_data)
+                new_guest_response = gateways.guest_endpoint('/signInForCheckOut', self.request.session.get('property_id', ''), new_guest_data)
                 self.request.session['check_out']['bills'] = new_guest_response.get('data', [])
                 if not new_guest_response.get('data', []):
                     self.request.session['check_out']['complete'] = True

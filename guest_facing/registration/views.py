@@ -1,9 +1,10 @@
+from django.conf                import settings
 from django.shortcuts           import render
 from django.utils               import translation
 from django.utils.translation   import gettext, gettext_lazy as _
 from django.views.generic       import *
 from guest_facing.core.views    import IndexView
-from guest_facing.core.mixins   import RequestFormKwargsMixin, MobileTemplateMixin, JSONResponseMixin
+from guest_facing.core.mixins   import PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, JSONResponseMixin
 from .forms                     import *
 from .mixins                    import *
 from .utils                     import *
@@ -16,8 +17,9 @@ class RegistrationDataView(RedirectView):
     pattern_name = 'registration:login'
 
     def get_redirect_url(self, *args, **kwargs):
-        self.request.session['registration'] = {'preload': {}}
+        self.request.session['property_id'] = self.request.GET.get('property', None)
         self.request.session['app'] = self.request.GET.get('app', 0)
+        self.request.session['pre_arrival'] = {'preload': {}}
         if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
         if 'auto_login' in self.request.GET: self.request.session['registration']['preload']['auto_login'] = self.request.GET.get('auto_login', 0)
         if 'reservation_no' in self.request.GET: self.request.session['registration']['preload']['reservation_no'] = self.request.GET.get('reservation_no', '')
@@ -30,7 +32,7 @@ class RegistrationDataView(RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
-class RegistrationLoginView(RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
+class RegistrationLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
     template_name           = 'registration/desktop/login.html'
     mobile_template_name    = 'registration/mobile/login.html'
     form_class              = RegistrationLoginForm
@@ -64,7 +66,7 @@ class RegistrationLoginView(RequestFormKwargsMixin, MobileTemplateMixin, Progres
         return context
 
 
-class RegistrationTimerExtensionView(JSONResponseMixin, RequestFormKwargsMixin, FormView):
+class RegistrationTimerExtensionView(PropertyRequiredMixin, JSONResponseMixin, RequestFormKwargsMixin, FormView):
     form_class              = RegistrationTimerExtensionForm
 
     def form_valid(self, form):
@@ -80,7 +82,7 @@ class RegistrationTimerExtensionView(JSONResponseMixin, RequestFormKwargsMixin, 
         return self.render_to_json_response(self.get_context_data())
 
 
-class RegistrationReservationView(ExpirySessionMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
+class RegistrationReservationView(ExpirySessionMixin, PropertyRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
     template_name           = 'registration/desktop/reservation.html'
     form_class              = RegistrationReservationForm
     success_url             = '/registration/passport'
@@ -104,7 +106,7 @@ class RegistrationReservationView(ExpirySessionMixin, RequestFormKwargsMixin, Pr
         return super().form_valid(form)
 
 
-class RegistrationPassportView(ParameterRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
+class RegistrationPassportView(ParameterRequiredMixin, PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
     template_name           = 'registration/desktop/passport.html'
     mobile_template_name    = 'registration/mobile/passport.html'
     form_class              = RegistrationPassportForm
@@ -117,7 +119,7 @@ class RegistrationPassportView(ParameterRequiredMixin, RequestFormKwargsMixin, M
         return super().form_valid(form)
 
 
-class RegistrationDetailView(ParameterRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
+class RegistrationDetailView(ParameterRequiredMixin, PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
     template_name           = 'registration/desktop/detail.html'
     mobile_template_name    = 'registration/mobile/detail.html'
     form_class              = RegistrationDetailForm
@@ -153,7 +155,7 @@ class RegistrationDetailView(ParameterRequiredMixin, RequestFormKwargsMixin, Mob
         return super().form_valid(form)
 
 
-class RegistrationOtherInfoView(ParameterRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
+class RegistrationOtherInfoView(ParameterRequiredMixin, PropertyRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
     template_name           = 'registration/desktop/other_info.html'
     form_class              = RegistrationOtherInfoForm
     success_url             = '/registration/complete'
@@ -174,7 +176,7 @@ class RegistrationOtherInfoView(ParameterRequiredMixin, RequestFormKwargsMixin, 
         return context
 
 
-class RegistrationCompleteView(ParameterRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
+class RegistrationCompleteView(ParameterRequiredMixin, PropertyRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
     template_name           = 'registration/desktop/complete.html'
     form_class              = RegistrationCompleteForm
     success_url             = '/registration/reservation'

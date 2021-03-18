@@ -1,0 +1,49 @@
+{% extends 'registration/desktop/base_desktop.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'registration/scss/desktop/guest_list.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block header_left %}
+    <a href="{% url 'pre_arrival:reservation' %}" class="btn btn-link"><i class="fas fa-arrow-left"></i></a>
+    {{ block.super }}
+{% endblock header_left %}
+
+{% block content %}
+    {{ block.super }}
+    <div class="row page-header">
+        <div class="col-lg-12 px-0 text-center">
+            {% blocktrans %}Select Guest to<br>Check-In{% endblocktrans %}
+        </div>
+    </div>
+    <div class="row page-subheader">
+        <div class="col-lg-12 px-0 text-center text-secondary">
+            {% blocktrans %}We've found the following guests profiles<br>under your reservation.{% endblocktrans %}
+        </div>
+    </div>
+    <div class="row page-content">
+        <div class="col-lg-12">
+            {% for guest in request.session.registration.reservation.guestsList %}
+                <div class="row">
+                    <div class="col-lg-12 mb-3 d-flex justify-content-center">
+                        <button class="btn btn-outline-primary" disabled>{{ guest.firstName }} {{ guest.lastName }} <i class="fas fa-check icon-btn" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row page-footer">
+        <div class="col-lg-12 d-flex justify-content-center">
+            <a href="{% url 'registration_ocr_required:extra_passport' %}" class="btn btn-outline-primary">+ {% trans 'Add Guest' %}</a>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block static_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'registration/js/desktop/guest_list.js' %}"></script>
+{% endblock static_js %}

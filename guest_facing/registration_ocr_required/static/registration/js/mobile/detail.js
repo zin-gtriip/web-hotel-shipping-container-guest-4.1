@@ -5,6 +5,7 @@ $('.rolldate').each(function() {
 restyleExtra();
 rearrangeExtraIndex();
 validateMaxExtra();
+showHideBackBtn();
 scrollToGuestIndex();
 
 
@@ -72,6 +73,7 @@ function removeExtra($btn) {
         rearrangeExtraIndex();
         recalculateTotalExtra();
         validateMaxExtra();
+        showHideBackBtn();
         scrollToGuestIndex();
     });
 }
@@ -119,13 +121,6 @@ function restyleExtra() {
 }
 
 
-function scrollToGuestIndex() {
-    $('html, body').animate({
-        scrollTop: $('.guest-index:last').offset().top
-    }, 800);
-}
-
-
 function validateMaxExtra() {
     var $extraFormset = $('.extra-formset')
         , $maxFormset = $('#id_form-MAX_NUM_FORMS')
@@ -142,4 +137,20 @@ function validateMaxExtra() {
         $btnSkip.show();
         $btnNext.hide();
     }
+}
+
+
+function showHideBackBtn() {
+    if ($('.extra-formset:visible').length == 0) {
+        $('#btn-back').show();
+    } else {
+        $('#btn-back').hide();
+    }
+}
+
+
+function scrollToGuestIndex() {
+    $('html, body').animate({
+        scrollTop: $('.guest-index:last').offset().top
+    }, 800);
 }

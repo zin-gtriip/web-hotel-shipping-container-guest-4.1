@@ -27,14 +27,14 @@
                 {% for reservation in reservations %}
                     <div class="reservation-container" id="reservation-container-{{ forloop.counter0 }}">
                         <div class="reservation-overlay"></div>
-                        <label class="label-reservation" style="background-image: url('/static/img/{{ reservation.roomImage }}');">
+                        <label class="label-reservation" style="background-image: url('{{ reservation.roomImage }}');">
                             <div class="reservation-details">
                                 <div class="room-type text-12 text-white">{{ reservation.roomName }}</div>
                                 <div class="reservation-checkbox">
                                     <span class="reservation-checkbox-icon"></span>
                                 </div>
                             </div>
-                            <input type="radio" name="reservation_no" value="{{ reservation.reservationNo }}" id="id_reservation_no_{{ forloop.counter0 }}" required hidden>
+                            <input type="radio" name="reservation_no" value="{{ reservation.reservationNo }}" id="id_reservation_no_{{ forloop.counter0 }}" hidden>
                         </label>
                         <div class="reservation-date bg-dark">
                             <div class="text-left">

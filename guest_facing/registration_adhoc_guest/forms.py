@@ -1,4 +1,8 @@
+import os, base64
 from django                                         import forms
+from django.conf                                    import settings
+from django.utils.translation                       import gettext, gettext_lazy as _
+from django_countries.fields                        import Country
 from guest_facing.registration                      import utils
 from guest_facing.registration_ocr_required.forms   import *
 
@@ -61,7 +65,7 @@ class RegistrationExtraPassportForm(RegistrationExtraPassportForm):
         saved_file = os.path.join(folder_name, file_name)
         with open(saved_file, 'rb') as image_file:
             file_b64_encoded = base64.b64encode(image_file.read())
-        ocr = self.gateway_ocr(saved_file)
+        ocr = self.response
         os.remove(saved_file) # remove saved file after got response
 
         # parse dob
@@ -83,7 +87,13 @@ class RegistrationExtraPassportForm(RegistrationExtraPassportForm):
 
 
 class RegistrationOtherInfoForm(RegistrationOtherInfoForm):
-    pass
+    
+    def gateway_post(self):
+        super().gateway_post()
+        registered_reservation_no = self.request.session['registration'].get('reservation', {}).get('reservationNo', '')
+        registered_reservation = next((reservation for reservation in self.request.session['registration']['bookings'] if reservation.get('reservationNo', '') == registered_reservation_no), {})
+        if registered_reservation:
+            self.request.session['registration']['bookings'].remove(registered_reservation) # remove just registered reservation to prevent "Next Registration" displayed on complete page
 
 
 class RegistrationCompleteForm(RegistrationCompleteForm):

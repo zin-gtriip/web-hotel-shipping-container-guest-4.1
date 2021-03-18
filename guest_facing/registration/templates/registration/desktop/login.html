@@ -13,6 +13,13 @@
     <link rel="stylesheet" href="{% static 'registration/scss/desktop/login.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
+{% block header_left %}
+    <a href="{% url 'pre_arrival:index' %}" class="btn btn-link">
+        <span class="material-icons">home</span>
+    </a>
+    {{ block.super }}
+{% endblock header_left %}
+
 {% block content %}
     {{ block.super }}
     <form method="post">
@@ -71,10 +78,24 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header bg-primary text-white">
-                        <h4 class="modal-title mx-auto">{% trans 'Error' %}</h4>
+                        <h4 class="modal-title mx-auto">
+                            {% if error == 300 %}
+                                {% trans 'registration_login_error_modal_title:300' %}
+                            {% elif error == 400 %}
+                                {% trans 'registration_login_error_modal_title:400' %}
+                            {% else %}
+                                {% trans 'registration_login_error_modal_title:other' %}
+                            {% endif %}
+                        </h4>
                     </div>
                     <div class="modal-body">
-                        {{ error|linebreaks }}
+                        {% if error == 300 %}
+                            {% trans 'registration_login_error_modal_body:300' %}
+                        {% elif error == 400 %}
+                            {% trans 'registration_login_error_modal_body:400' %}
+                        {% else %}
+                            {% trans 'registration_login_error_modal_body:other' %}
+                        {% endif %}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'OK' %}</button>

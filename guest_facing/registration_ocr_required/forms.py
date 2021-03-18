@@ -108,6 +108,7 @@ class RegistrationExtraPassportForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
+        self.response = {}
 
     def clean(self):
         super().clean()
@@ -151,7 +152,8 @@ class RegistrationExtraPassportForm(forms.Form):
             scan_type = 'nric'
             response = gateways.ocr(saved_file, 'nric')
         response['scan_type'] = scan_type
-        return response
+        self.response = response
+        return self.response
 
     def save(self):
         # prepare for ocr
@@ -160,7 +162,7 @@ class RegistrationExtraPassportForm(forms.Form):
         saved_file = os.path.join(folder_name, file_name)
         with open(saved_file, 'rb') as image_file:
             file_b64_encoded = base64.b64encode(image_file.read())
-        ocr = self.gateway_ocr(saved_file)
+        ocr = self.response
         os.remove(saved_file) # remove saved file after got response
 
         # parse dob

@@ -55,6 +55,7 @@ $('#footer-reservation-no button').click(function() {
 		, $nextStep = $('#header-last-name, #subheader-last-name, #content-last-name, #footer-last-name');
 
 	$('.header #btn-back').show();
+	$('.header #btn-home').hide();
 	$nextStep.show().addClass('active');
 	$currentStep.animate({opacity: 0}, {
 		step: function(now) {
@@ -94,6 +95,7 @@ $('#btn-back').click(function() {
 		$currentStep = $('#header-last-name, #subheader-last-name, #content-last-name, #footer-last-name');
 		$previousStep = $('#header-reservation-no, #subheader-reservation-no, #content-reservation-no, #footer-reservation-no');
 		$(this).hide();
+		$('.header #btn-home').show();
 	} else if ($currentActive.attr('id') == 'content-arrival-date') {
 		$currentStep = $('#header-arrival-date, #subheader-arrival-date, #content-arrival-date, #footer-arrival-date');
 		$previousStep = $('#header-last-name, #subheader-last-name, #content-last-name, #footer-last-name');

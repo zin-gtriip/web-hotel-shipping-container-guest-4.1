@@ -1,4 +1,4 @@
-{% extends 'registration/desktop/base_desktop.html' %}
+{% extends 'registration/mobile/base_mobile.html' %}
 {% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
@@ -11,7 +11,7 @@
 
 {% block static_css %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'registration/scss/desktop/detail.scss' %}" type="text/x-scss" media="screen">
+    <link rel="stylesheet" href="{% static 'registration/scss/mobile/detail.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
 {% block header_left %}
@@ -25,21 +25,21 @@
     <form method="post">
         {% csrf_token %}
         <div class="row page-header">
-            <div class="col-lg-12 px-0 text-center">
+            <div class="col-12 px-0 text-center">
                 {% blocktrans %}Enter Guest Details{% endblocktrans %}
             </div>
         </div>
         <div class="row page-subheader">
-            <div class="col-lg-12 px-0 text-center text-secondary">
+            <div class="col-12 px-0 text-center text-secondary">
                 {% blocktrans %}Please enter the personal particulars below.{% endblocktrans %}
             </div>
         </div>
         <div class="row page-content">
-            <div class="col-lg-12">
+            <div class="col-12">
                 <div class="row guests">
-                    <div class="col-lg-4 px-4 mx-auto" id="main-guest">
+                    <div class="col-12 px-5" id="main-guest" {% if request.session.registration.reservation.preArrivalDone == '1' %}hidden{% endif %}>
                         <div class="row guest-index">
-                            <div class="col-lg-12 px-0">
+                            <div class="col-12 px-0">
                                 {% render_field form.guest_id %}
                                 <span class="float-left text-primary text-uppercase font-weight-bold">
                                     {% if form.is_bound and extra.forms|length > 0 %}
@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-12">
                                 <div class="md-form mt-0">
                                     {% trans 'Enter your name' as first_name_placeholder %}
                                     {{ form.first_name.label_tag }}
@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-12">
                                 <div class="md-form mt-2">
                                     {{ form.last_name.label_tag }}
                                     {% render_field form.last_name class="form-control disabled" readonly="true" %}
@@ -81,7 +81,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-12">
                                 <div class="md-form mt-2">
                                     {% trans 'e.g. A12345Z' as passport_no_placeholder %}
                                     {{ form.passport_no.label_tag }}
@@ -103,7 +103,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-12">
                                 <div class="md-form mt-2">
                                     <label for="id_nationality" class="active">{% trans 'Nationality' %}</label>
                                     {% if form.is_bound and form.nationality.errors %}
@@ -124,20 +124,21 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-12">
                                 <div class="md-form mt-2 input-with-post-icon">
                                     {% trans 'YYYY-MM-DD' as birth_date_placeholder %}
-                                    {{ form.birth_date.label_tag }}
+                                    <label for="datepicker-birth-date">{{ form.birth_date.label }}</label>
+                                    {% render_field form.birth_date class="rolldate" hidden="true" %}
                                     {% if form.is_bound and form.birth_date.errors %}
                                         <!-- bound and has error -->
-                                        {% render_field form.birth_date class="form-control datepicker is-invalid" data-date-format="yyyy-mm-dd" placeholder=birth_date_placeholder %}
+                                        <input type="text" id="datepicker-birth-date" class="form-control datepicker is-invalid" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly required placeholder="{{ birth_date_placeholder }}">
                                         <!-- error feedback -->
                                         {% for error in form.birth_date.errors %}
                                             <div class="invalid-feedback">{{ error }}</div>
                                         {% endfor %}
                                     {% else %}
                                         <!-- not bound or no error -->
-                                        {% render_field form.birth_date class="form-control datepicker" data-date-format="yyyy-mm-dd" placeholder=birth_date_placeholder %}
+                                        <input type="text" id="datepicker-birth-date" class="form-control datepicker" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly required placeholder="{{ birth_date_placeholder }}">
                                         <i class="far fa-calendar input-prefix"></i>
                                         {% if form.birth_date.help_text %}
                                             <small class="form-text text-muted">{{ form.birth_date.help_text }}</small>
@@ -149,19 +150,22 @@
                     </div>
                     <!-- extra formset bound -->
                     {% for extra_form in extra.forms %}
-                        <div class="col-lg-4 px-4 mr-auto extra-formset" id="extra-formset-{{ forloop.counter0 }}">
+                        <div class="col-12 px-5 extra-formset" id="extra-formset-{{ forloop.counter0 }}" {% if extra_form.has_record.value != '0' %}hidden{% endif %}>
                             <div class="row guest-index">
-                                <div class="col-lg-12 px-0">
+                                <div class="col-12 px-0">
                                     {% render_field extra_form.guest_id %}
                                     {% render_field extra_form.passport_file %}
+                                    {% render_field extra_form.has_record %}
                                     <span class="float-left text-primary text-uppercase font-weight-bold"></span>
-                                    <button type="button" class="btn btn-link float-right m-0 p-0 d-flex text-24 text-secondary btn-remove-extra">
-                                        <i class="fas fa-times"></i>
-                                    </button>
+                                    {% if extra_form.has_record.value == '0' %}
+                                        <button type="button" class="btn btn-link float-right m-0 p-0 d-flex text-24 text-secondary btn-remove-extra">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-12">
                                     <div class="md-form mt-0">
                                         {% trans 'Enter your name' as first_name_placeholder %}
                                         {{ extra_form.first_name.label_tag }}
@@ -182,7 +186,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-12">
                                     <div class="md-form mt-2">
                                         {% trans 'Enter your name' as last_name_placeholder %}
                                         {{ extra_form.last_name.label_tag }}
@@ -203,7 +207,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-12">
                                     <div class="md-form mt-2">
                                         {% trans 'e.g. A12345Z' as passport_no_placeholder %}
                                         {{ extra_form.passport_no.label_tag }}
@@ -224,7 +228,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-12">
                                     <div class="md-form mt-2">
                                         <label for="{{ extra_form.nationality.id }}" class="active">{% trans 'Nationality' %}</label>
                                         {% if extra_form.nationality.errors %}
@@ -244,21 +248,22 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-12">
                                     <div class="md-form mt-2 input-with-post-icon">
                                         {% trans 'YYYY-MM-DD' as birth_date_placeholder %}
-                                        {{ extra_form.birth_date.label_tag }}
+                                        <label for="datepicker-{{ forloop.counter0 }}-birth-date">{{ extra_form.birth_date.label }}</label>
+                                        {% render_field extra_form.birth_date class="rolldate" hidden="true" %}
                                         {% if extra_form.birth_date.errors %}
                                             <!-- has error -->
-                                            {% render_field extra_form.birth_date class="form-control datepicker is-invalid" data-date-format="yyyy-mm-dd" required="true" placeholder=birth_date_placeholder %}
+                                            <input type="text" id="datepicker-{{ forloop.counter0 }}-birth-date" class="form-control datepicker is-invalid" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly required placeholder="{{ birth_date_placeholder }}">
                                             {% for error in extra_form.birth_date.errors %}
                                                 <div class="invalid-feedback">{{ error }}</div>
                                             {% endfor %}
                                         {% else %}
                                             <!-- no error -->
-                                            {% render_field extra_form.birth_date class="form-control datepicker" data-date-format="yyyy-mm-dd" required="true" placeholder=birth_date_placeholder %}
+                                            <input type="text" id="datepicker-{{ forloop.counter0 }}-birth-date" class="form-control datepicker" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly required placeholder="{{ birth_date_placeholder }}">
                                             <i class="far fa-calendar input-prefix"></i>
-                                            {% if extra_form.birth_date.help_text %}
+                                            {% if extra_form.passport_no.help_text %}
                                                 <small class="form-text text-muted">{{ extra_form.passport_no.help_text }}</small>
                                             {% endif %}
                                         {% endif %}
@@ -271,9 +276,9 @@
             </div>
         </div>
         <div class="row page-footer">
-            <div class="col-lg-12">
+            <div class="col-12">
                 <div class="row">
-                    <div class="col-lg-12 mb-3 d-flex justify-content-center">
+                    <div class="col-12 mb-3 d-flex justify-content-center">
                         <input type="hidden" name="form-TOTAL_FORMS" value="{{ extra.forms|length }}" id="id_form-TOTAL_FORMS">
                         <input type="hidden" name="form-INITIAL_FORMS" value="0" id="id_form-INITIAL_FORMS">
                         <input type="hidden" name="form-MIN_NUM_FORMS" value="0" id="id_form-MIN_NUM_FORMS">
@@ -285,7 +290,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-12 d-flex justify-content-center">
+                    <div class="col-12 d-flex justify-content-center">
                         {% if extra.forms|length < max_extra_form %}
                             <button type="submit" class="btn btn-link text-primary text-10" id="btn-skip">{% trans 'Skip this for now' %}</button>
                             <button type="submit" class="btn btn-primary" id="btn-next" style="display: none;">{% trans 'Next' %}</button>
@@ -363,9 +368,15 @@
 {% block lib_js %}
     {{ block.super }}
     <script type="text/javascript" src="{% static 'vendor/bootstrap-datepicker/bootstrap-datepicker.min.js' %}"></script>
+    {% if bootstrap_datepicker_language != 'en' %}
+        {% with 'vendor/bootstrap-datepicker/locales/bootstrap-datepicker.'|add:bootstrap_datepicker_language|add:'.min.js' as bootstrap_datepicker_language_file %}
+            <script type="text/javascript" src="{% static bootstrap_datepicker_language_file %}" charset="UTF-8"></script>
+        {% endwith %}
+    {% endif %}
+    <script type="text/javascript" src="{% static 'vendor/rolldate/rolldate.min.js' %}"></script>
 {% endblock lib_js %}
 
 {% block static_js %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static 'registration/js/desktop/detail.js' %}"></script>
+    <script type="text/javascript" src="{% static 'registration/js/mobile/detail.js' %}"></script>
 {% endblock static_js %}

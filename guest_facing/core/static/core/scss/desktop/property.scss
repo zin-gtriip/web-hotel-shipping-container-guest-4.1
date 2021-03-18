@@ -1,0 +1,42 @@
+.content .page-header {
+    font-size: 24px;
+    line-height: 29px;
+    margin: 0 auto 27px auto;
+    max-width: 330px;
+}
+
+/* PROPERTY THUMBNAIL */
+$property-radius: 10px;
+
+.property-container {
+    margin: 0 auto 18px auto;
+    width: 100%;
+    max-width: 330px;
+    position: relative;
+    cursor: pointer;
+
+    .label-property {
+        display: flex;
+        background-size: cover;
+        width: 100%; 
+        max-width: 330px;
+        height: 172px;
+        margin-bottom: 0;
+        border: 1px solid #aaaaaa;
+        border-top-right-radius: $property-radius;
+        border-top-left-radius: $property-radius;
+        cursor: pointer;
+    }
+
+    .property-details {
+        width: 100%;
+        max-width: 330px;
+        margin: 0 auto;
+        padding: 11px 20px;
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid #aaaaaa;
+        border-bottom-right-radius: $property-radius;
+        border-bottom-left-radius: $property-radius;
+    }
+}

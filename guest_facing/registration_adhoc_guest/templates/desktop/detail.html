@@ -37,7 +37,7 @@
         <div class="row page-content">
             <div class="col-lg-12">
                 <div class="row guests">
-                    <div class="col-lg-4 px-4 mx-auto" id="main-guest">
+                    <div class="col-lg-4 px-4 mx-auto" id="main-guest" {% if request.session.registration.reservation.preArrivalDone == '1' %}hidden{% endif %}>
                         <div class="row guest-index">
                             <div class="col-lg-12 px-0">
                                 {% render_field form.guest_id %}
@@ -149,15 +149,18 @@
                     </div>
                     <!-- extra formset bound -->
                     {% for extra_form in extra.forms %}
-                        <div class="col-lg-4 px-4 mr-auto extra-formset" id="extra-formset-{{ forloop.counter0 }}">
+                        <div class="col-lg-4 px-4 mr-auto extra-formset" id="extra-formset-{{ forloop.counter0 }}" {% if extra_form.has_record.value != '0' %}hidden{% endif %}>
                             <div class="row guest-index">
                                 <div class="col-lg-12 px-0">
                                     {% render_field extra_form.guest_id %}
                                     {% render_field extra_form.passport_file %}
+                                    {% render_field extra_form.has_record %}
                                     <span class="float-left text-primary text-uppercase font-weight-bold"></span>
-                                    <button type="button" class="btn btn-link float-right m-0 p-0 d-flex text-24 text-secondary btn-remove-extra">
-                                        <i class="fas fa-times"></i>
-                                    </button>
+                                    {% if extra_form.has_record.value == '0' %}
+                                        <button type="button" class="btn btn-link float-right m-0 p-0 d-flex text-24 text-secondary btn-remove-extra">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="row">

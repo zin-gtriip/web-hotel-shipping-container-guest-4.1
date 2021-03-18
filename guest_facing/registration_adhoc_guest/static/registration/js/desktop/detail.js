@@ -3,6 +3,7 @@ restyleExtra();
 rearrangeExtraIndex();
 validateMaxExtra();
 scrollToGuestIndex();
+showHideBackBtn();
 validateRedirect();
 
 
@@ -71,6 +72,7 @@ function removeExtra($btn) {
         recalculateTotalExtra();
         validateMaxExtra();
         scrollToGuestIndex();
+        showHideBackBtn();
         validateRedirect();
     });
 }
@@ -107,20 +109,6 @@ function restyleExtra() {
 }
 
 
-function scrollToGuestIndex() {
-    $('html, body').animate({
-        scrollTop: $('.guest-index:last').offset().top
-    }, 800);
-}
-
-
-function validateRedirect() {
-    if (!$('#main-guest').is(':visible') && $('.extra-formset:visible').length == 0) {
-        window.location.href = '/registration/guest_list/';
-    }
-}
-
-
 function validateMaxExtra() {
     var $extraFormset = $('.extra-formset')
         , $maxFormset = $('#id_form-MAX_NUM_FORMS')
@@ -136,5 +124,28 @@ function validateMaxExtra() {
         $btnAddExtra.show();
         $btnSkip.show();
         $btnNext.hide();
+    }
+}
+
+
+function scrollToGuestIndex() {
+    $('html, body').animate({
+        scrollTop: $('.guest-index:last').offset().top
+    }, 800);
+}
+
+
+function showHideBackBtn() {
+    if ($('.extra-formset:visible').length == 0) {
+        $('#btn-back').show();
+    } else {
+        $('#btn-back').hide();
+    }
+}
+
+
+function validateRedirect() {
+    if (!$('#main-guest').is(':visible') && $('.extra-formset:visible').length == 0) {
+        window.location.href = '/pre_arrival/guest_list/';
     }
 }
