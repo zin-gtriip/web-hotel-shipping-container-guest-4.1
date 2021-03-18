@@ -17,12 +17,15 @@ class GuestBasePropertyForm(forms.Form):
         property_id = self.cleaned_data.get('property_id')
         if not property_id:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('No property selected.')])
+        else:
+            prop_data = next((prop for prop in settings.GUEST_ENDPOINT or [] if prop.get('id', '') == property_id), None)
+            if not prop_data:
+                self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('No property selected.')])
         return self.cleaned_data
 
     def save(self):
         property_id = self.cleaned_data.get('property_id')
-        prop = next((prop for prop in settings.GUEST_ENDPOINT or [] if prop.get('id') == property_id), None)
-        self.request.session['property'] = prop
+        self.request.session['property_id'] = property_id
         if 'pre_arrival' in self.request.session and 'preload' in self.request.session['pre_arrival'] and 'property_id' in self.request.session['pre_arrival']['preload']:
             self.request.session['pre_arrival']['preload'].pop('property_id', None)
         if 'check_out' in self.request.session and 'preload' in self.request.session['check_out'] and 'property_id' in self.request.session['check_out']['preload']:

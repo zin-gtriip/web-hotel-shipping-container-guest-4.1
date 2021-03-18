@@ -10,7 +10,8 @@ logger = logging.getLogger('gateways')
 
 
 # guest facing endpoint gateway
-def guest_endpoint(url, prop, post_data):
+def guest_endpoint(url, property_id, post_data):
+    prop = next((prop_data for prop_data in settings.GUEST_ENDPOINT or [] if prop_data.get('id') == property_id), None)
     url = prop.get('url', '') + url
     post_data['api_key'] = prop.get('key', '')
     post_data['site_id'] = prop.get('id', '')
@@ -32,15 +33,16 @@ def guest_endpoint(url, prop, post_data):
 
 
 # AMP endpoint gateway
-def amp_endpoint(url):
-    url = settings.AMP_ENDPOINT_URL + url
+def amp_endpoint(url, property_id):
+    prop = next((prop_data for prop_data in settings.AMP_ENDPOINT or [] if prop_data.get('id') == property_id), None)
+    url = prop.get('url', '') + url
     post_data = {}
-    post_data['api_key'] = settings.AMP_ENDPOINT_KEY
-    post_data['site_id'] = settings.AMP_ENDPOINT_SITE_ID
-    post_data['site_name'] = settings.AMP_ENDPOINT_SITE_NAME
+    post_data['api_key'] = prop.get('key', '')
+    post_data['site_id'] = prop.get('id', '')
+    post_data['site_name'] = prop.get('name', '')
     try:
         logger.info('REQUEST ' + str(url) + ' ' + json.dumps(post_data))
-        response = requests.post(url, json=post_data, timeout=settings.AMP_ENDPOINT_TIMEOUT_LIMIT, verify=False)
+        response = requests.post(url, json=post_data, timeout=prop.get('timeout', 30), verify=False)
         response.raise_for_status()
         json_response = json.loads(response.content.decode('utf-8'))
     except requests.exceptions.HTTPError as http_error:

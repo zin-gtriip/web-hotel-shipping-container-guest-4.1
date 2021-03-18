@@ -196,7 +196,7 @@ GUEST_ENDPOINT = [
         'description': 'GTRIIP - Aurum',
         'image': '/static/img/property-1.jpg',
         'address': '1 East Street, Singapore',
-        'url': 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0',
+        'url': 'http://hotel4qa.gtriip.com:8080/hotelTemplateProperty1',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 30,
     },
@@ -206,7 +206,7 @@ GUEST_ENDPOINT = [
         'description': 'GTRIIP - Nouveau',
         'image': '/static/img/property-2.jpg',
         'address': '1 South Beach Road, Singapore',
-        'url': 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0',
+        'url': 'http://hotel4qa.gtriip.com:8080/hotelTemplateProperty2',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 30,
     },
@@ -215,11 +215,22 @@ GUEST_ENDPOINT = [
 
 # AMP Endpoint configuration
 
-AMP_ENDPOINT_URL                = 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0'
-AMP_ENDPOINT_KEY                = '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717'
-AMP_ENDPOINT_SITE_ID            = 'QAHotelProdSG11'
-AMP_ENDPOINT_SITE_NAME          = 'QA_Hotel_Prod_SG_3.0'
-AMP_ENDPOINT_TIMEOUT_LIMIT      = 30
+AMP_ENDPOINT = [
+    {
+        'id': 'QAHotelProdSG11_1',
+        'name': 'QA_Hotel_Prod_SG_3.0_1',
+        'url': 'http://hotel4qa.gtriip.com:8080/hotelTemplateProperty1',
+        'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
+        'timeout': 30,
+    },
+    {
+        'id': 'QAHotelProdSG11_2',
+        'name': 'QA_Hotel_Prod_SG_3.0_2',
+        'url': 'http://hotel4qa.gtriip.com:8080/hotelTemplateProperty2',
+        'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
+        'timeout': 30,
+    },
+]
 
 
 # OCR Endpoint configuration
@@ -256,7 +267,7 @@ FERNET_KEY = b'aJAwfZCJTITCVp-76x9_z8aaFSAFvlrOIFRQEDLm6p8='
 #         'file': {
 #             'level': 'INFO',
 #             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': BASE_DIR +'/logs/info.log',
+#             'filename': BASE_DIR +'/logs/log.log',
 #             'maxBytes': 1024 * 1024 * 10, # 10MB
 #             'backupCount': 10,
 #             'formatter': 'simple',
@@ -264,6 +275,7 @@ FERNET_KEY = b'aJAwfZCJTITCVp-76x9_z8aaFSAFvlrOIFRQEDLm6p8='
 #     },
 #     'loggers': {
 #         'gateways': { 'handlers': ['file'], 'level': 'INFO', 'propagate': True },
+#         'django': { 'handlers': ['file'], 'level': 'ERROR', 'propagate': True },
 #     },
 # }
 
