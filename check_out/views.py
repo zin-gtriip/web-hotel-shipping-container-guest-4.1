@@ -5,8 +5,8 @@ from django.shortcuts           import render
 from django.utils               import translation
 from django.utils.translation   import gettext, gettext_lazy as _
 from django.views.generic       import *
-from guest_base                 import views as GuestBaseViews
-from guest_base.mixins          import RequestFormKwargsMixin, MobileTemplateMixin
+from guest_base                 import views as GuestBaseViews, gateways
+from guest_base.mixins          import PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin
 from .                          import samples
 from .forms                     import *
 from .mixins                    import *
@@ -20,8 +20,9 @@ class CheckOutDataView(RedirectView):
     pattern_name = 'check_out:login'
 
     def get_redirect_url(self, *args, **kwargs):
-        self.request.session['check_out'] = {'preload': {}}
+        self.request.session['property_id'] = self.request.GET.get('property', None)
         self.request.session['app'] = self.request.GET.get('app', 0)
+        self.request.session['check_out'] = {'preload': {}}
         if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
         if 'auto_login' in self.request.GET: self.request.session['check_out']['preload']['auto_login'] = self.request.GET.get('auto_login', 0)
         if 'reservation_no' in self.request.GET: self.request.session['check_out']['preload']['reservation_no'] = self.request.GET.get('reservation_no', '')
@@ -30,7 +31,7 @@ class CheckOutDataView(RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
-class CheckOutLoginView(RequestFormKwargsMixin, MobileTemplateMixin, FormView):
+class CheckOutLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, FormView):
     template_name           = 'check_out/desktop/login.html'
     mobile_template_name    = 'check_out/mobile/login.html'
     form_class              = CheckOutLoginForm
@@ -69,14 +70,14 @@ class CheckOutLoginView(RequestFormKwargsMixin, MobileTemplateMixin, FormView):
         return context
     
 
-class CheckOutBillView(BillRequiredAndExistMixin, RequestFormKwargsMixin, UpdateView):
+class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, RequestFormKwargsMixin, UpdateView):
     template_name           = 'check_out/desktop/bill.html'
     form_class              = CheckOutBillForm
     success_url             = '/check_out/bill/all'
 
     def gateway_post(self, reservations_no):
         data = {'reservation_no': reservations_no}
-        response = gateways.guest_endpoint('/billsForCheckOut', data)
+        response = gateways.guest_endpoint('/billsForCheckOut', self.request.session.get('property_id', ''), data)
         return response.get('data', {})
 
     def get_object(self, queryset=None):

@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="{% static 'pre_arrival/scss/desktop/complete.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
+{% block header_left %}
+    {{ block.super }}
+    <a href="{% url 'pre_arrival:index' %}" class="btn btn-link">
+        <span class="material-icons">home</span>
+    </a>
+{% endblock header_left %}
+
 {% block content %}
     {{ block.super }}
     <form method="post">
@@ -20,7 +27,7 @@
         <div class="row page-content">
             <div class="col-12 px-0">
                 <div class="reservation-container">
-                    <label class="label-reservation" style="background-image: url('/static/img/{{ reservation.roomImage }}');">
+                    <label class="label-reservation" style="background-image: url('{{ reservation.roomImage }}');">
                         <div class="reservation-details">
                             <div class="room-type text-12 text-white">{{ reservation.roomName }}</div>
                         </div>
