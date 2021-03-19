@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'guest_facing.registration_ocr_required',
     'guest_facing.registration',
     'guest_facing.check_out',
+    'guest_facing.chat',
     'guest_facing.core',
 
     'django.contrib.admin',
@@ -120,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Singapore'
 
 USE_I18N = True
 
@@ -237,6 +238,16 @@ AMP_ENDPOINT = [
 OCR_ENDPOINT_URL                = 'https://ocr.gtriip.com/ocr/'
 OCR_ENDPOINT_KEY                = 'F16430020E414D3CBB9FACB3DA8071F5'
 OCR_ENDPOINT_TIMEOUT_LIMIT      = 60
+
+
+# Messaging configuration
+
+CHAT_SUB_KEY    = 'sub-c-783e8a78-8632-11eb-99bb-ce4b510ebf19'
+CHAT_PUB_KEY    = 'pub-c-ae44babc-3011-40ef-a69e-f729ff1e5eb1'
+CHAT_SEC_KEY    = 'sec-c-YzE0OWY4MjYtYjZjMy00N2RjLWFjMzctMzIxMDAwMGFlZjYy'
+
+CHAT_AUTO_START_TIME    = '18:00'
+CHAT_AUTO_END_TIME      = '09:00'
 
 
 # Maximum size in bytes of request data (excluding file uploads) that will be

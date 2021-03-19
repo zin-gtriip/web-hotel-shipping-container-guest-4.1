@@ -22,6 +22,7 @@ urlpatterns = [
     path('', include('guest_facing.registration_ocr_required.urls')),
     path('', include('guest_facing.registration.urls')),
     path('', include('guest_facing.check_out.urls')),
+    path('', include('guest_facing.chat.urls')),
     path('', include('guest_facing.core.urls')),
     
     path('admin/', admin.site.urls),
