@@ -14,7 +14,7 @@ class IndexView(RedirectView):
 
 
 class CorePropertyView(RequestFormKwargsMixin, FormView):
-    template_name   = 'guest_base/desktop/property.html'
+    template_name   = 'core/desktop/property.html'
     form_class      = GuestBasePropertyForm
 
     def dispatch(self, request, *args, **kwargs):
@@ -41,7 +41,7 @@ class CorePropertyView(RequestFormKwargsMixin, FormView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        self.success_url = reverse('guest_base:index')
+        self.success_url = reverse('core:index')
         next_url = self.request.GET.get('next', None)
         if next_url:
             self.success_url = next_url

@@ -19,7 +19,7 @@ class RegistrationDataView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         self.request.session['property_id'] = self.request.GET.get('property', None)
         self.request.session['app'] = self.request.GET.get('app', 0)
-        self.request.session['pre_arrival'] = {'preload': {}}
+        self.request.session['registration'] = {'preload': {}}
         if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
         if 'auto_login' in self.request.GET: self.request.session['registration']['preload']['auto_login'] = self.request.GET.get('auto_login', 0)
         if 'reservation_no' in self.request.GET: self.request.session['registration']['preload']['reservation_no'] = self.request.GET.get('reservation_no', '')

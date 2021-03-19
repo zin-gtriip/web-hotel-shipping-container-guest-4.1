@@ -18,7 +18,7 @@
         <i class="fas fa-arrow-left"></i>
     </button>
     {% if not request.session.app %}
-        <a href="{% url 'pre_arrival:index' %}" class="btn btn-link" id="btn-home" {% if skip_reservation_no %}style="display: none;"{% endif %}>
+        <a href="{% url 'registration:index' %}" class="btn btn-link" id="btn-home" {% if skip_reservation_no %}style="display: none;"{% endif %}>
             <span class="material-icons">home</span>
         </a>
     {% endif %}

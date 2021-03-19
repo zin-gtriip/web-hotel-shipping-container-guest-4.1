@@ -160,6 +160,6 @@ function showHideBackBtn() {
 
 function validateRedirect() {
     if (!$('#main-guest').is(':visible') && $('.extra-formset:visible').length == 0) {
-        window.location.href = '/pre_arrival/guest_list/';
+        window.location.href = '/registration/guest_list/';
     }
 }
