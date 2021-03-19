@@ -5,7 +5,7 @@ from django.shortcuts           import render
 from django.utils               import translation
 from django.utils.translation   import gettext, gettext_lazy as _
 from django.views.generic       import *
-from guest_facing               import gateways
+from guest_facing.core          import gateways
 from guest_facing.core.views    import IndexView
 from guest_facing.core.mixins   import PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin
 from .                          import samples
