@@ -59,7 +59,7 @@ class RegistrationLoginForm(forms.Form):
         self.request.session['registration']['input_reservation_no'] = self.cleaned_data.get('reservation_no')
         self.request.session['registration']['input_arrival_date'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
         self.request.session['registration']['input_last_name'] = self.cleaned_data.get('last_name')
-        config = gateways.amp_endpoint('/getConfigVariables') or {} # get config variables
+        config = gateways.amp_endpoint('/getConfigVariables', self.request.session.get('property_id', '')) or {}
         expiry_duration = config.get('prearrival_session_duration_minutes', settings.REGISTRATION_SESSION_AGE_INITIAL)
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['registration']['initial_expiry_date'] = initial_expiry_date
