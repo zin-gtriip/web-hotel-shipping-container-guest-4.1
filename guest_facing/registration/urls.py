@@ -1,5 +1,7 @@
 from django.urls    import path
-from .views         import *
+from .views         import (IndexView, RegistrationDataView, RegistrationLoginView, RegistrationTimerExtensionView,
+                    RegistrationReservationView, RegistrationPassportView, RegistrationDetailView, RegistrationOtherInfoView,
+                    RegistrationCompleteView)
 
 app_name = 'registration'
 urlpatterns = [

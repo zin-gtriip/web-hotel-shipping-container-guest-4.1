@@ -5,9 +5,10 @@ from django.utils.translation   import gettext, gettext_lazy as _
 from django.views.generic       import *
 from guest_facing.core.views    import IndexView
 from guest_facing.core.mixins   import PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, JSONResponseMixin
-from .forms                     import *
-from .mixins                    import *
-from .utils                     import *
+from .                          import utils
+from .forms                     import (RegistrationLoginForm, RegistrationTimerExtensionForm, RegistrationReservationForm, RegistrationPassportForm,
+                                RegistrationDetailForm, RegistrationDetailExtraFormSet, RegistrationOtherInfoForm, RegistrationCompleteForm)
+from .mixins                    import ParameterRequiredMixin, ExpirySessionMixin, ProgressRateContextMixin
 
 class IndexView(IndexView):
     pattern_name = 'registration:data'
@@ -93,8 +94,8 @@ class RegistrationReservationView(ExpirySessionMixin, PropertyRequiredMixin, Req
         context['reservations'] = []
         for reservation in self.request.session['registration'].get('bookings', []):
             reservation = dict(reservation) # create new variable to prevent modification on `request.session`
-            reservation['formattedArrivalDate'] = format_display_date(reservation.get('arrivalDate', ''))
-            reservation['formattedDepartureDate'] = format_display_date(reservation.get('departureDate', ''))
+            reservation['formattedArrivalDate'] = utils.format_display_date(reservation.get('arrivalDate', ''))
+            reservation['formattedDepartureDate'] = utils.format_display_date(reservation.get('departureDate', ''))
             room = next((temp for temp in settings.REGISTRATION_ROOM_TYPES if temp['room_type'] == reservation['roomType']), {})
             reservation['roomName'] = room.get('room_name', '')
             reservation['roomImage'] = room.get('room_image', '')

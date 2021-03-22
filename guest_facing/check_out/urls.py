@@ -1,5 +1,5 @@
 from django.urls    import path
-from .views         import *
+from .views         import IndexView, CheckOutDataView, CheckOutLoginView, CheckOutBillView, CheckOutCompleteView
 
 app_name = 'check_out'
 urlpatterns = [

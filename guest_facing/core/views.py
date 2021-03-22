@@ -2,8 +2,8 @@ from django.conf            import settings
 from django.shortcuts       import render
 from django.urls            import reverse
 from django.views.generic   import *
-from .forms                 import *
-from .mixins                import *
+from .forms                 import CorePropertyForm
+from .mixins                import RequestFormKwargsMixin
 
 class IndexView(RedirectView):
     pattern_name = 'admin:index'
