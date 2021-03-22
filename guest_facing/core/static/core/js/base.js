@@ -12,7 +12,7 @@ $('form').submit(function() {
 // add loading when ajax
 $(document).on({
     ajaxStart: function() { if (!$('body').hasClass('live-submit')) $('body').addClass('loading'); },
-    ajaxStop: function() { if (!$('body').hasClass('live-submit')) $('body').addClass('loading'); }
+    ajaxStop: function() { $('body').removeClass('loading'); }
 });
 
 
