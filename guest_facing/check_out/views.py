@@ -117,7 +117,7 @@ class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, Request
         return url
 
 
-class CheckOutComplete(TemplateView):
+class CheckOutCompleteView(TemplateView):
     template_name           = 'check_out/desktop/complete.html'
 
     def dispatch(self, request, *args, **kwargs):
