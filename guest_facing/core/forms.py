@@ -3,7 +3,7 @@ from django.conf                import settings
 from django.utils.translation   import gettext, gettext_lazy as _
 
 
-class GuestBasePropertyForm(forms.Form):
+class CorePropertyForm(forms.Form):
     property_id = forms.ChoiceField(widget=forms.RadioSelect())
 
     def __init__(self, request, *args, **kwargs):

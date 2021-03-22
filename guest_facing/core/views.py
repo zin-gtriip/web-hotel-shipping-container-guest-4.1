@@ -15,7 +15,7 @@ class IndexView(RedirectView):
 
 class CorePropertyView(RequestFormKwargsMixin, FormView):
     template_name   = 'core/desktop/property.html'
-    form_class      = GuestBasePropertyForm
+    form_class      = CorePropertyForm
 
     def dispatch(self, request, *args, **kwargs):
         properties = settings.GUEST_ENDPOINT
