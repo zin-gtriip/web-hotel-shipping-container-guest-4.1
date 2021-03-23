@@ -7,11 +7,11 @@ $(window).on('load', function() {
 });
 // add loading when form submit
 $('form').submit(function() {
-    if (!$('body').hasClass('live-submit')) $('body').addClass('loading');
+    if (!$('body').hasClass('live')) $('body').addClass('loading');
 });
 // add loading when ajax
 $(document).on({
-    ajaxStart: function() { if (!$('body').hasClass('live-submit')) $('body').addClass('loading'); },
+    ajaxStart: function() { if (!$('body').hasClass('live')) $('body').addClass('loading'); },
     ajaxStop: function() { $('body').removeClass('loading'); }
 });
 

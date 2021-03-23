@@ -9,7 +9,7 @@ pubnub = new PubNub({
 });
 
 $(document).ready(function() {
-    $('body').addClass('live-submit');
+    $('body').addClass('live');
 
     pubnub.addListener({
         status: function(statusEvent) {
