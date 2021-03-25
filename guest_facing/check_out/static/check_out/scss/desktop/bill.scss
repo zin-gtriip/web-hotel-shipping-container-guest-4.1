@@ -61,19 +61,24 @@
 }
 
 table {
-    th:nth-child(1),
-    tr td:nth-child(1) {
+    thead th:nth-child(1),
+    tbody td:nth-child(1) {
         width: 100px;
         padding-left: 0;
     }
 
-    th:nth-child(2),
-    tr td:nth-child(2) {
+    thead th:nth-child(2),
+    tbody td:nth-child(2) {
         width: calc(100% - 100px - 120px);
     }
 
-    th:nth-child(3),
-    tr td:nth-child(3) {
+    tfoot td:nth-child(1){
+        width: calc(100% - 120px);
+    }
+
+    thead th:nth-child(3),
+    tbody td:nth-child(3),
+    tfoot td:nth-child(2) {
         width: 120px;
         padding-right: 0;
     }

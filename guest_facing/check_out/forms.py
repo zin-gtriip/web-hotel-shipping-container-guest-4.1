@@ -69,8 +69,6 @@ class CheckOutBillForm(forms.Form):
         self.label_suffix = ''
         # populate choices
         self.fields['reservation_no'].choices = []
-        if len(self.request.session['check_out'].get('bills', [])) != 1: # hide `all` if left 1 bill to check-out
-            self.fields['reservation_no'].choices.append(('all', _('Checked-in Guests')))
         for reservation in self.request.session['check_out'].get('bills', []):
             self.fields['reservation_no'].choices.append((reservation.get('reservation_no', ''), reservation.get('first_name', '') + ' ' + reservation.get('last_name', '')))
         # set initial

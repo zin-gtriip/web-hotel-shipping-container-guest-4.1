@@ -60,7 +60,8 @@ class CheckOutLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTem
     def get_success_url(self):
         if not self.success_url:
             return super().get_success_url()
-        url = self.success_url.format(**{'reservation_no': 'all'})
+        reservation = next(iter(self.request.session['check_out'].get('bills', [])), {})
+        url = self.success_url.format(**{'reservation_no': reservation.get('reservation_no', '')})
         return url
 
     def get_context_data(self, **kwargs):
