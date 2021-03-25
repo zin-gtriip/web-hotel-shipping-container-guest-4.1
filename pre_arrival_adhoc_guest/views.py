@@ -87,7 +87,7 @@ class PreArrivalOtherInfoView(PreArrivalOtherInfoView):
             data['special_requests'] = request.session.get('pre_arrival', {}).get('reservation', {}).get('comments', '')
             main_guest = next((guest for guest in self.request.session['pre_arrival']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
             data['email'] = main_guest.get('email', '')
-            data['is_subscribe'] = main_guest.get('emailSubscription', True)
+            data['is_subscribe'] = True if main_guest.get('emailSubscription', '0') == '1' else False
             form = self.get_form_class()
             form = form(request, data)
             if form.is_valid():
