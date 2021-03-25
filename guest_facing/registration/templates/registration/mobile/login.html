@@ -27,7 +27,7 @@
 
 {% block content %}
     {{ block.super }}
-    <form method="post" id="form-mobile-login">
+    <form method="post" id="form-mobile-login" autocomplete="off">
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-12 text-center">

@@ -17,7 +17,7 @@
 
 {% block content %}
     {{ block.super }}
-    <form method="post">
+    <form method="post" autocomplete="off">
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-12 px-0 mx-auto text-center">
