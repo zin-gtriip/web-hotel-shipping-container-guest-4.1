@@ -4,7 +4,7 @@ from guest_base.mixins  import DependentAppConfigMixin
 
 class CheckOutConfig(DependentAppConfigMixin, AppConfig):
     name            = 'check_out'
-    version         = '1.3.8'
+    version         = '1.4.2'
     dependencies    = [
         'guest_base.apps.GuestBaseConfig',
     ]
