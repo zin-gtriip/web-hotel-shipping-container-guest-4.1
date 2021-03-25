@@ -365,4 +365,4 @@ REGISTRATION_PROGRESS_BAR_PAGES = [
 # progress bar rate calculation, -1 to exclude first page
 REGISTRATION_PROGRESS_BAR_RATE_PER_PAGE = (REGISTRATION_PROGRESS_BAR_END_RATE - REGISTRATION_PROGRESS_BAR_START_RATE) / (len(REGISTRATION_PROGRESS_BAR_PAGES) - 1)
 # complete email template directory
-REGISTRATION_COMPLETE_EMAIL = os.path.join(BASE_DIR, 'registration', 'templates', 'registration', 'email', 'complete.html')
+REGISTRATION_COMPLETE_EMAIL = 'registration/email/complete.html'
