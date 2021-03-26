@@ -21,7 +21,12 @@
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-12 px-0 mx-auto text-center">
-                {% trans 'Pre-Check-In Complete' %}
+                {% trans 'Registration Complete' %}
+            </div>
+        </div>
+        <div class="row page-subheader">
+            <div class="col-12 px-0 text-center text-secondary">
+                {% blocktrans %}Here is the summary of your reservation<br>(images shown are for references only){% endblocktrans %}
             </div>
         </div>
         <div class="row page-content">
