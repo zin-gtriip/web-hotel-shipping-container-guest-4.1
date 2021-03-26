@@ -33,7 +33,7 @@ class CheckOutLoginForm(forms.Form):
         # validate to backend
         response = self.gateway_post()
         if response.get('status_code', '') != 500:
-            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('We were unable to retrieve your reservation from our database.')])
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('status_code', 0)])
         
         return self.cleaned_data
 
