@@ -10,6 +10,7 @@ from .forms                     import (RegistrationLoginForm, RegistrationTimer
                                 RegistrationDetailForm, RegistrationDetailExtraFormSet, RegistrationOtherInfoForm, RegistrationCompleteForm)
 from .mixins                    import ParameterRequiredMixin, ExpirySessionMixin, ProgressRateContextMixin
 
+
 class IndexView(IndexView):
     pattern_name = 'registration:data'
 
@@ -17,20 +18,20 @@ class IndexView(IndexView):
 class RegistrationDataView(RedirectView):
     pattern_name = 'registration:login'
 
-    def get_redirect_url(self, *args, **kwargs):
-        self.request.session['property_id'] = self.request.GET.get('property', None)
-        self.request.session['app'] = self.request.GET.get('app', 0)
-        self.request.session['registration'] = {'preload': {}}
-        if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
-        if 'auto_login' in self.request.GET: self.request.session['registration']['preload']['auto_login'] = self.request.GET.get('auto_login', 0)
-        if 'reservation_no' in self.request.GET: self.request.session['registration']['preload']['reservation_no'] = self.request.GET.get('reservation_no', '')
-        if 'arrival_date' in self.request.GET: self.request.session['registration']['preload']['arrival_date'] = self.request.GET.get('arrival_date', '')
-        if 'last_name' in self.request.GET: self.request.session['registration']['preload']['last_name'] = self.request.GET.get('last_name', '')
-        if 'first_name' in self.request.GET: self.request.session['registration']['preload']['first_name'] = self.request.GET.get('first_name', '')
-        if 'nationality' in self.request.GET: self.request.session['registration']['preload']['nationality'] = self.request.GET.get('nationality', '')
-        if 'passport_no' in self.request.GET: self.request.session['registration']['preload']['passport_no'] = self.request.GET.get('passport_no', '')
-        if 'birth_date' in self.request.GET: self.request.session['registration']['preload']['birth_date'] = self.request.GET.get('birth_date', '')
-        return super().get_redirect_url(*args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        request.session['property_id'] = request.GET.get('property', None)
+        request.session['app'] = request.GET.get('app', 0)
+        request.session['registration'] = {'preload': {}}
+        if 'lang' in request.GET: request.session[translation.LANGUAGE_SESSION_KEY] = request.GET.get('lang', 'en')
+        if 'auto_login' in request.GET: request.session['registration']['preload']['auto_login'] = request.GET.get('auto_login', 0)
+        if 'reservation_no' in request.GET: request.session['registration']['preload']['reservation_no'] = request.GET.get('reservation_no', '')
+        if 'arrival_date' in request.GET: request.session['registration']['preload']['arrival_date'] = request.GET.get('arrival_date', '')
+        if 'last_name' in request.GET: request.session['registration']['preload']['last_name'] = request.GET.get('last_name', '')
+        if 'first_name' in request.GET: request.session['registration']['preload']['first_name'] = request.GET.get('first_name', '')
+        if 'nationality' in request.GET: request.session['registration']['preload']['nationality'] = request.GET.get('nationality', '')
+        if 'passport_no' in request.GET: request.session['registration']['preload']['passport_no'] = request.GET.get('passport_no', '')
+        if 'birth_date' in request.GET: request.session['registration']['preload']['birth_date'] = request.GET.get('birth_date', '')
+        return super().get(request, *args, **kwargs)
 
 
 class RegistrationLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):

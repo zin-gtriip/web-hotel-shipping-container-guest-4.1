@@ -20,16 +20,16 @@ class IndexView(IndexView):
 class CheckOutDataView(RedirectView):
     pattern_name = 'check_out:login'
 
-    def get_redirect_url(self, *args, **kwargs):
-        self.request.session['property_id'] = self.request.GET.get('property', None)
-        self.request.session['app'] = self.request.GET.get('app', 0)
-        self.request.session['check_out'] = {'preload': {}}
-        if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
-        if 'auto_login' in self.request.GET: self.request.session['check_out']['preload']['auto_login'] = self.request.GET.get('auto_login', 0)
-        if 'reservation_no' in self.request.GET: self.request.session['check_out']['preload']['reservation_no'] = self.request.GET.get('reservation_no', '')
-        if 'last_name' in self.request.GET: self.request.session['check_out']['preload']['last_name'] = self.request.GET.get('last_name', '')
-        if 'room_no' in self.request.GET: self.request.session['check_out']['preload']['room_no'] = self.request.GET.get('room_no', '')
-        return super().get_redirect_url(*args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        request.session['property_id'] = request.GET.get('property', None)
+        request.session['app'] = request.GET.get('app', 0)
+        request.session['check_out'] = {'preload': {}}
+        if 'lang' in request.GET: request.session[translation.LANGUAGE_SESSION_KEY] = request.GET.get('lang', 'en')
+        if 'auto_login' in request.GET: request.session['check_out']['preload']['auto_login'] = request.GET.get('auto_login', 0)
+        if 'reservation_no' in request.GET: request.session['check_out']['preload']['reservation_no'] = request.GET.get('reservation_no', '')
+        if 'last_name' in request.GET: request.session['check_out']['preload']['last_name'] = request.GET.get('last_name', '')
+        if 'room_no' in request.GET: request.session['check_out']['preload']['room_no'] = request.GET.get('room_no', '')
+        return super().get(request, *args, **kwargs)
 
 
 class CheckOutLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, FormView):
