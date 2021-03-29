@@ -11,7 +11,7 @@ logger = logging.getLogger('gateways')
 
 # guest facing endpoint gateway
 def guest_endpoint(url, property_id, post_data):
-    prop = next((prop_data for prop_data in settings.GUEST_ENDPOINT or [] if prop_data.get('id') == property_id), None)
+    prop = next((prop_data for prop_data in settings.GUEST_ENDPOINT or [] if prop_data.get('id') == property_id), {})
     url = prop.get('url', '') + url
     post_data['api_key'] = prop.get('key', '')
     post_data['site_id'] = prop.get('id', '')
