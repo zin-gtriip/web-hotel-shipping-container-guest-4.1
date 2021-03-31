@@ -3,6 +3,7 @@ from django.utils.translation   import gettext, gettext_lazy as _
 from guest_facing.core          import gateways
 from .                          import samples
 
+
 class CheckOutLoginForm(forms.Form):
     reservation_no  = forms.CharField(label=_('Reservation Number'), required=False)
     last_name       = forms.CharField(label=_('Last Name'), required=False)

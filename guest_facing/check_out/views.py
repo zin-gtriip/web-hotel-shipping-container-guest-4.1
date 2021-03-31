@@ -77,7 +77,7 @@ class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, Request
     form_class              = CheckOutBillForm
     success_url             = '/check_out/bill/all'
 
-    def gateway_post(self, reservations_no):
+    def gateway_get(self, reservations_no):
         data = {'reservation_no': reservations_no}
         response = gateways.guest_endpoint('/billsForCheckOut', self.request.session.get('property_id', ''), data)
         return response.get('data', {})
@@ -87,7 +87,7 @@ class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, Request
         reservations_no = [reservation_no]
         if reservation_no == 'all':
             reservations_no = [resv['reservation_no'] for resv in self.request.session['check_out'].get('bills', []) if resv.get('reservation_no', '')]
-        obj = self.gateway_post(reservations_no)
+        obj = self.gateway_get(reservations_no)
         obj['id'] = reservation_no # set `reservation_no` as unique identifier
         return obj
 
