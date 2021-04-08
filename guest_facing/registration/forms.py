@@ -243,9 +243,8 @@ class RegistrationDetailForm(forms.Form):
         return self.instance
 
 
-class RegistrationPassportForm(forms.Form):
-    passport_file = forms.CharField(widget=forms.HiddenInput(), required=False)
-    skip_passport = forms.BooleanField(widget=forms.HiddenInput(), required=False)
+class RegistrationOcrForm(forms.Form):
+    ocr_file = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     error_messages = {
         'Incorrect API key': _('Incorrect API key'),
@@ -267,9 +266,9 @@ class RegistrationPassportForm(forms.Form):
 
     def clean(self):
         super().clean()
-        passport_file = self.cleaned_data.get('passport_file')
+        ocr_file = self.cleaned_data.get('ocr_file')
 
-        if not passport_file:
+        if not ocr_file:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('No image file selected.')])
         else:
             # validate based on `scan_type` (`passport` / `nric`)
@@ -288,7 +287,7 @@ class RegistrationPassportForm(forms.Form):
         return self.cleaned_data
 
     def save_file(self):
-        file_name = self.request.session.session_key +'.png' # save passport file using `session_key` as file name
+        file_name = self.request.session.session_key +'.png' # save ocr file using `session_key` as file name
         folder_ocr = os.path.join(settings.BASE_DIR, 'media', 'ocr')
         if not os.path.exists(folder_ocr):
             folder_media = os.path.join(settings.BASE_DIR, 'media')
@@ -296,7 +295,7 @@ class RegistrationPassportForm(forms.Form):
                 os.mkdir(folder_media)
             os.mkdir(folder_ocr)
         saved_file = os.path.join(folder_ocr, file_name)
-        file_data = base64.b64decode(self.cleaned_data.get('passport_file'))
+        file_data = base64.b64decode(self.cleaned_data.get('ocr_file'))
         with open(saved_file, 'wb') as f:
             f.write(file_data)
         return saved_file

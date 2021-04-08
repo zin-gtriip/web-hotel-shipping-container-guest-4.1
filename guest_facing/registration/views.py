@@ -9,7 +9,7 @@ from guest_facing.core.views    import IndexView
 from guest_facing.core.mixins   import PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, JSONResponseMixin
 from .                          import utils
 from .forms                     import (RegistrationLoginForm, RegistrationTimerExtensionForm, RegistrationReservationForm, RegistrationGuestListForm,
-                                RegistrationDetailForm, RegistrationPassportForm, RegistrationOtherInfoForm, RegistrationCompleteForm)
+                                RegistrationDetailForm, RegistrationOcrForm, RegistrationOtherInfoForm, RegistrationCompleteForm)
 from .mixins                    import ParameterRequiredMixin, ExpirySessionMixin, ProgressRateContextMixin
 
 
@@ -174,14 +174,14 @@ class RegistrationDetailView(PropertyRequiredMixin, RequestFormKwargsMixin, Mobi
             return super().get_success_url()
         url = self.success_url.format(**self.object)
         if not self.request.POST.get('is_submit', False):
-            url = reverse('registration:passport', kwargs={'encrypted_id': self.kwargs.get('encrypted_id', '')})
+            url = reverse('registration:ocr', kwargs={'encrypted_id': self.kwargs.get('encrypted_id', '')})
         return url
 
 
-class RegistrationPassportView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, UpdateView):
-    template_name           = 'registration/desktop/passport.html'
-    mobile_template_name    = 'registration/mobile/passport.html'
-    form_class              = RegistrationPassportForm
+class RegistrationOcrView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, UpdateView):
+    template_name           = 'registration/desktop/ocr.html'
+    mobile_template_name    = 'registration/mobile/ocr.html'
+    form_class              = RegistrationOcrForm
     success_url             = '/registration/detail/{encrypted_id}'
     progress_bar_page       = 'guest_list'
 

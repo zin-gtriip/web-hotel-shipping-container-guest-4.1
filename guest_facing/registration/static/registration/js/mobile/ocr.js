@@ -11,23 +11,39 @@ Compressor.setDefaults({
     convertSize: 2000000,
 });
 // croppie options, for scaling and rotating captured and uploaded image
-// var croppieOpts = {
-//     viewport: { width: 320, height: 240 },
-//     boundary: { width: 427, height: 320 },
-//     showZoomer: true,
-//     enableOrientation: true,
-// };
+// original calculation, calculate from `form-ocr` width
+// var scale = 1.33 // get from `640 / 480` desktop video size
+//     , boundaryWidth = $('#form-ocr').width()
+//     , boundaryHeight = Math.floor(boundaryWidth / scale)
+//     , viewportWidth = boundaryHeight
+//     , viewportHeight = Math.floor(viewportWidth / scale);
 var croppieOpts = {
     viewport: { width: 340, height: 240 },
-    boundary: { width: 375, height: 494 },
-    showZoomer: true,
+    boundary: { width: screen.width, height: 525 },
+    showZoomer: false,
     enableOrientation: true,
 };
 $('#img-preview').croppie(croppieOpts); // init croppie to element, use `bind` to add image data
 
 
-// btn-upload click
-$('.file-upload').change(function() {
+// file-capture click
+$('.file-capture').click(function() {
+    window.addEventListener("flutterInAppWebViewPlatformReady", function(event) { // send message to app
+        window.flutter_inappwebview.callHandler('takePhoto', true);
+    });
+});
+
+
+// file-upload click
+$('.file-upload').click(function() {
+    window.addEventListener("flutterInAppWebViewPlatformReady", function(event) { // send message to app
+        window.flutter_inappwebview.callHandler('uploadPhoto', true);
+    });
+});
+
+
+// file change
+$('.file-capture, .file-upload').change(function() {
     var file = event.target.files[0]
         , isInitial = $('.croppie-container #text-preview').length == 0;
 
@@ -53,86 +69,14 @@ $('.file-upload').change(function() {
 });
 
 
-// btn-webcam click
-$('#btn-webcam').click(function() {
-    var video = document.getElementById('vid-webcam')
-        , mediaConfig =  { video: true }
-        , errorConsole = function(error) {
-            console.error('getUserMedia() error:', error);
-            modalAlert(gettext('Error'), gettext('No camera media is detected'));
-        };
-    
-    // Put video listeners into place
-    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
-            video.srcObject = stream;
-            video.play();
-            $('.default-container, #btn-skip').hide();
-            $('.webcam-container').show();
-        });
-    }
-
-    /* Legacy code below! */
-    else if(navigator.getUserMedia) { // Standard
-        navigator.getUserMedia(mediaConfig, function(stream) {
-            video.src = stream;
-            video.play();
-            $('.default-container, #btn-skip').hide();
-            $('.webcam-container').show();
-        }, errorConsole);
-    } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
-        navigator.webkitGetUserMedia(mediaConfig, function(stream){
-            video.play();
-            $('.default-container, #btn-skip').hide();
-            $('.webcam-container').show();
-        }, errorConsole);
-    } else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
-        navigator.mozGetUserMedia(mediaConfig, function(stream){
-            video.play();
-            $('.default-container, #btn-skip').hide();
-            $('.webcam-container').show();
-        }, errorConsole);
-    }
-});
-
-
-// btn-capture click
-$('#btn-capture').click(function() {
-    var video = document.getElementById('vid-webcam')
-        , stream = video.srcObject
-        , tracks = stream.getTracks()
-        , $img = $('#img-preview')
-        , draw = document.createElement('canvas')
-        , context2D = draw.getContext('2d');
-        
-    draw.width = video.videoWidth;
-    draw.height = video.videoHeight;
-    context2D.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-    // stop video
-    tracks.forEach(function(track) { track.stop(); });
-    new Compressor(dataURLtoBlob(draw.toDataURL('image/png')), {
-        success: function(result) {
-            blobToDataURL(result, function(dataURL) {
-                $img.croppie('bind', dataURL).then(function() { // update image data
-                    $img.croppie('setZoom', 0); // change zoom level
-                });
-                initCroppieComponents();
-                initBorderGuide();
-            });
-        },
-        error: function(err) {
-            console.error('Compressor() error:'+ err.message);
-            modalAlert(gettext('Error'), gettext('Error capturing image'));
-        },
-    });
-});
-
-
 // btn-next click
 $('#btn-next').click(function() {
     var $img = $('#img-preview')
-        , $passportFile = $('#id_passport_file')
+        , $ocrFile = $('#id_ocr_file')
         , dataURL;
+        
+    // disable all button
+    $('.btn').attr('disabled', true).addClass('disabled');
 
     $img.croppie('result', {
         'type': 'rawcanvas',
@@ -140,16 +84,9 @@ $('#btn-next').click(function() {
         'format': 'png',
     }).then(function(canvas) {
         dataURL = canvas.toDataURL();
-        $passportFile.val(dataURL.substring(22)); // remove `data:image/png;base64,` on dataURL
-        $('#form-passport').submit();
+        $ocrFile.val(dataURL.substring(22)); // remove `data:image/png;base64,` on dataURL
+        $('#form-ocr').submit();
     });
-});
-
-
-// btn-skip click
-$('#btn-skip').click(function() {
-    $('#id_skip_passport').val(true);
-    $('#form-passport').submit();
 });
 
 
@@ -183,21 +120,17 @@ function dataURLtoBlob(dataURL) {
 
 // initiate croppie components, ie: moving timer, add rotate button, etc
 function initCroppieComponents() {
-    var $previewText = $('<div></div>').addClass('text-white').attr('id', 'text-preview').html(gettext('Please adjust the image to make sure<br>that all information is within the box.'))
-        , $zoomWrap
-        , $zoomWord = $('<div></div>').addClass('text-white text-center').html(gettext('Zoom'))
+    var $timer = $('.timer-text').clone().removeClass('text-secondary').addClass('text-white')
+        , $previewText = $('<div></div>').addClass('text-white').attr('id', 'text-preview').html(gettext('Drag, rotate, or pinch the image to make sure<br>that all information is within the box.'))
         , $iconRotate = $('<i></i>').addClass('fas fa-undo-alt').attr('aria-hidden', true)
         , $btnRotate = $('<button></button>').attr('type', 'button').addClass('btn btn-floating').attr('id', 'btn-rotate').data('degree', 90).html($iconRotate).click(function () {
             $('#img-preview').croppie('rotate', $(this).data('degree'));
         })
         , $rotateContainer = $('<div></div>').attr('id', 'rotate-container').append($btnRotate);
 
-    $('.page-header, .page-subheader, .default-container, .webcam-container').hide();
-    $('.cr-slider-wrap').appendTo('.croppie-container'); // move back to prevent error on `croppie('destroy')`
-    $('.preview-container, #btn-skip').show();
-    $zoomWrap = $('.cr-slider-wrap');
-    $zoomWord.prependTo($zoomWrap);
-    $('.cr-boundary').append($previewText, $zoomWrap, $rotateContainer);
+    $('.header, .page-header, .page-subheader, .default-container').hide();
+    $('.preview-container').show();
+    $('.cr-boundary').append($timer, $previewText, $rotateContainer);
 }
 
 

@@ -337,15 +337,13 @@ REGISTRATION_EXPIRY_SESSION_PAGES = [
     'reservation',
     'guest_list',
     'detail',
-    'passport',
+    'ocr',
     'other_info',
 ]
 # registration views that use `parameter_required` validation
 REGISTRATION_PARAMETER_REQUIRED_PAGES = [
     'reservation',
     'guest_list',
-    # 'detail',
-    # 'passport',
     'other_info',
     'complete',
 ]

@@ -10,7 +10,7 @@
 
 {% block static_css %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'registration/scss/mobile/passport.scss' %}" type="text/x-scss" media="screen">
+    <link rel="stylesheet" href="{% static 'registration/scss/mobile/ocr.scss' %}" type="text/x-scss" media="screen">
 {% endblock static_css %}
 
 {% block header_left %}
@@ -20,7 +20,7 @@
 
 {% block content %}
     {{ block.super }}
-    <form method="post" id="form-passport" autocomplete="off">
+    <form method="post" id="form-ocr" autocomplete="off">
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-12 px-0 text-center">
@@ -34,9 +34,9 @@
         </div>
         <div class="row page-content">
             <div class="col-12 px-0 d-flex justify-content-center">
-                {% render_field form.passport_file %}
+                {% render_field form.ocr_file %}
                 <div class="default-container">
-                    <img src="{% static 'img/mobile-passport.png' %}">
+                    <img src="{% static 'img/ocr-mobile.png' %}">
                 </div>
                 <div class="preview-container" style="display: none;">
                     <img id="img-preview">
@@ -128,5 +128,5 @@
 
 {% block static_js %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static 'registration/js/mobile/passport.js' %}"></script>
+    <script type="text/javascript" src="{% static 'registration/js/mobile/ocr.js' %}"></script>
 {% endblock static_js %}
