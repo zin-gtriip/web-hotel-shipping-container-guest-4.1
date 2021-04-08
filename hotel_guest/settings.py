@@ -193,7 +193,7 @@ GUEST_ENDPOINT = [
         'id': 'QAHotelProdSG11_1',
         'name': 'QA_Hotel_Prod_SG_3.0_1',
         'description': 'GTRIIP - Aurum',
-        'image': '/static/img/property-1.jpg',
+        'image': '/static/img/property/1.jpg',
         'address': '1 East Street, Singapore',
         'url': 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
@@ -203,7 +203,7 @@ GUEST_ENDPOINT = [
         'id': 'QAHotelProdSG11_2',
         'name': 'QA_Hotel_Prod_SG_3.0_2',
         'description': 'GTRIIP - Nouveau',
-        'image': '/static/img/property-2.jpg',
+        'image': '/static/img/property/2.jpg',
         'address': '1 South Beach Road, Singapore',
         'url': 'http://hotel4qa.gtriip.com:8080/hotelTemplateProperty2',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
@@ -317,17 +317,17 @@ REGISTRATION_ROOM_TYPES = [
     {
         'room_type' : 'Premier',
         'room_name' : 'Premier Room',
-        'room_image': '/static/img/room-premier.jpg',
+        'room_image': '/static/img/room/premier.jpg',
     },
     {
         'room_type' : 'Deluxe',
         'room_name' : 'Deluxe Room',
-        'room_image': '/static/img/room-deluxe.jpg',
+        'room_image': '/static/img/room/deluxe.jpg',
     },
     {
         'room_type' : 'Villa',
         'room_name' : 'Villa',
-        'room_image': '/static/img/room-villa.jpg',
+        'room_image': '/static/img/room/villa.jpg',
     },
 ]
 # age limit for adult, used on passport, detail page
