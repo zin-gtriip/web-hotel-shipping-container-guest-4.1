@@ -121,6 +121,128 @@ class RegistrationReservationForm(forms.Form):
         self.request.session['registration']['reservation'] = reservation # also working as variable to prevent page jump
 
 
+class RegistrationGuestListForm(forms.Form):
+
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.request = request
+        self.label_suffix = ''
+
+    def clean(self):
+        super().clean()
+        max_guest = int(self.request.session['registration']['reservation'].get('adults', 1)) + int(self.request.session['registration']['reservation'].get('children', 0))
+        if max_guest < len(self.request.session['registration']['reservation'].get('guestsList', [])):
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You have exceeded the number of guests.')])
+        return self.cleaned_data
+
+    def save(self):
+        self.request.session['registration']['guest_list'] = True
+
+
+class RegistrationDetailForm(forms.Form):
+    first_name = forms.CharField(label=_('First Name'), required=False)
+    last_name = forms.CharField(label=_('Last Name'), required=False)
+    passport_no = forms.CharField(label=_('Passport Number'), required=False)
+    nationality = CountryField(blank_label=_('[Select Country]')).formfield(label=_('Nationality'), required=False)
+    birth_date = forms.DateField(label=_('Date of Birth'), required=False)
+    is_overwrite = forms.BooleanField(initial=True, required=False)
+    is_submit = forms.BooleanField(initial=True, required=False)
+
+    def __init__(self, instance, request, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.instance = instance
+        self.request = request
+        self.label_suffix = ''
+        # from backend
+        first_name = self.instance.get('firstName', '')
+        last_name = self.instance.get('lastName', '')
+        passport_no = self.instance.get('passportNo', '')
+        nationality = self.instance.get('nationality', 'SG')
+        birth_date = self.instance.get('dob', '')
+        # from `preload`
+        if self.instance.get('isMainGuest', '0') == '1':
+            first_name = self.request.session.get('registration', {}).get('preload', {}).get('first_name', first_name)
+            passport_no = self.request.session.get('registration', {}).get('preload', {}).get('passport_no', passport_no)
+            nationality = self.request.session.get('registration', {}).get('preload', {}).get('nationality', nationality)
+            birth_date = self.request.session.get('registration', {}).get('preload', {}).get('birth_date', birth_date)
+        # from `ocr`
+        if self.instance.get('is_overwrite', False):
+            first_name = self.request.session.get('registration', {}).get('ocr', {}).get('names', first_name)
+            if self.instance.get('guestID', '0') == '0':
+                last_name = self.request.session.get('registration', {}).get('ocr', {}).get('surname', last_name)
+            passport_no = self.request.session.get('registration', {}).get('ocr', {}).get('number', passport_no)
+            nationality = Country(self.request.session.get('registration', {}).get('ocr', {}).get('nationality', '')).code or nationality
+            birth_date = utils.parse_ocr_date(self.request.session.get('registration', {}).get('ocr', {}).get('date_of_birth', '')) or birth_date
+        # assign
+        self.fields['first_name'].initial = first_name.title()
+        self.fields['last_name'].initial = last_name
+        self.fields['passport_no'].initial = passport_no
+        self.fields['nationality'].initial = nationality
+        self.fields['birth_date'].initial = birth_date
+    
+    def clean(self):
+        super().clean()
+        first_name = self.cleaned_data.get('first_name')
+        last_name = self.cleaned_data.get('last_name')
+        nationality = self.cleaned_data.get('nationality')
+        passport_no = self.cleaned_data.get('passport_no')
+        birth_date = self.cleaned_data.get('birth_date')
+        is_submit = self.cleaned_data.get('is_submit')
+        
+        if is_submit:
+            if not first_name:
+                self._errors['first_name'] = self.error_class([_('Enter the required information')])
+            if not last_name:
+                self._errors['last_name'] = self.error_class([_('Enter the required information')])
+            if not nationality:
+                self._errors['nationality'] = self.error_class([_('Enter the required information')])
+            if not passport_no:
+                self._errors['passport_no'] = self.error_class([_('Enter the required information')])
+            if not birth_date:
+                self._errors['birth_date'] = self.error_class([_('Enter the required information')])
+            else:
+                if self.instance.get('isMainGuest', '0') == '1': # age limit, check only if main guest
+                    config = gateways.amp_endpoint('/getConfigVariables', self.request.session.get('property_id', '')) or {} # get config variables
+                    age_limit = config.get('prearrival_adult_min_age_years', settings.REGISTRATION_ADULT_AGE_LIMIT)
+                    if utils.calculate_age(birth_date) <= age_limit:
+                        self._errors['birth_date'] = self.error_class([_('Main guest has to be %(age)s and above.') % {'age': age_limit}])
+            if settings.REGISTRATION_OCR and not self.instance.get('passportImage', ''):
+                self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You need to upload passport image.')])
+        return self.cleaned_data
+
+    def save(self):
+        self.instance['firstName'] = self.cleaned_data.get('first_name')
+        self.instance['lastName'] = self.cleaned_data.get('last_name')
+        self.instance['nationality'] = self.cleaned_data.get('nationality')
+        self.instance['passportNo'] = self.cleaned_data.get('passport_no')
+        self.instance['dob'] = self.cleaned_data.get('birth_date').strftime('%Y-%m-%d') if self.cleaned_data.get('birth_date') else ''
+        self.instance['is_overwrite'] = self.cleaned_data.get('is_overwrite')
+        if self.cleaned_data.get('is_submit', False):
+            if self.instance.get('guestID', '0') != '0': # existing guest
+                guest = next((data for data in self.request.session['registration']['reservation'].get('guestsList', []) if data.get('guestID', '') == self.instance.get('id', None)), {})
+                guest['firstName'] = self.instance.get('firstName', '')
+                guest['lastName'] = self.instance.get('lastName', '')
+                guest['nationality'] = self.instance.get('nationality', '')
+                guest['passportNo'] = self.instance.get('passportNo', '')
+                guest['dob'] = self.instance.get('dob', '')
+                guest['passportImage'] = self.instance.get('passportImage', '')
+                guest['is_done'] = True
+            else: # new guest
+                guest = {}
+                guest['guestID'] = self.instance.get('guestID', '0')
+                guest['firstName'] = self.instance.get('firstName', '')
+                guest['lastName'] = self.instance.get('lastName', '')
+                guest['nationality'] = self.instance.get('nationality', '')
+                guest['passportNo'] = self.instance.get('passportNo', '')
+                guest['dob'] = self.instance.get('dob', '')
+                guest['passportImage'] = self.instance.get('passportImage', '')
+                guest['hasLocalRecord'] = '0'
+                guest['new_guest_id'] = 'new%s' % len([data for data in self.request.session['registration']['reservation'].get('guestsList', []) if data.get('guestID', '0') == '0'])
+                guest['is_done'] = True
+                self.request.session['registration']['reservation']['guestsList'].append(guest)
+        return self.instance
+
+
 class RegistrationPassportForm(forms.Form):
     passport_file = forms.CharField(widget=forms.HiddenInput(), required=False)
     skip_passport = forms.BooleanField(widget=forms.HiddenInput(), required=False)
@@ -135,45 +257,38 @@ class RegistrationPassportForm(forms.Form):
         'Invalid NRIC image.': _('Invalid NRIC image.'),
     }
 
-    def __init__(self, request, *args, **kwargs):
+    def __init__(self, instance, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.instance = instance
         self.request = request
         self.label_suffix = ''
         self.response = {}
+        self.request.session['registration']['ocr'] = {} # initiate `ocr`
 
     def clean(self):
         super().clean()
         passport_file = self.cleaned_data.get('passport_file')
-        skip_passport = self.cleaned_data.get('skip_passport')
 
-        if not skip_passport and not passport_file:
+        if not passport_file:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('No image file selected.')])
-
-        # validate based on `scan_type` (`passport` / `nric`)
-        if not skip_passport:
+        else:
+            # validate based on `scan_type` (`passport` / `nric`)
             saved_file = self.save_file()
             response = self.gateway_ocr(saved_file)
             if 'status' not in response and 'message' not in response:
-                if response.get('scan_type', 'passport') == 'passport':
-                    if response.get('expired', '') == 'false':
-                        config = gateways.amp_endpoint('/getConfigVariables', self.request.session.get('property_id', '')) or {} # get config variables
-                        age_limit = config.get('prearrival_adult_min_age_years', settings.REGISTRATION_ADULT_AGE_LIMIT)
-                        if utils.calculate_age(utils.parse_ocr_date(response.get('date_of_birth', ''))) <= age_limit:
-                            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You must be at least %(age)s years of age to proceed with your registration.') % {'age': age_limit}])
-                    else:
-                        self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Your passport has expired, please capture / upload a valid passport photo to proceed')])
+                if response.get('scan_type', 'passport') == 'passport' and response.get('expired', '') == 'true':
+                    self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Your passport has expired, please capture / upload a valid passport photo to proceed')])
             else:
                 response_message = response.get('message', _('Unknown error'))
                 self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([self.error_messages.get(response_message, response_message)])
-            # remove saved file if fail
-            if self._errors:
+            
+            if self._errors: # remove saved file if fail
                 os.remove(saved_file)
 
         return self.cleaned_data
 
     def save_file(self):
-        # save passport file using `session_key` as file name
-        file_name = self.request.session.session_key +'.png'
+        file_name = self.request.session.session_key +'.png' # save passport file using `session_key` as file name
         folder_ocr = os.path.join(settings.BASE_DIR, 'media', 'ocr')
         if not os.path.exists(folder_ocr):
             folder_media = os.path.join(settings.BASE_DIR, 'media')
@@ -197,193 +312,14 @@ class RegistrationPassportForm(forms.Form):
         return self.response
 
     def save(self):
-        main_guest = next((guest for guest in self.request.session['registration']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
-        if self.cleaned_data.get('skip_passport'):
-            main_guest.update({'passportImage': ''})
-            self.request.session['registration'].pop('ocr', None)
-        else:
-            file_name = self.request.session.session_key +'.png'
-            folder_name = os.path.join(settings.BASE_DIR, 'media', 'ocr')
-            saved_file = os.path.join(folder_name, file_name)
-            with open(saved_file, 'rb') as image_file:
-                file_b64_encoded = base64.b64encode(image_file.read())
-            main_guest.update({'passportImage': file_b64_encoded.decode()})
-            self.request.session['registration']['ocr'] = self.response
-            os.remove(saved_file) # remove saved file
-        self.request.session['registration']['passport'] = True # variable to prevent page jump
-
-
-class RegistrationDetailForm(forms.Form):
-    guest_id    = forms.CharField(widget=forms.HiddenInput())
-    first_name  = forms.CharField(label=_('First Name'))
-    last_name   = forms.CharField(label=_('Last Name'))
-    passport_no = forms.CharField(label=_('Passport Number'))
-    nationality = CountryField(blank_label=_('[Select Country]')).formfield(label=_('Nationality'))
-    birth_date  = forms.DateField(label=_('Date of Birth'))
-
-    def __init__(self, request, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.request = request
-        self.label_suffix = ''
-        # from backend
-        main_guest = next((guest for guest in self.request.session['registration']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
-        guest_id = main_guest.get('guestID', 0)
-        first_name = main_guest.get('firstName', '')
-        last_name = main_guest.get('lastName', '')
-        passport_no = main_guest.get('passportNo', '')
-        nationality = main_guest.get('nationality', 'SG')
-        birth_date = main_guest.get('dob', '')
-        # from `preload`
-        first_name = self.request.session.get('registration', {}).get('preload', {}).get('first_name', first_name)
-        passport_no = self.request.session.get('registration', {}).get('preload', {}).get('passport_no', passport_no)
-        nationality = self.request.session.get('registration', {}).get('preload', {}).get('nationality', nationality)
-        birth_date = self.request.session.get('registration', {}).get('preload', {}).get('birth_date', birth_date)
-        # from `ocr`
-        first_name = self.request.session.get('registration', {}).get('ocr', {}).get('names', first_name)
-        passport_no = self.request.session.get('registration', {}).get('ocr', {}).get('number', passport_no)
-        nationality = Country(self.request.session.get('registration', {}).get('ocr', {}).get('nationality', '')).code or nationality
-        birth_date = utils.parse_ocr_date(self.request.session.get('registration', {}).get('ocr', {}).get('date_of_birth', '')) or birth_date
-        # assign
-        self.fields['guest_id'].initial = guest_id
-        self.fields['first_name'].initial = first_name.title()
-        self.fields['last_name'].initial = last_name
-        self.fields['passport_no'].initial = passport_no
-        self.fields['nationality'].initial = nationality
-        self.fields['birth_date'].initial = birth_date
-    
-    def clean(self):
-        super().clean()
-        first_name = self.cleaned_data.get('first_name')
-        last_name = self.cleaned_data.get('last_name')
-        nationality = self.cleaned_data.get('nationality')
-        passport_no = self.cleaned_data.get('passport_no')
-        birth_date = self.cleaned_data.get('birth_date')
-        
-        # validate required field
-        if not first_name:
-            self._errors['first_name'] = self.error_class([_('Enter the required information')])
-        if not last_name:
-            self._errors['last_name'] = self.error_class([_('Enter the required information')])
-        if not nationality:
-            self._errors['nationality'] = self.error_class([_('Enter the required information')])
-        if not passport_no:
-            self._errors['passport_no'] = self.error_class([_('Enter the required information')])
-        if not birth_date:
-            self._errors['birth_date'] = self.error_class([_('Enter the required information')])
-        else:
-            config = gateways.amp_endpoint('/getConfigVariables', self.request.session.get('property_id', '')) or {} # get config variables
-            age_limit = config.get('prearrival_adult_min_age_years', settings.REGISTRATION_ADULT_AGE_LIMIT)
-            if utils.calculate_age(birth_date) <= age_limit:
-                self._errors['birth_date'] = self.error_class([_('Main guest has to be %(age)s and above.') % {'age': age_limit}])
-        return self.cleaned_data
-
-    def save(self, extra):
-        guests = [{
-            'guestID': self.cleaned_data.get('guest_id'),
-            'firstName': self.cleaned_data.get('first_name'),
-            'lastName': self.cleaned_data.get('last_name'),
-            'nationality': self.cleaned_data.get('nationality'),
-            'passportNo': self.cleaned_data.get('passport_no'),
-            'dob': self.cleaned_data.get('birth_date').strftime('%Y-%m-%d'),
-        }]
-        for form in extra.forms:
-            guests.append({
-                'guestID': form.cleaned_data.get('guest_id'),
-                'firstName': form.cleaned_data.get('first_name'),
-                'lastName': form.cleaned_data.get('last_name'),
-                'nationality': form.cleaned_data.get('nationality'),
-                'passportNo': form.cleaned_data.get('passport_no'),
-                'dob': form.cleaned_data.get('birth_date').strftime('%Y-%m-%d'),
-            })
-
-        # update with session `guestList` data, in case there are other fields in session `guestList`
-        updated_guests = []
-        for guest in guests:
-            if guest.get('guestID', '0') != '0': # update prefilled guest only
-                reservation_guest = next((guest_temp for guest_temp in self.request.session['registration']['reservation'].get('guestsList', []) if guest_temp.get('guestID', '') == guest.get('guestID', '')), {})
-                reservation_guest.update(guest)
-                updated_guests.append(reservation_guest)
-            else:
-                updated_guests.append(guest)
-        self.request.session['registration']['reservation']['guestsList'] = updated_guests # replace with whole new list
-        self.request.session['registration'].pop('ocr', None) # remove ocr after save detail
-        self.request.session['registration']['detail'] = True # variable to prevent page jump
-
-
-class RegistrationDetailExtraForm(forms.Form):
-    guest_id = forms.CharField(widget=forms.HiddenInput())
-    first_name = forms.CharField(label=_('First Name'))
-    last_name = forms.CharField(label=_('Last Name'))
-    nationality = CountryField(blank_label=_('[Select Country]')).formfield(label=_('Nationality'))
-    passport_no = forms.CharField(label=_('Passport Number'))
-    birth_date = forms.DateField(label=_('Date of Birth'))
-
-    def __init__(self, request, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.request = request
-        self.label_suffix = ''
-
-    def clean(self):
-        super().clean()
-        first_name = self.cleaned_data.get('first_name')
-        last_name = self.cleaned_data.get('last_name')
-        nationality = self.cleaned_data.get('nationality')
-        passport_no = self.cleaned_data.get('passport_no')
-        birth_date = self.cleaned_data.get('birth_date')
-
-        if not first_name:
-            self._errors['first_name'] = self.error_class([_('Enter the required information')])
-        if not last_name:
-            self._errors['last_name'] = self.error_class([_('Enter the required information')])
-        if not nationality:
-            self._errors['nationality'] = self.error_class([_('Enter the required information')])
-        if not passport_no:
-            self._errors['passport_no'] = self.error_class([_('Enter the required information')])
-        if not birth_date:
-            self._errors['birth_date'] = self.error_class([_('Enter the required information')])
-        return self.cleaned_data
-
-
-class RegistrationDetailExtraBaseFormSet(forms.BaseFormSet):
-    
-    def __init__(self, request, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.request = request
-        self.label_suffix = ''
-        # populate additional guests
-        prefilled = []
-        for guest in self.request.session['registration']['reservation'].get('guestsList', []):
-            if guest.get('isMainGuest', '0') == '0':
-                prefilled.append({
-                    'guest_id': guest.get('guestID', ''),
-                    'first_name': guest.get('firstName', ''),
-                    'last_name': guest.get('lastName', ''),
-                    'nationality': guest.get('nationality', ''),
-                    'passport_no': guest.get('passportNo', ''),
-                    'birth_date': guest.get('dob', ''),
-                })
-        self.extra = 0 # number of empty extra form to be populated
-        self.initial = prefilled
-
-    def get_form_kwargs(self, index):
-        kwargs = super().get_form_kwargs(index)
-        kwargs['request'] = self.request
-        return kwargs
-
-    def clean(self):
-        super().clean()
-        adult, max_adult = 1, int(self.request.session['registration']['reservation'].get('adults', 1))
-        config = gateways.amp_endpoint('/getConfigVariables', self.request.session.get('property_id', '')) or {} # get config variables
-        age_limit = config.get('prearrival_adult_min_age_years', settings.REGISTRATION_ADULT_AGE_LIMIT)
-        for form in self.forms:
-            if utils.calculate_age(form.cleaned_data.get('birth_date')) > age_limit:
-                adult += 1
-        if adult > max_adult:
-            self._non_form_errors = self.error_class([_('You have exceeded the number of adults.')])
-
-
-# initiate formset, for one2many field
-RegistrationDetailExtraFormSet = forms.formset_factory(RegistrationDetailExtraForm, formset=RegistrationDetailExtraBaseFormSet)
+        file_name = self.request.session.session_key +'.png'
+        folder_name = os.path.join(settings.BASE_DIR, 'media', 'ocr')
+        saved_file = os.path.join(folder_name, file_name)
+        with open(saved_file, 'rb') as image_file:
+            file_b64_encoded = base64.b64encode(image_file.read())
+        self.instance['passportImage'] = file_b64_encoded.decode()[:10]
+        self.request.session['registration']['ocr'] = self.response
+        return self.instance
 
 
 class RegistrationOtherInfoForm(forms.Form):

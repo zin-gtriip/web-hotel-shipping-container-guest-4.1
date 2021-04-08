@@ -14,7 +14,7 @@
 {% endblock static_css %}
 
 {% block header_left %}
-    <a href="{% url 'registration:reservation' %}" class="btn btn-link"><i class="fas fa-arrow-left"></i></a>
+    <a href="{% url 'registration:detail' encrypted_id %}" class="btn btn-link" ><i class="fas fa-arrow-left"></i></a>
     {{ block.super }}
 {% endblock header_left %}
 
@@ -35,7 +35,6 @@
         <div class="row page-content">
             <div class="col-12 px-0 d-flex justify-content-center">
                 {% render_field form.passport_file %}
-                {% render_field form.skip_passport %}
                 <div class="default-container">
                     <img src="{% static 'img/mobile-passport.png' %}">
                 </div>

@@ -15,7 +15,7 @@
 {% endblock static_css %}
 
 {% block header_left %}
-    <a href="{% url 'registration:passport' %}" class="btn btn-link"><i class="fas fa-arrow-left"></i></a>
+    <button type="button" class="btn btn-link" id="btn-back"><i class="fas fa-arrow-left"></i></button>
     {{ block.super }}
 {% endblock header_left %}
 
@@ -26,331 +26,206 @@
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-12 px-0 text-center">
-                {% blocktrans %}Enter Guest Details{% endblocktrans %}
+                {% blocktrans %}Guest Details{% endblocktrans %}
             </div>
         </div>
         <div class="row page-subheader">
             <div class="col-12 px-0 text-center text-secondary">
-                {% blocktrans %}Please enter the personal particulars below.{% endblocktrans %}
+                {% blocktrans %}Please verify the personal particulars below.{% endblocktrans %}
             </div>
         </div>
         <div class="row page-content">
-            <div class="col-12">
-                <div class="row guests">
-                    <div class="col-12 px-5" id="main-guest">
-                        <div class="row guest-index">
-                            <div class="col-12 px-0">
-                                {% render_field form.guest_id %}
-                                <span class="float-left text-primary text-uppercase font-weight-bold">
-                                    {% if form.is_bound and extra.forms|length > 0 %}
-                                        {% trans 'Main Guest' %}
-                                    {% else %}
-                                        &nbsp;
-                                    {% endif %}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="md-form mt-0">
-                                    {% trans 'Enter your name' as first_name_placeholder %}
-                                    {{ form.first_name.label_tag }}
-                                    {% if form.is_bound and form.first_name.errors %}
-                                        <!-- bound and has error -->
-                                        {% render_field form.first_name class="form-control is-invalid" placeholder=first_name_placeholder %}
-                                        <!-- error feedback -->
-                                        {% for error in form.first_name.errors %}
-                                            <div class="invalid-feedback">{{ error }}</div>
-                                        {% endfor %}
-                                    {% else %}
-                                        <!-- not bound or no error -->
-                                        {% render_field form.first_name class="form-control" placeholder=first_name_placeholder %}
-                                        {% if form.first_name.help_text %}
-                                            <small class="form-text text-muted">{{ form.first_name.help_text }}</small>
-                                        {% endif %}
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="md-form mt-2">
-                                    {{ form.last_name.label_tag }}
-                                    {% render_field form.last_name class="form-control disabled" readonly="true" %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="md-form mt-2">
-                                    {% trans 'e.g. A12345Z' as passport_no_placeholder %}
-                                    {{ form.passport_no.label_tag }}
-                                    {% if form.is_bound and form.passport_no.errors %}
-                                        <!-- bound and has error -->
-                                        {% render_field form.passport_no class="form-control is-invalid" placeholder=passport_no_placeholder %}
-                                        <!-- error feedback -->
-                                        {% for error in form.passport_no.errors %}
-                                            <div class="invalid-feedback">{{ error }}</div>
-                                        {% endfor %}
-                                    {% else %}
-                                        <!-- not bound or no error -->
-                                        {% render_field form.passport_no class="form-control" placeholder=passport_no_placeholder %}
-                                        {% if form.passport_no.help_text %}
-                                            <small class="form-text text-muted">{{ form.passport_no.help_text }}</small>
-                                        {% endif %}
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="md-form mt-2">
-                                    <label for="id_nationality" class="active">{% trans 'Nationality' %}</label>
-                                    {% if form.is_bound and form.nationality.errors %}
-                                        <!-- bound and has error -->
-                                        {% render_field form.nationality class="form-control md-select is-invalid" %}
-                                        <!-- error feedback -->
-                                        {% for error in form.nationality.errors %}
-                                            <div class="invalid-feedback">{{ error }}</div>
-                                        {% endfor %}
-                                    {% else %}
-                                        <!-- not bound or no error -->
-                                        {% render_field form.nationality class="form-control md-select" %}
-                                        {% if form.nationality.help_text %}
-                                            <small class="form-text text-muted">{{ form.nationality.help_text }}</small>
-                                        {% endif %}
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="md-form mt-2 input-with-post-icon">
-                                    {% trans 'YYYY-MM-DD' as birth_date_placeholder %}
-                                    <label for="datepicker-birth-date">{{ form.birth_date.label }}</label>
-                                    {% render_field form.birth_date class="rolldate" hidden="true" %}
-                                    {% if form.is_bound and form.birth_date.errors %}
-                                        <!-- bound and has error -->
-                                        <input type="text" id="datepicker-birth-date" class="form-control datepicker is-invalid" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly required placeholder="{{ birth_date_placeholder }}">
-                                        <!-- error feedback -->
-                                        {% for error in form.birth_date.errors %}
-                                            <div class="invalid-feedback">{{ error }}</div>
-                                        {% endfor %}
-                                    {% else %}
-                                        <!-- not bound or no error -->
-                                        <input type="text" id="datepicker-birth-date" class="form-control datepicker" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly required placeholder="{{ birth_date_placeholder }}">
-                                        <i class="far fa-calendar input-prefix"></i>
-                                        {% if form.birth_date.help_text %}
-                                            <small class="form-text text-muted">{{ form.birth_date.help_text }}</small>
-                                        {% endif %}
-                                    {% endif %}
-                                </div>
-                            </div>
+            <div class="col-12 px-5">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form mt-0">
+                            {% trans 'Enter your name' as first_name_placeholder %}
+                            {{ form.first_name.label_tag }}
+                            {% if form.is_bound and form.first_name.errors %}
+                                {% if ocr_required and not object.passportImage %}
+                                    {% render_field form.first_name class="form-control is-invalid disabled" readonly="true" placeholder=first_name_placeholder %}
+                                {% else %}
+                                    {% render_field form.first_name class="form-control is-invalid" placeholder=first_name_placeholder %}
+                                {% endif %}
+                                {% for error in form.first_name.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            {% else %}
+                                {% if ocr_required and not object.passportImage %}
+                                    {% render_field form.first_name class="form-control disabled" readonly="true" placeholder=first_name_placeholder %}
+                                {% else %}
+                                    {% render_field form.first_name class="form-control" placeholder=first_name_placeholder %}
+                                {% endif %}
+                                {% if form.first_name.help_text %}
+                                    <small class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                {% endif %}
+                            {% endif %}
                         </div>
                     </div>
-                    <!-- extra formset template -->
-                    <div class="col-12 px-5" id="extra-formset-template" hidden>
-                        <div class="row guest-index">
-                            <div class="col-12 px-0">
-                                <input type="hidden" id="guest-id-template" value="0">
-                                <span class="float-left text-primary text-uppercase font-weight-bold"></span>
-                                <button type="button" class="btn btn-link float-right m-0 p-0 d-flex text-24 text-secondary btn-remove-extra">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="md-form mt-0">
-                                    {% trans 'Enter your name' as first_name_placeholder %}
-                                    <label>{% trans 'First Name' %}</label>
-                                    <input type="text" id="first-name-template" class="form-control" placeholder="{{ first_name_placeholder }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="md-form mt-2">
-                                    {% trans 'Enter your name' as last_name_placeholder %}
-                                    <label>{% trans 'Last Name' %}</label>
-                                    <input type="text" id="last-name-template" class="form-control" placeholder="{{ last_name_placeholder }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="md-form mt-2">
-                                    {% trans 'e.g. A12345Z' as passport_no_placeholder %}
-                                    <label>{% trans 'Passport Number' %}</label>
-                                    <input type="text" id="passport-no-template" class="form-control" placeholder="{{ passport_no_placeholder }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="md-form mt-2">
-                                    <label class="active">{% trans 'Nationality' %}</label>
-                                    <select id="nationality-template" class="form-control md-select">
-                                        <option value="">{% trans '[Select Country]' %}</option>
-                                        {% for country in countries %}
-                                            <option value="{{ country.code }}">{{ country.name }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="md-form mt-2 input-with-post-icon">
-                                    {% trans 'YYYY-MM-DD' as birth_date_placeholder %}
-                                    <label>{% trans 'Date of Birth' %}</label>
-                                    <input type="text" id="birth-date-template" hidden>
-                                    <input type="text" id="datepicker-birth-date-template" class="form-control" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly placeholder="{{ birth_date_placeholder }}">
-                                    <i class="far fa-calendar input-prefix"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- extra formset bound -->
-                    {% for extra_form in extra.forms %}
-                        <div class="col-12 px-5 extra-formset" id="extra-formset-{{ forloop.counter0 }}">
-                            <div class="row guest-index">
-                                <div class="col-12 px-0">
-                                    {% render_field extra_form.guest_id %}
-                                    <span class="float-left text-primary text-uppercase font-weight-bold"></span>
-                                    <button type="button" class="btn btn-link float-right m-0 p-0 d-flex text-24 text-secondary btn-remove-extra">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="md-form mt-0">
-                                        {% trans 'Enter your name' as first_name_placeholder %}
-                                        {{ extra_form.first_name.label_tag }}
-                                        {% if extra_form.first_name.errors %}
-                                            <!-- has error -->
-                                            {% render_field extra_form.first_name class="form-control is-invalid" required="true" placeholder=first_name_placeholder %}
-                                            {% for error in extra_form.first_name.errors %}
-                                                <div class="invalid-feedback">{{ error }}</div>
-                                            {% endfor %}
-                                        {% else %}
-                                            <!-- no error -->
-                                            {% render_field extra_form.first_name class="form-control" required="true" placeholder=first_name_placeholder %}
-                                            {% if extra_form.first_name.help_text %}
-                                                <small class="form-text text-muted">{{ extra_form.first_name.help_text }}</small>
-                                            {% endif %}
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="md-form mt-2">
-                                        {% trans 'Enter your name' as last_name_placeholder %}
-                                        {{ extra_form.last_name.label_tag }}
-                                        {% if extra_form.last_name.errors %}
-                                            <!-- has error -->
-                                            {% render_field extra_form.last_name class="form-control is-invalid" required="true" placeholder=last_name_placeholder %}
-                                            {% for error in extra_form.last_name.errors %}
-                                                <div class="invalid-feedback">{{ error }}</div>
-                                            {% endfor %}
-                                        {% else %}
-                                            <!-- no error -->
-                                            {% render_field extra_form.last_name class="form-control" required="true" placeholder=last_name_placeholder %}
-                                            {% if extra_form.last_name.help_text %}
-                                                <small class="form-text text-muted">{{ extra_form.last_name.help_text }}</small>
-                                            {% endif %}
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="md-form mt-2">
-                                        {% trans 'e.g. A12345Z' as passport_no_placeholder %}
-                                        {{ extra_form.passport_no.label_tag }}
-                                        {% if extra_form.passport_no.errors %}
-                                            <!-- has error -->
-                                            {% render_field extra_form.passport_no class="form-control is-invalid" required="true" placeholder=passport_no_placeholder %}
-                                            {% for error in extra_form.passport_no.errors %}
-                                                <div class="invalid-feedback">{{ error }}</div>
-                                            {% endfor %}
-                                        {% else %}
-                                            <!-- no error -->
-                                            {% render_field extra_form.passport_no class="form-control" required="true" placeholder=passport_no_placeholder %}
-                                            {% if extra_form.passport_no.help_text %}
-                                                <small class="form-text text-muted">{{ extra_form.passport_no.help_text }}</small>
-                                            {% endif %}
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="md-form mt-2">
-                                        <label for="{{ extra_form.nationality.id }}" class="active">{% trans 'Nationality' %}</label>
-                                        {% if extra_form.nationality.errors %}
-                                            <!-- has error -->
-                                            {% render_field extra_form.nationality class="form-control md-select is-invalid" required="true" %}
-                                            {% for error in extra_form.nationality.errors %}
-                                                <div class="invalid-feedback">{{ error }}</div>
-                                            {% endfor %}
-                                        {% else %}
-                                            <!-- no error -->
-                                            {% render_field extra_form.nationality class="form-control md-select" required="true" %}
-                                            {% if extra_form.nationality.help_text %}
-                                                <small class="form-text text-muted">{{ extra_form.nationality.help_text }}</small>
-                                            {% endif %}
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="md-form mt-2 input-with-post-icon">
-                                        {% trans 'YYYY-MM-DD' as birth_date_placeholder %}
-                                        <label for="datepicker-{{ forloop.counter0 }}-birth-date">{{ extra_form.birth_date.label }}</label>
-                                        {% render_field extra_form.birth_date class="rolldate" hidden="true" %}
-                                        {% if extra_form.birth_date.errors %}
-                                            <!-- has error -->
-                                            <input type="text" id="datepicker-{{ forloop.counter0 }}-birth-date" class="form-control datepicker is-invalid" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly required placeholder="{{ birth_date_placeholder }}">
-                                            {% for error in extra_form.birth_date.errors %}
-                                                <div class="invalid-feedback">{{ error }}</div>
-                                            {% endfor %}
-                                        {% else %}
-                                            <!-- no error -->
-                                            <input type="text" id="datepicker-{{ forloop.counter0 }}-birth-date" class="form-control datepicker" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly required placeholder="{{ birth_date_placeholder }}">
-                                            <i class="far fa-calendar input-prefix"></i>
-                                            {% if extra_form.passport_no.help_text %}
-                                                <small class="form-text text-muted">{{ extra_form.passport_no.help_text }}</small>
-                                            {% endif %}
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                    <!-- extra formset newly inserted -->
                 </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form mt-2">
+                            {% trans 'Enter your name' as last_name_placeholder %}
+                            {{ form.last_name.label_tag }}
+                            {% if object.guestID == '0' %}
+                                {% if form.is_bound and form.last_name.errors %}
+                                    {% if ocr_required and not object.passportImage %}
+                                        {% render_field form.last_name class="form-control is-invalid disabled" readonly="true" placeholder=last_name_placeholder %}
+                                    {% else %}
+                                        {% render_field form.last_name class="form-control is-invalid" placeholder=last_name_placeholder %}
+                                    {% endif %}
+                                    {% for error in form.last_name.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                {% else %}
+                                    {% if ocr_required and not object.passportImage %}
+                                        {% render_field form.last_name class="form-control disabled" readonly="true" placeholder=last_name_placeholder %}
+                                    {% else %}
+                                        {% render_field form.last_name class="form-control" placeholder=last_name_placeholder %}
+                                    {% endif %}
+                                    {% if form.last_name.help_text %}
+                                        <small class="form-text text-muted">{{ form.last_name.help_text }}</small>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                {% render_field form.last_name class="form-control disabled" readonly="true" %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form mt-2">
+                            {% trans 'e.g. A12345Z' as passport_no_placeholder %}
+                            {{ form.passport_no.label_tag }}
+                            {% if form.is_bound and form.passport_no.errors %}
+                                {% if ocr_required and not object.passportImage %}
+                                    {% render_field form.passport_no class="form-control is-invalid disabled" readonly="true" placeholder=passport_no_placeholder %}
+                                {% else %}
+                                    {% render_field form.passport_no class="form-control is-invalid" placeholder=passport_no_placeholder %}
+                                {% endif %}
+                                {% for error in form.passport_no.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            {% else %}
+                                {% if ocr_required and not object.passportImage %}
+                                    {% render_field form.passport_no class="form-control disabled" readonly="true" placeholder=passport_no_placeholder %}
+                                {% else %}
+                                    {% render_field form.passport_no class="form-control" placeholder=passport_no_placeholder %}
+                                {% endif %}
+                                {% if form.passport_no.help_text %}
+                                    <small class="form-text text-muted">{{ form.passport_no.help_text }}</small>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form mt-2">
+                            <label for="id_nationality" class="active">{% trans 'Nationality' %}</label>
+                            {% if form.is_bound and form.nationality.errors %}
+                                {% if ocr_required and not object.passportImage %}
+                                    {% render_field form.nationality class="form-control md-select is-invalid disabled" readonly="true" %}
+                                {% else %}
+                                    {% render_field form.nationality class="form-control md-select is-invalid" %}
+                                {% endif %}
+                                {% for error in form.nationality.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            {% else %}
+                                {% if ocr_required and not object.passportImage %}
+                                    {% render_field form.nationality class="form-control md-select disabled" readonly="true" %}
+                                {% else %}
+                                    {% render_field form.nationality class="form-control md-select" %}
+                                {% endif %}
+                                {% if form.nationality.help_text %}
+                                    <small class="form-text text-muted">{{ form.nationality.help_text }}</small>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form mt-2 input-with-post-icon">
+                            {% trans 'YYYY-MM-DD' as birth_date_placeholder %}
+                            <label for="datepicker-birth-date">{{ form.birth_date.label }}</label>
+                            {% render_field form.birth_date class="rolldate" hidden="true" %}
+                            {% if form.is_bound and form.birth_date.errors %}
+                                {% if ocr_required and not object.passportImage %}
+                                    <input type="text" id="datepicker-birth-date" class="form-control datepicker is-invalid disabled" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly disabled placeholder="{{ birth_date_placeholder }}">
+                                {% else %}
+                                    <input type="text" id="datepicker-birth-date" class="form-control datepicker is-invalid" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly placeholder="{{ birth_date_placeholder }}">
+                                {% endif %}
+                                {% for error in form.birth_date.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            {% else %}
+                                {% if ocr_required and not object.passportImage %}
+                                    <input type="text" id="datepicker-birth-date" class="form-control datepicker disabled" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly disabled placeholder="{{ birth_date_placeholder }}">
+                                {% else %}
+                                    <input type="text" id="datepicker-birth-date" class="form-control datepicker" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly placeholder="{{ birth_date_placeholder }}">
+                                {% endif %}
+                                <i class="far fa-calendar input-prefix text-primary"></i>
+                                {% if form.birth_date.help_text %}
+                                    <small class="form-text text-muted">{{ form.birth_date.help_text }}</small>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% if ocr_required and not object.passportImage %}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-check pl-0">
+                                <label class="check-container">
+                                    <span class="label-check">{% trans 'Update my existing guest details using the information retrieved from the Passport/NRIC submission' %}</span>
+                                    {% render_field form.is_overwrite class="check-input" %}
+                                    <span class="check-icon"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
         <div class="row page-footer">
             <div class="col-12">
-                <div class="row">
-                    <div class="col-12 mb-3 d-flex justify-content-center">
-                        <input type="hidden" name="form-TOTAL_FORMS" value="{{ extra.forms|length }}" id="id_form-TOTAL_FORMS">
-                        <input type="hidden" name="form-INITIAL_FORMS" value="0" id="id_form-INITIAL_FORMS">
-                        <input type="hidden" name="form-MIN_NUM_FORMS" value="0" id="id_form-MIN_NUM_FORMS">
-                        <input type="hidden" name="form-MAX_NUM_FORMS" value="{{ max_extra_form }}" id="id_form-MAX_NUM_FORMS">
-                        <button type="button" class="btn btn-outline-primary m-0" id="btn-add-extra">{% trans 'Add Guest' %}</button>
+                {% if ocr_required %}
+                    {% if not object.passportImage %}
+                        <div class="row">
+                            <div class="col-lg-12 mb-3 d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary m-0 btn-passport">
+                                    {% trans 'Submit Passport/NRIC' %}
+                                </button>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="row">
+                            <div class="col-lg-12 mb-3 d-flex justify-content-center">
+                                <button type="submit" class="btn btn-outline-primary m-0 btn-passport">
+                                    {% trans 'Passport submitted' %}
+                                    <i class="fas fa-check icon-btn"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 d-flex justify-content-center">
+                                {% render_field form.is_submit hidden=true %}
+                                <button type="submit" class="btn btn-primary m-0">{% trans 'Save and go to guest list' %}</button>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <div class="row">
+                        <div class="col-lg-12 d-flex justify-content-center">
+                            {% render_field form.is_submit hidden=true %}
+                            <button type="submit" class="btn btn-primary m-0">{% trans 'Save and go to guest list' %}</button>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">{% trans 'Next' %}</button>
-                    </div>
-                </div>
+                {% endif %}
             </div>
         </div>
     </form>

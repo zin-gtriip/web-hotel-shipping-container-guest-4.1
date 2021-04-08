@@ -18,8 +18,6 @@ from django.urls import path, re_path, include
 from django.views.i18n import JavaScriptCatalog
 
 urlpatterns = [
-    path('', include('guest_facing.registration_adhoc_guest.urls')),
-    path('', include('guest_facing.registration_ocr_required.urls')),
     path('', include('guest_facing.registration.urls')),
     path('', include('guest_facing.check_out.urls')),
     path('', include('guest_facing.chat.urls')),

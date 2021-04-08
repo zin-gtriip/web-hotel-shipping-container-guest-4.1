@@ -31,8 +31,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'guest_facing.registration_adhoc_guest',
-    'guest_facing.registration_ocr_required',
     'guest_facing.registration',
     'guest_facing.check_out',
     'guest_facing.chat',
@@ -197,7 +195,7 @@ GUEST_ENDPOINT = [
         'description': 'GTRIIP - Aurum',
         'image': '/static/img/property-1.jpg',
         'address': '1 East Street, Singapore',
-        'url': 'http://hotel4qa.gtriip.com:8080/hotelTemplateProperty1',
+        'url': 'http://hotel3qa.gtriip.com:8080/hotelprod3dot0',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 30,
     },
@@ -337,17 +335,17 @@ REGISTRATION_ADULT_AGE_LIMIT = 18
 # registration pages that has expiry session (timer), make sure these are registration url
 REGISTRATION_EXPIRY_SESSION_PAGES = [
     'reservation',
-    'passport',
     'guest_list',
     'detail',
-    'extra_passport',
+    'passport',
     'other_info',
 ]
 # registration views that use `parameter_required` validation
 REGISTRATION_PARAMETER_REQUIRED_PAGES = [
     'reservation',
-    'passport',
-    'detail',
+    'guest_list',
+    # 'detail',
+    # 'passport',
     'other_info',
     'complete',
 ]
@@ -357,8 +355,7 @@ REGISTRATION_PROGRESS_BAR_END_RATE = 100
 REGISTRATION_PROGRESS_BAR_PAGES = [
     'login',
     'reservation',
-    'passport',
-    'detail',
+    'guest_list',
     'other_info',
     'complete',
 ]
@@ -366,3 +363,5 @@ REGISTRATION_PROGRESS_BAR_PAGES = [
 REGISTRATION_PROGRESS_BAR_RATE_PER_PAGE = (REGISTRATION_PROGRESS_BAR_END_RATE - REGISTRATION_PROGRESS_BAR_START_RATE) / (len(REGISTRATION_PROGRESS_BAR_PAGES) - 1)
 # complete email template directory
 REGISTRATION_COMPLETE_EMAIL = 'registration/email/complete.html'
+
+REGISTRATION_OCR = True

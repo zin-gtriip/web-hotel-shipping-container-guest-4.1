@@ -1,8 +1,8 @@
 .content {
-    
-    .page-footer {
+    .page-content {
         .btn {
-            width: 310px;
+            width: 300px;
+            border-radius: 15px;
         }
 
         i.icon-btn {
@@ -11,8 +11,10 @@
             top: 3px;
         }
     }
-}
 
-.datepicker.datepicker-dropdown {
-    display: none !important;
+    .page-footer {
+        .btn {
+            width: 220px;
+        }
+    }
 }
