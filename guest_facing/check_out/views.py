@@ -1,7 +1,7 @@
 from django.conf                import settings
 from django.contrib             import messages
 from django.http                import Http404
-from django.shortcuts           import render
+from django.shortcuts           import render, redirect
 from django.utils               import translation
 from django.utils.translation   import gettext, gettext_lazy as _
 from django.views.generic       import *
