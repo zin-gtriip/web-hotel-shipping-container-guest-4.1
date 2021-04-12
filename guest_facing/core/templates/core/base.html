@@ -122,7 +122,12 @@
     <!-- django js translation -->
     <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
     <!-- data js -->
-    {% block data_js %}{% endblock data_js %}
+    {% block data_js %}
+        {{ GA_MEASUREMENT_ID|json_script:'ga-measurement-id' }}
+    {% endblock data_js %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_MEASUREMENT_ID }}"></script>
+    <script type="text/javascript" src="{% static 'core/js/ga.js' %}"></script>
     {% compress js file %}
         <!-- JQuery -->
         <script type="text/javascript" src="{% static 'vendor/mdbootstrap/jquery.min.js' %}"></script>
