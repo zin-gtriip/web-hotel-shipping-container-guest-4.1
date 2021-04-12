@@ -22,7 +22,7 @@
 {% endblock header_right %}
 
 {% block header_left %}
-    {% if request.path in SESSION_EXPIRY_PAGES %}
+    {% if request.path in SESSION_EXPIRY_PAGES or custom_request_path in SESSION_EXPIRY_PAGES %}
         <div class="timer-text text-secondary ">
             <span class="timer-tick"></span>
         </div>

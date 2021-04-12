@@ -167,6 +167,7 @@ class RegistrationDetailView(PropertyRequiredMixin, RequestFormKwargsMixin, Mobi
         context['bootstrap_datepicker_language'] = translation.get_language()
         if context['bootstrap_datepicker_language'] == 'zh-hans':
             context['bootstrap_datepicker_language'] = 'zh-CN'
+        context['custom_request_path'] = '/registration/detail/'
         return context
 
     def get_success_url(self):
@@ -194,6 +195,7 @@ class RegistrationOcrView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileT
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['encrypted_id'] = self.kwargs.get('encrypted_id', '')
+        context['custom_request_path'] = '/registration/ocr/'
         return context
 
     def get_success_url(self):
