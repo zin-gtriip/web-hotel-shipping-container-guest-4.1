@@ -10,5 +10,5 @@ https://stackoverflow.com/a/433209
 from django.conf import settings
 
 def hotel_conf(request):
-    """Returns hotel name"""
-    return {'HOTEL_NAME': settings.HOTEL_NAME}
+    ga_measurement_id = settings.GA_MEASUREMENT_ID or ''
+    return {'HOTEL_NAME': settings.HOTEL_NAME, 'GA_MEASUREMENT_ID': ga_measurement_id}
