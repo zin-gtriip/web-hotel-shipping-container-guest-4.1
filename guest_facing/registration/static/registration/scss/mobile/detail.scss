@@ -16,3 +16,10 @@
 .datepicker.datepicker-dropdown {
     display: none !important;
 }
+
+
+#modal-confirmation {
+    .modal-footer .btn {
+        width: 125px;
+    }
+}
