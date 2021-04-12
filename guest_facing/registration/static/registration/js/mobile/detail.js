@@ -1,7 +1,14 @@
 $('.datepicker').datepicker();
+gaTag('detail_guest_display', 'registration'); // google analytics
 $('.rolldate').each(function() {
     initRolldate($(this));
 });
+
+
+var gaOcrSuccess = JSON.parse($('#ga-ocr-success').text() || '""');
+if (gaOcrSuccess) {
+    gaTag('ocr_guest_success', 'registration'); // google analytics
+}
 
 
 $('.btn-passport').click(function() {
@@ -29,6 +36,10 @@ $('#btn-back').click(function() {
     $('.modal:last').modal('show').addClass('shown');
 });
 
+
+$('#btn-save').click(function() {
+    gaTag('detail_guest_submitted', 'registration'); // google analytics
+});
 
 
 function initRolldate($rolldate) {

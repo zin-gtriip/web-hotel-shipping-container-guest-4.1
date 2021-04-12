@@ -214,7 +214,7 @@
                         <div class="row">
                             <div class="col-lg-12 d-flex justify-content-center">
                                 {% render_field form.is_submit hidden=true %}
-                                <button type="submit" class="btn btn-primary m-0">{% trans 'Save and go to guest list' %}</button>
+                                <button type="submit" class="btn btn-primary m-0" id="btn-save">{% trans 'Save and go to guest list' %}</button>
                             </div>
                         </div>
                     {% endif %}
@@ -222,7 +222,7 @@
                     <div class="row">
                         <div class="col-lg-12 d-flex justify-content-center">
                             {% render_field form.is_submit hidden=true %}
-                            <button type="submit" class="btn btn-primary m-0">{% trans 'Save and go to guest list' %}</button>
+                            <button type="submit" class="btn btn-primary m-0" id="btn-save">{% trans 'Save and go to guest list' %}</button>
                         </div>
                     </div>
                 {% endif %}
@@ -290,6 +290,11 @@
         </div>
     {% endfor %}
 {% endblock wrapper %}
+
+{% block data_js %}
+    {{ block.super }}
+    {{ ga_ocr_success|json_script:'ga-ocr-success' }}
+{% endblock data_js %}
 
 {% block lib_js %}
     {{ block.super }}

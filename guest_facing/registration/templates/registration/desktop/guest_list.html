@@ -31,29 +31,29 @@
         <div class="row page-content">
             <div class="col-lg-12">
                 {% for guest in request.session.registration.reservation.guestsList %}
-                    <div class="row">
+                    <div class="row" id="guests-list">
                         <div class="col-lg-12 mb-3 d-flex justify-content-center">
                             {% if guest.hasLocalRecord == '0' %}
                                 {% if not guest.is_done %} {# not done #}
-                                    <a href="{% url 'registration:detail' guest.guestID|encrypt %}" class="btn btn-primary">
+                                    <a href="{% url 'registration:detail' guest.guestID|encrypt %}" class="btn btn-primary" data-is-main-guest="{{ guest.isMainGuest }}">
                                         {{ guest.firstName }} {{ guest.lastName }}
                                         <i class="fas fa-arrow-right icon-btn"></i>
                                     </a>
                                 {% else %}
                                     {% if guest.guestID != '0' %} {# done, existing guest #}
-                                        <a href="{% url 'registration:detail' guest.guestID|encrypt %}" class="btn btn-outline-primary">
+                                        <a href="{% url 'registration:detail' guest.guestID|encrypt %}" class="btn btn-outline-primary" data-is-main-guest="{{ guest.isMainGuest }}">
                                             {{ guest.firstName }} {{ guest.lastName }}
                                             <i class="fas fa-check icon-btn"></i>
                                         </a>
                                     {% else %} {# done, new guest #}
-                                        <a href="{% url 'registration:detail' guest.new_guest_id|encrypt %}" class="btn btn-outline-primary">
+                                        <a href="{% url 'registration:detail' guest.new_guest_id|encrypt %}" class="btn btn-outline-primary" data-is-main-guest="{{ guest.isMainGuest }}">
                                             {{ guest.firstName }} {{ guest.lastName }}
                                             <i class="fas fa-check icon-btn"></i>
                                         </a>
                                     {% endif %}
                                 {% endif %}
                             {% else %} {# adhoc guest, disable #}
-                                <button type="button" disabled class="btn btn-outline-primary">
+                                <button type="button" class="btn btn-outline-primary" disabled>
                                     {{ guest.firstName }} {{ guest.lastName }}
                                     <i class="fas fa-check icon-btn"></i>
                                 </button>
@@ -64,7 +64,7 @@
                 {% if add_guest %} {# based on max guests (adult + children) #}
                     <div class="row">
                         <div class="col-lg-12 mb-3 d-flex justify-content-center">
-                            <a href="{% url 'registration:detail' '0'|encrypt %}" class="btn btn-outline-primary">+ {% trans 'Add Guest' %}</a>
+                            <a href="{% url 'registration:detail' '0'|encrypt %}" class="btn btn-outline-primary" id="btn-add">+ {% trans 'Add Guest' %}</a>
                         </div>
                     </div>
                 {% endif %}

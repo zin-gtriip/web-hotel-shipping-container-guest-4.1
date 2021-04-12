@@ -1,5 +1,5 @@
 window.addEventListener("flutterInAppWebViewPlatformReady", null); // add event to send message to app
-
+gaTag('login_reservation_no_display', 'registration'); // google analytics
 
 $(document).ready(function() {
     // to auto focus
@@ -57,6 +57,7 @@ $('#footer-reservation-no button').click(function() {
 	$('.header #btn-back').show();
 	$('.header #btn-home').hide();
 	$nextStep.show().addClass('active');
+	gaTag('login_last_name_display', 'registration'); // google analytics
 	$currentStep.animate({opacity: 0}, {
 		step: function(now) {
 			// for making fielset appear animation
@@ -75,6 +76,7 @@ $('#footer-last-name button').click(function() {
 
 	$('.header #btn-back').show();
 	$nextStep.show().addClass('active');
+	gaTag('login_arrival_date_display', 'registration'); // google analytics
 	$currentStep.animate({opacity: 0}, {
 		step: function(now) {
 			// for making fielset appear animation
@@ -104,7 +106,7 @@ $('#btn-back').click(function() {
 	$previousStep.show().addClass('active');
 	$currentStep.animate({opacity: 0}, {
 		step: function(now) {
-			// for making fielset appear animation
+			// for making fieldset appear animation
 			opacity = 1 - now;
 			$currentStep.css({'display': 'none', 'position': 'relative'});
 			$previousStep.css({'opacity': opacity});
@@ -117,4 +119,25 @@ $('#btn-back').click(function() {
 $('#btn-ok').click(function() {
     var reservationNo = $('#id_reservation_no').val();
     try { window.flutter_inappwebview.callHandler('reservationNo', reservationNo); } catch(error) {} // send message to app
+});
+
+
+$('#id_reservation_no').focusout(function() {
+    if ($(this).val()) {
+        gaTag('login_reservation_no_entered', 'registration');// google analytics
+    }
+});
+
+
+$('#id_last_name').focusout(function() {
+    if ($(this).val()) {
+        gaTag('login_last_name_entered', 'registration');// google analytics
+    }
+});
+
+
+$('#id_arrival_date').focusout(function() {
+    if ($(this).val()) {
+        gaTag('login_arrival_date_entered', 'registration');// google analytics
+    }
 });

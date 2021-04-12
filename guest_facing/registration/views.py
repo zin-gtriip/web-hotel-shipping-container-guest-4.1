@@ -167,6 +167,9 @@ class RegistrationDetailView(ExpirySessionMixin, PropertyRequiredMixin, RequestF
         context['bootstrap_datepicker_language'] = translation.get_language()
         if context['bootstrap_datepicker_language'] == 'zh-hans':
             context['bootstrap_datepicker_language'] = 'zh-CN'
+        guest_id = decrypt(self.kwargs.get('encrypted_id', '')) # 0 for new guest
+        guest = self.request.session['registration'].get('detail', {})
+        context['ga_ocr_success'] = guest.get('passportImage') and guest.get('id', None) == guest_id # from `passport` page
         context['custom_request_path'] = '/registration/detail/'
         return context
 

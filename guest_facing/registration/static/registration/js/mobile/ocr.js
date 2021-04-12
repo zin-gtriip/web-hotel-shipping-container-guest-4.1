@@ -24,6 +24,12 @@ var croppieOpts = {
     enableOrientation: true,
 };
 $('#img-preview').croppie(croppieOpts); // init croppie to element, use `bind` to add image data
+gaTag('ocr_guest_display', 'registration'); // google analytics
+
+
+if ($('.modal[id*=error-modal]').length >= 1) {
+    gaTag('ocr_guest_failure', 'registration'); // google analytics
+}
 
 
 // file-capture click

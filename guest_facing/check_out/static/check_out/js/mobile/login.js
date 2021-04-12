@@ -1,5 +1,5 @@
 window.addEventListener("flutterInAppWebViewPlatformReady", null); // add event to send message to app
-
+gaTag('login_last_name_display', 'check_out'); // google analytics
 
 $(document).ready(function() {
     // to auto focus
@@ -38,6 +38,7 @@ $('#footer-last-name button').click(function() {
 	$('.header #btn-home').hide();
 	$nextStep.show().addClass('active');
 	try { window.flutter_inappwebview.callHandler('lastName', $('#id_last_name').val()); } catch(error) {} // send message to app
+	gaTag('login_room_no_display', 'check_out'); // google analytics
 	$currentStep.animate({opacity: 0}, {
 		step: function(now) {
 			// for making fielset appear animation
@@ -82,4 +83,18 @@ $('#btn-back').click(function() {
 
 $('#btn-ok').click(function() {
     try { window.flutter_inappwebview.callHandler('closeWebEmbedded', true); } catch(error) {} // send message to app
+});
+
+
+$('#id_last_name').focusout(function() {
+    if ($(this).val()) {
+        gaTag('login_last_name_entered', 'check_out');// google analytics
+    }
+});
+
+
+$('#id_room_no').focusout(function() {
+    if ($(this).val()) {
+        gaTag('login_room_no_entered', 'check_out');// google analytics
+    }
 });
