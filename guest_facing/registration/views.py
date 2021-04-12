@@ -133,7 +133,7 @@ class RegistrationGuestListView(ParameterRequiredMixin, PropertyRequiredMixin, R
         return super().form_valid(form)
 
 
-class RegistrationDetailView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, UpdateView):
+class RegistrationDetailView(ExpirySessionMixin, PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, UpdateView):
     template_name           = 'registration/desktop/detail.html'
     mobile_template_name    = 'registration/mobile/detail.html'
     form_class              = RegistrationDetailForm
@@ -143,7 +143,7 @@ class RegistrationDetailView(PropertyRequiredMixin, RequestFormKwargsMixin, Mobi
     def get_object(self):
         guest_id = decrypt(self.kwargs.get('encrypted_id', '')) # 0 for new guest
         guest = self.request.session['registration'].get('detail', {})
-        if guest.get('id', None) != guest_id: # not from `passport` page 
+        if guest.get('id', None) != guest_id: # not from `passport` page
             if guest_id != '0': # existing guest
                 guest = next((dict(data) for data in self.request.session['registration']['reservation'].get('guestsList', {}) if data.get('guestID', '') == guest_id or data.get('new_guest_id') == guest_id), {})
             else: # new guest
@@ -179,7 +179,7 @@ class RegistrationDetailView(PropertyRequiredMixin, RequestFormKwargsMixin, Mobi
         return url
 
 
-class RegistrationOcrView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, UpdateView):
+class RegistrationOcrView(ExpirySessionMixin, PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, UpdateView):
     template_name           = 'registration/desktop/ocr.html'
     mobile_template_name    = 'registration/mobile/ocr.html'
     form_class              = RegistrationOcrForm
