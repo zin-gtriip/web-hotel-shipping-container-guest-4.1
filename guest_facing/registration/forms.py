@@ -390,7 +390,7 @@ class RegistrationOtherInfoForm(forms.Form):
         email = self.prepare_email()
         data['customerInputNumber'] = self.request.session['registration'].get('input_reservation_no', '')
         data = {**data, **email} # add email data
-        response = {'success': 'true'} #gateways.guest_endpoint('/processGuestsPreArrival', self.request.session.get('property_id', ''), data)
+        response = gateways.guest_endpoint('/processGuestsPreArrival', self.request.session.get('property_id', ''), data)
         if response.get('success', '') == 'true':
             # get existing reservation from backend
             new_booking_data = {}
