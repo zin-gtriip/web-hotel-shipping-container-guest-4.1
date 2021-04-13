@@ -9,9 +9,9 @@ from guest_facing.core          import gateways, utils as core_utils
 from .                          import utils, samples
 
 class RegistrationLoginForm(forms.Form):
-    reservation_no  = forms.CharField(label=_('Reservation Number'))
-    arrival_date    = forms.DateField(label=_('Arrival Date'))
-    last_name       = forms.CharField(label=_('Last Name'))
+    reservation_no  = forms.CharField(label=_('Reservation Number'), required=False)
+    arrival_date    = forms.DateField(label=_('Arrival Date'), required=False)
+    last_name       = forms.CharField(label=_('Last Name'), required=False)
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -69,7 +69,7 @@ class RegistrationLoginForm(forms.Form):
 
 
 class RegistrationTimerExtensionForm(forms.Form):
-    token_id = forms.CharField()
+    token_id = forms.CharField(required=False)
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -99,7 +99,7 @@ class RegistrationTimerExtensionForm(forms.Form):
 
 
 class RegistrationReservationForm(forms.Form):
-    reservation_no = forms.ChoiceField(widget=forms.RadioSelect())
+    reservation_no = forms.ChoiceField(widget=forms.RadioSelect(), required=False)
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -322,9 +322,9 @@ class RegistrationOcrForm(forms.Form):
 
 
 class RegistrationOtherInfoForm(forms.Form):
-    arrival_time        = forms.ChoiceField(label=_('Time of Arrival'))
+    arrival_time        = forms.ChoiceField(label=_('Time of Arrival'), required=False)
     special_requests    = forms.CharField(label=_('Special Requests'), required=False)
-    email               = forms.EmailField(label=_('Email'), label_suffix='*')
+    email               = forms.EmailField(label=_('Email'), required=False)
     is_subscribe        = forms.BooleanField(label=_('Is Subscribe'), required=False)
 
     def __init__(self, request, *args, **kwargs):
@@ -390,7 +390,7 @@ class RegistrationOtherInfoForm(forms.Form):
         email = self.prepare_email()
         data['customerInputNumber'] = self.request.session['registration'].get('input_reservation_no', '')
         data = {**data, **email} # add email data
-        response = gateways.guest_endpoint('/processGuestsPreArrival', self.request.session.get('property_id', ''), data)
+        response = {'success': 'true'} #gateways.guest_endpoint('/processGuestsPreArrival', self.request.session.get('property_id', ''), data)
         if response.get('success', '') == 'true':
             # get existing reservation from backend
             new_booking_data = {}
