@@ -10,9 +10,11 @@
 
 {% block header_left %}
     {{ block.super }}
-    <a href="{% url 'registration:index' %}" class="btn btn-link">
-        <span class="material-icons">home</span>
-    </a>
+    {% if not request.session.app %}
+        <a href="{% url 'registration:index' %}" class="btn btn-link">
+            <span class="material-icons">home</span>
+        </a>
+    {% endif %}
 {% endblock header_left %}
 
 {% block content %}
