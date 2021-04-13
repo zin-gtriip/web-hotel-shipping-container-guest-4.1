@@ -32,7 +32,7 @@
 {% block wrapper %}
     {{ block.super }}
     {% block timer %}
-        {% if request.path in SESSION_EXPIRY_PAGES %}
+        {% if request.path in SESSION_EXPIRY_PAGES or custom_request_path in SESSION_EXPIRY_PAGES %}
             <!-- Timer Extension Modal -->
             <div class="modal fade" id="timer-extension-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-sm">
