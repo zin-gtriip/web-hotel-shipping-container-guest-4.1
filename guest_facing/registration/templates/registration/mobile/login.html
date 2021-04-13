@@ -19,7 +19,7 @@
     </button>
     {% if not request.session.app %}
         <a href="{% url 'registration:index' %}" class="btn btn-link" id="btn-home" {% if skip_reservation_no %}style="display: none;"{% endif %}>
-            <span class="material-icons">home</span>
+            <img src="{% static 'img/place.svg' %}" />
         </a>
     {% endif %}
     {{ block.super }}

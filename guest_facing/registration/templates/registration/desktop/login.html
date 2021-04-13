@@ -15,7 +15,7 @@
 
 {% block header_left %}
     <a href="{% url 'registration:index' %}" class="btn btn-link">
-        <span class="material-icons">home</span>
+        <img src="{% static 'img/place.svg' %}" />
     </a>
     {{ block.super }}
 {% endblock header_left %}

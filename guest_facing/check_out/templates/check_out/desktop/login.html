@@ -10,7 +10,7 @@
 
 {% block header_left %}
     <a href="{% url 'check_out:index' %}" class="btn btn-link">
-        <span class="material-icons">home</span>
+        <img src="{% static 'img/place.svg' %}" />
     </a>
     {{ block.super }}
 {% endblock header_left %}

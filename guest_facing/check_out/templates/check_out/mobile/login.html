@@ -14,7 +14,7 @@
     </button>
     {% if not request.session.app %}
         <a href="{% url 'check_out:index' %}" class="btn btn-link" id="btn-home" {% if skip_last_name %}style="display: none;"{% endif %}>
-            <span class="material-icons">home</span>
+            <img src="{% static 'img/place.svg' %}" />
         </a>
     {% endif %}
     {{ block.super }}
