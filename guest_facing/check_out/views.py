@@ -78,7 +78,7 @@ class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, Request
 
     def gateway_get(self, reservations_no):
         data = {'pmsNos': reservations_no}
-        response = gateways.guest_endpoint('post', 'billCheckOut', self.request.session.get('property_id', ''), data)
+        response = gateways.guest_endpoint('post', '/billCheckOut', self.request.session.get('property_id', ''), data)
         return response.get('data', {}).get('data', {})
 
     def get_object(self, queryset=None):

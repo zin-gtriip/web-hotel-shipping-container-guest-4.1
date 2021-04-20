@@ -48,7 +48,7 @@ class RegistrationLoginForm(forms.Form):
         data['reservationNo'] = self.cleaned_data.get('reservation_no')
         data['arrivalDate'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
         data['lastName'] = self.cleaned_data.get('last_name')
-        self.response = gateways.guest_endpoint('post', 'checkWebRegistration', self.request.session.get('property_id', ''), data)
+        self.response = gateways.guest_endpoint('post', '/checkWebRegistration', self.request.session.get('property_id', ''), data)
         return self.response
     
     def save(self):
@@ -60,7 +60,7 @@ class RegistrationLoginForm(forms.Form):
         self.request.session['registration']['input_reservation_no'] = self.cleaned_data.get('reservation_no')
         self.request.session['registration']['input_arrival_date'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
         self.request.session['registration']['input_last_name'] = self.cleaned_data.get('last_name')
-        config = gateways.amp_endpoint('get', 'configVariables', self.request.session.get('property_id', '')) or {}
+        config = gateways.amp_endpoint('get', '/configVariables', self.request.session.get('property_id', '')) or {}
         expiry_duration = config.get('data', {}).get('prearrivalSessionDurationMinutes', settings.REGISTRATION_SESSION_AGE_INITIAL)
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['registration']['initial_expiry_date'] = initial_expiry_date
@@ -92,7 +92,7 @@ class RegistrationTimerExtensionForm(forms.Form):
     def save(self):
         initial_expiry_date = self.request.session['registration'].get('initial_expiry_date', '')
         initial_expiry_date = datetime.datetime.strptime(initial_expiry_date, '%Y-%m-%dT%H:%M:%S.%f%z')
-        config = gateways.amp_endpoint('get', 'configVariables', self.request.session.get('property_id', '')) or {} # get config variables
+        config = gateways.amp_endpoint('get', '/configVariables', self.request.session.get('property_id', '')) or {} # get config variables
         extend_duration = config.get('prearrivalSessionExtendDurationMinutes', settings.REGISTRATION_SESSION_AGE_EXTEND)
         extended_expiry_date = (initial_expiry_date + datetime.timedelta(minutes=extend_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['registration']['extended_expiry_date'] = extended_expiry_date
@@ -203,7 +203,7 @@ class RegistrationDetailForm(forms.Form):
                 self._errors['birth_date'] = self.error_class([_('Enter the required information')])
             else:
                 if self.instance.get('isMainGuest', False): # age limit, check only if main guest
-                    config = gateways.amp_endpoint('get', 'configVariables', self.request.session.get('property_id', '')) or {} # get config variables
+                    config = gateways.amp_endpoint('get', '/configVariables', self.request.session.get('property_id', '')) or {} # get config variables
                     age_limit = config.get('prearrivalAdultMinAgeYears', settings.REGISTRATION_ADULT_AGE_LIMIT)
                     if utils.calculate_age(birth_date) <= age_limit:
                         self._errors['birth_date'] = self.error_class([_('Main guest has to be %(age)s and above.') % {'age': age_limit}])
@@ -387,14 +387,14 @@ class RegistrationOtherInfoForm(forms.Form):
         email = self.prepare_email()
         data['userInputNumber'] = self.request.session['registration'].get('input_reservation_no', '')
         data = {**data, **email} # add email data
-        response = gateways.guest_endpoint('post', 'submitWebRegistration', self.request.session.get('property_id', ''), data)
+        response = gateways.guest_endpoint('post', '/submitWebRegistration', self.request.session.get('property_id', ''), data)
         if response.get('statusCode', '') == '5002':
             # get existing reservation from backend
             new_booking_data = {}
             new_booking_data['reservationNo'] = self.request.session['registration'].get('input_reservation_no', '')
             new_booking_data['arrivalDate'] = self.request.session['registration'].get('input_arrival_date', '')
             new_booking_data['lastName'] = self.request.session['registration'].get('input_last_name', '')
-            new_booking_response = gateways.guest_endpoint('post', 'checkWebRegistration', self.request.session.get('property_id', ''), new_booking_data)
+            new_booking_response = gateways.guest_endpoint('post', '/checkWebRegistration', self.request.session.get('property_id', ''), new_booking_data)
             self.request.session['registration']['bookings'] = new_booking_response.get('data', [])
         else:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])

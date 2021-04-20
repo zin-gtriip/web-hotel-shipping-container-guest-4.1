@@ -42,7 +42,7 @@ class CheckOutLoginForm(forms.Form):
         data['reservationNo'] = self.cleaned_data.get('reservation_no', None)
         data['lastName'] = self.cleaned_data.get('last_name', None)
         data['roomNo'] = self.cleaned_data.get('room_no')
-        self.response = gateways.guest_endpoint('post', 'signInCheckOut', self.request.session.get('property_id', ''), data)
+        self.response = gateways.guest_endpoint('post', '/signInCheckOut', self.request.session.get('property_id', ''), data)
         return self.response
     
     def save(self):
@@ -85,7 +85,7 @@ class CheckOutBillForm(forms.Form):
     def gateway_post(self):
         reservation_info = self.instance.get('reservationInfo', [])
         data = {'reservationInfo': reservation_info}
-        return gateways.guest_endpoint('post', 'postCheckOut', self.request.session.get('property_id', ''), data)
+        return gateways.guest_endpoint('post', '/postCheckOut', self.request.session.get('property_id', ''), data)
 
     def save(self):
         response = self.gateway_post()
@@ -96,7 +96,7 @@ class CheckOutBillForm(forms.Form):
                 new_guest_data['reservationNo'] = next(iter(response.get('reservationNoLeft', [])), '')
                 new_guest_data['lastName'] = ''
                 new_guest_data['roomNo'] = self.request.session['check_out'].get('input_room_no')
-                new_guest_response = gateways.guest_endpoint('signInCheckOut', self.request.session.get('property_id', ''), new_guest_data)
+                new_guest_response = gateways.guest_endpoint('post', '/signInCheckOut', self.request.session.get('property_id', ''), new_guest_data)
                 self.request.session['check_out']['bills'] = new_guest_response.get('data', {}).get('data', [])
                 if not new_guest_response.get('data', {}).get('data', []):
                     self.request.session['check_out']['complete'] = True
