@@ -39,16 +39,16 @@ class RegistrationLoginForm(forms.Form):
 
         # validate to backend
         response = self.gateway_post()
-        if response.get('overall_status', '') != 500:
-            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('overall_status', '')])
+        if response.get('statusCode', '') != '5001':
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('statusCode', '')])
         return self.cleaned_data
 
     def gateway_post(self):
         data = {}
-        data['reservation_no'] = self.cleaned_data.get('reservation_no')
-        data['arrival_date'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
-        data['last_name'] = self.cleaned_data.get('last_name')
-        self.response = gateways.guest_endpoint('/checkBookingsPreArrival', self.request.session.get('property_id', ''), data)
+        data['reservationNo'] = self.cleaned_data.get('reservation_no')
+        data['arrivalDate'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
+        data['lastName'] = self.cleaned_data.get('last_name')
+        self.response = gateways.guest_endpoint('post', 'checkWebRegistration', self.request.session.get('property_id', ''), data)
         return self.response
     
     def save(self):
@@ -56,12 +56,12 @@ class RegistrationLoginForm(forms.Form):
         preload_data = dict(self.request.session.get('registration', {}).get('preload', {})) # get and store preload because session will be cleared
         self.request.session['registration'] = {} # clear session data
         self.request.session['registration']['preload'] = preload_data # restore preload data
-        self.request.session['registration']['bookings'] = response.get('data', [])
+        self.request.session['registration']['bookings'] = response.get('data', {}).get('data', [])
         self.request.session['registration']['input_reservation_no'] = self.cleaned_data.get('reservation_no')
         self.request.session['registration']['input_arrival_date'] = self.cleaned_data.get('arrival_date').strftime('%Y-%m-%d')
         self.request.session['registration']['input_last_name'] = self.cleaned_data.get('last_name')
-        config = gateways.amp_endpoint('/getConfigVariables', self.request.session.get('property_id', '')) or {}
-        expiry_duration = config.get('prearrival_session_duration_minutes', settings.REGISTRATION_SESSION_AGE_INITIAL)
+        config = gateways.amp_endpoint('get', 'configVariables', self.request.session.get('property_id', '')) or {}
+        expiry_duration = config.get('data', {}).get('prearrivalSessionDurationMinutes', settings.REGISTRATION_SESSION_AGE_INITIAL)
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['registration']['initial_expiry_date'] = initial_expiry_date
         self.request.session['registration']['initial_expiry_duration'] = expiry_duration # will be popped after pass to templates
@@ -92,8 +92,8 @@ class RegistrationTimerExtensionForm(forms.Form):
     def save(self):
         initial_expiry_date = self.request.session['registration'].get('initial_expiry_date', '')
         initial_expiry_date = datetime.datetime.strptime(initial_expiry_date, '%Y-%m-%dT%H:%M:%S.%f%z')
-        config = gateways.amp_endpoint('/getConfigVariables', self.request.session.get('property_id', '')) or {} # get config variables
-        extend_duration = config.get('prearrival_session_extend_duration_minutes', settings.REGISTRATION_SESSION_AGE_EXTEND)
+        config = gateways.amp_endpoint('get', 'configVariables', self.request.session.get('property_id', '')) or {} # get config variables
+        extend_duration = config.get('prearrivalSessionExtendDurationMinutes', settings.REGISTRATION_SESSION_AGE_EXTEND)
         extended_expiry_date = (initial_expiry_date + datetime.timedelta(minutes=extend_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['registration']['extended_expiry_date'] = extended_expiry_date
         self.request.session['registration']['extended_expiry_duration'] = extend_duration # will be popped after pass to templates
@@ -106,7 +106,7 @@ class RegistrationReservationForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.request = request
         self.label_suffix = ''
-        self.fields['reservation_no'].choices = [(reservation.get('reservationNo', ''), reservation.get('reservationNo', '')) for reservation in self.request.session['registration'].get('bookings', [])]
+        self.fields['reservation_no'].choices = [(reservation.get('pmsNo', ''), reservation.get('pmsNo', '')) for reservation in self.request.session['registration'].get('bookings', [])]
 
     def clean(self):
         super().clean()
@@ -118,7 +118,7 @@ class RegistrationReservationForm(forms.Form):
 
     def save(self):
         reservation_no = self.cleaned_data.get('reservation_no')
-        reservation = next(reservation for reservation in self.request.session['registration'].get('bookings', []) if reservation.get('reservationNo', '') == reservation_no)
+        reservation = next(reservation for reservation in self.request.session['registration'].get('bookings', []) if reservation.get('pmsNo', '') == reservation_no)
         self.request.session['registration']['reservation'] = reservation # also working as variable to prevent page jump
 
 
@@ -161,7 +161,7 @@ class RegistrationDetailForm(forms.Form):
         nationality = self.instance.get('nationality', 'SG')
         birth_date = self.instance.get('dob', '')
         # from `preload`
-        if self.instance.get('isMainGuest', '0') == '1':
+        if self.instance.get('isMainGuest', False):
             first_name = self.request.session.get('registration', {}).get('preload', {}).get('first_name', first_name)
             passport_no = self.request.session.get('registration', {}).get('preload', {}).get('passport_no', passport_no)
             nationality = self.request.session.get('registration', {}).get('preload', {}).get('nationality', nationality)
@@ -169,7 +169,7 @@ class RegistrationDetailForm(forms.Form):
         # from `ocr`
         if self.instance.get('is_overwrite', False):
             first_name = self.request.session.get('registration', {}).get('ocr', {}).get('names', first_name)
-            if self.instance.get('guestID', '0') == '0':
+            if self.instance.get('guestId', 0) == 0:
                 last_name = self.request.session.get('registration', {}).get('ocr', {}).get('surname', last_name)
             passport_no = self.request.session.get('registration', {}).get('ocr', {}).get('number', passport_no)
             nationality = Country(self.request.session.get('registration', {}).get('ocr', {}).get('nationality', '')).code or nationality
@@ -202,9 +202,9 @@ class RegistrationDetailForm(forms.Form):
             if not birth_date:
                 self._errors['birth_date'] = self.error_class([_('Enter the required information')])
             else:
-                if self.instance.get('isMainGuest', '0') == '1': # age limit, check only if main guest
-                    config = gateways.amp_endpoint('/getConfigVariables', self.request.session.get('property_id', '')) or {} # get config variables
-                    age_limit = config.get('prearrival_adult_min_age_years', settings.REGISTRATION_ADULT_AGE_LIMIT)
+                if self.instance.get('isMainGuest', False): # age limit, check only if main guest
+                    config = gateways.amp_endpoint('get', 'configVariables', self.request.session.get('property_id', '')) or {} # get config variables
+                    age_limit = config.get('prearrivalAdultMinAgeYears', settings.REGISTRATION_ADULT_AGE_LIMIT)
                     if utils.calculate_age(birth_date) <= age_limit:
                         self._errors['birth_date'] = self.error_class([_('Main guest has to be %(age)s and above.') % {'age': age_limit}])
             if settings.REGISTRATION_OCR and not self.instance.get('passportImage', ''):
@@ -219,8 +219,8 @@ class RegistrationDetailForm(forms.Form):
         self.instance['dob'] = self.cleaned_data.get('birth_date').strftime('%Y-%m-%d') if self.cleaned_data.get('birth_date') else ''
         self.instance['is_overwrite'] = self.cleaned_data.get('is_overwrite')
         if self.cleaned_data.get('is_submit', False):
-            if self.instance.get('guestID', '0') != '0': # existing guest
-                guest = next((data for data in self.request.session['registration']['reservation'].get('guestsList', []) if data.get('guestID', '') == self.instance.get('id', None)), {})
+            if self.instance.get('guestId', 0) != 0 or self.instance.get('new_guest_id', None): # existing guest
+                guest = next((data for data in self.request.session['registration']['reservation'].get('guestsList', []) if data.get('guestId', None) == self.instance.get('id', 0) or data.get('new_guest_id', '') == self.instance.get('new_guest_id', None)), {})
                 guest['firstName'] = self.instance.get('firstName', '')
                 guest['lastName'] = self.instance.get('lastName', '')
                 guest['nationality'] = self.instance.get('nationality', '')
@@ -230,15 +230,14 @@ class RegistrationDetailForm(forms.Form):
                 guest['is_done'] = True
             else: # new guest
                 guest = {}
-                guest['guestID'] = self.instance.get('guestID', '0')
+                guest['guestId'] = self.instance.get('guestId', 0)
                 guest['firstName'] = self.instance.get('firstName', '')
                 guest['lastName'] = self.instance.get('lastName', '')
                 guest['nationality'] = self.instance.get('nationality', '')
                 guest['passportNo'] = self.instance.get('passportNo', '')
                 guest['dob'] = self.instance.get('dob', '')
                 guest['passportImage'] = self.instance.get('passportImage', '')
-                guest['hasLocalRecord'] = '0'
-                guest['new_guest_id'] = 'new%s' % len([data for data in self.request.session['registration']['reservation'].get('guestsList', []) if data.get('guestID', '0') == '0'])
+                guest['new_guest_id'] = 'new%s' % len([data for data in self.request.session['registration']['reservation'].get('guestsList', []) if data.get('guestId', 0) == 0])
                 guest['is_done'] = True
                 self.request.session['registration']['reservation']['guestsList'].append(guest)
         return self.instance
@@ -317,7 +316,7 @@ class RegistrationOcrForm(forms.Form):
         saved_file = os.path.join(folder_name, file_name)
         with open(saved_file, 'rb') as image_file:
             file_b64_encoded = base64.b64encode(image_file.read())
-        self.instance['passportImage'] = file_b64_encoded.decode()[:10]
+        self.instance['passportImage'] = file_b64_encoded.decode()
         self.request.session['registration']['ocr'] = self.response
         return self.instance
 
@@ -335,7 +334,7 @@ class RegistrationOtherInfoForm(forms.Form):
         self.fields['arrival_time'].choices = utils.generate_arrival_time()
         self.fields['arrival_time'].initial = utils.parse_arrival_time(self.request.session['registration']['reservation'].get('eta', ''))
         self.fields['special_requests'].initial = self.request.session['registration']['reservation'].get('comments', '')
-        main_guest = next((guest for guest in self.request.session['registration']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
+        main_guest = next((guest for guest in self.request.session['registration']['reservation'].get('guestsList', []) if guest.get('isMainGuest', False)), {})
         self.fields['email'].initial = main_guest.get('email', '')
         self.fields['is_subscribe'].initial = True if main_guest.get('emailSubscription', '1') == '1' else False
 
@@ -357,12 +356,9 @@ class RegistrationOtherInfoForm(forms.Form):
         email = self.cleaned_data.get('email')
         is_subscribe = self.cleaned_data.get('is_subscribe')
 
-        main_guest = next((guest for guest in self.request.session['registration']['reservation'].get('guestsList', []) if guest.get('isMainGuest', '0') == '1'), {})
-        main_guest.update({
-            'email': email,
-            'emailSubscription': is_subscribe and '1' or '0',
-        })
-        self.request.session['registration']['reservation']['eta'] = arrival_time + ':00.000'
+        main_guest = next((guest for guest in self.request.session['registration']['reservation'].get('guestsList', []) if guest.get('isMainGuest', False)), {})
+        main_guest.update({'email': email,'emailSubscription': is_subscribe})
+        self.request.session['registration']['reservation']['eta'] = arrival_time + ':00'
         self.request.session['registration']['reservation']['comments'] = special_requests
         self.request.session['registration']['other_info'] = True # variable to prevent page jump
 
@@ -370,7 +366,7 @@ class RegistrationOtherInfoForm(forms.Form):
         context = dict(self.request.session['registration']['reservation']) # create new variable to prevent modification on `request.session`
         context['formattedArrivalDate'] = utils.format_display_date(context.get('arrivalDate', ''))
         context['formattedDepartureDate'] = utils.format_display_date(context.get('departureDate', ''))
-        main_guest = next(guest for guest in context.get('guestsList', []) if guest.get('isMainGuest', '0') == '1')
+        main_guest = next(guest for guest in context.get('guestsList', []) if guest.get('isMainGuest', False))
         context['mainGuestFirstName'] = main_guest.get('firstName', '')
         context['mainGuestLastName'] = main_guest.get('lastName', '')
         room = next((temp for temp in settings.REGISTRATION_ROOM_TYPES if temp['room_type'] == context['roomType']), {})
@@ -389,16 +385,16 @@ class RegistrationOtherInfoForm(forms.Form):
     def gateway_post(self):
         data = self.request.session['registration']['reservation']
         email = self.prepare_email()
-        data['customerInputNumber'] = self.request.session['registration'].get('input_reservation_no', '')
+        data['userInputNumber'] = self.request.session['registration'].get('input_reservation_no', '')
         data = {**data, **email} # add email data
-        response = gateways.guest_endpoint('/processGuestsPreArrival', self.request.session.get('property_id', ''), data)
-        if response.get('success', '') == 'true':
+        response = gateways.guest_endpoint('post', 'submitWebRegistration', self.request.session.get('property_id', ''), data)
+        if response.get('statusCode', '') == '5002':
             # get existing reservation from backend
             new_booking_data = {}
-            new_booking_data['reservation_no'] = self.request.session['registration'].get('input_reservation_no', '')
-            new_booking_data['arrival_date'] = self.request.session['registration'].get('input_arrival_date', '')
-            new_booking_data['last_name'] = self.request.session['registration'].get('input_last_name', '')
-            new_booking_response = gateways.guest_endpoint('/checkBookingsPreArrival', self.request.session.get('property_id', ''), new_booking_data)
+            new_booking_data['reservationNo'] = self.request.session['registration'].get('input_reservation_no', '')
+            new_booking_data['arrivalDate'] = self.request.session['registration'].get('input_arrival_date', '')
+            new_booking_data['lastName'] = self.request.session['registration'].get('input_last_name', '')
+            new_booking_response = gateways.guest_endpoint('post', 'checkWebRegistration', self.request.session.get('property_id', ''), new_booking_data)
             self.request.session['registration']['bookings'] = new_booking_response.get('data', [])
         else:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
@@ -420,8 +416,8 @@ class RegistrationCompleteForm(forms.Form):
         # reset data on session using `REGISTRATION_PROGRESS_BAR_PAGES`
         for page in settings.REGISTRATION_PARAMETER_REQUIRED_PAGES or list():
             self.request.session['registration'].pop(page, None)
-        config = gateways.amp_endpoint('/getConfigVariables', self.request.session.get('property_id', '')) or {} # get config variables
-        expiry_duration = config.get('prearrival_session_duration_minutes', settings.REGISTRATION_SESSION_AGE_INITIAL)
+        config = gateways.amp_endpoint('get', 'configVariables', self.request.session.get('property_id', '')) or {} # get config variables
+        expiry_duration = config.get('prearrivalSessionDurationMinutes', settings.REGISTRATION_SESSION_AGE_INITIAL)
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['registration']['initial_expiry_date'] = initial_expiry_date
         self.request.session['registration']['initial_expiry_duration'] = expiry_duration # will be popped after pass to templates

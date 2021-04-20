@@ -33,15 +33,15 @@
                 {% for guest in request.session.registration.reservation.guestsList %}
                     <div class="row" id="guests-list">
                         <div class="col-lg-12 mb-3 d-flex justify-content-center">
-                            {% if guest.hasLocalRecord == '0' %}
+                            {% if not guest.hasLocalRecord %}
                                 {% if not guest.is_done %} {# not done #}
-                                    <a href="{% url 'registration:detail' guest.guestID|encrypt %}" class="btn btn-primary" data-is-main-guest="{{ guest.isMainGuest }}">
+                                    <a href="{% url 'registration:detail' guest.guestId|encrypt %}" class="btn btn-primary" data-is-main-guest="{{ guest.isMainGuest }}">
                                         {{ guest.firstName }} {{ guest.lastName }}
                                         <i class="fas fa-arrow-right icon-btn"></i>
                                     </a>
                                 {% else %}
-                                    {% if guest.guestID != '0' %} {# done, existing guest #}
-                                        <a href="{% url 'registration:detail' guest.guestID|encrypt %}" class="btn btn-outline-primary" data-is-main-guest="{{ guest.isMainGuest }}">
+                                    {% if guest.guestId != 0 %} {# done, existing guest #}
+                                        <a href="{% url 'registration:detail' guest.guestId|encrypt %}" class="btn btn-outline-primary" data-is-main-guest="{{ guest.isMainGuest }}">
                                             {{ guest.firstName }} {{ guest.lastName }}
                                             <i class="fas fa-check icon-btn"></i>
                                         </a>

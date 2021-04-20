@@ -78,9 +78,9 @@ class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, Request
     success_url             = '/check_out/bill/all'
 
     def gateway_get(self, reservations_no):
-        data = {'reservation_no': reservations_no}
-        response = gateways.guest_endpoint('/billsForCheckOut', self.request.session.get('property_id', ''), data)
-        return response.get('data', {})
+        data = {'pmsNos': reservations_no}
+        response = gateways.guest_endpoint('post', 'billCheckOut', self.request.session.get('property_id', ''), data)
+        return response.get('data', {}).get('data', {})
 
     def get_object(self, queryset=None):
         reservation_no = self.kwargs.get('reservation_no', None)
@@ -103,9 +103,9 @@ class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, Request
         if self.request.session['check_out'].get('complete', None):
             messages.add_message(self.request, messages.SUCCESS, _("All Guests have been successfully checked out.\n\nWe hope you enjoy your stay with us, and we'll see you again soon!"))
         else:
-            reservation = next((temp for temp in self.object.get('reservation_info') if temp.get('reservation_no', '') == self.object.get('id', None)), {})
-            guest_name = reservation.get('first_name', '') +' '+ reservation.get('last_name', '')
-            guests_left = [temp.get('first_name', '') +' '+ temp.get('last_name', '') for temp in self.request.session['check_out'].get('bills', [])]
+            reservation = next((temp for temp in self.object.get('reservationInfo') if temp.get('pmsNo', '') == self.object.get('id', None)), {})
+            guest_name = reservation.get('firstName', '') +' '+ reservation.get('lastName', '')
+            guests_left = [temp.get('firstName', '') +' '+ temp.get('lastName', '') for temp in self.request.session['check_out'].get('bills', [])]
             names_left = '\n- '.join(guests_left)
             messages.add_message(self.request, messages.SUCCESS, _('We have checked-out the guest:\n- %(name)s\n\nOther guests left to check-out:\n- %(names_left)s') % {'name': guest_name, 'names_left': names_left})
         return data

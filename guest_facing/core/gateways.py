@@ -10,15 +10,19 @@ logger = logging.getLogger('gateways')
 
 
 # guest facing endpoint gateway
-def guest_endpoint(url, property_id, post_data):
+def guest_endpoint(method, url, property_id, data={}):
     prop = next((prop_data for prop_data in settings.GUEST_ENDPOINT or [] if prop_data.get('id') == property_id), {})
     url = prop.get('url', '') + url
-    post_data['api_key'] = prop.get('key', '')
-    post_data['site_id'] = prop.get('id', '')
-    post_data['site_name'] = prop.get('name', '')
+    data['siteId'] = prop.get('id', '')
+    data['siteName'] = prop.get('name', '')
+    params = {}
+    headers = {'Content-Type': 'application/json'}
+    if method == 'get': # when `get` method, pass as params
+        params = dict(data)
+        data = {}
     try:
-        logger.info('REQUEST ' + str(url) + ' ' + json.dumps(post_data))
-        response = requests.post(url, json=post_data, timeout=prop.get('timeout', 30), verify=False)
+        logger.info('REQUEST %(method)s %(url)s %(data)s %(params)s' % {'method': method, 'url': url, 'data': json.dumps(data), 'params': json.dumps(params)})
+        response = getattr(requests, method)(url, data=json.dumps(data), params=params, timeout=prop.get('timeout', 30), headers=headers, verify=False)
         response.raise_for_status()
         json_response = json.loads(response.content.decode('utf-8'))
     except requests.exceptions.HTTPError as http_error:
@@ -33,16 +37,19 @@ def guest_endpoint(url, property_id, post_data):
 
 
 # AMP endpoint gateway
-def amp_endpoint(url, property_id):
+def amp_endpoint(method, url, property_id, data={}):
     prop = next((prop_data for prop_data in settings.AMP_ENDPOINT or [] if prop_data.get('id') == property_id), None)
     url = prop.get('url', '') + url
-    post_data = {}
-    post_data['api_key'] = prop.get('key', '')
-    post_data['site_id'] = prop.get('id', '')
-    post_data['site_name'] = prop.get('name', '')
+    data['siteId'] = prop.get('id', '')
+    data['siteName'] = prop.get('name', '')
+    params = {}
+    headers = {'Content-Type': 'application/json'}
+    if method == 'get': # when `get` method, pass as params
+        params = dict(data)
+        data = {}
     try:
-        logger.info('REQUEST ' + str(url) + ' ' + json.dumps(post_data))
-        response = requests.post(url, json=post_data, timeout=prop.get('timeout', 30), verify=False)
+        logger.info('REQUEST %(method)s %(url)s %(data)s %(params)s' % {'method': method, 'url': url, 'data': json.dumps(data), 'params': json.dumps(params)})
+        response = getattr(requests, method)(url, data=json.dumps(data), params=params, timeout=prop.get('timeout', 30), headers=headers, verify=False)
         response.raise_for_status()
         json_response = json.loads(response.content.decode('utf-8'))
     except requests.exceptions.HTTPError as http_error:
@@ -62,7 +69,7 @@ def ocr(image_file, scan_type):
     files = {scan_type: open(image_file, 'rb')}
     data = {'api_key': settings.OCR_ENDPOINT_KEY}
     try:
-        logger.info('REQUEST ' + str(url))
+        logger.info('REQUEST %(url)s' % {'url': url})
         response = requests.post(url, files=files, data=data, timeout=settings.OCR_ENDPOINT_TIMEOUT_LIMIT)
         response.raise_for_status()
         json_response = json.loads(response.content.decode('utf-8'))

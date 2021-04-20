@@ -141,24 +141,26 @@ class RegistrationDetailView(ExpirySessionMixin, PropertyRequiredMixin, RequestF
     progress_bar_page       = 'guest_list'
 
     def get_object(self):
-        guest_id = decrypt(self.kwargs.get('encrypted_id', '')) # 0 for new guest
+        guest_id = decrypt(self.kwargs.get('encrypted_id', '')) # `0` for new guest
         guest = self.request.session['registration'].get('detail', {})
-        if guest.get('id', None) != guest_id: # not from `passport` page
+        if str(guest.get('id', '')) != guest_id: # not from `passport` page
             if guest_id != '0': # existing guest
-                guest = next((dict(data) for data in self.request.session['registration']['reservation'].get('guestsList', {}) if data.get('guestID', '') == guest_id or data.get('new_guest_id') == guest_id), {})
+                guest = next((dict(data) for data in self.request.session['registration']['reservation'].get('guestsList', {}) if str(data.get('guestId', '')) == guest_id or data.get('new_guest_id') == guest_id), {})
             else: # new guest
                 guest = {}
-                guest['guestID'] = '0'
+                guest['guestId'] = 0
         if not guest:
             raise Http404('Not found')
-        guest['id'] = guest.get('guestID', '0') # assign `id` from `guestID` as identifier
+        guest['id'] = guest.get('guestId', 0) # assign `id` from `guestId` as identifier
         self.request.session['registration']['detail'] = guest # assigned as separate object for not overwriting `reservation` session
         return self.request.session['registration']['detail']
 
     def dispatch(self, request, *args, **kwargs):
-        max_guest = int(self.request.session['registration']['reservation'].get('adults', 1)) + int(self.request.session['registration']['reservation'].get('children', 0))
-        if max_guest <= len(self.request.session['registration']['reservation'].get('guestsList', [])):
-            return redirect('registration:guest_list') # redirect to guest list if max guests is exceeded
+        guest_id = decrypt(self.kwargs.get('encrypted_id', '')) # `0` for new guest
+        if guest_id == '0': # adding new guest
+            max_guest = int(self.request.session['registration']['reservation'].get('adults', 1)) + int(self.request.session['registration']['reservation'].get('children', 0))
+            if max_guest <= len(self.request.session['registration']['reservation'].get('guestsList', [])):
+                return redirect('registration:guest_list') # redirect to guest list if max guests is exceeded
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -191,9 +193,10 @@ class RegistrationOcrView(ExpirySessionMixin, PropertyRequiredMixin, RequestForm
 
     def get_object(self):
         guest_id = decrypt(self.kwargs.get('encrypted_id', '')) # 0 for creation
-        if self.request.session['registration']['detail'].get('id', None) != guest_id:
+        guest = self.request.session['registration']['detail']
+        if str(guest.get('id', '')) != guest_id and guest.get('new_guest_id') != guest_id:
             raise Http404('Not found')
-        return self.request.session['registration']['detail']
+        return guest
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -245,7 +248,7 @@ class RegistrationCompleteView(ParameterRequiredMixin, PropertyRequiredMixin, Re
         reservation = dict(self.request.session['registration']['reservation']) # create new variable to prevent modification on `request.session`
         reservation['formattedArrivalDate'] = utils.format_display_date(reservation.get('arrivalDate', ''))
         reservation['formattedDepartureDate'] = utils.format_display_date(reservation.get('departureDate', ''))
-        reservation['mainGuestLastName'] = next(guest.get('lastName', '') for guest in reservation.get('guestsList', []) if guest.get('isMainGuest', '0') == '1')
+        reservation['mainGuestLastName'] = next(guest.get('lastName', '') for guest in reservation.get('guestsList', []) if guest.get('isMainGuest', False))
         room = next((temp for temp in settings.REGISTRATION_ROOM_TYPES if temp['room_type'] == reservation['roomType']), {})
         reservation['roomName'] = room.get('room_name', '')
         reservation['roomImage'] = room.get('room_image', '')
