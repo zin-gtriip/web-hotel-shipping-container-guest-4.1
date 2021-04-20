@@ -7,7 +7,7 @@ from django.utils.translation   import gettext, gettext_lazy as _
 from django_countries.fields    import Country, CountryField
 from guest_facing.core          import gateways
 from guest_facing.core.utils    import decrypt
-from .                          import utils, samples
+from .                          import utils
 
 class RegistrationLoginForm(forms.Form):
     reservation_no  = forms.CharField(label=_('Reservation Number'), required=False)
