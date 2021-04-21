@@ -21,7 +21,8 @@ package-lock.json
 !/media/.keep
 
 # logs
-/logs/
+/logs/*
+!/logs/.keep
 
 # lib
 dist/
