@@ -1,0 +1,84 @@
+@import '../../../../core/static/core/scss/_variable.scss';
+$chat-card-radius: 6px;
+
+#messages {
+    height: calc(100vh - 70px - 25px - 30px);
+    overflow-y: auto;
+}
+
+.message {
+    margin: 15px 0;
+    display: flex;
+    display: -webkit-flex; /* Safari */
+
+    /* chat card */
+    .chat-card {
+        max-width: 75%;
+        padding: 5px 10px;
+        border-radius: $chat-card-radius;
+        word-wrap: break-word;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+        display: -webkit-flex; /* Safari */
+        -webkit-flex-direction: column; /* Safari 6.1+ */
+    }
+
+    
+    &.system {
+        .chat-card {
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            color: map-get($text-colors, info);
+            background: map-get($theme-colors, info);
+            text-align: center;
+            // box-shadow: none;
+        }
+    }
+
+    &.self {
+        flex-direction: row-reverse;
+        -webkit-flex-direction: row-reverse; /* Safari 6.1+ */
+        
+        .chat-card {
+            margin-left: auto;
+            color: map-get($text-colors, light);
+            background: map-get($theme-colors, light);
+        }
+    }
+
+    &.people {
+        flex-direction: row;
+        -webkit-flex-direction: row; /* Safari 6.1+ */
+
+        .chat-card {
+            margin-right: auto;
+            color: map-get($text-colors, primary);
+            background: map-get($theme-colors, primary);
+        }
+    }
+}
+
+form#form-message {
+    width: 100%;
+
+    #btn-send {
+        width: 40px;
+        height: 40px;
+        font-size: 15px;
+    
+        i {
+            line-height: 40px;
+        }
+    }
+}
+
+
+// .header {
+//     padding: 0;
+// }
+
+// .footer {
+//     padding: 0;
+// }

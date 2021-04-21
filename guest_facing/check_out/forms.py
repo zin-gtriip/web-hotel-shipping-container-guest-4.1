@@ -1,7 +1,7 @@
 from django                     import forms
 from django.utils.translation   import gettext, gettext_lazy as _
 from guest_facing.core          import gateways
-from .                          import samples
+
 
 class CheckOutLoginForm(forms.Form):
     reservation_no  = forms.CharField(label=_('Reservation Number'), required=False)
@@ -32,17 +32,17 @@ class CheckOutLoginForm(forms.Form):
 
         # validate to backend
         response = self.gateway_post()
-        if response.get('status_code', '') != 500:
-            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('We were unable to retrieve your reservation from our database.')])
+        if response.get('statusCode', '') != '5011':
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('status_code', 0)])
         
         return self.cleaned_data
 
     def gateway_post(self):
         data = {}
-        data['reservation_no'] = self.cleaned_data.get('reservation_no', None)
-        data['last_name'] = self.cleaned_data.get('last_name', None)
-        data['room_no'] = self.cleaned_data.get('room_no')
-        self.response = gateways.guest_endpoint('/signInForCheckOut', self.request.session.get('property_id', ''), data)
+        data['reservationNo'] = self.cleaned_data.get('reservation_no', None)
+        data['lastName'] = self.cleaned_data.get('last_name', None)
+        data['roomNo'] = self.cleaned_data.get('room_no')
+        self.response = gateways.guest_endpoint('post', '/signInCheckOut', self.request.session.get('property_id', ''), data)
         return self.response
     
     def save(self):
@@ -50,8 +50,8 @@ class CheckOutLoginForm(forms.Form):
         preload_data = dict(self.request.session.get('check_out', {}).get('preload', {})) # get and store preload because session will be cleared
         self.request.session['check_out'] = {} # clear session data
         self.request.session['check_out']['preload'] = preload_data # restore preload data
-        self.request.session['check_out']['bookings'] = data.get('data', [])
-        self.request.session['check_out']['bills'] = data.get('data', [])
+        self.request.session['check_out']['bookings'] = data.get('data', {}).get('data', [])
+        self.request.session['check_out']['bills'] = data.get('data', {}).get('data', [])
         self.request.session['check_out']['input_reservation_no'] = self.cleaned_data.get('reservation_no')
         self.request.session['check_out']['input_last_name'] = self.cleaned_data.get('last_name')
         self.request.session['check_out']['input_room_no'] = self.cleaned_data.get('room_no')
@@ -69,10 +69,8 @@ class CheckOutBillForm(forms.Form):
         self.label_suffix = ''
         # populate choices
         self.fields['reservation_no'].choices = []
-        if len(self.request.session['check_out'].get('bills', [])) != 1: # hide `all` if left 1 bill to check-out
-            self.fields['reservation_no'].choices.append(('all', _('Checked-in Guests')))
         for reservation in self.request.session['check_out'].get('bills', []):
-            self.fields['reservation_no'].choices.append((reservation.get('reservation_no', ''), reservation.get('first_name', '') + ' ' + reservation.get('last_name', '')))
+            self.fields['reservation_no'].choices.append((reservation.get('pmsNo', ''), reservation.get('firstName', '') + ' ' + reservation.get('lastName', '')))
         # set initial
         self.fields['reservation_no'].initial = self.instance.get('id', '')
 
@@ -85,22 +83,22 @@ class CheckOutBillForm(forms.Form):
         return self.cleaned_data
 
     def gateway_post(self):
-        reservation_info = self.instance.get('reservation_info', [])
-        data = {'reservation_info': reservation_info}
-        return gateways.guest_endpoint('/postCheckOut', self.request.session.get('property_id', ''), data)
+        reservation_info = self.instance.get('reservationInfo', [])
+        data = {'reservationInfo': reservation_info}
+        return gateways.guest_endpoint('post', '/postCheckOut', self.request.session.get('property_id', ''), data)
 
     def save(self):
         response = self.gateway_post()
-        if response.get('status_code', '') == 500:
+        if response.get('statusCode', '') == '5013':
             # get existing reservation from backend
-            if response.get('reservation_no_left', []):
+            if response.get('reservationNoLeft', []):
                 new_guest_data = {}
-                new_guest_data['reservation_no'] = next(iter(response.get('reservation_no_left', [])), '')
-                new_guest_data['last_name'] = ''
-                new_guest_data['room_no'] = self.request.session['check_out'].get('input_room_no')
-                new_guest_response = gateways.guest_endpoint('/signInForCheckOut', self.request.session.get('property_id', ''), new_guest_data)
-                self.request.session['check_out']['bills'] = new_guest_response.get('data', [])
-                if not new_guest_response.get('data', []):
+                new_guest_data['reservationNo'] = next(iter(response.get('reservationNoLeft', [])), '')
+                new_guest_data['lastName'] = ''
+                new_guest_data['roomNo'] = self.request.session['check_out'].get('input_room_no')
+                new_guest_response = gateways.guest_endpoint('post', '/signInCheckOut', self.request.session.get('property_id', ''), new_guest_data)
+                self.request.session['check_out']['bills'] = new_guest_response.get('data', {}).get('data', [])
+                if not new_guest_response.get('data', {}).get('data', []):
                     self.request.session['check_out']['complete'] = True
             else:
                 self.request.session['check_out']['complete'] = True

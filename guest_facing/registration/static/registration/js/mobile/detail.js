@@ -1,116 +1,45 @@
 $('.datepicker').datepicker();
+gaTag('detail_guest_display', 'registration'); // google analytics
 $('.rolldate').each(function() {
     initRolldate($(this));
 });
-restyleExtra();
-rearrangeExtraIndex();
-validateMaxExtra();
-scrollToGuestIndex();
 
 
-$(document).ready(function() {
-    $('.input-prefix.active').removeClass('active'); // fix input-prefix highlighted
+var gaOcrSuccess = JSON.parse($('#ga-ocr-success').text() || '""');
+if (gaOcrSuccess) {
+    gaTag('ocr_guest_success', 'registration'); // google analytics
+}
+
+
+$('.btn-passport').click(function() {
+    $('#id_is_submit').attr('checked', false);
 });
 
 
-$('#btn-add-extra').click(function() {
-    var $extraTemplate = $('#extra-formset-template')
-        , $newExtra = $extraTemplate.clone().removeAttr('hidden').addClass('extra-formset')
-        , index = getFormsetIndex()
-        , $newGuestId = $newExtra.find('#guest-id-template')
-        , $newFirstName = $newExtra.find('#first-name-template')
-        , $newLastName = $newExtra.find('#last-name-template')
-        , $newNationality = $newExtra.find('#nationality-template')
-        , $newPassportNo = $newExtra.find('#passport-no-template')
-        , $newBirthDate = $newExtra.find('#birth-date-template')
-        , $newDatepickerBirthDate = $newExtra.find('#datepicker-birth-date-template')
-        , $newBtnRemove = $newExtra.find('.btn-remove-extra')
-
-    // guest id
-    $newGuestId.attr('id', 'id_form-'+ index +'-guest_id').attr('name', 'form-'+ index +'-guest_id');
-    // first name
-    $newFirstName.siblings('label').attr('for', 'id_form-'+ index +'-first_name');
-    $newFirstName.attr('id', 'id_form-'+ index +'-first_name').attr('name', 'form-'+ index +'-first_name').attr('required', true);
-    // last name
-    $newLastName.siblings('label').attr('for', 'id_form-'+ index +'-last_name');
-    $newLastName.attr('id', 'id_form-'+ index +'-last_name').attr('name', 'form-'+ index +'-last_name').attr('required', true);
-    // $newLastName.val('TEST');
-    // nationality
-    $newNationality.siblings('label').attr('for', 'id_form-'+ index +'-nationality');
-    $newNationality.attr('id', 'id_form-'+ index +'-nationality').attr('name', 'form-'+ index +'-nationality').attr('required', true);
-    // passport no
-    $newPassportNo.siblings('label').attr('for', 'id_form-'+ index +'-passport_no');
-    $newPassportNo.attr('id', 'id_form-'+ index +'-passport_no').attr('name', 'form-'+ index +'-passport_no').attr('required', true);
-    // birth date, datepicker birth date (will be used on rolldate)
-    $newBirthDate.siblings('label').attr('for', 'datepicker-'+ index +'-birth_date');
-    $newBirthDate.attr('id', 'id_form-'+ index +'-birth_date').attr('name', 'form-'+ index +'-birth_date').addClass('rolldate');
-    $newDatepickerBirthDate.attr('id', 'datepicker-'+ index +'-birth_date').attr('required', true).addClass('datepicker').datepicker();
-    // remove button
-    $newBtnRemove.click(function() {
-        removeExtra($(this));
-    });
-
-    $newExtra.appendTo($('.guests'));
-    initRolldate($newBirthDate); // need to show before initiate Rolldate
-    restyleExtra();
-    rearrangeExtraIndex();
-    recalculateTotalExtra(); // `TOTAL_FORMS` needs to be updated
-    validateMaxExtra(); // disable `btn-add-extra` if max is reached
-    scrollToGuestIndex(); // scroll to last guest index
+$('#btn-back').click(function() {
+	var modal =
+		'<div class="modal fade" id="modal-confirmation" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">' +
+            '<div class="modal-dialog modal-dialog-centered modal-sm">'+
+                '<div class="modal-content">'+
+                    '<div class="modal-header bg-primary text-white">'+
+                        '<h4 class="modal-title mx-auto" id="modal-label-{{ forloop.counter0 }}">'+ gettext('Warning') +'</h4>'+
+                    '</div>'+
+                    '<div class="modal-body">'+ gettext('All changes is not saved yet. Are you sure want to do this?') +'</div>'+
+                    '<div class="modal-footer justify-content-center">'+
+                        '<a href="/registration/guest_list/" class="btn btn-outline-primary">'+ gettext('Yes') +'</a>'+
+                        '<button type="button" class="btn btn-primary" data-dismiss="modal">'+ gettext('No') +'</button>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+		'</div>';
+    $('.wrapper').append(modal);
+    $('.modal:last').modal('show').addClass('shown');
 });
 
 
-$('.btn-remove-extra').click(function() {
-    removeExtra($(this));
+$('#btn-save').click(function() {
+    gaTag('detail_guest_submitted', 'registration'); // google analytics
 });
-
-
-function getFormsetIndex() {
-    return $('.extra-formset').length;
-}
-
-
-function recalculateTotalExtra() {
-    var $extraFormSet = $('.extra-formset')
-        , $totalFormset = $('#id_form-TOTAL_FORMS');
-    $totalFormset.val($extraFormSet.length);
-}
-
-
-function rearrangeExtraIndex() {
-    var $extraFormset = $('.extra-formset')
-        , $mainGuest = $('#main-guest');
-
-    $extraFormset.each(function(index) {
-        $(this).attr('id', 'extra-formset-'+ index)
-            .find('.guest-index span').text(gettext('Guest') +' '+ (index + 2)); // extra formset starts from 2
-        $(this).find('[name^=form-]').each(function() { // change `name`, `id` for every input
-            var elementName = $(this).attr('name')
-                , elementId = $(this).attr('id');
-            elementName = elementName.replace(/form-\d+/g, 'form-'+index);
-            elementId = elementId.replace(/id_form-\d+/g, 'id_form-'+index);
-            $(this).attr('name', elementName).attr('id', elementId);
-        });
-    });
-
-    // add or remove main guest title
-    if ($extraFormset.length > 0) {
-        $mainGuest.find('.guest-index span').text(gettext('Main Guest'));
-    } else {
-        $mainGuest.find('.guest-index span').text('');
-    }
-}
-
-
-function removeExtra($btn) {
-    $btn.parents('.extra-formset').fadeOut(function() {
-        $(this).remove();
-        restyleExtra();
-        rearrangeExtraIndex();
-        recalculateTotalExtra();
-        validateMaxExtra();
-    });
-}
 
 
 function initRolldate($rolldate) {
@@ -140,36 +69,4 @@ function initRolldate($rolldate) {
     $datepicker.focus(function() {
         rollDate.show();
     });
-}
-
-
-function restyleExtra() {
-    var $extraFormset = $('.extra-formset');
-
-    $extraFormset.each(function(index) {
-        $(this).removeClass('even');
-        if (index % 2 == 0) {
-            $(this).addClass('even');
-        }
-    });
-}
-
-
-function scrollToGuestIndex() {
-    $('html, body').animate({
-        scrollTop: $('.guest-index:last').offset().top
-    }, 800);
-}
-
-
-function validateMaxExtra() {
-    var $extraFormset = $('.extra-formset')
-        , $maxFormset = $('#id_form-MAX_NUM_FORMS')
-        , $btnAddExtra = $('#btn-add-extra');
-    
-    if ($extraFormset.length >= $maxFormset.val()) {
-        $btnAddExtra.attr('disabled', true);
-    } else {
-        $btnAddExtra.removeAttr('disabled');
-    }
 }

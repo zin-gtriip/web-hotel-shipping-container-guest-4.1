@@ -24,8 +24,10 @@ class PropertyRequiredMixin:
 
     def dispatch(self, request, *args, **kwargs):
         if 'property_id' in request.session and request.session['property_id']:
-            return super().dispatch(request, *args, **kwargs)
-        return redirect(reverse('guest_base:property') + '?next=' + request.path)
+            prop = next((prop_data for prop_data in settings.GUEST_ENDPOINT or [] if prop_data.get('id') == request.session['property_id']), {})
+            if prop:
+                return super().dispatch(request, *args, **kwargs)
+        return redirect(reverse('core:property') + '?next=' + request.path)
 
 
 class RequestFormKwargsMixin:

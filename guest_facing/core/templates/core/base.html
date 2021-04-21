@@ -68,7 +68,7 @@
                         <div class="container">
                             {% block header_middle %}
                                 {% if not request.session.app %}
-                                    <img src="{% static 'img/hotel_logo.jpg' %}" id="hotel-logo">
+                                    <img src="{% static 'img/hotel_logo.png' %}" id="hotel-logo">
                                 {% endif%}
                             {% endblock header_middle %}
                         </div>
@@ -76,7 +76,7 @@
                     <div class="header-right">
                         <div class="container">
                             {% block header_right %}
-                                <form id="form-set-language" action="{% url 'set_language' %}" method="post">
+                                <form id="form-set-language" action="{% url 'set_language' %}" method="post" autocomplete="off">
                                     {% csrf_token %}
                                     <input name="next" type="hidden" value="{{ redirect_to }}">
                                     <select id="language" name="language" class="md-select borderless-select">
@@ -122,7 +122,12 @@
     <!-- django js translation -->
     <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
     <!-- data js -->
-    {% block data_js %}{% endblock data_js %}
+    {% block data_js %}
+        {{ GA_MEASUREMENT_ID|json_script:'ga-measurement-id' }}
+    {% endblock data_js %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_MEASUREMENT_ID }}"></script>
+    <script type="text/javascript" src="{% static 'core/js/ga.js' %}"></script>
     {% compress js file %}
         <!-- JQuery -->
         <script type="text/javascript" src="{% static 'vendor/mdbootstrap/jquery.min.js' %}"></script>

@@ -2,8 +2,8 @@ from django.conf            import settings
 from django.shortcuts       import render
 from django.urls            import reverse
 from django.views.generic   import *
-from .forms                 import *
-from .mixins                import *
+from .forms                 import CorePropertyForm
+from .mixins                import RequestFormKwargsMixin
 
 class IndexView(RedirectView):
     pattern_name = 'admin:index'
@@ -14,8 +14,8 @@ class IndexView(RedirectView):
 
 
 class CorePropertyView(RequestFormKwargsMixin, FormView):
-    template_name   = 'guest_base/desktop/property.html'
-    form_class      = GuestBasePropertyForm
+    template_name   = 'core/desktop/property.html'
+    form_class      = CorePropertyForm
 
     def dispatch(self, request, *args, **kwargs):
         properties = settings.GUEST_ENDPOINT
@@ -41,7 +41,7 @@ class CorePropertyView(RequestFormKwargsMixin, FormView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        self.success_url = reverse('guest_base:index')
+        self.success_url = reverse('core:index')
         next_url = self.request.GET.get('next', None)
         if next_url:
             self.success_url = next_url

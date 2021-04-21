@@ -31,10 +31,9 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'guest_facing.registration_adhoc_guest',
-    'guest_facing.registration_ocr_required',
     'guest_facing.registration',
     'guest_facing.check_out',
+    'guest_facing.chat',
     'guest_facing.core',
 
     'django.contrib.admin',
@@ -120,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Singapore'
 
 USE_I18N = True
 
@@ -194,9 +193,9 @@ GUEST_ENDPOINT = [
         'id': 'QAHotelProdSG11_1',
         'name': 'QA_Hotel_Prod_SG_3.0_1',
         'description': 'GTRIIP - Aurum',
-        'image': '/static/img/property-1.jpg',
+        'image': '/static/img/property/1.jpg',
         'address': '1 East Street, Singapore',
-        'url': 'http://hotel4qa.gtriip.com:8080/hotelTemplateProperty1',
+        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 30,
     },
@@ -204,9 +203,19 @@ GUEST_ENDPOINT = [
         'id': 'QAHotelProdSG11_2',
         'name': 'QA_Hotel_Prod_SG_3.0_2',
         'description': 'GTRIIP - Nouveau',
-        'image': '/static/img/property-2.jpg',
+        'image': '/static/img/property/2.jpg',
         'address': '1 South Beach Road, Singapore',
-        'url': 'http://hotel4qa.gtriip.com:8080/hotelTemplateProperty2',
+        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
+        'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
+        'timeout': 30,
+    },
+    {
+        'id': 'QAHotelProdSG11_2',
+        'name': 'QA_Hotel_Prod_SG_3.0_2',
+        'description': 'GTRIIP - Nouveau',
+        'image': '/static/img/property/3.jpg',
+        'address': '1 West Avenue, Singapore',
+        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 30,
     },
@@ -219,14 +228,21 @@ AMP_ENDPOINT = [
     {
         'id': 'QAHotelProdSG11_1',
         'name': 'QA_Hotel_Prod_SG_3.0_1',
-        'url': 'http://hotel4qa.gtriip.com:8080/hotelTemplateProperty1',
+        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
         'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
         'timeout': 30,
     },
     {
         'id': 'QAHotelProdSG11_2',
         'name': 'QA_Hotel_Prod_SG_3.0_2',
-        'url': 'http://hotel4qa.gtriip.com:8080/hotelTemplateProperty2',
+        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
+        'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
+        'timeout': 30,
+    },
+    {
+        'id': 'QAHotelProdSG11_2',
+        'name': 'QA_Hotel_Prod_SG_3.0_2',
+        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
         'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
         'timeout': 30,
     },
@@ -237,6 +253,16 @@ AMP_ENDPOINT = [
 OCR_ENDPOINT_URL                = 'https://ocr.gtriip.com/ocr/'
 OCR_ENDPOINT_KEY                = 'F16430020E414D3CBB9FACB3DA8071F5'
 OCR_ENDPOINT_TIMEOUT_LIMIT      = 60
+
+
+# Messaging configuration
+
+CHAT_SUB_KEY    = 'sub-c-783e8a78-8632-11eb-99bb-ce4b510ebf19'
+CHAT_PUB_KEY    = 'pub-c-ae44babc-3011-40ef-a69e-f729ff1e5eb1'
+CHAT_SEC_KEY    = 'sec-c-YzE0OWY4MjYtYjZjMy00N2RjLWFjMzctMzIxMDAwMGFlZjYy'
+
+CHAT_AUTO_START_TIME    = '18:00'
+CHAT_AUTO_END_TIME      = '09:00'
 
 
 # Maximum size in bytes of request data (excluding file uploads) that will be
@@ -292,6 +318,8 @@ HOST_URL            = 'https://hoteltemplateqa.gtriip.com'
 APP_IOS_URL         = 'http://itunes.apple.com'
 APP_ANDROID_URL     = 'http://play.google.com/store/apps'
 APP_DIRECT_URL      = 'https://www.google.com'
+# google analytics measurement id
+GA_MEASUREMENT_ID   = 'G-XXK7VS7S3V'
 # link to access static images, configured on webserver
 STATIC_IMAGE_URL    = '/static/img'
 # default django variable for date format
@@ -308,17 +336,17 @@ REGISTRATION_ROOM_TYPES = [
     {
         'room_type' : 'Premier',
         'room_name' : 'Premier Room',
-        'room_image': '/static/img/room-premier.jpg',
+        'room_image': '/static/img/room/premier.jpg',
     },
     {
         'room_type' : 'Deluxe',
         'room_name' : 'Deluxe Room',
-        'room_image': '/static/img/room-deluxe.jpg',
+        'room_image': '/static/img/room/deluxe.jpg',
     },
     {
         'room_type' : 'Villa',
         'room_name' : 'Villa',
-        'room_image': '/static/img/room-villa.jpg',
+        'room_image': '/static/img/room/villa.jpg',
     },
 ]
 # age limit for adult, used on passport, detail page
@@ -326,17 +354,15 @@ REGISTRATION_ADULT_AGE_LIMIT = 18
 # registration pages that has expiry session (timer), make sure these are registration url
 REGISTRATION_EXPIRY_SESSION_PAGES = [
     'reservation',
-    'passport',
     'guest_list',
     'detail',
-    'extra_passport',
+    'ocr',
     'other_info',
 ]
 # registration views that use `parameter_required` validation
 REGISTRATION_PARAMETER_REQUIRED_PAGES = [
     'reservation',
-    'passport',
-    'detail',
+    'guest_list',
     'other_info',
     'complete',
 ]
@@ -346,12 +372,13 @@ REGISTRATION_PROGRESS_BAR_END_RATE = 100
 REGISTRATION_PROGRESS_BAR_PAGES = [
     'login',
     'reservation',
-    'passport',
-    'detail',
+    'guest_list',
     'other_info',
     'complete',
 ]
 # progress bar rate calculation, -1 to exclude first page
 REGISTRATION_PROGRESS_BAR_RATE_PER_PAGE = (REGISTRATION_PROGRESS_BAR_END_RATE - REGISTRATION_PROGRESS_BAR_START_RATE) / (len(REGISTRATION_PROGRESS_BAR_PAGES) - 1)
 # complete email template directory
-REGISTRATION_COMPLETE_EMAIL = os.path.join(BASE_DIR, 'registration', 'templates', 'registration', 'email', 'complete.html')
+REGISTRATION_COMPLETE_EMAIL = 'registration/email/complete.html'
+
+REGISTRATION_OCR = True

@@ -3,7 +3,7 @@ from django.conf                import settings
 from django.utils.translation   import gettext, gettext_lazy as _
 
 
-class GuestBasePropertyForm(forms.Form):
+class CorePropertyForm(forms.Form):
     property_id = forms.ChoiceField(widget=forms.RadioSelect())
 
     def __init__(self, request, *args, **kwargs):
@@ -26,8 +26,8 @@ class GuestBasePropertyForm(forms.Form):
     def save(self):
         property_id = self.cleaned_data.get('property_id')
         self.request.session['property_id'] = property_id
-        if 'pre_arrival' in self.request.session and 'preload' in self.request.session['pre_arrival'] and 'property_id' in self.request.session['pre_arrival']['preload']:
-            self.request.session['pre_arrival']['preload'].pop('property_id', None)
+        if 'registration' in self.request.session and 'preload' in self.request.session['registration'] and 'property_id' in self.request.session['registration']['preload']:
+            self.request.session['registration']['preload'].pop('property_id', None)
         if 'check_out' in self.request.session and 'preload' in self.request.session['check_out'] and 'property_id' in self.request.session['check_out']['preload']:
             self.request.session['check_out']['preload'].pop('property_id', None)
     

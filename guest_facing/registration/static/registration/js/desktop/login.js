@@ -1,3 +1,9 @@
+// google analytics
+gaTag('login_reservation_no_display', 'registration');
+gaTag('login_last_name_display', 'registration');
+gaTag('login_arrival_date_display', 'registration');
+
+
 $(document).ready(function() {
     // to auto focus
     $('input:visible').first().focus();
@@ -23,6 +29,27 @@ $('#id_reservation_no, #id_last_name, #id_arrival_date').keyup(function() {
 
 $('#id_arrival_date').datepicker().on('changeDate', function() {
     enableDisableButton();
+});
+
+
+$('#id_reservation_no').focusout(function() {
+    if ($(this).val()) {
+        gaTag('login_reservation_no_entered', 'registration');// google analytics
+    }
+});
+
+
+$('#id_last_name').focusout(function() {
+    if ($(this).val()) {
+        gaTag('login_last_name_entered', 'registration');// google analytics
+    }
+});
+
+
+$('#id_arrival_date').focusout(function() {
+    if ($(this).val()) {
+        gaTag('login_arrival_date_entered', 'registration');// google analytics
+    }
 });
 
 

@@ -3,15 +3,15 @@
 $('body').addClass('loading');
 // remove loading when page is loaded
 $(window).on('load', function() {
-	$('body').removeClass('loading');
+    $('body').removeClass('loading');
 });
 // add loading when form submit
 $('form').submit(function() {
-	$('body').addClass('loading');
+    if (!$('body').hasClass('live')) $('body').addClass('loading');
 });
 // add loading when ajax
 $(document).on({
-    ajaxStart: function() { $('body').addClass('loading'); },
+    ajaxStart: function() { if (!$('body').hasClass('live')) $('body').addClass('loading'); },
     ajaxStop: function() { $('body').removeClass('loading'); }
 });
 

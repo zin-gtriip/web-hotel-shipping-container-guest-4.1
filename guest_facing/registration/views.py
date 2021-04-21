@@ -1,13 +1,17 @@
 from django.conf                import settings
-from django.shortcuts           import render
+from django.http                import Http404
+from django.shortcuts           import render, reverse, redirect
 from django.utils               import translation
 from django.utils.translation   import gettext, gettext_lazy as _
 from django.views.generic       import *
+from guest_facing.core.utils    import encrypt, decrypt
 from guest_facing.core.views    import IndexView
 from guest_facing.core.mixins   import PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, JSONResponseMixin
-from .forms                     import *
-from .mixins                    import *
-from .utils                     import *
+from .                          import utils
+from .forms                     import (RegistrationLoginForm, RegistrationTimerExtensionForm, RegistrationReservationForm, RegistrationGuestListForm,
+                                RegistrationDetailForm, RegistrationOcrForm, RegistrationOtherInfoForm, RegistrationCompleteForm)
+from .mixins                    import ParameterRequiredMixin, ExpirySessionMixin, ProgressRateContextMixin
+
 
 class IndexView(IndexView):
     pattern_name = 'registration:data'
@@ -16,20 +20,20 @@ class IndexView(IndexView):
 class RegistrationDataView(RedirectView):
     pattern_name = 'registration:login'
 
-    def get_redirect_url(self, *args, **kwargs):
-        self.request.session['property_id'] = self.request.GET.get('property', None)
-        self.request.session['app'] = self.request.GET.get('app', 0)
-        self.request.session['pre_arrival'] = {'preload': {}}
-        if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
-        if 'auto_login' in self.request.GET: self.request.session['registration']['preload']['auto_login'] = self.request.GET.get('auto_login', 0)
-        if 'reservation_no' in self.request.GET: self.request.session['registration']['preload']['reservation_no'] = self.request.GET.get('reservation_no', '')
-        if 'arrival_date' in self.request.GET: self.request.session['registration']['preload']['arrival_date'] = self.request.GET.get('arrival_date', '')
-        if 'last_name' in self.request.GET: self.request.session['registration']['preload']['last_name'] = self.request.GET.get('last_name', '')
-        if 'first_name' in self.request.GET: self.request.session['registration']['preload']['first_name'] = self.request.GET.get('first_name', '')
-        if 'nationality' in self.request.GET: self.request.session['registration']['preload']['nationality'] = self.request.GET.get('nationality', '')
-        if 'passport_no' in self.request.GET: self.request.session['registration']['preload']['passport_no'] = self.request.GET.get('passport_no', '')
-        if 'birth_date' in self.request.GET: self.request.session['registration']['preload']['birth_date'] = self.request.GET.get('birth_date', '')
-        return super().get_redirect_url(*args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        request.session['property_id'] = request.GET.get('property', None)
+        request.session['app'] = request.GET.get('app', 0)
+        request.session['registration'] = {'preload': {}}
+        if 'lang' in request.GET: request.session[translation.LANGUAGE_SESSION_KEY] = request.GET.get('lang', 'en')
+        if 'auto_login' in request.GET: request.session['registration']['preload']['auto_login'] = request.GET.get('auto_login', 0)
+        if 'reservation_no' in request.GET: request.session['registration']['preload']['reservation_no'] = request.GET.get('reservation_no', '')
+        if 'arrival_date' in request.GET: request.session['registration']['preload']['arrival_date'] = request.GET.get('arrival_date', '')
+        if 'last_name' in request.GET: request.session['registration']['preload']['last_name'] = request.GET.get('last_name', '')
+        if 'first_name' in request.GET: request.session['registration']['preload']['first_name'] = request.GET.get('first_name', '')
+        if 'nationality' in request.GET: request.session['registration']['preload']['nationality'] = request.GET.get('nationality', '')
+        if 'passport_no' in request.GET: request.session['registration']['preload']['passport_no'] = request.GET.get('passport_no', '')
+        if 'birth_date' in request.GET: request.session['registration']['preload']['birth_date'] = request.GET.get('birth_date', '')
+        return super().get(request, *args, **kwargs)
 
 
 class RegistrationLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
@@ -85,7 +89,7 @@ class RegistrationTimerExtensionView(PropertyRequiredMixin, JSONResponseMixin, R
 class RegistrationReservationView(ExpirySessionMixin, PropertyRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
     template_name           = 'registration/desktop/reservation.html'
     form_class              = RegistrationReservationForm
-    success_url             = '/registration/passport'
+    success_url             = '/registration/guest_list'
     progress_bar_page       = 'reservation'
 
     def get_context_data(self, **kwargs):
@@ -93,8 +97,8 @@ class RegistrationReservationView(ExpirySessionMixin, PropertyRequiredMixin, Req
         context['reservations'] = []
         for reservation in self.request.session['registration'].get('bookings', []):
             reservation = dict(reservation) # create new variable to prevent modification on `request.session`
-            reservation['formattedArrivalDate'] = format_display_date(reservation.get('arrivalDate', ''))
-            reservation['formattedDepartureDate'] = format_display_date(reservation.get('departureDate', ''))
+            reservation['formattedArrivalDate'] = utils.format_display_date(reservation.get('arrivalDate', ''))
+            reservation['formattedDepartureDate'] = utils.format_display_date(reservation.get('departureDate', ''))
             room = next((temp for temp in settings.REGISTRATION_ROOM_TYPES if temp['room_type'] == reservation['roomType']), {})
             reservation['roomName'] = room.get('room_name', '')
             reservation['roomImage'] = room.get('room_image', '')
@@ -106,60 +110,112 @@ class RegistrationReservationView(ExpirySessionMixin, PropertyRequiredMixin, Req
         return super().form_valid(form)
 
 
-class RegistrationPassportView(ParameterRequiredMixin, PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
-    template_name           = 'registration/desktop/passport.html'
-    mobile_template_name    = 'registration/mobile/passport.html'
-    form_class              = RegistrationPassportForm
-    success_url             = '/registration/detail'
+class RegistrationGuestListView(ParameterRequiredMixin, PropertyRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
+    template_name           = 'registration/desktop/guest_list.html'
+    form_class              = RegistrationGuestListForm
+    success_url             = '/registration/other_info'
     parameter_required      = 'reservation'
-    progress_bar_page       = 'passport'
+    progress_bar_page       = 'guest_list'
+
+    def get(self, request, *args, **kwargs):
+        self.request.session['registration']['detail'] = {} # initiate and remove unsaved `detail` if any
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        max_guest = int(self.request.session['registration']['reservation'].get('adults', 1)) + int(self.request.session['registration']['reservation'].get('children', 0))
+        context['add_guest'] = max_guest > len(self.request.session['registration']['reservation'].get('guestsList', []))
+        context['can_submit'] = all([guest.get('is_done', False) for guest in self.request.session['registration']['reservation'].get('guestsList', [])])
+        return context
 
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
 
 
-class RegistrationDetailView(ParameterRequiredMixin, PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, FormView):
+class RegistrationDetailView(ExpirySessionMixin, PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, UpdateView):
     template_name           = 'registration/desktop/detail.html'
     mobile_template_name    = 'registration/mobile/detail.html'
     form_class              = RegistrationDetailForm
-    success_url             = '/registration/other_info'
-    parameter_required      = 'passport'
-    progress_bar_page       = 'detail'
+    success_url             = '/registration/guest_list'
+    progress_bar_page       = 'guest_list'
+
+    def get_object(self):
+        guest_id = decrypt(self.kwargs.get('encrypted_id', '')) # `0` for new guest
+        guest = self.request.session['registration'].get('detail', {})
+        if str(guest.get('id', '')) != guest_id: # not from `passport` page
+            if guest_id != '0': # existing guest
+                guest = next((dict(data) for data in self.request.session['registration']['reservation'].get('guestsList', {}) if str(data.get('guestId', '')) == guest_id or data.get('new_guest_id') == guest_id), {})
+            else: # new guest
+                guest = {}
+                guest['guestId'] = 0
+        if not guest:
+            raise Http404('Not found')
+        guest['id'] = guest.get('guestId', 0) # assign `id` from `guestId` as identifier
+        self.request.session['registration']['detail'] = guest # assigned as separate object for not overwriting `reservation` session
+        return self.request.session['registration']['detail']
+
+    def dispatch(self, request, *args, **kwargs):
+        guest_id = decrypt(self.kwargs.get('encrypted_id', '')) # `0` for new guest
+        if guest_id == '0': # adding new guest
+            max_guest = int(self.request.session['registration']['reservation'].get('adults', 1)) + int(self.request.session['registration']['reservation'].get('children', 0))
+            if max_guest <= len(self.request.session['registration']['reservation'].get('guestsList', [])):
+                return redirect('registration:guest_list') # redirect to guest list if max guests is exceeded
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # translation for bootstrap datepicker
+        context['ocr_required'] = settings.REGISTRATION_OCR # determine input is editable
         context['bootstrap_datepicker_language'] = translation.get_language()
         if context['bootstrap_datepicker_language'] == 'zh-hans':
             context['bootstrap_datepicker_language'] = 'zh-CN'
-        # max extra form
-        context['max_extra_form'] = int(self.request.session['registration']['reservation'].get('adults', 1)) + int(self.request.session['registration']['reservation'].get('children', 0)) - 1
-        # render extra form formset
-        if self.request.POST:
-            context['extra'] = RegistrationDetailExtraFormSet(self.request, self.request.POST)
-        else:
-            context['extra'] = RegistrationDetailExtraFormSet(self.request)
+        guest_id = decrypt(self.kwargs.get('encrypted_id', '')) # 0 for new guest
+        guest = self.request.session['registration'].get('detail', {})
+        context['ga_ocr_success'] = guest.get('passportImage') and guest.get('id', None) == guest_id # from `passport` page
+        context['custom_request_path'] = '/registration/detail/'
         return context
 
-    def post(self, request, *args, **kwargs):
-        form = self.get_form()
-        extra = self.get_context_data().get('extra')
-        if form.is_valid() and extra.is_valid():
-            return self.form_valid(form, extra)
-        else:
-            return self.form_invalid(form)
+    def get_success_url(self):
+        if not self.success_url:
+            return super().get_success_url()
+        url = self.success_url.format(**self.object)
+        if not self.request.POST.get('is_submit', False):
+            url = reverse('registration:ocr', kwargs={'encrypted_id': self.kwargs.get('encrypted_id', '')})
+        return url
 
-    def form_valid(self, form, extra):
-        form.save(extra)
-        return super().form_valid(form)
+
+class RegistrationOcrView(ExpirySessionMixin, PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, UpdateView):
+    template_name           = 'registration/desktop/ocr.html'
+    mobile_template_name    = 'registration/mobile/ocr.html'
+    form_class              = RegistrationOcrForm
+    success_url             = '/registration/detail/{encrypted_id}'
+    progress_bar_page       = 'guest_list'
+
+    def get_object(self):
+        guest_id = decrypt(self.kwargs.get('encrypted_id', '')) # 0 for creation
+        guest = self.request.session['registration']['detail']
+        if str(guest.get('id', '')) != guest_id and guest.get('new_guest_id') != guest_id:
+            raise Http404('Not found')
+        return guest
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['encrypted_id'] = self.kwargs.get('encrypted_id', '')
+        context['custom_request_path'] = '/registration/ocr/'
+        return context
+
+    def get_success_url(self):
+        if not self.success_url:
+            return super().get_success_url()
+        url = self.success_url.format(**{'encrypted_id': self.kwargs.get('encrypted_id', '')}) # pass encrypted id
+        return url
 
 
 class RegistrationOtherInfoView(ParameterRequiredMixin, PropertyRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
     template_name           = 'registration/desktop/other_info.html'
     form_class              = RegistrationOtherInfoForm
     success_url             = '/registration/complete'
-    parameter_required      = 'detail'
+    parameter_required      = 'guest_list'
     progress_bar_page       = 'other_info'
     
     def form_valid(self, form):
@@ -190,9 +246,9 @@ class RegistrationCompleteView(ParameterRequiredMixin, PropertyRequiredMixin, Re
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         reservation = dict(self.request.session['registration']['reservation']) # create new variable to prevent modification on `request.session`
-        reservation['formattedArrivalDate'] = format_display_date(reservation.get('arrivalDate', ''))
-        reservation['formattedDepartureDate'] = format_display_date(reservation.get('departureDate', ''))
-        reservation['mainGuestLastName'] = next(guest.get('lastName', '') for guest in reservation.get('guestsList', []) if guest.get('isMainGuest', '0') == '1')
+        reservation['formattedArrivalDate'] = utils.format_display_date(reservation.get('arrivalDate', ''))
+        reservation['formattedDepartureDate'] = utils.format_display_date(reservation.get('departureDate', ''))
+        reservation['mainGuestLastName'] = next(guest.get('lastName', '') for guest in reservation.get('guestsList', []) if guest.get('isMainGuest', False))
         room = next((temp for temp in settings.REGISTRATION_ROOM_TYPES if temp['room_type'] == reservation['roomType']), {})
         reservation['roomName'] = room.get('room_name', '')
         reservation['roomImage'] = room.get('room_image', '')

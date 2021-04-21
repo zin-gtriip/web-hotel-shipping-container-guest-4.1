@@ -22,7 +22,7 @@
 {% endblock header_right %}
 
 {% block header_left %}
-    {% if request.path in SESSION_EXPIRY_PAGES %}
+    {% if request.path in SESSION_EXPIRY_PAGES or custom_request_path in SESSION_EXPIRY_PAGES %}
         <div class="timer-text text-secondary ">
             <span class="timer-tick"></span>
         </div>
@@ -32,12 +32,12 @@
 {% block wrapper %}
     {{ block.super }}
     {% block timer %}
-        {% if request.path in SESSION_EXPIRY_PAGES %}
+        {% if request.path in SESSION_EXPIRY_PAGES or custom_request_path in SESSION_EXPIRY_PAGES %}
             <!-- Timer Extension Modal -->
             <div class="modal fade" id="timer-extension-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-sm">
                     <div class="modal-content">
-                        <form id="form-timer-extension">
+                        <form id="form-timer-extension" autocomplete="off">
                             {% csrf_token %}
                             <div class="modal-header bg-primary text-white">
                                 <h4 class="modal-title mx-auto">{% trans 'Session Expiring' %}</h4>

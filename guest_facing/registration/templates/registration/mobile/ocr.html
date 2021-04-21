@@ -1,0 +1,132 @@
+{% extends 'registration/mobile/base_mobile.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block lib_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'vendor/croppie/croppie.min.css' %}">
+{% endblock lib_css %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'registration/scss/mobile/ocr.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block header_left %}
+    <a href="{% url 'registration:detail' encrypted_id %}" class="btn btn-link" ><i class="fas fa-arrow-left"></i></a>
+    {{ block.super }}
+{% endblock header_left %}
+
+{% block content %}
+    {{ block.super }}
+    <form method="post" id="form-ocr" autocomplete="off">
+        {% csrf_token %}
+        <div class="row page-header">
+            <div class="col-12 px-0 text-center">
+                {% blocktrans %}Submit Passport<br>image{% endblocktrans %}
+            </div>
+        </div>
+        <div class="row page-subheader">
+            <div class="col-12 px-0 text-center text-secondary">
+                {% blocktrans %}An image of your passport is required for<br>registration. Use the camera to capture or<br>choose an existing image from your device.{% endblocktrans %}
+            </div>
+        </div>
+        <div class="row page-content">
+            <div class="col-12 px-0 d-flex justify-content-center">
+                {% render_field form.ocr_file %}
+                <div class="default-container">
+                    <img src="{% static 'img/ocr-mobile.png' %}">
+                </div>
+                <div class="preview-container" style="display: none;">
+                    <img id="img-preview">
+                </div>
+            </div>
+        </div>
+        <div class="row page-footer">
+            <div class="col-12">
+                {% if request.session.app %}
+                    <div class="row default-container">
+                        <div class="col-12 mb-3 d-flex justify-content-center">
+                            <label class="btn btn-primary btn-round m-0 p-3">
+                                {% trans 'Next' %}
+                                <input type="file" class="file-capture" accept="image/*" hidden>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row preview-container" style="display: none;">
+                        <div class="col-12 mb-3 d-flex justify-content-center">
+                            <label class="btn btn-outline-primary btn-round m-0 p-3">
+                                {% trans 'Retake' %}
+                                <input type="file" class="file-capture" accept="image/*" hidden>
+                            </label>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="row default-container">
+                        <div class="col-12 mb-3 d-flex justify-content-center">
+                            <label class="btn btn-outline-primary btn-round m-0 p-3">
+                                {% trans 'Upload Photo' %}
+                                <input type="file" class="file-upload" accept="image/*" hidden>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row default-container">
+                        <div class="col-12 mb-3 d-flex justify-content-center">
+                            <label class="btn btn-primary btn-round m-0 p-3">
+                                {% trans 'Take Photo' %}
+                                <input type="file" class="file-capture" accept="image/*" capture="camera" hidden>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row preview-container" style="display: none;">
+                        <div class="col-12 mb-3 d-flex justify-content-center">
+                            <label class="btn btn-outline-primary btn-round m-0 p-3">
+                                {% trans 'Retake' %}
+                                <input type="file" class="file-capture" accept="image/*" capture="camera" hidden>
+                            </label>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="row preview-container" style="display: none;">
+                    <div class="col-12 mb-3 d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary m-0 p-3" id="btn-next">{% trans 'Next' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+
+{% block wrapper %}
+    {{ block.super }}
+    <!-- Error Modal -->
+    {% for error in form.non_field_errors %}
+        <div class="modal fade auto-show" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h4 class="modal-title mx-auto">{% trans 'Invalid Image' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ error|linebreaks }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'Close' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock wrapper %}
+
+{% block lib_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'vendor/compressorjs/compressor.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/croppie/croppie.min.js' %}"></script>
+{% endblock lib_js %}
+
+{% block static_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'registration/js/mobile/ocr.js' %}"></script>
+{% endblock static_js %}

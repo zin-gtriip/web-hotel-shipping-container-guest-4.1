@@ -18,8 +18,8 @@
         <i class="fas fa-arrow-left"></i>
     </button>
     {% if not request.session.app %}
-        <a href="{% url 'pre_arrival:index' %}" class="btn btn-link" id="btn-home" {% if skip_reservation_no %}style="display: none;"{% endif %}>
-            <span class="material-icons">home</span>
+        <a href="{% url 'registration:index' %}" class="btn btn-link" id="btn-home" {% if skip_reservation_no %}style="display: none;"{% endif %}>
+            <img src="{% static 'img/place.svg' %}" />
         </a>
     {% endif %}
     {{ block.super }}
@@ -27,7 +27,7 @@
 
 {% block content %}
     {{ block.super }}
-    <form method="post" id="form-mobile-login">
+    <form method="post" id="form-mobile-login" autocomplete="off">
         {% csrf_token %}
         <div class="row page-header">
             <div class="col-12 text-center">
@@ -96,26 +96,26 @@
                 <div class="modal-content">
                     <div class="modal-header bg-primary text-white">
                         <h4 class="modal-title mx-auto">
-                            {% if error == 300 %}
-                                {% trans 'registration_login_error_modal_title:300' %}
-                            {% elif error == 400 %}
-                                {% trans 'registration_login_error_modal_title:400' %}
+                            {% if error == '1001' %}
+                                {% trans 'registration_login_error_modal_title:1001' %}
+                            {% elif error == '1002' %}
+                                {% trans 'registration_login_error_modal_title:1002' %}
                             {% else %}
                                 {% trans 'registration_login_error_modal_title:other' %}
                             {% endif %}
                         </h4>
                     </div>
                     <div class="modal-body">
-                        {% if error == 300 %}
-                            {% trans 'registration_login_error_modal_body:300' %}
-                        {% elif error == 400 %}
-                            {% trans 'registration_login_error_modal_body:400' %}
+                        {% if error == '1001' %}
+                            {% trans 'registration_login_error_modal_body:1001' %}
+                        {% elif error == '1002' %}
+                            {% trans 'registration_login_error_modal_body:1002' %}
                         {% else %}
                             {% trans 'registration_login_error_modal_body:other' %}
                         {% endif %}
                     </div>
                     <div class="modal-footer">
-                        {% if request.session.app and error == 400 %}
+                        {% if request.session.app and error == '1002' %}
                             <button type="button" class="btn btn-primary mx-auto" id="btn-ok" data-dismiss="modal">{% trans 'OK' %}</button>
                         {% else %}
                             <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'OK' %}</button>

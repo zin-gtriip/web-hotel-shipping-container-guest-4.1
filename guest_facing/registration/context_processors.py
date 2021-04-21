@@ -6,9 +6,9 @@ returns a dictionary to add to the context.
 For more information, visit link below:
 https://stackoverflow.com/a/433209
 """
-from django.conf        import settings
-from django.urls        import reverse
-from guest_facing.core  import utils as core_utils
+from django.conf                import settings
+from django.urls                import reverse
+from guest_facing.core.utils    import encrypt
 
 
 def session(request):
@@ -16,7 +16,7 @@ def session(request):
     # get token id
     session_key = request.session.session_key or ''
     initial_expiry_date = request.session.get('registration', {}).get('initial_expiry_date', '')
-    token_id = core_utils.encrypt(session_key + initial_expiry_date)
+    token_id = encrypt(session_key + initial_expiry_date)
     # get expiry duration
     initial_expiry_duration = request.session.get('registration', {}).pop('initial_expiry_duration', '') # use once only, otherwise considered new session
     # get expiry session pages

@@ -1,0 +1,56 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-20 16:32+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: forms.py:19 forms.py:23
+msgid "No property selected."
+msgstr ""
+
+#: gateways.py:34 gateways.py:61
+msgid "Unable to connect to server, please try again."
+msgstr ""
+
+#: gateways.py:82
+msgid "Error connecting to server"
+msgstr ""
+
+#: templates/404.html:15
+msgid "Oops! We couldn't find the page you're looking for"
+msgstr ""
+
+#: templates/404.html:20
+msgid ""
+"It looks like that page doesn't exit. Please check the URL and try again."
+msgstr ""
+
+#: templates/core/desktop/property.html:5
+msgid "Property"
+msgstr ""
+
+#: templates/core/desktop/property.html:18
+msgid "Select Hotel"
+msgstr ""
+
+#: templates/core/desktop/property.html:49
+msgid "Invalid Input"
+msgstr ""
+
+#: templates/core/desktop/property.html:55
+msgid "Close"
+msgstr ""

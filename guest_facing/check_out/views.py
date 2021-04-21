@@ -1,16 +1,15 @@
 from django.conf                import settings
 from django.contrib             import messages
 from django.http                import Http404
-from django.shortcuts           import render
+from django.shortcuts           import render, redirect
 from django.utils               import translation
 from django.utils.translation   import gettext, gettext_lazy as _
 from django.views.generic       import *
-from guest_facing               import gateways
+from guest_facing.core          import gateways
 from guest_facing.core.views    import IndexView
 from guest_facing.core.mixins   import PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin
-from .                          import samples
-from .forms                     import *
-from .mixins                    import *
+from .forms                     import CheckOutLoginForm, CheckOutBillForm
+from .mixins                    import BillRequiredAndExistMixin
 
 
 class IndexView(IndexView):
@@ -20,16 +19,16 @@ class IndexView(IndexView):
 class CheckOutDataView(RedirectView):
     pattern_name = 'check_out:login'
 
-    def get_redirect_url(self, *args, **kwargs):
-        self.request.session['property_id'] = self.request.GET.get('property', None)
-        self.request.session['app'] = self.request.GET.get('app', 0)
-        self.request.session['check_out'] = {'preload': {}}
-        if 'lang' in self.request.GET: self.request.session[translation.LANGUAGE_SESSION_KEY] = self.request.GET.get('lang', 'en')
-        if 'auto_login' in self.request.GET: self.request.session['check_out']['preload']['auto_login'] = self.request.GET.get('auto_login', 0)
-        if 'reservation_no' in self.request.GET: self.request.session['check_out']['preload']['reservation_no'] = self.request.GET.get('reservation_no', '')
-        if 'last_name' in self.request.GET: self.request.session['check_out']['preload']['last_name'] = self.request.GET.get('last_name', '')
-        if 'room_no' in self.request.GET: self.request.session['check_out']['preload']['room_no'] = self.request.GET.get('room_no', '')
-        return super().get_redirect_url(*args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        request.session['property_id'] = request.GET.get('property', None)
+        request.session['app'] = request.GET.get('app', 0)
+        request.session['check_out'] = {'preload': {}}
+        if 'lang' in request.GET: request.session[translation.LANGUAGE_SESSION_KEY] = request.GET.get('lang', 'en')
+        if 'auto_login' in request.GET: request.session['check_out']['preload']['auto_login'] = request.GET.get('auto_login', 0)
+        if 'reservation_no' in request.GET: request.session['check_out']['preload']['reservation_no'] = request.GET.get('reservation_no', '')
+        if 'last_name' in request.GET: request.session['check_out']['preload']['last_name'] = request.GET.get('last_name', '')
+        if 'room_no' in request.GET: request.session['check_out']['preload']['room_no'] = request.GET.get('room_no', '')
+        return super().get(request, *args, **kwargs)
 
 
 class CheckOutLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, FormView):
@@ -60,7 +59,8 @@ class CheckOutLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTem
     def get_success_url(self):
         if not self.success_url:
             return super().get_success_url()
-        url = self.success_url.format(**{'reservation_no': 'all'})
+        reservation = next(iter(self.request.session['check_out'].get('bills', [])), {})
+        url = self.success_url.format(**{'reservation_no': reservation.get('reservation_no', '')})
         return url
 
     def get_context_data(self, **kwargs):
@@ -76,17 +76,17 @@ class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, Request
     form_class              = CheckOutBillForm
     success_url             = '/check_out/bill/all'
 
-    def gateway_post(self, reservations_no):
-        data = {'reservation_no': reservations_no}
-        response = gateways.guest_endpoint('/billsForCheckOut', self.request.session.get('property_id', ''), data)
-        return response.get('data', {})
+    def gateway_get(self, reservations_no):
+        data = {'pmsNos': reservations_no}
+        response = gateways.guest_endpoint('post', '/billCheckOut', self.request.session.get('property_id', ''), data)
+        return response.get('data', {}).get('data', {})
 
     def get_object(self, queryset=None):
         reservation_no = self.kwargs.get('reservation_no', None)
         reservations_no = [reservation_no]
         if reservation_no == 'all':
             reservations_no = [resv['reservation_no'] for resv in self.request.session['check_out'].get('bills', []) if resv.get('reservation_no', '')]
-        obj = self.gateway_post(reservations_no)
+        obj = self.gateway_get(reservations_no)
         obj['id'] = reservation_no # set `reservation_no` as unique identifier
         return obj
 
@@ -102,9 +102,9 @@ class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, Request
         if self.request.session['check_out'].get('complete', None):
             messages.add_message(self.request, messages.SUCCESS, _("All Guests have been successfully checked out.\n\nWe hope you enjoy your stay with us, and we'll see you again soon!"))
         else:
-            reservation = next((temp for temp in self.object.get('reservation_info') if temp.get('reservation_no', '') == self.object.get('id', None)), {})
-            guest_name = reservation.get('first_name', '') +' '+ reservation.get('last_name', '')
-            guests_left = [temp.get('first_name', '') +' '+ temp.get('last_name', '') for temp in self.request.session['check_out'].get('bills', [])]
+            reservation = next((temp for temp in self.object.get('reservationInfo') if temp.get('pmsNo', '') == self.object.get('id', None)), {})
+            guest_name = reservation.get('firstName', '') +' '+ reservation.get('lastName', '')
+            guests_left = [temp.get('firstName', '') +' '+ temp.get('lastName', '') for temp in self.request.session['check_out'].get('bills', [])]
             names_left = '\n- '.join(guests_left)
             messages.add_message(self.request, messages.SUCCESS, _('We have checked-out the guest:\n- %(name)s\n\nOther guests left to check-out:\n- %(names_left)s') % {'name': guest_name, 'names_left': names_left})
         return data
@@ -117,7 +117,7 @@ class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, Request
         return url
 
 
-class CheckOutComplete(TemplateView):
+class CheckOutCompleteView(TemplateView):
     template_name           = 'check_out/desktop/complete.html'
 
     def dispatch(self, request, *args, **kwargs):

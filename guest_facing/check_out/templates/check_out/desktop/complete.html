@@ -33,3 +33,8 @@
         <small class="text-secondary">Powered by GTRIIP</small>
     </div>
 {% endblock footer_middle %}
+
+{% block static_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'check_out/js/desktop/complete.js' %}"></script>
+{% endblock static_js %}

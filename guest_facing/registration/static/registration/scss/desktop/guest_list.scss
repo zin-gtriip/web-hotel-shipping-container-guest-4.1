@@ -1,0 +1,20 @@
+.content {
+    .page-content {
+        .btn {
+            width: 300px;
+            border-radius: 15px;
+        }
+
+        i.icon-btn {
+            float: right;
+            position: relative;
+            top: 3px;
+        }
+    }
+
+    .page-footer {
+        .btn {
+            width: 220px;
+        }
+    }
+}
