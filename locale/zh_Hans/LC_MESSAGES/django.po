@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-12 06:20+0000\n"
-"PO-Revision-Date: 2021-03-17 16:24+0800\n"
+"PO-Revision-Date: 2021-03-30 12:04+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -70,11 +70,11 @@ msgstr "退房"
 
 #: check_out/templates/check_out/desktop/bill.html:18
 msgid "Bill Review & Check Out"
-msgstr "账单审查和退房"
+msgstr "付款和退房"
 
 #: check_out/templates/check_out/desktop/bill.html:23
 msgid "Select which of the guest to view the bill folio."
-msgstr "选择住客以审查个人账单："
+msgstr "请选择住客以审查个人账单："
 
 #: check_out/templates/check_out/desktop/bill.html:70
 #: check_out/templates/check_out/desktop/bill.html:151
@@ -135,11 +135,11 @@ msgstr "7%%消费税"
 #: check_out/templates/check_out/desktop/bill.html:132
 #: check_out/templates/check_out/desktop/bill.html:213
 msgid "Charges"
-msgstr "收费"
+msgstr "应付金额"
 
 #: check_out/templates/check_out/desktop/bill.html:233
 msgid "Total Charges"
-msgstr "总收费"
+msgstr "总应付金额"
 
 #: check_out/templates/check_out/desktop/bill.html:248
 msgid ""
@@ -152,18 +152,18 @@ msgid ""
 "personally liable in the event that the indicated person, company or "
 "association fails to pay for any part of the full amount of the charges."
 msgstr ""
-"我同意我不会被豁免对于本账单的责任，并且同意承担所有相关人士，公司或协会未支"
+"我同意我对于本账单的责任不会被豁免，并且同意承担所有相关人士，公司或协会未支"
 "付所有或部分金额。"
 
 #: check_out/templates/check_out/desktop/bill.html:258
 msgid "Outstanding balance will be charged to the credit card registered."
-msgstr "未支付的余额将会从您在办理登记入住手续提供的信用卡中扣除。"
+msgstr "未支付的余额将会从您在办理登记入住手续时提供的信用卡中扣除。"
 
 #: check_out/templates/check_out/desktop/bill.html:277
 msgid ""
 "Unable to proceed with some of the guest's check-out. Please check-out each "
 "guest individually."
-msgstr "无法为一些住客进行退房手续。请从下拉菜单中选择住客，然后分别退房。"
+msgstr "无法为一些住客进行退房手续。请从列表中选择住客，然后分别退房。"
 
 #: check_out/templates/check_out/desktop/bill.html:279
 msgid ""
@@ -188,7 +188,7 @@ msgstr "故障"
 #: pre_arrival/templates/pre_arrival/mobile/login.html:119
 #: pre_arrival/templates/pre_arrival/mobile/login.html:121
 msgid "OK"
-msgstr "好的"
+msgstr "确认"
 
 #: check_out/templates/check_out/desktop/bill.html:320
 #: check_out/templates/check_out/desktop/login.html:68
@@ -215,15 +215,15 @@ msgstr "好的"
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:332
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:351
 msgid "Invalid Input"
-msgstr "输入错误"
+msgstr "错误输入"
 
 #: check_out/templates/check_out/desktop/complete.html:20
 msgid "We hope you enjoy your stay with us,<br>and well see you again soon!"
-msgstr "我们希望您在我们这里住得愉快，并期待您再次的光临！"
+msgstr "希望您在我们这里住得愉快，并期待您再次光临！"
 
 #: check_out/templates/check_out/desktop/login.html:24
 msgid "Please enter your<br>reservation details"
-msgstr "请输入您的预订详情"
+msgstr "输入预订详情"
 
 #: check_out/templates/check_out/desktop/login.html:29
 #: check_out/templates/check_out/mobile/login.html:36
@@ -256,16 +256,16 @@ msgstr "请输入以下资料以确认您的预订。"
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:53
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:94
 msgid "Next"
-msgstr "继续"
+msgstr "下一步"
 
 #: check_out/templates/check_out/mobile/login.html:29
 #: pre_arrival/templates/pre_arrival/mobile/login.html:37
 msgid "Please enter your<br>Last Name"
-msgstr "请输入您的姓氏"
+msgstr "输入姓氏"
 
 #: check_out/templates/check_out/mobile/login.html:30
 msgid "Please enter your<br>Room Number"
-msgstr "请输入您的房间号码"
+msgstr "输入房间号码"
 
 #: check_out/templates/check_out/mobile/login.html:35
 msgid "To begin the online check-out process,<br>please enter your last name."
@@ -276,7 +276,7 @@ msgid ""
 "All Guests have been successfully checked out.\n"
 "\n"
 "We hope you enjoy your stay with us, and we'll see you again soon!"
-msgstr "我们希望您在我们这里住得愉快，并期待您再次的光临！"
+msgstr "希望您在我们这里住得愉快，并期待您再次光临！"
 
 #: check_out/views.py:108
 #, python-format
@@ -338,11 +338,11 @@ msgstr "入住日期"
 
 #: pre_arrival/forms.py:83
 msgid "Token ID is missing."
-msgstr "找不到Session Token，已分配了新的Session Token。"
+msgstr "无法找到 Session Token。新的 Session Token 已被分配。"
 
 #: pre_arrival/forms.py:88
 msgid "Token ID is not correct."
-msgstr "Session Token不匹配，延期功能已禁止。"
+msgstr "Session Token不匹配。延期功能已禁止。"
 
 #: pre_arrival/forms.py:115
 msgid "No reservation selected."
@@ -354,21 +354,21 @@ msgstr "API key 不正确"
 
 #: pre_arrival/forms.py:130
 msgid "Invalid passport image."
-msgstr "护照图像无效。"
+msgstr "护照图片无效。"
 
 #: pre_arrival/forms.py:131
 msgid "Invalid passport image. MRZ Code is invalid."
-msgstr "请确保护照底部的MRZ码能被捕获。"
+msgstr "请确保可以拍摄到护照底部的MRZ码。"
 
 #: pre_arrival/forms.py:132
 msgid ""
 "Invalid passport image. Please make sure your passport page area is not "
 "blocked."
-msgstr "请确保整个护照页都可以在框架内被捕获。"
+msgstr "请确保整个护照页可以被拍摄在框架内。"
 
 #: pre_arrival/forms.py:133
 msgid "Image file is too big."
-msgstr "图像文件太大（>2 MB）。"
+msgstr "图片文件大小太大（>2 MB）。"
 
 #: pre_arrival/forms.py:134
 msgid "Error scanning image. Please try again later."
@@ -376,11 +376,11 @@ msgstr "无法处理图像。请稍后再试。"
 
 #: pre_arrival/forms.py:135
 msgid "Invalid NRIC image."
-msgstr "NRIC图像无效。"
+msgstr "NRIC图片无效。"
 
 #: pre_arrival/forms.py:150 pre_arrival_all_passport/forms.py:118
 msgid "No image file selected."
-msgstr "未选择图像文件。"
+msgstr "未选择图片文件。"
 
 #: pre_arrival/forms.py:162
 #, python-format
@@ -490,7 +490,7 @@ msgstr "剩余的使用时间："
 
 #: pre_arrival/templates/pre_arrival/base.html:64
 msgid "Extend"
-msgstr "延期"
+msgstr "延长时间"
 
 #: pre_arrival/templates/pre_arrival/base.html:75
 msgid "Session Expired"
@@ -503,11 +503,11 @@ msgstr "您的使用时间已过期。"
 #: pre_arrival/templates/pre_arrival/base.html:81
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:102
 msgid "Ok"
-msgstr "好的"
+msgstr "确认"
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:24
 msgid "Pre-Check-In Complete"
-msgstr "完成登记"
+msgstr "登记完成"
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:37
 #: pre_arrival/templates/pre_arrival/email/complete.html:228
@@ -538,9 +538,9 @@ msgid ""
 "                            "
 msgstr ""
 "\n"
-"                                请前往前台领取您的房间钥匙。\n"
-"                                或者，下载我们的应用程序以立即\n"
-"                                使用您的数码钥匙进入您的房间。\n"
+"                                请下载我们的应用程序以立即使用\n"
+"                                您的数码钥匙进入您的房间。或者，\n"
+"                                您可以前往前台领取您的房间钥匙。\n"
 "                            "
 
 #: pre_arrival/templates/pre_arrival/desktop/complete.html:67
@@ -560,7 +560,7 @@ msgstr "下载应用程式"
 #: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:29
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:29
 msgid "Enter Guest Details"
-msgstr "客人资料"
+msgstr "住客资料"
 
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:34
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:34
@@ -569,7 +569,7 @@ msgstr "客人资料"
 #: pre_arrival_all_passport/templates/pre_arrival/desktop/detail.html:34
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:34
 msgid "Please enter the personal particulars below."
-msgstr "请确认以下的个人资料。"
+msgstr "请确认以下个人资料。"
 
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:46
 #: pre_arrival/templates/pre_arrival/mobile/detail.html:46
@@ -603,7 +603,7 @@ msgstr "主要住客"
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:167
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:188
 msgid "Enter your name"
-msgstr "输入您的名字"
+msgstr "输入名字"
 
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:86
 #: pre_arrival/templates/pre_arrival/desktop/detail.html:182
@@ -705,7 +705,7 @@ msgstr "由于此预订已成功完成登记手续，我们无法提交您的请
 #: pre_arrival/templates/pre_arrival/desktop/login.html:97
 #: pre_arrival/templates/pre_arrival/mobile/login.html:114
 msgid "registration_login_error_modal_body:other"
-msgstr "不正确的预订细节，请检查并重试。"
+msgstr "预订细节不正确。请检查并重试。"
 
 #: pre_arrival/templates/pre_arrival/desktop/other_info.html:22
 msgid "Additional Information"
@@ -713,19 +713,19 @@ msgstr "额外资料"
 
 #: pre_arrival/templates/pre_arrival/desktop/other_info.html:27
 msgid "Please let us know if you have check-in<br>preferences."
-msgstr "请提供您的抵达时间和任何特殊要求，<br>以便我们更好地为您服务。"
+msgstr "请提供您的抵达时间和任何特殊要求，<br>以便我们能为您提供更好的服务。"
 
 #: pre_arrival/templates/pre_arrival/desktop/other_info.html:56
 msgid "e.g. Extra Towels, etc"
-msgstr "例如 额外的毛巾等"
+msgstr "例如： 额外的毛巾，等"
 
 #: pre_arrival/templates/pre_arrival/desktop/other_info.html:78
 msgid "e.g. example@email.com"
-msgstr "例如 example@email.com"
+msgstr "例如： example@email.com"
 
 #: pre_arrival/templates/pre_arrival/desktop/other_info.html:101
 msgid "I would like to receive exclusive offers, and news via email."
-msgstr "我想通过电子邮件收到独家优惠和新闻。"
+msgstr "我愿意通过电子邮件收到独家优惠和新闻。"
 
 #: pre_arrival/templates/pre_arrival/desktop/other_info.html:111
 #, python-format
@@ -748,13 +748,13 @@ msgstr ""
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:27
 msgid "Upload a photo<br>of your Passport"
-msgstr "请上传护照图像。"
+msgstr "请上传护照图片。"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:33
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:33
 msgid ""
 "Please make sure the photo is clear and all<br>information is within the box."
-msgstr "请确保护照图像清晰以及所有资料都在框架内。"
+msgstr "请调整护照图像以确保所有资料都在像框中。"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:36
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:36
@@ -765,19 +765,19 @@ msgstr "请确保护照图像清晰以及所有资料都在框架内。"
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:55
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:55
 msgid "Capture"
-msgstr "捕获"
+msgstr "拍摄"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:68
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:78
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:68
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:78
 msgid "Take Photo"
-msgstr "捕获图像"
+msgstr "拍图"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:72
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:72
 msgid "Upload"
-msgstr "上传图像"
+msgstr "上传图片"
 
 #: pre_arrival/templates/pre_arrival/desktop/passport.html:80
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:80
@@ -789,15 +789,15 @@ msgstr "重新上传"
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:101
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:110
 msgid "Invalid Image"
-msgstr "图像无效"
+msgstr "图片无效"
 
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:17
 msgid "Please select your<br>room to Check-In"
-msgstr "请选择所需登记的预订"
+msgstr "请选择需要登记的预订"
 
 #: pre_arrival/templates/pre_arrival/desktop/reservation.html:22
 msgid "The following room(s) are found<br>under your reservation."
-msgstr "搜索到以下的预订。"
+msgstr "请选择需要进行登记的预订。"
 
 #: pre_arrival/templates/pre_arrival/email/complete.html:168
 msgid "Dear"
@@ -807,7 +807,7 @@ msgstr "亲爱的"
 msgid ""
 "We are pleased to inform you that your pre-check-in is completed with "
 "details as follow:"
-msgstr "我们很高兴地通知您，您的登记手续已完成，详情如下："
+msgstr "我们很高兴通知您已完登记手续。请查看以下详情："
 
 #: pre_arrival/templates/pre_arrival/email/complete.html:275
 msgid ""
@@ -815,12 +815,12 @@ msgid ""
 "download our mobile app so you can head straight to your room using the "
 "digital key."
 msgstr ""
-"请前往前台领取您的房间钥匙。或者，下载我们的应用程序以立即使用您的数码钥匙进"
-"入您的房间。"
+"请下载我们的应用程序以立即使用您的数码钥匙进入您的房间。或者，您可以前往前台"
+"领取您的房间钥匙。"
 
 #: pre_arrival/templates/pre_arrival/mobile/login.html:39
 msgid "Please confirm your<br>Arrival Date"
-msgstr "请输入您的入住日期"
+msgstr "输入入住日期"
 
 #: pre_arrival/templates/pre_arrival/mobile/login.html:45
 msgid ""
@@ -845,27 +845,27 @@ msgstr "例如 12345678"
 
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:27
 msgid "Submit Passport<br>image"
-msgstr "请提交护照图像"
+msgstr "提交护照或证件图片"
 
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:32
 msgid ""
 "An image of your passport is required for<br>registration. Use the camera to "
 "capture or<br>choose an existing image from your device."
 msgstr ""
-"需要护照图像以进行登记手续。请上传护照图像。 或使用您设备上的相机捕获护照的图"
-"像。"
+"登记手续需要您提供护照或证件图片以便进行。您也可以使用相机功能拍下护照或证件"
+"图片。"
 
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:61
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:86
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:61
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:86
 msgid "Retake"
-msgstr "重新捕获"
+msgstr "重拍"
 
 #: pre_arrival/templates/pre_arrival/mobile/passport.html:70
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:70
 msgid "Upload Photo"
-msgstr "上传图像"
+msgstr "上传"
 
 #: pre_arrival_adhoc_guest/templates/pre_arrival/desktop/detail.html:287
 #: pre_arrival_adhoc_guest/templates/pre_arrival/mobile/detail.html:289
@@ -883,32 +883,32 @@ msgstr "下一位住客"
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:292
 #: pre_arrival_all_passport/templates/pre_arrival/mobile/detail.html:295
 msgid "Skip this for now"
-msgstr "暂时跳跃"
+msgstr "暂时跳过"
 
 #: pre_arrival_adhoc_guest/templates/pre_arrival_adhoc_guest/desktop/guest_list.html:20
 msgid "Select Guest to<br>Check-In"
-msgstr "您想登记更多住客吗？"
+msgstr "登记更多住客"
 
 #: pre_arrival_adhoc_guest/templates/pre_arrival_adhoc_guest/desktop/guest_list.html:25
 msgid "We've found the following guests profiles<br>under your reservation."
-msgstr "您的预订中已添加了以下住客。"
+msgstr "以下是您预订中已登记的住客。您想登记更多住客吗？"
 
 #: pre_arrival_all_passport/forms.py:97
 msgid "You have exceeded the number of additional guests."
-msgstr "您已超过额外的住客人数。"
+msgstr "您已超过额外住客人数。"
 
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/desktop/extra_passport.html:27
 msgid "Upload a photo<br>of Passport"
-msgstr "请上传护照图像。"
+msgstr "请上传护照图片。"
 
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:27
 msgid "Prepare Passport for<br>photo verification"
-msgstr "请提交护照图像"
+msgstr "请提交护照图片"
 
 #: pre_arrival_all_passport/templates/pre_arrival_all_passport/mobile/extra_passport.html:32
 msgid ""
 "We need a photograph of the additional guest's<br>passport, or alternatively "
 "you may upload<br>the image file."
 msgstr ""
-"需要护照图像以进行登记手续。请上传护照图像。 或使用您设备上的相机捕获护照的图"
-"像。"
+"您需要上传护照或证件图片以进行登记手续。或者，您也可使用您设备上的相机拍摄护"
+"照或证件。"
