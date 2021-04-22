@@ -42,7 +42,7 @@
                     <div class="reservation-date border-right-2 border-bottom-2 border-left-2">
                         <div class="text-left">
                             <div class="text-10 text-secondary">{% trans 'Reservation No' %}</div>
-                            <div>{{ reservation.reservationNo }}</div>
+                            <div>{{ reservation.pmsNo }}</div>
                             <div class="text-10 text-secondary">{% trans 'Last Name' %}</div>
                             <div>{{ reservation.mainGuestLastName }}</div>
                         </div>
@@ -124,7 +124,7 @@
 
 {% block data_js %}
     {{ block.super }}
-    {{ request.session.registration.reservation.reservationNo|json_script:'reservation-no' }}
+    {{ request.session.registration.reservation.pmsNo|json_script:'reservation-no' }}
 {% endblock data_js %}
 
 {% block static_js %}
