@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_countries',
     'django_user_agents',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -276,6 +277,15 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760 # 10 MB
 # https://pypi.org/project/cryptography/
 
 FERNET_KEY = b'aJAwfZCJTITCVp-76x9_z8aaFSAFvlrOIFRQEDLm6p8='
+
+
+# Google Recaptcha configuration
+# https://pypi.org/project/django-recaptcha/
+
+# RECAPTCHA_PUBLIC_KEY    = '6Lclg7EaAAAAANaINqz72AofzGgrB15GJhpgAqkT'
+# RECAPTCHA_PRIVATE_KEY   = '6Lclg7EaAAAAAB8VF1pVRdUkVATgtMd2rFOA9r70'
+RECAPTCHA_PUBLIC_KEY    = '6Lf6RbQaAAAAANXbNe95UP_PzF4PMtRSTiBbkOfb'
+RECAPTCHA_PRIVATE_KEY   = '6Lf6RbQaAAAAAC4-2E_aHQhJLfHsgAiZnue392Qo'
 
 
 # Logging

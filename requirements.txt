@@ -12,6 +12,7 @@ django-appconf==1.0.3
 django-compressor==2.4
 django-countries==6.1.2
 django-libsass==0.8
+django-recaptcha==2.0.6
 django-user-agents==0.4.0
 django-widget-tweaks==1.4.8
 idna==2.9
