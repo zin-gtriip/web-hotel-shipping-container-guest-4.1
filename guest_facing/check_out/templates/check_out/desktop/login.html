@@ -19,6 +19,7 @@
     {{ block.super }}
     <form method="post" autocomplete="off">
         {% csrf_token %}
+        {% render_field form.captcha %}
         <div class="row page-header">
             <div class="col-lg-12 text-center">
                 {% blocktrans %}Please enter your<br>reservation details{% endblocktrans %}

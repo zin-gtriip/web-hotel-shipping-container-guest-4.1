@@ -24,6 +24,7 @@
     {{ block.super }}
     <form method="post" id="form-mobile-login" autocomplete="off">
         {% csrf_token %}
+        {% render_field form.captcha %}
         <div class="row page-header">
             <div class="col-12 text-center">
                 <span id="header-last-name" class="header-description {% if not skip_last_name %}active{% endif %}">{% blocktrans %}Please enter your<br>Last Name{% endblocktrans %}</span>
