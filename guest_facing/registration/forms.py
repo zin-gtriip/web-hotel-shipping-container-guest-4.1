@@ -5,6 +5,8 @@ from django.template.loader     import render_to_string
 from django.utils               import timezone
 from django.utils.translation   import gettext, gettext_lazy as _
 from django_countries.fields    import Country, CountryField
+from captcha.fields             import ReCaptchaField
+from captcha.widgets            import ReCaptchaV3
 from guest_facing.core          import gateways
 from guest_facing.core.utils    import decrypt
 from .                          import utils
@@ -22,12 +24,15 @@ class RegistrationLoginForm(forms.Form):
         self.fields['reservation_no'].initial = self.request.session.get('registration', {}).get('preload', {}).get('reservation_no')
         self.fields['arrival_date'].initial = self.request.session.get('registration', {}).get('preload', {}).get('arrival_date')
         self.fields['last_name'].initial = self.request.session.get('registration', {}).get('preload', {}).get('last_name')
+        if self.request.session['registration'].get('login', {}).get('fail', 0) > settings.RECAPTCHA_LOGIN_FAIL_TIME:
+            self.fields['captcha'] = ReCaptchaField(widget=ReCaptchaV3)
 
     def clean(self):
         super().clean()
         reservation_no = self.cleaned_data.get('reservation_no')
         arrival_date = self.cleaned_data.get('arrival_date')
         last_name = self.cleaned_data.get('last_name')
+        captcha = self.cleaned_data.get('captcha')
 
         # validate required field
         if not reservation_no:
@@ -36,10 +41,13 @@ class RegistrationLoginForm(forms.Form):
             self._errors['arrival_date'] = self.error_class([_('Enter the required information')])
         if not last_name:
             self._errors['last_name'] = self.error_class([_('Enter the required information')])
+        if self.request.session['registration'].get('login', {}).get('fail', 0) > settings.RECAPTCHA_LOGIN_FAIL_TIME and not captcha:
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Failed to validate reCaptcha')])
 
         # validate to backend
         response = self.gateway_post()
         if response.get('statusCode', '') != '5001':
+            self.request.session['registration'] = {'login': {'fail': self.request.session['registration'].get('login', {}).get('fail', 0) + 1}}
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('statusCode', '')])
         return self.cleaned_data
 
