@@ -9,3 +9,9 @@
         color: $value !important;
     }
 }
+
+@each $color, $value in $text-colors {
+    .text-#{$color}-reverse {
+        color: $value !important;
+    }
+}
