@@ -2,7 +2,7 @@ import datetime
 from datetime import datetime as dt
 from django.conf                import settings
 from django.shortcuts           import render
-from django.utils               import timezone
+from django.utils               import timezone, translation
 from django.views.generic       import *
 from django.utils.translation   import gettext, gettext_lazy as _
 from guest_facing.core.views    import IndexView
