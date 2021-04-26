@@ -34,10 +34,10 @@
                                 <div class="col-8">
                                     <div class="md-form">
                                         {{ form.property_key.label_tag }}
-                                        {% render_field form.property_key class="form-control" %}
+                                        {% render_field form.property_id class="form-control" %}
                                     </div>
                                 </div>
-                                {% comment %} <div class="col-4">
+                                <div class="col-4">
                                     <div class="md-form">
                                         <select id="id_lang" name="lang" class="md-select">
                                             {% for language in AVAILABLE_LANGUAGES %}
@@ -48,7 +48,7 @@
                                             {% endfor %}
                                         </select>
                                     </div>
-                                </div> {% endcomment %}
+                                </div>
                             </div>
                         </div>
                         <div class="card-text d-flex justify-content-center">

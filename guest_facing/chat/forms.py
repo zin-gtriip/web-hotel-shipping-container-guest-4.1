@@ -10,7 +10,7 @@ from .                          import utils
 class ChatChannelForm(forms.Form):
     email = forms.CharField(label=_('Email'))
     name = forms.CharField(label=_('Name'))
-    property_key = forms.CharField(label=_('Property'))
+    property_id = forms.CharField(label=_('Property'))
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -18,7 +18,7 @@ class ChatChannelForm(forms.Form):
         self.label_suffix = ''
 
     def clean(self):
-        property_id = self.cleaned_data.get('property_key')
+        property_id = self.cleaned_data.get('property_id')
         if property_id:
             prop_data = next((prop for prop in settings.GUEST_ENDPOINT or [] if prop.get('id', '') == property_id), None)
             if not prop_data:

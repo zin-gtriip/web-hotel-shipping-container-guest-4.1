@@ -22,7 +22,11 @@ class ChatChannelView(RequestFormKwargsMixin, FormView):
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['data'] = self.request.GET
+        data = {}
+        data['email'] = self.request.GET.get('email')
+        data['name'] = self.request.GET.get('name')
+        data['property_id'] = self.request.GET.get('property')
+        kwargs['data'] = data
         return kwargs
 
     def form_valid(self, form):
