@@ -91,7 +91,7 @@ function createMessageList(channel, msgUuid, msgText, msgTimetoken) {
     if (msgUuid != guestUuid) {
         $msg = $(
             '<div class="message people">'+
-                '<div class="chat-card">'+
+                '<div class="chat-card bg-primary text-primary-reverse">'+
                     '<div class="card-text">'+
                         '<div class="chat-body">'+ msgText +'</div>'+
                         '<div class="text-10">'+ convertTimetoken(msgTimetoken) +'</div>'+
@@ -101,7 +101,7 @@ function createMessageList(channel, msgUuid, msgText, msgTimetoken) {
     } else {
         $msg = $(
             '<div class="message self">'+
-                '<div class="chat-card">'+
+                '<div class="chat-card bg-light text-light-reverse">'+
                     '<div class="card-text">'+
                         '<div class="chat-body">'+ msgText +'</div>'+
                         '<div class="text-10">'+ convertTimetoken(msgTimetoken) +'</div>'+
@@ -127,7 +127,7 @@ function convertTimetoken(timetoken) {
 function createSystemOutTime() {
     var $msg = $(
             '<div class="message system">'+
-                '<div class="chat-card">'+
+                '<div class="chat-card bg-info text-info-reverse">'+
                     '<div class="card-text">'+
                         '<div class="chat-body">'+ systemMessages.out_time +'</div>'+
                     '</div>'+

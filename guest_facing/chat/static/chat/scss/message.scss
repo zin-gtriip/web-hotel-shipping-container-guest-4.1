@@ -1,4 +1,3 @@
-@import '../../../../core/static/core/scss/_variable.scss';
 $chat-card-radius: 6px;
 
 #messages {
@@ -30,10 +29,7 @@ $chat-card-radius: 6px;
             max-width: 90%;
             margin-left: auto;
             margin-right: auto;
-            color: map-get($text-colors, info);
-            background: map-get($theme-colors, info);
             text-align: center;
-            // box-shadow: none;
         }
     }
 
@@ -43,8 +39,6 @@ $chat-card-radius: 6px;
         
         .chat-card {
             margin-left: auto;
-            color: map-get($text-colors, light);
-            background: map-get($theme-colors, light);
         }
     }
 
@@ -54,8 +48,6 @@ $chat-card-radius: 6px;
 
         .chat-card {
             margin-right: auto;
-            color: map-get($text-colors, primary);
-            background: map-get($theme-colors, primary);
         }
     }
 }
@@ -73,12 +65,3 @@ form#form-message {
         }
     }
 }
-
-
-// .header {
-//     padding: 0;
-// }
-
-// .footer {
-//     padding: 0;
-// }
