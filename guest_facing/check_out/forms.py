@@ -1,4 +1,5 @@
 from django                     import forms
+from django.conf                import settings
 from django.utils.translation   import gettext, gettext_lazy as _
 from captcha.fields             import ReCaptchaField
 from captcha.widgets            import ReCaptchaV3
@@ -18,7 +19,7 @@ class CheckOutLoginForm(forms.Form):
         self.fields['reservation_no'].initial = self.request.session.get('check_out', {}).get('preload', {}).get('reservation_no')
         self.fields['last_name'].initial = self.request.session.get('check_out', {}).get('preload', {}).get('last_name')
         self.fields['room_no'].initial = self.request.session.get('check_out', {}).get('preload', {}).get('room_no')
-        if self.request.session['check_out'].get('login', {}).get('fail', 0) > settings.RECAPTCHA_LOGIN_FAIL_TIME:
+        if self.request.session.get('check_out', {}).get('login', {}).get('fail', 0) > settings.RECAPTCHA_LOGIN_FAIL_TIME:
             self.fields['captcha'] = ReCaptchaField(widget=ReCaptchaV3)
 
     def clean(self):

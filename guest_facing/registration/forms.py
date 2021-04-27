@@ -24,7 +24,7 @@ class RegistrationLoginForm(forms.Form):
         self.fields['reservation_no'].initial = self.request.session.get('registration', {}).get('preload', {}).get('reservation_no')
         self.fields['arrival_date'].initial = self.request.session.get('registration', {}).get('preload', {}).get('arrival_date')
         self.fields['last_name'].initial = self.request.session.get('registration', {}).get('preload', {}).get('last_name')
-        if self.request.session['registration'].get('login', {}).get('fail', 0) > settings.RECAPTCHA_LOGIN_FAIL_TIME:
+        if self.request.session.get('registration', {}).get('login', {}).get('fail', 0) > settings.RECAPTCHA_LOGIN_FAIL_TIME:
             self.fields['captcha'] = ReCaptchaField(widget=ReCaptchaV3)
 
     def clean(self):
