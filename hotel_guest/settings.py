@@ -302,7 +302,7 @@ RECAPTCHA_LOGIN_FAIL_TIME   = 3 # more than this value
 #         'file': {
 #             'level': 'INFO',
 #             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': BASE_DIR +'/logs/log.log',
+#             'filename': BASE_DIR +'/logs/info.log',
 #             'maxBytes': 1024 * 1024 * 10, # 10MB
 #             'backupCount': 10,
 #             'formatter': 'simple',
