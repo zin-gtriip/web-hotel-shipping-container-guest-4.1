@@ -68,7 +68,7 @@
                         <div class="md-form mt-2">
                             {% trans 'Enter your name' as last_name_placeholder %}
                             {{ form.last_name.label_tag }}
-                            {% if object.guestID == '0' %}
+                            {% if object.guestId == 0 %}
                                 {% if form.is_bound and form.last_name.errors %}
                                     {% if ocr_required and not object.passportImage %}
                                         {% render_field form.last_name class="form-control is-invalid disabled" readonly="true" placeholder=last_name_placeholder %}
