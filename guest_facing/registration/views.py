@@ -125,7 +125,7 @@ class RegistrationGuestListView(ParameterRequiredMixin, PropertyRequiredMixin, R
         context = super().get_context_data(**kwargs)
         max_guest = int(self.request.session['registration']['reservation'].get('adults', 1)) + int(self.request.session['registration']['reservation'].get('children', 0))
         context['add_guest'] = max_guest > len(self.request.session['registration']['reservation'].get('guestsList', []))
-        context['can_submit'] = all([guest.get('is_done', False) for guest in self.request.session['registration']['reservation'].get('guestsList', [])])
+        context['can_submit'] = all([guest.get('is_done', False) or guest.get('hasLocalRecord', False) for guest in self.request.session['registration']['reservation'].get('guestsList', [])])
         return context
 
     def form_valid(self, form):
