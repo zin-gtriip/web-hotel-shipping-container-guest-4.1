@@ -142,7 +142,6 @@ STATIC_URL = '/static/'
 LANGUAGES = [
     ('en', 'EN'),
     ('zh-hans', '华语'),
-    ('ja', '日本語'),
 ]
 
 
