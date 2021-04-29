@@ -80,7 +80,9 @@
                 <div class="modal-content">
                     <div class="modal-header bg-primary text-white">
                         <h4 class="modal-title mx-auto">
-                            {% if error == '1001' %}
+                            {% if error == '1000' %}
+                                {% trans 'registration_login_error_modal_title:1000' %}
+                            {% elif error == '1001' %}
                                 {% trans 'registration_login_error_modal_title:1001' %}
                             {% elif error == '1002' %}
                                 {% trans 'registration_login_error_modal_title:1002' %}
@@ -90,7 +92,9 @@
                         </h4>
                     </div>
                     <div class="modal-body">
-                        {% if error == '1001' %}
+                        {% if error == '1000' %}
+                            {% trans 'registration_login_error_modal_body:1000' %}
+                        {% elif error == '1001' %}
                             {% trans 'registration_login_error_modal_body:1001' %}
                         {% elif error == '1002' %}
                             {% trans 'registration_login_error_modal_body:1002' %}
