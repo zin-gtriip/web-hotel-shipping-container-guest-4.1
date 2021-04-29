@@ -60,7 +60,7 @@ class CheckOutLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTem
         if not self.success_url:
             return super().get_success_url()
         reservation = next(iter(self.request.session['check_out'].get('bills', [])), {})
-        url = self.success_url.format(**{'reservation_no': reservation.get('reservation_no', '')})
+        url = self.success_url.format(**{'reservation_no': reservation.get('pmsNo', '')})
         return url
 
     def get_context_data(self, **kwargs):
@@ -85,7 +85,7 @@ class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, Request
         reservation_no = self.kwargs.get('reservation_no', None)
         reservations_no = [reservation_no]
         if reservation_no == 'all':
-            reservations_no = [resv['reservation_no'] for resv in self.request.session['check_out'].get('bills', []) if resv.get('reservation_no', '')]
+            reservations_no = [resv['pmsNo'] for resv in self.request.session['check_out'].get('bills', []) if resv.get('pmsNo', '')]
         obj = self.gateway_get(reservations_no)
         obj['id'] = reservation_no # set `reservation_no` as unique identifier
         return obj
@@ -113,7 +113,7 @@ class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, Request
         url = self.success_url
         if len(self.request.session['check_out'].get('bills', [])) == 1: # redirect to last bill if left 1 bill to check-out
             bill = next(iter(self.request.session['check_out'].get('bills', [])), None)
-            url = '/check_out/bill/%(reservation_no)s' % {'reservation_no': bill.get('reservation_no', 'all')}
+            url = '/check_out/bill/%(reservation_no)s' % {'reservation_no': bill.get('pmsNo', 'all')}
         return url
 
 

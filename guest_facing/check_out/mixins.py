@@ -14,7 +14,7 @@ class BillRequiredAndExistMixin:
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('check_out', {}).get('bookings', []):
             reservation_no = kwargs.get('reservation_no', None)
-            reservation = next((resv for resv in request.session['check_out']['bookings'] if resv['reservation_no'] == reservation_no), None)
+            reservation = next((resv for resv in request.session['check_out']['bookings'] if resv['pmsNo'] == reservation_no), None)
             if reservation_no == 'all' or reservation or request.session.get('check_out', {}).get('complete', None):
                 return super().dispatch(request, *args, **kwargs)
             else:
