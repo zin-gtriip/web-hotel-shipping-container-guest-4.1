@@ -20,7 +20,9 @@
         </div>
         <div class="row page-subheader">
             <div class="col-lg-12 px-0 text-center text-secondary">
-                {% blocktrans %}Select which of the guest to view the bill folio.{% endblocktrans %}
+                {% if request.session.check_out.bills|length != 1 %}
+                    {% blocktrans %}Select which of the guest to view the bill folio.{% endblocktrans %}
+                {% endif %}
             </div>
         </div>
         <div class="row page-content">
