@@ -3,54 +3,56 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-20 16:31+0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2021-04-29 14:04+0700\n"
+"PO-Revision-Date: 2021-04-27 10:28+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.2\n"
 
-#: forms.py:19 forms.py:23
+#: guest_facing/core/forms.py:19 guest_facing/core/forms.py:23
 msgid "No property selected."
-msgstr ""
+msgstr "No hotel selected."
 
-#: gateways.py:34 gateways.py:61
+#: guest_facing/core/gateways.py:34 guest_facing/core/gateways.py:61
 msgid "Unable to connect to server, please try again."
-msgstr ""
+msgstr "Unable to connect to server, please try again."
 
-#: gateways.py:82
+#: guest_facing/core/gateways.py:82
 msgid "Error connecting to server"
-msgstr ""
+msgstr "Error connecting to server."
 
-#: templates/404.html:15
+#: guest_facing/core/templates/404.html:15
 msgid "Oops! We couldn't find the page you're looking for"
-msgstr ""
+msgstr "Page not found"
 
-#: templates/404.html:20
+#: guest_facing/core/templates/404.html:20
 msgid ""
 "It looks like that page doesn't exit. Please check the URL and try again."
 msgstr ""
+"We couldn't find the page you're looking for. Please check the URL and try "
+"again."
 
-#: templates/core/desktop/property.html:5
+#: guest_facing/core/templates/core/desktop/property.html:5
 msgid "Property"
-msgstr ""
+msgstr "Select Hotel"
 
-#: templates/core/desktop/property.html:18
+#: guest_facing/core/templates/core/desktop/property.html:18
 msgid "Select Hotel"
-msgstr ""
+msgstr "Select Hotel"
 
-#: templates/core/desktop/property.html:49
+#: guest_facing/core/templates/core/desktop/property.html:49
 msgid "Invalid Input"
-msgstr ""
+msgstr "Incorrect Input"
 
-#: templates/core/desktop/property.html:55
+#: guest_facing/core/templates/core/desktop/property.html:55
 msgid "Close"
-msgstr ""
+msgstr "Close"

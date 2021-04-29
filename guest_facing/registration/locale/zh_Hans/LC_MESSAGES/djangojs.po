@@ -3,111 +3,111 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-20 16:37+0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2021-04-28 10:54+0700\n"
+"PO-Revision-Date: 2021-04-27 10:27+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.4.2\n"
 
-#: static/registration/js/base.js:68
+#: guest_facing/registration/static/registration/js/base.js:68
 msgid "Fail to extend timer"
-msgstr ""
+msgstr "无法延伸登录时间。"
 
-#: static/registration/js/base.js:69
+#: guest_facing/registration/static/registration/js/base.js:69
 msgid "Session Expiry Error"
-msgstr ""
+msgstr "登录到期故障"
 
-#: static/registration/js/base.js:69
+#: guest_facing/registration/static/registration/js/base.js:69
 msgid "OK"
-msgstr ""
+msgstr "确认"
 
-#: static/registration/js/desktop/detail.js:22
-#: static/registration/js/mobile/detail.js:25
+#: guest_facing/registration/static/registration/js/desktop/detail.js:22
+#: guest_facing/registration/static/registration/js/mobile/detail.js:25
 msgid "Warning"
-msgstr ""
+msgstr "警报"
 
-#: static/registration/js/desktop/detail.js:24
-#: static/registration/js/mobile/detail.js:27
+#: guest_facing/registration/static/registration/js/desktop/detail.js:24
+#: guest_facing/registration/static/registration/js/mobile/detail.js:27
 msgid "All changes is not saved yet. Are you sure want to do this?"
-msgstr ""
+msgstr "更改尚未保存。 您确定要这样做吗？"
 
-#: static/registration/js/desktop/detail.js:26
-#: static/registration/js/mobile/detail.js:29
+#: guest_facing/registration/static/registration/js/desktop/detail.js:26
+#: guest_facing/registration/static/registration/js/mobile/detail.js:29
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
-#: static/registration/js/desktop/detail.js:27
-#: static/registration/js/mobile/detail.js:30
+#: guest_facing/registration/static/registration/js/desktop/detail.js:27
+#: guest_facing/registration/static/registration/js/mobile/detail.js:30
 msgid "No"
-msgstr ""
+msgstr "不"
 
-#: static/registration/js/desktop/ocr.js:40
-#: static/registration/js/desktop/ocr.js:41
-#: static/registration/js/mobile/ocr.js:56
-#: static/registration/js/mobile/ocr.js:57
+#: guest_facing/registration/static/registration/js/desktop/ocr.js:40
+#: guest_facing/registration/static/registration/js/desktop/ocr.js:41
+#: guest_facing/registration/static/registration/js/mobile/ocr.js:56
+#: guest_facing/registration/static/registration/js/mobile/ocr.js:57
 msgid "Invalid Image"
-msgstr ""
+msgstr "图片无效"
 
-#: static/registration/js/desktop/ocr.js:40
-#: static/registration/js/mobile/ocr.js:56
+#: guest_facing/registration/static/registration/js/desktop/ocr.js:40
+#: guest_facing/registration/static/registration/js/mobile/ocr.js:56
 msgid "No image file selected"
-msgstr ""
+msgstr "未选择图像文件"
 
-#: static/registration/js/desktop/ocr.js:41
-#: static/registration/js/mobile/ocr.js:57
+#: guest_facing/registration/static/registration/js/desktop/ocr.js:41
+#: guest_facing/registration/static/registration/js/mobile/ocr.js:57
 msgid "Please upload valid identification in JPEG/PNG format"
-msgstr ""
+msgstr "请以JPEG / PNG格式上传有效的身份证明。"
 
-#: static/registration/js/desktop/ocr.js:56
-#: static/registration/js/desktop/ocr.js:68
-#: static/registration/js/desktop/ocr.js:131
-#: static/registration/js/mobile/ocr.js:72
+#: guest_facing/registration/static/registration/js/desktop/ocr.js:56
+#: guest_facing/registration/static/registration/js/desktop/ocr.js:68
+#: guest_facing/registration/static/registration/js/desktop/ocr.js:131
+#: guest_facing/registration/static/registration/js/mobile/ocr.js:72
 msgid "Error"
-msgstr ""
+msgstr "故障"
 
-#: static/registration/js/desktop/ocr.js:56
-#: static/registration/js/desktop/ocr.js:131
-#: static/registration/js/mobile/ocr.js:72
+#: guest_facing/registration/static/registration/js/desktop/ocr.js:56
+#: guest_facing/registration/static/registration/js/desktop/ocr.js:131
+#: guest_facing/registration/static/registration/js/mobile/ocr.js:72
 msgid "Error capturing image"
-msgstr ""
+msgstr "无法捕获图像。"
 
-#: static/registration/js/desktop/ocr.js:68
+#: guest_facing/registration/static/registration/js/desktop/ocr.js:68
 msgid "No camera media is detected"
-msgstr ""
+msgstr "未检测到相机媒体。"
 
-#: static/registration/js/desktop/ocr.js:185
+#: guest_facing/registration/static/registration/js/desktop/ocr.js:185
 msgid ""
 "Please adjust the image to make sure<br>that all information is within the "
 "box."
-msgstr ""
+msgstr "请调整图像以确保所有信息都在框中。"
 
-#: static/registration/js/desktop/ocr.js:187
+#: guest_facing/registration/static/registration/js/desktop/ocr.js:187
 msgid "Zoom"
-msgstr ""
+msgstr "放大"
 
-#: static/registration/js/mobile/detail.js:57
+#: guest_facing/registration/static/registration/js/mobile/detail.js:57
 msgid "Select Date"
-msgstr ""
+msgstr "选择日期"
 
-#: static/registration/js/mobile/detail.js:58
+#: guest_facing/registration/static/registration/js/mobile/detail.js:58
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
-#: static/registration/js/mobile/detail.js:59
+#: guest_facing/registration/static/registration/js/mobile/detail.js:59
 msgid "Confirm"
-msgstr ""
+msgstr "确认"
 
-#: static/registration/js/mobile/ocr.js:130
+#: guest_facing/registration/static/registration/js/mobile/ocr.js:130
 msgid ""
 "Drag, rotate, or pinch the image to make sure<br>that all information is "
 "within the box."
-msgstr ""
+msgstr "请调整护照图像以确保<br>所有资料都在框中。"

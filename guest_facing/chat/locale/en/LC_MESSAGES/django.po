@@ -3,54 +3,59 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-20 16:34+0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2021-04-29 14:04+0700\n"
+"PO-Revision-Date: 2021-04-27 10:29+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.2\n"
 
-#: forms.py:11
+#: guest_facing/chat/forms.py:11
 msgid "Email"
-msgstr ""
+msgstr "Email address"
 
-#: forms.py:12
+#: guest_facing/chat/forms.py:12
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
-#: forms.py:13
+#: guest_facing/chat/forms.py:13
 msgid "Property"
-msgstr ""
+msgstr "Select Hotel"
 
-#: forms.py:25
+#: guest_facing/chat/forms.py:25
 msgid "No property selected."
-msgstr ""
+msgstr "No hotel selected."
 
-#: forms.py:48
+#: guest_facing/chat/forms.py:48
 msgid "Message"
-msgstr ""
+msgstr "Message"
 
-#: templates/chat/base.html:5
+#: guest_facing/chat/templates/chat/base.html:5
 msgid "Chat"
-msgstr ""
+msgstr "Chat"
 
-#: views.py:46
+#: guest_facing/chat/views.py:50
 msgid ""
 "Welcome to Hotel Template! Thank you for contacting us through our app. How "
 "may we assist you today?"
 msgstr ""
+"Welcome to Hotel Template! Thank you for contacting us. How may we assist "
+"you today?"
 
-#: views.py:47
+#: guest_facing/chat/views.py:51
 msgid ""
 "Thank you for using our messaging. Please expect delay and a slower response "
 "to your message. Should you require any assistance urgently, please approach "
 "Front Desk Officer."
 msgstr ""
+"Thank you for contacting us. Please hold, we will respond to you shortly. "
+"Should you require an immediate response, please approach our front desk for "
+"assistance."
