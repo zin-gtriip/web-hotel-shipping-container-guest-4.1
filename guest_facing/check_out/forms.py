@@ -35,12 +35,14 @@ class CheckOutLoginForm(forms.Form):
             self._errors['last_name'] = self.error_class([_('Enter the required information')])
         if not room_no:
             self._errors['room_no'] = self.error_class([_('Enter the required information')])
-        if self.request.session['check_out'].get('login', {}).get('fail', 0) > settings.RECAPTCHA_LOGIN_FAIL_TIME and not captcha:
+        if self.request.session.get('check_out', {}).get('login', {}).get('fail', 0) > settings.RECAPTCHA_LOGIN_FAIL_TIME and not captcha:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Failed to validate reCaptcha')])
 
         # validate to backend
         response = self.gateway_post()
         if response.get('statusCode', '') != '5011':
+            if not 'check_out' in self.request.session:
+                self.request.session['check_out'] = {}
             self.request.session['check_out'] = {'login': {'fail': self.request.session['check_out'].get('login', {}).get('fail', 0) + 1}}
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('status_code', 0)])
         return self.cleaned_data

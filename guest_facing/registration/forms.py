@@ -11,6 +11,7 @@ from guest_facing.core          import gateways
 from guest_facing.core.utils    import decrypt
 from .                          import utils
 
+
 class RegistrationLoginForm(forms.Form):
     reservation_no  = forms.CharField(label=_('Reservation Number'), required=False)
     arrival_date    = forms.DateField(label=_('Arrival Date'), required=False)
@@ -41,12 +42,14 @@ class RegistrationLoginForm(forms.Form):
             self._errors['arrival_date'] = self.error_class([_('Enter the required information')])
         if not last_name:
             self._errors['last_name'] = self.error_class([_('Enter the required information')])
-        if self.request.session['registration'].get('login', {}).get('fail', 0) > settings.RECAPTCHA_LOGIN_FAIL_TIME and not captcha:
+        if self.request.session.get('registration', {}).get('login', {}).get('fail', 0) > settings.RECAPTCHA_LOGIN_FAIL_TIME and not captcha:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Failed to validate reCaptcha')])
 
         # validate to backend
         response = self.gateway_post()
         if response.get('statusCode', '') != '5001':
+            if not 'registration' in self.request.session:
+                self.request.session['registration'] = {}
             self.request.session['registration'] = {'login': {'fail': self.request.session['registration'].get('login', {}).get('fail', 0) + 1}}
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('statusCode', '')])
         return self.cleaned_data
