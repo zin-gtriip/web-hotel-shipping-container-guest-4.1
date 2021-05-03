@@ -304,7 +304,7 @@ msgstr "护照已提交"
 #: guest_facing/registration/templates/registration/desktop/detail.html:224
 #: guest_facing/registration/templates/registration/mobile/detail.html:217
 #: guest_facing/registration/templates/registration/mobile/detail.html:225
-msgid "Save and go to guest list"
+msgid "Save &amp; go to guest list"
 msgstr "保存并回到住客列表"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:241

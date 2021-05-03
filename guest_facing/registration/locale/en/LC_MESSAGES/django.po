@@ -315,8 +315,8 @@ msgstr "Passport has been submitted"
 #: guest_facing/registration/templates/registration/desktop/detail.html:224
 #: guest_facing/registration/templates/registration/mobile/detail.html:217
 #: guest_facing/registration/templates/registration/mobile/detail.html:225
-msgid "Save and go to guest list"
-msgstr "Save and return to the guest list"
+msgid "Save &amp; go to guest list"
+msgstr "Save &amp; return to the guest list"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:241
 #: guest_facing/registration/templates/registration/desktop/guest_list.html:89
