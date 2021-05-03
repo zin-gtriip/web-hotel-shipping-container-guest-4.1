@@ -146,6 +146,9 @@ class RegistrationGuestListForm(forms.Form):
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You have exceeded the number of guests.')])
         return self.cleaned_data
 
+    def save(self):
+        self.request.session['registration']['guest_list'] = True
+
     def gateway_post(self):
         self.request.session['registration']['other_info'] = True # mark `other info` page as done
         data = self.request.session['registration']['reservation']
@@ -163,9 +166,6 @@ class RegistrationGuestListForm(forms.Form):
             self.request.session['registration']['bookings'] = new_booking_response.get('data', {}).get('data', [])
         else:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
-
-    def save(self):
-        self.request.session['registration']['guest_list'] = True
 
 
 class RegistrationDetailForm(forms.Form):

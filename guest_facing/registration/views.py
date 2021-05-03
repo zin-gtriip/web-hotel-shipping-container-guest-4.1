@@ -132,6 +132,8 @@ class RegistrationGuestListView(ParameterRequiredMixin, PropertyRequiredMixin, R
         form.save()
         if self.request.session['registration']['reservation'].get('preArrivalDone'):
             form.gateway_post()
+        if form.errors:
+            return self.form_invalid(form)
         return super().form_valid(form)
 
     def get_success_url(self):
