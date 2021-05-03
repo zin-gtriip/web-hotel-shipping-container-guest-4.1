@@ -146,6 +146,24 @@ class RegistrationGuestListForm(forms.Form):
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You have exceeded the number of guests.')])
         return self.cleaned_data
 
+    def gateway_post(self):
+        self.request.session['registration']['other_info'] = True # mark `other info` page as done
+        data = self.request.session['registration']['reservation']
+        email = utils.prepare_email(dict(self.request.session['registration']['reservation'])) # create new variable to prevent modification on `request.session`
+        data['userInputNumber'] = self.request.session['registration'].get('input_reservation_no', '')
+        data = {**data, **email} # add email data
+        response = gateways.guest_endpoint('post', '/submitWebRegistration', self.request.session.get('property_id', ''), data)
+        if response.get('statusCode', '') == '5002':
+            # get existing reservation from backend
+            new_booking_data = {}
+            new_booking_data['reservationNo'] = self.request.session['registration'].get('input_reservation_no', '')
+            new_booking_data['arrivalDate'] = self.request.session['registration'].get('input_arrival_date', '')
+            new_booking_data['lastName'] = self.request.session['registration'].get('input_last_name', '')
+            new_booking_response = gateways.guest_endpoint('post', '/checkWebRegistration', self.request.session.get('property_id', ''), new_booking_data)
+            self.request.session['registration']['bookings'] = new_booking_response.get('data', {}).get('data', [])
+        else:
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
+
     def save(self):
         self.request.session['registration']['guest_list'] = True
 

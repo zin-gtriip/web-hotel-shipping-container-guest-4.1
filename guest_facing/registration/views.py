@@ -130,7 +130,14 @@ class RegistrationGuestListView(ParameterRequiredMixin, PropertyRequiredMixin, R
 
     def form_valid(self, form):
         form.save()
+        if self.request.session['registration']['reservation'].get('preArrivalDone'):
+            form.gateway_post()
         return super().form_valid(form)
+
+    def get_success_url(self):
+        if self.request.session['registration']['reservation'].get('preArrivalDone'):
+            self.success_url = '/registration/complete' # skip `other info` and redirect to `complete` page
+        return super().get_success_url()
 
 
 class RegistrationDetailView(ExpirySessionMixin, PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, ProgressRateContextMixin, UpdateView):
