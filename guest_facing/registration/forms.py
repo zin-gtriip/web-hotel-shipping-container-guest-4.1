@@ -1,7 +1,6 @@
 import os, base64, datetime
 from django                     import forms
 from django.conf                import settings
-from django.template.loader     import render_to_string
 from django.utils               import timezone
 from django.utils.translation   import gettext, gettext_lazy as _
 from django_countries.fields    import Country, CountryField
@@ -373,29 +372,9 @@ class RegistrationOtherInfoForm(forms.Form):
         self.request.session['registration']['reservation']['comments'] = special_requests
         self.request.session['registration']['other_info'] = True # variable to prevent page jump
 
-    def prepare_email(self):
-        context = dict(self.request.session['registration']['reservation']) # create new variable to prevent modification on `request.session`
-        context['formattedArrivalDate'] = utils.format_display_date(context.get('arrivalDate', ''))
-        context['formattedDepartureDate'] = utils.format_display_date(context.get('departureDate', ''))
-        main_guest = next(guest for guest in context.get('guestsList', []) if guest.get('isMainGuest', False))
-        context['mainGuestFirstName'] = main_guest.get('firstName', '')
-        context['mainGuestLastName'] = main_guest.get('lastName', '')
-        room = next((temp for temp in settings.REGISTRATION_ROOM_TYPES if temp['room_type'] == context['roomType']), {})
-        context['roomName'] = room.get('room_name', '')
-        context['roomImage'] = settings.HOST_URL + room.get('room_image', '')
-        context['hotelName'] = settings.HOTEL_NAME
-        context['staticURL'] = settings.HOST_URL + settings.STATIC_IMAGE_URL
-        context['iOSURL'] = settings.APP_IOS_URL
-        context['androidURL'] = settings.APP_ANDROID_URL
-        data = {}
-        template = settings.REGISTRATION_COMPLETE_EMAIL or os.path.join(settings.BASE_DIR, 'registration', 'templates', 'registration', 'email', 'complete.html')
-        data['title'] = _('Pre-Check-In Complete - %(hotel_name)s - Reservation #%(reservation_no)s') % {'hotel_name': settings.HOTEL_NAME, 'reservation_no': context.get('reservationNo', '')}
-        data['html'] = render_to_string(template, context)
-        return data
-
     def gateway_post(self):
         data = self.request.session['registration']['reservation']
-        email = self.prepare_email()
+        email = utils.prepare_email(dict(self.request.session['registration']['reservation'])) # create new variable to prevent modification on `request.session`
         data['userInputNumber'] = self.request.session['registration'].get('input_reservation_no', '')
         data = {**data, **email} # add email data
         response = gateways.guest_endpoint('post', '/submitWebRegistration', self.request.session.get('property_id', ''), data)
