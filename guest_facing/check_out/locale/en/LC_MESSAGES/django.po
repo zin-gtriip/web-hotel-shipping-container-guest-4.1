@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-30 15:14+0700\n"
+"POT-Creation-Date: 2021-05-04 11:49+0700\n"
 "PO-Revision-Date: 2021-04-27 10:28+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -48,7 +48,7 @@ msgid "Unknown error"
 msgstr "Unknown error"
 
 #: guest_facing/check_out/templates/check_out/base.html:5
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:260
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:265
 msgid "Check Out"
 msgstr "Check-out"
 
@@ -61,70 +61,70 @@ msgid "Select which of the guest to view the bill folio."
 msgstr "Select guest to review individual bill:"
 
 #: guest_facing/check_out/templates/check_out/desktop/bill.html:77
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:149
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:154
 msgid "Reservation No:"
 msgstr "Reservation No.:"
 
 #: guest_facing/check_out/templates/check_out/desktop/bill.html:82
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:154
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:159
 msgid "Room No:"
 msgstr "Room No.:"
 
 #: guest_facing/check_out/templates/check_out/desktop/bill.html:87
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:159
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:164
 msgid "Arrival Date:"
 msgstr "Check-in Date:"
 
 #: guest_facing/check_out/templates/check_out/desktop/bill.html:92
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:164
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:169
 msgid "Departure Date:"
 msgstr "Check-out Date:"
 
 #: guest_facing/check_out/templates/check_out/desktop/bill.html:101
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:173
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:178
 msgid "GST Reg. No:"
 msgstr "GST Reg. No.:"
 
 #: guest_facing/check_out/templates/check_out/desktop/bill.html:106
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:178
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:183
 msgid "Business Reg. No:"
 msgstr "Business Reg. No.:"
 
 #: guest_facing/check_out/templates/check_out/desktop/bill.html:115
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:188
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:193
 msgid "Date"
 msgstr "Date"
 
 #: guest_facing/check_out/templates/check_out/desktop/bill.html:116
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:189
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:194
 msgid "Description"
 msgstr "Description"
 
 #: guest_facing/check_out/templates/check_out/desktop/bill.html:117
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:190
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:195
 msgid "Amount"
 msgstr "Amount"
 
 #: guest_facing/check_out/templates/check_out/desktop/bill.html:130
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:203
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:208
 msgid "Balance Due"
 msgstr "Balance Due"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:221
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:226
 #, python-format
 msgid "GST at 7%%"
 msgstr "GST at 7%%"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:225
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:230
 msgid "Total Amount Payable"
 msgstr "Total Amount Payable"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:239
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:244
 msgid ""
 "This is a computer-generated preliminary bill folio and not a tax invoice."
 msgstr "This is a computer-generated preliminary bill and not a tax invoice."
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:244
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:249
 msgid ""
 "I agree that my liability for this bill is not waived and agree to be held "
 "personally liable in the event that the indicated person, company or "
@@ -134,13 +134,13 @@ msgstr ""
 "personally if the indicated person, company, or association fails to pay for "
 "any part of the full amount of the charges."
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:249
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:254
 msgid "Outstanding balance will be charged to the credit card registered."
 msgstr ""
 "Outstanding balance will be deducted from the credit card you provided "
 "during Check-in."
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:268
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:273
 msgid ""
 "Unable to proceed with some of the guest's check-out. Please check-out at "
 "the Front Desk."
@@ -148,31 +148,31 @@ msgstr ""
 "Unable to Check-out some of the guest. Please Check-Out at the front desk "
 "instead."
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:270
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:275
 msgid ""
 "Unable to proceed with this guest's check-out. Please check-out at the Front "
 "Desk."
 msgstr ""
 "Unable to Check-out this guest. Please Check-Out at the front desk instead."
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:289
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:294
 #: guest_facing/check_out/templates/check_out/desktop/complete.html:15
 msgid "Check Out Successful"
 msgstr "Check-out completed"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:291
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:296
 msgid "Error"
 msgstr "Error"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:299
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:317
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:304
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:322
 #: guest_facing/check_out/templates/check_out/desktop/login.html:85
 #: guest_facing/check_out/templates/check_out/mobile/login.html:94
 #: guest_facing/check_out/templates/check_out/mobile/login.html:96
 msgid "OK"
 msgstr "OK"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:311
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:316
 msgid "Invalid Input"
 msgstr "Incorrect Input"
 
