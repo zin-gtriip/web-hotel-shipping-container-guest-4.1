@@ -27,7 +27,7 @@ class ChatChannelForm(forms.Form):
     def save(self):
         email = utils.replace_illegal_char(self.cleaned_data.get('email', ''))
         name = self.cleaned_data.get('name')
-        property_id = self.cleaned_data.get('property_key')
+        property_id = self.cleaned_data.get('property_id')
         channel_group = 'guest_%s' % property_id
         channel = '%(name)s-%(email)s' % {'name': name, 'email': email}
         # assign pubnub channel to channel group

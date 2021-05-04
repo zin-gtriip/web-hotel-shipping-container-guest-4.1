@@ -25,7 +25,7 @@ class ChatChannelView(RequestFormKwargsMixin, FormView):
         data = {}
         data['email'] = self.request.GET.get('email')
         data['name'] = self.request.GET.get('name')
-        data['property_id'] = self.request.GET.get('property')
+        data['property_id'] = self.request.GET.get('property') or self.request.GET.get('property_id')
         kwargs['data'] = data
         return kwargs
 
