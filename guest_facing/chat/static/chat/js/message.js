@@ -35,6 +35,9 @@ $(document).ready(function() {
 
 $('#form-message').submit(function() {
     event.preventDefault();
+    if (!$('#id_message').val().trim()) {
+        return;
+    }
     var data = $(this).serializeArray();
 
     $.ajax({
