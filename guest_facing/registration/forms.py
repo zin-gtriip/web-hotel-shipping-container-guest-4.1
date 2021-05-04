@@ -1,4 +1,5 @@
 import os, base64, datetime
+from datetime                   import datetime as dt
 from django                     import forms
 from django.conf                import settings
 from django.utils               import timezone
@@ -141,9 +142,15 @@ class RegistrationGuestListForm(forms.Form):
 
     def clean(self):
         super().clean()
-        max_guest = int(self.request.session['registration']['reservation'].get('adults', 1)) + int(self.request.session['registration']['reservation'].get('children', 0))
+        max_adult, max_child = int(self.request.session['registration']['reservation'].get('adults', 1)), int(self.request.session['registration']['reservation'].get('children', 0))
+        max_guest = max_adult + max_child
+        config = gateways.amp_endpoint('get', '/configVariables', self.request.session.get('property_id', '')) or {} # get config variables
+        age_limit = config.get('prearrivalAdultMinAgeYears', settings.REGISTRATION_ADULT_AGE_LIMIT)
+        adult = len([guest for guest in self.request.session['registration']['reservation'].get('guestsList', []) if utils.calculate_age(dt.strptime(guest.get('dob'), '%Y-%m-%d')) > age_limit])
         if max_guest < len(self.request.session['registration']['reservation'].get('guestsList', [])):
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You have exceeded the number of guests.')])
+        if max_adult < adult:
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You have exceeded the number of adults.')])
         return self.cleaned_data
 
     def save(self):

@@ -5,6 +5,7 @@ from django.utils.translation   import gettext, gettext_lazy as _
 from django.conf                import settings
 from django.template.loader     import render_to_string
 
+
 def calculate_age(date):
     """
     Calculate age based on passed date and date now
