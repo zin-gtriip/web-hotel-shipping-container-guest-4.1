@@ -142,15 +142,9 @@ class RegistrationGuestListForm(forms.Form):
 
     def clean(self):
         super().clean()
-        max_adult, max_child = int(self.request.session['registration']['reservation'].get('adults', 1)), int(self.request.session['registration']['reservation'].get('children', 0))
-        max_guest = max_adult + max_child
-        config = gateways.amp_endpoint('get', '/configVariables', self.request.session.get('property_id', '')) or {} # get config variables
-        age_limit = config.get('prearrivalAdultMinAgeYears', settings.REGISTRATION_ADULT_AGE_LIMIT)
-        adult = len([guest for guest in self.request.session['registration']['reservation'].get('guestsList', []) if utils.calculate_age(dt.strptime(guest.get('dob'), '%Y-%m-%d')) > age_limit])
+        max_guest = int(self.request.session['registration']['reservation'].get('adults', 1)) + int(self.request.session['registration']['reservation'].get('children', 0))
         if max_guest < len(self.request.session['registration']['reservation'].get('guestsList', [])):
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You have exceeded the number of guests.')])
-        if max_adult < adult:
-            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You have exceeded the number of adults.')])
         return self.cleaned_data
 
     def save(self):
@@ -237,11 +231,21 @@ class RegistrationDetailForm(forms.Form):
             if not birth_date:
                 self._errors['birth_date'] = self.error_class([_('Enter the required information')])
             else:
-                if self.instance.get('isMainGuest', False): # age limit, check only if main guest
-                    config = gateways.amp_endpoint('get', '/configVariables', self.request.session.get('property_id', '')) or {} # get config variables
-                    age_limit = config.get('prearrivalAdultMinAgeYears', settings.REGISTRATION_ADULT_AGE_LIMIT)
-                    if utils.calculate_age(birth_date) <= age_limit:
-                        self._errors['birth_date'] = self.error_class([_('Main guest has to be %(age)s and above.') % {'age': age_limit}])
+                config = gateways.amp_endpoint('get', '/configVariables', self.request.session.get('property_id', '')) or {} # get config variables
+                age_limit = config.get('prearrivalAdultMinAgeYears', settings.REGISTRATION_ADULT_AGE_LIMIT)
+                is_adult = utils.calculate_age(birth_date) > age_limit
+                # validate main guest age limit
+                if self.instance.get('isMainGuest', False) and not is_adult:
+                    self._errors['birth_date'] = self.error_class([_('Main guest has to be %(age)s and above.') % {'age': age_limit}])
+                # validate adult no
+                max_adult = int(self.request.session['registration']['reservation'].get('adults', 1))
+                adult = is_adult and 1 or 0
+                for guest in self.request.session['registration']['reservation'].get('guestsList', []):
+                    if guest.get('guestId') != self.instance.get('guestId') and guest.get('new_guest_id') != self.instance.get('new_guest_id', ''): # not current instance
+                        if utils.calculate_age(dt.strptime(guest.get('dob', ''), '%Y-%m-%d')) > age_limit: # is adult
+                            adult += 1
+                if max_adult < adult:
+                    self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You have exceeded the number of adults.')])
             if settings.REGISTRATION_OCR and not self.instance.get('passportImage', ''):
                 self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You need to upload passport image.')])
         return self.cleaned_data
