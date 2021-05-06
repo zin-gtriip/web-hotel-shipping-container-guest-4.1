@@ -13,7 +13,7 @@ node_modules/
 package-lock.json
 
 # cache js and css files
-/static/CACHE/*
+/static/*
 !/static/CACHE/.keep
 
 # uploaded file
