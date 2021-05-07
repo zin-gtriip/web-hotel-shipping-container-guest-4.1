@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-07 17:05+0700\n"
+"POT-Creation-Date: 2021-05-07 18:14+0700\n"
 "PO-Revision-Date: 2021-04-29 14:12+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -356,7 +356,7 @@ msgstr "Add Guest"
 #: guest_facing/registration/templates/registration/mobile/login.html:82
 #: guest_facing/registration/templates/registration/mobile/login.html:85
 #: guest_facing/registration/templates/registration/mobile/ocr.html:52
-#: guest_facing/registration/templates/registration/mobile/ocr.html:93
+#: guest_facing/registration/templates/registration/mobile/ocr.html:91
 msgid "Next"
 msgstr "Next"
 
@@ -451,11 +451,12 @@ msgid "Capture"
 msgstr "Capture"
 
 #: guest_facing/registration/templates/registration/desktop/ocr.html:67
-#: guest_facing/registration/templates/registration/mobile/ocr.html:77
-msgid "Take Photo"
+#: guest_facing/registration/templates/registration/mobile/ocr.html:75
+msgid "Take"
 msgstr "Take"
 
 #: guest_facing/registration/templates/registration/desktop/ocr.html:71
+#: guest_facing/registration/templates/registration/mobile/ocr.html:69
 msgid "Upload"
 msgstr "Upload"
 
@@ -464,14 +465,14 @@ msgid "Reupload"
 msgstr "Re-upload"
 
 #: guest_facing/registration/templates/registration/desktop/ocr.html:100
-#: guest_facing/registration/templates/registration/mobile/ocr.html:109
+#: guest_facing/registration/templates/registration/mobile/ocr.html:107
 msgid "Invalid Image"
 msgstr "Invalid image"
 
 #: guest_facing/registration/templates/registration/desktop/ocr.html:106
 #: guest_facing/registration/templates/registration/desktop/other_info.html:142
 #: guest_facing/registration/templates/registration/desktop/reservation.html:75
-#: guest_facing/registration/templates/registration/mobile/ocr.html:115
+#: guest_facing/registration/templates/registration/mobile/ocr.html:113
 msgid "Close"
 msgstr "Close"
 
@@ -525,8 +526,8 @@ msgid ""
 "The following room(s) are found<br>under your reservation.<br>(images shown "
 "are for references only)"
 msgstr ""
-"Please select a reservation to proceed with the registration.<br>(images shown "
-"are for references only)"
+"Please select a reservation to proceed with the registration.<br>(images "
+"shown are for references only)"
 
 #: guest_facing/registration/templates/registration/email/complete.html:168
 msgid "Dear"
@@ -598,13 +599,9 @@ msgstr ""
 "may upload a photo of the passport or ID."
 
 #: guest_facing/registration/templates/registration/mobile/ocr.html:60
-#: guest_facing/registration/templates/registration/mobile/ocr.html:85
+#: guest_facing/registration/templates/registration/mobile/ocr.html:83
 msgid "Retake"
 msgstr "Retry"
-
-#: guest_facing/registration/templates/registration/mobile/ocr.html:69
-msgid "Upload Photo"
-msgstr "Upload Image"
 
 #: guest_facing/registration/utils.py:78
 #, python-format

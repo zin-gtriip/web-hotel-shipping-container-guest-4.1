@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-07 17:05+0700\n"
+"POT-Creation-Date: 2021-05-07 18:14+0700\n"
 "PO-Revision-Date: 2021-04-29 14:13+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -344,7 +344,7 @@ msgstr "添加住客"
 #: guest_facing/registration/templates/registration/mobile/login.html:82
 #: guest_facing/registration/templates/registration/mobile/login.html:85
 #: guest_facing/registration/templates/registration/mobile/ocr.html:52
-#: guest_facing/registration/templates/registration/mobile/ocr.html:93
+#: guest_facing/registration/templates/registration/mobile/ocr.html:91
 msgid "Next"
 msgstr "下一步"
 
@@ -430,11 +430,12 @@ msgid "Capture"
 msgstr "拍摄"
 
 #: guest_facing/registration/templates/registration/desktop/ocr.html:67
-#: guest_facing/registration/templates/registration/mobile/ocr.html:77
-msgid "Take Photo"
+#: guest_facing/registration/templates/registration/mobile/ocr.html:75
+msgid "Take"
 msgstr "拍图"
 
 #: guest_facing/registration/templates/registration/desktop/ocr.html:71
+#: guest_facing/registration/templates/registration/mobile/ocr.html:69
 msgid "Upload"
 msgstr "上传图片"
 
@@ -443,14 +444,14 @@ msgid "Reupload"
 msgstr "重新上传"
 
 #: guest_facing/registration/templates/registration/desktop/ocr.html:100
-#: guest_facing/registration/templates/registration/mobile/ocr.html:109
+#: guest_facing/registration/templates/registration/mobile/ocr.html:107
 msgid "Invalid Image"
 msgstr "图片无效"
 
 #: guest_facing/registration/templates/registration/desktop/ocr.html:106
 #: guest_facing/registration/templates/registration/desktop/other_info.html:142
 #: guest_facing/registration/templates/registration/desktop/reservation.html:75
-#: guest_facing/registration/templates/registration/mobile/ocr.html:115
+#: guest_facing/registration/templates/registration/mobile/ocr.html:113
 msgid "Close"
 msgstr "关闭"
 
@@ -568,13 +569,9 @@ msgstr ""
 "图片。"
 
 #: guest_facing/registration/templates/registration/mobile/ocr.html:60
-#: guest_facing/registration/templates/registration/mobile/ocr.html:85
+#: guest_facing/registration/templates/registration/mobile/ocr.html:83
 msgid "Retake"
 msgstr "重试"
-
-#: guest_facing/registration/templates/registration/mobile/ocr.html:69
-msgid "Upload Photo"
-msgstr "上传"
 
 #: guest_facing/registration/utils.py:78
 #, python-format
