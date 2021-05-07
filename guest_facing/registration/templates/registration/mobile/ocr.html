@@ -55,44 +55,43 @@
                         </div>
                     </div>
                     <div class="row preview-container" style="display: none;">
-                        <div class="col-12 mb-3 d-flex justify-content-center">
+                        <div class="col-6 mb-3 d-flex justify-content-center">
                             <label class="btn btn-outline-primary btn-round m-0 p-3">
                                 {% trans 'Retake' %}
                                 <input type="file" class="file-capture" accept="image/*" hidden>
                             </label>
                         </div>
+                        <div class="col-6 mb-3 d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary m-0 p-3" id="btn-next">{% trans 'Next' %}</button>
+                        </div>
                     </div>
                 {% else %}
                     <div class="row default-container">
-                        <div class="col-12 mb-3 d-flex justify-content-center">
+                        <div class="col-6 mb-3 d-flex justify-content-center">
                             <label class="btn btn-outline-primary btn-round m-0 p-3">
-                                {% trans 'Upload Photo' %}
+                                {% trans 'Upload' %}
                                 <input type="file" class="file-upload" accept="image/*" hidden>
                             </label>
                         </div>
-                    </div>
-                    <div class="row default-container">
-                        <div class="col-12 mb-3 d-flex justify-content-center">
+                        <div class="col-6 mb-3 d-flex justify-content-center">
                             <label class="btn btn-primary btn-round m-0 p-3">
-                                {% trans 'Take Photo' %}
+                                {% trans 'Take' %}
                                 <input type="file" class="file-capture" accept="image/*" capture="camera" hidden>
                             </label>
                         </div>
                     </div>
                     <div class="row preview-container" style="display: none;">
-                        <div class="col-12 mb-3 d-flex justify-content-center">
+                        <div class="col-6 mb-3 d-flex justify-content-center">
                             <label class="btn btn-outline-primary btn-round m-0 p-3">
                                 {% trans 'Retake' %}
                                 <input type="file" class="file-capture" accept="image/*" capture="camera" hidden>
                             </label>
                         </div>
+                        <div class="col-6 mb-3 d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary m-0 p-3" id="btn-next">{% trans 'Next' %}</button>
+                        </div>
                     </div>
                 {% endif %}
-                <div class="row preview-container" style="display: none;">
-                    <div class="col-12 mb-3 d-flex justify-content-center">
-                        <button type="button" class="btn btn-primary m-0 p-3" id="btn-next">{% trans 'Next' %}</button>
-                    </div>
-                </div>
             </div>
         </div>
     </form>
