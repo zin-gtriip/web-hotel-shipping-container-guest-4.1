@@ -167,8 +167,8 @@
                                     <input type="text" id="datepicker-birth-date" class="form-control datepicker disabled" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly disabled placeholder="{{ birth_date_placeholder }}">
                                 {% else %}
                                     <input type="text" id="datepicker-birth-date" class="form-control datepicker" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly placeholder="{{ birth_date_placeholder }}">
+                                    <i class="far fa-calendar input-prefix text-primary"></i>
                                 {% endif %}
-                                <i class="far fa-calendar input-prefix text-primary"></i>
                                 {% if form.birth_date.help_text %}
                                     <small class="form-text text-muted">{{ form.birth_date.help_text }}</small>
                                 {% endif %}
