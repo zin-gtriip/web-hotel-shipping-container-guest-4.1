@@ -241,7 +241,7 @@ class RegistrationDetailForm(forms.Form):
                 max_adult = int(self.request.session['registration']['reservation'].get('adults', 1))
                 adult = is_adult and 1 or 0
                 for guest in self.request.session['registration']['reservation'].get('guestsList', []):
-                    if guest.get('guestId') != self.instance.get('guestId') and guest.get('new_guest_id') != self.instance.get('new_guest_id', ''): # not current instance
+                    if guest.get('guestId') != self.instance.get('guestId') or guest.get('new_guest_id') != self.instance.get('new_guest_id'): # not current instance
                         if utils.calculate_age(dt.strptime(guest.get('dob', ''), '%Y-%m-%d')) > age_limit: # is adult
                             adult += 1
                 if max_adult < adult:
