@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-04 11:49+0700\n"
+"POT-Creation-Date: 2021-05-07 17:05+0700\n"
 "PO-Revision-Date: 2021-04-27 10:28+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,32 +18,28 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.4.2\n"
 
-#: guest_facing/check_out/forms.py:10 guest_facing/check_out/forms.py:73
+#: guest_facing/check_out/forms.py:9 guest_facing/check_out/forms.py:72
 msgid "Reservation Number"
 msgstr "Reservation Number"
 
-#: guest_facing/check_out/forms.py:11
+#: guest_facing/check_out/forms.py:10
 #: guest_facing/check_out/templates/check_out/desktop/login.html:38
 #: guest_facing/check_out/templates/check_out/mobile/login.html:44
 msgid "Last Name"
 msgstr "Last Name"
 
-#: guest_facing/check_out/forms.py:12
+#: guest_facing/check_out/forms.py:11
 #: guest_facing/check_out/templates/check_out/desktop/login.html:46
 #: guest_facing/check_out/templates/check_out/mobile/login.html:50
 msgid "Room Number"
 msgstr "Room Number"
 
-#: guest_facing/check_out/forms.py:34 guest_facing/check_out/forms.py:35
-#: guest_facing/check_out/forms.py:37 guest_facing/check_out/forms.py:92
+#: guest_facing/check_out/forms.py:33 guest_facing/check_out/forms.py:34
+#: guest_facing/check_out/forms.py:36 guest_facing/check_out/forms.py:91
 msgid "Enter the required information"
 msgstr "Enter required information"
 
-#: guest_facing/check_out/forms.py:39
-msgid "Failed to validate reCaptcha"
-msgstr "reCaptcha Verification failed."
-
-#: guest_facing/check_out/forms.py:116
+#: guest_facing/check_out/forms.py:115
 msgid "Unknown error"
 msgstr "Unknown error"
 
@@ -166,13 +162,15 @@ msgstr "Error"
 
 #: guest_facing/check_out/templates/check_out/desktop/bill.html:304
 #: guest_facing/check_out/templates/check_out/desktop/bill.html:322
-#: guest_facing/check_out/templates/check_out/desktop/login.html:85
-#: guest_facing/check_out/templates/check_out/mobile/login.html:94
-#: guest_facing/check_out/templates/check_out/mobile/login.html:96
+#: guest_facing/check_out/templates/check_out/desktop/login.html:89
+#: guest_facing/check_out/templates/check_out/mobile/login.html:98
+#: guest_facing/check_out/templates/check_out/mobile/login.html:100
 msgid "OK"
 msgstr "OK"
 
 #: guest_facing/check_out/templates/check_out/desktop/bill.html:316
+#: guest_facing/check_out/templates/check_out/desktop/login.html:73
+#: guest_facing/check_out/templates/check_out/mobile/login.html:81
 msgid "Invalid Input"
 msgstr "Incorrect Input"
 
@@ -202,20 +200,25 @@ msgstr "Next"
 msgid "checkout_login:error_modal_title:6001"
 msgstr "Reservation not found"
 
-#: guest_facing/check_out/templates/check_out/desktop/login.html:73
-#: guest_facing/check_out/templates/check_out/mobile/login.html:81
+#: guest_facing/check_out/templates/check_out/desktop/login.html:75
+#: guest_facing/check_out/templates/check_out/mobile/login.html:83
 msgid "checkout_login:error_modal_title:other"
 msgstr "Unknown error"
 
-#: guest_facing/check_out/templates/check_out/desktop/login.html:79
-#: guest_facing/check_out/templates/check_out/mobile/login.html:87
+#: guest_facing/check_out/templates/check_out/desktop/login.html:81
+#: guest_facing/check_out/templates/check_out/mobile/login.html:89
 msgid "checkout_login:error_modal_body:6001"
 msgstr ""
 "Incorrect reservation details. Please ensure the last name or room number "
 "entered is correct and try again. "
 
-#: guest_facing/check_out/templates/check_out/desktop/login.html:81
-#: guest_facing/check_out/templates/check_out/mobile/login.html:89
+#: guest_facing/check_out/templates/check_out/desktop/login.html:83
+#: guest_facing/check_out/templates/check_out/mobile/login.html:91
+msgid "Failed to validate reCaptcha"
+msgstr "reCaptcha Verification failed."
+
+#: guest_facing/check_out/templates/check_out/desktop/login.html:85
+#: guest_facing/check_out/templates/check_out/mobile/login.html:93
 msgid "checkout_login:error_modal_body:other"
 msgstr ""
 "An unexpected error has occurred. Please proceed to the front desk for "
