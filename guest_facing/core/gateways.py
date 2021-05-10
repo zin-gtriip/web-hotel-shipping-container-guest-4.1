@@ -4,7 +4,7 @@ import logging
 from datetime                   import datetime as dt
 from json                       import JSONDecodeError
 from django.conf                import settings
-from django.utils.translation   import gettext, gettext_lazy as _
+from django.utils.translation   import ugettext as _
 
 logger = logging.getLogger('gateways')
 
