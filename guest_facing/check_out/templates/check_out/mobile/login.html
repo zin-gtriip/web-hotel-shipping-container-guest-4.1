@@ -24,7 +24,7 @@
     {{ block.super }}
     <form method="post" id="form-mobile-login" autocomplete="off">
         {% csrf_token %}
-        {% render_field form.captcha %}
+        {% render_field form.recaptcha %}
         <div class="row page-header">
             <div class="col-12 text-center">
                 <span id="header-last-name" class="header-description {% if not skip_last_name %}active{% endif %}">{% blocktrans %}Please enter your<br>Last Name{% endblocktrans %}</span>
@@ -77,6 +77,8 @@
                         <h4 class="modal-title mx-auto">
                             {% if error == '6001' %}
                                 {% trans 'checkout_login:error_modal_title:6001' %}
+                            {% elif error == 'recaptcha' %}
+                                {% trans 'Invalid Input' %}
                             {% else %}
                                 {% trans 'checkout_login:error_modal_title:other' %}
                             {% endif %}
@@ -85,6 +87,8 @@
                     <div class="modal-body">
                         {% if error == '6001' %}
                             {% trans 'checkout_login:error_modal_body:6001' %}
+                        {% elif error == 'recaptcha' %}
+                            {% trans 'Failed to validate reCaptcha' %}
                         {% else %}
                             {% trans 'checkout_login:error_modal_body:other' %}
                         {% endif %}
