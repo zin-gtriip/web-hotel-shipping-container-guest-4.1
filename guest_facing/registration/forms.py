@@ -414,7 +414,8 @@ class RegistrationOtherInfoForm(forms.Form):
             new_booking_data['arrivalDate'] = self.request.session['registration'].get('input_arrival_date', '')
             new_booking_data['lastName'] = self.request.session['registration'].get('input_last_name', '')
             new_booking_response = gateways.guest_endpoint('post', '/checkWebRegistration', self.request.session.get('property_id', ''), new_booking_data)
-            self.request.session['registration']['bookings'] = new_booking_response.get('data', {}).get('data', [])
+            new_booking = new_booking_response.get('data', {}).get('data', [])
+            self.request.session['registration']['bookings'] = [reservation for reservation in new_booking if reservation.get('reservationNo') != self.request.session['registration'].get('reservation', {}).get('reservationNo', '')]
         else:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
 
