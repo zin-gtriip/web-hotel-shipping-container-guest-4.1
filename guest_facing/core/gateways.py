@@ -64,10 +64,12 @@ def amp_endpoint(method, url, property_id, data={}):
 
 
 # ocr scanning
-def ocr(image_file, scan_type):
-    url = settings.OCR_ENDPOINT_URL + scan_type
-    files = {scan_type: open(image_file, 'rb')}
-    data = {'api_key': settings.OCR_ENDPOINT_KEY}
+def ocr(image_file):
+    url = settings.OCR_ENDPOINT_URL
+    files = {'image': open(image_file, 'rb')}
+    data = {}
+    data['selectionCode'] = ['']
+    data['skipFaceDetect'] = ['']
     try:
         logger.info('REQUEST %(url)s' % {'url': url})
         response = requests.post(url, files=files, data=data, timeout=settings.OCR_ENDPOINT_TIMEOUT_LIMIT)

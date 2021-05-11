@@ -297,6 +297,7 @@ class RegistrationOcrForm(forms.Form):
         self.request = request
         self.label_suffix = ''
         self.response = {}
+        self.file = None
         self.request.session['registration']['ocr'] = {} # initiate `ocr`
 
     def clean(self):
@@ -307,13 +308,14 @@ class RegistrationOcrForm(forms.Form):
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('No image file selected.')])
         else:
             # validate based on `scan_type` (`passport` / `nric`)
-            saved_file = self.save_file()
-            response = self.gateway_ocr(saved_file)
-            if 'status' not in response and 'message' not in response:
-                if response.get('scan_type', 'passport') == 'passport' and response.get('expired', '') == 'true':
+            self.save_file()
+            self.gateway_ocr()
+            if self.response.get('success'):
+                result = self.response.get('result', {})
+                if result.get('document_type', 'passport') == 'passport' and not result.get('expired'):
                     self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Your passport has expired, please capture / upload a valid passport photo to proceed')])
             else:
-                response_message = response.get('message', _('Unknown error'))
+                response_message = response.get('errorMessage', _('Unknown error'))
                 self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([self.error_messages.get(response_message, response_message)])
             
             if self._errors: # remove saved file if fail
@@ -333,26 +335,16 @@ class RegistrationOcrForm(forms.Form):
         file_data = base64.b64decode(self.cleaned_data.get('ocr_file'))
         with open(saved_file, 'wb') as f:
             f.write(file_data)
-        return saved_file
+        self.file = saved_file
 
-    def gateway_ocr(self, saved_file):
-        scan_type = 'passport'
-        response = gateways.ocr(saved_file, 'passport')
-        if 'status' in response or 'message' in response:
-            scan_type = 'nric'
-            response = gateways.ocr(saved_file, 'nric')
-        response['scan_type'] = scan_type
-        self.response = response
-        return self.response
+    def gateway_ocr(self):
+        self.response = gateways.ocr(self.file)
 
     def save(self):
-        file_name = self.request.session.session_key +'.png'
-        folder_name = os.path.join(settings.BASE_DIR, 'media', 'ocr')
-        saved_file = os.path.join(folder_name, file_name)
-        with open(saved_file, 'rb') as image_file:
+        with open(self.file, 'rb') as image_file:
             file_b64_encoded = base64.b64encode(image_file.read())
         self.instance['passportImage'] = file_b64_encoded.decode()
-        self.request.session['registration']['ocr'] = self.response
+        self.request.session['registration']['ocr'] = self.response.get('result', {})
         return self.instance
 
 
