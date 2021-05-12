@@ -15,7 +15,7 @@ class RegistrationLoginForm(forms.Form):
     reservation_no  = forms.CharField(label=_('Reservation Number'), required=False)
     arrival_date    = forms.DateField(label=_('Arrival Date'), required=False)
     last_name       = forms.CharField(label=_('Last Name'), required=False)
-    recaptcha       = captchaField.ReCaptchaField(widget=captchaWidget.ReCaptchaV2Invisible)
+    recaptcha       = captchaField.ReCaptchaField(widget=captchaWidget.ReCaptchaV3)
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
