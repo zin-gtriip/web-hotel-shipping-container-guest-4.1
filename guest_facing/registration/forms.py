@@ -319,7 +319,7 @@ class RegistrationOcrForm(forms.Form):
                 self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([self.error_messages.get(response_message, response_message)])
             
             if self._errors: # remove saved file if fail
-                os.remove(saved_file)
+                os.remove(self.file)
 
         return self.cleaned_data
 
