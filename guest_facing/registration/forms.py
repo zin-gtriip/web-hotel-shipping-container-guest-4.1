@@ -315,7 +315,7 @@ class RegistrationOcrForm(forms.Form):
                 if result.get('document_type', 'passport') == 'passport' and not result.get('expired'):
                     self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('Your passport has expired, please capture / upload a valid passport photo to proceed')])
             else:
-                response_message = response.get('errorMessage', _('Unknown error'))
+                response_message = self.response.get('errorMessage', _('Unknown error'))
                 self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([self.error_messages.get(response_message, response_message)])
             
             if self._errors: # remove saved file if fail
