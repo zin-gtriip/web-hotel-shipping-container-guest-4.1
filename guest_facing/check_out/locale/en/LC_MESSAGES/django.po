@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-07 18:14+0700\n"
+"POT-Creation-Date: 2021-05-12 12:01+0700\n"
 "PO-Revision-Date: 2021-04-27 10:28+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.4.2\n"
 
-#: guest_facing/check_out/forms.py:9 guest_facing/check_out/forms.py:72
+#: guest_facing/check_out/forms.py:9 guest_facing/check_out/forms.py:68
 msgid "Reservation Number"
 msgstr "Reservation Number"
 
@@ -34,12 +34,12 @@ msgstr "Last Name"
 msgid "Room Number"
 msgstr "Room Number"
 
-#: guest_facing/check_out/forms.py:33 guest_facing/check_out/forms.py:34
-#: guest_facing/check_out/forms.py:36 guest_facing/check_out/forms.py:91
+#: guest_facing/check_out/forms.py:32 guest_facing/check_out/forms.py:33
+#: guest_facing/check_out/forms.py:35 guest_facing/check_out/forms.py:87
 msgid "Enter the required information"
 msgstr "Enter required information"
 
-#: guest_facing/check_out/forms.py:115
+#: guest_facing/check_out/forms.py:111
 msgid "Unknown error"
 msgstr "Unknown error"
 

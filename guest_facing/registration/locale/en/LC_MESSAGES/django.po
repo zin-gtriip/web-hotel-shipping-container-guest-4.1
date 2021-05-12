@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-07 18:14+0700\n"
+"POT-Creation-Date: 2021-05-12 12:01+0700\n"
 "PO-Revision-Date: 2021-04-29 14:12+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 2.4.3\n"
 
 #: guest_facing/registration/forms.py:15
-#: guest_facing/registration/templates/registration/desktop/login.html:44
+#: guest_facing/registration/templates/registration/desktop/login.html:43
 msgid "Reservation Number"
 msgstr "Reservation Number"
 
@@ -27,143 +27,143 @@ msgstr "Reservation Number"
 msgid "Arrival Date"
 msgstr "Check-in Date"
 
-#: guest_facing/registration/forms.py:17 guest_facing/registration/forms.py:176
+#: guest_facing/registration/forms.py:17 guest_facing/registration/forms.py:170
 #: guest_facing/registration/templates/registration/desktop/complete.html:46
-#: guest_facing/registration/templates/registration/desktop/login.html:52
+#: guest_facing/registration/templates/registration/desktop/login.html:51
 #: guest_facing/registration/templates/registration/email/complete.html:247
-#: guest_facing/registration/templates/registration/mobile/login.html:64
+#: guest_facing/registration/templates/registration/mobile/login.html:63
 msgid "Last Name"
 msgstr "Last Name"
 
-#: guest_facing/registration/forms.py:40 guest_facing/registration/forms.py:42
-#: guest_facing/registration/forms.py:44 guest_facing/registration/forms.py:226
+#: guest_facing/registration/forms.py:38 guest_facing/registration/forms.py:40
+#: guest_facing/registration/forms.py:42 guest_facing/registration/forms.py:220
+#: guest_facing/registration/forms.py:222
+#: guest_facing/registration/forms.py:224
+#: guest_facing/registration/forms.py:226
 #: guest_facing/registration/forms.py:228
-#: guest_facing/registration/forms.py:230
-#: guest_facing/registration/forms.py:232
-#: guest_facing/registration/forms.py:234
-#: guest_facing/registration/forms.py:388
-#: guest_facing/registration/forms.py:390
+#: guest_facing/registration/forms.py:374
+#: guest_facing/registration/forms.py:376
 msgid "Enter the required information"
 msgstr "Enter required information"
 
-#: guest_facing/registration/forms.py:97
+#: guest_facing/registration/forms.py:90
 msgid "Token ID is missing."
 msgstr "Unable to find session token, a new session token has been assigned."
 
-#: guest_facing/registration/forms.py:102
+#: guest_facing/registration/forms.py:95
 msgid "Token ID is not correct."
 msgstr "Session Token did not match. Time extension has been terminated."
 
-#: guest_facing/registration/forms.py:129
+#: guest_facing/registration/forms.py:122
 msgid "No reservation selected."
 msgstr "No reservation selected."
 
-#: guest_facing/registration/forms.py:149
+#: guest_facing/registration/forms.py:142
 msgid "You have exceeded the number of guests."
 msgstr "You have exceeded the number of guests."
 
-#: guest_facing/registration/forms.py:171
-#: guest_facing/registration/forms.py:322
-#: guest_facing/registration/forms.py:421
+#: guest_facing/registration/forms.py:165
+#: guest_facing/registration/forms.py:318
+#: guest_facing/registration/forms.py:408
 msgid "Unknown error"
 msgstr "Unknown error"
 
-#: guest_facing/registration/forms.py:175
+#: guest_facing/registration/forms.py:169
 msgid "First Name"
 msgstr "First Name"
 
-#: guest_facing/registration/forms.py:177
+#: guest_facing/registration/forms.py:171
 msgid "Passport Number"
 msgstr "Passport Number"
 
-#: guest_facing/registration/forms.py:178
+#: guest_facing/registration/forms.py:172
 msgid "[Select Country]"
 msgstr "[Select Nationality]"
 
-#: guest_facing/registration/forms.py:178
+#: guest_facing/registration/forms.py:172
 #: guest_facing/registration/templates/registration/desktop/detail.html:127
 #: guest_facing/registration/templates/registration/mobile/detail.html:127
 msgid "Nationality"
 msgstr "Nationality"
 
-#: guest_facing/registration/forms.py:179
+#: guest_facing/registration/forms.py:173
 msgid "Date of Birth"
 msgstr "Date of Birth"
 
-#: guest_facing/registration/forms.py:241
+#: guest_facing/registration/forms.py:235
 #, python-format
 msgid "Main guest has to be %(age)s and above."
 msgstr "Main guest must be at least %(age)s years old."
 
-#: guest_facing/registration/forms.py:250
+#: guest_facing/registration/forms.py:244
 msgid "You have exceeded the number of adults."
 msgstr "You have exceeded the number of adults."
 
-#: guest_facing/registration/forms.py:252
+#: guest_facing/registration/forms.py:246
 msgid "You need to upload passport image."
 msgstr "You need to upload a passport image."
 
-#: guest_facing/registration/forms.py:291
+#: guest_facing/registration/forms.py:285
 msgid "Incorrect API key"
 msgstr "Incorrect API key"
 
-#: guest_facing/registration/forms.py:292
+#: guest_facing/registration/forms.py:286
 msgid "Invalid passport image."
 msgstr "Passport image is invalid."
 
-#: guest_facing/registration/forms.py:293
+#: guest_facing/registration/forms.py:287
 msgid "Invalid passport image. MRZ Code is invalid."
 msgstr ""
 "Please ensure the MRZ code at the bottom of the passport can be captured."
 
-#: guest_facing/registration/forms.py:294
+#: guest_facing/registration/forms.py:288
 msgid ""
 "Invalid passport image. Please make sure your passport page area is not "
 "blocked."
 msgstr ""
 "Please ensure the entire passport page can be captured within the frame."
 
-#: guest_facing/registration/forms.py:295
+#: guest_facing/registration/forms.py:289
 msgid "Image file is too big."
 msgstr "The image file size is too big (>2 MB)."
 
-#: guest_facing/registration/forms.py:296
+#: guest_facing/registration/forms.py:290
 msgid "Error scanning image. Please try again later."
 msgstr "Unable to process image. Please try again later."
 
-#: guest_facing/registration/forms.py:297
+#: guest_facing/registration/forms.py:291
 msgid "Invalid NRIC image."
 msgstr "NRIC image is invalid."
 
-#: guest_facing/registration/forms.py:313
+#: guest_facing/registration/forms.py:308
 msgid "No image file selected."
 msgstr "No image file selected."
 
-#: guest_facing/registration/forms.py:320
+#: guest_facing/registration/forms.py:316
 msgid ""
 "Your passport has expired, please capture / upload a valid passport photo to "
 "proceed"
 msgstr ""
 "Your passport has expired. Please submit a valid passport photo to proceed."
 
-#: guest_facing/registration/forms.py:366
+#: guest_facing/registration/forms.py:352
 #: guest_facing/registration/templates/registration/desktop/other_info.html:35
 msgid "Time of Arrival"
 msgstr "Arrival time"
 
-#: guest_facing/registration/forms.py:367
+#: guest_facing/registration/forms.py:353
 msgid "Special Requests"
 msgstr "Special requests"
 
-#: guest_facing/registration/forms.py:368
+#: guest_facing/registration/forms.py:354
 msgid "Email"
 msgstr "Email address"
 
-#: guest_facing/registration/forms.py:369
+#: guest_facing/registration/forms.py:355
 msgid "Is Subscribe"
 msgstr "Subscribe"
 
-#: guest_facing/registration/forms.py:433
+#: guest_facing/registration/forms.py:420
 msgid "There is no reservation can be done for registration"
 msgstr "This reservation has completed registration or checked-in already."
 
@@ -250,8 +250,8 @@ msgstr ""
 "                            "
 
 #: guest_facing/registration/templates/registration/desktop/complete.html:74
-msgid "Next Registration"
-msgstr "Next Registration"
+msgid "Next Reservation"
+msgstr "Next Reservation"
 
 #: guest_facing/registration/templates/registration/desktop/complete.html:83
 #: guest_facing/registration/templates/registration/desktop/complete.html:87
@@ -314,13 +314,13 @@ msgstr "Save &amp; return to the guest list"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:245
 #: guest_facing/registration/templates/registration/desktop/guest_list.html:89
-#: guest_facing/registration/templates/registration/desktop/login.html:91
+#: guest_facing/registration/templates/registration/desktop/login.html:90
 #: guest_facing/registration/templates/registration/desktop/other_info.html:136
 #: guest_facing/registration/templates/registration/desktop/reservation.html:69
 #: guest_facing/registration/templates/registration/mobile/detail.html:246
 #: guest_facing/registration/templates/registration/mobile/detail.html:265
 #: guest_facing/registration/templates/registration/mobile/detail.html:284
-#: guest_facing/registration/templates/registration/mobile/login.html:108
+#: guest_facing/registration/templates/registration/mobile/login.html:107
 msgid "Invalid Input"
 msgstr "Incorrect Input"
 
@@ -348,81 +348,82 @@ msgid "Add Guest"
 msgstr "Add Guest"
 
 #: guest_facing/registration/templates/registration/desktop/guest_list.html:75
-#: guest_facing/registration/templates/registration/desktop/login.html:69
+#: guest_facing/registration/templates/registration/desktop/login.html:68
 #: guest_facing/registration/templates/registration/desktop/ocr.html:84
 #: guest_facing/registration/templates/registration/desktop/other_info.html:122
 #: guest_facing/registration/templates/registration/desktop/reservation.html:55
-#: guest_facing/registration/templates/registration/mobile/login.html:79
-#: guest_facing/registration/templates/registration/mobile/login.html:82
-#: guest_facing/registration/templates/registration/mobile/login.html:85
+#: guest_facing/registration/templates/registration/mobile/login.html:78
+#: guest_facing/registration/templates/registration/mobile/login.html:81
+#: guest_facing/registration/templates/registration/mobile/login.html:84
 #: guest_facing/registration/templates/registration/mobile/ocr.html:52
+#: guest_facing/registration/templates/registration/mobile/ocr.html:65
 #: guest_facing/registration/templates/registration/mobile/ocr.html:91
 msgid "Next"
 msgstr "Next"
 
 #: guest_facing/registration/templates/registration/desktop/guest_list.html:95
-#: guest_facing/registration/templates/registration/desktop/login.html:111
-#: guest_facing/registration/templates/registration/mobile/login.html:129
-#: guest_facing/registration/templates/registration/mobile/login.html:131
+#: guest_facing/registration/templates/registration/desktop/login.html:110
+#: guest_facing/registration/templates/registration/mobile/login.html:128
+#: guest_facing/registration/templates/registration/mobile/login.html:130
 msgid "OK"
 msgstr "OK"
 
-#: guest_facing/registration/templates/registration/desktop/login.html:31
-#: guest_facing/registration/templates/registration/mobile/login.html:37
+#: guest_facing/registration/templates/registration/desktop/login.html:30
+#: guest_facing/registration/templates/registration/mobile/login.html:36
 #, python-format
 msgid "Welcome to<br>Hotel %(HOTEL_NAME)s"
 msgstr "Welcome to<br>%(HOTEL_NAME)s"
 
-#: guest_facing/registration/templates/registration/desktop/login.html:36
+#: guest_facing/registration/templates/registration/desktop/login.html:35
 msgid ""
 "To begin the online check-in process, please enter the<br>information below."
 msgstr ""
 "Please enter your reservation number<br>to begin the Registration process."
 
-#: guest_facing/registration/templates/registration/desktop/login.html:85
-#: guest_facing/registration/templates/registration/mobile/login.html:102
+#: guest_facing/registration/templates/registration/desktop/login.html:84
+#: guest_facing/registration/templates/registration/mobile/login.html:101
 msgid "registration_login:error_modal_title:1000"
 msgstr "Reservation not found"
 
-#: guest_facing/registration/templates/registration/desktop/login.html:87
-#: guest_facing/registration/templates/registration/mobile/login.html:104
+#: guest_facing/registration/templates/registration/desktop/login.html:86
+#: guest_facing/registration/templates/registration/mobile/login.html:103
 msgid "registration_login:error_modal_title:1001"
 msgstr "Registration unavailable"
 
-#: guest_facing/registration/templates/registration/desktop/login.html:89
-#: guest_facing/registration/templates/registration/mobile/login.html:106
+#: guest_facing/registration/templates/registration/desktop/login.html:88
+#: guest_facing/registration/templates/registration/mobile/login.html:105
 msgid "registration_login:error_modal_title:1002"
 msgstr "Registration already completed"
 
-#: guest_facing/registration/templates/registration/desktop/login.html:93
-#: guest_facing/registration/templates/registration/mobile/login.html:110
+#: guest_facing/registration/templates/registration/desktop/login.html:92
+#: guest_facing/registration/templates/registration/mobile/login.html:109
 msgid "registration_login:error_modal_title:other"
 msgstr "Unknown error"
 
-#: guest_facing/registration/templates/registration/desktop/login.html:99
-#: guest_facing/registration/templates/registration/mobile/login.html:116
+#: guest_facing/registration/templates/registration/desktop/login.html:98
+#: guest_facing/registration/templates/registration/mobile/login.html:115
 msgid "registration_login:error_modal_body:1000"
 msgstr "Incorrect reservation details. Please check and try again."
 
-#: guest_facing/registration/templates/registration/desktop/login.html:101
-#: guest_facing/registration/templates/registration/mobile/login.html:118
+#: guest_facing/registration/templates/registration/desktop/login.html:100
+#: guest_facing/registration/templates/registration/mobile/login.html:117
 msgid "registration_login:error_modal_body:1001"
 msgstr "You are not due for Registration at this time. Please try again later."
 
-#: guest_facing/registration/templates/registration/desktop/login.html:103
-#: guest_facing/registration/templates/registration/mobile/login.html:120
+#: guest_facing/registration/templates/registration/desktop/login.html:102
+#: guest_facing/registration/templates/registration/mobile/login.html:119
 msgid "registration_login:error_modal_body:1002"
 msgstr ""
 "We are unable to submit your request as this reservation has already "
 "completed registration successfully."
 
-#: guest_facing/registration/templates/registration/desktop/login.html:105
-#: guest_facing/registration/templates/registration/mobile/login.html:122
+#: guest_facing/registration/templates/registration/desktop/login.html:104
+#: guest_facing/registration/templates/registration/mobile/login.html:121
 msgid "Failed to validate reCaptcha"
 msgstr "reCaptcha Verification failed."
 
-#: guest_facing/registration/templates/registration/desktop/login.html:107
-#: guest_facing/registration/templates/registration/mobile/login.html:124
+#: guest_facing/registration/templates/registration/desktop/login.html:106
+#: guest_facing/registration/templates/registration/mobile/login.html:123
 msgid "registration_login:error_modal_body:other"
 msgstr ""
 "An unexpected error has occurred. Please proceed to the front desk for "
@@ -451,12 +452,12 @@ msgid "Capture"
 msgstr "Capture"
 
 #: guest_facing/registration/templates/registration/desktop/ocr.html:67
-#: guest_facing/registration/templates/registration/mobile/ocr.html:75
+#: guest_facing/registration/templates/registration/mobile/ocr.html:78
 msgid "Take"
 msgstr "Take"
 
 #: guest_facing/registration/templates/registration/desktop/ocr.html:71
-#: guest_facing/registration/templates/registration/mobile/ocr.html:69
+#: guest_facing/registration/templates/registration/mobile/ocr.html:72
 msgid "Upload"
 msgstr "Upload"
 
@@ -465,14 +466,14 @@ msgid "Reupload"
 msgstr "Re-upload"
 
 #: guest_facing/registration/templates/registration/desktop/ocr.html:100
-#: guest_facing/registration/templates/registration/mobile/ocr.html:107
+#: guest_facing/registration/templates/registration/mobile/ocr.html:108
 msgid "Invalid Image"
 msgstr "Invalid image"
 
 #: guest_facing/registration/templates/registration/desktop/ocr.html:106
 #: guest_facing/registration/templates/registration/desktop/other_info.html:142
 #: guest_facing/registration/templates/registration/desktop/reservation.html:75
-#: guest_facing/registration/templates/registration/mobile/ocr.html:113
+#: guest_facing/registration/templates/registration/mobile/ocr.html:114
 msgid "Close"
 msgstr "Close"
 
@@ -555,33 +556,33 @@ msgstr ""
 "to your room immediately. Alternatively, you may approach the front office "
 "to collect your key."
 
-#: guest_facing/registration/templates/registration/mobile/login.html:39
+#: guest_facing/registration/templates/registration/mobile/login.html:38
 msgid "Please enter your<br>Last Name"
 msgstr "Enter Last Name"
 
-#: guest_facing/registration/templates/registration/mobile/login.html:41
+#: guest_facing/registration/templates/registration/mobile/login.html:40
 msgid "Please confirm your<br>Arrival Date"
 msgstr "Enter Check-in date"
 
-#: guest_facing/registration/templates/registration/mobile/login.html:47
+#: guest_facing/registration/templates/registration/mobile/login.html:46
 msgid ""
 "To begin the online check-in process,<br>please enter your reservation "
 "number."
 msgstr ""
 "Please enter your reservation number to begin the registration process."
 
-#: guest_facing/registration/templates/registration/mobile/login.html:49
+#: guest_facing/registration/templates/registration/mobile/login.html:48
 msgid ""
 "To verify your reservation, please provide<br>your last name is in your "
 "passport."
 msgstr "Please enter your last name used in the reservation."
 
-#: guest_facing/registration/templates/registration/mobile/login.html:51
+#: guest_facing/registration/templates/registration/mobile/login.html:50
 msgid ""
 "To verify your reservation, please confirm<br>the arrival date at the hotel."
 msgstr "Please enter your Check-in date for reservation verification. "
 
-#: guest_facing/registration/templates/registration/mobile/login.html:58
+#: guest_facing/registration/templates/registration/mobile/login.html:57
 msgid "e.g. 12345678"
 msgstr "e.g. 12345678"
 
@@ -599,7 +600,7 @@ msgstr ""
 "may upload a photo of the passport or ID."
 
 #: guest_facing/registration/templates/registration/mobile/ocr.html:60
-#: guest_facing/registration/templates/registration/mobile/ocr.html:83
+#: guest_facing/registration/templates/registration/mobile/ocr.html:86
 msgid "Retake"
 msgstr "Retry"
 
