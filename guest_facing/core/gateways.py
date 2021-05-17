@@ -84,5 +84,4 @@ def ocr(image_file):
     except requests.exceptions.RequestException as request_error:
         json_response = {'status': 'error', 'message': _('Error connecting to server')}
     logger.info('RESPONSE ' + json.dumps(json_response))
-    print(json_response)
     return json_response
