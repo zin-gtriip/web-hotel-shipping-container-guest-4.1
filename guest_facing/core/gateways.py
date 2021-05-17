@@ -73,7 +73,7 @@ def ocr(image_file):
     headers = {'x-api-key': settings.OCR_ENDPOINT_KEY}
     try:
         logger.info('REQUEST %(url)s' % {'url': url})
-        response = requests.post(url, files=files, data=data, timeout=settings.OCR_ENDPOINT_TIMEOUT_LIMIT)
+        response = requests.post(url, files=files, data=data, headers=headers, timeout=settings.OCR_ENDPOINT_TIMEOUT_LIMIT)
         response.raise_for_status()
         json_response = json.loads(response.content.decode('utf-8'))
     except requests.exceptions.HTTPError as http_error:
@@ -84,4 +84,5 @@ def ocr(image_file):
     except requests.exceptions.RequestException as request_error:
         json_response = {'status': 'error', 'message': _('Error connecting to server')}
     logger.info('RESPONSE ' + json.dumps(json_response))
+    print(json_response)
     return json_response
