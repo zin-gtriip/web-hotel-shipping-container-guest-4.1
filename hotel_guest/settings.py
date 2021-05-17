@@ -251,7 +251,7 @@ AMP_ENDPOINT = [
 
 # OCR Endpoint configuration
 OCR_ENDPOINT_URL                = 'https://cv.gtriip.com/recognition/'
-OCR_ENDPOINT_KEY                = 'F16430020E414D3CBB9FACB3DA8071F5'
+OCR_ENDPOINT_KEY                = 'rvH7MT70.7RoZxH8gtBfPgZt7kgNxRtybwq3Gp4vW'
 OCR_ENDPOINT_TIMEOUT_LIMIT      = 60
 
 

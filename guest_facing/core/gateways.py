@@ -70,6 +70,7 @@ def ocr(image_file):
     data = {}
     data['selectionCode'] = ['']
     data['skipFaceDetect'] = ['']
+    headers = {'x-api-key': settings.OCR_ENDPOINT_KEY}
     try:
         logger.info('REQUEST %(url)s' % {'url': url})
         response = requests.post(url, files=files, data=data, timeout=settings.OCR_ENDPOINT_TIMEOUT_LIMIT)
