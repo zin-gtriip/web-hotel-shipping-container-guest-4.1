@@ -198,7 +198,7 @@ class RegistrationDetailForm(forms.Form):
                 last_name = self.request.session.get('registration', {}).get('ocr', {}).get('surname', last_name)
             passport_no = self.request.session.get('registration', {}).get('ocr', {}).get('number', passport_no)
             nationality = Country(self.request.session.get('registration', {}).get('ocr', {}).get('nationality', '')).code or nationality
-            birth_date = utils.parse_ocr_date(self.request.session.get('registration', {}).get('ocr', {}).get('date_of_birth', '')) or birth_date
+            birth_date = self.request.session.get('registration', {}).get('ocr', {}).get('date_of_birth', birth_date)
         # assign
         self.fields['first_name'].initial = first_name.title()
         self.fields['last_name'].initial = last_name
