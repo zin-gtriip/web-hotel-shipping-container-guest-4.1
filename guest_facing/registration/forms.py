@@ -196,7 +196,10 @@ class RegistrationDetailForm(forms.Form):
             first_name = self.request.session.get('registration', {}).get('ocr', {}).get('names', first_name)
             if self.instance.get('guestId', 0) == 0:
                 last_name = self.request.session.get('registration', {}).get('ocr', {}).get('surname', last_name)
-            passport_no = self.request.session.get('registration', {}).get('ocr', {}).get('number', passport_no)
+            if self.request.session.get('registration', {}).get('ocr', {}).get('document_type') != 'passport':
+                passport_no = self.request.session.get('registration', {}).get('ocr', {}).get('id_number', passport_no)
+            else:
+                passport_no = self.request.session.get('registration', {}).get('ocr', {}).get('number', passport_no)
             nationality = Country(self.request.session.get('registration', {}).get('ocr', {}).get('nationality', '')).code or nationality
             birth_date = self.request.session.get('registration', {}).get('ocr', {}).get('date_of_birth', birth_date)
         # assign
