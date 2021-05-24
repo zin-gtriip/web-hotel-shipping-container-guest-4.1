@@ -99,7 +99,7 @@ class RegistrationTimerExtensionForm(forms.Form):
         initial_expiry_date = self.request.session['registration'].get('initial_expiry_date', '')
         initial_expiry_date = datetime.datetime.strptime(initial_expiry_date, '%Y-%m-%dT%H:%M:%S.%f%z')
         config = gateways.amp_endpoint('get', '/configVariables', self.request.session.get('property_id', '')) or {} # get config variables
-        extend_duration = config.get('prearrivalSessionExtendDurationMinutes', settings.REGISTRATION_SESSION_AGE_EXTEND)
+        extend_duration = config.get('data', {}).get('prearrivalSessionExtendDurationMinutes', settings.REGISTRATION_SESSION_AGE_EXTEND)
         extended_expiry_date = (initial_expiry_date + datetime.timedelta(minutes=extend_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['registration']['extended_expiry_date'] = extended_expiry_date
         self.request.session['registration']['extended_expiry_duration'] = extend_duration # will be popped after pass to templates
@@ -231,8 +231,7 @@ class RegistrationDetailForm(forms.Form):
             if not birth_date:
                 self._errors['birth_date'] = self.error_class([_('Enter the required information')])
             else:
-                config = gateways.amp_endpoint('get', '/configVariables', self.request.session.get('property_id', '')) or {} # get config variables
-                age_limit = config.get('prearrivalAdultMinAgeYears', settings.REGISTRATION_ADULT_AGE_LIMIT)
+                age_limit = config.get('data', {}).get('prearrivalAdultMinAgeYears', settings.REGISTRATION_ADULT_AGE_LIMIT)
                 is_adult = utils.calculate_age(birth_date) > age_limit
                 # validate main guest age limit
                 if self.instance.get('isMainGuest', False) and not is_adult:
@@ -429,7 +428,7 @@ class RegistrationCompleteForm(forms.Form):
         for page in settings.REGISTRATION_PARAMETER_REQUIRED_PAGES or list():
             self.request.session['registration'].pop(page, None)
         config = gateways.amp_endpoint('get', 'configVariables', self.request.session.get('property_id', '')) or {} # get config variables
-        expiry_duration = config.get('prearrivalSessionDurationMinutes', settings.REGISTRATION_SESSION_AGE_INITIAL)
+        expiry_duration = config.get('data', {}).get('prearrivalSessionDurationMinutes', settings.REGISTRATION_SESSION_AGE_INITIAL)
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['registration']['initial_expiry_date'] = initial_expiry_date
         self.request.session['registration']['initial_expiry_duration'] = expiry_duration # will be popped after pass to templates
