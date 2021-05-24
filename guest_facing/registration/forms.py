@@ -217,6 +217,7 @@ class RegistrationDetailForm(forms.Form):
         passport_no = self.cleaned_data.get('passport_no')
         birth_date = self.cleaned_data.get('birth_date')
         is_submit = self.cleaned_data.get('is_submit')
+        config = gateways.amp_endpoint('get', '/configVariables', self.request.session.get('property_id', '')) or {} # get config variables
         
         if is_submit:
             if not first_name:
@@ -245,7 +246,7 @@ class RegistrationDetailForm(forms.Form):
                             adult += 1
                 if max_adult < adult:
                     self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You have exceeded the number of adults.')])
-            if settings.REGISTRATION_OCR and not self.instance.get('passportImage', ''):
+            if config.get('data', {}).get('enableOcr', settings.REGISTRATION_OCR) and not self.instance.get('passportImage', ''):
                 self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You need to upload passport image.')])
         return self.cleaned_data
 

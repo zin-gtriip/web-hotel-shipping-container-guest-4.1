@@ -4,6 +4,7 @@ from django.shortcuts           import render, reverse, redirect
 from django.utils               import translation
 from django.utils.translation   import gettext, gettext_lazy as _
 from django.views.generic       import *
+from guest_facing.core          import gateways
 from guest_facing.core.utils    import encrypt, decrypt
 from guest_facing.core.views    import IndexView
 from guest_facing.core.mixins   import PropertyRequiredMixin, RequestFormKwargsMixin, MobileTemplateMixin, JSONResponseMixin
@@ -174,7 +175,8 @@ class RegistrationDetailView(ExpirySessionMixin, PropertyRequiredMixin, RequestF
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['ocr_required'] = settings.REGISTRATION_OCR # determine input is editable
+        config = gateways.amp_endpoint('get', '/configVariables', self.request.session.get('property_id', '')) or {}
+        context['ocr_required'] = config.get('data', {}).get('enableOcr', settings.REGISTRATION_OCR) # determine input is editable
         context['bootstrap_datepicker_language'] = translation.get_language()
         if context['bootstrap_datepicker_language'] == 'zh-hans':
             context['bootstrap_datepicker_language'] = 'zh-CN'

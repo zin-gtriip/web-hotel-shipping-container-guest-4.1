@@ -357,7 +357,7 @@ REGISTRATION_ROOM_TYPES = [
         'room_image': '/static/img/room/villa.jpg',
     },
 ]
-# age limit for adult, used on passport, detail page
+# default age limit for adult, if AMP is not provided
 REGISTRATION_ADULT_AGE_LIMIT = 18
 # registration pages that has expiry session (timer), make sure these are registration url
 REGISTRATION_EXPIRY_SESSION_PAGES = [
@@ -388,5 +388,5 @@ REGISTRATION_PROGRESS_BAR_PAGES = [
 REGISTRATION_PROGRESS_BAR_RATE_PER_PAGE = (REGISTRATION_PROGRESS_BAR_END_RATE - REGISTRATION_PROGRESS_BAR_START_RATE) / (len(REGISTRATION_PROGRESS_BAR_PAGES) - 1)
 # complete email template directory
 REGISTRATION_COMPLETE_EMAIL = 'registration/email/complete.html'
-
+# determine default mandatory of ocr field in detail page, if AMP is not provided
 REGISTRATION_OCR = True
