@@ -101,7 +101,7 @@
                             {{ form.passport_no.label_tag }}
                             {% if form.is_bound and form.passport_no.errors %}
                                 {% if ocr_required and not object.passportImage %}
-                                    {% render_field form.passport_no class="form-control is-invalid disabled" readonly="true" placeholder=passport_no_placeholder %}
+                                    {% render_field form.passport_no class="form-control is-invalid disabled" readonly="true" placeholder="-" %}
                                 {% else %}
                                     {% render_field form.passport_no class="form-control is-invalid" placeholder=passport_no_placeholder %}
                                 {% endif %}
@@ -110,7 +110,7 @@
                                 {% endfor %}
                             {% else %}
                                 {% if ocr_required and not object.passportImage %}
-                                    {% render_field form.passport_no class="form-control disabled" readonly="true" placeholder=passport_no_placeholder %}
+                                    {% render_field form.passport_no class="form-control disabled" readonly="true" placeholder="-" %}
                                 {% else %}
                                     {% render_field form.passport_no class="form-control" placeholder=passport_no_placeholder %}
                                 {% endif %}
@@ -154,7 +154,7 @@
                             {{ form.birth_date.label_tag }}
                             {% if form.is_bound and form.birth_date.errors %}
                                 {% if ocr_required and not object.passportImage %}
-                                    {% render_field form.birth_date class="form-control datepicker is-invalid disabled" data-date-format="yyyy-mm-dd" readonly="true" placeholder=birth_date_placeholder %}
+                                    {% render_field form.birth_date class="form-control datepicker is-invalid disabled" data-date-format="yyyy-mm-dd" readonly="true" placeholder="-" %}
                                 {% else %}
                                     {% render_field form.birth_date class="form-control datepicker is-invalid" data-date-format="yyyy-mm-dd" placeholder=birth_date_placeholder %}
                                 {% endif %}
@@ -163,7 +163,7 @@
                                 {% endfor %}
                             {% else %}
                                 {% if ocr_required and not object.passportImage %}
-                                    {% render_field form.birth_date class="form-control datepicker disabled" data-date-format="yyyy-mm-dd" readonly="true" placeholder=birth_date_placeholder %}
+                                    {% render_field form.birth_date class="form-control datepicker disabled" data-date-format="yyyy-mm-dd" readonly="true" placeholder="-" %}
                                 {% else %}
                                     {% render_field form.birth_date class="form-control datepicker" data-date-format="yyyy-mm-dd" placeholder=birth_date_placeholder %}
                                     <i class="far fa-calendar input-prefix text-primary"></i>
