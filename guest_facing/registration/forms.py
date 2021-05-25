@@ -168,7 +168,7 @@ class RegistrationGuestListForm(forms.Form):
 class RegistrationDetailForm(forms.Form):
     first_name = forms.CharField(label=_('First Name'), required=False)
     last_name = forms.CharField(label=_('Last Name'), required=False)
-    passport_no = forms.CharField(label=_('Passport Number'), required=False)
+    id_no = forms.CharField(label=_('Passport Number'), required=False)
     nationality = CountryField(blank_label=_('[Select Country]')).formfield(label=_('Nationality'), required=False)
     birth_date = forms.DateField(label=_('Date of Birth'), required=False)
     is_overwrite = forms.BooleanField(initial=True, required=False)
@@ -182,13 +182,13 @@ class RegistrationDetailForm(forms.Form):
         # from backend
         first_name = self.instance.get('firstName', '')
         last_name = self.instance.get('lastName', '')
-        passport_no = self.instance.get('passportNo', '')
+        id_no = self.instance.get('idNo', '')
         nationality = self.instance.get('nationality', 'SG')
         birth_date = self.instance.get('dob', '')
         # from `preload`
         if self.instance.get('isMainGuest', False):
             first_name = self.request.session.get('registration', {}).get('preload', {}).get('first_name', first_name)
-            passport_no = self.request.session.get('registration', {}).get('preload', {}).get('passport_no', passport_no)
+            id_no = self.request.session.get('registration', {}).get('preload', {}).get('id_no', id_no)
             nationality = self.request.session.get('registration', {}).get('preload', {}).get('nationality', nationality)
             birth_date = self.request.session.get('registration', {}).get('preload', {}).get('birth_date', birth_date)
         # from `ocr`
@@ -196,13 +196,13 @@ class RegistrationDetailForm(forms.Form):
             first_name = self.request.session.get('registration', {}).get('ocr', {}).get('first_name', first_name)
             if self.instance.get('guestId', 0) == 0:
                 last_name = self.request.session.get('registration', {}).get('ocr', {}).get('last_name', last_name)
-            passport_no = self.request.session.get('registration', {}).get('ocr', {}).get('number', passport_no)
+            id_no = self.request.session.get('registration', {}).get('ocr', {}).get('number', id_no)
             nationality = Country(self.request.session.get('registration', {}).get('ocr', {}).get('nationality', '')).code or nationality
             birth_date = self.request.session.get('registration', {}).get('ocr', {}).get('date_of_birth', birth_date)
         # assign
         self.fields['first_name'].initial = first_name.title()
         self.fields['last_name'].initial = last_name
-        self.fields['passport_no'].initial = passport_no
+        self.fields['id_no'].initial = id_no
         self.fields['nationality'].initial = nationality
         self.fields['birth_date'].initial = birth_date
     
@@ -211,7 +211,7 @@ class RegistrationDetailForm(forms.Form):
         first_name = self.cleaned_data.get('first_name')
         last_name = self.cleaned_data.get('last_name')
         nationality = self.cleaned_data.get('nationality')
-        passport_no = self.cleaned_data.get('passport_no')
+        id_no = self.cleaned_data.get('id_no')
         birth_date = self.cleaned_data.get('birth_date')
         is_submit = self.cleaned_data.get('is_submit')
         config = gateways.amp_endpoint('get', '/configVariables', self.request.session.get('property_id', '')) or {} # get config variables
@@ -223,8 +223,8 @@ class RegistrationDetailForm(forms.Form):
                 self._errors['last_name'] = self.error_class([_('Enter the required information')])
             if not nationality:
                 self._errors['nationality'] = self.error_class([_('Enter the required information')])
-            if not passport_no:
-                self._errors['passport_no'] = self.error_class([_('Enter the required information')])
+            if not id_no:
+                self._errors['id_no'] = self.error_class([_('Enter the required information')])
             if not birth_date:
                 self._errors['birth_date'] = self.error_class([_('Enter the required information')])
             else:
@@ -242,7 +242,7 @@ class RegistrationDetailForm(forms.Form):
                             adult += 1
                 if max_adult < adult:
                     self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You have exceeded the number of adults.')])
-            if config.get('data', {}).get('enableOcr', settings.REGISTRATION_OCR) and not self.instance.get('passportImage', ''):
+            if config.get('data', {}).get('enableOcr', settings.REGISTRATION_OCR) and (not self.instance.get('idImage') or not self.instance.get('idType')):
                 self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You need to upload passport image.')])
         return self.cleaned_data
 
@@ -250,7 +250,7 @@ class RegistrationDetailForm(forms.Form):
         self.instance['firstName'] = self.cleaned_data.get('first_name')
         self.instance['lastName'] = self.cleaned_data.get('last_name')
         self.instance['nationality'] = self.cleaned_data.get('nationality')
-        self.instance['passportNo'] = self.cleaned_data.get('passport_no')
+        self.instance['idNo'] = self.cleaned_data.get('id_no')
         self.instance['dob'] = self.cleaned_data.get('birth_date').strftime('%Y-%m-%d') if self.cleaned_data.get('birth_date') else ''
         self.instance['is_overwrite'] = self.cleaned_data.get('is_overwrite')
         if self.cleaned_data.get('is_submit', False):
@@ -259,9 +259,11 @@ class RegistrationDetailForm(forms.Form):
                 guest['firstName'] = self.instance.get('firstName', '')
                 guest['lastName'] = self.instance.get('lastName', '')
                 guest['nationality'] = self.instance.get('nationality', '')
-                guest['passportNo'] = self.instance.get('passportNo', '')
+                guest['nationalityThreeLetters'] = Country(self.instance.get('nationality')).alpha3
+                guest['idNo'] = self.instance.get('idNo', '')
                 guest['dob'] = self.instance.get('dob', '')
-                guest['passportImage'] = self.instance.get('passportImage', '')
+                guest['idImage'] = self.instance.get('idImage', '')
+                guest['idType'] = self.instance.get('idType', '')
                 guest['is_done'] = True
             else: # new guest
                 guest = {}
@@ -269,9 +271,11 @@ class RegistrationDetailForm(forms.Form):
                 guest['firstName'] = self.instance.get('firstName', '')
                 guest['lastName'] = self.instance.get('lastName', '')
                 guest['nationality'] = self.instance.get('nationality', '')
-                guest['passportNo'] = self.instance.get('passportNo', '')
+                guest['nationalityThreeLetters'] = Country(self.instance.get('nationality')).alpha3
+                guest['idNo'] = self.instance.get('idNo', '')
                 guest['dob'] = self.instance.get('dob', '')
-                guest['passportImage'] = self.instance.get('passportImage', '')
+                guest['idImage'] = self.instance.get('idImage', '')
+                guest['idType'] = self.instance.get('idType', '')
                 guest['new_guest_id'] = 'new%s' % len([data for data in self.request.session['registration']['reservation'].get('guestsList', []) if data.get('guestId', 0) == 0])
                 guest['is_done'] = True
                 self.request.session['registration']['reservation']['guestsList'].append(guest)
@@ -343,7 +347,8 @@ class RegistrationOcrForm(forms.Form):
     def save(self):
         with open(self.file, 'rb') as image_file:
             file_b64_encoded = base64.b64encode(image_file.read())
-        self.instance['passportImage'] = file_b64_encoded.decode()
+        self.instance['idImage'] = file_b64_encoded.decode()
+        self.instance['idType'] = 'PASSPORT' if self.response.get('result', {}).get('document_type') == 'passport' else 'IC'
         self.request.session['registration']['ocr'] = self.response.get('result', {})
         return self.instance
 

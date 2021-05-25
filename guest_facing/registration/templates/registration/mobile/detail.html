@@ -42,7 +42,7 @@
                             {% trans 'Enter your name' as first_name_placeholder %}
                             {{ form.first_name.label_tag }}
                             {% if form.is_bound and form.first_name.errors %}
-                                {% if ocr_required and not object.passportImage %}
+                                {% if ocr_required and not object.idImage %}
                                     {% render_field form.first_name class="form-control is-invalid disabled" readonly="true" placeholder=first_name_placeholder %}
                                 {% else %}
                                     {% render_field form.first_name class="form-control is-invalid" placeholder=first_name_placeholder %}
@@ -51,7 +51,7 @@
                                     <div class="invalid-feedback">{{ error }}</div>
                                 {% endfor %}
                             {% else %}
-                                {% if ocr_required and not object.passportImage %}
+                                {% if ocr_required and not object.idImage %}
                                     {% render_field form.first_name class="form-control disabled" readonly="true" placeholder=first_name_placeholder %}
                                 {% else %}
                                     {% render_field form.first_name class="form-control" placeholder=first_name_placeholder %}
@@ -70,7 +70,7 @@
                             {{ form.last_name.label_tag }}
                             {% if object.guestId == 0 %}
                                 {% if form.is_bound and form.last_name.errors %}
-                                    {% if ocr_required and not object.passportImage %}
+                                    {% if ocr_required and not object.idImage %}
                                         {% render_field form.last_name class="form-control is-invalid disabled" readonly="true" placeholder=last_name_placeholder %}
                                     {% else %}
                                         {% render_field form.last_name class="form-control is-invalid" placeholder=last_name_placeholder %}
@@ -79,7 +79,7 @@
                                         <div class="invalid-feedback">{{ error }}</div>
                                     {% endfor %}
                                 {% else %}
-                                    {% if ocr_required and not object.passportImage %}
+                                    {% if ocr_required and not object.idImage %}
                                         {% render_field form.last_name class="form-control disabled" readonly="true" placeholder=last_name_placeholder %}
                                     {% else %}
                                         {% render_field form.last_name class="form-control" placeholder=last_name_placeholder %}
@@ -97,25 +97,25 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="md-form mt-2">
-                            {% trans 'e.g. A12345Z' as passport_no_placeholder %}
-                            {{ form.passport_no.label_tag }}
-                            {% if form.is_bound and form.passport_no.errors %}
-                                {% if ocr_required and not object.passportImage %}
-                                    {% render_field form.passport_no class="form-control is-invalid disabled" readonly="true" placeholder="-" %}
+                            {% trans 'e.g. A12345Z' as id_no_placeholder %}
+                            {{ form.id_no.label_tag }}
+                            {% if form.is_bound and form.id_no.errors %}
+                                {% if ocr_required and not object.idImage %}
+                                    {% render_field form.id_no class="form-control is-invalid disabled" readonly="true" placeholder="-" %}
                                 {% else %}
-                                    {% render_field form.passport_no class="form-control is-invalid" placeholder=passport_no_placeholder %}
+                                    {% render_field form.id_no class="form-control is-invalid" placeholder=id_no_placeholder %}
                                 {% endif %}
-                                {% for error in form.passport_no.errors %}
+                                {% for error in form.id_no.errors %}
                                     <div class="invalid-feedback">{{ error }}</div>
                                 {% endfor %}
                             {% else %}
-                                {% if ocr_required and not object.passportImage %}
-                                    {% render_field form.passport_no class="form-control disabled" readonly="true" placeholder="-" %}
+                                {% if ocr_required and not object.idImage %}
+                                    {% render_field form.id_no class="form-control disabled" readonly="true" placeholder="-" %}
                                 {% else %}
-                                    {% render_field form.passport_no class="form-control" placeholder=passport_no_placeholder %}
+                                    {% render_field form.id_no class="form-control" placeholder=id_no_placeholder %}
                                 {% endif %}
-                                {% if form.passport_no.help_text %}
-                                    <small class="form-text text-muted">{{ form.passport_no.help_text }}</small>
+                                {% if form.id_no.help_text %}
+                                    <small class="form-text text-muted">{{ form.id_no.help_text }}</small>
                                 {% endif %}
                             {% endif %}
                         </div>
@@ -126,7 +126,7 @@
                         <div class="md-form mt-2">
                             <label for="id_nationality" class="active">{% trans 'Nationality' %}</label>
                             {% if form.is_bound and form.nationality.errors %}
-                                {% if ocr_required and not object.passportImage %}
+                                {% if ocr_required and not object.idImage %}
                                     {% render_field form.nationality class="form-control md-select is-invalid disabled" readonly="true" %}
                                 {% else %}
                                     {% render_field form.nationality class="form-control md-select is-invalid" %}
@@ -135,7 +135,7 @@
                                     <div class="invalid-feedback">{{ error }}</div>
                                 {% endfor %}
                             {% else %}
-                                {% if ocr_required and not object.passportImage %}
+                                {% if ocr_required and not object.idImage %}
                                     {% render_field form.nationality class="form-control md-select disabled" readonly="true" %}
                                 {% else %}
                                     {% render_field form.nationality class="form-control md-select" %}
@@ -154,7 +154,7 @@
                             <label for="datepicker-birth-date">{{ form.birth_date.label }}</label>
                             {% render_field form.birth_date class="rolldate" hidden="true" %}
                             {% if form.is_bound and form.birth_date.errors %}
-                                {% if ocr_required and not object.passportImage %}
+                                {% if ocr_required and not object.idImage %}
                                     <input type="text" id="datepicker-birth-date" class="form-control datepicker is-invalid disabled" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly disabled placeholder="-">
                                 {% else %}
                                     <input type="text" id="datepicker-birth-date" class="form-control datepicker is-invalid" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly placeholder="{{ birth_date_placeholder }}">
@@ -163,7 +163,7 @@
                                     <div class="invalid-feedback">{{ error }}</div>
                                 {% endfor %}
                             {% else %}
-                                {% if ocr_required and not object.passportImage %}
+                                {% if ocr_required and not object.idImage %}
                                     <input type="text" id="datepicker-birth-date" class="form-control datepicker disabled" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly disabled placeholder="-">
                                 {% else %}
                                     <input type="text" id="datepicker-birth-date" class="form-control datepicker" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly placeholder="{{ birth_date_placeholder }}">
@@ -177,7 +177,7 @@
                     </div>
                 </div>
                 {% if ocr_required %}
-                    {% if not object.passportImage %}
+                    {% if not object.idImage %}
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-check pl-0">
@@ -206,10 +206,10 @@
         <div class="row page-footer">
             <div class="col-12">
                 {% if ocr_required %}
-                    {% if not object.passportImage %}
+                    {% if not object.idImage %}
                         <div class="row">
                             <div class="col-lg-12 mb-3 d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary m-0 btn-passport">
+                                <button type="submit" class="btn btn-primary m-0 btn-ocr">
                                     {% trans 'Submit Passport/NRIC' %}
                                 </button>
                             </div>

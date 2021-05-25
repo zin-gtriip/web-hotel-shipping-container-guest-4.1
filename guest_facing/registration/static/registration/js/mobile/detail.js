@@ -11,7 +11,7 @@ if (gaOcrSuccess) {
 }
 
 
-$('.btn-passport').click(function() {
+$('.btn-ocr').click(function() {
     $('#id_is_submit').attr('checked', false);
 });
 
