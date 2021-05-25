@@ -43,7 +43,7 @@
                             {{ form.first_name.label_tag }}
                             {% if form.is_bound and form.first_name.errors %}
                                 {% if ocr_required and not object.idImage %}
-                                    {% render_field form.first_name class="form-control is-invalid disabled" readonly="true" placeholder=first_name_placeholder %}
+                                    {% render_field form.first_name class="form-control is-invalid disabled" readonly="true" placeholder="-" %}
                                 {% else %}
                                     {% render_field form.first_name class="form-control is-invalid" placeholder=first_name_placeholder %}
                                 {% endif %}
@@ -52,7 +52,7 @@
                                 {% endfor %}
                             {% else %}
                                 {% if ocr_required and not object.idImage %}
-                                    {% render_field form.first_name class="form-control disabled" readonly="true" placeholder=first_name_placeholder %}
+                                    {% render_field form.first_name class="form-control disabled" readonly="true" placeholder="-" %}
                                 {% else %}
                                     {% render_field form.first_name class="form-control" placeholder=first_name_placeholder %}
                                 {% endif %}
@@ -71,7 +71,7 @@
                             {% if object.guestId == 0 %}
                                 {% if form.is_bound and form.last_name.errors %}
                                     {% if ocr_required and not object.idImage %}
-                                        {% render_field form.last_name class="form-control is-invalid disabled" readonly="true" placeholder=last_name_placeholder %}
+                                        {% render_field form.last_name class="form-control is-invalid disabled" readonly="true" placeholder="-" %}
                                     {% else %}
                                         {% render_field form.last_name class="form-control is-invalid" placeholder=last_name_placeholder %}
                                     {% endif %}
@@ -80,7 +80,7 @@
                                     {% endfor %}
                                 {% else %}
                                     {% if ocr_required and not object.idImage %}
-                                        {% render_field form.last_name class="form-control disabled" readonly="true" placeholder=last_name_placeholder %}
+                                        {% render_field form.last_name class="form-control disabled" readonly="true" placeholder="-" %}
                                     {% else %}
                                         {% render_field form.last_name class="form-control" placeholder=last_name_placeholder %}
                                     {% endif %}
