@@ -281,9 +281,8 @@ FERNET_KEY = b'aJAwfZCJTITCVp-76x9_z8aaFSAFvlrOIFRQEDLm6p8='
 # Google Recaptcha configuration
 # https://pypi.org/project/django-recaptcha/
 
-RECAPTCHA_PUBLIC_KEY        = '6LebZ9EaAAAAADy_cf6zmx3s0EZdgfiX-5cFFenw'
-RECAPTCHA_PRIVATE_KEY       = '6LebZ9EaAAAAAIBH4jGmLZTKCdG05GsPxPgQr5FE'
-RECAPTCHA_REQUIRED_SCORE    = 0.50
+RECAPTCHA_PUBLIC_KEY        = '6Lc5PcgaAAAAAJ4kwMRjpH5kdt48_lwi48kpkR1w'
+RECAPTCHA_PRIVATE_KEY       = '6Lc5PcgaAAAAAGDC4DyZzx9uhA3t5yiUNMpAKJOh'
 
 
 # Logging
