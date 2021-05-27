@@ -54,7 +54,9 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -186,8 +188,25 @@ COMPRESS_PRECOMPILERS = (
 )
 
 
-# Guest Facing Endpoint configuration
-
+# Endpoint configuration
+# Token
+TOKEN_ENDPOINT = [
+    {
+        'type': 'guest_facing',
+        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT/oauth/token',
+        'username': 'web-guest-client',
+        'password': 'HotelTemplate1234',
+        'timeout': 30,
+    },
+    {
+        'type': 'amp',
+        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT/oauth/token',
+        'username': 'web-amp-client',
+        'password': 'HotelTemplate1234',
+        'timeout': 30,
+    },
+]
+# Guest Facing
 GUEST_ENDPOINT = [
     {
         'id': 'QAHotelProdSG11_1',
@@ -220,10 +239,7 @@ GUEST_ENDPOINT = [
         'timeout': 30,
     },
 ]
-
-
-# AMP Endpoint configuration
-
+# AMP
 AMP_ENDPOINT = [
     {
         'id': 'QAHotelProdSG11_1',
