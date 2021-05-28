@@ -286,13 +286,12 @@ class RegistrationOcrForm(forms.Form):
     ocr_file = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     error_messages = {
-        'Incorrect API key': _('Incorrect API key'),
-        'Invalid passport image.': _('Invalid passport image.'),
-        'Invalid passport image. MRZ Code is invalid.': _('Invalid passport image. MRZ Code is invalid.'),
-        'Invalid passport image. Please make sure your passport page area is not blocked.': _('Invalid passport image. Please make sure your passport page area is not blocked.'),
-        'Image file is too big.': _('Image file is too big.'),
+        'Wrong API Key': _('Incorrect API key'),
         'Error scanning image. Please try again later.': _('Error scanning image. Please try again later.'),
+        'Image size is too big.': _('Image file is too big.'),
+        'Invalid passport image. MRZ Code is invalid.': _('Invalid passport image. MRZ Code is invalid.'),
         'Invalid NRIC image.': _('Invalid NRIC image.'),
+        'Face image not found.': _('Invalid passport image. Please make sure your passport page area is not blocked.'),
     }
 
     def __init__(self, instance, request, *args, **kwargs):
