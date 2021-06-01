@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-28 10:54+0700\n"
-"PO-Revision-Date: 2021-04-27 10:27+0800\n"
+"PO-Revision-Date: 2021-05-25 08:44+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #: guest_facing/registration/static/registration/js/base.js:68
 msgid "Fail to extend timer"
@@ -24,7 +24,7 @@ msgstr "Fail to extend timer"
 
 #: guest_facing/registration/static/registration/js/base.js:69
 msgid "Session Expiry Error"
-msgstr "Session Expiry Error"
+msgstr "Session expiry error"
 
 #: guest_facing/registration/static/registration/js/base.js:69
 msgid "OK"
@@ -55,7 +55,7 @@ msgstr "No"
 #: guest_facing/registration/static/registration/js/mobile/ocr.js:56
 #: guest_facing/registration/static/registration/js/mobile/ocr.js:57
 msgid "Invalid Image"
-msgstr "Invalid Image"
+msgstr "Invalid image"
 
 #: guest_facing/registration/static/registration/js/desktop/ocr.js:40
 #: guest_facing/registration/static/registration/js/mobile/ocr.js:56
@@ -89,8 +89,7 @@ msgid ""
 "Please adjust the image to make sure<br>that all information is within the "
 "box."
 msgstr ""
-"Please adjust the image to make sure<br>that all information is within the "
-"box."
+"Please adjust the image to ensure<br>all information is within the box."
 
 #: guest_facing/registration/static/registration/js/desktop/ocr.js:187
 msgid "Zoom"
@@ -98,7 +97,7 @@ msgstr "Zoom"
 
 #: guest_facing/registration/static/registration/js/mobile/detail.js:57
 msgid "Select Date"
-msgstr "Select Date"
+msgstr "Select date"
 
 #: guest_facing/registration/static/registration/js/mobile/detail.js:58
 msgid "Cancel"
@@ -113,5 +112,4 @@ msgid ""
 "Drag, rotate, or pinch the image to make sure<br>that all information is "
 "within the box."
 msgstr ""
-"Please adjust the passport image to ensure<br>all information is within the "
-"box."
+"Please adjust the image to ensure<br>all information is within the box."

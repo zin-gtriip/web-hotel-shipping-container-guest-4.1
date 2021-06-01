@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-12 12:01+0700\n"
-"PO-Revision-Date: 2021-04-27 10:28+0800\n"
+"PO-Revision-Date: 2021-05-25 08:37+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #: guest_facing/check_out/forms.py:9 guest_facing/check_out/forms.py:68
 msgid "Reservation Number"
@@ -170,7 +170,7 @@ msgstr "错误输入"
 
 #: guest_facing/check_out/templates/check_out/desktop/complete.html:20
 msgid "We hope you enjoy your stay with us,<br>and well see you again soon!"
-msgstr "希望您在我们这里住得愉快，并期待您再次光临！"
+msgstr "希望您在我们这里住得愉快，<br>并期待您再次光临！"
 
 #: guest_facing/check_out/templates/check_out/desktop/login.html:25
 msgid "Please enter your<br>reservation details"
@@ -179,7 +179,7 @@ msgstr "输入预订详情"
 #: guest_facing/check_out/templates/check_out/desktop/login.html:30
 #: guest_facing/check_out/templates/check_out/mobile/login.html:37
 msgid "The following information is required for<br>verification."
-msgstr "请输入以下资料以确认您的预订。"
+msgstr "请提供您的房间号码，<br>以确认您的预订。"
 
 #: guest_facing/check_out/templates/check_out/desktop/login.html:55
 #: guest_facing/check_out/templates/check_out/mobile/login.html:59
@@ -222,7 +222,7 @@ msgstr "输入房间号码"
 
 #: guest_facing/check_out/templates/check_out/mobile/login.html:36
 msgid "To begin the online check-out process,<br>please enter your last name."
-msgstr "请输入您预订中使用的姓氏以开始办理退房手续。"
+msgstr "请输入您预订中使用的姓氏，<br>以确认您的预订。"
 
 #: guest_facing/check_out/views.py:103
 msgid ""

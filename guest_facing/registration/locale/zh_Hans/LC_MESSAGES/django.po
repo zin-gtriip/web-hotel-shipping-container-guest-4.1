@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-12 12:01+0700\n"
-"PO-Revision-Date: 2021-04-29 14:13+0700\n"
+"PO-Revision-Date: 2021-05-25 08:28+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -74,7 +74,7 @@ msgstr "名字"
 
 #: guest_facing/registration/forms.py:171
 msgid "Passport Number"
-msgstr "护照号码"
+msgstr "护照/证件号码"
 
 #: guest_facing/registration/forms.py:172
 msgid "[Select Country]"
@@ -131,7 +131,7 @@ msgstr "无法处理图像。请稍后再试。"
 
 #: guest_facing/registration/forms.py:291
 msgid "Invalid NRIC image."
-msgstr "NRIC图片无效。"
+msgstr "证件图片无效。"
 
 #: guest_facing/registration/forms.py:308
 msgid "No image file selected."
@@ -205,7 +205,7 @@ msgstr "登记完成"
 msgid ""
 "Here is the summary of your reservation<br>(images shown are for references "
 "only)"
-msgstr "以下是您的预订摘要（显示的图像仅供参考）"
+msgstr "以下是您的预订详情。<br>（显示的图像仅供参考。）"
 
 #: guest_facing/registration/templates/registration/desktop/complete.html:44
 #: guest_facing/registration/templates/registration/email/complete.html:233
@@ -236,14 +236,14 @@ msgid ""
 "                            "
 msgstr ""
 "\n"
-"                                请下载我们的应用程序以立即使用\n"
-"                                您的数码钥匙进入您的房间。或者，\n"
-"                                您可以前往前台领取您的房间钥匙。\n"
+"                                请下载我们的应用程序以使用数码钥匙进入您的房"
+"间。\n"
+"                                或者，您可前往前台领取您的房间钥匙。\n"
 "                            "
 
 #: guest_facing/registration/templates/registration/desktop/complete.html:74
 msgid "Next Reservation"
-msgstr "下个预订"
+msgstr "下一个预订"
 
 #: guest_facing/registration/templates/registration/desktop/complete.html:83
 #: guest_facing/registration/templates/registration/desktop/complete.html:87
@@ -254,12 +254,12 @@ msgstr "下载应用程式"
 #: guest_facing/registration/templates/registration/desktop/detail.html:29
 #: guest_facing/registration/templates/registration/mobile/detail.html:29
 msgid "Guest Details"
-msgstr "住客资料"
+msgstr "住客详情"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:34
 #: guest_facing/registration/templates/registration/mobile/detail.html:34
 msgid "Please verify the personal particulars below."
-msgstr "请确认以下个人资料。"
+msgstr "请确认以下住客详情以继续。"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:42
 #: guest_facing/registration/templates/registration/desktop/detail.html:69
@@ -271,7 +271,7 @@ msgstr "输入名字"
 #: guest_facing/registration/templates/registration/desktop/detail.html:100
 #: guest_facing/registration/templates/registration/mobile/detail.html:100
 msgid "e.g. A12345Z"
-msgstr "例如 A12345Z"
+msgstr "例如：A12345Z"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:153
 #: guest_facing/registration/templates/registration/mobile/detail.html:153
@@ -283,24 +283,24 @@ msgstr "年-月-日"
 msgid ""
 "Update my existing guest details using the information retrieved from the "
 "Passport/NRIC submission"
-msgstr "使用提交的护照或身份证中的资料来更新我现有的个人资料"
+msgstr "使用提交的护照或证件中的资料来更新我现有的个人资料"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:195
 #: guest_facing/registration/templates/registration/mobile/detail.html:196
 msgid "Passport submitted"
-msgstr "护照已提交"
+msgstr "护照/证件已提交"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:212
 #: guest_facing/registration/templates/registration/mobile/detail.html:213
 msgid "Submit Passport/NRIC"
-msgstr "提交护照或身份证"
+msgstr "提交护照或证件图片"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:220
 #: guest_facing/registration/templates/registration/desktop/detail.html:228
 #: guest_facing/registration/templates/registration/mobile/detail.html:221
 #: guest_facing/registration/templates/registration/mobile/detail.html:229
 msgid "Save &amp; go to guest list"
-msgstr "保存并回到住客列表"
+msgstr "保存并去到住客名单"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:245
 #: guest_facing/registration/templates/registration/desktop/guest_list.html:89
@@ -323,13 +323,13 @@ msgstr "好的"
 
 #: guest_facing/registration/templates/registration/desktop/guest_list.html:23
 msgid "Guest List"
-msgstr "客人列表"
+msgstr "住客名单"
 
 #: guest_facing/registration/templates/registration/desktop/guest_list.html:28
 msgid ""
 "The following guests are found under your<br>reservation. Please verify each "
 "of the guest's<br>details to proceed."
-msgstr "以下住客已在您的预订中登记。请确认以下每位住客的个人资料以继续。"
+msgstr "以下住客已在您的预订中登记。<br>请确认以下住客详情以继续。"
 
 #: guest_facing/registration/templates/registration/desktop/guest_list.html:67
 msgid "Add Guest"
@@ -365,7 +365,7 @@ msgstr "欢迎来到<br>%(HOTEL_NAME)s"
 #: guest_facing/registration/templates/registration/desktop/login.html:35
 msgid ""
 "To begin the online check-in process, please enter the<br>information below."
-msgstr "请输入您的预订号码<br>以开始办理登记手续。"
+msgstr "请输入您的资料，<br>以开始办理登记手续。"
 
 #: guest_facing/registration/templates/registration/desktop/login.html:84
 #: guest_facing/registration/templates/registration/mobile/login.html:101
@@ -458,23 +458,23 @@ msgstr "关闭"
 
 #: guest_facing/registration/templates/registration/desktop/other_info.html:22
 msgid "Additional Information"
-msgstr "额外资料"
+msgstr "输入额外资料"
 
 #: guest_facing/registration/templates/registration/desktop/other_info.html:27
 msgid "Please let us know if you have check-in<br>preferences."
-msgstr "请提供您的抵达时间和任何特殊要求，<br>以便我们能为您提供更好的服务。"
+msgstr "请提供您的抵达时间和任何特殊要求，<br>以便我们更好地为您服务。"
 
 #: guest_facing/registration/templates/registration/desktop/other_info.html:56
 msgid "e.g. Extra Towels, etc"
-msgstr "例如： 额外的毛巾，等"
+msgstr "例如：额外的毛巾等"
 
 #: guest_facing/registration/templates/registration/desktop/other_info.html:78
 msgid "e.g. example@email.com"
-msgstr "例如： example@email.com"
+msgstr "例如：example@email.com"
 
 #: guest_facing/registration/templates/registration/desktop/other_info.html:101
 msgid "I would like to receive exclusive offers, and news via email."
-msgstr "我愿意通过电子邮件收到独家优惠和新闻。"
+msgstr "我愿意通过电子邮件收到独家优惠<br>和新闻。"
 
 #: guest_facing/registration/templates/registration/desktop/other_info.html:111
 #, python-format
@@ -497,13 +497,13 @@ msgstr ""
 
 #: guest_facing/registration/templates/registration/desktop/reservation.html:17
 msgid "Please select your<br>room to Check-In"
-msgstr "请选择需要登记的预订"
+msgstr "选择预订"
 
 #: guest_facing/registration/templates/registration/desktop/reservation.html:22
 msgid ""
 "The following room(s) are found<br>under your reservation.<br>(images shown "
 "are for references only)"
-msgstr "请选择需要进行登记的预订。<br>（显示的图像仅供参考）"
+msgstr "选择预订以继续。<br>（显示的图像仅供参考。）"
 
 #: guest_facing/registration/templates/registration/email/complete.html:168
 msgid "Dear"
@@ -513,7 +513,7 @@ msgstr "亲爱的"
 msgid ""
 "We are pleased to inform you that your registration is completed with "
 "details as follow:"
-msgstr "我们很高兴通知您已完登记手续。请查看以下详情："
+msgstr "以下是您的预订详情。（显示的图像仅供参考。）"
 
 #: guest_facing/registration/templates/registration/email/complete.html:181
 msgid "(images shown are for references only)"
@@ -525,8 +525,8 @@ msgid ""
 "download our mobile app so you can head straight to your room using the "
 "digital key."
 msgstr ""
-"请下载我们的应用程序以立即使用您的数码钥匙进入您的房间。或者，您可以前往前台"
-"领取您的房间钥匙。"
+"请下载我们的应用程序以使用数码钥匙进入您的房间。<br>或者，您可前往前台领取您"
+"的房间钥匙。"
 
 #: guest_facing/registration/templates/registration/mobile/login.html:38
 msgid "Please enter your<br>Last Name"
@@ -534,28 +534,28 @@ msgstr "输入姓氏"
 
 #: guest_facing/registration/templates/registration/mobile/login.html:40
 msgid "Please confirm your<br>Arrival Date"
-msgstr "输入入住日期"
+msgstr "确认抵达日期"
 
 #: guest_facing/registration/templates/registration/mobile/login.html:46
 msgid ""
 "To begin the online check-in process,<br>please enter your reservation "
 "number."
-msgstr "请输入您的预订号码以开始办理登记手续。"
+msgstr "请输入您的预订号码，<br>以确认您的预订。"
 
 #: guest_facing/registration/templates/registration/mobile/login.html:48
 msgid ""
 "To verify your reservation, please provide<br>your last name is in your "
 "passport."
-msgstr "请输入您预订中使用的姓氏。"
+msgstr "请输入您预订中使用的姓氏，<br>以确认您的预订。"
 
 #: guest_facing/registration/templates/registration/mobile/login.html:50
 msgid ""
 "To verify your reservation, please confirm<br>the arrival date at the hotel."
-msgstr "请输入您的入住日期以确认您的预订。"
+msgstr "请输入您的抵达日期，<br>以确认您的预订。"
 
 #: guest_facing/registration/templates/registration/mobile/login.html:57
 msgid "e.g. 12345678"
-msgstr "例如 12345678"
+msgstr "例如：12345678"
 
 #: guest_facing/registration/templates/registration/mobile/ocr.html:27
 msgid "Submit Passport<br>image"
@@ -565,14 +565,12 @@ msgstr "提交护照或证件图片"
 msgid ""
 "An image of your passport is required for<br>registration. Use the camera to "
 "capture or<br>choose an existing image from your device."
-msgstr ""
-"登记手续需要您提供护照或证件图片以便进行。您也可以使用相机功能拍下护照或证件"
-"图片。"
+msgstr "使用相机拍下护照或证件图片，<br>或从设备中选择现有的图片。"
 
 #: guest_facing/registration/templates/registration/mobile/ocr.html:60
 #: guest_facing/registration/templates/registration/mobile/ocr.html:86
 msgid "Retake"
-msgstr "重试"
+msgstr "重拍"
 
 #: guest_facing/registration/utils.py:78
 #, python-format

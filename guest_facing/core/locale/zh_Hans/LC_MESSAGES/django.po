@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-12 12:01+0700\n"
-"PO-Revision-Date: 2021-04-27 10:28+0800\n"
+"PO-Revision-Date: 2021-05-21 16:29+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #: guest_facing/core/forms.py:19 guest_facing/core/forms.py:23
 msgid "No property selected."
@@ -35,8 +35,7 @@ msgid "Oops! We couldn't find the page you're looking for"
 msgstr "未找到网页"
 
 #: guest_facing/core/templates/404.html:20
-msgid ""
-"It looks like that page doesn't exit. Please check the URL and try again."
+msgid "It looks like that page doesn't exit. Please check the URL and try again."
 msgstr "我们搜索不到您要查找的页面。 请检查网址，然后重试。"
 
 #: guest_facing/core/templates/core/desktop/property.html:5

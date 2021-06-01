@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-12 12:01+0700\n"
-"PO-Revision-Date: 2021-04-29 14:12+0700\n"
+"PO-Revision-Date: 2021-05-25 08:42+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -21,11 +21,11 @@ msgstr ""
 #: guest_facing/registration/forms.py:15
 #: guest_facing/registration/templates/registration/desktop/login.html:43
 msgid "Reservation Number"
-msgstr "Reservation Number"
+msgstr "Reservation number"
 
 #: guest_facing/registration/forms.py:16
 msgid "Arrival Date"
-msgstr "Check-in Date"
+msgstr "Check-in date"
 
 #: guest_facing/registration/forms.py:17 guest_facing/registration/forms.py:170
 #: guest_facing/registration/templates/registration/desktop/complete.html:46
@@ -33,7 +33,7 @@ msgstr "Check-in Date"
 #: guest_facing/registration/templates/registration/email/complete.html:247
 #: guest_facing/registration/templates/registration/mobile/login.html:63
 msgid "Last Name"
-msgstr "Last Name"
+msgstr "Last name"
 
 #: guest_facing/registration/forms.py:38 guest_facing/registration/forms.py:40
 #: guest_facing/registration/forms.py:42 guest_facing/registration/forms.py:220
@@ -52,7 +52,7 @@ msgstr "Unable to find session token, a new session token has been assigned."
 
 #: guest_facing/registration/forms.py:95
 msgid "Token ID is not correct."
-msgstr "Session Token did not match. Time extension has been terminated."
+msgstr "Session token did not match. Time extension has been terminated."
 
 #: guest_facing/registration/forms.py:122
 msgid "No reservation selected."
@@ -70,15 +70,15 @@ msgstr "Unknown error"
 
 #: guest_facing/registration/forms.py:169
 msgid "First Name"
-msgstr "First Name"
+msgstr "First name"
 
 #: guest_facing/registration/forms.py:171
 msgid "Passport Number"
-msgstr "Passport Number"
+msgstr "Passport/ID number"
 
 #: guest_facing/registration/forms.py:172
 msgid "[Select Country]"
-msgstr "[Select Nationality]"
+msgstr "[Select nationality]"
 
 #: guest_facing/registration/forms.py:172
 #: guest_facing/registration/templates/registration/desktop/detail.html:127
@@ -88,7 +88,7 @@ msgstr "Nationality"
 
 #: guest_facing/registration/forms.py:173
 msgid "Date of Birth"
-msgstr "Date of Birth"
+msgstr "Date of birth"
 
 #: guest_facing/registration/forms.py:235
 #, python-format
@@ -133,7 +133,7 @@ msgstr "Unable to process image. Please try again later."
 
 #: guest_facing/registration/forms.py:291
 msgid "Invalid NRIC image."
-msgstr "NRIC image is invalid."
+msgstr "ID image is invalid."
 
 #: guest_facing/registration/forms.py:308
 msgid "No image file selected."
@@ -149,7 +149,7 @@ msgstr ""
 #: guest_facing/registration/forms.py:352
 #: guest_facing/registration/templates/registration/desktop/other_info.html:35
 msgid "Time of Arrival"
-msgstr "Arrival time"
+msgstr "Time of arrival"
 
 #: guest_facing/registration/forms.py:353
 msgid "Special Requests"
@@ -173,7 +173,7 @@ msgstr "Registration"
 
 #: guest_facing/registration/templates/registration/base.html:43
 msgid "Session Expiring"
-msgstr "Session Expiry"
+msgstr "Session expiry"
 
 #: guest_facing/registration/templates/registration/base.html:48
 msgid "Your session is expiring soon"
@@ -189,7 +189,7 @@ msgstr "Extend"
 
 #: guest_facing/registration/templates/registration/base.html:75
 msgid "Session Expired"
-msgstr "Session Expired"
+msgstr "Session expired"
 
 #: guest_facing/registration/templates/registration/base.html:78
 msgid "Your session is expired"
@@ -209,25 +209,25 @@ msgid ""
 "Here is the summary of your reservation<br>(images shown are for references "
 "only)"
 msgstr ""
-"The following is the summary of your reservation (images shown are for "
-"references only)"
+"Here is the summary of your registration.<br>(Images shown are for "
+"references only.)"
 
 #: guest_facing/registration/templates/registration/desktop/complete.html:44
 #: guest_facing/registration/templates/registration/email/complete.html:233
 msgid "Reservation No"
-msgstr "Reservation No."
+msgstr "Reservation no."
 
 #: guest_facing/registration/templates/registration/desktop/complete.html:50
 #: guest_facing/registration/templates/registration/desktop/reservation.html:41
 #: guest_facing/registration/templates/registration/email/complete.html:235
 msgid "Check-in Date"
-msgstr "Check-in Date"
+msgstr "Check-in date"
 
 #: guest_facing/registration/templates/registration/desktop/complete.html:52
 #: guest_facing/registration/templates/registration/desktop/reservation.html:45
 #: guest_facing/registration/templates/registration/email/complete.html:249
 msgid "Check-out Date"
-msgstr "Check-out Date"
+msgstr "Check-out date"
 
 #: guest_facing/registration/templates/registration/desktop/complete.html:64
 msgid ""
@@ -241,33 +241,33 @@ msgid ""
 "                            "
 msgstr ""
 "\n"
-"                                Please download our mobile app to access to "
-"your room\n"
-"                                immediately using the Digital Key. "
-"Alternatively, you \n"
-"                                may proceed to the front desk to collect "
-"your room key. \n"
+"                                Please download our mobile app and use the\n"
+"                                Digital Key to access your room. "
+"Alternatively, you\n"
+"                                may approach the front office to collect "
+"your key.\n"
 "                            "
 
 #: guest_facing/registration/templates/registration/desktop/complete.html:74
 msgid "Next Reservation"
-msgstr "Next Reservation"
+msgstr "Next reservation"
 
 #: guest_facing/registration/templates/registration/desktop/complete.html:83
 #: guest_facing/registration/templates/registration/desktop/complete.html:87
 #: guest_facing/registration/templates/registration/desktop/complete.html:91
 msgid "Get The App"
-msgstr "Download App"
+msgstr "Download app"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:29
 #: guest_facing/registration/templates/registration/mobile/detail.html:29
 msgid "Guest Details"
-msgstr "Guest information"
+msgstr "Guest details"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:34
 #: guest_facing/registration/templates/registration/mobile/detail.html:34
 msgid "Please verify the personal particulars below."
-msgstr "Please verify the following personal particulars."
+msgstr ""
+"Please verify the details for each of<br>the guest(s) below to proceed."
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:42
 #: guest_facing/registration/templates/registration/desktop/detail.html:69
@@ -293,24 +293,24 @@ msgid ""
 "Passport/NRIC submission"
 msgstr ""
 "Update my personal particulars using the information retrieved from the "
-"Passport/NRIC submission"
+"passport/ID submission"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:195
 #: guest_facing/registration/templates/registration/mobile/detail.html:196
 msgid "Passport submitted"
-msgstr "Passport has been submitted"
+msgstr "Passport/ID submitted"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:212
 #: guest_facing/registration/templates/registration/mobile/detail.html:213
 msgid "Submit Passport/NRIC"
-msgstr "Submit Passport/NRIC"
+msgstr "Submit passport/ID image"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:220
 #: guest_facing/registration/templates/registration/desktop/detail.html:228
 #: guest_facing/registration/templates/registration/mobile/detail.html:221
 #: guest_facing/registration/templates/registration/mobile/detail.html:229
 msgid "Save &amp; go to guest list"
-msgstr "Save &amp; return to the guest list"
+msgstr "Save and go to Guest list"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:245
 #: guest_facing/registration/templates/registration/desktop/guest_list.html:89
@@ -322,7 +322,7 @@ msgstr "Save &amp; return to the guest list"
 #: guest_facing/registration/templates/registration/mobile/detail.html:284
 #: guest_facing/registration/templates/registration/mobile/login.html:107
 msgid "Invalid Input"
-msgstr "Incorrect Input"
+msgstr "Incorrect input"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:251
 #: guest_facing/registration/templates/registration/mobile/detail.html:252
@@ -340,12 +340,12 @@ msgid ""
 "The following guests are found under your<br>reservation. Please verify each "
 "of the guest's<br>details to proceed."
 msgstr ""
-"The following guests have been registered in your reservation. Please verify "
-"the personal particulars of each guest below to proceed."
+"The following guests have been registered in your reservation.<br>Please "
+"verify the details for each of the guest(s) below to proceed."
 
 #: guest_facing/registration/templates/registration/desktop/guest_list.html:67
 msgid "Add Guest"
-msgstr "Add Guest"
+msgstr "Add guest"
 
 #: guest_facing/registration/templates/registration/desktop/guest_list.html:75
 #: guest_facing/registration/templates/registration/desktop/login.html:68
@@ -377,8 +377,7 @@ msgstr "Welcome to<br>%(HOTEL_NAME)s"
 #: guest_facing/registration/templates/registration/desktop/login.html:35
 msgid ""
 "To begin the online check-in process, please enter the<br>information below."
-msgstr ""
-"Please enter your reservation number<br>to begin the Registration process."
+msgstr "To verify your reservation,<br>please enter the information below."
 
 #: guest_facing/registration/templates/registration/desktop/login.html:84
 #: guest_facing/registration/templates/registration/mobile/login.html:101
@@ -408,7 +407,7 @@ msgstr "Incorrect reservation details. Please check and try again."
 #: guest_facing/registration/templates/registration/desktop/login.html:100
 #: guest_facing/registration/templates/registration/mobile/login.html:117
 msgid "registration_login:error_modal_body:1001"
-msgstr "You are not due for Registration at this time. Please try again later."
+msgstr "You are not due for registration at this time. Please try again later."
 
 #: guest_facing/registration/templates/registration/desktop/login.html:102
 #: guest_facing/registration/templates/registration/mobile/login.html:119
@@ -420,7 +419,7 @@ msgstr ""
 #: guest_facing/registration/templates/registration/desktop/login.html:104
 #: guest_facing/registration/templates/registration/mobile/login.html:121
 msgid "Failed to validate reCaptcha"
-msgstr "reCaptcha Verification failed."
+msgstr "reCaptcha verification failed."
 
 #: guest_facing/registration/templates/registration/desktop/login.html:106
 #: guest_facing/registration/templates/registration/mobile/login.html:123
@@ -479,13 +478,13 @@ msgstr "Close"
 
 #: guest_facing/registration/templates/registration/desktop/other_info.html:22
 msgid "Additional Information"
-msgstr "Additional Information"
+msgstr "Enter additional information"
 
 #: guest_facing/registration/templates/registration/desktop/other_info.html:27
 msgid "Please let us know if you have check-in<br>preferences."
 msgstr ""
-"Please provide your time of arrival and any special requests<br>so that we "
-"can serve you better."
+"Please provide your time of arrival and any<br>special requests for us to "
+"serve you better."
 
 #: guest_facing/registration/templates/registration/desktop/other_info.html:56
 msgid "e.g. Extra Towels, etc"
@@ -520,15 +519,14 @@ msgstr ""
 
 #: guest_facing/registration/templates/registration/desktop/reservation.html:17
 msgid "Please select your<br>room to Check-In"
-msgstr "Select Reservation"
+msgstr "Select reservation"
 
 #: guest_facing/registration/templates/registration/desktop/reservation.html:22
 msgid ""
 "The following room(s) are found<br>under your reservation.<br>(images shown "
 "are for references only)"
 msgstr ""
-"Please select a reservation to proceed with the registration.<br>(images "
-"shown are for references only)"
+"Select a reservation to proceed. <br>(Images shown are for references only.)"
 
 #: guest_facing/registration/templates/registration/email/complete.html:168
 msgid "Dear"
@@ -539,8 +537,8 @@ msgid ""
 "We are pleased to inform you that your registration is completed with "
 "details as follow:"
 msgstr ""
-"We are pleased to inform you that your registration is completed with "
-"details as follow:"
+"Here is the summary of your registration.<br>(Images shown are for "
+"references only)"
 
 #: guest_facing/registration/templates/registration/email/complete.html:181
 msgid "(images shown are for references only)"
@@ -552,35 +550,36 @@ msgid ""
 "download our mobile app so you can head straight to your room using the "
 "digital key."
 msgstr ""
-"Please proceed to download our mobile app and use the digital key to access "
-"to your room immediately. Alternatively, you may approach the front office "
-"to collect your key."
+"Please download our mobile app and use the Digital Key to<br>access your "
+"room. Alternatively, you may approach the<br>front office to collect your "
+"key."
 
 #: guest_facing/registration/templates/registration/mobile/login.html:38
 msgid "Please enter your<br>Last Name"
-msgstr "Enter Last Name"
+msgstr "Enter last name"
 
 #: guest_facing/registration/templates/registration/mobile/login.html:40
 msgid "Please confirm your<br>Arrival Date"
-msgstr "Enter Check-in date"
+msgstr "Confirm arrival date"
 
 #: guest_facing/registration/templates/registration/mobile/login.html:46
 msgid ""
 "To begin the online check-in process,<br>please enter your reservation "
 "number."
-msgstr ""
-"Please enter your reservation number to begin the registration process."
+msgstr "To verify your reservation,<br>please enter the reservation number."
 
 #: guest_facing/registration/templates/registration/mobile/login.html:48
 msgid ""
 "To verify your reservation, please provide<br>your last name is in your "
 "passport."
-msgstr "Please enter your last name used in the reservation."
+msgstr ""
+"To verify your reservation, please enter<br>the last name used in the "
+"reservation."
 
 #: guest_facing/registration/templates/registration/mobile/login.html:50
 msgid ""
 "To verify your reservation, please confirm<br>the arrival date at the hotel."
-msgstr "Please enter your Check-in date for reservation verification. "
+msgstr "To verify your reservation,<br>please confirm the arrival date."
 
 #: guest_facing/registration/templates/registration/mobile/login.html:57
 msgid "e.g. 12345678"
@@ -588,25 +587,23 @@ msgstr "e.g. 12345678"
 
 #: guest_facing/registration/templates/registration/mobile/ocr.html:27
 msgid "Submit Passport<br>image"
-msgstr "Submit Passport / ID photo"
+msgstr "Submit passport/ID image"
 
 #: guest_facing/registration/templates/registration/mobile/ocr.html:32
 msgid ""
 "An image of your passport is required for<br>registration. Use the camera to "
 "capture or<br>choose an existing image from your device."
 msgstr ""
-"Passport or ID is required for the registration. Please take a photo of your "
-"passport or ID using the camera function on your device. Alternatively, you "
-"may upload a photo of the passport or ID."
+"Use the camera to capture or choose an<br>existing image from your device."
 
 #: guest_facing/registration/templates/registration/mobile/ocr.html:60
 #: guest_facing/registration/templates/registration/mobile/ocr.html:86
 msgid "Retake"
-msgstr "Retry"
+msgstr "Retake"
 
 #: guest_facing/registration/utils.py:78
 #, python-format
 msgid ""
 "Pre-Check-In Complete - %(hotel_name)s - Reservation #%(reservation_no)s"
 msgstr ""
-"Registration Complete - %(hotel_name)s - Reservation #%(reservation_no)s"
+"Registration complete - %(hotel_name)s - Reservation #%(reservation_no)s"
