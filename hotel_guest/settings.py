@@ -35,6 +35,11 @@ INSTALLED_APPS = [
     'guest_facing.check_out',
     'guest_facing.chat',
     'guest_facing.core',
+    'captcha',
+    'django_user_agents',
+    'django_countries',
+    'widget_tweaks',
+    'compressor',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,11 +48,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'compressor',
-    'widget_tweaks',
-    'django_countries',
-    'django_user_agents',
-    'captcha',
 ]
 
 MIDDLEWARE = [
