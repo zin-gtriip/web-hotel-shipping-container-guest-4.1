@@ -69,7 +69,7 @@ class CheckOutLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTem
         if self.request.session.get('app', 0) and self.request.session.get('check_out', {}).get('preload', {}).get('last_name', '') and (form and not form.is_bound):
             context['skip_last_name'] = True
         return context
-    
+
 
 class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, RequestFormKwargsMixin, UpdateView):
     template_name           = 'check_out/desktop/bill.html'
