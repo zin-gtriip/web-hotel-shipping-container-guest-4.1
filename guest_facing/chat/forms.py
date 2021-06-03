@@ -1,9 +1,11 @@
-from django                     import forms
-from django.conf                import settings
-from django.utils.translation   import gettext, gettext_lazy as _
-from pubnub.pnconfiguration     import PNConfiguration
-from pubnub.pubnub              import PubNub
-from .                          import utils
+from django                                         import forms
+from django.conf                                    import settings
+from django.utils.translation                       import gettext, gettext_lazy as _
+from pubnub.pnconfiguration                         import PNConfiguration
+from pubnub.pubnub                                  import PubNub
+from pubnub.models.consumer.objects_v2.memberships  import PNChannelMembership
+from pubnub.endpoints.objects_v2.objects_endpoint   import ChannelIncludeEndpoint
+from .                                              import utils
 
 
 class ChatChannelForm(forms.Form):
@@ -36,6 +38,15 @@ class ChatChannelForm(forms.Form):
         pnconfig.uuid = name
         pubnub = PubNub(pnconfig)
         pubnub.add_channel_to_channel_group().channels([channel]).channel_group(channel_group).sync()
+        # check for membership
+        response = pubnub.get_memberships().include_custom(True).include_channel(ChannelIncludeEndpoint.CHANNEL_WITH_CUSTOM).uuid(settings.CHAT_UUID).sync()
+        if response.status.status_code == 200:
+            memberships = response.result.data
+            membership = next((data for data in memberships if data.get('channel', {}).get('id', '') == channel), {})
+            token = membership.get('custom', {}).get('lastReadTimetoken')
+            if not membership or not token: # set token
+                new_token = {'lastReadTimetoken': 946684800000} # 2000-01-01 00:00:00, 0 is not working
+                pubnub.set_memberships().uuid(settings.CHAT_UUID).channel_memberships([PNChannelMembership.channel_with_custom(channel, new_token)]).include_custom(True).sync()
         # assign to request
         self.request.session['chat'] = {}
         self.request.session['chat']['channel_group'] = channel_group
@@ -54,10 +65,20 @@ class ChatMessageForm(forms.Form):
     def save(self):
         channel = self.request.session.get('chat', {}).get('channel')
         message = self.cleaned_data.get('message')
-        # initiate pubnub and send
+        # initiate pubnub
         pnconfig = PNConfiguration()
         pnconfig.subscribe_key = settings.CHAT_SUB_KEY
         pnconfig.publish_key = settings.CHAT_PUB_KEY
         pnconfig.uuid = self.request.session.get('chat', {}).get('uuid')
         pubnub = PubNub(pnconfig)
+        # send message
         pubnub.publish().channel(channel).message(message).sync()
+        # check for membership
+        response = pubnub.get_memberships().include_custom(True).include_channel(ChannelIncludeEndpoint.CHANNEL_WITH_CUSTOM).uuid(settings.CHAT_UUID).sync()
+        if response.status.status_code == 200:
+            memberships = response.result.data
+            membership = next((data for data in memberships if data.get('channel', {}).get('id', '') == channel), {})
+            token = membership.get('custom', {}).get('lastReadTimetoken')
+            if not membership or not token: # re-set token, FIXME set membership for first time is not reflected therefore re-set
+                new_token = {'lastReadTimetoken': 946684800000} # 2000-01-01 00:00:00, 0 is not working
+                pubnub.set_memberships().uuid(settings.CHAT_UUID).channel_memberships([PNChannelMembership.channel_with_custom(channel, new_token)]).include_custom(True).sync()
