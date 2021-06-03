@@ -39,20 +39,17 @@ $('#form-message').submit(function() {
         return;
     }
     var data = $(this).serializeArray();
+    $('#id_message').val('');
 
     $.ajax({
         url: '/chat/message/',
         data: data,
         type: 'POST',
         success: function(result) {
-            if ((result.status || 'error') == 'success') {
-                $('#id_message').val('');
-            } else {
-                toastAlert(result.errors || gettext('Unknown Error'));
+            if ((result.status || 'error') != 'success') {
                 console.error('Error client: '+ error);
             }
         }, error: function(xhr, text, error) {
-            toastAlert(error || gettext('Unknown Error'));
             console.error('Error client: '+ error);
         }
     });
