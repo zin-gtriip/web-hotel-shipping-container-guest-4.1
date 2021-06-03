@@ -94,11 +94,7 @@
                         {% endif %}
                     </div>
                     <div class="modal-footer">
-                        {% if request.session.app and error == '6001' %}
-                            <button type="button" class="btn btn-primary mx-auto" id="btn-ok" data-dismiss="modal">{% trans 'OK' %}</button>
-                        {% else %}
-                            <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'OK' %}</button>
-                        {% endif %}
+                        <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'OK' %}</button>
                     </div>
                 </div>
             </div>

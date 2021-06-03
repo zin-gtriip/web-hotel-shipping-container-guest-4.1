@@ -81,11 +81,6 @@ $('#btn-back').click(function() {
 });
 
 
-$('#btn-ok').click(function() {
-    try { window.flutter_inappwebview.callHandler('closeWebEmbedded', true); } catch(error) {} // send message to app
-});
-
-
 $('#id_last_name').focusout(function() {
     if ($(this).val()) {
         gaTag('login_last_name_entered', 'check_out');// google analytics
