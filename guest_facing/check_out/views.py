@@ -78,16 +78,17 @@ class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, Request
 
     def gateway_get(self, reservations_no):
         data = {'pmsNos': reservations_no}
-        response = gateways.guest_endpoint('post', '/billCheckOut', self.request.session.get('property_id', ''), data)
-        return response.get('data', {}).get('data', {})
+        return gateways.guest_endpoint('post', '/billCheckOut', self.request.session.get('property_id', ''), data)
 
     def get_object(self, queryset=None):
         reservation_no = self.kwargs.get('reservation_no', None)
         reservations_no = [reservation_no]
         if reservation_no == 'all':
             reservations_no = [resv['pmsNo'] for resv in self.request.session['check_out'].get('bills', []) if resv.get('pmsNo', '')]
-        obj = self.gateway_get(reservations_no)
+        response = self.gateway_get(reservations_no)
+        obj = response.get('data', {}).get('data', {})
         obj['id'] = reservation_no # set `reservation_no` as unique identifier
+        obj['show_bill'] = False if response.get('statusCode', '') == '6004' else True
         return obj
 
     def get_context_data(self, *args, **kwargs):

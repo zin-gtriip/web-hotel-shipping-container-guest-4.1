@@ -52,191 +52,193 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mb-4">
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                {% if object.reservationInfo|length > 1 %}
-                                    <div class="collapse-container">
-                                        {% for reservation in object.reservationInfo %}
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <a class="collapsed" data-toggle="collapse" href="#collapse-{{ forloop.counter0 }}" role="button" aria-expanded="false" aria-controls="collapse-{{ forloop.counter0 }}">
-                                                        <div class="collapse-header">
-                                                            {{ reservation.firstName }} {{ reservation.lastName }}
-                                                            <i class="fas fa-angle-down rotate-icon"></i>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <div class="collapse" id="collapse-{{ forloop.counter0 }}">
-                                                    <div class="card-body">
-                                                        <div class="row mb-3">
-                                                            <div class="col-lg-12">
-                                                                <div class="row">
-                                                                    <div class="col-lg-12">
-                                                                        <span id="reservation-no">{% trans 'Reservation No:' %} {{ reservation.pmsNo }}</span>
+                {% if object.show_bill %}
+                    <div class="row mb-4">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    {% if object.reservationInfo|length > 1 %}
+                                        <div class="collapse-container">
+                                            {% for reservation in object.reservationInfo %}
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <a class="collapsed" data-toggle="collapse" href="#collapse-{{ forloop.counter0 }}" role="button" aria-expanded="false" aria-controls="collapse-{{ forloop.counter0 }}">
+                                                            <div class="collapse-header">
+                                                                {{ reservation.firstName }} {{ reservation.lastName }}
+                                                                <i class="fas fa-angle-down rotate-icon"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="collapse" id="collapse-{{ forloop.counter0 }}">
+                                                        <div class="card-body">
+                                                            <div class="row mb-3">
+                                                                <div class="col-lg-12">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <span id="reservation-no">{% trans 'Reservation No:' %} {{ reservation.pmsNo }}</span>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-lg-12">
-                                                                        <span id="room-no">{% trans 'Room No:' %} {{ reservation.roomNo }}</span>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <span id="room-no">{% trans 'Room No:' %} {{ reservation.roomNo }}</span>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-lg-12">
-                                                                        <span id="arrival-date">{% trans 'Arrival Date:' %} {{ reservation.arrivalDate }}</span>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <span id="arrival-date">{% trans 'Arrival Date:' %} {{ reservation.arrivalDate }}</span>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-lg-12">
-                                                                        <span id="departure-date">{% trans 'Departure Date:' %} {{ reservation.departureDate }}</span>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <span id="departure-date">{% trans 'Departure Date:' %} {{ reservation.departureDate }}</span>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="row mb-4">
-                                                            <div class="col-lg-12">
-                                                                <div class="row">
-                                                                    <div class="col-lg-12">
-                                                                        <span id="gst-no">{% trans 'GST Reg. No:' %} {{ gst_no }}</span>
+                                                            <div class="row mb-4">
+                                                                <div class="col-lg-12">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <span id="gst-no">{% trans 'GST Reg. No:' %} {{ gst_no }}</span>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-lg-12">
-                                                                        <span id="gst-no">{% trans 'Business Reg. No:' %} {{ business_no }}</span>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <span id="gst-no">{% trans 'Business Reg. No:' %} {{ business_no }}</span>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <div class="table-responsive">
-                                                                    <table class="table table-sm table-borderless mb-0">
-                                                                            <th class="text-uppercase font-weight-normal">{% trans 'Date' %}</th>
-                                                                            <th class="text-uppercase font-weight-normal">{% trans 'Description' %}</th>
-                                                                            <th class="text-uppercase font-weight-normal text-right">{% trans 'Amount' %}</th>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            {% for item in reservation.items %}
-                                                                                <tr>
-                                                                                    <td>{{ item.date }}</td>
-                                                                                    <td>{{ item.itemName }}</td>
-                                                                                    <td class="text-right">{{ item.amount|floatformat:2|intcomma }}</td>
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-sm table-borderless mb-0">
+                                                                                <th class="text-uppercase font-weight-normal">{% trans 'Date' %}</th>
+                                                                                <th class="text-uppercase font-weight-normal">{% trans 'Description' %}</th>
+                                                                                <th class="text-uppercase font-weight-normal text-right">{% trans 'Amount' %}</th>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                {% for item in reservation.items %}
+                                                                                    <tr>
+                                                                                        <td>{{ item.date }}</td>
+                                                                                        <td>{{ item.itemName }}</td>
+                                                                                        <td class="text-right">{{ item.amount|floatformat:2|intcomma }}</td>
+                                                                                    </tr>
+                                                                                {% endfor %}
+                                                                            </tbody>
+                                                                            <tfoot>
+                                                                                <tr class="border-top-2">
+                                                                                    <td class="text-right text-uppercase" colspan="2">{% trans 'Balance Due' %}</td>
+                                                                                    <td class="text-right pr-0">{{ currency_symbol }} {{ reservation.grandTotal|floatformat:2|intcomma }}</td>
                                                                                 </tr>
-                                                                            {% endfor %}
-                                                                        </tbody>
-                                                                        <tfoot>
-                                                                            <tr class="border-top-2">
-                                                                                <td class="text-right text-uppercase" colspan="2">{% trans 'Balance Due' %}</td>
-                                                                                <td class="text-right pr-0">{{ currency_symbol }} {{ reservation.grandTotal|floatformat:2|intcomma }}</td>
-                                                                            </tr>
-                                                                        </tfoot>
-                                                                    </table>
+                                                                            </tfoot>
+                                                                        </table>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {% for reservation in object.reservationInfo %}
+                                            <div class="row mb-3">
+                                                <div class="col-lg-12">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <span id="guest-name font-weight-bold">{{ reservation.firstName }} {{ reservation.lastName }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <span id="reservation-no">{% trans 'Reservation No:' %} {{ reservation.pmsNo }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <span id="room-no">{% trans 'Room No:' %} {{ reservation.roomNo }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <span id="arrival-date">{% trans 'Arrival Date:' %} {{ reservation.arrivalDate }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <span id="departure-date">{% trans 'Departure Date:' %} {{ reservation.departureDate }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-lg-12">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <span id="gst-no">{% trans 'GST Reg. No:' %} {{ gst_no }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <span id="gst-no">{% trans 'Business Reg. No:' %} {{ business_no }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-sm table-borderless mb-0">
+                                                            <thead>
+                                                                <th class="text-uppercase font-weight-normal">{% trans 'Date' %}</th>
+                                                                <th class="text-uppercase font-weight-normal">{% trans 'Description' %}</th>
+                                                                <th class="text-uppercase font-weight-normal text-right">{% trans 'Amount' %}</th>
+                                                            </thead>
+                                                            <tbody>
+                                                                {% for item in reservation.items %}
+                                                                    <tr>
+                                                                        <td>{{ item.date }}</td>
+                                                                        <td>{{ item.itemName }}</td>
+                                                                        <td class="text-right">{{ item.amount|floatformat:2|intcomma }}</td>
+                                                                    </tr>
+                                                                {% endfor %}
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr class="border-top-2">
+                                                                    <td class="text-right text-uppercase" colspan="2">{% trans 'Balance Due' %}</td>
+                                                                    <td class="text-right">{{ currency_symbol }} {{ reservation.grandTotal|floatformat:2|intcomma }}</td>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
                                                     </div>
                                                 </div>
                                             </div>
                                         {% endfor %}
-                                    </div>
-                                {% else %}
-                                    {% for reservation in object.reservationInfo %}
-                                        <div class="row mb-3">
-                                            <div class="col-lg-12">
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <span id="guest-name font-weight-bold">{{ reservation.firstName }} {{ reservation.lastName }}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <span id="reservation-no">{% trans 'Reservation No:' %} {{ reservation.pmsNo }}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <span id="room-no">{% trans 'Room No:' %} {{ reservation.roomNo }}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <span id="arrival-date">{% trans 'Arrival Date:' %} {{ reservation.arrivalDate }}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <span id="departure-date">{% trans 'Departure Date:' %} {{ reservation.departureDate }}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <div class="col-lg-12">
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <span id="gst-no">{% trans 'GST Reg. No:' %} {{ gst_no }}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <span id="gst-no">{% trans 'Business Reg. No:' %} {{ business_no }}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="table-responsive">
-                                                    <table class="table table-sm table-borderless mb-0">
-                                                        <thead>
-                                                            <th class="text-uppercase font-weight-normal">{% trans 'Date' %}</th>
-                                                            <th class="text-uppercase font-weight-normal">{% trans 'Description' %}</th>
-                                                            <th class="text-uppercase font-weight-normal text-right">{% trans 'Amount' %}</th>
-                                                        </thead>
-                                                        <tbody>
-                                                            {% for item in reservation.items %}
-                                                                <tr>
-                                                                    <td>{{ item.date }}</td>
-                                                                    <td>{{ item.itemName }}</td>
-                                                                    <td class="text-right">{{ item.amount|floatformat:2|intcomma }}</td>
-                                                                </tr>
-                                                            {% endfor %}
-                                                        </tbody>
-                                                        <tfoot>
-                                                            <tr class="border-top-2">
-                                                                <td class="text-right text-uppercase" colspan="2">{% trans 'Balance Due' %}</td>
-                                                                <td class="text-right">{{ currency_symbol }} {{ reservation.grandTotal|floatformat:2|intcomma }}</td>
-                                                            </tr>
-                                                        </tfoot>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    {% endfor %}
-                                {% endif %}
+                                    {% endif %}
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="table-responsive">
-                                    <table class="table table-sm table-borderless">
-                                        <tfoot>
-                                            <tr class="border-top-2">
-                                                <td class="text-right">{% trans 'GST at 7%'%}</td>
-                                                <td class="text-right">{{ currency_symbol }} {{ object.totalTax|default:0|floatformat:2|intcomma }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="font-weight-bold text-right">{% trans 'Total Amount Payable' %}</td>
-                                                <td class="font-weight-bold text-right">{{ currency_symbol }} {{ object.totalAmount|floatformat:2|intcomma }}</td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-sm table-borderless">
+                                            <tfoot>
+                                                <tr class="border-top-2">
+                                                    <td class="text-right">{% trans 'GST at 7%'%}</td>
+                                                    <td class="text-right">{{ currency_symbol }} {{ object.totalTax|default:0|floatformat:2|intcomma }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold text-right">{% trans 'Total Amount Payable' %}</td>
+                                                    <td class="font-weight-bold text-right">{{ currency_symbol }} {{ object.totalAmount|floatformat:2|intcomma }}</td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                {% endif %}
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="row mb-3">
@@ -325,6 +327,24 @@
             </div>
         </div>
     {% endfor %}
+    <!-- ShowBill Modal -->
+    {% if not show_bill %}
+        <div class="modal fade auto-show" id="show-bill-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h4 class="modal-title mx-auto">{% trans 'Check Out Error' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {% blocktrans %}Please kindly proceed to the hotel main lobby to checkout. Thank you.{% endblocktrans %}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary mx-auto" id="btn-ok" data-dismiss="modal">{% trans 'OK' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock wrapper %}
 
 {% block data_js %}
