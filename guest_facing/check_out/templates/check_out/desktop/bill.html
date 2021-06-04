@@ -328,7 +328,7 @@
         </div>
     {% endfor %}
     <!-- ShowBill Modal -->
-    {% if not show_bill %}
+    {% if not object.show_bill %}
         <div class="modal fade auto-show" id="show-bill-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
