@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-03 17:21+0800\n"
+"POT-Creation-Date: 2021-06-04 19:11+0700\n"
 "PO-Revision-Date: 2021-06-01 18:38+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -28,7 +28,7 @@ msgid "Arrival Date"
 msgstr "入住日期"
 
 #: guest_facing/registration/forms.py:17 guest_facing/registration/forms.py:170
-#: guest_facing/registration/templates/registration/desktop/complete.html:46
+#: guest_facing/registration/templates/registration/desktop/complete.html:49
 #: guest_facing/registration/templates/registration/desktop/login.html:51
 #: guest_facing/registration/templates/registration/email/complete.html:247
 #: guest_facing/registration/templates/registration/mobile/login.html:63
@@ -189,7 +189,7 @@ msgid "Your session is expired"
 msgstr "您的使用时间已过期。"
 
 #: guest_facing/registration/templates/registration/base.html:81
-#: guest_facing/registration/templates/registration/desktop/complete.html:109
+#: guest_facing/registration/templates/registration/desktop/complete.html:112
 msgid "Ok"
 msgstr "确认"
 
@@ -203,24 +203,36 @@ msgid ""
 "only)"
 msgstr "以下是您的预订详情。<br>（显示的图像仅供参考。）"
 
-#: guest_facing/registration/templates/registration/desktop/complete.html:44
+#: guest_facing/registration/templates/registration/desktop/complete.html:41
+#: guest_facing/registration/templates/registration/desktop/reservation.html:34
+#: guest_facing/registration/templates/registration/email/complete.html:209
+msgid "Adults"
+msgstr "成人"
+
+#: guest_facing/registration/templates/registration/desktop/complete.html:41
+#: guest_facing/registration/templates/registration/desktop/reservation.html:34
+#: guest_facing/registration/templates/registration/email/complete.html:209
+msgid "Children"
+msgstr "儿童"
+
+#: guest_facing/registration/templates/registration/desktop/complete.html:47
 #: guest_facing/registration/templates/registration/email/complete.html:233
 msgid "Reservation No"
 msgstr "预订号码"
 
-#: guest_facing/registration/templates/registration/desktop/complete.html:50
-#: guest_facing/registration/templates/registration/desktop/reservation.html:41
+#: guest_facing/registration/templates/registration/desktop/complete.html:53
+#: guest_facing/registration/templates/registration/desktop/reservation.html:44
 #: guest_facing/registration/templates/registration/email/complete.html:235
 msgid "Check-in Date"
 msgstr "入住日期"
 
-#: guest_facing/registration/templates/registration/desktop/complete.html:52
-#: guest_facing/registration/templates/registration/desktop/reservation.html:45
+#: guest_facing/registration/templates/registration/desktop/complete.html:55
+#: guest_facing/registration/templates/registration/desktop/reservation.html:48
 #: guest_facing/registration/templates/registration/email/complete.html:249
 msgid "Check-out Date"
 msgstr "退房日期"
 
-#: guest_facing/registration/templates/registration/desktop/complete.html:64
+#: guest_facing/registration/templates/registration/desktop/complete.html:67
 msgid ""
 "\n"
 "                                Please proceed to the front office to "
@@ -237,13 +249,13 @@ msgstr ""
 "                                或者，您可前往前台领取您的房间钥匙。\n"
 "                            "
 
-#: guest_facing/registration/templates/registration/desktop/complete.html:74
+#: guest_facing/registration/templates/registration/desktop/complete.html:77
 msgid "Next Reservation"
 msgstr "下一个预订"
 
-#: guest_facing/registration/templates/registration/desktop/complete.html:83
-#: guest_facing/registration/templates/registration/desktop/complete.html:87
-#: guest_facing/registration/templates/registration/desktop/complete.html:91
+#: guest_facing/registration/templates/registration/desktop/complete.html:86
+#: guest_facing/registration/templates/registration/desktop/complete.html:90
+#: guest_facing/registration/templates/registration/desktop/complete.html:94
 msgid "Get The App"
 msgstr "下载应用程式"
 
@@ -302,7 +314,7 @@ msgstr "保存并去到住客名单"
 #: guest_facing/registration/templates/registration/desktop/guest_list.html:89
 #: guest_facing/registration/templates/registration/desktop/login.html:90
 #: guest_facing/registration/templates/registration/desktop/other_info.html:136
-#: guest_facing/registration/templates/registration/desktop/reservation.html:69
+#: guest_facing/registration/templates/registration/desktop/reservation.html:72
 #: guest_facing/registration/templates/registration/mobile/detail.html:246
 #: guest_facing/registration/templates/registration/mobile/detail.html:265
 #: guest_facing/registration/templates/registration/mobile/detail.html:284
@@ -335,7 +347,7 @@ msgstr "添加住客"
 #: guest_facing/registration/templates/registration/desktop/login.html:68
 #: guest_facing/registration/templates/registration/desktop/ocr.html:84
 #: guest_facing/registration/templates/registration/desktop/other_info.html:122
-#: guest_facing/registration/templates/registration/desktop/reservation.html:55
+#: guest_facing/registration/templates/registration/desktop/reservation.html:58
 #: guest_facing/registration/templates/registration/mobile/login.html:78
 #: guest_facing/registration/templates/registration/mobile/login.html:81
 #: guest_facing/registration/templates/registration/mobile/login.html:84
@@ -447,7 +459,7 @@ msgstr "图片无效"
 
 #: guest_facing/registration/templates/registration/desktop/ocr.html:106
 #: guest_facing/registration/templates/registration/desktop/other_info.html:142
-#: guest_facing/registration/templates/registration/desktop/reservation.html:75
+#: guest_facing/registration/templates/registration/desktop/reservation.html:78
 #: guest_facing/registration/templates/registration/mobile/ocr.html:114
 msgid "Close"
 msgstr "关闭"
@@ -569,7 +581,6 @@ msgid "Retake"
 msgstr "重拍"
 
 #: guest_facing/registration/utils.py:78
-#, python-format
-msgid ""
-"Pre-Check-In Complete - %(hotel_name)s - Reservation #%(reservation_no)s"
-msgstr "完成登记 - %(hotel_name)s - 预订号码 #%(reservation_no)s"
+#, fuzzy, python-format
+msgid "Registration Complete - %(hotel_name)s - Reservation #%(pms_no)s"
+msgstr "完成登记 - %(hotel_name)s - 预订号码 #%(pms_no)s"
