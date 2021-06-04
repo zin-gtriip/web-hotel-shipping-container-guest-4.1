@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-12 12:01+0700\n"
-"PO-Revision-Date: 2021-05-25 08:42+0800\n"
+"POT-Creation-Date: 2021-06-03 17:21+0800\n"
+"PO-Revision-Date: 2021-06-01 18:38+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -36,13 +36,13 @@ msgid "Last Name"
 msgstr "Last name"
 
 #: guest_facing/registration/forms.py:38 guest_facing/registration/forms.py:40
-#: guest_facing/registration/forms.py:42 guest_facing/registration/forms.py:220
-#: guest_facing/registration/forms.py:222
-#: guest_facing/registration/forms.py:224
-#: guest_facing/registration/forms.py:226
-#: guest_facing/registration/forms.py:228
-#: guest_facing/registration/forms.py:374
-#: guest_facing/registration/forms.py:376
+#: guest_facing/registration/forms.py:42 guest_facing/registration/forms.py:221
+#: guest_facing/registration/forms.py:223
+#: guest_facing/registration/forms.py:225
+#: guest_facing/registration/forms.py:227
+#: guest_facing/registration/forms.py:229
+#: guest_facing/registration/forms.py:378
+#: guest_facing/registration/forms.py:380
 msgid "Enter the required information"
 msgstr "Enter required information"
 
@@ -63,8 +63,8 @@ msgid "You have exceeded the number of guests."
 msgstr "You have exceeded the number of guests."
 
 #: guest_facing/registration/forms.py:165
-#: guest_facing/registration/forms.py:318
-#: guest_facing/registration/forms.py:408
+#: guest_facing/registration/forms.py:321
+#: guest_facing/registration/forms.py:412
 msgid "Unknown error"
 msgstr "Unknown error"
 
@@ -103,67 +103,63 @@ msgstr "You have exceeded the number of adults."
 msgid "You need to upload passport image."
 msgstr "You need to upload a passport image."
 
-#: guest_facing/registration/forms.py:285
+#: guest_facing/registration/forms.py:289
 msgid "Incorrect API key"
 msgstr "Incorrect API key"
-
-#: guest_facing/registration/forms.py:286
-msgid "Invalid passport image."
-msgstr "Passport image is invalid."
-
-#: guest_facing/registration/forms.py:287
-msgid "Invalid passport image. MRZ Code is invalid."
-msgstr ""
-"Please ensure the MRZ code at the bottom of the passport can be captured."
-
-#: guest_facing/registration/forms.py:288
-msgid ""
-"Invalid passport image. Please make sure your passport page area is not "
-"blocked."
-msgstr ""
-"Please ensure the entire passport page can be captured within the frame."
-
-#: guest_facing/registration/forms.py:289
-msgid "Image file is too big."
-msgstr "The image file size is too big (>2 MB)."
 
 #: guest_facing/registration/forms.py:290
 msgid "Error scanning image. Please try again later."
 msgstr "Unable to process image. Please try again later."
 
 #: guest_facing/registration/forms.py:291
+msgid "Image file is too big."
+msgstr "The image file size is too big (>2 MB)."
+
+#: guest_facing/registration/forms.py:292
+msgid "Invalid passport image. MRZ Code is invalid."
+msgstr ""
+"Please ensure the MRZ code at the bottom of the passport can be captured."
+
+#: guest_facing/registration/forms.py:293
 msgid "Invalid NRIC image."
 msgstr "ID image is invalid."
 
-#: guest_facing/registration/forms.py:308
+#: guest_facing/registration/forms.py:294
+msgid ""
+"Invalid passport image. Please make sure your passport page area is not "
+"blocked."
+msgstr ""
+"Please ensure the entire passport page can be captured within the frame."
+
+#: guest_facing/registration/forms.py:311
 msgid "No image file selected."
 msgstr "No image file selected."
 
-#: guest_facing/registration/forms.py:316
+#: guest_facing/registration/forms.py:319
 msgid ""
 "Your passport has expired, please capture / upload a valid passport photo to "
 "proceed"
 msgstr ""
 "Your passport has expired. Please submit a valid passport photo to proceed."
 
-#: guest_facing/registration/forms.py:352
+#: guest_facing/registration/forms.py:356
 #: guest_facing/registration/templates/registration/desktop/other_info.html:35
 msgid "Time of Arrival"
 msgstr "Time of arrival"
 
-#: guest_facing/registration/forms.py:353
+#: guest_facing/registration/forms.py:357
 msgid "Special Requests"
 msgstr "Special requests"
 
-#: guest_facing/registration/forms.py:354
+#: guest_facing/registration/forms.py:358
 msgid "Email"
 msgstr "Email address"
 
-#: guest_facing/registration/forms.py:355
+#: guest_facing/registration/forms.py:359
 msgid "Is Subscribe"
 msgstr "Subscribe"
 
-#: guest_facing/registration/forms.py:420
+#: guest_facing/registration/forms.py:424
 msgid "There is no reservation can be done for registration"
 msgstr "This reservation has completed registration or checked-in already."
 
@@ -256,7 +252,7 @@ msgstr "Next reservation"
 #: guest_facing/registration/templates/registration/desktop/complete.html:87
 #: guest_facing/registration/templates/registration/desktop/complete.html:91
 msgid "Get The App"
-msgstr "Download app"
+msgstr "Get the app"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:29
 #: guest_facing/registration/templates/registration/mobile/detail.html:29
@@ -303,7 +299,7 @@ msgstr "Passport/ID submitted"
 #: guest_facing/registration/templates/registration/desktop/detail.html:212
 #: guest_facing/registration/templates/registration/mobile/detail.html:213
 msgid "Submit Passport/NRIC"
-msgstr "Submit passport/ID image"
+msgstr "Submit passport/ID"
 
 #: guest_facing/registration/templates/registration/desktop/detail.html:220
 #: guest_facing/registration/templates/registration/desktop/detail.html:228
@@ -340,8 +336,7 @@ msgid ""
 "The following guests are found under your<br>reservation. Please verify each "
 "of the guest's<br>details to proceed."
 msgstr ""
-"The following guests have been registered in your reservation.<br>Please "
-"verify the details for each of the guest(s) below to proceed."
+"Please verify the details for each of<br>the guest(s) below to proceed."
 
 #: guest_facing/registration/templates/registration/desktop/guest_list.html:67
 msgid "Add Guest"
@@ -550,9 +545,8 @@ msgid ""
 "download our mobile app so you can head straight to your room using the "
 "digital key."
 msgstr ""
-"Please download our mobile app and use the Digital Key to<br>access your "
-"room. Alternatively, you may approach the<br>front office to collect your "
-"key."
+"Please download our mobile app and use the Digital Key to access your room. "
+"Alternatively, you may approach the front office to collect your key."
 
 #: guest_facing/registration/templates/registration/mobile/login.html:38
 msgid "Please enter your<br>Last Name"

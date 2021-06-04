@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-12 12:01+0700\n"
-"PO-Revision-Date: 2021-05-25 08:37+0800\n"
+"POT-Creation-Date: 2021-06-03 17:21+0800\n"
+"PO-Revision-Date: 2021-06-04 09:54+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -44,7 +44,7 @@ msgid "Unknown error"
 msgstr "Unknown error"
 
 #: guest_facing/check_out/templates/check_out/base.html:5
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:265
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:267
 msgid "Check Out"
 msgstr "Check-out"
 
@@ -56,71 +56,71 @@ msgstr "Payment & check-out"
 msgid "Select which of the guest to view the bill folio."
 msgstr "Select guest to review individual bill:"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:77
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:154
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:78
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:155
 msgid "Reservation No:"
 msgstr "Reservation no.:"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:82
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:159
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:83
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:160
 msgid "Room No:"
 msgstr "Room no.:"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:87
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:164
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:88
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:165
 msgid "Arrival Date:"
 msgstr "Check-in date:"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:92
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:169
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:93
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:170
 msgid "Departure Date:"
 msgstr "Check-out date:"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:101
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:178
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:102
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:179
 msgid "GST Reg. No:"
 msgstr "GST reg. no.:"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:106
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:183
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:107
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:184
 msgid "Business Reg. No:"
 msgstr "Business reg. no.:"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:115
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:193
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:116
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:194
 msgid "Date"
 msgstr "Date"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:116
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:194
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:117
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:195
 msgid "Description"
 msgstr "Description"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:117
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:195
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:118
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:196
 msgid "Amount"
 msgstr "Amount"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:130
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:208
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:131
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:209
 msgid "Balance Due"
 msgstr "Balance due"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:226
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:227
 #, python-format
 msgid "GST at 7%%"
 msgstr "GST at 7%%"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:230
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:231
 msgid "Total Amount Payable"
 msgstr "Total amount payable"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:244
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:246
 msgid ""
 "This is a computer-generated preliminary bill folio and not a tax invoice."
 msgstr "This is a computer-generated preliminary bill and not a tax invoice."
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:249
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:251
 msgid ""
 "I agree that my liability for this bill is not waived and agree to be held "
 "personally liable in the event that the indicated person, company or "
@@ -130,13 +130,13 @@ msgstr ""
 "personally if the indicated person, company, or association fails to pay for "
 "any part of the full amount of the charges."
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:254
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:256
 msgid "Outstanding balance will be charged to the credit card registered."
 msgstr ""
 "Outstanding balance will be deducted from the credit card you provided "
 "during check-in."
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:273
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:275
 msgid ""
 "Unable to proceed with some of the guest's check-out. Please check-out at "
 "the Front Desk."
@@ -144,35 +144,43 @@ msgstr ""
 "Unable to check-out some of the guest. Please check-out at the front desk "
 "instead."
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:275
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:277
 msgid ""
 "Unable to proceed with this guest's check-out. Please check-out at the Front "
 "Desk."
 msgstr ""
 "Unable to check-out this guest. Please check-out at the front desk instead."
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:294
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:296
 #: guest_facing/check_out/templates/check_out/desktop/complete.html:15
 msgid "Check Out Successful"
 msgstr "Check-out successful"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:296
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:298
 msgid "Error"
 msgstr "Error"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:304
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:322
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:306
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:324
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:342
 #: guest_facing/check_out/templates/check_out/desktop/login.html:89
-#: guest_facing/check_out/templates/check_out/mobile/login.html:98
-#: guest_facing/check_out/templates/check_out/mobile/login.html:100
+#: guest_facing/check_out/templates/check_out/mobile/login.html:97
 msgid "OK"
 msgstr "OK"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:316
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:318
 #: guest_facing/check_out/templates/check_out/desktop/login.html:73
 #: guest_facing/check_out/templates/check_out/mobile/login.html:81
 msgid "Invalid Input"
 msgstr "Incorrect input"
+
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:336
+msgid "Check Out Error"
+msgstr "Check-out error"
+
+#: guest_facing/check_out/templates/check_out/desktop/bill.html:339
+msgid "Please kindly proceed to the hotel main lobby to checkout. Thank you."
+msgstr "Please proceed to the hotel front desk to check out. Thank you."
 
 #: guest_facing/check_out/templates/check_out/desktop/complete.html:20
 msgid "We hope you enjoy your stay with us,<br>and well see you again soon!"
@@ -238,7 +246,7 @@ msgstr ""
 "To verify your reservation, please enter<br>the last name used in the "
 "reservation."
 
-#: guest_facing/check_out/views.py:103
+#: guest_facing/check_out/views.py:104
 msgid ""
 "All Guests have been successfully checked out.\n"
 "\n"
@@ -247,7 +255,7 @@ msgstr ""
 "We hope you had a pleasant stay with us, and look forward to seeing you "
 "again!"
 
-#: guest_facing/check_out/views.py:109
+#: guest_facing/check_out/views.py:110
 #, python-format
 msgid ""
 "We have checked-out the guest:\n"

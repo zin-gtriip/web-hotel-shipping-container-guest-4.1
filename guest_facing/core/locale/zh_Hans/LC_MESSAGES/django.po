@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-12 12:01+0700\n"
+"POT-Creation-Date: 2021-06-03 17:21+0800\n"
 "PO-Revision-Date: 2021-05-21 16:29+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -22,11 +22,12 @@ msgstr ""
 msgid "No property selected."
 msgstr "未选择酒店。"
 
-#: guest_facing/core/gateways.py:34 guest_facing/core/gateways.py:61
+#: guest_facing/core/gateways.py:25 guest_facing/core/gateways.py:55
+#: guest_facing/core/gateways.py:85
 msgid "Unable to connect to server, please try again."
 msgstr "无法连接到服务器，请重试。"
 
-#: guest_facing/core/gateways.py:84
+#: guest_facing/core/gateways.py:108
 msgid "Error connecting to server"
 msgstr "连接服务器故障。"
 
@@ -35,7 +36,8 @@ msgid "Oops! We couldn't find the page you're looking for"
 msgstr "未找到网页"
 
 #: guest_facing/core/templates/404.html:20
-msgid "It looks like that page doesn't exit. Please check the URL and try again."
+msgid ""
+"It looks like that page doesn't exit. Please check the URL and try again."
 msgstr "我们搜索不到您要查找的页面。 请检查网址，然后重试。"
 
 #: guest_facing/core/templates/core/desktop/property.html:5
