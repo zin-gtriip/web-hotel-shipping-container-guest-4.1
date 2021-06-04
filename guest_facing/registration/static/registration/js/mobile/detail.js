@@ -38,7 +38,12 @@ $('#btn-back').click(function() {
 
 
 $('#btn-save').click(function() {
-    gaTag('detail_guest_submitted', 'registration'); // google analytics
+    var isMainGuest = JSON.parse($('#is-main-guest').text() || '""');
+    if (isMainGuest) {
+        gaTag('detail_mainguest_submitted', 'registration'); // google analytics
+    } else {
+        gaTag('detail_sharerguest_submitted', 'registration'); // google analytics
+    }
 });
 
 

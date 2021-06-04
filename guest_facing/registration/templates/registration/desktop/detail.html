@@ -258,6 +258,7 @@
 
 {% block data_js %}
     {{ block.super }}
+    {{ request.session.registration.detail.isMainGuest|json_script:'is-main-guest' }}
     {{ ga_ocr_success|json_script:'ga-ocr-success' }}
 {% endblock data_js %}
 
