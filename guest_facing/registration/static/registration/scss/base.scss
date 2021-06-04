@@ -96,10 +96,11 @@ $reservation-radius: 10px;
             align-items: center;
         }
 
-        .room-type {
+        .room-info {
+            display: block;
             min-width: 130px;
-            height: 34px;
-            padding: 0 10px;
+            height: 45px;
+            padding: 5px 20px;
             background-color: rgba(#000, .6);
             border-top-left-radius: $reservation-radius;
             border-bottom-right-radius: $reservation-radius;
