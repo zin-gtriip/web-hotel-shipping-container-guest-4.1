@@ -1,5 +1,12 @@
 $('.datepicker').datepicker();
-gaTag('detail_guest_display', 'registration'); // google analytics
+var isMainGuest = JSON.parse($('#is-main-guest').text() || '""');
+
+
+if (isMainGuest) {
+    gaTag('detail_mainguest_display', 'registration'); // google analytics
+} else {
+    gaTag('detail_sharerguest_display', 'registration'); // google analytics
+}
 
 
 var gaOcrSuccess = JSON.parse($('#ga-ocr-success').text() || '""');
@@ -35,7 +42,6 @@ $('#btn-back').click(function() {
 
 
 $('#btn-save').click(function() {
-    var isMainGuest = JSON.parse($('#is-main-guest').text() || '""');
     if (isMainGuest) {
         gaTag('detail_mainguest_submitted', 'registration'); // google analytics
     } else {
