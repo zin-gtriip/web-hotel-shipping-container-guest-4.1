@@ -75,6 +75,6 @@ def prepare_email(context):
     context['androidURL'] = settings.APP_ANDROID_URL
     email = {}
     template = settings.REGISTRATION_COMPLETE_EMAIL or os.path.join(settings.BASE_DIR, 'registration', 'templates', 'registration', 'email', 'complete.html')
-    email['title'] = _('Registration Complete - %(hotel_name)s - Reservation #%(pms_no)s') % {'hotel_name': settings.HOTEL_NAME, 'reservation_no': context.get('pmsNo', '')}
+    email['title'] = _('Registration Complete - %(hotel_name)s - Reservation #%(pms_no)s') % {'hotel_name': settings.HOTEL_NAME, 'pms_no': context.get('pmsNo', '')}
     email['html'] = render_to_string(template, context)
     return email
