@@ -43,19 +43,19 @@
                                     {% if guest.guestId != 0 %} {# done, existing guest #}
                                         <a href="{% url 'registration:detail' guest.guestId|encrypt %}" class="btn btn-outline-primary" data-is-main-guest="{{ guest.isMainGuest }}">
                                             {{ guest.firstName }} {{ guest.lastName }}
-                                            <i class="fas fa-check icon-btn"></i>
+                                            <i class="fas fa-pencil-alt icon-btn"></i>
                                         </a>
                                     {% else %} {# done, new guest #}
                                         <a href="{% url 'registration:detail' guest.new_guest_id|encrypt %}" class="btn btn-outline-primary" data-is-main-guest="{{ guest.isMainGuest }}">
                                             {{ guest.firstName }} {{ guest.lastName }}
-                                            <i class="fas fa-check icon-btn"></i>
+                                            <i class="fas fa-pencil-alt icon-btn"></i>
                                         </a>
                                     {% endif %}
                                 {% endif %}
                             {% else %} {# adhoc guest, disable #}
                                 <button type="button" class="btn btn-outline-primary" disabled>
                                     {{ guest.firstName }} {{ guest.lastName }}
-                                    <i class="fas fa-check icon-btn"></i>
+                                    <i class="fas fa-pencil-alt icon-btn"></i>
                                 </button>
                             {% endif %}
                         </div>
