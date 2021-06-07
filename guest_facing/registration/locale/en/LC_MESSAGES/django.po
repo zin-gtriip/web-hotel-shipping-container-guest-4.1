@@ -544,8 +544,7 @@ msgid ""
 "We are pleased to inform you that your registration is completed with "
 "details as follow:"
 msgstr ""
-"Here is the summary of your registration.<br>(Images shown are for "
-"references only)"
+"Here is the summary of your registration."
 
 #: guest_facing/registration/templates/registration/email/complete.html:181
 msgid "(images shown are for references only)"
