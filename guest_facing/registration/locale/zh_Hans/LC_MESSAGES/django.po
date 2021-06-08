@@ -521,7 +521,7 @@ msgstr "亲爱的"
 msgid ""
 "We are pleased to inform you that your registration is completed with "
 "details as follow:"
-msgstr "以下是您的预订详情。（显示的图像仅供参考。）"
+msgstr "以下是您的预订详情。"
 
 #: guest_facing/registration/templates/registration/email/complete.html:181
 msgid "(images shown are for references only)"
