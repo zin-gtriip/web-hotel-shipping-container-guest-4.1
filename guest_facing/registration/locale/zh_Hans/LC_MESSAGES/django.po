@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-04 19:11+0700\n"
-"PO-Revision-Date: 2021-06-01 18:38+0800\n"
+"PO-Revision-Date: 2021-06-08 09:02+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -525,7 +525,7 @@ msgstr "以下是您的预订详情。（显示的图像仅供参考。）"
 
 #: guest_facing/registration/templates/registration/email/complete.html:181
 msgid "(images shown are for references only)"
-msgstr "（显示的图像仅供参考）"
+msgstr "（显示的图像仅供参考。）"
 
 #: guest_facing/registration/templates/registration/email/complete.html:280
 msgid ""
