@@ -49,6 +49,7 @@ class ChatChannelForm(forms.Form):
                 pubnub.set_memberships().uuid(settings.CHAT_UUID).channel_memberships([PNChannelMembership.channel_with_custom(channel, new_token)]).include_custom(True).sync()
         # assign to request
         self.request.session['chat'] = {}
+        self.request.session['chat']['property_id'] = property_id
         self.request.session['chat']['channel_group'] = channel_group
         self.request.session['chat']['channel'] = channel
         self.request.session['chat']['uuid'] = name
