@@ -5,6 +5,7 @@ from django.shortcuts           import render
 from django.utils               import timezone, translation
 from django.views.generic       import *
 from django.utils.translation   import gettext, gettext_lazy as _
+from guest_facing.core          import gateways
 from guest_facing.core.views    import IndexView
 from guest_facing.core.mixins   import RequestFormKwargsMixin, JSONResponseMixin
 from .forms                     import ChatChannelForm, ChatMessageForm
@@ -61,14 +62,17 @@ class ChatMessageView(ChatDataRequiredMixins, JSONResponseMixin, RequestFormKwar
         context['system_messages'] = self.system_messages
         # check for auto reply system message
         context ['system_message_out_time'] = False
-        if settings.CHAT_AUTO_START_TIME <= settings.CHAT_AUTO_END_TIME:
+        config = gateways.amp_endpoint('get', '/configVariables', self.request.session.get('chat', {}).get('property_id', '')) or {}
+        start_time = config.get('data', {}).get('autoReplyStartTime_24h', settings.CHAT_AUTO_START_TIME)
+        end_time = config.get('data', {}).get('autoReplyEndTime_24h', settings.CHAT_AUTO_END_TIME)
+        if start_time <= end_time:
             start_date = datetime.date.today()
             end_date = datetime.date.today()
         else:
             start_date = datetime.date.today()
             end_date = datetime.date.today() + datetime.timedelta(days=1)
-        start_datetime = dt.strptime(start_date.strftime('%Y-%m-%d') +' '+ settings.CHAT_AUTO_START_TIME, '%Y-%m-%d %H:%M')
-        end_datetime = dt.strptime(end_date.strftime('%Y-%m-%d') +' '+ settings.CHAT_AUTO_END_TIME, '%Y-%m-%d %H:%M')
+        start_datetime = dt.strptime(start_date.strftime('%Y-%m-%d') +' '+ start_time, '%Y-%m-%d %H:%M')
+        end_datetime = dt.strptime(end_date.strftime('%Y-%m-%d') +' '+ end_time, '%Y-%m-%d %H:%M')
         start_datetime = timezone.make_aware(start_datetime)
         end_datetime = timezone.make_aware(end_datetime)
         if start_datetime <= timezone.localtime() <= end_datetime:
