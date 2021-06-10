@@ -1,0 +1,68 @@
+{% extends 'chat/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% comment %} {% block lib_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css' %}" type="text/x-scss" media="screen">
+{% endblock lib_css %} {% endcomment %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'chat/scss/message.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+    {{ block.super }}
+    <div class="row">
+        <div class="col-12">
+            <div id="messages" class="px-4">
+
+                <div class="message system">
+                    <div class="chat-card bg-info text-info-reverse">
+                        <div class="card-text">
+                            <div class="chat-body">
+                                {{ system_messages.welcome }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <form id="form-message" autocomplete="off">
+            <div class="col-12"><!-- pr-0 -->
+                <div class="input-group d-flex align-items-center px-4">
+                    {% csrf_token %}
+                    <input type="text" name="message" id="id_message" class="form-control" placeholder="Enter text message ...">
+                    <button type="submit" id="btn-send" class="btn btn-primary btn-floating input-group-text border-0">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
+
+{% block data_js %}
+    {{ block.super }}
+    {{ pubnub_config|json_script:'pubnub-config' }}
+    {{ system_messages|json_script:'system-messages' }}
+    {{ system_message_out_time|json_script:'system-out-time' }}
+{% endblock data_js %}
+
+{% block lib_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'vendor/pubnub/pubnub.min.js' %}"></script>
+{% endblock lib_js %}
+
+{% block static_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'chat/js/message.js' %}"></script>
+{% endblock static_js %}

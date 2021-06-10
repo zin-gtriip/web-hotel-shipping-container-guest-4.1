@@ -1,0 +1,64 @@
+{% extends 'chat/base.html' %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as AVAILABLE_LANGUAGES %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+    {{ block.super }}
+    <form method="get" autocomplete="off">
+        <div class="row">
+            <div class="col-8 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h5>Channel</h5>
+                        </div>
+                        <div class="card-text">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="md-form">
+                                        {{ form.email.label_tag }}
+                                        {% render_field form.email class="form-control" %}
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="md-form">
+                                        {{ form.name.label_tag }}
+                                        {% render_field form.name class="form-control" %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="md-form">
+                                        {{ form.property_id.label_tag }}
+                                        {% render_field form.property_id class="form-control" %}
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="md-form">
+                                        <select id="id_lang" name="lang" class="md-select">
+                                            {% for language in AVAILABLE_LANGUAGES %}
+                                                <option value="{{ language.0 }}"
+                                                {% if language.0 == LANGUAGE_CODE %}selected{% endif %}>
+                                                    {{ language.1 }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-text d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    {{ form.errors }}
+    {{ form.non_field_errors }}
+{% endblock content %}

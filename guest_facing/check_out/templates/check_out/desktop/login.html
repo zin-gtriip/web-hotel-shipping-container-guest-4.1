@@ -1,0 +1,100 @@
+{% extends 'check_out/desktop/base_desktop.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'check_out/scss/desktop/login.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block header_left %}
+    <a href="{% url 'check_out:index' %}" class="btn btn-link">
+        <img src="{% static 'img/place.svg' %}" />
+    </a>
+    {{ block.super }}
+{% endblock header_left %}
+
+{% block content %}
+    {{ block.super }}
+    <form method="post" autocomplete="off">
+        {% csrf_token %}
+        {% render_field form.recaptcha %}
+        <div class="row page-header">
+            <div class="col-lg-12 text-center">
+                {% blocktrans %}Please enter your<br>reservation details{% endblocktrans %}
+            </div>
+        </div>
+        <div class="row page-subheader">
+            <div class="col-lg-12 px-0 text-center text-secondary">
+                {% blocktrans %}The following information is required for<br>verification.{% endblocktrans %}
+            </div>
+        </div>
+        <div class="row page-content">
+            <div class="col-lg-12">
+                <div class="row mb-4">
+                    <div class="col-lg-3 mx-auto">
+                        <div class="md-form input-center input-boxed my-0">
+                            {% trans 'Last Name' as last_name_placeholder %}
+                            {% render_field form.last_name class="form-control" placeholder=last_name_placeholder %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-4">
+                    <div class="col-lg-3 mx-auto">
+                        <div class="md-form input-center input-boxed my-0">
+                            {% trans 'Room Number' as room_no_placeholder %}
+                            {% render_field form.room_no class="form-control" placeholder=room_no_placeholder %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row page-footer">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary btn-block btn-round m-0" id="btn-step-next" disabled>{% trans 'Next' %}</button>
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+
+{% block wrapper %}
+    {{ block.super }}
+    <!-- Error Modal -->
+    {% for error in form.non_field_errors %}
+        <div class="modal fade auto-show" id="form-error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h4 class="modal-title mx-auto">
+                            {% if error == '6001' %}
+                                {% trans 'checkout_login:error_modal_title:6001' %}
+                            {% elif error == 'recaptcha' %}
+                                {% trans 'Invalid Input' %}
+                            {% else %}
+                                {% trans 'checkout_login:error_modal_title:other' %}
+                            {% endif %}
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        {% if error == '6001' %}
+                            {% trans 'checkout_login:error_modal_body:6001' %}
+                        {% elif error == 'recaptcha' %}
+                            {% trans 'Failed to validate reCaptcha' %}
+                        {% else %}
+                            {% trans 'checkout_login:error_modal_body:other' %}
+                        {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'OK' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock wrapper %}
+
+{% block static_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'check_out/js/desktop/login.js' %}"></script>
+{% endblock static_js %}

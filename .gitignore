@@ -1,19 +1,19 @@
 # compile python file and pycache
 __pycache__
-*.pyc
+*.py[co]
 
 # db file
 *.sqlite3
 
 # storage, temp folder
-/storage
+/storage/
 
 # npm files
-/static/vendor/node_modules
-/static/vendor/package-lock.json
+node_modules/
+package-lock.json
 
 # cache js and css files
-/static/CACHE/*
+/static/*
 !/static/CACHE/.keep
 
 # uploaded file
@@ -21,8 +21,12 @@ __pycache__
 !/media/.keep
 
 # logs
-logs/*
-!logs/.keep
+/logs/*
+!/logs/.keep
+
+# lib
+dist/
+*.egg-info
 
 # mac-os
 .DS_Store

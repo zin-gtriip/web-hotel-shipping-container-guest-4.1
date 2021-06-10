@@ -18,13 +18,12 @@ from django.urls import path, re_path, include
 from django.views.i18n import JavaScriptCatalog
 
 urlpatterns = [
+    path('', include('guest_facing.registration.urls')),
+    path('', include('guest_facing.check_out.urls')),
+    path('', include('guest_facing.chat.urls')),
+    path('', include('guest_facing.core.urls')),
+    
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
-    
-    path('', include('check_out.urls')),
-    path('', include('pre_arrival_adhoc_guest.urls')),
-    path('', include('pre_arrival_all_passport.urls')),
-    path('', include('pre_arrival.urls')),
-    path('', include('guest_base.urls')),
 ]

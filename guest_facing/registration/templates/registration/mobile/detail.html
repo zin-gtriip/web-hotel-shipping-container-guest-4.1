@@ -1,0 +1,318 @@
+{% extends 'registration/mobile/base_mobile.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+{% load countries %}
+
+{% block lib_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-datepicker/bootstrap-datepicker.min.css' %}">
+{% endblock lib_css %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'registration/scss/mobile/detail.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block header_left %}
+    <button type="button" class="btn btn-link" id="btn-back"><i class="fas fa-arrow-left"></i></button>
+    {{ block.super }}
+{% endblock header_left %}
+
+{% block content %}
+    {{ block.super }}
+    {% get_countries as countries %}
+    <form method="post" autocomplete="off">
+        {% csrf_token %}
+        <div class="row page-header">
+            <div class="col-12 px-0 text-center">
+                {% blocktrans %}Guest Details{% endblocktrans %}
+            </div>
+        </div>
+        <div class="row page-subheader">
+            <div class="col-12 px-0 text-center text-secondary">
+                {% blocktrans %}Please verify the personal particulars below.{% endblocktrans %}
+            </div>
+        </div>
+        <div class="row page-content">
+            <div class="col-12 px-5">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form mt-0">
+                            {% trans 'Enter your name' as first_name_placeholder %}
+                            {{ form.first_name.label_tag }}
+                            {% if form.is_bound and form.first_name.errors %}
+                                {% if ocr_required and not object.idImage %}
+                                    {% render_field form.first_name class="form-control is-invalid disabled" readonly="true" placeholder="-" %}
+                                {% else %}
+                                    {% render_field form.first_name class="form-control is-invalid" placeholder=first_name_placeholder %}
+                                {% endif %}
+                                {% for error in form.first_name.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            {% else %}
+                                {% if ocr_required and not object.idImage %}
+                                    {% render_field form.first_name class="form-control disabled" readonly="true" placeholder="-" %}
+                                {% else %}
+                                    {% render_field form.first_name class="form-control" placeholder=first_name_placeholder %}
+                                {% endif %}
+                                {% if form.first_name.help_text %}
+                                    <small class="form-text text-muted">{{ form.first_name.help_text }}</small>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form mt-2">
+                            {% trans 'Enter your name' as last_name_placeholder %}
+                            {{ form.last_name.label_tag }}
+                            {% if object.guestId == 0 %}
+                                {% if form.is_bound and form.last_name.errors %}
+                                    {% if ocr_required and not object.idImage %}
+                                        {% render_field form.last_name class="form-control is-invalid disabled" readonly="true" placeholder="-" %}
+                                    {% else %}
+                                        {% render_field form.last_name class="form-control is-invalid" placeholder=last_name_placeholder %}
+                                    {% endif %}
+                                    {% for error in form.last_name.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                {% else %}
+                                    {% if ocr_required and not object.idImage %}
+                                        {% render_field form.last_name class="form-control disabled" readonly="true" placeholder="-" %}
+                                    {% else %}
+                                        {% render_field form.last_name class="form-control" placeholder=last_name_placeholder %}
+                                    {% endif %}
+                                    {% if form.last_name.help_text %}
+                                        <small class="form-text text-muted">{{ form.last_name.help_text }}</small>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                {% render_field form.last_name class="form-control disabled" readonly="true" %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form mt-2">
+                            {% trans 'e.g. A12345Z' as id_no_placeholder %}
+                            {{ form.id_no.label_tag }}
+                            {% if form.is_bound and form.id_no.errors %}
+                                {% if ocr_required and not object.idImage %}
+                                    {% render_field form.id_no class="form-control is-invalid disabled" readonly="true" placeholder="-" %}
+                                {% else %}
+                                    {% render_field form.id_no class="form-control is-invalid" placeholder=id_no_placeholder %}
+                                {% endif %}
+                                {% for error in form.id_no.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            {% else %}
+                                {% if ocr_required and not object.idImage %}
+                                    {% render_field form.id_no class="form-control disabled" readonly="true" placeholder="-" %}
+                                {% else %}
+                                    {% render_field form.id_no class="form-control" placeholder=id_no_placeholder %}
+                                {% endif %}
+                                {% if form.id_no.help_text %}
+                                    <small class="form-text text-muted">{{ form.id_no.help_text }}</small>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form mt-2">
+                            <label for="id_nationality" class="active">{% trans 'Nationality' %}</label>
+                            {% if form.is_bound and form.nationality.errors %}
+                                {% if ocr_required and not object.idImage %}
+                                    {% render_field form.nationality class="form-control md-select is-invalid disabled" readonly="true" %}
+                                {% else %}
+                                    {% render_field form.nationality class="form-control md-select is-invalid" %}
+                                {% endif %}
+                                {% for error in form.nationality.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            {% else %}
+                                {% if ocr_required and not object.idImage %}
+                                    {% render_field form.nationality class="form-control md-select disabled" readonly="true" %}
+                                {% else %}
+                                    {% render_field form.nationality class="form-control md-select" %}
+                                {% endif %}
+                                {% if form.nationality.help_text %}
+                                    <small class="form-text text-muted">{{ form.nationality.help_text }}</small>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-form mt-2 input-with-post-icon">
+                            {% trans 'YYYY-MM-DD' as birth_date_placeholder %}
+                            <label for="datepicker-birth-date">{{ form.birth_date.label }}</label>
+                            {% render_field form.birth_date class="rolldate" hidden="true" %}
+                            {% if form.is_bound and form.birth_date.errors %}
+                                {% if ocr_required and not object.idImage %}
+                                    <input type="text" id="datepicker-birth-date" class="form-control datepicker is-invalid disabled" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly disabled placeholder="-">
+                                {% else %}
+                                    <input type="text" id="datepicker-birth-date" class="form-control datepicker is-invalid" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly placeholder="{{ birth_date_placeholder }}">
+                                {% endif %}
+                                {% for error in form.birth_date.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            {% else %}
+                                {% if ocr_required and not object.idImage %}
+                                    <input type="text" id="datepicker-birth-date" class="form-control datepicker disabled" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly disabled placeholder="-">
+                                {% else %}
+                                    <input type="text" id="datepicker-birth-date" class="form-control datepicker" data-date-format="d MM yyyy" data-date-language="{{ bootstrap_datepicker_language }}" readonly placeholder="{{ birth_date_placeholder }}">
+                                    <i class="far fa-calendar input-prefix text-primary"></i>
+                                {% endif %}
+                                {% if form.birth_date.help_text %}
+                                    <small class="form-text text-muted">{{ form.birth_date.help_text }}</small>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% if ocr_required %}
+                    {% if not object.idImage %}
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-check pl-0">
+                                    <label class="check-container">
+                                        <span class="label-check">{% trans 'Update my existing guest details using the information retrieved from the Passport/NRIC submission' %}</span>
+                                        {% render_field form.is_overwrite class="check-input" %}
+                                        <span class="check-icon"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span class="text-success text-uppercase">
+                                    {% trans 'Passport submitted' %}
+                                    &nbsp;
+                                    <i class="fas fa-check icon-btn"></i>
+                                </span>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row page-footer">
+            <div class="col-12">
+                {% if ocr_required %}
+                    {% if not object.idImage %}
+                        <div class="row">
+                            <div class="col-lg-12 mb-3 d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary m-0 btn-ocr">
+                                    {% trans 'Submit Passport/NRIC' %}
+                                </button>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="row">
+                            <div class="col-lg-12 d-flex justify-content-center">
+                                {% render_field form.is_submit hidden=true %}
+                                <button type="submit" class="btn btn-primary m-0" id="btn-save">{% trans 'Save &amp; go to guest list' %}</button>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <div class="row">
+                        <div class="col-lg-12 d-flex justify-content-center">
+                            {% render_field form.is_submit hidden=true %}
+                            <button type="submit" class="btn btn-primary m-0" id="btn-save">{% trans 'Save &amp; go to guest list' %}</button>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+
+{% block wrapper %}
+    {{ block.super }}
+    <!-- form error -->
+    {% for error in form.non_field_errors %}
+        <div class="modal fade auto-show" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h4 class="modal-title mx-auto">{% trans 'Invalid Input' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ error|linebreaks }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'Fix' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <!-- extra form error -->
+    {% for extra_form in extra.forms %}
+        {% for error in extra_form.non_field_errors %}
+            <div class="modal fade auto-show" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary text-white">
+                            <h4 class="modal-title mx-auto">{% trans 'Invalid Input' %}</h4>
+                        </div>
+                        <div class="modal-body">
+                            {{ error|linebreaks }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'Fix' %}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    <!-- extra formset error -->
+    {% for error in extra.non_form_errors %}
+        <div class="modal fade auto-show" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h4 class="modal-title mx-auto">{% trans 'Invalid Input' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ error|linebreaks }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'Fix' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock wrapper %}
+
+{% block data_js %}
+    {{ block.super }}
+    {{ request.session.registration.detail.isMainGuest|json_script:'is-main-guest' }}
+    {{ ga_ocr_success|json_script:'ga-ocr-success' }}
+{% endblock data_js %}
+
+{% block lib_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'vendor/bootstrap-datepicker/bootstrap-datepicker.min.js' %}"></script>
+    {% if bootstrap_datepicker_language != 'en' %}
+        {% with 'vendor/bootstrap-datepicker/locales/bootstrap-datepicker.'|add:bootstrap_datepicker_language|add:'.min.js' as bootstrap_datepicker_language_file %}
+            <script type="text/javascript" src="{% static bootstrap_datepicker_language_file %}" charset="UTF-8"></script>
+        {% endwith %}
+    {% endif %}
+    <script type="text/javascript" src="{% static 'vendor/rolldate/rolldate.min.js' %}"></script>
+{% endblock lib_js %}
+
+{% block static_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'registration/js/mobile/detail.js' %}"></script>
+{% endblock static_js %}

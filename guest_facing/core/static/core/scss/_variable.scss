@@ -1,0 +1,77 @@
+// base variable
+$base-theme-colors: (
+    primary         : #ff9e1b,
+    danger          : #ff3f20,
+    dark            : #000,
+    success         : #10ff00,
+    info            : #5a76ff,
+    light           : #f0f0f0,
+    secondary       : #aaaaaa,
+);  
+$base-text-colors: (
+    primary         : #fff,
+    danger          : #fff,
+    dark            : #fff,
+    success         : #fff,
+    info            : #fff,
+    light           : #3c4858,
+    secondary       : #f0f0f0,
+);
+
+$base-font-family   : 'Roboto', sans-serif;
+$base-font-size     : .875rem;
+$base-font-color    : #000;
+
+$base-button-font   : 'Montserrat', sans-serif;
+$base-button-radius : 25px;
+
+$base-locale-font   : 'Montserrat', sans-serif;
+
+$base-border-color  : #dee2e6;
+
+$base-modal-radius  : 10px;
+
+
+// Custom
+@import '../../custom/custom.scss';
+$theme-colors   : null !default;
+$text-colors    : null !default;
+
+$font-family    : null !default;
+$font-size      : null !default;
+$font-color     : null !default;
+
+$button-font    : null !default;
+$button-radius  : null !default;
+
+$locale-font    : null !default;
+
+$border-color   : null !default;
+
+$modal-radius   : null !default;
+
+
+@if ($theme-colors == null) {
+    $theme-colors: $base-theme-colors;
+} @else {
+    $theme-colors: map-merge($base-theme-colors, $theme-colors);
+}
+
+@if ($text-colors == null) {
+    $text-colors: $base-text-colors;
+} @else {
+    $text-colors: map-merge($base-text-colors, $text-colors);
+}
+
+$font-family: if($font-family != null, $font-family, $base-font-family);
+$font-size: if($font-size != null, $font-size, $base-font-size);
+$font-color: if($font-color != null, $font-color, $base-font-color);
+
+$button-font: if($button-font != null, $button-font, $base-button-font);
+$button-radius: if($button-radius != null, $button-radius, $base-button-radius);
+
+$locale-font: if($locale-font != null, $locale-font, $base-locale-font);
+
+$border-color: if($border-color != null, $border-color, $base-border-color);
+
+$modal-radius: if($modal-radius != null, $modal-radius, $base-modal-radius);

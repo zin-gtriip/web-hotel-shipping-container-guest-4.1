@@ -31,6 +31,16 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'guest_facing.registration',
+    'guest_facing.check_out',
+    'guest_facing.chat',
+    'guest_facing.core',
+    'captcha',
+    'django_user_agents',
+    'django_countries',
+    'widget_tweaks',
+    'compressor',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,16 +48,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'compressor',
-    'widget_tweaks',
-    'django_countries',
-    'django_user_agents',
-    
-    'check_out.apps.CheckOutConfig',
-    'pre_arrival_adhoc_guest.apps.PreArrivalAdhocGuestConfig',
-    'pre_arrival_all_passport.apps.PreArrivalAllPassportConfig',
-    'pre_arrival.apps.PreArrivalConfig',
-    'guest_base.apps.GuestBaseConfig',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +75,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'guest_base.context_processors.hotel_conf',
-                'pre_arrival.context_processors.session',
+                'guest_facing.core.context_processors.hotel_conf',
+                'guest_facing.registration.context_processors.session',
             ],
         },
     },
@@ -120,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Singapore'
 
 USE_I18N = True
 
@@ -142,7 +142,6 @@ STATIC_URL = '/static/'
 LANGUAGES = [
     ('en', 'EN'),
     ('zh-hans', '华语'),
-    ('ja', '日本語'),
 ]
 
 
@@ -187,16 +186,33 @@ COMPRESS_PRECOMPILERS = (
 )
 
 
-# Guest Facing Endpoint configuration
-
+# Endpoint configuration
+# Token
+TOKEN_ENDPOINT = [
+    {
+        'type': 'guest_facing',
+        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT/oauth/token',
+        'username': 'web-guest-client',
+        'password': 'HotelTemplate1234',
+        'timeout': 30,
+    },
+    {
+        'type': 'amp',
+        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT/oauth/token',
+        'username': 'web-amp-client',
+        'password': 'HotelTemplate1234',
+        'timeout': 30,
+    },
+]
+# Guest Facing
 GUEST_ENDPOINT = [
     {
         'id': 'QAHotelProdSG11_1',
         'name': 'QA_Hotel_Prod_SG_3.0_1',
         'description': 'GTRIIP - Aurum',
-        'image': '/static/img/property-1.jpg',
+        'image': '/static/img/property/1.jpg',
         'address': '1 East Street, Singapore',
-        'url': 'http://hotel4qa.gtriip.com:8080/hotelTemplateProperty1',
+        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 30,
     },
@@ -204,29 +220,43 @@ GUEST_ENDPOINT = [
         'id': 'QAHotelProdSG11_2',
         'name': 'QA_Hotel_Prod_SG_3.0_2',
         'description': 'GTRIIP - Nouveau',
-        'image': '/static/img/property-2.jpg',
+        'image': '/static/img/property/2.jpg',
         'address': '1 South Beach Road, Singapore',
-        'url': 'http://hotel4qa.gtriip.com:8080/hotelTemplateProperty2',
+        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
+        'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
+        'timeout': 30,
+    },
+    {
+        'id': 'QAHotelProdSG11_2',
+        'name': 'QA_Hotel_Prod_SG_3.0_2',
+        'description': 'GTRIIP - Nouveau',
+        'image': '/static/img/property/3.jpg',
+        'address': '1 West Avenue, Singapore',
+        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 30,
     },
 ]
-
-
-# AMP Endpoint configuration
-
+# AMP
 AMP_ENDPOINT = [
     {
         'id': 'QAHotelProdSG11_1',
         'name': 'QA_Hotel_Prod_SG_3.0_1',
-        'url': 'http://hotel4qa.gtriip.com:8080/hotelTemplateProperty1',
+        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
         'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
         'timeout': 30,
     },
     {
         'id': 'QAHotelProdSG11_2',
         'name': 'QA_Hotel_Prod_SG_3.0_2',
-        'url': 'http://hotel4qa.gtriip.com:8080/hotelTemplateProperty2',
+        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
+        'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
+        'timeout': 30,
+    },
+    {
+        'id': 'QAHotelProdSG11_2',
+        'name': 'QA_Hotel_Prod_SG_3.0_2',
+        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
         'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
         'timeout': 30,
     },
@@ -234,9 +264,19 @@ AMP_ENDPOINT = [
 
 
 # OCR Endpoint configuration
-OCR_ENDPOINT_URL                = 'https://ocr.gtriip.com/ocr/'
-OCR_ENDPOINT_KEY                = 'F16430020E414D3CBB9FACB3DA8071F5'
+OCR_ENDPOINT_URL                = 'https://cv.gtriip.com/recognition/'
+OCR_ENDPOINT_KEY                = 'rvH7MT70.7RoZxH8gtBfPgZt7kgNxRtybwq3Gp4vW'
 OCR_ENDPOINT_TIMEOUT_LIMIT      = 60
+
+
+# Messaging configuration
+
+CHAT_SUB_KEY            = 'sub-c-783e8a78-8632-11eb-99bb-ce4b510ebf19'
+CHAT_PUB_KEY            = 'pub-c-ae44babc-3011-40ef-a69e-f729ff1e5eb1'
+CHAT_SEC_KEY            = 'sec-c-YzE0OWY4MjYtYjZjMy00N2RjLWFjMzctMzIxMDAwMGFlZjYy'
+CHAT_UUID               = 'FO' # no special character, including space
+CHAT_AUTO_START_TIME    = '18:00'
+CHAT_AUTO_END_TIME      = '09:00'
 
 
 # Maximum size in bytes of request data (excluding file uploads) that will be
@@ -250,6 +290,13 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760 # 10 MB
 # https://pypi.org/project/cryptography/
 
 FERNET_KEY = b'aJAwfZCJTITCVp-76x9_z8aaFSAFvlrOIFRQEDLm6p8='
+
+
+# Google Recaptcha configuration
+# https://pypi.org/project/django-recaptcha/
+
+RECAPTCHA_PUBLIC_KEY        = '6Lc5PcgaAAAAAJ4kwMRjpH5kdt48_lwi48kpkR1w'
+RECAPTCHA_PRIVATE_KEY       = '6Lc5PcgaAAAAAGDC4DyZzx9uhA3t5yiUNMpAKJOh'
 
 
 # Logging
@@ -267,7 +314,7 @@ FERNET_KEY = b'aJAwfZCJTITCVp-76x9_z8aaFSAFvlrOIFRQEDLm6p8='
 #         'file': {
 #             'level': 'INFO',
 #             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': BASE_DIR +'/logs/log.log',
+#             'filename': BASE_DIR +'/logs/info.log',
 #             'maxBytes': 1024 * 1024 * 10, # 10MB
 #             'backupCount': 10,
 #             'formatter': 'simple',
@@ -292,6 +339,8 @@ HOST_URL            = 'https://hoteltemplateqa.gtriip.com'
 APP_IOS_URL         = 'http://itunes.apple.com'
 APP_ANDROID_URL     = 'http://play.google.com/store/apps'
 APP_DIRECT_URL      = 'https://www.google.com'
+# google analytics measurement id
+GA_MEASUREMENT_ID   = 'G-XXK7VS7S3V'
 # link to access static images, configured on webserver
 STATIC_IMAGE_URL    = '/static/img'
 # default django variable for date format
@@ -299,59 +348,58 @@ DATE_INPUT_FORMATS  = ['%Y-%m-%d']
 # set session to be saved everytime
 SESSION_SAVE_EVERY_REQUEST = True
 
-# Pre Arrival
-# default expiry time for the pre-arrival (in minutes), if AMP is not provided
-PRE_ARRIVAL_SESSION_AGE_INITIAL = 15
-PRE_ARRIVAL_SESSION_AGE_EXTEND  = 10
+# Registration
+# default expiry time for the registration (in minutes), if AMP is not provided
+REGISTRATION_SESSION_AGE_INITIAL = 15
+REGISTRATION_SESSION_AGE_EXTEND = 10
 # room mapping, use `room_type` as identifier
-PRE_ARRIVAL_ROOM_TYPES = [
+REGISTRATION_ROOM_TYPES = [
     {
         'room_type' : 'Premier',
         'room_name' : 'Premier Room',
-        'room_image': '/static/img/room-premier.jpg',
+        'room_image': '/static/img/room/premier.jpg',
     },
     {
         'room_type' : 'Deluxe',
         'room_name' : 'Deluxe Room',
-        'room_image': '/static/img/room-deluxe.jpg',
+        'room_image': '/static/img/room/deluxe.jpg',
     },
     {
         'room_type' : 'Villa',
         'room_name' : 'Villa',
-        'room_image': '/static/img/room-villa.jpg',
+        'room_image': '/static/img/room/villa.jpg',
     },
 ]
-# age limit for adult, used on passport, detail page
-PRE_ARRIVAL_ADULT_AGE_LIMIT             = 18
-# pre-arrival pages that has expiry session (timer), make sure these are pre-arrival url
-PRE_ARRIVAL_EXPIRY_SESSION_PAGES = [
+# default age limit for adult, if AMP is not provided
+REGISTRATION_ADULT_AGE_LIMIT = 18
+# registration pages that has expiry session (timer), make sure these are registration url
+REGISTRATION_EXPIRY_SESSION_PAGES = [
     'reservation',
-    'passport',
     'guest_list',
     'detail',
-    'extra_passport',
+    'ocr',
     'other_info',
 ]
-# pre-arrival views that use `parameter_required` validation
-PRE_ARRIVAL_PARAMETER_REQUIRED_PAGES = [
+# registration views that use `parameter_required` validation
+REGISTRATION_PARAMETER_REQUIRED_PAGES = [
     'reservation',
-    'passport',
-    'detail',
+    'guest_list',
     'other_info',
     'complete',
 ]
-# progress bar rate on pre-arrival page
-PRE_ARRIVAL_PROGRESS_BAR_START_RATE = 10
-PRE_ARRIVAL_PROGRESS_BAR_END_RATE   = 100
-PRE_ARRIVAL_PROGRESS_BAR_PAGES      = [
+# progress bar rate on registration page
+REGISTRATION_PROGRESS_BAR_START_RATE = 10
+REGISTRATION_PROGRESS_BAR_END_RATE = 100
+REGISTRATION_PROGRESS_BAR_PAGES = [
     'login',
     'reservation',
-    'passport',
-    'detail',
+    'guest_list',
     'other_info',
     'complete',
 ]
 # progress bar rate calculation, -1 to exclude first page
-PRE_ARRIVAL_PROGRESS_BAR_RATE_PER_PAGE  = (PRE_ARRIVAL_PROGRESS_BAR_END_RATE - PRE_ARRIVAL_PROGRESS_BAR_START_RATE) / (len(PRE_ARRIVAL_PROGRESS_BAR_PAGES) - 1)
+REGISTRATION_PROGRESS_BAR_RATE_PER_PAGE = (REGISTRATION_PROGRESS_BAR_END_RATE - REGISTRATION_PROGRESS_BAR_START_RATE) / (len(REGISTRATION_PROGRESS_BAR_PAGES) - 1)
 # complete email template directory
-PRE_ARRIVAL_COMPLETE_EMAIL = os.path.join(BASE_DIR, 'pre_arrival', 'templates', 'pre_arrival', 'email', 'complete.html')
+REGISTRATION_COMPLETE_EMAIL = 'registration/email/complete.html'
+# determine default mandatory of ocr field in detail page, if AMP is not provided
+REGISTRATION_OCR = True

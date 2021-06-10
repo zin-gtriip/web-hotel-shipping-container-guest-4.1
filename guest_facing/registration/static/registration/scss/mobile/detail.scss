@@ -1,0 +1,25 @@
+.content {
+    
+    .page-footer {
+        .btn {
+            width: 310px;
+        }
+
+        i.icon-btn {
+            float: right;
+            position: relative;
+            top: 3px;
+        }
+    }
+}
+
+.datepicker.datepicker-dropdown {
+    display: none !important;
+}
+
+
+#modal-confirmation {
+    .modal-footer .btn {
+        width: 125px;
+    }
+}

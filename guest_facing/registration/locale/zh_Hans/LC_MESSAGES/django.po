@@ -1,0 +1,586 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-04 19:11+0700\n"
+"PO-Revision-Date: 2021-06-08 09:02+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.4.3\n"
+
+#: guest_facing/registration/forms.py:15
+#: guest_facing/registration/templates/registration/desktop/login.html:43
+msgid "Reservation Number"
+msgstr "预订号码"
+
+#: guest_facing/registration/forms.py:16
+msgid "Arrival Date"
+msgstr "入住日期"
+
+#: guest_facing/registration/forms.py:17 guest_facing/registration/forms.py:170
+#: guest_facing/registration/templates/registration/desktop/complete.html:49
+#: guest_facing/registration/templates/registration/desktop/login.html:51
+#: guest_facing/registration/templates/registration/email/complete.html:247
+#: guest_facing/registration/templates/registration/mobile/login.html:63
+msgid "Last Name"
+msgstr "姓氏"
+
+#: guest_facing/registration/forms.py:38 guest_facing/registration/forms.py:40
+#: guest_facing/registration/forms.py:42 guest_facing/registration/forms.py:221
+#: guest_facing/registration/forms.py:223
+#: guest_facing/registration/forms.py:225
+#: guest_facing/registration/forms.py:227
+#: guest_facing/registration/forms.py:229
+#: guest_facing/registration/forms.py:378
+#: guest_facing/registration/forms.py:380
+msgid "Enter the required information"
+msgstr "输入所需资料"
+
+#: guest_facing/registration/forms.py:90
+msgid "Token ID is missing."
+msgstr "无法找到 Session Token。新的 Session Token 已被分配。"
+
+#: guest_facing/registration/forms.py:95
+msgid "Token ID is not correct."
+msgstr "Session Token不匹配。延期功能已禁止。"
+
+#: guest_facing/registration/forms.py:122
+msgid "No reservation selected."
+msgstr "未选择预订。"
+
+#: guest_facing/registration/forms.py:142
+msgid "You have exceeded the number of guests."
+msgstr "您已超过了住客人数。"
+
+#: guest_facing/registration/forms.py:165
+#: guest_facing/registration/forms.py:321
+#: guest_facing/registration/forms.py:412
+msgid "Unknown error"
+msgstr "不明故障"
+
+#: guest_facing/registration/forms.py:169
+msgid "First Name"
+msgstr "名字"
+
+#: guest_facing/registration/forms.py:171
+msgid "Passport Number"
+msgstr "护照/证件号码"
+
+#: guest_facing/registration/forms.py:172
+msgid "[Select Country]"
+msgstr "[国籍列表]"
+
+#: guest_facing/registration/forms.py:172
+#: guest_facing/registration/templates/registration/desktop/detail.html:127
+#: guest_facing/registration/templates/registration/mobile/detail.html:127
+msgid "Nationality"
+msgstr "国籍"
+
+#: guest_facing/registration/forms.py:173
+msgid "Date of Birth"
+msgstr "出生日期"
+
+#: guest_facing/registration/forms.py:235
+#, python-format
+msgid "Main guest has to be %(age)s and above."
+msgstr "主要住客必须年满%(age)s岁。"
+
+#: guest_facing/registration/forms.py:244
+msgid "You have exceeded the number of adults."
+msgstr "您已超过成人人数。"
+
+#: guest_facing/registration/forms.py:246
+msgid "You need to upload passport image."
+msgstr "您需上传护照图像。"
+
+#: guest_facing/registration/forms.py:289
+msgid "Incorrect API key"
+msgstr "API key 不正确"
+
+#: guest_facing/registration/forms.py:290
+msgid "Error scanning image. Please try again later."
+msgstr "无法处理图像。请稍后再试。"
+
+#: guest_facing/registration/forms.py:291
+msgid "Image file is too big."
+msgstr "图片文件大小太大（>2 MB）。"
+
+#: guest_facing/registration/forms.py:292
+msgid "Invalid passport image. MRZ Code is invalid."
+msgstr "请确保可以拍摄到护照底部的MRZ码。"
+
+#: guest_facing/registration/forms.py:293
+msgid "Invalid NRIC image."
+msgstr "证件图片无效。"
+
+#: guest_facing/registration/forms.py:294
+msgid ""
+"Invalid passport image. Please make sure your passport page area is not "
+"blocked."
+msgstr "请确保整个护照页可以被拍摄在框架内。"
+
+#: guest_facing/registration/forms.py:311
+msgid "No image file selected."
+msgstr "未选择图片文件。"
+
+#: guest_facing/registration/forms.py:319
+msgid ""
+"Your passport has expired, please capture / upload a valid passport photo to "
+"proceed"
+msgstr "您的护照已过期。如果要继续，请您捕获或上传一个有效的护照。"
+
+#: guest_facing/registration/forms.py:356
+#: guest_facing/registration/templates/registration/desktop/other_info.html:35
+msgid "Time of Arrival"
+msgstr "抵达时间"
+
+#: guest_facing/registration/forms.py:357
+msgid "Special Requests"
+msgstr "特殊要求"
+
+#: guest_facing/registration/forms.py:358
+msgid "Email"
+msgstr "电子邮件地址"
+
+#: guest_facing/registration/forms.py:359
+msgid "Is Subscribe"
+msgstr "订阅"
+
+#: guest_facing/registration/forms.py:424
+msgid "There is no reservation can be done for registration"
+msgstr "此预订已成功完成登记或入住手续。"
+
+#: guest_facing/registration/templates/registration/base.html:5
+msgid "Registration"
+msgstr "登记"
+
+#: guest_facing/registration/templates/registration/base.html:43
+msgid "Session Expiring"
+msgstr "使用时间将过期"
+
+#: guest_facing/registration/templates/registration/base.html:48
+msgid "Your session is expiring soon"
+msgstr "请在使用时间过期之前完成您的登记手续。"
+
+#: guest_facing/registration/templates/registration/base.html:53
+msgid "Remaining session time:"
+msgstr "剩余的使用时间："
+
+#: guest_facing/registration/templates/registration/base.html:64
+msgid "Extend"
+msgstr "延长时间"
+
+#: guest_facing/registration/templates/registration/base.html:75
+msgid "Session Expired"
+msgstr "使用时间已过期"
+
+#: guest_facing/registration/templates/registration/base.html:78
+msgid "Your session is expired"
+msgstr "您的使用时间已过期。"
+
+#: guest_facing/registration/templates/registration/base.html:81
+#: guest_facing/registration/templates/registration/desktop/complete.html:112
+msgid "Ok"
+msgstr "确认"
+
+#: guest_facing/registration/templates/registration/desktop/complete.html:26
+msgid "Registration Complete"
+msgstr "登记完成"
+
+#: guest_facing/registration/templates/registration/desktop/complete.html:31
+msgid ""
+"Here is the summary of your reservation<br>(images shown are for references "
+"only)"
+msgstr "以下是您的预订详情。<br>（显示的图像仅供参考。）"
+
+#: guest_facing/registration/templates/registration/desktop/complete.html:41
+#: guest_facing/registration/templates/registration/desktop/reservation.html:34
+#: guest_facing/registration/templates/registration/email/complete.html:209
+msgid "Adults"
+msgstr "成人"
+
+#: guest_facing/registration/templates/registration/desktop/complete.html:41
+#: guest_facing/registration/templates/registration/desktop/reservation.html:34
+#: guest_facing/registration/templates/registration/email/complete.html:209
+msgid "Children"
+msgstr "儿童"
+
+#: guest_facing/registration/templates/registration/desktop/complete.html:47
+#: guest_facing/registration/templates/registration/email/complete.html:233
+msgid "Reservation No"
+msgstr "预订号码"
+
+#: guest_facing/registration/templates/registration/desktop/complete.html:53
+#: guest_facing/registration/templates/registration/desktop/reservation.html:44
+#: guest_facing/registration/templates/registration/email/complete.html:235
+msgid "Check-in Date"
+msgstr "入住日期"
+
+#: guest_facing/registration/templates/registration/desktop/complete.html:55
+#: guest_facing/registration/templates/registration/desktop/reservation.html:48
+#: guest_facing/registration/templates/registration/email/complete.html:249
+msgid "Check-out Date"
+msgstr "退房日期"
+
+#: guest_facing/registration/templates/registration/desktop/complete.html:67
+msgid ""
+"\n"
+"                                Please proceed to the front office to "
+"collect your key.\n"
+"                                Or alternatively, download our mobile app so "
+"you can\n"
+"                                head straight to your room using the digital "
+"key.\n"
+"                            "
+msgstr ""
+"\n"
+"                                请下载我们的应用程序以使用数码钥匙进入您的房"
+"间。\n"
+"                                或者，您可前往前台领取您的房间钥匙。\n"
+"                            "
+
+#: guest_facing/registration/templates/registration/desktop/complete.html:77
+msgid "Next Reservation"
+msgstr "下一个预订"
+
+#: guest_facing/registration/templates/registration/desktop/complete.html:86
+#: guest_facing/registration/templates/registration/desktop/complete.html:90
+#: guest_facing/registration/templates/registration/desktop/complete.html:94
+msgid "Get The App"
+msgstr "下载应用程式"
+
+#: guest_facing/registration/templates/registration/desktop/detail.html:29
+#: guest_facing/registration/templates/registration/mobile/detail.html:29
+msgid "Guest Details"
+msgstr "住客详情"
+
+#: guest_facing/registration/templates/registration/desktop/detail.html:34
+#: guest_facing/registration/templates/registration/mobile/detail.html:34
+msgid "Please verify the personal particulars below."
+msgstr "请确认以下住客详情以继续。"
+
+#: guest_facing/registration/templates/registration/desktop/detail.html:42
+#: guest_facing/registration/templates/registration/desktop/detail.html:69
+#: guest_facing/registration/templates/registration/mobile/detail.html:42
+#: guest_facing/registration/templates/registration/mobile/detail.html:69
+msgid "Enter your name"
+msgstr "输入名字"
+
+#: guest_facing/registration/templates/registration/desktop/detail.html:100
+#: guest_facing/registration/templates/registration/mobile/detail.html:100
+msgid "e.g. A12345Z"
+msgstr "例如：A12345Z"
+
+#: guest_facing/registration/templates/registration/desktop/detail.html:153
+#: guest_facing/registration/templates/registration/mobile/detail.html:153
+msgid "YYYY-MM-DD"
+msgstr "年-月-日"
+
+#: guest_facing/registration/templates/registration/desktop/detail.html:184
+#: guest_facing/registration/templates/registration/mobile/detail.html:185
+msgid ""
+"Update my existing guest details using the information retrieved from the "
+"Passport/NRIC submission"
+msgstr "使用提交的护照或证件中的资料来更新我现有的个人资料"
+
+#: guest_facing/registration/templates/registration/desktop/detail.html:195
+#: guest_facing/registration/templates/registration/mobile/detail.html:196
+msgid "Passport submitted"
+msgstr "护照/证件已提交"
+
+#: guest_facing/registration/templates/registration/desktop/detail.html:212
+#: guest_facing/registration/templates/registration/mobile/detail.html:213
+msgid "Submit Passport/NRIC"
+msgstr "提交护照或证件"
+
+#: guest_facing/registration/templates/registration/desktop/detail.html:220
+#: guest_facing/registration/templates/registration/desktop/detail.html:228
+#: guest_facing/registration/templates/registration/mobile/detail.html:221
+#: guest_facing/registration/templates/registration/mobile/detail.html:229
+msgid "Save &amp; go to guest list"
+msgstr "保存并去到住客名单"
+
+#: guest_facing/registration/templates/registration/desktop/detail.html:245
+#: guest_facing/registration/templates/registration/desktop/guest_list.html:89
+#: guest_facing/registration/templates/registration/desktop/login.html:90
+#: guest_facing/registration/templates/registration/desktop/other_info.html:136
+#: guest_facing/registration/templates/registration/desktop/reservation.html:72
+#: guest_facing/registration/templates/registration/mobile/detail.html:246
+#: guest_facing/registration/templates/registration/mobile/detail.html:265
+#: guest_facing/registration/templates/registration/mobile/detail.html:284
+#: guest_facing/registration/templates/registration/mobile/login.html:107
+msgid "Invalid Input"
+msgstr "错误输入"
+
+#: guest_facing/registration/templates/registration/desktop/detail.html:251
+#: guest_facing/registration/templates/registration/mobile/detail.html:252
+#: guest_facing/registration/templates/registration/mobile/detail.html:271
+#: guest_facing/registration/templates/registration/mobile/detail.html:290
+msgid "Fix"
+msgstr "好的"
+
+#: guest_facing/registration/templates/registration/desktop/guest_list.html:23
+msgid "Guest List"
+msgstr "住客名单"
+
+#: guest_facing/registration/templates/registration/desktop/guest_list.html:28
+msgid ""
+"The following guests are found under your<br>reservation. Please verify each "
+"of the guest's<br>details to proceed."
+msgstr "请确认以下住客详情以继续。"
+
+#: guest_facing/registration/templates/registration/desktop/guest_list.html:67
+msgid "Add Guest"
+msgstr "添加住客"
+
+#: guest_facing/registration/templates/registration/desktop/guest_list.html:75
+#: guest_facing/registration/templates/registration/desktop/login.html:68
+#: guest_facing/registration/templates/registration/desktop/ocr.html:84
+#: guest_facing/registration/templates/registration/desktop/other_info.html:122
+#: guest_facing/registration/templates/registration/desktop/reservation.html:58
+#: guest_facing/registration/templates/registration/mobile/login.html:78
+#: guest_facing/registration/templates/registration/mobile/login.html:81
+#: guest_facing/registration/templates/registration/mobile/login.html:84
+#: guest_facing/registration/templates/registration/mobile/ocr.html:52
+#: guest_facing/registration/templates/registration/mobile/ocr.html:65
+#: guest_facing/registration/templates/registration/mobile/ocr.html:91
+msgid "Next"
+msgstr "下一步"
+
+#: guest_facing/registration/templates/registration/desktop/guest_list.html:95
+#: guest_facing/registration/templates/registration/desktop/login.html:110
+#: guest_facing/registration/templates/registration/mobile/login.html:128
+#: guest_facing/registration/templates/registration/mobile/login.html:130
+msgid "OK"
+msgstr "确认"
+
+#: guest_facing/registration/templates/registration/desktop/login.html:30
+#: guest_facing/registration/templates/registration/mobile/login.html:36
+#, python-format
+msgid "Welcome to<br>Hotel %(HOTEL_NAME)s"
+msgstr "欢迎来到<br>%(HOTEL_NAME)s"
+
+#: guest_facing/registration/templates/registration/desktop/login.html:35
+msgid ""
+"To begin the online check-in process, please enter the<br>information below."
+msgstr "请输入您的资料，<br>以开始办理登记手续。"
+
+#: guest_facing/registration/templates/registration/desktop/login.html:84
+#: guest_facing/registration/templates/registration/mobile/login.html:101
+msgid "registration_login:error_modal_title:1000"
+msgstr "搜索不到预订"
+
+#: guest_facing/registration/templates/registration/desktop/login.html:86
+#: guest_facing/registration/templates/registration/mobile/login.html:103
+msgid "registration_login:error_modal_title:1001"
+msgstr "无法登记"
+
+#: guest_facing/registration/templates/registration/desktop/login.html:88
+#: guest_facing/registration/templates/registration/mobile/login.html:105
+msgid "registration_login:error_modal_title:1002"
+msgstr "登记已完成"
+
+#: guest_facing/registration/templates/registration/desktop/login.html:92
+#: guest_facing/registration/templates/registration/mobile/login.html:109
+msgid "registration_login:error_modal_title:other"
+msgstr "不明故障"
+
+#: guest_facing/registration/templates/registration/desktop/login.html:98
+#: guest_facing/registration/templates/registration/mobile/login.html:115
+msgid "registration_login:error_modal_body:1000"
+msgstr "预订细节不正确。请检查并重试。"
+
+#: guest_facing/registration/templates/registration/desktop/login.html:100
+#: guest_facing/registration/templates/registration/mobile/login.html:117
+msgid "registration_login:error_modal_body:1001"
+msgstr "您暂时还不能办理登记手续。请稍后再试。"
+
+#: guest_facing/registration/templates/registration/desktop/login.html:102
+#: guest_facing/registration/templates/registration/mobile/login.html:119
+msgid "registration_login:error_modal_body:1002"
+msgstr "由于此预订已成功完成登记手续，我们无法提交您的请求。"
+
+#: guest_facing/registration/templates/registration/desktop/login.html:104
+#: guest_facing/registration/templates/registration/mobile/login.html:121
+msgid "Failed to validate reCaptcha"
+msgstr "reCaptcha验证失败。"
+
+#: guest_facing/registration/templates/registration/desktop/login.html:106
+#: guest_facing/registration/templates/registration/mobile/login.html:123
+msgid "registration_login:error_modal_body:other"
+msgstr "发生意外故障。请前往前台寻求协助。"
+
+#: guest_facing/registration/templates/registration/desktop/ocr.html:27
+msgid "Upload a photo<br>of your Passport"
+msgstr "请上传护照图片。"
+
+#: guest_facing/registration/templates/registration/desktop/ocr.html:33
+msgid ""
+"Please make sure the photo is clear and all<br>information is within the box."
+msgstr "请调整护照图像以确保所有资料都在像框中。"
+
+#: guest_facing/registration/templates/registration/desktop/ocr.html:36
+msgid ""
+"Please make sure that all of the passport information<br>is within the box."
+msgstr "请确保护照图像清晰以及所有资料都在框架内。"
+
+#: guest_facing/registration/templates/registration/desktop/ocr.html:54
+msgid "Capture"
+msgstr "拍摄"
+
+#: guest_facing/registration/templates/registration/desktop/ocr.html:67
+#: guest_facing/registration/templates/registration/mobile/ocr.html:78
+msgid "Take"
+msgstr "拍图"
+
+#: guest_facing/registration/templates/registration/desktop/ocr.html:71
+#: guest_facing/registration/templates/registration/mobile/ocr.html:72
+msgid "Upload"
+msgstr "上传"
+
+#: guest_facing/registration/templates/registration/desktop/ocr.html:79
+msgid "Reupload"
+msgstr "重新上传"
+
+#: guest_facing/registration/templates/registration/desktop/ocr.html:100
+#: guest_facing/registration/templates/registration/mobile/ocr.html:108
+msgid "Invalid Image"
+msgstr "图片无效"
+
+#: guest_facing/registration/templates/registration/desktop/ocr.html:106
+#: guest_facing/registration/templates/registration/desktop/other_info.html:142
+#: guest_facing/registration/templates/registration/desktop/reservation.html:78
+#: guest_facing/registration/templates/registration/mobile/ocr.html:114
+msgid "Close"
+msgstr "关闭"
+
+#: guest_facing/registration/templates/registration/desktop/other_info.html:22
+msgid "Additional Information"
+msgstr "输入额外资料"
+
+#: guest_facing/registration/templates/registration/desktop/other_info.html:27
+msgid "Please let us know if you have check-in<br>preferences."
+msgstr "请提供您的抵达时间和任何特殊要求，<br>以便我们更好地为您服务。"
+
+#: guest_facing/registration/templates/registration/desktop/other_info.html:56
+msgid "e.g. Extra Towels, etc"
+msgstr "例如：额外的毛巾等"
+
+#: guest_facing/registration/templates/registration/desktop/other_info.html:78
+msgid "e.g. example@email.com"
+msgstr "例如：example@email.com"
+
+#: guest_facing/registration/templates/registration/desktop/other_info.html:101
+msgid "I would like to receive exclusive offers, and news via email."
+msgstr "我愿意通过电子邮件收到独家优惠<br>和新闻。"
+
+#: guest_facing/registration/templates/registration/desktop/other_info.html:111
+#, python-format
+msgid ""
+"\n"
+"                                We are commited to protecting your privacy. "
+"By proceeding, you agree to our <a href=\"%(tnc_link)s\" target=\"_blank\" "
+"class=\"new-window-link\">Terms & Conditions</a>.\n"
+"                                View our Global Privacy Statement <a href="
+"\"%(privacy_link)s\" target=\"_blank\" class=\"new-window-link\">here</a>.\n"
+"                            "
+msgstr ""
+"\n"
+"                                我们致力于保护您的隐私。如继续进行，即已表示"
+"您同意我们的<a href=\"%(tnc_link)s\" target=\"_blank\" class=\"new-window-"
+"link\">条款和条件</a>。\n"
+"                                请查看我们的<a href=\"%(privacy_link)s\" "
+"target=\"_blank\" class=\"new-window-link\">全球隐私声明</a>。\n"
+"                            "
+
+#: guest_facing/registration/templates/registration/desktop/reservation.html:17
+msgid "Please select your<br>room to Check-In"
+msgstr "选择预订"
+
+#: guest_facing/registration/templates/registration/desktop/reservation.html:22
+msgid ""
+"The following room(s) are found<br>under your reservation.<br>(images shown "
+"are for references only)"
+msgstr "选择预订以继续。<br>（显示的图像仅供参考。）"
+
+#: guest_facing/registration/templates/registration/email/complete.html:168
+msgid "Dear"
+msgstr "亲爱的"
+
+#: guest_facing/registration/templates/registration/email/complete.html:176
+msgid ""
+"We are pleased to inform you that your registration is completed with "
+"details as follow:"
+msgstr "以下是您的预订详情。"
+
+#: guest_facing/registration/templates/registration/email/complete.html:181
+msgid "(images shown are for references only)"
+msgstr "（显示的图像仅供参考。）"
+
+#: guest_facing/registration/templates/registration/email/complete.html:280
+msgid ""
+" Please proceed to the front office to collect your key. Or alternatively, "
+"download our mobile app so you can head straight to your room using the "
+"digital key."
+msgstr ""
+"请下载我们的应用程序以使用数码钥匙进入您的房间。或者，您可前往前台领取您的房"
+"间钥匙。"
+
+#: guest_facing/registration/templates/registration/mobile/login.html:38
+msgid "Please enter your<br>Last Name"
+msgstr "输入姓氏"
+
+#: guest_facing/registration/templates/registration/mobile/login.html:40
+msgid "Please confirm your<br>Arrival Date"
+msgstr "确认抵达日期"
+
+#: guest_facing/registration/templates/registration/mobile/login.html:46
+msgid ""
+"To begin the online check-in process,<br>please enter your reservation "
+"number."
+msgstr "请输入您的预订号码，<br>以确认您的预订。"
+
+#: guest_facing/registration/templates/registration/mobile/login.html:48
+msgid ""
+"To verify your reservation, please provide<br>your last name is in your "
+"passport."
+msgstr "请输入您预订中使用的姓氏，<br>以确认您的预订。"
+
+#: guest_facing/registration/templates/registration/mobile/login.html:50
+msgid ""
+"To verify your reservation, please confirm<br>the arrival date at the hotel."
+msgstr "请输入您的抵达日期，<br>以确认您的预订。"
+
+#: guest_facing/registration/templates/registration/mobile/login.html:57
+msgid "e.g. 12345678"
+msgstr "例如：12345678"
+
+#: guest_facing/registration/templates/registration/mobile/ocr.html:27
+msgid "Submit Passport<br>image"
+msgstr "提交护照或证件图片"
+
+#: guest_facing/registration/templates/registration/mobile/ocr.html:32
+msgid ""
+"An image of your passport is required for<br>registration. Use the camera to "
+"capture or<br>choose an existing image from your device."
+msgstr "使用相机拍下图片，<br>或从设备中选择现有的图片。"
+
+#: guest_facing/registration/templates/registration/mobile/ocr.html:60
+#: guest_facing/registration/templates/registration/mobile/ocr.html:86
+msgid "Retake"
+msgstr "重拍"
+
+#: guest_facing/registration/utils.py:78
+#, fuzzy, python-format
+msgid "Registration Complete - %(hotel_name)s - Reservation #%(pms_no)s"
+msgstr "完成登记 - %(hotel_name)s - 预订号码 #%(pms_no)s"
