@@ -238,7 +238,7 @@ class RegistrationDetailForm(forms.Form):
                 adult = is_adult and 1 or 0
                 for guest in self.request.session['registration']['reservation'].get('guestsList', []):
                     if guest.get('guestId') != self.instance.get('guestId') or guest.get('new_guest_id') != self.instance.get('new_guest_id'): # not current instance
-                        if utils.calculate_age(dt.strptime(guest.get('dob', ''), '%Y-%m-%d')) > age_limit: # is adult
+                        if guest.get('dob') and utils.calculate_age(dt.strptime(guest.get('dob'), '%Y-%m-%d')) > age_limit: # is adult
                             adult += 1
                 if max_adult < adult:
                     self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([_('You have exceeded the number of adults.')])
