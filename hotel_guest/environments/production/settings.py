@@ -1,7 +1,7 @@
 from hotel_guest.settings import *
 
 DEBUG = False
-ALLOWED_HOSTS = ['hoteltemplateqa.gtriip.com']
+ALLOWED_HOSTS = ['trevo.gtriip.com']
 WSGI_APPLICATION = 'hotel_guest.environments.production.wsgi.application'
 
 
