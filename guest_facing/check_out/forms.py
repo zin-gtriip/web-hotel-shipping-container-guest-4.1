@@ -9,7 +9,6 @@ class CheckOutLoginForm(forms.Form):
     reservation_no  = forms.CharField(label=_('Reservation Number'), required=False)
     last_name       = forms.CharField(label=_('Last Name'), required=False)
     room_no         = forms.CharField(label=_('Room Number'))
-    recaptcha       = captchaField.ReCaptchaField(widget=captchaWidget.ReCaptchaV2Invisible)
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -19,6 +18,9 @@ class CheckOutLoginForm(forms.Form):
         self.fields['reservation_no'].initial = self.request.session.get('check_out', {}).get('preload', {}).get('reservation_no')
         self.fields['last_name'].initial = self.request.session.get('check_out', {}).get('preload', {}).get('last_name')
         self.fields['room_no'].initial = self.request.session.get('check_out', {}).get('preload', {}).get('room_no')
+        # add `recaptcha` when not auto login
+        if not self.request.session.get('check_out', {}).get('preload', {}).get('auto_login', 0):
+            self.fields['recaptcha'] = captchaField.ReCaptchaField(widget=captchaWidget.ReCaptchaV2Invisible)
 
     def clean(self):
         super().clean()
@@ -33,7 +35,8 @@ class CheckOutLoginForm(forms.Form):
             self._errors['last_name'] = self.error_class([_('Enter the required information')])
         if not room_no:
             self._errors['room_no'] = self.error_class([_('Enter the required information')])
-        if not recaptcha:
+        # validate `recaptcha` when not auto login
+        if not self.request.session.get('check_out', {}).get('preload', {}).get('auto_login', 0) and not recaptcha:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class(['recaptcha'])
         # validate to backend
         if not self.errors:
