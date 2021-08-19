@@ -40,9 +40,9 @@ class CheckOutLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTem
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('check_out', {}).get('preload', {}).get('auto_login', 0):
             data = {}
-            data['reservationNo'] = request.session.get('check_out', {}).get('preload', {}).get('reservation_no', '')
-            data['lastName'] = request.session.get('check_out', {}).get('preload', {}).get('last_name', '')
-            data['roomNo'] = request.session.get('check_out', {}).get('preload', {}).get('room_no', '')
+            data['reservation_no'] = request.session.get('check_out', {}).get('preload', {}).get('reservation_no', '')
+            data['last_name'] = request.session.get('check_out', {}).get('preload', {}).get('last_name', '')
+            data['room_no'] = request.session.get('check_out', {}).get('preload', {}).get('room_no', '')
             form = self.get_form_class()
             form = form(request, data)
             if form.is_valid():
