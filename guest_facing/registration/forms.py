@@ -15,7 +15,6 @@ class RegistrationLoginForm(forms.Form):
     reservation_no  = forms.CharField(label=_('Reservation Number'), required=False)
     arrival_date    = forms.DateField(label=_('Arrival Date'), required=False)
     last_name       = forms.CharField(label=_('Last Name'), required=False)
-    recaptcha       = captchaField.ReCaptchaField(widget=captchaWidget.ReCaptchaV2Invisible)
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -25,6 +24,9 @@ class RegistrationLoginForm(forms.Form):
         self.fields['reservation_no'].initial = self.request.session.get('registration', {}).get('preload', {}).get('reservation_no')
         self.fields['arrival_date'].initial = self.request.session.get('registration', {}).get('preload', {}).get('arrival_date')
         self.fields['last_name'].initial = self.request.session.get('registration', {}).get('preload', {}).get('last_name')
+        # add `recaptcha` when not auto login
+        if not self.request.session.get('registration', {}).get('preload', {}).get('auto_login', 0):
+            self.fields['recaptcha'] = captchaField.ReCaptchaField(widget=captchaWidget.ReCaptchaV2Invisible)
 
     def clean(self):
         super().clean()
@@ -40,7 +42,8 @@ class RegistrationLoginForm(forms.Form):
             self._errors['arrival_date'] = self.error_class([_('Enter the required information')])
         if not last_name:
             self._errors['last_name'] = self.error_class([_('Enter the required information')])
-        if not recaptcha:
+        # validate `recaptcha` when not auto login
+        if not self.request.session.get('registration', {}).get('preload', {}).get('auto_login', 0) and not recaptcha:
             self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class(['recaptcha'])
         # validate to backend
         if not self.errors:
