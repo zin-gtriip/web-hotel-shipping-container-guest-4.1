@@ -39,7 +39,6 @@ class CheckOutLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTem
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('check_out', {}).get('preload', {}).get('auto_login', 0):
-            request.session['check_out']['preload']['auto_login'] = 0 # set auto login to False to prevent using `preload` data again
             data = {}
             data['reservationNo'] = request.session.get('check_out', {}).get('preload', {}).get('reservation_no', '')
             data['lastName'] = request.session.get('check_out', {}).get('preload', {}).get('last_name', '')
