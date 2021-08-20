@@ -1,5 +1,5 @@
 """
-WSGI config for hotel_guest project.
+WSGI config for sc_guest project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hotel_guest.environments.qa.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'sc_guest.environments.production.settings')
 
 application = get_wsgi_application()

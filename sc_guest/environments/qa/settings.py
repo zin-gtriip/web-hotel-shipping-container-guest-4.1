@@ -1,8 +1,8 @@
-from hotel_guest.settings import *
+from sc_guest.settings import *
 
 DEBUG = False
 ALLOWED_HOSTS = ['trevo.gtriip.com']
-WSGI_APPLICATION = 'hotel_guest.environments.production.wsgi.application'
+WSGI_APPLICATION = 'sc_guest.environments.qa.wsgi.application'
 
 
 # Security

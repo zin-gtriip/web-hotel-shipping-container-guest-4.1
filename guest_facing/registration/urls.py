@@ -5,7 +5,7 @@ from .views         import (IndexView, RegistrationDataView, RegistrationLoginVi
 
 app_name = 'registration'
 urlpatterns = [
-    path('', IndexView.as_view(), name='hotel_guest_index'),
+    path('', IndexView.as_view(), name='sc_guest_index'),
     path('registration/', IndexView.as_view(), name='index'),
     path('registration/data/', RegistrationDataView.as_view(), name='data'),
     path('registration/login/', RegistrationLoginView.as_view(), name='login'),
