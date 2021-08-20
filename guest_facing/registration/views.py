@@ -46,7 +46,6 @@ class RegistrationLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, Mobil
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('registration', {}).get('preload', {}).get('auto_login', 0):
-            request.session['registration']['preload']['auto_login'] = 0 # set auto login to False to prevent using `preload` data again
             data = {}
             data['reservation_no'] = request.session.get('registration', {}).get('preload', {}).get('reservation_no', '')
             data['arrival_date'] = request.session.get('registration', {}).get('preload', {}).get('arrival_date', '')
