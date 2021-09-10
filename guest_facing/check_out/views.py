@@ -35,7 +35,7 @@ class CheckOutLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTem
     template_name           = 'check_out/desktop/login.html'
     mobile_template_name    = 'check_out/mobile/login.html'
     form_class              = CheckOutLoginForm
-    success_url             = '/check_out/bill/{reservation_no}'
+    success_url             = '/guest/check_out/bill/{reservation_no}'
 
     def dispatch(self, request, *args, **kwargs):
         if request.session.get('check_out', {}).get('preload', {}).get('auto_login', 0):
@@ -73,7 +73,7 @@ class CheckOutLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, MobileTem
 class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, RequestFormKwargsMixin, UpdateView):
     template_name           = 'check_out/desktop/bill.html'
     form_class              = CheckOutBillForm
-    success_url             = '/check_out/bill/all'
+    success_url             = '/guest/check_out/bill/all'
 
     def gateway_get(self, reservations_no):
         data = {'pmsNos': reservations_no}
@@ -113,7 +113,7 @@ class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, Request
         url = self.success_url
         if len(self.request.session['check_out'].get('bills', [])) == 1: # redirect to last bill if left 1 bill to check-out
             bill = next(iter(self.request.session['check_out'].get('bills', [])), None)
-            url = '/check_out/bill/%(reservation_no)s' % {'reservation_no': bill.get('pmsNo', 'all')}
+            url = 'check_out/bill/%(reservation_no)s' % {'reservation_no': bill.get('pmsNo', 'all')}
         return url
 
 

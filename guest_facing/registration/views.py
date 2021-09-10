@@ -41,7 +41,7 @@ class RegistrationLoginView(PropertyRequiredMixin, RequestFormKwargsMixin, Mobil
     template_name           = 'registration/desktop/login.html'
     mobile_template_name    = 'registration/mobile/login.html'
     form_class              = RegistrationLoginForm
-    success_url             = '/registration/reservation'
+    success_url             = '/guest/registration/reservation'
     progress_bar_page       = 'login'
 
     def dispatch(self, request, *args, **kwargs):
@@ -89,7 +89,7 @@ class RegistrationTimerExtensionView(PropertyRequiredMixin, JSONResponseMixin, R
 class RegistrationReservationView(ExpirySessionMixin, PropertyRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
     template_name           = 'registration/desktop/reservation.html'
     form_class              = RegistrationReservationForm
-    success_url             = '/registration/guest_list'
+    success_url             = '/guest/registration/guest_list'
     progress_bar_page       = 'reservation'
 
     def get_context_data(self, **kwargs):
@@ -113,7 +113,7 @@ class RegistrationReservationView(ExpirySessionMixin, PropertyRequiredMixin, Req
 class RegistrationGuestListView(ParameterRequiredMixin, PropertyRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
     template_name           = 'registration/desktop/guest_list.html'
     form_class              = RegistrationGuestListForm
-    success_url             = '/registration/other_info'
+    success_url             = '/guest/registration/other_info'
     parameter_required      = 'reservation'
     progress_bar_page       = 'guest_list'
 
@@ -138,7 +138,7 @@ class RegistrationGuestListView(ParameterRequiredMixin, PropertyRequiredMixin, R
 
     def get_success_url(self):
         if self.request.session['registration']['reservation'].get('preArrivalDone'):
-            self.success_url = '/registration/complete' # skip `other info` and redirect to `complete` page
+            self.success_url = '/guest/registration/complete' # skip `other info` and redirect to `complete` page
         return super().get_success_url()
 
 
@@ -146,7 +146,7 @@ class RegistrationDetailView(ExpirySessionMixin, PropertyRequiredMixin, RequestF
     template_name           = 'registration/desktop/detail.html'
     mobile_template_name    = 'registration/mobile/detail.html'
     form_class              = RegistrationDetailForm
-    success_url             = '/registration/guest_list'
+    success_url             = '/guest/registration/guest_list'
     progress_bar_page       = 'guest_list'
 
     def get_object(self):
@@ -198,7 +198,7 @@ class RegistrationOcrView(ExpirySessionMixin, PropertyRequiredMixin, RequestForm
     template_name           = 'registration/desktop/ocr.html'
     mobile_template_name    = 'registration/mobile/ocr.html'
     form_class              = RegistrationOcrForm
-    success_url             = '/registration/detail/{encrypted_id}'
+    success_url             = '/guest/registration/detail/{encrypted_id}'
     progress_bar_page       = 'guest_list'
 
     def get_object(self):
@@ -224,7 +224,7 @@ class RegistrationOcrView(ExpirySessionMixin, PropertyRequiredMixin, RequestForm
 class RegistrationOtherInfoView(ParameterRequiredMixin, PropertyRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
     template_name           = 'registration/desktop/other_info.html'
     form_class              = RegistrationOtherInfoForm
-    success_url             = '/registration/complete'
+    success_url             = '/guest/registration/complete'
     parameter_required      = 'guest_list'
     progress_bar_page       = 'other_info'
     
@@ -245,7 +245,7 @@ class RegistrationOtherInfoView(ParameterRequiredMixin, PropertyRequiredMixin, R
 class RegistrationCompleteView(ParameterRequiredMixin, PropertyRequiredMixin, RequestFormKwargsMixin, ProgressRateContextMixin, FormView):
     template_name           = 'registration/desktop/complete.html'
     form_class              = RegistrationCompleteForm
-    success_url             = '/registration/reservation'
+    success_url             = '/guest/registration/reservation'
     parameter_required      = 'other_info'
     progress_bar_page       = 'complete'
     

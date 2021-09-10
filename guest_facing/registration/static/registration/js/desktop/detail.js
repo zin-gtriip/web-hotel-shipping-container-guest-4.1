@@ -30,7 +30,7 @@ $('#btn-back').click(function() {
                     '</div>'+
                     '<div class="modal-body">'+ gettext('All changes is not saved yet. Are you sure want to do this?') +'</div>'+
                     '<div class="modal-footer justify-content-center">'+
-                        '<a href="/registration/guest_list/" class="btn btn-outline-primary">'+ gettext('Yes') +'</a>'+
+                        '<a href="/guest/registration/guest_list/" class="btn btn-outline-primary">'+ gettext('Yes') +'</a>'+
                         '<button type="button" class="btn btn-primary" data-dismiss="modal">'+ gettext('No') +'</button>'+
                     '</div>'+
                 '</div>'+

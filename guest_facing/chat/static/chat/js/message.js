@@ -42,7 +42,7 @@ $('#form-message').submit(function() {
     $('#id_message').val('');
 
     $.ajax({
-        url: '/chat/message/',
+        url: '/guest/chat/message/',
         data: data,
         type: 'POST',
         success: function(result) {

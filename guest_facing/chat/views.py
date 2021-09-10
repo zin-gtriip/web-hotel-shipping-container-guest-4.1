@@ -19,7 +19,7 @@ class IndexView(IndexView):
 class ChatChannelView(RequestFormKwargsMixin, FormView):
     template_name   = 'chat/channel.html'
     form_class      = ChatChannelForm
-    success_url     = '/chat/message'
+    success_url     = '/guest/chat/message'
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()

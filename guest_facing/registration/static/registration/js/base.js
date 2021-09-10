@@ -81,7 +81,7 @@ $('#form-timer-extension').submit(function() {
 
 // timer expired
 $('#timer-expired-modal').on('hidden.bs.modal', function (e) {
-    window.location.href = '/registration/login/';
+    window.location.href = '/guest/registration/login/';
 });
 
 
