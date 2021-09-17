@@ -191,14 +191,14 @@ COMPRESS_PRECOMPILERS = (
 TOKEN_ENDPOINT = [
     {
         'type': 'guest_facing',
-        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT/oauth/token',
+        'url': 'https://54.179.10.115:8443/container/oauth/token',
         'username': 'web-guest-client',
         'password': 'HotelTemplate1234',
         'timeout': 30,
     },
     {
         'type': 'amp',
-        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT/oauth/token',
+        'url': 'https://54.179.10.115:8443/container/oauth/token',
         'username': 'web-amp-client',
         'password': 'HotelTemplate1234',
         'timeout': 30,
@@ -212,54 +212,20 @@ GUEST_ENDPOINT = [
         'description': 'GTRIIP - Aurum',
         'image': '/static/img/property/1.jpg',
         'address': '1 East Street, Singapore',
-        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
+        'url': 'https://54.179.10.115:8443/container',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 30,
-    },
-    {
-        'id': 'QAHotelProdSG11_2',
-        'name': 'QA_Hotel_Prod_SG_3.0_2',
-        'description': 'GTRIIP - Nouveau',
-        'image': '/static/img/property/2.jpg',
-        'address': '1 South Beach Road, Singapore',
-        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
-        'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
-        'timeout': 30,
-    },
-    {
-        'id': 'QAHotelProdSG11_2',
-        'name': 'QA_Hotel_Prod_SG_3.0_2',
-        'description': 'GTRIIP - Nouveau',
-        'image': '/static/img/property/3.jpg',
-        'address': '1 West Avenue, Singapore',
-        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
-        'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
-        'timeout': 30,
-    },
+    }
 ]
 # AMP
 AMP_ENDPOINT = [
     {
         'id': 'QAHotelProdSG11_1',
         'name': 'QA_Hotel_Prod_SG_3.0_1',
-        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
+        'url': 'https://54.179.10.115:8443/container',
         'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
         'timeout': 30,
-    },
-    {
-        'id': 'QAHotelProdSG11_2',
-        'name': 'QA_Hotel_Prod_SG_3.0_2',
-        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
-        'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
-        'timeout': 30,
-    },
-    {
-        'id': 'QAHotelProdSG11_2',
-        'name': 'QA_Hotel_Prod_SG_3.0_2',
-        'url': 'http://54.179.22.8:8080/hoteltemplate-0.0.1-SNAPSHOT',
-        'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
-        'timeout': 30,
-    },
+    }
 ]
 
 
