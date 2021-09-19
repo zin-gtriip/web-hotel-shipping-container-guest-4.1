@@ -10,7 +10,8 @@ pipeline {
         stage('Deploy'){
             steps {
                 echo 'Deploying.....'
-                sh './deploy_qa.sh'
+                sh "chmod +x -R ${env.WORKSPACE}"
+                sh "./deploy_qa.sh"
                 
             }
         }
