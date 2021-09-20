@@ -295,12 +295,12 @@ RECAPTCHA_PRIVATE_KEY       = '6Lc5PcgaAAAAAGDC4DyZzx9uhA3t5yiUNMpAKJOh'
 
 # Other configuration
 # General
-HOTEL_NAME          = 'GTRIIP'
+HOTEL_NAME          = 'KontainerSpace'
 GST_NO              = 'A13572468B'
 BUSINESS_NO         = '975308642Z'
 CURRENCY_SYMBOL     = 'S$'
-TNC_LINK            = 'https://www.gtriip.com'
-PRIVACY_LINK        = 'https://www.gtriip.com'
+TNC_LINK            = 'http://www.kontainerspace.com'
+PRIVACY_LINK        = 'http://www.kontainerspace.com'
 HOST_URL            = 'https://hoteltemplateqa.gtriip.com'
 APP_IOS_URL         = 'http://itunes.apple.com'
 APP_ANDROID_URL     = 'http://play.google.com/store/apps'
