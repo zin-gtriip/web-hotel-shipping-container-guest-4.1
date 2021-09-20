@@ -8,15 +8,9 @@ RUN apt-get update && \
 ENV PYTHONDONTWRITEBYTECODE 1 && \
 	PYTHONUNBUFFERED 1
 WORKDIR /GuestFacing
-RUN virtualenv sc-env && \
-	source sc-env/bin/activate && \
-	pip3 install -r requirements.txt && \
-	python3 manage.py migrate && \
-	python3 manage.py makemigrations && \
-	python3 manage.py collectstatic --noinput && \
-	chmod 777 /etc/ssl/certs && \
-	chmod 777 /etc/ssl/private
 COPY . /GuestFacing
+RUN chmod 777 /etc/ssl/certs && \
+	chmod 777 /etc/ssl/private
 ADD ./gtriip-certs/gtriip.crt /etc/ssl/certs
 ADD ./gtriip-certs/gtriip.key /etc/ssl/private
 ADD ./gtriip-certs/sf_bundle-g2-g1.crt /etc/ssl/certs
