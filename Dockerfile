@@ -9,7 +9,7 @@ ENV PYTHONDONTWRITEBYTECODE 1 && \
 	PYTHONUNBUFFERED 1
 WORKDIR /GuestFacing
 RUN virtualenv sc-env && \
-	source sc-env/bin/activate \
+	source sc-env/bin/activate && \
 	pip3 install -r requirements.txt && \
 	python3 manage.py migrate && \
 	python3 manage.py makemigrations && \
