@@ -10,8 +10,13 @@ pipeline {
         stage('Deploy'){
             steps {
                 echo 'Deploying.....'
-                sh "chmod +x -R ${env.WORKSPACE}"
-                sh "./deploy_qa.sh"
+                sshagent (credentials: ['ssh-shippingcontainer']) {
+                    sh 'ssh -tt -oStrictHostKeyChecking=no phu@54.179.10.115'
+                    sh 'cd GuestFacing/shippingconatiner_guest'
+                    sh 'git pull'
+                    sh 'docker-compose pull'
+                    sh 'docker-compose up -d'
+                }
                 
             }
         }
