@@ -32,5 +32,5 @@ RUN a2enmod ssl && \
 	a2enmod proxy_http && \
 	a2enmod proxy_balancer && \
 	a2enmod lbmethod_byrequests
-EXPOSE 443
+EXPOSE 80 443
 CMD ["apache2ctl", "-D", "FOREGROUND"]
