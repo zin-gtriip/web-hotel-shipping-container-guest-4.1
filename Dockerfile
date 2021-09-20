@@ -10,6 +10,7 @@ ENV PYTHONDONTWRITEBYTECODE 1 && \
 WORKDIR /GuestFacing
 COPY . /GuestFacing
 RUN virtualenv sc-env && \
+	source sc-env/bin/activate \
 	pip3 install -r requirements.txt && \
 	python3 manage.py migrate && \
 	python3 manage.py makemigrations && \
@@ -32,5 +33,5 @@ RUN a2enmod ssl && \
 	a2enmod proxy_http && \
 	a2enmod proxy_balancer && \
 	a2enmod lbmethod_byrequests
-EXPOSE 80 443
+EXPOSE 443
 CMD ["apache2ctl", "-D", "FOREGROUND"]
