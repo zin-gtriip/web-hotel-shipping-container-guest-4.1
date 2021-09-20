@@ -12,7 +12,7 @@ pipeline {
                 echo 'Deploying.....'
                 sshagent (credentials: ['ssh-shippingcontainer']) {
                     sh 'ssh phu@54.179.10.115'
-                    sh 'whoami'
+                    sh 'ssh phu@54.179.10.115 whoami'
                     sh 'pwd'
                     sh '#!/bin/bash'
                     sh'pwd'
