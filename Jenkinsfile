@@ -12,11 +12,11 @@ pipeline {
                 echo 'Deploying.....'
                 sshagent (credentials: ['ssh-shippingcontainer']) {
                     sh '''
-                        ssh -t phu@54.179.10.115 " 
-                        \whoami &&
-                        \pwd &&
-                        \ls
-                    "
+                        ssh -t phu@54.179.10.115 <<EOF 
+                        whoami &&
+                        pwd &&
+                        ls
+                        EOF
                     '''
                 }
                 
