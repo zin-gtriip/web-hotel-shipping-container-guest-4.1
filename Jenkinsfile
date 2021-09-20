@@ -11,12 +11,11 @@ pipeline {
             steps {
                 echo 'Deploying.....'
                 sshagent (credentials: ['ssh-shippingcontainer']) {
-                    sh '''
-                        ssh -t phu@54.179.10.115
+                    sh ssh -t phu@54.179.10.115 bash -c "'
                         whoami
                         pwd
                         ls
-                    '''
+                    '"
                 }
                 
             }
