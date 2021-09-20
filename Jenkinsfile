@@ -10,11 +10,11 @@ pipeline {
         stage('Deploy'){
             steps {
                 echo 'Deploying.....'
+                scp /var/jenkins_home/workspace/shippingconatiner-guestfacing@3 phu@54.179.10.115:/GuestFacing/shippingconatiner_guest
                 sshagent (credentials: ['ssh-shippingcontainer']) {
                     sh 'pwd'
                     sh '''
-                        ssh -t phu@54.179.10.115 "cd GuestFacing/shippingcontainer_guest && 
-                        
+                        ssh -t phu@54.179.10.115 "cd GuestFacing/shippingcontainer_guest &&  
                         docker-compose pull &&
                         docker-compose up -d"
                     '''
