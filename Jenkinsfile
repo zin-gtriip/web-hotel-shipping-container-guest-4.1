@@ -12,6 +12,7 @@ pipeline {
                 echo 'Deploying.....'
                 sshagent (credentials: ['ssh-shippingcontainer']) {
                     sh 'ssh -tt -oStrictHostKeyChecking=no phu@54.179.10.115'
+                    sh 'ls'
                     sh 'cd GuestFacing/shippingconatiner_guest'
                     sh 'git pull'
                     sh 'docker-compose pull'
