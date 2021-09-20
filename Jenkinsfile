@@ -10,8 +10,7 @@ pipeline {
         stage('Deploy'){
             steps {
                 echo 'Deploying.....'
-                def Url = "https://source.gtriip.com/scm/web_app/shippingcontainer_guest.git"
-                git credentialsId: 'phuwai-bitbucket', url: Url
+                git credentialsId: 'phuwai-bitbucket', url: "https://source.gtriip.com/scm/web_app/shippingcontainer_guest.git"
                 sshagent (credentials: ['ssh-shippingcontainer']) {
                     sh '''
                         ssh -t phu@54.179.10.115 "cd GuestFacing/shippingcontainer_guest && 
