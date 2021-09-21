@@ -50,7 +50,7 @@ $('#form-timer-extension').submit(function() {
     event.preventDefault();
     var data = $(this).serializeArray();
     $.ajax({
-        url: '/registration/timer_extension/',
+        url: '/guest/registration/timer_extension/',
         data: data,
         type: 'POST',
         success: function(result) {
