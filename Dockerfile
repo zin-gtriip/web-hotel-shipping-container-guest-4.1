@@ -6,7 +6,6 @@ RUN apt-get install -y apt-utils vim curl apache2 apache2-utils
 RUN apt-get -y install python3-pip libapache2-mod-wsgi-py3
 RUN pip3 install virtualenv
 RUN pip3 install --upgrade pip
-#RUN pip3 install django ptvsd
 ENV PYTHONUNBUFFERED 1
 WORKDIR /GuestFacing
 COPY requirements.txt /GuestFacing
