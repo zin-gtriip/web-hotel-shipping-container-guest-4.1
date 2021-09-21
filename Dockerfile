@@ -10,7 +10,7 @@ RUN pip3 install --upgrade pip
 ENV PYTHONUNBUFFERED 1
 WORKDIR /GuestFacing
 COPY requirements.txt /GuestFacing
-RUN pip3 install -r requirements.txt
+#RUN pip3 install -r requirements.txt
 #RUN virtualenv sc-env
 COPY . /GuestFacing
 ADD ./000-default.conf /etc/apache2/sites-available/000-default.conf
