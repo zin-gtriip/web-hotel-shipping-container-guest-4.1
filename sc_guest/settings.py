@@ -207,8 +207,8 @@ TOKEN_ENDPOINT = [
 # Guest Facing
 GUEST_ENDPOINT = [
     {
-        'id': 'QAHotelProdSG11_1',
-        'name': 'QA_Hotel_Prod_SG_3.0_1',
+        'id': '77ks',
+        'name': '77 KontainerSpace',
         'description': 'Shipping Container Hotel @ Block 77 Ayer Rajah Crescent (No.1)',
         'image': '/static/img/property/BLK77-container-hotels.jpg',
         'address': '77 Ayer Rajah Crescent, Singapore 139952',
@@ -217,8 +217,8 @@ GUEST_ENDPOINT = [
         'timeout': 30,
     },
     {
-        'id': 'QAHotelProdSG11_1',
-        'name': 'QA_Hotel_Prod_SG_3.0_1',
+        'id': '81ks',
+        'name': '81 KontainerSpace',
         'description': 'Shipping Container Hotel @ Block 81 Ayer Rajah Crescent (No.2)',
         'image': '/static/img/property/BLK81-container-hotels.jpg',
         'address': '81 Ayer Rajah Crescent, Singapore 139952',
@@ -230,15 +230,15 @@ GUEST_ENDPOINT = [
 # AMP
 AMP_ENDPOINT = [
     {
-        'id': 'QAHotelProdSG11_1',
-        'name': 'QA_Hotel_Prod_SG_3.0_1',
+        'id': '77ks',
+        'name': '77 KontainerSpace',
         'url': 'https://54.179.10.115:8443/container',
         'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
         'timeout': 30,
     },
     {
-        'id': 'QAHotelProdSG11_1',
-        'name': 'QA_Hotel_Prod_SG_3.0_1',
+        'id': '81ks',
+        'name': '81 KontainerSpace',
         'url': 'https://54.179.10.115:8443/container',
         'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
         'timeout': 30,
@@ -285,29 +285,29 @@ RECAPTCHA_PRIVATE_KEY       = '6Lc5PcgaAAAAAGDC4DyZzx9uhA3t5yiUNMpAKJOh'
 # Logging
 # https://docs.djangoproject.com/en/2.2/topics/logging/
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'formatters': {
-#         'simple': {
-#             'format': '[%(asctime)s] %(message)s'
-#         },
-#     },
-#     'handlers': {
-#         'file': {
-#             'level': 'INFO',
-#             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': BASE_DIR +'/logs/info.log',
-#             'maxBytes': 1024 * 1024 * 10, # 10MB
-#             'backupCount': 10,
-#             'formatter': 'simple',
-#         },
-#     },
-#     'loggers': {
-#         'gateways': { 'handlers': ['file'], 'level': 'INFO', 'propagate': True },
-#         'django': { 'handlers': ['file'], 'level': 'ERROR', 'propagate': True },
-#     },
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '[%(asctime)s] %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': BASE_DIR +'/logs/info.log',
+            'maxBytes': 1024 * 1024 * 10, # 10MB
+            'backupCount': 10,
+            'formatter': 'simple',
+        },
+    },
+    'loggers': {
+        'gateways': { 'handlers': ['file'], 'level': 'INFO', 'propagate': True },
+        'django': { 'handlers': ['file'], 'level': 'ERROR', 'propagate': True },
+    },
+}
 
 
 # Other configuration
@@ -338,13 +338,13 @@ REGISTRATION_SESSION_AGE_EXTEND = 10
 # room mapping, use `room_type` as identifier
 REGISTRATION_ROOM_TYPES = [
     {
-        'room_type' : 'Premier',
-        'room_name' : 'Premier Room',
+        'room_type' : 'Shipping Container Hotel @ Block 81',
+        'room_name' : 'Shipping Container Hotel @ Block 81',
         'room_image': '/static/img/room/shipping-container-room.jpg',
     },
     {
-        'room_type' : 'Deluxe',
-        'room_name' : 'Deluxe Room',
+        'room_type' : 'Shipping Container Hotel @ Block 77',
+        'room_name' : 'Shipping Container Hotel @ Block 77',
         'room_image': '/static/img/room/shipping-conatiner-room.jpg',
     }
 ]
