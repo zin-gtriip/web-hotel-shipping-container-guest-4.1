@@ -209,9 +209,19 @@ GUEST_ENDPOINT = [
     {
         'id': 'QAHotelProdSG11_1',
         'name': 'QA_Hotel_Prod_SG_3.0_1',
-        'description': 'GTRIIP - Aurum',
-        'image': '/static/img/property/1.jpg',
-        'address': '1 East Street, Singapore',
+        'description': 'Shipping Container Hotel @ Block 77 Ayer Rajah Crescent (No.1)',
+        'image': '/static/img/property/BLK77-container-hotels.jpg',
+        'address': '77 Ayer Rajah Crescent, Singapore 139952',
+        'url': 'https://54.179.10.115:8443/container',
+        'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
+        'timeout': 30,
+    },
+    {
+        'id': 'QAHotelProdSG11_1',
+        'name': 'QA_Hotel_Prod_SG_3.0_1',
+        'description': 'Shipping Container Hotel @ Block 81 Ayer Rajah Crescent (No.2)',
+        'image': '/static/img/property/BLK81-container-hotels.jpg',
+        'address': '81 Ayer Rajah Crescent, Singapore 139952',
         'url': 'https://54.179.10.115:8443/container',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 30,
@@ -219,6 +229,13 @@ GUEST_ENDPOINT = [
 ]
 # AMP
 AMP_ENDPOINT = [
+    {
+        'id': 'QAHotelProdSG11_1',
+        'name': 'QA_Hotel_Prod_SG_3.0_1',
+        'url': 'https://54.179.10.115:8443/container',
+        'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
+        'timeout': 30,
+    },
     {
         'id': 'QAHotelProdSG11_1',
         'name': 'QA_Hotel_Prod_SG_3.0_1',
