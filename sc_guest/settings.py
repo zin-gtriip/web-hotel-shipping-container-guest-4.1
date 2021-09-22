@@ -316,9 +316,9 @@ HOTEL_NAME          = 'KontainerSpace'
 GST_NO              = 'A13572468B'
 BUSINESS_NO         = '975308642Z'
 CURRENCY_SYMBOL     = 'S$'
-TNC_LINK            = 'http://www.kontainerspace.com'
-PRIVACY_LINK        = 'http://www.kontainerspace.com'
-HOST_URL            = 'https://hoteltemplateqa.gtriip.com'
+TNC_LINK            = 'https://hotels.cloudbeds.com/reservation/PK9fOV'
+PRIVACY_LINK        = 'https://hotels.cloudbeds.com/reservation/PK9fOV'
+HOST_URL            = 'https://kontainerspaceqa.gtriip.com'
 APP_IOS_URL         = 'http://itunes.apple.com'
 APP_ANDROID_URL     = 'http://play.google.com/store/apps'
 APP_DIRECT_URL      = 'https://www.google.com'
@@ -340,18 +340,13 @@ REGISTRATION_ROOM_TYPES = [
     {
         'room_type' : 'Premier',
         'room_name' : 'Premier Room',
-        'room_image': '/static/img/room/premier.jpg',
+        'room_image': '/static/img/room/shipping-container-room.jpg',
     },
     {
         'room_type' : 'Deluxe',
         'room_name' : 'Deluxe Room',
-        'room_image': '/static/img/room/deluxe.jpg',
-    },
-    {
-        'room_type' : 'Villa',
-        'room_name' : 'Villa',
-        'room_image': '/static/img/room/villa.jpg',
-    },
+        'room_image': '/static/img/room/shipping-conatiner-room.jpg',
+    }
 ]
 # default age limit for adult, if AMP is not provided
 REGISTRATION_ADULT_AGE_LIMIT = 18
