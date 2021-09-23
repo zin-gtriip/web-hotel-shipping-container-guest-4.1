@@ -10,7 +10,6 @@ from guest_facing.core          import gateways
 from guest_facing.core.utils    import decrypt
 from .                          import utils
 
-
 class RegistrationLoginForm(forms.Form):
     reservation_no  = forms.CharField(label=_('Reservation Number'), required=False)
     arrival_date    = forms.DateField(label=_('Arrival Date'), required=False)

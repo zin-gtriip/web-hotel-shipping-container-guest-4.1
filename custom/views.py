@@ -54,3 +54,7 @@ class RegistrationMainGuestView(ParameterRequiredMixin, PropertyRequiredMixin, R
         if form.errors:
             return self.form_invalid(form)
         return super().form_valid(form)
+
+class RegistrationOtherInfoView(RegistrationOtherInfoView):
+    form_class              = RegistrationOtherInfoForm
+    parameter_required      = 'main_guest'

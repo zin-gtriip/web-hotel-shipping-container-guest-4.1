@@ -64,6 +64,8 @@ if (skip_popup == false){
         $('.modal:last').modal('show').addClass('shown');
 
         $('#id-btn-yes').click(function(){
+            console.log("hello");
+            console.log(document.getElementById('id_booker_stay'));
             document.getElementById('id_booker_stay').value = "yes";
             form.submit();
         });

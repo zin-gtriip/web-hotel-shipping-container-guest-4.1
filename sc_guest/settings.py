@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'custom',
     'guest_facing.registration',
     'guest_facing.check_out',
     'guest_facing.chat',

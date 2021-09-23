@@ -21,6 +21,7 @@ class RegistrationLoginForm(RegistrationLoginForm):
         self.request.session['registration']['isBookerStaying'] = False
 
 class RegistrationReservationForm(RegistrationReservationForm):
+    template_name           = 'registration/desktop/reservation.html'
     booker_stay = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     def save(self):
@@ -186,4 +187,43 @@ class RegistrationMainGuestForm(forms.Form):
             else:
                 guest['isMainGuest'] = False
         self.request.session['registration']['main_guest'] = True
+
+class RegistrationOtherInfoForm(RegistrationOtherInfoForm):
+
+    def save(self):
+        arrival_time = self.cleaned_data.get('arrival_time')
+        special_requests = self.cleaned_data.get('special_requests')
+        email = self.cleaned_data.get('email')
+        is_subscribe = self.cleaned_data.get('is_subscribe')
+
+        for guest in self.request.session['registration']['reservation'].get('guestsList', []):
+            guest.update({'email': email,'emailSubscription': is_subscribe})
+
+        self.request.session['registration']['reservation']['eta'] = arrival_time + ':00'
+        self.request.session['registration']['reservation']['comments'] = special_requests
+        self.request.session['registration']['other_info'] = True # variable to prevent page jump
+
+    def gateway_post(self):
+        data = self.request.session['registration']['reservation']
+        email = utils.prepare_email(dict(self.request.session['registration']['reservation'])) # create new variable to prevent modification on `request.session`
+        data['userInputNumber'] = self.request.session['registration'].get('input_reservation_no', '')
+        data = {**data, **email} # add email data
+        response = gateways.guest_endpoint('post', '/submitWebRegistration', self.request.session.get('property_id', ''), data)
+        print('submitWebRegistration',response)
+        if response.get('statusCode', '') == '5002':
+            # get existing reservation from backend
+            new_booking_data = {}
+            new_booking_data['reservationNo'] = self.request.session['registration'].get('input_reservation_no', '')
+            new_booking_data['arrivalDate'] = self.request.session['registration'].get('input_arrival_date', '')
+            new_booking_data['lastName'] = self.request.session['registration'].get('input_last_name', '')
+            new_booking_response = gateways.guest_endpoint('post', '/checkWebRegistration', self.request.session.get('property_id', ''), new_booking_data)
+            new_booking = new_booking_response.get('data', {}).get('data', [])
+            self.request.session['registration']['bookings'] = [reservation for reservation in new_booking if reservation.get('pmsNo') != self.request.session['registration'].get('reservation', {}).get('pmsNo', '')]
+
+            # for OTA
+            self.request.session['registration']['booker_profile'] = []
+            self.request.session['registration']['isBookerRegistered'] = new_booking_response.get('data', {}).get('isBookerRegistered', False)
+            self.request.session['registration']['isBookerStaying'] = False
+        else:
+            self._errors[forms.forms.NON_FIELD_ERRORS] = self.error_class([response.get('message', _('Unknown error'))])
 

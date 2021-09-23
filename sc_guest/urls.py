@@ -18,6 +18,7 @@ from django.urls import path, re_path, include
 from django.views.i18n import JavaScriptCatalog
 
 urlpatterns = [
+    path('guest/', include('custom.urls')),
     path('guest/', include('guest_facing.registration.urls')),
     path('guest/', include('guest_facing.check_out.urls')),
     path('guest/', include('guest_facing.chat.urls')),

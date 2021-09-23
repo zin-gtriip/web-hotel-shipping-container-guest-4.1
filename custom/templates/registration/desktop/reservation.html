@@ -46,11 +46,7 @@
                             </div>
                             <div class="text-right">
                                 <div class="text-10 text-secondary">{% trans 'Check-out Date' %}</div>
-                                {% if reservationType == '176258' or reservationType == '180170' %}
-                                    <div>{{ reservation.formattedDepartureDate }}</div>
-                                {% else %}
-                                    <div>{{ reservation.formattedArrivalDate }}</div>
-                                {% endif %}
+                                <div>{{ reservation.formattedDepartureDate }}</div>
                             </div>
                         </div>
                     </div>
