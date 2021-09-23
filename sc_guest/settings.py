@@ -222,8 +222,8 @@ TOKEN_ENDPOINT = [
 # Guest Facing
 GUEST_ENDPOINT = [
     {
-        'id': 'QAHotelProdSG11_1',
-        'name': 'QA_Hotel_Prod_SG_3.0_1',
+        'id': '77ks',
+        'name': '77 KontainerSpace',
         'description': 'Shipping Container Hotel @ Block 77 Ayer Rajah Crescent (No.1)',
         'image': '/static/img/property/BLK77-container-hotels.jpg',
         'address': '77 Ayer Rajah Crescent, Singapore 139952',
@@ -232,8 +232,8 @@ GUEST_ENDPOINT = [
         'timeout': 30,
     },
     {
-        'id': 'QAHotelProdSG11_1',
-        'name': 'QA_Hotel_Prod_SG_3.0_1',
+        'id': '81ks',
+        'name': '81 KontainerSpace',
         'description': 'Shipping Container Hotel @ Block 81 Ayer Rajah Crescent (No.2)',
         'image': '/static/img/property/BLK81-container-hotels.jpg',
         'address': '81 Ayer Rajah Crescent, Singapore 139952',
@@ -245,15 +245,15 @@ GUEST_ENDPOINT = [
 # AMP
 AMP_ENDPOINT = [
     {
-        'id': 'QAHotelProdSG11_1',
-        'name': 'QA_Hotel_Prod_SG_3.0_1',
+        'id': '77ks',
+        'name': '77 KontainerSpace',
         'url': 'https://kontainerspaceqa.gtriip.com:8443/container/77ks',
         'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
         'timeout': 30,
     },
     {
-        'id': 'QAHotelProdSG11_1',
-        'name': 'QA_Hotel_Prod_SG_3.0_1',
+        'id': '81ks',
+        'name': '81 KontainerSpace',
         'url': 'https://kontainerspaceqa.gtriip.com:8443/container/81ks',
         'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
         'timeout': 30,
