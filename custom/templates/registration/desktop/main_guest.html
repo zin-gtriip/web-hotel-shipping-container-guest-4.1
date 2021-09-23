@@ -1,0 +1,84 @@
+{% extends 'registration/desktop/base_desktop.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+{% load uglier %}
+
+{% block static_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'registration/scss/desktop/main_guest.scss' %}" type="text/x-scss" media="screen">
+{% endblock static_css %}
+
+{% block header_left %}
+    <a href="{% url 'registration:guest_list' %}" class="btn btn-link"><i class="fas fa-arrow-left"></i></a>
+    {{ block.super }}
+{% endblock header_left %}
+
+{% block content %}
+    {{ block.super }}
+    <form id="main-guest-form" method="post" autocomplete="off">
+        {% csrf_token %}
+        <div class="row page-header">
+            <div class="col-lg-12 px-0 text-center">
+                {% blocktrans %}Select Main Guest{% endblocktrans %}
+            </div>
+        </div>
+        <div class="row page-subheader">
+            <div class="col-lg-12 px-0 text-center text-secondary">
+                {% blocktrans %}Please select one of the adult guest below as the main guest.{% endblocktrans %}
+            </div>
+        </div>
+        <div class="row page-content">
+            <div class="col-lg-12">
+                {% for guest in request.session.registration.reservation.guestsList %}
+                    <div class="row" id="guests-list">
+                        <div class="col-lg-12 mb-3 d-flex justify-content-center">
+                            {% if guest.age > age_limit %}
+                            <div class="main-guest-container btn btn-primary">
+                                {{ guest.firstName }} {{ guest.lastName }}
+                                {% if guest.new_guest_id == 0 %}
+                                    <input type="radio" name="main_guest_id" value="{{ guest.guestId }}" id="id_main_guest_id_{{ forloop.counter0 }}" hidden>
+                                {% else %}
+                                    <input type="radio" name="main_guest_id" value="{{ guest.new_guest_id }}" id="id_main_guest_id_{{ forloop.counter0 }}" hidden>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+
+{% block wrapper %}
+    {{ block.super }}
+    <!-- form error -->
+    {% for error in form.non_field_errors %}
+        <div class="modal fade auto-show" id="error-modal-{{ forloop.counter0 }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h4 class="modal-title mx-auto">{% trans 'Invalid Input' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ error|linebreaks }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">{% trans 'OK' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock wrapper %}
+
+{% block data_js %}
+    {{ block.super }}
+    {{ request.session.registration.booker_profile.guestId|json_script:'mainGuest' }}
+{% endblock data_js %}
+
+{% block static_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'registration/js/desktop/main_guest.js' %}"></script>
+{% endblock static_js %}
