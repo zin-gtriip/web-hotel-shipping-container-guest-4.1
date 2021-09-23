@@ -1,6 +1,6 @@
 from sc_guest.settings import *
 
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['kontainerspaceqa.gtriip.com']
 WSGI_APPLICATION = 'sc_guest.environments.production.wsgi.application'
 
