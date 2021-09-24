@@ -101,7 +101,7 @@ class RegistrationReservationView(ExpirySessionMixin, PropertyRequiredMixin, Req
             reservation['formattedDepartureDate'] = utils.format_display_date(reservation.get('departureDate', ''))
             room = next((temp for temp in settings.REGISTRATION_ROOM_TYPES if temp['room_type'] == reservation['roomType']), {})
             reservation['roomName'] = room.get('room_name', '')
-            reservation['roomImage'] = room.get('room_image', '')
+            reservation['roomImage'] = room.get('room_image', '/static/img/room/deluxe.jpg')
             context['reservations'].append(reservation)
         return context
 
@@ -261,7 +261,7 @@ class RegistrationCompleteView(ParameterRequiredMixin, PropertyRequiredMixin, Re
         reservation['mainGuestLastName'] = next(guest.get('lastName', '') for guest in reservation.get('guestsList', []) if guest.get('isMainGuest', False))
         room = next((temp for temp in settings.REGISTRATION_ROOM_TYPES if temp['room_type'] == reservation['roomType']), {})
         reservation['roomName'] = room.get('room_name', '')
-        reservation['roomImage'] = room.get('room_image', '')
+        reservation['roomImage'] = room.get('room_image', '/static/img/room/deluxe.jpg')
         context['reservation'] = reservation
         context['ios_url'] = settings.APP_IOS_URL
         context['android_url'] = settings.APP_ANDROID_URL

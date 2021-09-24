@@ -68,7 +68,7 @@ def prepare_email(context):
     context['mainGuestLastName'] = main_guest.get('lastName', '')
     room = next((temp for temp in settings.REGISTRATION_ROOM_TYPES if temp['room_type'] == context['roomType']), {})
     context['roomName'] = room.get('room_name', '')
-    context['roomImage'] = settings.HOST_URL + room.get('room_image', '')
+    context['roomImage'] = settings.HOST_URL + room.get('room_image', '/static/img/room/deluxe.jpg')
     context['hotelName'] = settings.HOTEL_NAME
     context['staticURL'] = settings.HOST_URL + settings.STATIC_IMAGE_URL
     context['iOSURL'] = settings.APP_IOS_URL

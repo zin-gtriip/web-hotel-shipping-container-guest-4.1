@@ -24,7 +24,7 @@ urlpatterns = [
     path('guest/', include('guest_facing.chat.urls')),
     path('guest/', include('guest_facing.core.urls')),
     
-    path('admin/', admin.site.urls),
-    path('i18n/', include('django.conf.urls.i18n')),
-    path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
+    path('guest/admin/', admin.site.urls),
+    path('guest/i18n/', include('django.conf.urls.i18n')),
+    path('guest/jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
 ]

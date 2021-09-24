@@ -353,6 +353,11 @@ REGISTRATION_SESSION_AGE_EXTEND = 10
 # room mapping, use `room_type` as identifier
 REGISTRATION_ROOM_TYPES = [
     {
+        'room_type' : 'Deluxe',
+        'room_name' : 'Deluxe Room',
+        'room_image': '/static/img/room/room-deluxe.jpg',
+    },
+    {
         'room_type' : 'Shipping Container Hotel @ Block 81',
         'room_name' : 'Shipping Container Hotel @ Block 81',
         'room_image': '/static/img/room/shipping-container-room.jpg',
