@@ -192,28 +192,28 @@ COMPRESS_PRECOMPILERS = (
 TOKEN_ENDPOINT = [
     {
         'type': 'guest_facing',
-        'url': 'https://kontainerspaceqa.gtriip.com:8443/container/77ks/oauth/token',
+        'url': 'http://hotel-container_app-77ks_1:8080/oauth/token',
         'username': 'web-guest-client',
         'password': 'HotelTemplate1234',
         'timeout': 30,
     },
     {
         'type': 'amp',
-        'url': 'https://kontainerspaceqa.gtriip.com:8443/container/77ks/oauth/token',
+        'url': 'http://hotel-container_app-77ks_1:8080/oauth/token',
         'username': 'web-amp-client',
         'password': 'HotelTemplate1234',
         'timeout': 30,
     },
      {
         'type': 'guest_facing',
-        'url': 'https://kontainerspaceqa.gtriip.com:8443/container/81ks/oauth/token',
+        'url': 'http://hotel-container_app-81ks_1:8081/oauth/token',
         'username': 'web-guest-client',
         'password': 'HotelTemplate1234',
         'timeout': 30,
     },
     {
         'type': 'amp',
-        'url': 'https://kontainerspaceqa.gtriip.com:8443/container/81ks/oauth/token',
+        'url': 'http://hotel-container_app-81ks_1:8081/oauth/token',
         'username': 'web-amp-client',
         'password': 'HotelTemplate1234',
         'timeout': 30,
@@ -227,7 +227,7 @@ GUEST_ENDPOINT = [
         'description': 'Shipping Container Hotel @ Block 77 Ayer Rajah Crescent (No.1)',
         'image': '/static/img/property/BLK77-container-hotels.jpg',
         'address': '77 Ayer Rajah Crescent, Singapore 139952',
-        'url': 'https://kontainerspaceqa.gtriip.com:8443/container/77ks',
+        'url': 'http://hotel-container_app-77ks_1:8080',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 30,
     },
@@ -237,7 +237,7 @@ GUEST_ENDPOINT = [
         'description': 'Shipping Container Hotel @ Block 81 Ayer Rajah Crescent (No.2)',
         'image': '/static/img/property/BLK81-container-hotels.jpg',
         'address': '81 Ayer Rajah Crescent, Singapore 139952',
-        'url': 'https://kontainerspaceqa.gtriip.com:8443/container/81ks',
+        'url': 'http://hotel-container_app-81ks_1:8081',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 30,
     }
@@ -247,14 +247,14 @@ AMP_ENDPOINT = [
     {
         'id': '77ks',
         'name': '77 KontainerSpace',
-        'url': 'https://kontainerspaceqa.gtriip.com:8443/container/77ks',
+        'url': 'http://hotel-container_app-77ks_1:8080',
         'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
         'timeout': 30,
     },
     {
         'id': '81ks',
         'name': '81 KontainerSpace',
-        'url': 'https://kontainerspaceqa.gtriip.com:8443/container/81ks',
+        'url': 'http://hotel-container_app-81ks_1:8081',
         'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
         'timeout': 30,
     }
@@ -300,29 +300,29 @@ RECAPTCHA_PRIVATE_KEY       = '6Lc5PcgaAAAAAGDC4DyZzx9uhA3t5yiUNMpAKJOh'
 # Logging
 # https://docs.djangoproject.com/en/2.2/topics/logging/
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'formatters': {
-#         'simple': {
-#             'format': '[%(asctime)s] %(message)s'
-#         },
-#     },
-#     'handlers': {
-#         'file': {
-#             'level': 'INFO',
-#             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': BASE_DIR +'/logs/info.log',
-#             'maxBytes': 1024 * 1024 * 10, # 10MB
-#             'backupCount': 10,
-#             'formatter': 'simple',
-#         },
-#     },
-#     'loggers': {
-#         'gateways': { 'handlers': ['file'], 'level': 'INFO', 'propagate': True },
-#         'django': { 'handlers': ['file'], 'level': 'ERROR', 'propagate': True },
-#     },
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '[%(asctime)s] %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': BASE_DIR +'/logs/info.log',
+            'maxBytes': 1024 * 1024 * 10, # 10MB
+            'backupCount': 10,
+            'formatter': 'simple',
+        },
+    },
+    'loggers': {
+        'gateways': { 'handlers': ['file'], 'level': 'INFO', 'propagate': True },
+        'django': { 'handlers': ['file'], 'level': 'ERROR', 'propagate': True },
+    },
+}
 
 
 # Other configuration
