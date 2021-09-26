@@ -11,6 +11,7 @@
 
 {% block content %}
     {{ block.super }}
+    <meta http-equiv="refresh" content="5" >
     <form method="post" autocomplete="off">
         {% csrf_token %}
         <div class="row page-header">
