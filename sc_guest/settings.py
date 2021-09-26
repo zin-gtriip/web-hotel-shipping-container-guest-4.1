@@ -254,7 +254,7 @@ AMP_ENDPOINT = [
     {
         'id': '81ks',
         'name': '81 KontainerSpace',
-        'url': 'https://nginx-docker:80/container/81ks',
+        'url': 'https://nginx-docker:443/container/81ks',
         'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
         'timeout': 30,
     }
