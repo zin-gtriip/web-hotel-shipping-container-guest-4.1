@@ -10,13 +10,20 @@ pipeline {
         stage('Deploy'){
             steps {
                 echo 'Deploying.....'
-                sshagent (credentials: ['ssh-shippingcontainer']) {
+
+                git credentialsId: 'phuwai-bitbucket', url: 'https://source.gtriip.com/scm/web_app/shippingcontainer_guest.git'
+                sh 'ls'
+
+                sshagent (credentials: ['ssh-jenkinstest']) {
                     sh 'pwd'
-                    sh 'scp -r /var/jenkins_home/workspace/shippingconatiner-guestfacing/* phu@54.179.10.115:/home/phu/GuestFacing/shippingcontainer_guest'
+                    #sh 'scp -r /var/jenkins_home/workspace/shippingconatiner-guestfacing/* phu@18.141.54.154:/home/phu/shippingcontainer_guest'
                     sh '''
-                        ssh -t phu@54.179.10.115 "cd GuestFacing/shippingcontainer_guest &&  
-                        docker-compose pull &&
-                        docker-compose up -d"
+                        ssh -t phu@18.141.54.154 "cd shippingcontainer_guest &&
+                        git pull &&  
+                        docker-compose down &&
+                        docker-compose build &&
+                        docker-compose image prune &&
+                        docker-compose up -d &&"
                     '''
                 }
                 
