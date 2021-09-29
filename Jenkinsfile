@@ -27,7 +27,7 @@ pipeline {
                         git pull url &&
                         docker-compose down &&
                         docker-compose build &&
-                        docker image prune &&
+                        docker image -y prune &&
                         docker-compose up -d"
                     '''
                 }
