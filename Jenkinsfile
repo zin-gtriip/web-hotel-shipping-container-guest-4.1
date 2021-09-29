@@ -8,6 +8,9 @@ pipeline {
             }
         }
         stage('Deploy'){
+            environment {
+                GIT_CREDS = credentials('phuwai-bitbucket')
+            }
             steps {
                 echo 'Deploying.....'
 
@@ -20,7 +23,8 @@ pipeline {
                         ssh -tt -o StrictHostKeyChecking=no phu@18.141.54.154 "cd shippingcontainer_guest &&
                         ls &&
                         pwd &&
-                        git pull &&  
+                        echo 'SSH user is $GIT_CREDS_USR' &&
+                        echo 'SSH user is $GIT_CREDS_PSW' &&
                         docker-compose down &&
                         docker-compose build &&
                         docker-compose image prune &&
