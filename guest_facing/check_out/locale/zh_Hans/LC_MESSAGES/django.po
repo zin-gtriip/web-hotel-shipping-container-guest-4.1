@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-04 19:11+0700\n"
+"POT-Creation-Date: 2021-09-29 09:51+0800\n"
 "PO-Revision-Date: 2021-06-04 09:54+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,109 +18,106 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 2.4.3\n"
 
-#: guest_facing/check_out/forms.py:9 guest_facing/check_out/forms.py:68
+#: forms.py:9 forms.py:71 templates/check_out/desktop/login.html:38
+#: templates/check_out/mobile/login.html:46
 msgid "Reservation Number"
 msgstr "预订号码"
 
-#: guest_facing/check_out/forms.py:10
-#: guest_facing/check_out/templates/check_out/desktop/login.html:38
-#: guest_facing/check_out/templates/check_out/mobile/login.html:44
+#: forms.py:10 templates/check_out/desktop/login.html:46
+#: templates/check_out/mobile/login.html:52
 msgid "Last Name"
 msgstr "姓氏"
 
-#: guest_facing/check_out/forms.py:11
-#: guest_facing/check_out/templates/check_out/desktop/login.html:46
-#: guest_facing/check_out/templates/check_out/mobile/login.html:50
+#: forms.py:11 templates/check_out/desktop/login.html:54
+#: templates/check_out/mobile/login.html:58
 msgid "Room Number"
 msgstr "房间号码"
 
-#: guest_facing/check_out/forms.py:32 guest_facing/check_out/forms.py:33
-#: guest_facing/check_out/forms.py:35 guest_facing/check_out/forms.py:87
+#: forms.py:34 forms.py:35 forms.py:37 forms.py:90
 msgid "Enter the required information"
 msgstr "输入所需资料。"
 
-#: guest_facing/check_out/forms.py:111
+#: forms.py:114
 msgid "Unknown error"
 msgstr "不明故障"
 
-#: guest_facing/check_out/templates/check_out/base.html:5
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:267
+#: templates/check_out/base.html:5 templates/check_out/desktop/bill.html:268
 msgid "Check Out"
 msgstr "退房"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:18
+#: templates/check_out/desktop/bill.html:19
 msgid "Bill Review & Check Out"
 msgstr "付款和退房"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:24
+#: templates/check_out/desktop/bill.html:25
 msgid "Select which of the guest to view the bill folio."
 msgstr "请选择住客以审查个人账单："
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:78
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:155
+#: templates/check_out/desktop/bill.html:79
+#: templates/check_out/desktop/bill.html:156
 msgid "Reservation No:"
 msgstr "预订号码："
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:83
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:160
+#: templates/check_out/desktop/bill.html:84
+#: templates/check_out/desktop/bill.html:161
 msgid "Room No:"
 msgstr "房间号码："
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:88
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:165
+#: templates/check_out/desktop/bill.html:89
+#: templates/check_out/desktop/bill.html:166
 msgid "Arrival Date:"
 msgstr "入住日期："
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:93
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:170
+#: templates/check_out/desktop/bill.html:94
+#: templates/check_out/desktop/bill.html:171
 msgid "Departure Date:"
 msgstr "退房日期："
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:102
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:179
+#: templates/check_out/desktop/bill.html:103
+#: templates/check_out/desktop/bill.html:180
 msgid "GST Reg. No:"
 msgstr "消费税注册号："
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:107
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:184
+#: templates/check_out/desktop/bill.html:108
+#: templates/check_out/desktop/bill.html:185
 msgid "Business Reg. No:"
 msgstr "商业注册号："
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:116
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:194
+#: templates/check_out/desktop/bill.html:117
+#: templates/check_out/desktop/bill.html:195
 msgid "Date"
 msgstr "日期"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:117
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:195
+#: templates/check_out/desktop/bill.html:118
+#: templates/check_out/desktop/bill.html:196
 msgid "Description"
 msgstr "项目"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:118
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:196
+#: templates/check_out/desktop/bill.html:119
+#: templates/check_out/desktop/bill.html:197
 msgid "Amount"
 msgstr "金额"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:131
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:209
+#: templates/check_out/desktop/bill.html:132
+#: templates/check_out/desktop/bill.html:210
 msgid "Balance Due"
 msgstr "应付余额"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:227
+#: templates/check_out/desktop/bill.html:228
 #, python-format
 msgid "GST at 7%%"
 msgstr "7%%消费税"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:231
+#: templates/check_out/desktop/bill.html:232
 msgid "Total Amount Payable"
 msgstr "总应付金额"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:246
+#: templates/check_out/desktop/bill.html:247
 msgid ""
 "This is a computer-generated preliminary bill folio and not a tax invoice."
 msgstr "这是初步计算的电子账单，而不是税收发票。"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:251
+#: templates/check_out/desktop/bill.html:252
 msgid ""
 "I agree that my liability for this bill is not waived and agree to be held "
 "personally liable in the event that the indicated person, company or "
@@ -129,117 +126,128 @@ msgstr ""
 "我同意我对于本账单的责任不会被豁免，并且同意承担所有相关人士，公司或协会未支"
 "付所有或部分金额。"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:256
+#: templates/check_out/desktop/bill.html:257
 msgid "Outstanding balance will be charged to the credit card registered."
 msgstr "未支付的余额将会从您在办理登记入住手续时提供的信用卡中扣除。"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:275
+#: templates/check_out/desktop/bill.html:276
 msgid ""
 "Unable to proceed with some of the guest's check-out. Please check-out at "
 "the Front Desk."
 msgstr "无法为一些住客进行退房手续。请改为在前台退房。"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:277
+#: templates/check_out/desktop/bill.html:278
 msgid ""
 "Unable to proceed with this guest's check-out. Please check-out at the Front "
 "Desk."
 msgstr "无法为此住客进行退房手续。 请改为在前台退房。"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:296
-#: guest_facing/check_out/templates/check_out/desktop/complete.html:15
+#: templates/check_out/desktop/bill.html:297
+#: templates/check_out/desktop/complete.html:15
 msgid "Check Out Successful"
 msgstr "成功退房"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:298
+#: templates/check_out/desktop/bill.html:299
 msgid "Error"
 msgstr "故障"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:306
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:324
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:342
-#: guest_facing/check_out/templates/check_out/desktop/login.html:89
-#: guest_facing/check_out/templates/check_out/mobile/login.html:97
+#: templates/check_out/desktop/bill.html:307
+#: templates/check_out/desktop/bill.html:325
+#: templates/check_out/desktop/bill.html:343
+#: templates/check_out/desktop/login.html:97
+#: templates/check_out/mobile/login.html:108
 msgid "OK"
 msgstr "确认"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:318
-#: guest_facing/check_out/templates/check_out/desktop/login.html:73
-#: guest_facing/check_out/templates/check_out/mobile/login.html:81
+#: templates/check_out/desktop/bill.html:319
+#: templates/check_out/desktop/login.html:81
+#: templates/check_out/mobile/login.html:92
 msgid "Invalid Input"
 msgstr "错误输入"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:336
+#: templates/check_out/desktop/bill.html:337
 msgid "Check Out Error"
 msgstr "退房故障"
 
-#: guest_facing/check_out/templates/check_out/desktop/bill.html:339
+#: templates/check_out/desktop/bill.html:340
 msgid "Please kindly proceed to the hotel main lobby to checkout. Thank you."
 msgstr "请前往酒店前台退房。谢谢。"
 
-#: guest_facing/check_out/templates/check_out/desktop/complete.html:20
+#: templates/check_out/desktop/complete.html:20
 msgid "We hope you enjoy your stay with us,<br>and well see you again soon!"
 msgstr "希望您在我们这里住得愉快，<br>并期待您再次光临！"
 
-#: guest_facing/check_out/templates/check_out/desktop/login.html:25
+#: templates/check_out/desktop/login.html:25
 msgid "Please enter your<br>reservation details"
 msgstr "输入预订详情"
 
-#: guest_facing/check_out/templates/check_out/desktop/login.html:30
-#: guest_facing/check_out/templates/check_out/mobile/login.html:37
+#: templates/check_out/desktop/login.html:30
+#: templates/check_out/mobile/login.html:39
 msgid "The following information is required for<br>verification."
-msgstr "请提供您的房间号码，<br>以确认您的预订。"
+msgstr "请提供您的信息，<br>以确认您的预订。"
 
-#: guest_facing/check_out/templates/check_out/desktop/login.html:55
-#: guest_facing/check_out/templates/check_out/mobile/login.html:59
-#: guest_facing/check_out/templates/check_out/mobile/login.html:62
+#: templates/check_out/desktop/login.html:63
+#: templates/check_out/mobile/login.html:67
+#: templates/check_out/mobile/login.html:70
+#: templates/check_out/mobile/login.html:73
 msgid "Next"
 msgstr "下一步"
 
-#: guest_facing/check_out/templates/check_out/desktop/login.html:71
-#: guest_facing/check_out/templates/check_out/mobile/login.html:79
+#: templates/check_out/desktop/login.html:79
+#: templates/check_out/mobile/login.html:90
 msgid "checkout_login:error_modal_title:6001"
 msgstr "搜索不到预订"
 
-#: guest_facing/check_out/templates/check_out/desktop/login.html:75
-#: guest_facing/check_out/templates/check_out/mobile/login.html:83
+#: templates/check_out/desktop/login.html:83
+#: templates/check_out/mobile/login.html:94
 msgid "checkout_login:error_modal_title:other"
 msgstr "不明故障"
 
-#: guest_facing/check_out/templates/check_out/desktop/login.html:81
-#: guest_facing/check_out/templates/check_out/mobile/login.html:89
+#: templates/check_out/desktop/login.html:89
+#: templates/check_out/mobile/login.html:100
 msgid "checkout_login:error_modal_body:6001"
 msgstr "预订细节不正确。请确保所输入的姓氏或房号是正确的并重试。"
 
-#: guest_facing/check_out/templates/check_out/desktop/login.html:83
-#: guest_facing/check_out/templates/check_out/mobile/login.html:91
+#: templates/check_out/desktop/login.html:91
+#: templates/check_out/mobile/login.html:102
 msgid "Failed to validate reCaptcha"
 msgstr "reCaptcha验证失败。"
 
-#: guest_facing/check_out/templates/check_out/desktop/login.html:85
-#: guest_facing/check_out/templates/check_out/mobile/login.html:93
+#: templates/check_out/desktop/login.html:93
+#: templates/check_out/mobile/login.html:104
 msgid "checkout_login:error_modal_body:other"
 msgstr "发生意外故障。请前往前台寻求协助。"
 
-#: guest_facing/check_out/templates/check_out/mobile/login.html:30
+#: templates/check_out/mobile/login.html:30
+msgid "Please enter your<br>Reservation Number"
+msgstr "输入预订号码"
+
+#: templates/check_out/mobile/login.html:31
 msgid "Please enter your<br>Last Name"
 msgstr "输入姓氏"
 
-#: guest_facing/check_out/templates/check_out/mobile/login.html:31
+#: templates/check_out/mobile/login.html:32
 msgid "Please enter your<br>Room Number"
 msgstr "输入房间号码"
 
-#: guest_facing/check_out/templates/check_out/mobile/login.html:36
+#: templates/check_out/mobile/login.html:37
+msgid ""
+"To begin the online check-out process,<br>please enter your reservation "
+"number."
+msgstr "请输入您预订中使用的预订号码，<br>以确认您的预订。"
+
+#: templates/check_out/mobile/login.html:38
 msgid "To begin the online check-out process,<br>please enter your last name."
 msgstr "请输入您预订中使用的姓氏，<br>以确认您的预订。"
 
-#: guest_facing/check_out/views.py:104
+#: views.py:103
 msgid ""
 "All Guests have been successfully checked out.\n"
 "\n"
 "We hope you enjoy your stay with us, and we'll see you again soon!"
 msgstr "希望您在我们这里住得愉快，并期待您再次光临！"
 
-#: guest_facing/check_out/views.py:110
+#: views.py:109
 #, python-format
 msgid ""
 "We have checked-out the guest:\n"

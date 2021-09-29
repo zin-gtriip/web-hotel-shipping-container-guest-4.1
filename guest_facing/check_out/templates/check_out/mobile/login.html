@@ -27,19 +27,27 @@
         {% render_field form.recaptcha %}
         <div class="row page-header">
             <div class="col-12 text-center">
-                <span id="header-last-name" class="header-description {% if not skip_last_name %}active{% endif %}">{% blocktrans %}Please enter your<br>Last Name{% endblocktrans %}</span>
+                <span id="header-reservation-no" class="header-description {% if not skip_reservation_no %}active{% endif %}">{% blocktrans %}Please enter your<br>Reservation Number{% endblocktrans %}</span>
+                <span id="header-last-name" class="header-description {% if skip_reservation_no %}active{% endif %}">{% blocktrans %}Please enter your<br>Last Name{% endblocktrans %}</span>
                 <span id="header-room-no" class="header-description {% if skip_last_name %}active{% endif %}">{% blocktrans %}Please enter your<br>Room Number{% endblocktrans %}</span>
             </div>
         </div>
         <div class="row page-subheader">
             <div class="col-12 px-0 text-center text-secondary">
-                <span id="subheader-last-name" class="subheader-description {% if not skip_last_name %}active{% endif %}">{% blocktrans %}To begin the online check-out process,<br>please enter your last name.{% endblocktrans %}</span>
+                <span id="subheader-reservation-no" class="subheader-description {% if not skip_reservation_no %}active{% endif %}">{% blocktrans %}To begin the online check-out process,<br>please enter your reservation number.{% endblocktrans %}</span>
+                <span id="subheader-last-name" class="subheader-description {% if skip_reservation_no %}active{% endif %}">{% blocktrans %}To begin the online check-out process,<br>please enter your last name.{% endblocktrans %}</span>
                 <span id="subheader-room-no" class="subheader-description {% if skip_last_name %}active{% endif %}">{% blocktrans %}The following information is required for<br>verification.{% endblocktrans %}</span>
             </div>
         </div>
         <div class="row page-content">
             <div class="col-12 d-flex justify-content-center">
-                <div id="content-last-name" class="content-input {% if not skip_last_name %}active{% endif %}">
+                <div id="content-reservation-no" class="content-input {% if not skip_reservation_no %}active{% endif %}">
+                    <div class="md-form input-center input-boxed my-0">
+                        {% trans 'Reservation Number' as reservation_number_placeholder %}
+                        {% render_field form.reservation_no class="form-control" placeholder=reservation_number_placeholder %}
+                    </div>
+                </div>
+                <div id="content-last-name" class="content-input {% if skip_reservation_no %}active{% endif %}">
                     <div class="md-form input-center input-boxed my-0">
                         {% trans 'Last Name' as last_name_placeholder %}
                         {% render_field form.last_name class="form-control" placeholder=last_name_placeholder %}
@@ -55,7 +63,10 @@
         </div>
         <div class="row page-footer">
             <div class="col-12 d-flex justify-content-center">
-                <div id="footer-last-name" class="footer-button {% if not skip_last_name %}active{% endif %}">
+                <div id="footer-reservation-no" class="footer-button {% if not skip_reservation_no %}active{% endif %}">
+                    <button type="button" class="btn btn-primary btn-round m-0" disabled>{% trans 'Next' %}</button>
+                </div>
+                <div id="footer-last-name" class="footer-button {% if skip_reservation_no %}active{% endif %}">
                     <button type="button" class="btn btn-primary btn-round m-0" disabled>{% trans 'Next' %}</button>
                 </div>
                 <div id="footer-room-no" class="footer-button {% if skip_last_name %}active{% endif %}">
