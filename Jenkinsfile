@@ -18,7 +18,7 @@ pipeline {
                         ls &&
                         docker-compose down &&
                         docker-compose build &&
-                        docker image -y prune &&
+                        docker image prune -f &&
                         docker-compose up -d"
                     '''
                 }
