@@ -17,7 +17,7 @@ pipeline {
                 sshagent (credentials: ['ssh-jenkinstest']) {
                     sh 'pwd'
                     sh '''
-                        ssh -t phu@18.141.54.154 "cd shippingcontainer_guest &&
+                        ssh -tt phu@18.141.54.154 "cd shippingcontainer_guest &&
                         git pull &&  
                         docker-compose down &&
                         docker-compose build &&
