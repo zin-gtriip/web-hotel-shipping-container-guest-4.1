@@ -14,7 +14,10 @@ pipeline {
             steps {
                 echo 'Deploying.....'
 
-                git credentialsId: 'phuwai-bitbucket', url: 'https://$GIT_CREDS_USR:$GIT_CREDS_PSW@source.gtriip.com/scm/web_app/shippingcontainer_guest.git'
+                git (
+                    credentialsId: 'phuwai-bitbucket', 
+                    url: 'https://source.gtriip.com/scm/web_app/shippingcontainer_guest.git'
+                )
                 sh 'ls'
 
                 sshagent (credentials: ['ssh-jenkinstest']) {
@@ -24,7 +27,7 @@ pipeline {
                         ls &&
                         pwd &&
                         echo url &&
-                        git pull url &&
+                        git pull &&
                         docker-compose down &&
                         docker-compose build &&
                         docker image -y prune &&
