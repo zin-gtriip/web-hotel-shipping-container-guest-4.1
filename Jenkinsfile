@@ -22,7 +22,7 @@ pipeline {
                         docker-compose down &&
                         docker-compose build &&
                         docker-compose image prune &&
-                        docker-compose up -d &&"
+                        docker-compose up -d"
                     '''
                 }
                 
