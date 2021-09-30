@@ -96,7 +96,6 @@ class RegistrationDetailForm(RegistrationDetailForm):
         self.instance['firstName'] = self.cleaned_data.get('first_name')
         self.instance['lastName'] = self.cleaned_data.get('last_name')
         self.instance['nationality'] = self.cleaned_data.get('nationality')
-        self.instance['gender'] = self.cleaned_data.get('gender')
         self.instance['idNo'] = self.cleaned_data.get('id_no')
         self.instance['dob'] = self.cleaned_data.get('birth_date').strftime('%Y-%m-%d') if self.cleaned_data.get('birth_date') else ''
         self.instance['is_overwrite'] = self.cleaned_data.get('is_overwrite')
@@ -110,7 +109,6 @@ class RegistrationDetailForm(RegistrationDetailForm):
                 guest['lastName'] = self.instance.get('lastName', '')
                 guest['nationality'] = self.instance.get('nationality', '')
                 guest['nationalityThreeLetters'] = Country(self.instance.get('nationality')).alpha3
-                guest['gender'] = self.instance.get('gender', '')
                 guest['idNo'] = self.instance.get('idNo', '')
                 guest['dob'] = self.instance.get('dob', '')
                 guest['idImage'] = self.instance.get('idImage', '')
@@ -126,7 +124,6 @@ class RegistrationDetailForm(RegistrationDetailForm):
                 guest['lastName'] = self.instance.get('lastName', '')
                 guest['nationality'] = self.instance.get('nationality', '')
                 guest['nationalityThreeLetters'] = Country(self.instance.get('nationality')).alpha3
-                guest['gender'] = self.instance.get('gender', '')
                 guest['idNo'] = self.instance.get('idNo', '')
                 guest['dob'] = self.instance.get('dob', '')
                 guest['idImage'] = self.instance.get('idImage', '')
