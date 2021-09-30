@@ -68,7 +68,7 @@ class RegistrationGuestListForm(RegistrationGuestListForm):
 
         self.request.session['registration']['other_info'] = True # mark `other info` page as done
         data = self.request.session['registration']['reservation']
-        email = custom_utils.prepare_email(dict(self.request.session['registration']['reservation'])) # create new variable to prevent modification on `request.session`
+        email = utils.prepare_email(dict(self.request.session['registration']['reservation'])) # create new variable to prevent modification on `request.session`
         data['userInputNumber'] = self.request.session['registration'].get('input_reservation_no', '')
         data = {**data, **email} # add email data
         response = gateways.guest_endpoint('post', '/submitWebRegistration', self.request.session.get('property_id', ''), data)
