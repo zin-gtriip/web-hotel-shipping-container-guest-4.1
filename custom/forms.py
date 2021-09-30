@@ -224,7 +224,6 @@ class RegistrationMainGuestForm(forms.Form):
                 # multiple rooms > when booker guest is not staying in any of the room
                 # single room > when booker is not staying in the room
                 if len(self.request.session['registration']['bookings']) == 1 and self.request.session['registration']['isBookerRegistered'] == False and self.request.session['registration']['isBookerStaying'] == False:
-                    print('guest profile replaced with booker guest')
                     guest['guestId'] = booker_guest['guestId']
                     guest['lastName'] = booker_guest['lastName']
                     guest['isBooker'] = True
@@ -253,7 +252,6 @@ class RegistrationOtherInfoForm(RegistrationOtherInfoForm):
         data['userInputNumber'] = self.request.session['registration'].get('input_reservation_no', '')
         data = {**data, **email} # add email data
         response = gateways.guest_endpoint('post', '/submitWebRegistration', self.request.session.get('property_id', ''), data)
-        print('submitWebRegistration',response)
         if response.get('statusCode', '') == '5002':
             # get existing reservation from backend
             new_booking_data = {}

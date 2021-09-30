@@ -102,11 +102,12 @@ class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, Request
         if self.request.session['check_out'].get('complete', None):
             messages.add_message(self.request, messages.SUCCESS, _("All Guests have been successfully checked out.\n\nWe hope you enjoy your stay with us, and we'll see you again soon!"))
         else:
-            reservation = next((temp for temp in self.object.get('reservationInfo') if temp.get('pmsNo', '') == self.object.get('id', None)), {})
-            guest_name = reservation.get('firstName', '') +' '+ reservation.get('lastName', '')
-            guests_left = [temp.get('firstName', '') +' '+ temp.get('lastName', '') for temp in self.request.session['check_out'].get('bills', [])]
-            names_left = '\n- '.join(guests_left)
-            messages.add_message(self.request, messages.SUCCESS, _('We have checked-out the guest:\n- %(name)s\n\nOther guests left to check-out:\n- %(names_left)s') % {'name': guest_name, 'names_left': names_left})
+            # reservation = next((temp for temp in self.object.get('reservationInfo') if temp.get('pmsNo', '') == self.object.get('id', None)), {})
+            # guest_name = reservation.get('firstName', '') +' '+ reservation.get('lastName', '')
+            # guests_left = [temp.get('firstName', '') +' '+ temp.get('lastName', '') for temp in self.request.session['check_out'].get('bills', [])]
+            # names_left = '\n- '.join(guests_left)
+            #messages.add_message(self.request, messages.SUCCESS, _('We have checked-out the guest:\n- %(name)s\n\nOther guests left to check-out:\n- %(names_left)s') % {'name': guest_name, 'names_left': names_left})
+            messages.add_message(self.request, messages.ERROR, _("Can't set in checked out status. End date should be less or equal today!"))
         return data
 
     def get_success_url(self):

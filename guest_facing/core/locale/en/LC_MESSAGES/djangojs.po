@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-28 10:54+0700\n"
+"POT-Creation-Date: 2021-09-30 15:21+0800\n"
 "PO-Revision-Date: 2021-05-21 16:53+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,10 +18,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.4.3\n"
 
-#: guest_facing/core/static/core/js/base.js:38
+#: guest_facing/core/static/core/js/base.js:36
 msgid "Error"
 msgstr "Error"
 
-#: guest_facing/core/static/core/js/base.js:38
+#: guest_facing/core/static/core/js/base.js:36
 msgid "Close"
 msgstr "Close"
+
+#: guest_facing/core/static/vendor/mdbootstrap/mdb.min.js:25
+msgid "hidden"
+msgstr ""
