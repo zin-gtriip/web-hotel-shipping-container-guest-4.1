@@ -430,7 +430,7 @@ class RegistrationCompleteForm(forms.Form):
         # reset data on session using `REGISTRATION_PROGRESS_BAR_PAGES`
         for page in settings.REGISTRATION_PARAMETER_REQUIRED_PAGES or list():
             self.request.session['registration'].pop(page, None)
-        config = gateways.amp_endpoint('get', 'configVariables', self.request.session.get('property_id', '')) or {} # get config variables
+        config = gateways.amp_endpoint('get', '/configVariables', self.request.session.get('property_id', '')) or {} # get config variables
         expiry_duration = config.get('data', {}).get('prearrivalSessionDurationMinutes', settings.REGISTRATION_SESSION_AGE_INITIAL)
         initial_expiry_date = (timezone.now() + datetime.timedelta(minutes=expiry_duration)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         self.request.session['registration']['initial_expiry_date'] = initial_expiry_date

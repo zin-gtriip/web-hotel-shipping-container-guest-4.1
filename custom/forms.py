@@ -29,6 +29,7 @@ class RegistrationReservationForm(RegistrationReservationForm):
 
         # for OTA
         booker_stay = self.cleaned_data.get('booker_stay')
+        print ("Booker Stay", booker_stay)
         # check if booker is already registered in another room
         if self.request.session['registration']['isBookerRegistered'] == False:
             # booker is not registered yet, confirm user whether booker is staying in current room
@@ -78,7 +79,6 @@ class RegistrationGuestListForm(RegistrationGuestListForm):
             new_booking_data['reservationNo'] = self.request.session['registration'].get('input_reservation_no', '')
             new_booking_data['arrivalDate'] = self.request.session['registration'].get('input_arrival_date', '')
             new_booking_data['lastName'] = self.request.session['registration'].get('input_last_name', '')
-            new_booking_data['reservationType'] = self.request.session['registration'].get('reservation_type', '')
             new_booking_response = gateways.guest_endpoint('post', '/checkWebRegistration', self.request.session.get('property_id', ''), new_booking_data)
             new_booking = new_booking_response.get('data', {}).get('data', [])
             self.request.session['registration']['bookings'] = [reservation for reservation in new_booking if reservation.get('pmsNo') != self.request.session['registration'].get('reservation', {}).get('pmsNo', '')]

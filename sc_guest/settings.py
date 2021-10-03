@@ -193,7 +193,7 @@ TOKEN_ENDPOINT = [
     {
         'type': 'guest_facing',
         #'url': 'https://kontainerspaceqa.gtriip.com:8443/container/77ks/oauth/token',
-        'url': 'https://nginx-docker:443/container/77ks/oauth/token',
+        'url': 'http://app-77ks:8080/oauth/token',
         'username': 'web-guest-client',
         'password': 'HotelTemplate1234',
         'timeout': 30,
@@ -201,7 +201,7 @@ TOKEN_ENDPOINT = [
     {
         'type': 'amp',
         #'url': 'https://kontainerspaceqa.gtriip.com:8443/container/77ks/oauth/token',
-        'url': 'https://nginx-docker:443/container/77ks/oauth/token',
+        'url': 'http://app-77ks:8080/oauth/token',
         'username': 'web-amp-client',
         'password': 'HotelTemplate1234',
         'timeout': 30,
@@ -209,7 +209,7 @@ TOKEN_ENDPOINT = [
      {
         'type': 'guest_facing',
         #'url': 'https://kontainerspaceqa.gtriip.com:8443/container/81ks/oauth/token',
-        'url': 'https://nginx-docker:443/container/81ks/oauth/token',
+        'url': 'http://app-81ks:8081/oauth/token',
         'username': 'web-guest-client',
         'password': 'HotelTemplate1234',
         'timeout': 30,
@@ -217,7 +217,7 @@ TOKEN_ENDPOINT = [
     {
         'type': 'amp',
         #'url': 'https://kontainerspaceqa.gtriip.com:8443/container/81ks/oauth/token',
-        'url': 'https://nginx-docker:443/container/81ks/oauth/token',
+        'url': 'http://app-81ks:8081/oauth/token',
         'username': 'web-amp-client',
         'password': 'HotelTemplate1234',
         'timeout': 30,
@@ -232,7 +232,7 @@ GUEST_ENDPOINT = [
         'image': '/static/img/property/BLK77-container-hotels.jpg',
         'address': '77 Ayer Rajah Crescent, Singapore 139952',
         #'url': 'https://kontainerspaceqa.gtriip.com:8443/container/77ks',
-        'url': 'https://nginx-docker:443/container/77ks',
+        'url': 'http://app-77ks:8080',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 30,
     },
@@ -243,7 +243,7 @@ GUEST_ENDPOINT = [
         'image': '/static/img/property/BLK81-container-hotels.jpg',
         'address': '81 Ayer Rajah Crescent, Singapore 139952',
         #'url': 'https://kontainerspaceqa.gtriip.com:8443/container/81ks',
-        'url': 'https://nginx-docker:443/container/81ks',
+        'url': 'http://app-81ks:8081',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 30,
     }
@@ -254,7 +254,7 @@ AMP_ENDPOINT = [
         'id': '77ks',
         'name': '77 KontainerSpace',
         #'url': 'https://kontainerspaceqa.gtriip.com:8443/container/77ks',
-        'url': 'https://nginx-docker:443/container/77ks',
+        'url': 'http://app-77ks:8080',
         'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
         'timeout': 30,
     },
@@ -262,7 +262,7 @@ AMP_ENDPOINT = [
         'id': '81ks',
         'name': '81 KontainerSpace',
         #'url': 'https://kontainerspaceqa.gtriip.com:8443/container/81ks',
-        'url': 'https://nginx-docker:443/container/81ks',
+        'url': 'http://app-81ks:8081',
         'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
         'timeout': 30,
     }
