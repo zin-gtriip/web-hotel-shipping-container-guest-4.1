@@ -29,7 +29,6 @@ class RegistrationReservationForm(RegistrationReservationForm):
 
         # for OTA
         booker_stay = self.cleaned_data.get('booker_stay')
-        print ("Booker Stay", booker_stay)
         # check if booker is already registered in another room
         if self.request.session['registration']['isBookerRegistered'] == False:
             # booker is not registered yet, confirm user whether booker is staying in current room
