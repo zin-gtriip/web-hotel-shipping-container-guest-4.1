@@ -47,7 +47,7 @@ msgid ""
 "Welcome to Hotel Template! Thank you for contacting us through our app. How "
 "may we assist you today?"
 msgstr ""
-"Welcome to Trevo! Thank you for contacting us. How may we assist you today?"
+"Welcome to The Container Hub! Thank you for contacting us. How may we assist you today?"
 
 #: guest_facing/chat/views.py:51
 msgid ""
