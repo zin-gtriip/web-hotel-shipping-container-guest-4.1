@@ -343,13 +343,13 @@ RECAPTCHA_PRIVATE_KEY       = '6Lc5PcgaAAAAAGDC4DyZzx9uhA3t5yiUNMpAKJOh'
 
 # Other configuration
 # General
-HOTEL_NAME          = 'KontainerSpace'
+HOTEL_NAME          = 'The Container Hub'
 GST_NO              = 'A13572468B'
 BUSINESS_NO         = '975308642Z'
 CURRENCY_SYMBOL     = 'S$'
 TNC_LINK            = 'https://hotels.cloudbeds.com/reservation/PK9fOV'
 PRIVACY_LINK        = 'https://hotels.cloudbeds.com/reservation/PK9fOV'
-HOST_URL            = 'https://kontainerspaceqa.gtriip.com'
+HOST_URL            = 'https://thecontainerhubqa.gtriip.com'
 APP_IOS_URL         = 'http://itunes.apple.com'
 APP_ANDROID_URL     = 'http://play.google.com/store/apps'
 APP_DIRECT_URL      = 'https://www.google.com'
