@@ -278,10 +278,15 @@ AMP_ENDPOINT = [
 
 
 # OCR Endpoint configuration
-OCR_ENDPOINT_URL                = 'https://cv.gtriip.com/recognition/'
-OCR_ENDPOINT_KEY                = 'rvH7MT70.7RoZxH8gtBfPgZt7kgNxRtybwq3Gp4vW'
-OCR_ENDPOINT_TIMEOUT_LIMIT      = 60
+#Prod
+# OCR_ENDPOINT_URL                = 'https://cv.gtriip.com/recognition/'
+# OCR_ENDPOINT_KEY                = 'rvH7MT70.7RoZxH8gtBfPgZt7kgNxRtybwq3Gp4vW'
+# OCR_ENDPOINT_TIMEOUT_LIMIT      = 60
 
+#QA
+OCR_ENDPOINT_URL                = 'https://cv2.gtriip.com/recognition/'
+OCR_ENDPOINT_KEY                = 'UMQ80xtJ.OI2HnG1XOCSFp8LVBx8jd9KEomlem6cW'
+OCR_ENDPOINT_TIMEOUT_LIMIT      = 60
 
 # Messaging configuration
 #QA
