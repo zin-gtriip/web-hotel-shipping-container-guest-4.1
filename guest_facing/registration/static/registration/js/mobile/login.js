@@ -10,9 +10,9 @@ $(document).ready(function() {
 });
 
 
-// $('.datepicker').datepicker({
-// 	startDate: new Date(),
-// });
+$('.datepicker').datepicker({
+	startDate: new Date(),
+});
 
 
 if ($('#id_arrival_date').val() == '') {

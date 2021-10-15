@@ -12,9 +12,9 @@ $(document).ready(function() {
     $('#id_reservation_no, #id_last_name').keyup();
 });
 
-// $('.datepicker').datepicker({
-//     startDate: new Date(),
-// });
+$('.datepicker').datepicker({
+    startDate: new Date(),
+});
 
 
 if ($('#id_arrival_date').val() == '') {
