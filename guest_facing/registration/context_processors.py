@@ -20,5 +20,5 @@ def session(request):
     # get expiry duration
     initial_expiry_duration = request.session.get('registration', {}).pop('initial_expiry_duration', '') # use once only, otherwise considered new session
     # get expiry session pages
-    expiry_pages = ['/registration/%s/' % (page) for page in settings.REGISTRATION_EXPIRY_SESSION_PAGES]
+    expiry_pages = ['/guest/registration/%s/' % (page) for page in settings.REGISTRATION_EXPIRY_SESSION_PAGES]
     return {'SESSION_EXTEND_TOKEN_ID': token_id, 'SESSION_INITIAL_EXPIRY_DURATION': initial_expiry_duration, 'SESSION_EXPIRY_PAGES': expiry_pages}

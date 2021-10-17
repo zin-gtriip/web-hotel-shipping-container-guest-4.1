@@ -42,7 +42,7 @@ class ParameterRequiredMixin(ExpirySessionMixin):
             return super().dispatch(request, args, kwargs)
         if not self.parameter_required:
             return redirect('registration:login')
-        return redirect('/registration/%s/' % self.parameter_required)
+        return redirect('/guest/registration/%s/' % self.parameter_required)
 
 
 class ProgressRateContextMixin:

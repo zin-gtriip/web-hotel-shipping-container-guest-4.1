@@ -182,7 +182,7 @@ class RegistrationDetailView(ExpirySessionMixin, PropertyRequiredMixin, RequestF
         guest_id = decrypt(self.kwargs.get('encrypted_id', '')) # 0 for new guest
         guest = self.request.session['registration'].get('detail', {})
         context['ga_ocr_success'] = guest.get('idImage') and str(guest.get('id', '')) == guest_id # from `passport` page
-        context['custom_request_path'] = '/registration/detail/'
+        context['custom_request_path'] = '/guest/registration/detail/'
         return context
 
     def get_success_url(self):
@@ -211,7 +211,7 @@ class RegistrationOcrView(ExpirySessionMixin, PropertyRequiredMixin, RequestForm
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['encrypted_id'] = self.kwargs.get('encrypted_id', '')
-        context['custom_request_path'] = '/registration/ocr/'
+        context['custom_request_path'] = '/guest/registration/ocr/'
         return context
 
     def get_success_url(self):
