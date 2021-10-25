@@ -290,9 +290,17 @@ OCR_ENDPOINT_TIMEOUT_LIMIT      = 60
 
 # Messaging configuration
 #QA
-CHAT_SUB_KEY            = 'sub-c-8994bb8a-11ec-11ec-8a3e-d2716870c3f2'
-CHAT_PUB_KEY            = 'pub-c-1b823142-c442-42e7-963a-d529c1f373ce'
-CHAT_SEC_KEY            = 'sec-c-NDk2YTY2NDAtYmExOC00MGU1LTliYmItMWFmMzA0NGE3OTg5'
+# CHAT_SUB_KEY            = 'sub-c-8994bb8a-11ec-11ec-8a3e-d2716870c3f2'
+# CHAT_PUB_KEY            = 'pub-c-1b823142-c442-42e7-963a-d529c1f373ce'
+# CHAT_SEC_KEY            = 'sec-c-NDk2YTY2NDAtYmExOC00MGU1LTliYmItMWFmMzA0NGE3OTg5'
+# CHAT_UUID               = 'FO' # no special character, including space
+# CHAT_AUTO_START_TIME    = '18:00'
+# CHAT_AUTO_END_TIME      = '09:00'
+
+#Prod
+CHAT_SUB_KEY            = 'sub-c-2dd92bf0-3546-11ec-b886-526a8555c638'
+CHAT_PUB_KEY            = 'pub-c-d196abff-fb5f-45b8-9bd7-1a7ad0276192'
+CHAT_SEC_KEY            = 'sec-c-NjU5NmQxNDgtYTBlZS00NmQxLTgwNTktYzkxNjc3ZWJhNDQ3'
 CHAT_UUID               = 'FO' # no special character, including space
 CHAT_AUTO_START_TIME    = '18:00'
 CHAT_AUTO_END_TIME      = '09:00'
