@@ -7,10 +7,12 @@ RUN apt-get -y install python3-pip libapache2-mod-wsgi-py3
 RUN pip3 install virtualenv
 RUN pip3 install --upgrade pip
 ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
 WORKDIR /GuestFacing
 COPY requirements.txt /GuestFacing
+RUN pip install -r requirements.txt
 COPY . /GuestFacing
-ADD ./000-default.conf /etc/apache2/sites-available/000-default.conf
+#ADD ./000-default.conf /etc/apache2/sites-available/000-default.conf
 RUN chmod 777 /etc/ssl/certs
 RUN chmod 777 /etc/ssl/private
 ADD ./gtriip-certs/gtriip.crt /etc/ssl/certs
