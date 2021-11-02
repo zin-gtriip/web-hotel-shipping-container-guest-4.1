@@ -208,7 +208,7 @@ TOKEN_ENDPOINT = [
         'password': 'HotelTemplate1234',
         'timeout': 60,
     },
-     {
+    {
         'type': 'guest_facing',
         #'url': 'http://192.168.1.100:8085/oauth/token',
         #'url': 'https://thecontainerhubqa.gtriip.com:8443/container/81ks/oauth/token',
@@ -222,6 +222,42 @@ TOKEN_ENDPOINT = [
         #'url': 'http://192.168.1.100:8085/oauth/token',
         #'url': 'https://thecontainerhubqa.gtriip.com:8443/container/81ks/oauth/token',
         'url': 'http://app-81ks:8081/oauth/token',
+        'username': 'web-amp-client',
+        'password': 'HotelTemplate1234',
+        'timeout': 60,
+    },
+    {
+        'type': 'guest_facing',
+        #'url': 'http://192.168.1.100:8085/oauth/token',
+        #'url': 'https://thecontainerhubqa.gtriip.com:8443/container/81ks/oauth/token',
+        'url': 'http://app-zr1:8082/oauth/token',
+        'username': 'web-guest-client',
+        'password': 'HotelTemplate1234',
+        'timeout': 60,
+    },
+    {
+        'type': 'amp',
+        #'url': 'http://192.168.1.100:8085/oauth/token',
+        #'url': 'https://thecontainerhubqa.gtriip.com:8443/container/81ks/oauth/token',
+        'url': 'http://app-zr1:8082/oauth/token',
+        'username': 'web-amp-client',
+        'password': 'HotelTemplate1234',
+        'timeout': 60,
+    },
+    {
+        'type': 'guest_facing',
+        #'url': 'http://192.168.1.100:8085/oauth/token',
+        #'url': 'https://thecontainerhubqa.gtriip.com:8443/container/81ks/oauth/token',
+        'url': 'http://app-zr2:8083/oauth/token',
+        'username': 'web-guest-client',
+        'password': 'HotelTemplate1234',
+        'timeout': 60,
+    },
+    {
+        'type': 'amp',
+        #'url': 'http://192.168.1.100:8085/oauth/token',
+        #'url': 'https://thecontainerhubqa.gtriip.com:8443/container/81ks/oauth/token',
+        'url': 'http://app-zr2:8083/oauth/token',
         'username': 'web-amp-client',
         'password': 'HotelTemplate1234',
         'timeout': 60,
@@ -252,6 +288,30 @@ GUEST_ENDPOINT = [
         'url': 'http://app-81ks:8081',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 60,
+    },
+    {
+        'id': 'zr1',
+        'name': 'Zehnder Road 1',
+        'description': 'Zehnder Road 1',
+        'image': '/static/img/property/Zehnder-Road1.jpg',
+        'address': 'LOT 02781W MK 03 262 Pasir Panjang Road, Singapore 118628',
+        #'url': 'http://192.168.1.100:8085',
+        #'url': 'https://thecontainerhubqa.gtriip.com:8443/container/81ks',
+        'url': 'http://app-zr1:8082',
+        'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
+        'timeout': 60,
+    },
+    {
+        'id': 'zr2',
+        'name': 'Zehnder Road 2',
+        'description': 'Zehnder Road 2',
+        'image': '/static/img/property/Zehnder-Road2.jpg',
+        'address': 'LOT 02781W MK 03 262 Pasir Panjang Road, Singapore 118628',
+        #'url': 'http://192.168.1.100:8085',
+        #'url': 'https://thecontainerhubqa.gtriip.com:8443/container/81ks',
+        'url': 'http://app-zr2:8083',
+        'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
+        'timeout': 60,
     }
 ]
 # AMP
@@ -273,6 +333,24 @@ AMP_ENDPOINT = [
         'url': 'http://app-81ks:8081',
         'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
         'timeout': 60,
+    },
+    {
+        'id': 'zr1',
+        'name': 'Zehnder Road 1',
+        #'url': 'http://192.168.1.100:8085',
+        #'url': 'https://thecontainerhubqa.gtriip.com:8443/container/zr1',
+        'url': 'http://app-zr1:8082',
+        'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
+        'timeout': 60,
+    },
+    {
+        'id': 'zr2',
+        'name': 'Zehnder Road 2',
+        #'url': 'http://192.168.1.100:8085',
+        #'url': 'https://thecontainerhubqa.gtriip.com:8443/container/zr2',
+        'url': 'http://app-zr2:8083',
+        'key': '686d2f8f0e0765da0dfd7e40a748bc2eec02b2a0bcb097d5685c18965eb26469e307065b61bd14734122874f6431c4a30b471cf31342902f99eff49922545717',
+        'timeout': 60,
     }
 ]
 
@@ -290,20 +368,20 @@ OCR_ENDPOINT_TIMEOUT_LIMIT      = 60
 
 # Messaging configuration
 #QA
-# CHAT_SUB_KEY            = 'sub-c-8994bb8a-11ec-11ec-8a3e-d2716870c3f2'
-# CHAT_PUB_KEY            = 'pub-c-1b823142-c442-42e7-963a-d529c1f373ce'
-# CHAT_SEC_KEY            = 'sec-c-NDk2YTY2NDAtYmExOC00MGU1LTliYmItMWFmMzA0NGE3OTg5'
-# CHAT_UUID               = 'FO' # no special character, including space
-# CHAT_AUTO_START_TIME    = '18:00'
-# CHAT_AUTO_END_TIME      = '09:00'
-
-#Prod
-CHAT_SUB_KEY            = 'sub-c-2dd92bf0-3546-11ec-b886-526a8555c638'
-CHAT_PUB_KEY            = 'pub-c-d196abff-fb5f-45b8-9bd7-1a7ad0276192'
-CHAT_SEC_KEY            = 'sec-c-NjU5NmQxNDgtYTBlZS00NmQxLTgwNTktYzkxNjc3ZWJhNDQ3'
+CHAT_SUB_KEY            = 'sub-c-8994bb8a-11ec-11ec-8a3e-d2716870c3f2'
+CHAT_PUB_KEY            = 'pub-c-1b823142-c442-42e7-963a-d529c1f373ce'
+CHAT_SEC_KEY            = 'sec-c-NDk2YTY2NDAtYmExOC00MGU1LTliYmItMWFmMzA0NGE3OTg5'
 CHAT_UUID               = 'FO' # no special character, including space
 CHAT_AUTO_START_TIME    = '18:00'
 CHAT_AUTO_END_TIME      = '09:00'
+
+#Prod
+# CHAT_SUB_KEY            = 'sub-c-2dd92bf0-3546-11ec-b886-526a8555c638'
+# CHAT_PUB_KEY            = 'pub-c-d196abff-fb5f-45b8-9bd7-1a7ad0276192'
+# CHAT_SEC_KEY            = 'sec-c-NjU5NmQxNDgtYTBlZS00NmQxLTgwNTktYzkxNjc3ZWJhNDQ3'
+# CHAT_UUID               = 'FO' # no special character, including space
+# CHAT_AUTO_START_TIME    = '18:00'
+# CHAT_AUTO_END_TIME      = '09:00'
 
 
 # Maximum size in bytes of request data (excluding file uploads) that will be
@@ -394,6 +472,16 @@ REGISTRATION_ROOM_TYPES = [
     {
         'room_type' : 'Shipping Container Hotel @ Block 77',
         'room_name' : 'Shipping Container Hotel @ Block 77',
+        'room_image': '/static/img/room/shipping-conatiner-room.jpg',
+    },
+    {
+        'room_type' : 'Zehnder Road 1',
+        'room_name' : 'Zehnder Road 1',
+        'room_image': '/static/img/room/shipping-container-room.jpg',
+    },
+    {
+        'room_type' : 'Zehnder Road 2',
+        'room_name' : 'Zehnder Road 2',
         'room_image': '/static/img/room/shipping-conatiner-room.jpg',
     }
 ]

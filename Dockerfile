@@ -13,6 +13,12 @@ RUN pip install -r requirements.txt
 COPY . /GuestFacing
 ADD ./000-default.conf /etc/apache2/sites-available/000-default.conf
 RUN a2ensite 000-default.conf
+RUN chmod 775 /GuestFacing
+RUN chmod 777 /GuestFacing/logs
+RUN chmod 777 /GuestFacing/logs/info.log
+RUN chmod 777 /GuestFacing/media
+RUN chmod 777 /GuestFacing/static/CACHE
+RUN chmod 777 /GuestFacing/static/CACHE/css
 RUN chmod 664 /GuestFacing/db.sqlite3
 RUN chown :www-data /GuestFacing/db.sqlite3
 RUN chown :www-data /GuestFacing
