@@ -2,7 +2,7 @@ from sc_guest.settings import *
 
 DEBUG = False
 #ALLOWED_HOSTS = ['trevo.gtriip.com']
-ALLOWED_HOSTS = ['thecontainerhubqa.gtriip.com']
+ALLOWED_HOSTS = ['shippingcontainerhotelqa.gtriip.com']
 WSGI_APPLICATION = 'sc_guest.environments.qa.wsgi.application'
 
 

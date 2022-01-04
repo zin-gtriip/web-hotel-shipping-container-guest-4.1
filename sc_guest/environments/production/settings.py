@@ -1,7 +1,7 @@
 from sc_guest.settings import *
 
 DEBUG = False
-ALLOWED_HOSTS = ['thecontainerhub.gtriip.com', '13.213.145.234']
+ALLOWED_HOSTS = ['shippingcontainerhotel.gtriip.com', '13.213.145.234']
 WSGI_APPLICATION = 'sc_guest.environments.production.wsgi.application'
 
 
