@@ -266,6 +266,30 @@ TOKEN_ENDPOINT = [
 # Guest Facing
 GUEST_ENDPOINT = [
     {
+        'id': 'zr1',
+        'name': 'Zehnder Road 1',
+        'description': 'Zehnder Road 1',
+        'image': '/static/img/property/Zehnder-Road1.jpg',
+        'address': 'LOT 02781W MK 03 262 Pasir Panjang Road, Singapore 118628',
+        #'url': 'http://192.168.1.100:8085',
+        # 'url': 'https://shippingcontainerhotelqa.gtriip.com:8443/container/81ks',
+        'url': 'http://app-zr1:8082',
+        'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
+        'timeout': 60,
+    },
+    {
+        'id': 'zr2',
+        'name': 'Zehnder Road 2',
+        'description': 'Zehnder Road 2',
+        'image': '/static/img/property/Zehnder-Road2.jpg',
+        'address': 'LOT 02781W MK 03 262 Pasir Panjang Road, Singapore 118628',
+        #'url': 'http://192.168.1.100:8085',
+        # 'url': 'https://shippingcontainerhotelqa.gtriip.com:8443/container/81ks',
+        'url': 'http://app-zr2:8083',
+        'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
+        'timeout': 60,
+    },
+    {
         'id': '77ks',
         'name': '77 KontainerSpace',
         'description': 'Shipping Container Hotel @ Block 77 Ayer Rajah Crescent (No.1)',
@@ -289,30 +313,6 @@ GUEST_ENDPOINT = [
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 60,
     },
-    {
-        'id': 'zr1',
-        'name': 'Zehnder Road 1',
-        'description': 'Zehnder Road 1',
-        'image': '/static/img/property/Zehnder-Road1.jpg',
-        'address': 'LOT 02781W MK 03 262 Pasir Panjang Road, Singapore 118628',
-        #'url': 'http://192.168.1.100:8085',
-        # 'url': 'https://shippingcontainerhotelqa.gtriip.com:8443/container/81ks',
-        'url': 'http://app-zr1:8082',
-        'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
-        'timeout': 60,
-    },
-    {
-        'id': 'zr2',
-        'name': 'Zehnder Road 2',
-        'description': 'Zehnder Road 2',
-        'image': '/static/img/property/Zehnder-Road2.jpg',
-        'address': 'LOT 02781W MK 03 262 Pasir Panjang Road, Singapore 118628',
-        #'url': 'http://192.168.1.100:8085',
-        # 'url': 'https://shippingcontainerhotelqa.gtriip.com:8443/container/81ks',
-        'url': 'http://app-zr2:8083',
-        'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
-        'timeout': 60,
-    }
 ]
 # AMP
 AMP_ENDPOINT = [
@@ -434,7 +434,7 @@ RECAPTCHA_PRIVATE_KEY       = '6Lc5PcgaAAAAAGDC4DyZzx9uhA3t5yiUNMpAKJOh'
 
 # Other configuration
 # General
-HOTEL_NAME          = 'The Container Hub'
+HOTEL_NAME          = 'Shipping Container Hotel'
 GST_NO              = 'A13572468B'
 BUSINESS_NO         = '975308642Z'
 CURRENCY_SYMBOL     = 'S$'
