@@ -267,8 +267,8 @@ TOKEN_ENDPOINT = [
 GUEST_ENDPOINT = [
     {
         'id': 'zr1',
-        'name': 'Zehnder Road 1',
-        'description': 'Zehnder Road 1',
+        'name': 'Container No 1 @ Haw Par Villa',
+        'description': 'Container No 1 @ Haw Par Villa',
         'image': '/static/img/property/Zehnder-Road1.jpg',
         'address': 'LOT 02781W MK 03 262 Pasir Panjang Road, Singapore 118628',
         #'url': 'http://192.168.1.100:8085',
@@ -279,8 +279,8 @@ GUEST_ENDPOINT = [
     },
     {
         'id': 'zr2',
-        'name': 'Zehnder Road 2',
-        'description': 'Zehnder Road 2',
+        'name': 'Container No 2 @ Haw Par Villa',
+        'description': 'Container No 2 @ Haw Par Villa',
         'image': '/static/img/property/Zehnder-Road2.jpg',
         'address': 'LOT 02781W MK 03 262 Pasir Panjang Road, Singapore 118628',
         #'url': 'http://192.168.1.100:8085',
@@ -336,7 +336,7 @@ AMP_ENDPOINT = [
     },
     {
         'id': 'zr1',
-        'name': 'Zehnder Road 1',
+        'name': 'Container No 1 @ Haw Par Villa',
         #'url': 'http://192.168.1.100:8085',
         # 'url': 'https://shippingcontainerhotelqa.gtriip.com:8443/container/zr1',
         'url': 'http://app-zr1:8082',
@@ -345,7 +345,7 @@ AMP_ENDPOINT = [
     },
     {
         'id': 'zr2',
-        'name': 'Zehnder Road 2',
+        'name': 'Container No 2 @ Haw Par Villa',
         #'url': 'http://192.168.1.100:8085',
         # 'url': 'https://shippingcontainerhotelqa.gtriip.com:8443/container/zr2',
         'url': 'http://app-zr2:8083',
@@ -475,13 +475,13 @@ REGISTRATION_ROOM_TYPES = [
         'room_image': '/static/img/room/shipping-conatiner-room.jpg',
     },
     {
-        'room_type' : 'Zehnder Road 1',
-        'room_name' : 'Zehnder Road 1',
+        'room_type' : 'Container No 1 @ Haw Par Villa',
+        'room_name' : 'Container No 1 @ Haw Par Villa',
         'room_image': '/static/img/room/shipping-container-room.jpg',
     },
     {
-        'room_type' : 'Zehnder Road 2',
-        'room_name' : 'Zehnder Road 2',
+        'room_type' : 'Container No 2 @ Haw Par Villa',
+        'room_name' : 'Container No 2 @ Haw Par Villa',
         'room_image': '/static/img/room/shipping-conatiner-room.jpg',
     }
 ]
