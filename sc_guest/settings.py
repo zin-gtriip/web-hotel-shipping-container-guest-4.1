@@ -445,7 +445,7 @@ APP_IOS_URL         = 'http://itunes.apple.com'
 APP_ANDROID_URL     = 'http://play.google.com/store/apps'
 APP_DIRECT_URL      = 'https://www.google.com'
 # google analytics measurement id
-GA_MEASUREMENT_ID   = 'G-XXK7VS7S3V'
+GA_MEASUREMENT_ID   = 'G-0QBWCB1WQ2'
 # link to access static images, configured on webserver
 STATIC_IMAGE_URL    = '/static/img'
 # default django variable for date format

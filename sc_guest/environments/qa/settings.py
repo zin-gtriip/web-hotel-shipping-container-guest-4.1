@@ -44,3 +44,6 @@ LOGGING = {
         'django': { 'handlers': ['file'], 'level': 'ERROR', 'propagate': True },
     },
 }
+
+# google analytics measurement id
+GA_MEASUREMENT_ID   = 'G-0QBWCB1WQ2'
