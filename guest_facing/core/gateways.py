@@ -54,6 +54,7 @@ def guest_endpoint(method, url, property_id, data={}):
     except requests.exceptions.RequestException as request_error:
         json_response = {'statusCode': '522', 'message': _('Unable to connect to server, please try again.')}
     logger.info('RESPONSE ' + json.dumps(json_response))
+    print('guest_endpoint', json_response)
     return json_response
 
 
@@ -84,6 +85,7 @@ def amp_endpoint(method, url, property_id, data={}):
     except requests.exceptions.RequestException as request_error:
         json_response = {'statusCode': '522', 'message': _('Unable to connect to server, please try again.')}
     logger.info('RESPONSE ' + json.dumps(json_response))
+    print('amp_endpoint', json_response)
     return json_response
 
 
