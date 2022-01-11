@@ -477,12 +477,12 @@ REGISTRATION_ROOM_TYPES = [
     {
         'room_type' : 'Container No 1 @ Haw Par Villa',
         'room_name' : 'Container No 1 @ Haw Par Villa',
-        'room_image': '/static/img/room/shipping-container-room.jpg',
+        'room_image': '/static/img/room/container_1.jpg',
     },
     {
         'room_type' : 'Container No 2 @ Haw Par Villa',
         'room_name' : 'Container No 2 @ Haw Par Villa',
-        'room_image': '/static/img/room/shipping-conatiner-room.jpg',
+        'room_image': '/static/img/room/container_2.jpg',
     }
 ]
 # default age limit for adult, if AMP is not provided

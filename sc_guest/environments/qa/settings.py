@@ -45,5 +45,41 @@ LOGGING = {
     },
 }
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+STATIC_ROOT = os.path.join(BASE_DIR, "guest_static/")
+STATIC_URL = '/guest_static/'
+
+# room mapping, use `room_type` as identifier
+REGISTRATION_ROOM_TYPES = [
+    {
+        'room_type' : 'Deluxe',
+        'room_name' : 'Deluxe Room',
+        'room_image': '/guest_static/img/room/room-deluxe.jpg',
+    },
+    {
+        'room_type' : 'Shipping Container Hotel @ Block 81',
+        'room_name' : 'Shipping Container Hotel @ Block 81',
+        'room_image': '/guest_static/img/room/shipping-container-room.jpg',
+    },
+    {
+        'room_type' : 'Shipping Container Hotel @ Block 77',
+        'room_name' : 'Shipping Container Hotel @ Block 77',
+        'room_image': '/guest_static/img/room/shipping-conatiner-room.jpg',
+    },
+    {
+        'room_type' : 'Container No 1 @ Haw Par Villa',
+        'room_name' : 'Container No 1 @ Haw Par Villa',
+        'room_image': '/guest_static/img/room/container_1.jpg',
+    },
+    {
+        'room_type' : 'Container No 2 @ Haw Par Villa',
+        'room_name' : 'Container No 2 @ Haw Par Villa',
+        'room_image': '/guest_static/img/room/container_2.jpg',
+    }
+]
+
 # google analytics measurement id
 GA_MEASUREMENT_ID   = 'G-0QBWCB1WQ2'
+
