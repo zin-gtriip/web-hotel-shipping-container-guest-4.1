@@ -229,7 +229,7 @@ TOKEN_ENDPOINT = [
     {
         'type': 'guest_facing',
         #'url': 'http://192.168.1.100:8085/oauth/token',
-        'url': 'https://shippingcontainerhotelqa.gtriip.com/container/81ks/oauth/token',
+        'url': 'https://shippingcontainerhotelqa.gtriip.com/container/zr1/oauth/token',
         # 'url': 'http://app-zr1:8082/oauth/token',
         'username': 'web-guest-client',
         'password': 'HotelTemplate1234',
@@ -238,7 +238,7 @@ TOKEN_ENDPOINT = [
     {
         'type': 'amp',
         #'url': 'http://192.168.1.100:8085/oauth/token',
-        'url': 'https://shippingcontainerhotelqa.gtriip.com/container/81ks/oauth/token',
+        'url': 'https://shippingcontainerhotelqa.gtriip.com/container/zr1/oauth/token',
         # 'url': 'http://app-zr1:8082/oauth/token',
         'username': 'web-amp-client',
         'password': 'HotelTemplate1234',
@@ -247,7 +247,7 @@ TOKEN_ENDPOINT = [
     {
         'type': 'guest_facing',
         #'url': 'http://192.168.1.100:8085/oauth/token',
-        'url': 'https://shippingcontainerhotelqa.gtriip.com/container/81ks/oauth/token',
+        'url': 'https://shippingcontainerhotelqa.gtriip.com/container/zr2/oauth/token',
         # 'url': 'http://app-zr2:8083/oauth/token',
         'username': 'web-guest-client',
         'password': 'HotelTemplate1234',
@@ -256,7 +256,7 @@ TOKEN_ENDPOINT = [
     {
         'type': 'amp',
         #'url': 'http://192.168.1.100:8085/oauth/token',
-        'url': 'https://shippingcontainerhotelqa.gtriip.com/container/81ks/oauth/token',
+        'url': 'https://shippingcontainerhotelqa.gtriip.com/container/zr2/oauth/token',
         # 'url': 'http://app-zr2:8083/oauth/token',
         'username': 'web-amp-client',
         'password': 'HotelTemplate1234',
@@ -272,7 +272,7 @@ GUEST_ENDPOINT = [
         'image': '/static/img/property/Zehnder-Road1.jpg',
         'address': 'LOT 02781W MK 03 262 Pasir Panjang Road, Singapore 118628',
         #'url': 'http://192.168.1.100:8085',
-        'url': 'https://shippingcontainerhotelqa.gtriip.com/container/81ks',
+        'url': 'https://shippingcontainerhotelqa.gtriip.com/container/zr1',
         # 'url': 'http://app-zr1:8082',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 60,
@@ -284,7 +284,7 @@ GUEST_ENDPOINT = [
         'image': '/static/img/property/Zehnder-Road2.jpg',
         'address': 'LOT 02781W MK 03 262 Pasir Panjang Road, Singapore 118628',
         #'url': 'http://192.168.1.100:8085',
-        'url': 'https://shippingcontainerhotelqa.gtriip.com/container/81ks',
+        'url': 'https://shippingcontainerhotelqa.gtriip.com/container/zr2',
         # 'url': 'http://app-zr2:8083',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 60,
