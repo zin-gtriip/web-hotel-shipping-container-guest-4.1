@@ -21,14 +21,16 @@
         <div class="row page-content">
             <div class="col-12 px-0">
                 {% for prop in properties %}
-                    <div class="property-container" id="property-container-{{ forloop.counter0 }}">
-                        <label class="label-property" style="background-image: url('{{ prop.image }}');">
-                            <input type="radio" name="property_id" value="{{ prop.id }}" id="id_property_id_{{ forloop.counter0 }}" hidden>
-                        </label>
-                        <div class="property-details">
-                            <div class="text-left">
-                                <div class="">{{ prop.description }}</div>
-                                <div class="text-10">{{ prop.address }}</div>
+                    <div class="property-container {% if not prop.live %}unclickable-property{% endif %}" id="property-container-{{ forloop.counter0 }}">
+                        <div class="{% if not prop.live %} inactive-property {% endif %}">
+                            <label class="label-property" style="background-image: url('{{ prop.image }}');">
+                                <input type="radio" name="property_id" value="{{ prop.id }}" id="id_property_id_{{ forloop.counter0 }}" hidden>
+                            </label>
+                            <div class="property-details">
+                                <div class="text-left">
+                                    <div class="">{{ prop.description }}</div>
+                                    <div class="text-10">{{ prop.address }}</div>
+                                </div>
                             </div>
                         </div>
                     </div>

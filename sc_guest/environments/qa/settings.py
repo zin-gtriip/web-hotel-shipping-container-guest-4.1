@@ -138,6 +138,7 @@ GUEST_ENDPOINT = [
         #'url': 'http://app-zr1:8082',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 60,
+        'live': True,
     },
     {
         'id': 'zr2',
@@ -150,6 +151,7 @@ GUEST_ENDPOINT = [
         #'url': 'http://app-zr2:8083',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 60,
+        'live': True,
     },
     {
         'id': '77ks',
@@ -162,6 +164,7 @@ GUEST_ENDPOINT = [
         #'url': 'http://app-77ks:8080',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 60,
+        'live': False,
     },
     {
         'id': '81ks',
@@ -174,6 +177,7 @@ GUEST_ENDPOINT = [
         #'url': 'http://app-81ks:8081',
         'key': '36b682152421c5fcc2afe49fdafc77f84b029254b77a8af4c680b919725e5fa80f65d09df3c6311fc8f40cac9cc7fbea6a7d8dff6368af7d638abf041bd6ae45',
         'timeout': 60,
+        'live': False,
     },
 ]
 

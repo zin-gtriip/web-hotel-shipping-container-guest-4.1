@@ -8,12 +8,21 @@
 /* PROPERTY THUMBNAIL */
 $property-radius: 10px;
 
+.unclickable-property {
+    pointer-events: none;
+}
+
 .property-container {
     margin: 0 auto 18px auto;
     width: 100%;
     max-width: 330px;
     position: relative;
     cursor: pointer;
+
+    .inactive-property {
+        background-color: white;
+        opacity: 50%;
+    }
 
     .label-property {
         display: flex;
