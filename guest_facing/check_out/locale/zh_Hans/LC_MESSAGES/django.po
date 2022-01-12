@@ -140,7 +140,7 @@ msgstr "无法为一些住客进行退房手续。请改为在前台退房。"
 msgid ""
 "Unable to proceed with this guest's check-out. Please check-out at the Front "
 "Desk."
-msgstr "无法为此住客进行退房手续。 请改为在前台退房。"
+msgstr "无法办理退房手续。 请联系 +65 97999810 退房。"
 
 #: templates/check_out/desktop/bill.html:297
 #: templates/check_out/desktop/complete.html:15
@@ -216,7 +216,7 @@ msgstr "reCaptcha验证失败。"
 #: templates/check_out/desktop/login.html:93
 #: templates/check_out/mobile/login.html:104
 msgid "checkout_login:error_modal_body:other"
-msgstr "发生意外故障。请前往前台寻求协助。"
+msgstr "发生意外故障。请联系 +65 97999810 寻求协助。"
 
 #: templates/check_out/mobile/login.html:30
 msgid "Please enter your<br>Reservation Number"

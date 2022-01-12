@@ -432,7 +432,7 @@ msgstr "reCaptcha verification failed."
 #: guest_facing/registration/templates/registration/mobile/login.html:123
 msgid "registration_login:error_modal_body:other"
 msgstr ""
-"An unexpected error has occurred. Please proceed to the front desk for "
+"An unexpected error has occurred. Please contact +65 97999810 for "
 "assistance."
 
 #: guest_facing/registration/templates/registration/desktop/ocr.html:27
@@ -556,7 +556,7 @@ msgid ""
 "digital key."
 msgstr ""
 "Please download our mobile app and use the Digital Key to access your room. "
-"Alternatively, you may approach the front office to collect your key."
+"Alternatively, you may contact +65 97999810 to collect your key card / PIN"
 
 #: guest_facing/registration/templates/registration/mobile/login.html:38
 msgid "Please enter your<br>Last Name"

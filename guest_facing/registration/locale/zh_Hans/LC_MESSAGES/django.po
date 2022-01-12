@@ -418,7 +418,7 @@ msgstr "reCaptcha验证失败。"
 #: guest_facing/registration/templates/registration/desktop/login.html:106
 #: guest_facing/registration/templates/registration/mobile/login.html:123
 msgid "registration_login:error_modal_body:other"
-msgstr "发生意外故障。请前往前台寻求协助。"
+msgstr "发生意外故障。请联系 +65 97999810 寻求协助。"
 
 #: guest_facing/registration/templates/registration/desktop/ocr.html:27
 msgid "Upload a photo<br>of your Passport"
@@ -533,8 +533,8 @@ msgid ""
 "download our mobile app so you can head straight to your room using the "
 "digital key."
 msgstr ""
-"请下载我们的应用程序以使用数码钥匙进入您的房间。或者，您可前往前台领取您的房"
-"间钥匙。"
+"请下载我们的应用程序以使用数码钥匙进入您的房间。或者，您能联系 +65 97999810 以获"
+"取您的房卡或密码。"
 
 #: guest_facing/registration/templates/registration/mobile/login.html:38
 msgid "Please enter your<br>Last Name"

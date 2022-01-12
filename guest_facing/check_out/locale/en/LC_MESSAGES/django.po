@@ -146,7 +146,7 @@ msgid ""
 "Unable to proceed with this guest's check-out. Please check-out at the Front "
 "Desk."
 msgstr ""
-"Unable to check-out this guest. Please check-out at the front desk instead."
+"Unable to check-out. Please contact +65 97999810 to check-out instead"
 
 #: templates/check_out/desktop/bill.html:297
 #: templates/check_out/desktop/complete.html:15
@@ -227,7 +227,7 @@ msgstr "reCaptcha verification failed."
 #: templates/check_out/mobile/login.html:104
 msgid "checkout_login:error_modal_body:other"
 msgstr ""
-"An unexpected error has occurred. Please proceed to the front desk for "
+"An unexpected error has occurred. Please contact +65 97999810 for "
 "assistance."
 
 #: templates/check_out/mobile/login.html:30
