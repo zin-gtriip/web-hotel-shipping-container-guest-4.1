@@ -252,8 +252,8 @@ msgstr ""
 "                                Please download our mobile app and use the\n"
 "                                Digital Key to access your room. "
 "Alternatively, you\n"
-"                                may approach the front office to collect "
-"your key.\n"
+"                                may contact +65 97999810 to collect "
+"your key card / PIN.\n"
 "                            "
 
 #: guest_facing/registration/templates/registration/desktop/complete.html:77

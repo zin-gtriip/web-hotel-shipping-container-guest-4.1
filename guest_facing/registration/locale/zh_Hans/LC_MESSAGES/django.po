@@ -246,7 +246,7 @@ msgstr ""
 "\n"
 "                                请下载我们的应用程序以使用数码钥匙进入您的房"
 "间。\n"
-"                                或者，您可前往前台领取您的房间钥匙。\n"
+"                                或者，您能联系 +65 97999810 以获 取您的房卡或密码。\n"
 "                            "
 
 #: guest_facing/registration/templates/registration/desktop/complete.html:77
