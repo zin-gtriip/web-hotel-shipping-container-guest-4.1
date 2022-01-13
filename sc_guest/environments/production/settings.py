@@ -16,6 +16,17 @@ WSGI_APPLICATION = 'sc_guest.environments.production.wsgi.application'
 # SECURE_BROWSER_XSS_FILTER   = True
 # SECURE_SSL_REDIRECT         = True
 
+# Encrypt and decrypt key using cryptography lib
+# https://pypi.org/project/cryptography/
+
+FERNET_KEY = b'SI_xcxRLTElF5Tj8g7p10SFpwB3LnbfPDPuEW1O0QEY='
+
+# Google Recaptcha configuration
+# https://pypi.org/project/django-recaptcha/
+
+RECAPTCHA_PUBLIC_KEY        = '6LdqZQkeAAAAACnxvJknAwsmhuyp_ruaTJR1Qwp5'
+RECAPTCHA_PRIVATE_KEY       = '6LdqZQkeAAAAAMikf9gRKddCYsZ5ggGKQ_nlZXL5'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
@@ -195,6 +206,15 @@ AMP_ENDPOINT = [
     }
 ]
 
+# Messaging configuration
+# Prod
+CHAT_SUB_KEY            = 'sub-c-2dd92bf0-3546-11ec-b886-526a8555c638'
+CHAT_PUB_KEY            = 'pub-c-d196abff-fb5f-45b8-9bd7-1a7ad0276192'
+CHAT_SEC_KEY            = 'sec-c-NjU5NmQxNDgtYTBlZS00NmQxLTgwNTktYzkxNjc3ZWJhNDQ3'
+CHAT_UUID               = 'FO' # no special character, including space
+CHAT_AUTO_START_TIME    = '18:00'
+CHAT_AUTO_END_TIME      = '09:00'
+
 
 # Logging
 # https://docs.djangoproject.com/en/2.2/topics/logging/
@@ -256,3 +276,6 @@ REGISTRATION_ROOM_TYPES = [
         'room_image': '/guest_static/img/room/container_2.jpg',
     }
 ]
+
+# google analytics measurement id
+GA_MEASUREMENT_ID   = 'G-VLVYMFJ35W'

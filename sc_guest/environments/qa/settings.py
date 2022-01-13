@@ -17,6 +17,17 @@ WSGI_APPLICATION = 'sc_guest.environments.qa.wsgi.application'
 #SECURE_BROWSER_XSS_FILTER   = True
 #SECURE_SSL_REDIRECT         = True
 
+# Encrypt and decrypt key using cryptography lib
+# https://pypi.org/project/cryptography/
+
+FERNET_KEY = b'aJAwfZCJTITCVp-76x9_z8aaFSAFvlrOIFRQEDLm6p8='
+
+# Google Recaptcha configuration
+# https://pypi.org/project/django-recaptcha/
+
+RECAPTCHA_PUBLIC_KEY        = '6LdqZQkeAAAAACnxvJknAwsmhuyp_ruaTJR1Qwp5'
+RECAPTCHA_PRIVATE_KEY       = '6LdqZQkeAAAAAMikf9gRKddCYsZ5ggGKQ_nlZXL5'
+
 
 # Logging
 # https://docs.djangoproject.com/en/2.2/topics/logging/
@@ -220,6 +231,15 @@ AMP_ENDPOINT = [
         'timeout': 60,
     }
 ]
+
+# Messaging configuration
+#QA
+CHAT_SUB_KEY            = 'sub-c-8994bb8a-11ec-11ec-8a3e-d2716870c3f2'
+CHAT_PUB_KEY            = 'pub-c-1b823142-c442-42e7-963a-d529c1f373ce'
+CHAT_SEC_KEY            = 'sec-c-NDk2YTY2NDAtYmExOC00MGU1LTliYmItMWFmMzA0NGE3OTg5'
+CHAT_UUID               = 'FO' # no special character, including space
+CHAT_AUTO_START_TIME    = '18:00'
+CHAT_AUTO_END_TIME      = '09:00'
 
 
 STATIC_IMAGE_URL    = '/guest_static/img'
