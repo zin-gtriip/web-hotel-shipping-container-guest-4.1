@@ -276,6 +276,3 @@ REGISTRATION_ROOM_TYPES = [
         'room_image': '/guest_static/img/room/container_2.jpg',
     }
 ]
-
-# google analytics measurement id
-GA_MEASUREMENT_ID   = 'G-VLVYMFJ35W'
