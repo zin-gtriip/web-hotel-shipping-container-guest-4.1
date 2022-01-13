@@ -115,6 +115,8 @@ class CheckOutBillView(BillRequiredAndExistMixin, PropertyRequiredMixin, Request
         if len(self.request.session['check_out'].get('bills', [])) == 1: # redirect to last bill if left 1 bill to check-out
             bill = next(iter(self.request.session['check_out'].get('bills', [])), None)
             url = '/guest/check_out/bill/%(reservation_no)s' % {'reservation_no': bill.get('pmsNo', 'all')}
+        else:
+            url = '/guest/check_out/complete'
         return url
 
 
