@@ -187,54 +187,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-sm table-borderless mb-0">
-                                                            <thead>
-                                                                <th class="text-uppercase font-weight-normal">{% trans 'Date' %}</th>
-                                                                <th class="text-uppercase font-weight-normal">{% trans 'Description' %}</th>
-                                                                <th class="text-uppercase font-weight-normal text-right">{% trans 'Amount' %}</th>
-                                                            </thead>
-                                                            <tbody>
-                                                                {% for item in reservation.items %}
-                                                                    <tr>
-                                                                        <td>{{ item.date }}</td>
-                                                                        <td>{{ item.itemName }}</td>
-                                                                        <td class="text-right">{{ item.amount|floatformat:2|intcomma }}</td>
-                                                                    </tr>
-                                                                {% endfor %}
-                                                            </tbody>
-                                                            <tfoot>
-                                                                <tr class="border-top-2">
-                                                                    <td class="text-right text-uppercase" colspan="2">{% trans 'Balance Due' %}</td>
-                                                                    <td class="text-right">{{ currency_symbol }} {{ reservation.grandTotal|floatformat:2|intcomma }}</td>
-                                                                </tr>
-                                                            </tfoot>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         {% endfor %}
                                     {% endif %}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-sm table-borderless">
-                                            <tfoot>
-                                                <tr class="border-top-2">
-                                                    <td class="text-right">{% trans 'GST at 7%'%}</td>
-                                                    <td class="text-right">{{ currency_symbol }} {{ object.totalTax|default:0|floatformat:2|intcomma }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="font-weight-bold text-right">{% trans 'Total Amount Payable' %}</td>
-                                                    <td class="font-weight-bold text-right">{{ currency_symbol }} {{ object.totalAmount|floatformat:2|intcomma }}</td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
                                 </div>
                             </div>
                         </div>
