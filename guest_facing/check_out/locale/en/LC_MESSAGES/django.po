@@ -123,9 +123,9 @@ msgid ""
 "personally liable in the event that the indicated person, company or "
 "association fails to pay for any part of the full amount of the charges."
 msgstr ""
-"I agree that my liability for this bill is not waived and to be held liable "
-"personally if the indicated person, company, or association fails to pay for "
-"any part of the full amount of the charges."
+"I agree that I will be held liable for any damages caused to the property during my stay "
+"and will make full payment for any replacement items and/or to restore the property to its original condition before my stay. "
+"This amount will be deducted from the credit card you provided when reservation was confirmed."
 
 #: templates/check_out/desktop/bill.html:257
 msgid "Outstanding balance will be charged to the credit card registered."
