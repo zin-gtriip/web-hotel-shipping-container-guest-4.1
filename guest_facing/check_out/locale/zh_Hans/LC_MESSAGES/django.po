@@ -123,8 +123,8 @@ msgid ""
 "personally liable in the event that the indicated person, company or "
 "association fails to pay for any part of the full amount of the charges."
 msgstr ""
-"我同意我对于本账单的责任不会被豁免，并且同意承担所有相关人士，公司或协会未支"
-"付所有或部分金额。"
+"我同意将对住宿期间对财产造成的任何损害承担责任，并将全额支付任何更换物品和/或将财产恢复到我入住前的原始状态。"
+"这笔款项将从您在确认预订时提供的信用卡中扣除。"
 
 #: templates/check_out/desktop/bill.html:257
 msgid "Outstanding balance will be charged to the credit card registered."
